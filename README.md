@@ -6,9 +6,12 @@
 ## Technologies
 - ASP .NET 5
 - Entity Framework
-## Install Packages
+## Install Packages at CosmeticsShop.Data
 - Microsoft.EntityFrameworkCore.SqlServer
 - Microsoft.EntityFrameworkCore.Tools
 - Microsoft.EntityFrameworkCore.Design
+- Microsoft.Extensions.Configuration
+- Microsoft.Extensions.Configuration.FileExtensions
+- Microsoft.Extensions.Configuration.Json
 ## How to configure and run
 ## How to contribute
