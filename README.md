@@ -6,5 +6,9 @@
 ## Technologies
 - ASP .NET 5
 - Entity Framework
+## Install Packages
+- Microsoft.EntityFrameworkCore.SqlServer
+- Microsoft.EntityFrameworkCore.Tools
+- Microsoft.EntityFrameworkCore.Design
 ## How to configure and run
 ## How to contribute
