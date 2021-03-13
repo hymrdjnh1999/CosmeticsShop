@@ -6,6 +6,8 @@
 ## Technologies
 - ASP .NET 5
 - Entity Framework
+## Database Using
+-  Microsoft SQL Management Studio 18
 ## Install Packages at CosmeticsShop.Data
 - Microsoft.EntityFrameworkCore.SqlServer
 - Microsoft.EntityFrameworkCore.Tools
