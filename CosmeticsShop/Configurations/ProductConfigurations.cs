@@ -19,11 +19,13 @@ namespace CosmeticsShop.Data.Configurations
 
             builder.Property(x => x.OriginalPrice).IsRequired();
 
+            builder.Property(x => x.ForGender).IsRequired();
+
+            builder.Property(x => x.OriginalCountry).IsRequired();
+
             builder.Property(x => x.Stock).IsRequired().HasDefaultValue(0);
 
             builder.Property(x => x.ViewCount).IsRequired().HasDefaultValue(0);
-
-
         }
     }
 }

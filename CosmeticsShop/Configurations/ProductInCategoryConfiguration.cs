@@ -13,9 +13,7 @@ namespace CosmeticsShop.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<ProductInCategory> builder)
         {
-            builder.HasKey(t => new { t.CategoryId, t.ProductId });
-
-            builder.ToTable("ProductInCategories");
+            builder.ToTable("ProductInCategories").HasKey(t => new { t.CategoryId, t.ProductId });
 
             builder.HasOne(p => p.Product).WithMany(pc => pc.ProductInCategories).HasForeignKey(pc => pc.ProductId);
 
