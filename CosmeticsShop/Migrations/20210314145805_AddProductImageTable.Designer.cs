@@ -4,14 +4,16 @@ using CosmeticsShop.Data.EntityFrameWork;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CosmeticsShop.Data.Migrations
 {
     [DbContext(typeof(CosmeticsDbContext))]
-    partial class CosmeticsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210314145805_AddProductImageTable")]
+    partial class AddProductImageTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -556,7 +558,7 @@ namespace CosmeticsShop.Data.Migrations
                         new
                         {
                             Id = new Guid("bd5b83d2-5c75-4f96-a63f-1eca425bdfe5"),
-                            ConcurrencyStamp = "95aeb2cf-0f52-4ace-b63d-70537ee47c6a",
+                            ConcurrencyStamp = "6f432b91-3cad-4f79-87df-6e962e5ad694",
                             Description = "Administrator role",
                             Name = "Supper Admin",
                             NormalizedName = "Admin"
@@ -564,7 +566,7 @@ namespace CosmeticsShop.Data.Migrations
                         new
                         {
                             Id = new Guid("efebfd93-b27d-4c91-8a71-74fd71944893"),
-                            ConcurrencyStamp = "73ee175b-ea56-4c0b-b143-f2fd9d71dcf3",
+                            ConcurrencyStamp = "3de2120f-2992-4c57-9afc-0462e22961e2",
                             Description = "Administrator role",
                             Name = "Admin",
                             NormalizedName = "Admin"
@@ -677,7 +679,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = new Guid("1c856746-f8aa-4026-b854-f18da9787cf3"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "32d53a31-116d-42c7-a686-0ab5f937190c",
+                            ConcurrencyStamp = "b1c134de-419a-419b-8074-68781616a948",
                             Dob = new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "tiendinhdev99@gmail.com",
                             EmailConfirmed = true,
@@ -685,7 +687,7 @@ namespace CosmeticsShop.Data.Migrations
                             Name = "Voi Bé Nhỏ",
                             NormalizedEmail = "tiendinhdev99@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHq+VSDYXr+zGSJ3gbaqECtAVEO1XcEjagMbmPRU+4mw3+1ReTY1GMO/uXZ3PKJUZg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELfIIRzvpGaKAf9ieUak5ynGM3016h1+tZAMqIJ+Iw57BktsIhg3pD8KEkO6SQzRfw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -695,7 +697,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = new Guid("d8b63b91-c360-4e3d-9b3a-2dce31f00cc4"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "288d8177-e603-4359-8082-8d07dbd6d2f0",
+                            ConcurrencyStamp = "afe3be17-8305-47d9-a205-de2ef61c33ca",
                             Dob = new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Haianh@gmail.com",
                             EmailConfirmed = true,
@@ -703,7 +705,7 @@ namespace CosmeticsShop.Data.Migrations
                             Name = "Hải Anh",
                             NormalizedEmail = "Haianh@gmail.com",
                             NormalizedUserName = "haianhadmin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKqsvFhZKKxD2aXaOfRGwrooLZygMxoMClrpuxJzEtUyFLqA1wN/P7VTvPdHi0xB4g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAED8GI0GwKV2IuGrS/eloRL52xkrvgkJT/p3Sow26AO32HKVSN142kjwf2enyaseHdw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -713,7 +715,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = new Guid("33674f31-0bd2-43cd-9090-3f0d4bab1c58"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c56a1446-887d-46d1-be0c-f5e5a0047f54",
+                            ConcurrencyStamp = "17ea1a88-b5fe-443f-8cc9-c95413952703",
                             Dob = new DateTime(2001, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Tranphuong18032001@gmail.com",
                             EmailConfirmed = true,
@@ -721,7 +723,7 @@ namespace CosmeticsShop.Data.Migrations
                             Name = "Thu Phương",
                             NormalizedEmail = "Tranphuong18032001@gmail.com",
                             NormalizedUserName = "tranphuongadmin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJeSwadcpFj/aB7nD88roni5BANJwpph/FqlS/WGT/wfKUfNlncyarwzJC1mCT4Amw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMYDoKvGrNflaj9mt8ivnbyn7uJJN7Q5/cc11+DH/TQ+4Hg5wbmYBz3BwUGGBtTF0Q==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,

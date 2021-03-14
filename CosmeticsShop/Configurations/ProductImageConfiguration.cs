@@ -9,15 +9,17 @@ using System.Threading.Tasks;
 
 namespace CosmeticsShop.Data.Configurations
 {
-    public class ProductPrivatePropertyConfiguration : IEntityTypeConfiguration<ProductPrivateProperty>
+    public class ProductImageConfiguration : IEntityTypeConfiguration<ProductImage>
     {
-        public void Configure(EntityTypeBuilder<ProductPrivateProperty> builder)
+        public void Configure(EntityTypeBuilder<ProductImage> builder)
         {
-            builder.ToTable("ProductPrivateProperties").HasKey(x => x.Id);
+            builder.ToTable("ProductImages").HasKey(x => x.Id);
 
             builder.Property(x => x.Id).UseIdentityColumn();
 
-            builder.Property(x => x.Name).IsRequired();
+            builder.Property(x => x.ImagePath).IsRequired();
+
+            builder.HasOne(x => x.Product).WithMany(p => p.ProductImages).HasForeignKey(x => x.ProductId);
         }
     }
 }

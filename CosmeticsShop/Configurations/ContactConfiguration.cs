@@ -15,6 +15,8 @@ namespace CosmeticsShop.Data.Configurations
         {
             builder.ToTable("Contacts").HasKey(c => c.Id);
 
+            builder.Property(c => c.Id).UseIdentityColumn();
+
             builder.Property(c => c.Name).IsRequired();
 
             builder.Property(c => c.PhoneNumber).IsRequired();
