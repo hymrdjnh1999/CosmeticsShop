@@ -15,5 +15,6 @@
 - Microsoft.Extensions.Configuration
 - Microsoft.Extensions.Configuration.FileExtensions
 - Microsoft.Extensions.Configuration.Json
+- Swashbuckle.AspNetCore
 ## How to configure and run
 ## How to contribute

@@ -19,6 +19,30 @@ namespace CosmeticsShop.Application.Catalog.Products
         {
             _context = context;
         }
+
+        public async Task<List<ProductViewModel>> GetAll()
+        {
+            var queryResult = from p in _context.Products
+                              select p;
+
+            var data = await queryResult
+                .Select(x => new ProductViewModel()
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Price = x.Price,
+                    ForGender = x.ForGender,
+                    OriginalPrice = x.OriginalPrice,
+                    DateCreated = x.DateCreated,
+                    Description = x.Description,
+                    Details = x.Details,
+                    OriginalCountry = x.OriginalCountry,
+                    Stock = x.Stock,
+                    ViewCount = x.ViewCount
+                }).ToListAsync();
+            return data;
+        }
+
         public async Task<PageResponse<ProductViewModel>> GetAllByCategoryId(PublicPagingRequest request)
         {
             var queryResult = from p in _context.Products
@@ -26,15 +50,20 @@ namespace CosmeticsShop.Application.Catalog.Products
                               join c in _context.Categories on pic.CategoryId equals c.Id
                               select new { p, pic };
 
-            if (request.CategoryId.HasValue && request.CategoryId.Value > 0)
+            if (request.CategoryId != null)
             {
                 queryResult = queryResult.Where(p => p.pic.CategoryId == request.CategoryId);
             }
 
+
+
             int totalRow = await queryResult.CountAsync();
 
-            var data = await queryResult.Skip((request.PageIndex - 1) * request.PageSize)
-                .Take(request.PageSize)
+            int PageIndex = request.PageIndex ?? 1;
+            int PageSize = request.PageSize ?? 10;
+
+            var data = await queryResult.Skip((PageIndex - 1) * PageSize)
+                .Take(PageSize)
                 .Select(x => new ProductViewModel()
                 {
                     Id = x.p.Id,
@@ -52,10 +81,12 @@ namespace CosmeticsShop.Application.Catalog.Products
 
             var pagedResult = new PageResponse<ProductViewModel>()
             {
+
+
+                Items = data,
                 TotalRecords = totalRow,
-                Skip = (request.PageIndex - 1) * request.PageSize,
-                Take = request.PageSize,
-                Items = data
+                Skip = (PageIndex - 1) * PageSize,
+                Take = PageSize,
             };
 
             return pagedResult;

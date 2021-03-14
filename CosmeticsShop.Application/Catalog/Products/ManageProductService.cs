@@ -103,8 +103,11 @@ namespace CosmeticsShop.Application.Catalog.Products
             }
             int totalRow = await queryResult.CountAsync();
 
-            var data = await queryResult.Skip((query.PageIndex - 1) * query.PageSize)
-                .Take(query.PageSize)
+            int PageIndex = query.PageIndex ?? 1;
+            int PageSize = query.PageSize ?? 10;
+
+            var data = await queryResult.Skip((PageIndex - 1) * PageSize)
+                .Take(PageSize)
                 .Select(x => new ProductViewModel()
                 {
                     Id = x.p.Id,
@@ -122,10 +125,11 @@ namespace CosmeticsShop.Application.Catalog.Products
 
             var pagedResult = new PageResponse<ProductViewModel>()
             {
+                Items = data,
                 TotalRecords = totalRow,
-                Skip = (query.PageIndex - 1) * query.PageSize,
-                Take = query.PageSize,
-                Items = data
+                Skip = (PageIndex - 1) * PageSize,
+                Take = PageSize,
+
             };
             return pagedResult;
 
