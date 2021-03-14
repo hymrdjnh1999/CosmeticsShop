@@ -8,7 +8,7 @@ namespace Cosmetics.ViewModels.Common
 {
     public class QueryParamRequest
     {
-        public int PageIndex { get; set; }
-        public int PageSize { get; set; }
+        public int? PageIndex { get; set; }
+        public int? PageSize { get; set; }
     }
 }

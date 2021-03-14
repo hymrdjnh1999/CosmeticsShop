@@ -14,9 +14,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CosmeticsShop.Application", "CosmeticsShop.Application\CosmeticsShop.Application.csproj", "{A1BB54F3-7D10-419B-984B-7159579D223E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cosmetics.Ultilities", "Cosmetics.Ultilities\Cosmetics.Ultilities.csproj", "{3EDBF6E6-75A5-45ED-839B-D9BA67B2021B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cosmetics.Ultilities", "Cosmetics.Ultilities\Cosmetics.Ultilities.csproj", "{3EDBF6E6-75A5-45ED-839B-D9BA67B2021B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cosmetics.ViewModels", "Cosmetics.ViewModels\Cosmetics.ViewModels.csproj", "{06D9C240-8D20-4E4D-998F-D1CD7A11E96C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cosmetics.ViewModels", "Cosmetics.ViewModels\Cosmetics.ViewModels.csproj", "{06D9C240-8D20-4E4D-998F-D1CD7A11E96C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cosmetics.WebAPI", "Cosmetics.WebAPI\Cosmetics.WebAPI.csproj", "{D415AB02-6B66-41CF-9135-30C04E715DE1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +46,10 @@ Global
 		{06D9C240-8D20-4E4D-998F-D1CD7A11E96C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06D9C240-8D20-4E4D-998F-D1CD7A11E96C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06D9C240-8D20-4E4D-998F-D1CD7A11E96C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D415AB02-6B66-41CF-9135-30C04E715DE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D415AB02-6B66-41CF-9135-30C04E715DE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D415AB02-6B66-41CF-9135-30C04E715DE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D415AB02-6B66-41CF-9135-30C04E715DE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
