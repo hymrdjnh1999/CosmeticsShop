@@ -1,6 +1,8 @@
 ﻿using CosmeticsShop.Data.Configurations;
 using CosmeticsShop.Data.Entities;
 using CosmeticsShop.Data.Extentions;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,9 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CosmeticsShop.Data.EntityFramWork
+namespace CosmeticsShop.Data.EntityFrameWork
 {
-    public class CosmeticsDbContext : DbContext
+    public class CosmeticsDbContext : IdentityDbContext<User, Role, Guid>
     {
         public CosmeticsDbContext(DbContextOptions options) : base(options)
         {
@@ -31,6 +33,15 @@ namespace CosmeticsShop.Data.EntityFramWork
             modelBuilder.ApplyConfiguration(new ProductInProductPrivatePropertyConfifguration());
             modelBuilder.ApplyConfiguration(new CosmeticsCollectionConfigration());
             modelBuilder.ApplyConfiguration(new ProductInCosmeticsCollectionConfiguration());
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new RoleConfiguration());
+
+            modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("UserClaims").HasKey(x => x.Id);
+            modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("UserRoles").HasKey(x => new { x.UserId, x.RoleId });
+            modelBuilder.Entity<IdentityUserLogin<Guid>>().ToTable("UserLogins").HasKey(x => x.UserId);
+            modelBuilder.Entity<IdentityRoleClaim<Guid>>().ToTable("RoleClaims").HasKey(x => x.Id);
+            modelBuilder.Entity<IdentityUserToken<Guid>>().ToTable("UserTokend").HasKey(x => x.UserId);
+            modelBuilder.Entity<IdentityUserToken<Guid>>().ToTable("UserTokens").HasKey(x => x.UserId);
 
 
             modelBuilder.Seed();

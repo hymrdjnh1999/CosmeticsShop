@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 
-namespace CosmeticsShop.Data.EntityFramWork
+namespace CosmeticsShop.Data.EntityFrameWork
 {
     public class CosmeticsDbContextFactory : IDesignTimeDbContextFactory<CosmeticsDbContext>
     {
