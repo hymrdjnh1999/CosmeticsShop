@@ -18,5 +18,6 @@ namespace CosmeticsShop.Data.Entities
         public string ShipPhoneNumber { set; get; }
         public OrderStatus Status { set; get; }
         public List<OrderDetail> OrderDetails { set; get; }
+        public User User { set; get; }
     }
 }

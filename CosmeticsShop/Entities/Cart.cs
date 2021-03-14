@@ -15,6 +15,7 @@ namespace CosmeticsShop.Data.Entities
         public Guid UserId { get; set; }
         public DateTime DateCreated { get; set; }
         public Product Product { get; set; }
+        public User User { get; set; }
 
     }
 }

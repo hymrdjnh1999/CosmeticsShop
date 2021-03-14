@@ -1,5 +1,6 @@
 ﻿using CosmeticsShop.Data.Entities;
 using CosmeticsShop.Data.Enums;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -130,6 +131,86 @@ namespace CosmeticsShop.Data.Extentions
                 new ProductInCategory() { ProductId = 1, CategoryId = 2 },
                 new ProductInCategory() { ProductId = 2, CategoryId = 3 }
             );
+
+            const string ADMIN_ID = "1C856746-F8AA-4026-B854-F18DA9787CF3";
+            const string HAIANH_ID = "D8B63B91-C360-4E3D-9B3A-2DCE31F00CC4";
+            const string PHUONGID = "33674F31-0BD2-43CD-9090-3F0D4BAB1C58";
+            const string ROLE_ID = "BD5B83D2-5C75-4F96-A63F-1ECA425BDFE5";
+            const string ROLE_ID2 = "EFEBFD93-B27D-4C91-8A71-74FD71944893";
+
+            modelBuilder.Entity<Role>().HasData(
+                new Role()
+                {
+                    Id = new Guid(ROLE_ID),
+                    Name = "Supper Admin",
+                    NormalizedName = "Admin",
+                    Description = "Administrator role"
+                },
+                new Role()
+                {
+                    Id = new Guid(ROLE_ID2),
+                    Name = "Admin",
+                    NormalizedName = "Admin",
+                    Description = "Administrator role"
+                });
+            var hasher = new PasswordHasher<User>();
+            modelBuilder.Entity<User>().HasData(
+                new User()
+                {
+                    Id = new Guid(ADMIN_ID),
+                    Email = "tiendinhdev99@gmail.com",
+                    NormalizedEmail = "tiendinhdev99@gmail.com",
+                    Dob = new DateTime(1999, 06, 21),
+                    UserName = "voibenho99",
+                    NormalizedUserName = "admin",
+                    Name = "Voi Bé Nhỏ",
+                    SecurityStamp = string.Empty,
+                    EmailConfirmed = true,
+                    PasswordHash = hasher.HashPassword(null, "adolphin123")
+                },
+                new User()
+                {
+                    Id = new Guid(HAIANH_ID),
+                    Email = "Haianh@gmail.com",
+                    NormalizedEmail = "Haianh@gmail.com",
+                    Dob = new DateTime(2001, 07, 11),
+                    UserName = "haianh",
+                    NormalizedUserName = "haianhadmin",
+                    Name = "Hải Anh",
+                    SecurityStamp = string.Empty,
+                    EmailConfirmed = true,
+                    PasswordHash = hasher.HashPassword(null, "1111")
+                },
+                new User()
+                {
+                    Id = new Guid(PHUONGID),
+                    Email = "Tranphuong18032001@gmail.com",
+                    NormalizedEmail = "Tranphuong18032001@gmail.com",
+                    Dob = new DateTime(2001, 03, 18),
+                    UserName = "tranphuong",
+                    NormalizedUserName = "tranphuongadmin",
+                    Name = "Thu Phương",
+                    SecurityStamp = string.Empty,
+                    EmailConfirmed = true,
+                    PasswordHash = hasher.HashPassword(null, "rhyder2001")
+                });
+            modelBuilder.Entity<IdentityUserRole<Guid>>().HasData(
+                new IdentityUserRole<Guid>()
+                {
+                    UserId = new Guid(ADMIN_ID),
+                    RoleId = new Guid(ROLE_ID)
+                },
+                new IdentityUserRole<Guid>()
+                {
+                    UserId = new Guid(HAIANH_ID),
+                    RoleId = new Guid(ROLE_ID2)
+                },
+                new IdentityUserRole<Guid>()
+                {
+                    UserId = new Guid(PHUONGID),
+                    RoleId = new Guid(ROLE_ID2)
+                }
+                );
         }
     }
 }

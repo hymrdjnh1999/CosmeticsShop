@@ -9,13 +9,11 @@ using System.Threading.Tasks;
 
 namespace CosmeticsShop.Data.Configurations
 {
-    public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
+    public class RoleConfiguration : IEntityTypeConfiguration<Role>
     {
-        public void Configure(EntityTypeBuilder<Transaction> builder)
+        public void Configure(EntityTypeBuilder<Role> builder)
         {
-            builder.ToTable("Transactions").HasKey(t => t.Id);
-
-            builder.HasOne(t => t.User).WithMany(u => u.Transactions).HasForeignKey(t => t.UserId);
+            builder.ToTable("Roles");
 
         }
     }
