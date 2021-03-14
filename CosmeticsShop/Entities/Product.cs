@@ -25,6 +25,7 @@ namespace CosmeticsShop.Data.Entities
         public List<OrderDetail> OrderDetails { get; set; }
         public List<ProductInCosmeticsCollection> ProductInCosmeticsCollections { get; set; }
         public List<Cart> Carts { get; set; }
+        public List<ProductImage> ProductImages { get; set; }
         public List<ProductInProductPrivateProperty> ProductInProductPrivateProperties { get; set; }
 
     }

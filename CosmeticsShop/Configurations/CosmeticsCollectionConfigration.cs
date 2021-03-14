@@ -15,6 +15,8 @@ namespace CosmeticsShop.Data.Configurations
         {
             builder.ToTable("CosmeticsCollections").HasKey(x => x.Id);
 
+            builder.Property(x => x.Id).UseIdentityColumn();
+
             builder.Property(x => x.Name).IsRequired();
         }
     }

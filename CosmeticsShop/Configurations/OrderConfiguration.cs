@@ -15,6 +15,8 @@ namespace CosmeticsShop.Data.Configurations
         {
             builder.ToTable("Orders").HasKey(o => o.Id);
 
+            builder.Property(x => x.Id).UseIdentityColumn();
+
             builder.Property(o => o.ShipAddress).IsRequired();
 
             builder.Property(o => o.ShipName).IsRequired();
