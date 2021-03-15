@@ -17,13 +17,11 @@ namespace CosmeticsShop.Data.Configurations
 
             builder.Property(x => x.Id).UseIdentityColumn();
 
+            builder.Property(x => x.Name).IsRequired();
+
             builder.Property(x => x.Price).IsRequired();
 
             builder.Property(x => x.OriginalPrice).IsRequired();
-
-            builder.Property(x => x.ForGender).IsRequired();
-
-            builder.Property(x => x.OriginalCountry).IsRequired();
 
             builder.Property(x => x.Stock).IsRequired().HasDefaultValue(0);
 
