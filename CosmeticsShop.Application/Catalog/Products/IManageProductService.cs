@@ -23,5 +23,6 @@ namespace CosmeticsShop.Application.Catalog.Products
         Task<int> RemoveImages(List<int> imageIds);
         Task<int> UpdateImage(int imageId, string caption, bool isDefault);
         Task<List<ProductImageViewModel>> GetListImage(int productId);
+        Task<ProductViewModel?> GetById(int id);
     }
 }

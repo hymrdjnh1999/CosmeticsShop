@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CosmeticsShop.WebApp", "Cos
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CosmeticsShop.Data", "CosmeticsShop\CosmeticsShop.Data.csproj", "{E673466B-B4B7-4C40-B65D-F79359A73F0C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{70DCB337-0339-42EF-9C43-FFF7945B42C2}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.Solution Items", "0.Solution Items", "{70DCB337-0339-42EF-9C43-FFF7945B42C2}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
@@ -18,7 +18,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cosmetics.Ultilities", "Cos
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cosmetics.ViewModels", "Cosmetics.ViewModels\Cosmetics.ViewModels.csproj", "{06D9C240-8D20-4E4D-998F-D1CD7A11E96C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cosmetics.WebAPI", "Cosmetics.WebAPI\Cosmetics.WebAPI.csproj", "{D415AB02-6B66-41CF-9135-30C04E715DE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cosmetics.WebAPI", "Cosmetics.WebAPI\Cosmetics.WebAPI.csproj", "{D415AB02-6B66-41CF-9135-30C04E715DE1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Infrastructure", "1.Infrastructure", "{F89BA2AD-29B1-44CC-B9BF-7A40CE9CB263}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Domain", "2.Domain", "{E707D4C6-4D4F-4B1D-9F42-AEB1FCB72554}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.Hosting", "3.Hosting", "{32381EFA-E438-435B-ADEC-5FB46EF00AB5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +59,14 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F9BD4191-E8F9-4F32-89DE-4059E5B17764} = {32381EFA-E438-435B-ADEC-5FB46EF00AB5}
+		{E673466B-B4B7-4C40-B65D-F79359A73F0C} = {E707D4C6-4D4F-4B1D-9F42-AEB1FCB72554}
+		{A1BB54F3-7D10-419B-984B-7159579D223E} = {E707D4C6-4D4F-4B1D-9F42-AEB1FCB72554}
+		{3EDBF6E6-75A5-45ED-839B-D9BA67B2021B} = {F89BA2AD-29B1-44CC-B9BF-7A40CE9CB263}
+		{06D9C240-8D20-4E4D-998F-D1CD7A11E96C} = {F89BA2AD-29B1-44CC-B9BF-7A40CE9CB263}
+		{D415AB02-6B66-41CF-9135-30C04E715DE1} = {32381EFA-E438-435B-ADEC-5FB46EF00AB5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {868D84EA-A7C7-455A-9B47-1B14F302A9CC}

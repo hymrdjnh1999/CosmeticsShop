@@ -6,10 +6,12 @@
 
 	<ItemGroup>
 		<None Remove="Catalog\Products\ManageProductService.cs~RF9aaeea4.TMP" />
+		<None Remove="Catalog\Products\ManageProductService.cs~RFfaf6807.TMP" />
+		<None Remove="Catalog\Products\PublicProductService.cs~RFff42b4d.TMP" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<FrameworkReference Include="Microsoft.AspNetCore.App"/>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
 
 	<ItemGroup>

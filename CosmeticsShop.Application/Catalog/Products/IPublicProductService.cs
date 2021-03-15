@@ -11,7 +11,6 @@ namespace CosmeticsShop.Application.Catalog.Products
 {
     public interface IPublicProductService
     {
-        Task<PageResponse<ProductViewModel>> GetAllByCategoryId(PublicPagingRequest request);
-        Task<List<ProductViewModel>> GetAll();
+        Task<PageResponse<ProductViewModel>> GetAll(PublicPagingRequest request);
     }
 }

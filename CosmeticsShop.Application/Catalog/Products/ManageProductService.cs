@@ -65,7 +65,8 @@ namespace CosmeticsShop.Application.Catalog.Products
 
             _context.Products.Add(product);
 
-            return await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
+            return product.Id;
 
         }
 
@@ -135,6 +136,27 @@ namespace CosmeticsShop.Application.Catalog.Products
 
         }
 
+        public async Task<ProductViewModel?> GetById(int id)
+        {
+            var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
+            if (product == null) return null;
+            var productViewModel = new ProductViewModel()
+            {
+                Id = product.Id,
+                DateCreated = product.DateCreated,
+                Description = product.Description,
+                Details = product.Details,
+                ForGender = product.ForGender,
+                Name = product.Name,
+                OriginalCountry = product.OriginalCountry,
+                OriginalPrice = product.OriginalPrice,
+                Price = product.Price,
+                Stock = product.Stock,
+                ViewCount = product.ViewCount
+            };
+            return productViewModel;
+        }
+
         public Task<List<ProductImageViewModel>> GetListImage(int productId)
         {
             throw new NotImplementedException();
@@ -148,27 +170,43 @@ namespace CosmeticsShop.Application.Catalog.Products
         public async Task<int> Update(ProductUpdateRequest request)
         {
             var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == request.Id);
-            _context.Products.Attach(product);
             if (product == null)
                 throw new CosmeticsException("Không tìm thấy sản phẩm này");
             product.Name = request.Name;
-            product.IsOutstanding = request.IsOutstanding;
+            product.IsOutstanding = request.IsOutstanding ?? false;
             product.OriginalCountry = request.OriginalCountry;
             product.ForGender = request.ForGender;
             product.Description = request.Description;
 
             if (request.ThumbnailImage != null)
             {
-                var thumbnail = await _context.ProductImages.FirstOrDefaultAsync(x => x.IsDefault == true && x.ProductId == request.Id);
-                if (thumbnail != null)
+                if (product.ProductInCategories != null)
                 {
-                    thumbnail.FileSize = request.ThumbnailImage.Length;
-                    thumbnail.ImagePath = await SaveFile(request.ThumbnailImage);
-                    _context.ProductImages.Update(thumbnail);
+                    var thumbnail = await _context.ProductImages.FirstOrDefaultAsync(x => x.IsDefault == true && x.ProductId == request.Id);
+                    if (thumbnail != null)
+                    {
+                        thumbnail.FileSize = request.ThumbnailImage.Length;
+                        thumbnail.ImagePath = await SaveFile(request.ThumbnailImage);
+                        _context.ProductImages.Update(thumbnail);
+                    }
+                }
+                else
+                {
+                    product.ProductImages = new List<ProductImage>()
+                {
+                    new ProductImage()
+                    {
+                        Caption= "Thumbnail image",
+                        DateCreated = DateTime.Now,
+                        FileSize = request.ThumbnailImage.Length,
+                        IsDefault = true,
+                        SortOrder = 1,
+                        ImagePath = await SaveFile(request.ThumbnailImage)
+                    }
+                };
                 }
 
             }
-
             return await _context.SaveChangesAsync();
 
         }

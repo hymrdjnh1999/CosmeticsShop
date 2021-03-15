@@ -20,13 +20,16 @@ namespace CosmeticsShop.Application.Catalog.Products
             _context = context;
         }
 
-        public async Task<List<ProductViewModel>> GetAll()
+        public async Task<PageResponse<ProductViewModel>> GetAll(PublicPagingRequest request)
         {
-            var queryResult = from p in _context.Products
-                              select p;
+            int PageIndex = request.PageIndex ?? 1;
+            int PageSize = request.PageSize ?? 10;
 
-            var data = await queryResult
-                .Select(x => new ProductViewModel()
+            var products = from p in _context.Products select p;
+            if (request.CategoryId == null)
+            {
+                var count = await products.CountAsync();
+                var result = await products.Skip((PageIndex - 1) * PageSize).Take(PageSize).Select(x => new ProductViewModel()
                 {
                     Id = x.Id,
                     Name = x.Name,
@@ -40,15 +43,23 @@ namespace CosmeticsShop.Application.Catalog.Products
                     Stock = x.Stock,
                     ViewCount = x.ViewCount
                 }).ToListAsync();
-            return data;
-        }
 
-        public async Task<PageResponse<ProductViewModel>> GetAllByCategoryId(PublicPagingRequest request)
-        {
+                var responseData = new PageResponse<ProductViewModel>()
+                {
+
+
+                    Items = result,
+                    TotalRecords = count,
+                    Skip = (PageIndex - 1) * PageSize,
+                    Take = PageSize,
+                };
+                return responseData;
+            }
+
             var queryResult = from p in _context.Products
                               join pic in _context.ProductInCategories on p.Id equals pic.ProductId
                               join c in _context.Categories on pic.CategoryId equals c.Id
-                              select new { p, pic };
+                              select new { p, pic, c };
 
             if (request.CategoryId != null)
             {
@@ -58,9 +69,6 @@ namespace CosmeticsShop.Application.Catalog.Products
 
 
             int totalRow = await queryResult.CountAsync();
-
-            int PageIndex = request.PageIndex ?? 1;
-            int PageSize = request.PageSize ?? 10;
 
             var data = await queryResult.Skip((PageIndex - 1) * PageSize)
                 .Take(PageSize)
