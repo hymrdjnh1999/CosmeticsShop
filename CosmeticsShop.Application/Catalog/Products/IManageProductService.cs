@@ -1,4 +1,5 @@
-﻿using Cosmetics.ViewModels.Catalogs.Products;
+﻿using Cosmetics.ViewModels.Catalogs.ProductImages;
+using Cosmetics.ViewModels.Catalogs.Products;
 using Cosmetics.ViewModels.Catalogs.Products.Manage;
 using Cosmetics.ViewModels.Common;
 using Microsoft.AspNetCore.Http;
@@ -16,13 +17,15 @@ namespace CosmeticsShop.Application.Catalog.Products
         Task<int> Update(ProductUpdateRequest request);
         Task<int?> Delete(int productId);
         Task<PageResponse<ProductViewModel>> GetAllPaging(GetProductRequest query);
-        Task<bool> UpdatePrice(int productId, decimal newPrice);
-        Task UpdateViewCount(int productId);
-        Task<bool> UpdateStock(int productId, int addedStock);
-        Task<int> AddImage(int productId, List<IFormFile> files);
-        Task<int> RemoveImages(List<int> imageIds);
-        Task<int> UpdateImage(int imageId, string caption, bool isDefault);
-        Task<List<ProductImageViewModel>> GetListImage(int productId);
+        Task<bool?> UpdatePrice(int productId, decimal newPrice);
+        Task<bool?> UpdateViewCount(int productId);
+        Task<bool?> UpdateStock(int productId, int addedStock);
         Task<ProductViewModel?> GetById(int id);
+        Task<int> AddImage(int productId, ProductImageCreateRequest request);
+        Task<int> RemoveImage(int imageId);
+        Task<int> UpdateImage(int imageId, ProductImageUpdateRequest request);
+        Task<List<ProductImageViewModel>> GetListImage(int productId);
+        Task<ProductImageViewModel?> GetImageById(int id);
+
     }
 }
