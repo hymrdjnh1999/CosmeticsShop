@@ -76,9 +76,9 @@ namespace Cosmetics.WebAPI.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var deleted = await _manangeProductService.Delete(id);
-            if (deleted == 0)
+            if (deleted == null)
             {
-                return BadRequest();
+                return BadRequest($"Không tồn tại id: {id}");
             }
 
             return Ok("Deleted");

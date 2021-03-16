@@ -70,12 +70,12 @@ namespace CosmeticsShop.Application.Catalog.Products
 
         }
 
-        public async Task<int> Delete(int productId)
+        public async Task<int?> Delete(int productId)
         {
             var product = await _context.Products.FindAsync(productId);
             if (product == null)
             {
-                throw new CosmeticsException("Không tìm thấy sản phẩm này");
+                return null;
             }
 
             var images = await _context.ProductImages.Where(x => x.IsDefault == true && x.ProductId == productId).ToListAsync();
