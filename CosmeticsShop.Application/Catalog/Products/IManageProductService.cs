@@ -14,7 +14,7 @@ namespace CosmeticsShop.Application.Catalog.Products
     {
         Task<int> Create(ProductCreateRequest request);
         Task<int> Update(ProductUpdateRequest request);
-        Task<int> Delete(int productId);
+        Task<int?> Delete(int productId);
         Task<PageResponse<ProductViewModel>> GetAllPaging(GetProductRequest query);
         Task<bool> UpdatePrice(int productId, decimal newPrice);
         Task UpdateViewCount(int productId);
