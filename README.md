@@ -17,4 +17,6 @@
 - Microsoft.Extensions.Configuration.Json
 - Swashbuckle.AspNetCore
 ## How to configure and run
+- Set Cosmetics.WebAPI as start project
+- Click build button
 ## How to contribute
