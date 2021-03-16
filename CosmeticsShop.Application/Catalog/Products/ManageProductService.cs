@@ -1,4 +1,5 @@
 ﻿using Cosmetics.Ultilities.Exceptions;
+using Cosmetics.ViewModels.Catalogs.ProductImages;
 using Cosmetics.ViewModels.Catalogs.Products;
 using Cosmetics.ViewModels.Catalogs.Products.Manage;
 using Cosmetics.ViewModels.Common;
@@ -26,9 +27,27 @@ namespace CosmeticsShop.Application.Catalog.Products
             _storageService = storageService;
         }
 
-        public Task<int> AddImage(int productId, List<IFormFile> files)
+        public async Task<int> AddImage(int productId, ProductImageCreateRequest request)
         {
-            throw new NotImplementedException();
+
+            if (request.ImageFile == null)
+            {
+                throw new CosmeticsException("Error");
+            }
+            var image = new ProductImage()
+            {
+                Caption = request.Caption,
+                DateCreated = DateTime.Now,
+                FileSize = request.ImageFile.Length,
+                ImagePath = await SaveFile(request.ImageFile),
+                IsDefault = request.IsDefault,
+                ProductId = productId,
+                SortOrder = request.SortOrder
+            };
+            _context.ProductImages.Add(image);
+            await _context.SaveChangesAsync();
+            return image.Id;
+
         }
 
         public async Task<int> Create(ProductCreateRequest request)
@@ -157,14 +176,50 @@ namespace CosmeticsShop.Application.Catalog.Products
             return productViewModel;
         }
 
-        public Task<List<ProductImageViewModel>> GetListImage(int productId)
+        public async Task<ProductImageViewModel> GetImageById(int id)
         {
-            throw new NotImplementedException();
+            var image = await _context.ProductImages.FirstOrDefaultAsync(x => x.Id == id);
+            if (image == null) return null;
+            var productImageViewModel = new ProductImageViewModel()
+            {
+                Id = image.Id,
+                Caption = image.Caption,
+                DateCreated = image.DateCreated,
+                FileSize = image.FileSize,
+                ImagePath = image.ImagePath,
+                IsDefault = image.IsDefault,
+                ProductId = image.ProductId,
+                SortOrder = image.SortOrder
+            };
+            return productImageViewModel;
         }
 
-        public Task<int> RemoveImages(List<int> imageIds)
+        public async Task<List<ProductImageViewModel>> GetListImage(int productId)
         {
-            throw new NotImplementedException();
+            var images = await _context.ProductImages
+                .Where(x => x.ProductId == productId)
+                .Select(x => new ProductImageViewModel()
+                {
+                    Id = x.Id,
+                    ProductId = x.ProductId,
+                    Caption = x.Caption,
+                    DateCreated = x.DateCreated,
+                    FileSize = x.FileSize,
+                    ImagePath = x.ImagePath,
+                    IsDefault = x.IsDefault,
+                    SortOrder = x.SortOrder
+                }
+                )
+                .ToListAsync();
+            return images;
+        }
+
+        public async Task<int> RemoveImage(int imageId)
+        {
+            var image = await _context.ProductImages.FindAsync(imageId);
+            if (image == null) throw new CosmeticsException($"Không tìm thấy ảnh với id: {imageId}");
+            _context.ProductImages.Remove(image);
+            return await _context.SaveChangesAsync();
         }
 
         public async Task<int> Update(ProductUpdateRequest request)
@@ -211,34 +266,47 @@ namespace CosmeticsShop.Application.Catalog.Products
 
         }
 
-        public Task<int> UpdateImage(int imageId, string caption, bool isDefault)
+        public async Task<int> UpdateImage(int imageId, ProductImageUpdateRequest request)
         {
-            throw new NotImplementedException();
+
+            var productImage = await _context.ProductImages.FindAsync(imageId);
+            if (productImage == null || request.ImageFile == null)
+            {
+                throw new CosmeticsException("Error");
+            }
+            productImage.ImagePath = await SaveFile(request.ImageFile);
+            productImage.FileSize = request.ImageFile.Length;
+            productImage.Caption = request.Caption;
+            productImage.IsDefault = request.IsDefault;
+            productImage.SortOrder = request.SortOrder;
+            _context.ProductImages.Update(productImage);
+            return await _context.SaveChangesAsync();
         }
 
-        public async Task<bool> UpdatePrice(int productId, decimal newPrice)
+        public async Task<bool?> UpdatePrice(int productId, decimal newPrice)
         {
             var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == productId);
             if (product == null)
-                throw new CosmeticsException("Không tìm thấy sản phẩm này");
+                return null;
             product.Price = newPrice;
             return await _context.SaveChangesAsync() > 0;
         }
 
-        public async Task<bool> UpdateStock(int productId, int addedStock)
+        public async Task<bool?> UpdateStock(int productId, int addedStock)
         {
             var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == productId);
             if (product == null)
-                throw new CosmeticsException("Không tìm thấy sản phẩm này");
+                return null;
             product.Stock += addedStock;
             return await _context.SaveChangesAsync() > 0;
         }
 
-        public async Task UpdateViewCount(int productId)
+        public async Task<bool?> UpdateViewCount(int productId)
         {
             var product = await _context.Products.FindAsync(productId);
+            if (product == null) return null;
             product.ViewCount += 1;
-            await _context.SaveChangesAsync();
+            return await _context.SaveChangesAsync() > 0;
         }
 
         private async Task<string> SaveFile(IFormFile file)
