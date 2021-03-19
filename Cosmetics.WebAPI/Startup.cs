@@ -1,9 +1,12 @@
 using Cosmetics.Ultilities.Constants;
+using Cosmetics.ViewModels.Systems.Users;
 using CosmeticsShop.Application.Catalog.Products;
 using CosmeticsShop.Application.Common;
 using CosmeticsShop.Application.Systems.Users;
 using CosmeticsShop.Data.Entities;
 using CosmeticsShop.Data.EntityFrameWork;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,7 +37,6 @@ namespace Cosmetics.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
             services.AddDbContext<CosmeticsDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString(SystemConstants.MainConnectionString)));
 
             // Identity
@@ -47,6 +49,10 @@ namespace Cosmetics.WebAPI
             services.AddTransient<SignInManager<User>, SignInManager<User>>();
             services.AddTransient<RoleManager<Role>, RoleManager<Role>>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
+
+            services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
+
 
 
             // Register the Swagger generator, defining 1 or more Swagger documents
