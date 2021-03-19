@@ -11,6 +11,8 @@ namespace Cosmetics.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
+
     public class UsersController : Controller
     {
         private readonly IUserService _userService;
@@ -20,7 +22,7 @@ namespace Cosmetics.WebAPI.Controllers
         }
         [HttpPost("login")]
         [AllowAnonymous]
-        public async Task<IActionResult> Login([FromForm]LoginRequest request)
+        public async Task<IActionResult> Login([FromForm] LoginRequest request)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

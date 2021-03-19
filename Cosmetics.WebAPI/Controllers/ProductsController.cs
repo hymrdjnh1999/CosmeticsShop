@@ -4,6 +4,7 @@ using Cosmetics.ViewModels.Catalogs.Products.Manage;
 using Cosmetics.ViewModels.Catalogs.Products.Public;
 using Cosmetics.ViewModels.Common;
 using CosmeticsShop.Application.Catalog.Products;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -15,6 +16,7 @@ namespace Cosmetics.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ProductsController : ControllerBase
     {
         private readonly IPublicProductService _publicProductService;
