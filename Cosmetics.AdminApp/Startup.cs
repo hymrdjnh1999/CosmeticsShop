@@ -1,6 +1,7 @@
 using Cosmetics.AdminApp.Services;
 using Cosmetics.ViewModels.Systems.Users;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -38,11 +39,18 @@ namespace Cosmetics.AdminApp
             services.AddRazorPages()
                 .AddRazorRuntimeCompilation();
 
+            // Authentication
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(opt =>
+            {
+                opt.LoginPath = "/User/Login/";
+                opt.AccessDeniedPath = "/User/Forbidden/";
+            });
 
             // Denpendency injections 
             services.AddTransient<IUserApiClient, UserApiClient>();
 
-
+            // Fluent Validation
             services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
 
         }
@@ -62,6 +70,8 @@ namespace Cosmetics.AdminApp
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseAuthentication();
 
             app.UseRouting();
 
