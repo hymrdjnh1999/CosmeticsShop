@@ -20,9 +20,9 @@ namespace Cosmetics.WebAPI.Controllers
         {
             _userService = userService;
         }
-        [HttpPost("login")]
+        [HttpPost("authenticate")]
         [AllowAnonymous]
-        public async Task<IActionResult> Login([FromForm] LoginRequest request)
+        public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -31,7 +31,7 @@ namespace Cosmetics.WebAPI.Controllers
             {
                 return BadRequest("Sai tài khoản hoặc mật khẩu");
             }
-            return Ok(new { token = loginToken });
+            return Ok(loginToken);
         }
         [HttpPost("register")]
         [AllowAnonymous]

@@ -1,3 +1,6 @@
+using Cosmetics.AdminApp.Services;
+using Cosmetics.ViewModels.Systems.Users;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,8 +30,20 @@ namespace Cosmetics.AdminApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            //Http Client
+            services.AddHttpClient();
+
+            // Runtime compilation
             services.AddRazorPages()
-       .AddRazorRuntimeCompilation();
+                .AddRazorRuntimeCompilation();
+
+
+            // Denpendency injections 
+            services.AddTransient<IUserApiClient, UserApiClient>();
+
+
+            services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
 
         }
 
