@@ -27,6 +27,7 @@ namespace CosmeticsShop.Application.Systems.Users
             _roleManager = roleManager;
             _config = config;
         }
+#nullable enable
         public async Task<string?> Authenticate(LoginRequest request)
         {
             var user = await _userManager.FindByNameAsync(request.UserName);
