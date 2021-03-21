@@ -33,7 +33,7 @@ namespace Cosmetics.WebAPI.Controllers
             }
             return Ok(loginToken);
         }
-        [HttpPost("register")]
+        [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> Register([FromForm] RegisterRequest request)
         {
@@ -45,6 +45,16 @@ namespace Cosmetics.WebAPI.Controllers
                 return BadRequest("Đăng ký không thành công");
             }
             return Ok();
+        }
+
+
+        [HttpGet("paging")]
+        public async Task<IActionResult> Get([FromQuery] GetUserPagingRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var users = await _userService.GetUserPaging(request);
+            return Ok(users);
         }
     }
 }

@@ -19,12 +19,10 @@ namespace Cosmetics.WebAPI.Controllers
     [Authorize]
     public class ProductsController : ControllerBase
     {
-        private readonly IPublicProductService _publicProductService;
-        private readonly IManageProductService _manangeProductService;
-        public ProductsController(IPublicProductService publicProductService, IManageProductService manageProductService)
+        private readonly IProductService _productServices;
+        public ProductsController(IProductService productService)
         {
-            _publicProductService = publicProductService;
-            _manangeProductService = manageProductService;
+            _productServices = productService;
         }
 
 
@@ -35,7 +33,7 @@ namespace Cosmetics.WebAPI.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var products = await _publicProductService.GetAll(request);
+            var products = await _productServices.GetAll(request);
             return Ok(products);
         }
 
@@ -44,7 +42,7 @@ namespace Cosmetics.WebAPI.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var product = await _manangeProductService.GetById(id);
+            var product = await _productServices.GetById(id);
             if (product == null)
             {
                 return BadRequest($"Không tồn tại sản phẩm có id: {id}");
@@ -58,13 +56,13 @@ namespace Cosmetics.WebAPI.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var productId = await _manangeProductService.Create(request);
+            var productId = await _productServices.Create(request);
             if (productId == 0)
             {
                 return BadRequest();
             }
 
-            var product = await _manangeProductService.GetById(productId);
+            var product = await _productServices.GetById(productId);
 
             return CreatedAtAction(nameof(GetById), new { Id = productId }, product);
         }
@@ -75,7 +73,7 @@ namespace Cosmetics.WebAPI.Controllers
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var affectedResult = await _manangeProductService.Update(request);
+            var affectedResult = await _productServices.Update(request);
             if (affectedResult == 0)
             {
                 return BadRequest();
@@ -89,7 +87,7 @@ namespace Cosmetics.WebAPI.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var deleted = await _manangeProductService.Delete(id);
+            var deleted = await _productServices.Delete(id);
             if (deleted == null)
             {
                 return BadRequest($"Không tồn tại id: {id}");
@@ -103,7 +101,7 @@ namespace Cosmetics.WebAPI.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var result = await _manangeProductService.UpdatePrice(id, newPrice) ?? false;
+            var result = await _productServices.UpdatePrice(id, newPrice) ?? false;
             if (!result)
             {
                 return BadRequest();
@@ -119,7 +117,7 @@ namespace Cosmetics.WebAPI.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var image = await _manangeProductService.GetImageById(id);
+            var image = await _productServices.GetImageById(id);
             if (image == null)
             {
                 return BadRequest($"Không tồn tại sản phẩm có id: {id}");
@@ -134,7 +132,7 @@ namespace Cosmetics.WebAPI.Controllers
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var affectedResult = await _manangeProductService.UpdateImage(id, request);
+            var affectedResult = await _productServices.UpdateImage(id, request);
             if (affectedResult == 0)
             {
                 return BadRequest();
@@ -148,13 +146,13 @@ namespace Cosmetics.WebAPI.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var imageId = await _manangeProductService.AddImage(id, request);
+            var imageId = await _productServices.AddImage(id, request);
             if (imageId < 1)
             {
                 return BadRequest();
             }
 
-            var image = await _manangeProductService.GetImageById(imageId);
+            var image = await _productServices.GetImageById(imageId);
 
             return CreatedAtAction(nameof(GetByImageId), new { Id = imageId }, image);
         }
@@ -164,7 +162,7 @@ namespace Cosmetics.WebAPI.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var deleted = await _manangeProductService.RemoveImage(id);
+            var deleted = await _productServices.RemoveImage(id);
             if (deleted == 0)
             {
                 return BadRequest();

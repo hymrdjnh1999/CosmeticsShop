@@ -42,8 +42,7 @@ namespace Cosmetics.WebAPI
             // Identity
             services.AddIdentity<User, Role>().AddEntityFrameworkStores<CosmeticsDbContext>().AddDefaultTokenProviders();
             // Declare Dependency injection
-            services.AddTransient<IPublicProductService, PublicProductService>();
-            services.AddTransient<IManageProductService, ManageProductService>();
+            services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IStorageService, FileStorageService>();
             services.AddTransient<UserManager<User>, UserManager<User>>();
             services.AddTransient<SignInManager<User>, SignInManager<User>>();
