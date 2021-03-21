@@ -42,7 +42,7 @@ namespace Cosmetics.AdminApp
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(opt =>
             {
-                opt.LoginPath = "/User/Login/";
+                opt.LoginPath = "/Login/Index";
                 opt.AccessDeniedPath = "/User/Forbidden/";
             });
 

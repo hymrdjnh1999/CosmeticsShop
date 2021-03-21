@@ -12,5 +12,7 @@ namespace Cosmetics.AdminApp.Services
         Task<string> Authenticate(LoginRequest request);
 
         Task<PageResponse<UserViewModel>> GetUserPaging(GetUserPagingRequest request);
+
+        Task<bool> RegisterUser(RegisterRequest request);
     }
 }
