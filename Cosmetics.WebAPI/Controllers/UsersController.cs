@@ -35,7 +35,7 @@ namespace Cosmetics.WebAPI.Controllers
         }
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Register([FromForm] RegisterRequest request)
+        public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
