@@ -2,6 +2,7 @@
 using Cosmetics.ViewModels.Catalogs.ProductImages;
 using Cosmetics.ViewModels.Catalogs.Products;
 using Cosmetics.ViewModels.Catalogs.Products.Manage;
+using Cosmetics.ViewModels.Catalogs.Products.Public;
 using Cosmetics.ViewModels.Common;
 using CosmeticsShop.Application.Common;
 using CosmeticsShop.Data.Entities;
@@ -17,11 +18,11 @@ using System.Threading.Tasks;
 
 namespace CosmeticsShop.Application.Catalog.Products
 {
-    public class ManageProductService : IManageProductService
+    public class ProductService : IProductService
     {
         private readonly CosmeticsDbContext _context;
         private readonly IStorageService _storageService;
-        public ManageProductService(CosmeticsDbContext context, IStorageService storageService)
+        public ProductService(CosmeticsDbContext context, IStorageService storageService)
         {
             _context = context;
             _storageService = storageService;
@@ -106,25 +107,55 @@ namespace CosmeticsShop.Application.Catalog.Products
             _context.Products.Remove(product);
             return await _context.SaveChangesAsync();
         }
-
-        public async Task<PageResponse<ProductViewModel>> GetAllPaging(GetProductRequest query)
+        public async Task<PageResponse<ProductViewModel>> GetAll(PublicPagingRequest request)
         {
+            int PageIndex = request.PageIndex;
+            int PageSize = request.PageSize;
+
+            var products = from p in _context.Products select p;
+            if (request.CategoryId == null)
+            {
+                var count = await products.CountAsync();
+                var result = await products.Skip((PageIndex - 1) * PageSize).Take(PageSize).Select(x => new ProductViewModel()
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Price = x.Price,
+                    ForGender = x.ForGender,
+                    OriginalPrice = x.OriginalPrice,
+                    DateCreated = x.DateCreated,
+                    Description = x.Description,
+                    Details = x.Details,
+                    OriginalCountry = x.OriginalCountry,
+                    Stock = x.Stock,
+                    ViewCount = x.ViewCount
+                }).ToListAsync();
+
+                var responseData = new PageResponse<ProductViewModel>()
+                {
+
+
+                    Items = result,
+                    TotalRecords = count,
+                    Skip = (PageIndex - 1) * PageSize,
+                    Take = PageSize,
+                };
+                return responseData;
+            }
+
             var queryResult = from p in _context.Products
                               join pic in _context.ProductInCategories on p.Id equals pic.ProductId
                               join c in _context.Categories on pic.CategoryId equals c.Id
-                              select new { p, pic };
-            if (!string.IsNullOrEmpty(query.SearchKeyWord))
-            {
-                queryResult = queryResult.Where(x => x.p.Name.Contains(query.SearchKeyWord));
-            }
-            if (query.CategoryIds.Count > 0)
-            {
-                queryResult = queryResult.Where(p => query.CategoryIds.Contains(p.pic.CategoryId));
-            }
-            int totalRow = await queryResult.CountAsync();
+                              select new { p, pic, c };
 
-            int PageIndex = query.PageIndex ?? 1;
-            int PageSize = query.PageSize ?? 10;
+            if (request.CategoryId != null)
+            {
+                queryResult = queryResult.Where(p => p.pic.CategoryId == request.CategoryId);
+            }
+
+
+
+            int totalRow = await queryResult.CountAsync();
 
             var data = await queryResult.Skip((PageIndex - 1) * PageSize)
                 .Take(PageSize)
@@ -145,17 +176,66 @@ namespace CosmeticsShop.Application.Catalog.Products
 
             var pagedResult = new PageResponse<ProductViewModel>()
             {
+
+
                 Items = data,
                 TotalRecords = totalRow,
                 Skip = (PageIndex - 1) * PageSize,
                 Take = PageSize,
-
             };
-            return pagedResult;
 
+            return pagedResult;
         }
 
-        public async Task<ProductViewModel?> GetById(int id)
+        //public async Task<PageResponse<ProductViewModel>> GetAllPaging(GetProductRequest query)
+        //{
+        //    var queryResult = from p in _context.Products
+        //                      join pic in _context.ProductInCategories on p.Id equals pic.ProductId
+        //                      join c in _context.Categories on pic.CategoryId equals c.Id
+        //                      select new { p, pic };
+        //    if (!string.IsNullOrEmpty(query.SearchKeyWord))
+        //    {
+        //        queryResult = queryResult.Where(x => x.p.Name.Contains(query.SearchKeyWord));
+        //    }
+        //    if (query.CategoryIds.Count > 0)
+        //    {
+        //        queryResult = queryResult.Where(p => query.CategoryIds.Contains(p.pic.CategoryId));
+        //    }
+        //    int totalRow = await queryResult.CountAsync();
+
+        //    int PageIndex = query.PageIndex;
+        //    int PageSize = query.PageSize;
+
+        //    var data = await queryResult.Skip((PageIndex - 1) * PageSize)
+        //        .Take(PageSize)
+        //        .Select(x => new ProductViewModel()
+        //        {
+        //            Id = x.p.Id,
+        //            Name = x.p.Name,
+        //            Price = x.p.Price,
+        //            ForGender = x.p.ForGender,
+        //            OriginalPrice = x.p.OriginalPrice,
+        //            DateCreated = x.p.DateCreated,
+        //            Description = x.p.Description,
+        //            Details = x.p.Details,
+        //            OriginalCountry = x.p.OriginalCountry,
+        //            Stock = x.p.Stock,
+        //            ViewCount = x.p.ViewCount
+        //        }).ToListAsync();
+
+        //    var pagedResult = new PageResponse<ProductViewModel>()
+        //    {
+        //        Items = data,
+        //        TotalRecords = totalRow,
+        //        Skip = (PageIndex - 1) * PageSize,
+        //        Take = PageSize,
+
+        //    };
+        //    return pagedResult;
+
+        //}
+
+        public async Task<ProductViewModel> GetById(int id)
         {
             var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
             if (product == null) return null;
@@ -228,7 +308,7 @@ namespace CosmeticsShop.Application.Catalog.Products
             if (product == null)
                 throw new CosmeticsException("Không tìm thấy sản phẩm này");
             product.Name = request.Name;
-            product.IsOutstanding = request.IsOutstanding ?? false;
+            product.IsOutstanding = request.IsOutstanding;
             product.OriginalCountry = request.OriginalCountry;
             product.ForGender = request.ForGender;
             product.Description = request.Description;

@@ -1,10 +1,13 @@
-﻿using Cosmetics.ViewModels.Systems.Users;
+﻿using Cosmetics.ViewModels.Common;
+using Cosmetics.ViewModels.Systems.Users;
 using CosmeticsShop.Data.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -57,6 +60,41 @@ namespace CosmeticsShop.Application.Systems.Users
 
 
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        public async Task<PageResponse<UserViewModel>> GetUserPaging(GetUserPagingRequest request)
+        {
+            var query = _userManager.Users;
+            if (!string.IsNullOrEmpty(request.Keyword))
+            {
+                query = query.Where(x => x.UserName.Contains(request.Keyword)
+                || x.PhoneNumber.Contains(request.Keyword)
+                || x.Email.Contains(request.Keyword));
+            }
+            int totalRow = await query.CountAsync();
+
+            var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
+                .Take(request.PageSize)
+                .Select(x => new UserViewModel()
+                {
+                    Dob = x.Dob,
+                    Email = x.Email,
+                    PhoneNumber = x.PhoneNumber,
+                    Id = x.Id,
+                    Name = x.Name,
+                    UserName = x.UserName
+                }).ToListAsync();
+
+            var pageResponse = new PageResponse<UserViewModel>()
+            {
+                Items = data,
+                TotalRecords = totalRow,
+                Skip = (request.PageIndex - 1) * request.PageSize,
+                Take = request.PageSize,
+            };
+
+            return pageResponse;
+
         }
 
         public async Task<bool> Register(RegisterRequest request)
