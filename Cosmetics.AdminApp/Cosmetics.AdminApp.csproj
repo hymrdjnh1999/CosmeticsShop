@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Views\User\Details.cshtml~RF6912a4b.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\js\scripts.js" />
   </ItemGroup>
 

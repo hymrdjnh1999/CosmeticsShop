@@ -1,0 +1,66 @@
+﻿@model Cosmetics.ViewModels.Systems.Users.UserViewModel
+@{
+    ViewData["Title"] = "User details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-fluid">
+    <h1 class="mt-4">Tables</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Dashboard</a></li>
+        <li class="breadcrumb-item active">User Details</li>
+    </ol>
+
+    <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between">
+            <a asp-action="Index" asp-controller="User" class="btn btn-success">Back to user list</a>
+            @{
+                var parms = new Dictionary<string, string>
+                {
+                    {"id", Model.Id.ToString() }
+                };
+            }
+             <a class="btn btn-success" asp-controller="User" asp-action="Edit" asp-all-route-data="parms" >Edit user</a>
+        </div>
+        <div class="card-body">
+            <div class="col-md-4">
+                <dl class="row">
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Name):
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.UserName):
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.UserName):
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Dob):
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Dob)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.PhoneNumber)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.PhoneNumber)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
