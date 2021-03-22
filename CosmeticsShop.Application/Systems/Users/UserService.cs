@@ -1,6 +1,7 @@
 ﻿using Cosmetics.ViewModels.Common;
 using Cosmetics.ViewModels.Systems.Users;
 using CosmeticsShop.Data.Entities;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -22,24 +23,29 @@ namespace CosmeticsShop.Application.Systems.Users
         private readonly SignInManager<User> _signInManager;
         private readonly RoleManager<Role> _roleManager;
         private readonly IConfiguration _config;
-        public UserService(UserManager<User> userMananger, SignInManager<User> signInManaager, RoleManager<Role> roleManager,
-            IConfiguration config)
+        public UserService(UserManager<User> userMananger,
+            SignInManager<User> signInManaager,
+            RoleManager<Role> roleManager,
+            IConfiguration config,
+            IHttpContextAccessor httpContextAccessor
+            )
         {
             _userManager = userMananger;
             _signInManager = signInManaager;
             _roleManager = roleManager;
             _config = config;
         }
-#nullable enable
-        public async Task<string?> Authenticate(LoginRequest request)
+
+        public async Task<ApiResult<string>> Authenticate(LoginRequest request)
         {
             var user = await _userManager.FindByNameAsync(request.UserName);
 
-            if (user == null) return null;
+            if (user == null) return new ApiErrorResult<string>("User name is not exists!");
+
             var result = await _signInManager.PasswordSignInAsync(user, request.Password, request.RememberMe, true);
             if (!result.Succeeded)
             {
-                return null;
+                return new ApiErrorResult<string>("Password is wrong!");
             }
 
             var roles = await _userManager.GetRolesAsync(user);
@@ -58,11 +64,34 @@ namespace CosmeticsShop.Application.Systems.Users
                 expires: DateTime.Now.AddHours(3),
                 signingCredentials: creds);
 
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            var apiResult = new ApiResult<string>()
+            {
+                IsSuccess = true,
+                ResultObj = new JwtSecurityTokenHandler().WriteToken(token)
+            };
+            return apiResult;
         }
 
-        public async Task<PageResponse<UserViewModel>> GetUserPaging(GetUserPagingRequest request)
+        public async Task<ApiResult<UserViewModel>> GetById(Guid id)
+        {
+            var user = await _userManager.FindByIdAsync(id.ToString());
+            if (user == null)
+                return new ApiErrorResult<UserViewModel>("User is not exists!");
+
+            var userViewModel = new UserViewModel()
+            {
+                Dob = user.Dob,
+                Email = user.Email,
+                Id = user.Id,
+                Name = user.Name,
+                PhoneNumber = user.PhoneNumber,
+                UserName = user.UserName
+            };
+
+            return new ApiSuccessResult<UserViewModel>(userViewModel);
+        }
+
+        public async Task<ApiResult<PageResponse<UserViewModel>>> GetUserPaging(GetUserPagingRequest request)
         {
             var query = _userManager.Users;
             if (!string.IsNullOrEmpty(request.Keyword))
@@ -93,13 +122,26 @@ namespace CosmeticsShop.Application.Systems.Users
                 Take = request.PageSize,
             };
 
-            return pageResponse;
+            var apiResult = new ApiSuccessResult<PageResponse<UserViewModel>>(pageResponse);
+
+
+            return apiResult;
 
         }
 
-        public async Task<bool> Register(RegisterRequest request)
+        public async Task<ApiResult<bool>> Register(RegisterRequest request)
         {
-            var user = new User()
+            var user = await _userManager.FindByNameAsync(request.UserName);
+
+            if (user != null)
+                return new ApiErrorResult<bool>("User name is exists!");
+
+            user = await _userManager.FindByEmailAsync(request.Email);
+
+            if (user != null)
+                return new ApiErrorResult<bool>("Email is exists!");
+
+            user = new User()
             {
                 Dob = request.Dob,
                 Name = request.Name,
@@ -111,9 +153,26 @@ namespace CosmeticsShop.Application.Systems.Users
             var registerResult = await _userManager.CreateAsync(user, request.Password);
             if (!registerResult.Succeeded)
             {
-                return false;
+                return new ApiErrorResult<bool>("Register is not success!");
             }
-            return true;
+            return new ApiSuccessResult<bool>();
+
+        }
+
+        public async Task<ApiResult<bool>> Update(Guid id, UpdateUserRequest request)
+        {
+            var user = await _userManager.FindByIdAsync(id.ToString());
+            user.Dob = request.Dob;
+            user.Name = request.Name;
+            user.PhoneNumber = request.PhoneNumber;
+
+            var result = await _userManager.UpdateAsync(user);
+            if (!result.Succeeded)
+            {
+                return new ApiErrorResult<bool>("Update is not success!");
+
+            }
+            return new ApiSuccessResult<bool>();
 
         }
     }

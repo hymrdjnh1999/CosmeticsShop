@@ -8,6 +8,8 @@
 		<None Remove="Catalog\Products\ManageProductService.cs~RF9aaeea4.TMP" />
 		<None Remove="Catalog\Products\ManageProductService.cs~RFfaf6807.TMP" />
 		<None Remove="Catalog\Products\PublicProductService.cs~RFff42b4d.TMP" />
+		<None Remove="Systems\Users\IUserService.cs~RF6482b19.TMP" />
+		<None Remove="Systems\Users\UserService.cs~RF64bba7a.TMP" />
 	</ItemGroup>
 
 	<ItemGroup>

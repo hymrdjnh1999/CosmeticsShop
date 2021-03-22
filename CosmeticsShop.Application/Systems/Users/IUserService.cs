@@ -10,11 +10,14 @@ namespace CosmeticsShop.Application.Systems.Users
 {
     public interface IUserService
     {
-        Task<string> Authenticate(LoginRequest request);
+        Task<ApiResult<string>> Authenticate(LoginRequest request);
 
-        Task<bool> Register(RegisterRequest request);
+        Task<ApiResult<bool>> Register(RegisterRequest request);
 
-        Task<PageResponse<UserViewModel>> GetUserPaging(GetUserPagingRequest request);
+        Task<ApiResult<PageResponse<UserViewModel>>> GetUserPaging(GetUserPagingRequest request);
 
+        Task<ApiResult<bool>> Update(Guid id, UpdateUserRequest request);
+
+        Task<ApiResult<UserViewModel>> GetById(Guid id);
     }
 }

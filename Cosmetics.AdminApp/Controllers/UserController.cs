@@ -21,20 +21,21 @@ namespace Cosmetics.AdminApp.Controllers
     {
         private readonly IUserApiClient _userApiClient;
         private readonly IConfiguration _config;
-        public UserController(IUserApiClient userApiClient, IConfiguration config)
+
+        public UserController(IUserApiClient userApiClient,
+            IConfiguration config)
         {
             _userApiClient = userApiClient;
             _config = config;
+
         }
 
 
         public async Task<IActionResult> Index(string keyword = "", int pageIndex = 1, int pageSize = 10)
         {
-            var sessions = HttpContext.Session.GetString("Token");
 
             var request = new GetUserPagingRequest()
             {
-                BearerToken = sessions,
                 Keyword = keyword,
                 PageIndex = pageIndex,
                 PageSize = pageSize
@@ -42,7 +43,7 @@ namespace Cosmetics.AdminApp.Controllers
 
             var data = await _userApiClient.GetUserPaging(request);
 
-            return View(data);
+            return View(data.ResultObj);
         }
 
 
@@ -71,10 +72,68 @@ namespace Cosmetics.AdminApp.Controllers
             }
 
             var result = await _userApiClient.RegisterUser(request);
-            if (result)
+            if (result.IsSuccess)
             {
                 return RedirectToAction("Index");
             }
+
+            ModelState.AddModelError("", result.Message);
+
+            return View(request);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(Guid id)
+        {
+            var result = await _userApiClient.GetById(id);
+            var user = result.ResultObj;
+
+            if (result.IsSuccess)
+            {
+                var updateUserModel = new UpdateUserRequest()
+                {
+                    Id = id,
+                    Dob = user.Dob,
+                    Name = user.Name,
+                    PhoneNumber = user.PhoneNumber
+                };
+                return View(updateUserModel);
+            }
+
+            return RedirectToAction("Error", "Home");
+
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(Guid id)
+        {
+            var result = await _userApiClient.GetById(id);
+
+            if (result.IsSuccess)
+            {
+               
+                return View(result.ResultObj);
+            }
+
+            return RedirectToAction("Error", "Home");
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(UpdateUserRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            var result = await _userApiClient.UpdateUser(request.Id, request);
+            if (result.IsSuccess)
+            {
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", result.Message);
 
             return View(request);
         }

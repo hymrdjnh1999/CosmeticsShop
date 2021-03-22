@@ -16,6 +16,7 @@ namespace Cosmetics.WebAPI.Controllers
     public class UsersController : Controller
     {
         private readonly IUserService _userService;
+
         public UsersController(IUserService userService)
         {
             _userService = userService;
@@ -26,12 +27,13 @@ namespace Cosmetics.WebAPI.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var loginToken = await _userService.Authenticate(request);
-            if (string.IsNullOrEmpty(loginToken))
+            var result = await _userService.Authenticate(request);
+            if (string.IsNullOrEmpty(result.ResultObj))
             {
-                return BadRequest("Sai tài khoản hoặc mật khẩu");
+                return BadRequest(result.Message);
             }
-            return Ok(loginToken);
+
+            return Ok(result);
         }
         [HttpPost]
         [AllowAnonymous]
@@ -40,11 +42,28 @@ namespace Cosmetics.WebAPI.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             var registerResult = await _userService.Register(request);
-            if (!registerResult)
+
+            if (!registerResult.IsSuccess)
             {
-                return BadRequest("Đăng ký không thành công");
+                return BadRequest("Register is not success!");
             }
-            return Ok();
+
+            return Ok(registerResult);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(Guid id, [FromBody] UpdateUserRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var registerResult = await _userService.Update(id, request);
+
+            if (!registerResult.IsSuccess)
+            {
+                return BadRequest("Register is not success!");
+            }
+
+            return Ok(registerResult);
         }
 
 
@@ -55,6 +74,15 @@ namespace Cosmetics.WebAPI.Controllers
                 return BadRequest(ModelState);
             var users = await _userService.GetUserPaging(request);
             return Ok(users);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(Guid id)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _userService.GetById(id);
+            return Ok(result);
         }
     }
 }
