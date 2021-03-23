@@ -84,5 +84,15 @@ namespace Cosmetics.WebAPI.Controllers
             var result = await _userService.GetById(id);
             return Ok(result);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _userService.Delete(id);
+            return Ok(result);
+        }
+
     }
 }

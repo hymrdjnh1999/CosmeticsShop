@@ -1,9 +1,11 @@
 ﻿@using Cosmetics.ViewModels.Common;
-@model PageResponse<Cosmetics.ViewModels.Systems.Users.UserViewModel>
+@model PageResponse<Cosmetics.ViewModels.Systems.Users.UserViewModel>;
+@using Cosmetics.ViewModels.Systems.Users;
 
 @{
     ViewData["Title"] = "User List";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 <div class="container-fluid">
     <h1 class="mt-4">Tables</h1>
@@ -14,18 +16,22 @@
 
     <div class="card mb-4">
         <div class="card-header">
-            <a asp-action="Create" asp-controller="User" class="btn btn-success">
+            <a asp-action="Create" asp-controller="User" class="btn text-light" style="background-color: black">
                 <i class="fas fa-plus mr-2"></i>
                 Create new user
             </a>
         </div>
         <div class="card-body">
-
+            <div class="d-flex w-25 align-items-center mb-3">
+                        @await Component.InvokeAsync("ChangePageSize", Model)
+            </div>
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-
+                            <th>
+                                No
+                            </th>
                             <th>
                                 Name
                             </th>
@@ -41,34 +47,36 @@
                             <th>
                                 Email
                             </th>
-                            <th></th>
+                            <th>
+                                Actions
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
 
-                        @foreach (var item in Model.Items)
+                        @for (var count = 0; count < Model.Items.Count; count++)
                         {
                             <tr>
-
+                                <td>@(count + 1)</td>
                                 <td>
-                                    @Html.ActionLink(item.Name, "Details", new { id = item.Id })
+                                    @Html.ActionLink(Model.Items[count].Name, "Details", new { id = Model.Items[count].Id })
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.UserName)
+                                    @Html.DisplayFor(modelItem => Model.Items[count].UserName)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Dob)
+                                    @Html.DisplayFor(modelItem => Model.Items[count].Dob)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                    @Html.DisplayFor(modelItem => Model.Items[count].PhoneNumber)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Email)
+                                    @Html.DisplayFor(modelItem => Model.Items[count].Email)
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                    @Html.ActionLink("Edit", "Edit", new { id = Model.Items[count].Id }) |
+                                    @Html.ActionLink("Details", "Details", new { id = Model.Items[count].Id }) |
+                                    @Html.ActionLink("Delete", "Delete", new  { id = Model.Items[count].Id })
                                 </td>
                             </tr>
                         }

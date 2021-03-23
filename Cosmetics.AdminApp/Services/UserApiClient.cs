@@ -46,6 +46,29 @@ namespace Cosmetics.AdminApp.Services
             return JsonConvert.DeserializeObject<ApiErrorResult<string>>(await response.Content.ReadAsStringAsync());
         }
 
+        public async Task<ApiResult<bool>> Delete(Guid id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+
+            var bearerToken = _httpContextAccessor.HttpContext.Session.GetString("Token");
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", bearerToken);
+
+            var requestUrl = $"/api/users/{id}";
+
+            var response = await client.DeleteAsync(requestUrl);
+
+            var result = await response.Content.ReadAsStringAsync();
+
+            if (response.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<ApiSuccessResult<bool>>(result);
+            }
+
+            return JsonConvert.DeserializeObject<ApiErrorResult<bool>>(result);
+        }
+
         public async Task<ApiResult<UserViewModel>> GetById(Guid id)
         {
             var client = _httpClientFactory.CreateClient();

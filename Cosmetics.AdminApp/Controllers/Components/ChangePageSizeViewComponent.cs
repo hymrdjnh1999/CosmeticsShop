@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Cosmetics.AdminApp.Controllers.Components
 {
-    public class PagerViewComponent : ViewComponent
+    public class ChangePageSizeViewComponent : ViewComponent
     {
         public Task<IViewComponentResult> InvokeAsync(PageResponseBase request)
         {
-            return Task.FromResult((IViewComponentResult)View("Default", request));
+            return Task.FromResult((IViewComponentResult)View("ChangePageSize", request));
         }
 
     }
