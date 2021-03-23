@@ -87,6 +87,8 @@ namespace Cosmetics.AdminApp.Services
             var body = await response.Content.ReadAsStringAsync();
 
             var users = JsonConvert.DeserializeObject<ApiSuccessResult<PageResponse<UserViewModel>>>(body);
+            users.ResultObj.PageSize = request.PageSize;
+            users.ResultObj.PageIndex = request.PageIndex;
 
             return users;
 

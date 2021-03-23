@@ -38,7 +38,7 @@ namespace Cosmetics.AdminApp.Controllers
             {
                 Keyword = keyword,
                 PageIndex = pageIndex,
-                PageSize = pageSize
+                PageSize = pageSize,
             };
 
             var data = await _userApiClient.GetUserPaging(request);
@@ -111,7 +111,6 @@ namespace Cosmetics.AdminApp.Controllers
 
             if (result.IsSuccess)
             {
-               
                 return View(result.ResultObj);
             }
 

@@ -118,8 +118,8 @@ namespace CosmeticsShop.Application.Systems.Users
             {
                 Items = data,
                 TotalRecords = totalRow,
-                Skip = (request.PageIndex - 1) * request.PageSize,
-                Take = request.PageSize,
+                PageIndex = (request.PageIndex - 1) * request.PageSize,
+                PageSize = request.PageSize,
             };
 
             var apiResult = new ApiSuccessResult<PageResponse<UserViewModel>>(pageResponse);
