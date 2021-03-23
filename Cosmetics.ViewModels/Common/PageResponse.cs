@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace Cosmetics.ViewModels.Common
 {
-    public class PageResponse<T>
+    public class PageResponse<T> : PageResponseBase
     {
-        public int TotalRecords { get; set; }
         public List<T> Items { get; set; }
-        public int Take { get; set; }
-        public int Skip { get; set; }
 
     }
 }

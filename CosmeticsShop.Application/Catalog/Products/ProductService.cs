@@ -137,8 +137,8 @@ namespace CosmeticsShop.Application.Catalog.Products
 
                     Items = result,
                     TotalRecords = count,
-                    Skip = (PageIndex - 1) * PageSize,
-                    Take = PageSize,
+                    PageIndex = (PageIndex - 1) * PageSize,
+                    PageSize = PageSize,
                 };
                 return responseData;
             }
@@ -180,8 +180,8 @@ namespace CosmeticsShop.Application.Catalog.Products
 
                 Items = data,
                 TotalRecords = totalRow,
-                Skip = (PageIndex - 1) * PageSize,
-                Take = PageSize,
+                PageIndex = (PageIndex - 1) * PageSize,
+                PageSize = PageSize,
             };
 
             return pagedResult;
