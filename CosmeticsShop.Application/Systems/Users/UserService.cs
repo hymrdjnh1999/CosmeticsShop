@@ -72,6 +72,24 @@ namespace CosmeticsShop.Application.Systems.Users
             return apiResult;
         }
 
+        public async Task<ApiResult<bool>> Delete(Guid id)
+        {
+
+            var user = await _userManager.FindByIdAsync(id.ToString());
+            if (user == null)
+                return new ApiErrorResult<bool>("User is not exists!");
+
+            var result = await _userManager.DeleteAsync(user);
+
+            if (!result.Succeeded)
+            {
+                return new ApiErrorResult<bool>();
+            }
+            return new ApiSuccessResult<bool>();
+
+
+        }
+
         public async Task<ApiResult<UserViewModel>> GetById(Guid id)
         {
             var user = await _userManager.FindByIdAsync(id.ToString());

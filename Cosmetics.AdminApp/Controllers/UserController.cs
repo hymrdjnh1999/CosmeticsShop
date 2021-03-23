@@ -137,6 +137,34 @@ namespace Cosmetics.AdminApp.Controllers
             return View(request);
         }
 
+        [HttpGet]
+        public IActionResult Delete(Guid id)
+        {
+            var deleteModel = new DeleteUserRequest { Id = id };
+            return View(deleteModel);
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(DeleteUserRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var result = await _userApiClient.Delete(request.Id);
+
+            if (result.IsSuccess)
+            {
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", result.Message);
+
+            return RedirectToAction("Index");
+        }
+
 
 
     }

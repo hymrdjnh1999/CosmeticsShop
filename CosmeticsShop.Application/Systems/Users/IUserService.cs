@@ -19,5 +19,6 @@ namespace CosmeticsShop.Application.Systems.Users
         Task<ApiResult<bool>> Update(Guid id, UpdateUserRequest request);
 
         Task<ApiResult<UserViewModel>> GetById(Guid id);
+        Task<ApiResult<bool>> Delete(Guid id);
     }
 }

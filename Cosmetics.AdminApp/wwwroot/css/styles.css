@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /*!
 * Start Bootstrap - SB Admin v6.0.2 (https://startbootstrap.com/template/sb-admin)
 * Copyright 2013-2020 Start Bootstrap
@@ -10246,4 +10246,22 @@ body {
 }
 .sb-sidenav-light .sb-sidenav-footer {
   background-color: #e9ecef;
+}
+
+
+.btn-outline-custom {
+    border : 1px solid black;
+}
+
+.link-primary {
+    border: 1px solid #000000;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #000000;
+}
+.btn.btn-primary:hover {
+    color: #000;
+    border-color: #000;
+    background-color: #fff;
 }
