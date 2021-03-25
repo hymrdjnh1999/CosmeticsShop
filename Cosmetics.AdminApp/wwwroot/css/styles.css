@@ -10249,37 +10249,3 @@ body {
 }
 
 
-.btn-outline-custom {
-    border : 1px solid black;
-}
-
-.link-primary {
-    border: 1px solid #000000;
-}
-.btn-primary {
-    border-color: #000;
-    color: #fff;
-    background-color: #000000;
-}
-.btn.btn-primary:hover {
-    color: #000;
-    border-color: #000;
-    background-color: #fff;
-}
-
-.btn.btn-primary:focus {
-    color: #000;
-    border-color: #000;
-    background-color: #fff;
-    box-shadow: 0 0 0 0.2rem rgb(0 0 0 / 50%);
-}
-
-.btn-primary:not(:disabled):not(.disabled):active{
-     color: #000;
-    border-color: #000;
-    background-color: #fff;
-    box-shadow: 0 0 0 0.2rem rgb(0 0 0 / 50%);
-}
-.btn.btn-primary:active {
-   
-}
