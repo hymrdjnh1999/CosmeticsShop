@@ -26,34 +26,34 @@
         <div class="card-body">
             <div class="col-md-4">
                 <dl class="row">
-                    <dt class="col-sm-5">
+                    <dt class="col-sm-4">
                         @Html.DisplayNameFor(model => model.Name):
                     </dt>
-                    <dd class="col-sm-7">
+                    <dd class="col-sm-8">
                         @Html.DisplayFor(model => model.Name)
                     </dd>
-                    <dt class="col-sm-5">
+                    <dt class="col-sm-4">
                         @Html.DisplayNameFor(model => model.UserName):
                     </dt>
-                    <dd class="col-sm-7">
+                    <dd class="col-sm-8">
                         @Html.DisplayFor(model => model.UserName)
                     </dd>
-                    <dt class="col-sm-5">
+                    <dt class="col-sm-4">
                         @Html.DisplayNameFor(model => model.Dob):
                     </dt>
-                    <dd class="col-sm-7">
-                        @Html.DisplayFor(model => model.Dob)
+                    <dd class="col-sm-8">
+                        @DateTime.Parse(Model.Dob.ToString()).ToString("dd/MM/yyyy")
                     </dd>
-                    <dt class="col-sm-5">
+                    <dt class="col-sm-4">
                         @Html.DisplayNameFor(model => model.PhoneNumber):
                     </dt>
-                    <dd class="col-sm-7">
+                    <dd class="col-sm-8">
                         @Html.DisplayFor(model => model.PhoneNumber)
                     </dd>
-                    <dt class="col-sm-5">
+                    <dt class="col-sm-4">
                         @Html.DisplayNameFor(model => model.Email):
                     </dt>
-                    <dd class="col-sm-7">
+                    <dd class="col-sm-8">
                         @Html.DisplayFor(model => model.Email)
                     </dd>
                 </dl>

@@ -42,7 +42,11 @@ namespace Cosmetics.AdminApp.Controllers
             };
 
             var data = await _userApiClient.GetUserPaging(request);
-
+            ViewBag.Keyword = keyword;
+            if (TempData["result"] != null)
+            {
+                ViewBag.SuccessMsg = TempData["result"];
+            }
             return View(data.ResultObj);
         }
 
@@ -74,11 +78,11 @@ namespace Cosmetics.AdminApp.Controllers
             var result = await _userApiClient.RegisterUser(request);
             if (result.IsSuccess)
             {
+                TempData["result"] = "Create user successfully!";
                 return RedirectToAction("Index");
             }
 
             ModelState.AddModelError("", result.Message);
-
             return View(request);
         }
 
@@ -99,7 +103,6 @@ namespace Cosmetics.AdminApp.Controllers
                 };
                 return View(updateUserModel);
             }
-
             return RedirectToAction("Error", "Home");
 
         }
@@ -129,6 +132,7 @@ namespace Cosmetics.AdminApp.Controllers
             var result = await _userApiClient.UpdateUser(request.Id, request);
             if (result.IsSuccess)
             {
+                TempData["result"] = "Update user successfully!";
                 return RedirectToAction("Index");
             }
 
@@ -157,6 +161,7 @@ namespace Cosmetics.AdminApp.Controllers
 
             if (result.IsSuccess)
             {
+                TempData["result"] = "Delete user successfully!";
                 return RedirectToAction("Index");
             }
 
