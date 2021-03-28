@@ -13,7 +13,7 @@ namespace Cosmetics.WebAPI.Controllers
     [ApiController]
     [Authorize]
 
-    public class UsersController : Controller
+    public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
 
@@ -64,6 +64,21 @@ namespace Cosmetics.WebAPI.Controllers
             }
 
             return Ok(registerResult);
+        }
+
+        [HttpPut("{id}/roles")]
+        public async Task<IActionResult> RoleAssign([FromBody] RoleAssignRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _userService.RoleAssign(request);
+
+            if (!result.IsSuccess)
+            {
+                return BadRequest("Assign role is not ok!");
+            }
+
+            return Ok(result);
         }
 
 

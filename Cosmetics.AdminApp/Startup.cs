@@ -51,6 +51,7 @@ namespace Cosmetics.AdminApp
 
             // Denpendency injections 
             services.AddTransient<IUserApiClient, UserApiClient>();
+            services.AddTransient<IRoleClientApi, RoleApiClient>();
 
             // Fluent Validation
             services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());

@@ -137,6 +137,26 @@ namespace Cosmetics.AdminApp.Services
             return JsonConvert.DeserializeObject<ApiErrorResult<bool>>(result);
         }
 
+        public async Task<ApiResult<bool>> RoleAssign(RoleAssignRequest request)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var sessions = _httpContextAccessor.HttpContext.Session.GetString("Token");
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+
+            var json = JsonConvert.SerializeObject(request);
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await client.PutAsync($"/api/users/{request.Id}/roles", httpContent);
+            var result = await response.Content.ReadAsStringAsync();
+            var test = JsonConvert.DeserializeObject<ApiErrorResult<bool>>(result);
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<ApiSuccessResult<bool>>(result);
+
+            return JsonConvert.DeserializeObject<ApiErrorResult<bool>>(result);
+        }
+
         public async Task<ApiResult<bool>> UpdateUser(Guid id, UpdateUserRequest request)
         {
             var bearerToken = _httpContextAccessor.HttpContext.Session.GetString("Token");

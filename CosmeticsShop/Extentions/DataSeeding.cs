@@ -142,9 +142,9 @@ namespace CosmeticsShop.Data.Extentions
                 new Role()
                 {
                     Id = new Guid(ROLE_ID),
-                    Name = "Supper Admin",
-                    NormalizedName = "Admin",
-                    Description = "Administrator role"
+                    Name = "SupperAdmin",
+                    NormalizedName = "SupperAdmin",
+                    Description = "Supper Administrator role"
                 },
                 new Role()
                 {
