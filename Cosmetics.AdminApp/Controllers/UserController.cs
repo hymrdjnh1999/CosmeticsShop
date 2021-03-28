@@ -1,4 +1,5 @@
 ﻿using Cosmetics.AdminApp.Services;
+using Cosmetics.ViewModels.Common;
 using Cosmetics.ViewModels.Systems.Users;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -21,12 +22,14 @@ namespace Cosmetics.AdminApp.Controllers
     {
         private readonly IUserApiClient _userApiClient;
         private readonly IConfiguration _config;
-
+        IRoleClientApi _roleClientApi;
         public UserController(IUserApiClient userApiClient,
-            IConfiguration config)
+            IConfiguration config,
+            IRoleClientApi roleClientApi)
         {
             _userApiClient = userApiClient;
             _config = config;
+            _roleClientApi = roleClientApi;
 
         }
 
@@ -86,6 +89,22 @@ namespace Cosmetics.AdminApp.Controllers
             return View(request);
         }
 
+
+
+        [HttpGet]
+        public async Task<IActionResult> Details(Guid id)
+        {
+            var result = await _userApiClient.GetById(id);
+
+            if (result.IsSuccess)
+            {
+                return View(result.ResultObj);
+            }
+
+            return RedirectToAction("Error", "Home");
+
+        }
+
         [HttpGet]
         public async Task<IActionResult> Edit(Guid id)
         {
@@ -103,20 +122,6 @@ namespace Cosmetics.AdminApp.Controllers
                 };
                 return View(updateUserModel);
             }
-            return RedirectToAction("Error", "Home");
-
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Details(Guid id)
-        {
-            var result = await _userApiClient.GetById(id);
-
-            if (result.IsSuccess)
-            {
-                return View(result.ResultObj);
-            }
-
             return RedirectToAction("Error", "Home");
 
         }
@@ -170,7 +175,53 @@ namespace Cosmetics.AdminApp.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public async Task<IActionResult> RoleAssign(Guid id)
+        {
 
+            var roleAssignRequest = await GetRoleAssignRequest(id);
+
+            return View(roleAssignRequest);
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RoleAssign(RoleAssignRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+            var result = await _userApiClient.RoleAssign(request);
+
+            if (result.IsSuccess)
+            {
+                TempData["result"] = "Role assign successfully";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", result.Message);
+            var roleAssignRequest = await GetRoleAssignRequest(request.Id);
+
+            return View(roleAssignRequest);
+        }
+
+        private async Task<RoleAssignRequest> GetRoleAssignRequest(Guid id)
+        {
+            var userObj = await _userApiClient.GetById(id);
+            var roleObj = await _roleClientApi.GetAll();
+            var roleAssignRequest = new RoleAssignRequest();
+            foreach (var role in roleObj.ResultObj)
+            {
+                roleAssignRequest.Roles.Add(new SelectItem()
+                {
+                    Id = role.Id,
+                    Name = role.Name,
+                    Selected = userObj.ResultObj.Roles.Contains(role.Name)
+                });
+            }
+            roleAssignRequest.Id = id;
+            return roleAssignRequest;
+        }
 
     }
 }

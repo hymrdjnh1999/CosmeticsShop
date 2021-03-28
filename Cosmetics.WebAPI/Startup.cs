@@ -2,6 +2,7 @@ using Cosmetics.Ultilities.Constants;
 using Cosmetics.ViewModels.Systems.Users;
 using CosmeticsShop.Application.Catalog.Products;
 using CosmeticsShop.Application.Common;
+using CosmeticsShop.Application.Systems.Roles;
 using CosmeticsShop.Application.Systems.Users;
 using CosmeticsShop.Data.Entities;
 using CosmeticsShop.Data.EntityFrameWork;
@@ -48,6 +49,7 @@ namespace Cosmetics.WebAPI
             services.AddTransient<SignInManager<User>, SignInManager<User>>();
             services.AddTransient<RoleManager<Role>, RoleManager<Role>>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
 
             services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());

@@ -96,6 +96,8 @@ namespace CosmeticsShop.Application.Systems.Users
             if (user == null)
                 return new ApiErrorResult<UserViewModel>("User is not exists!");
 
+            var roles = await _userManager.GetRolesAsync(user);
+
             var userViewModel = new UserViewModel()
             {
                 Dob = user.Dob,
@@ -103,7 +105,8 @@ namespace CosmeticsShop.Application.Systems.Users
                 Id = user.Id,
                 Name = user.Name,
                 PhoneNumber = user.PhoneNumber,
-                UserName = user.UserName
+                UserName = user.UserName,
+                Roles = roles
             };
 
             return new ApiSuccessResult<UserViewModel>(userViewModel);
@@ -175,6 +178,36 @@ namespace CosmeticsShop.Application.Systems.Users
             }
             return new ApiSuccessResult<bool>();
 
+        }
+
+        public async Task<ApiResult<bool>> RoleAssign(RoleAssignRequest request)
+        {
+            var user = await _userManager.FindByIdAsync(request.Id.ToString());
+            if (user == null)
+            {
+                return new ApiErrorResult<bool>("User is not exists");
+            }
+            var removedRoles = request.Roles.Where(x => x.Selected == false).Select(x => x.Name).ToList();
+            var userRoles = await _userManager.GetRolesAsync(user);
+
+            foreach (var roleName in removedRoles)
+            {
+                if (userRoles.Contains(roleName))
+                {
+                    await _userManager.RemoveFromRoleAsync(user, roleName);
+                }
+            }
+
+            var addedRoles = request.Roles.Where(x => x.Selected).Select(x => x.Name).ToList();
+            foreach (var roleName in addedRoles)
+            {
+                if (!userRoles.Contains(roleName))
+                {
+                    await _userManager.AddToRoleAsync(user, roleName);
+                }
+            }
+
+            return new ApiSuccessResult<bool>();
         }
 
         public async Task<ApiResult<bool>> Update(Guid id, UpdateUserRequest request)

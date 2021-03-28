@@ -10,7 +10,7 @@
 
 @section Scripts{
     <script>
-        setTimeout(() => $('#msgAlert').fadeOut('slow'),1500)
+        setTimeout(() => $('#msgAlert').fadeOut('slow'), 1500)
     </script>
 }
 
@@ -44,11 +44,11 @@
         <div class="card-body">
             @if (ViewBag.SuccessMsg != null)
             {
-            <div  class="d-flex justify-content-center">
-                <div id="msgAlert" class="alert alert-success w-25" role="alert">
-                    @ViewBag.SuccessMsg
+                <div class="d-flex justify-content-center">
+                    <div id="msgAlert" class="alert alert-success w-25" role="alert">
+                        @ViewBag.SuccessMsg
+                    </div>
                 </div>
-            </div>
             }
             <div class="d-flex w-25 align-items-center mb-3">
                 @await Component.InvokeAsync("ChangePageSize", Model)
@@ -102,8 +102,8 @@
                                 </td>
                                 <td>
                                     @Html.ActionLink("Edit", "Edit", new { id = Model.Items[count].Id }) |
-                                    @Html.ActionLink("Details", "Details", new { id = Model.Items[count].Id }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = Model.Items[count].Id })
+                                    @Html.ActionLink("Delete", "Delete", new { id = Model.Items[count].Id }) |
+                                    @Html.ActionLink("Assign role", "RoleAssign", new { id = Model.Items[count].Id })
                                 </td>
                             </tr>
                         }

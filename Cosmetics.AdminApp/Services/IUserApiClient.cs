@@ -20,6 +20,8 @@ namespace Cosmetics.AdminApp.Services
         Task<ApiResult<UserViewModel>> GetById(Guid id);
 
         Task<ApiResult<bool>> Delete(Guid id);
+        Task<ApiResult<bool>> RoleAssign(RoleAssignRequest request);
+
     }
 
 }
