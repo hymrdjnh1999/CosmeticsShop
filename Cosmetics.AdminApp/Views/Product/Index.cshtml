@@ -61,25 +61,13 @@
                                 Name
                             </th>
                             <th scope="col">
-                                Description
-                            </th>
-                            <th scope="col">
-                                Details
-                            </th>
-                            <th scope="col">
                                 Price
                             </th>
                             <th scope="col">
                                 Original Price
                             </th>
                             <th scope="col">
-                                Gender
-                            </th>
-                            <th scope="col">
                                 Stock
-                            </th>
-                            <th scope="col">
-                                View Count
                             </th>
                             <th scope="col">
                                 Original country
@@ -100,25 +88,13 @@
                                     @Html.ActionLink(item.Name, "Details", new { id = item.Id })
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Description)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Details)
-                                </td>
-                                <td>
                                     @Html.DisplayFor(modelItem => item.Price)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.OriginalPrice)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.ForGender)
-                                </td>
-                                <td>
                                     @Html.DisplayFor(modelItem => item.Stock)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ViewCount)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.OriginalCountry)
