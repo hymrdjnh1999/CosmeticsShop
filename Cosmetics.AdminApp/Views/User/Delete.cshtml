@@ -14,7 +14,7 @@
 
     <div class="card mb-4">
         <div class="card-header d-flex justify-content-end">
-            <a asp-action="Index" asp-controller="User" class="btn btn-success">Back to user list</a>
+            <a asp-action="Index" asp-controller="User" class="btn btn-outline-dark">Back to user list</a>
         </div>
         <div class="card-body">
             <div class="row">
@@ -35,7 +35,7 @@
             <form asp-action="Delete">
                 <input asp-for="Id" type="hidden" />
                 <input type="submit" value="Delete" class="btn btn-danger" /> |
-                <a asp-action="Index">Cancel</a>
+                <a asp-action="Index" class="btn btn-outline-dark">Cancel</a>
             </form>
         </div>
     </div>
