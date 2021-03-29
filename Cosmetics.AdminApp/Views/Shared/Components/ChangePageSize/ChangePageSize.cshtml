@@ -25,8 +25,7 @@
 <div class="align-items-center d-flex">
     <div class="dropdown mr-4">
         <button class="btn dropdown-toggle" style="border: 1px solid black" type="button" data-toggle="dropdown">
-            Page Size
-            <span class="caret"></span>
+            <span class="caret">@Model.PageSize</span>
         </button>
         <ul class="dropdown-menu">
             <li><a class="page-link" title="1" href="@urlTemplate.Replace("{0}", "5")">5</a></li>
@@ -34,5 +33,4 @@
             <li><a class="page-link" title="1" href="@urlTemplate.Replace("{0}", "20")">20</a></li>
         </ul>
     </div>
-    <span class="font-weight-bold">@Model.PageSize</span>
 </div>

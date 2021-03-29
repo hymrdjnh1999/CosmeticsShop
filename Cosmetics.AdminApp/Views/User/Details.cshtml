@@ -14,14 +14,14 @@
 
     <div class="card mb-4">
         <div class="card-header d-flex justify-content-between">
-            <a asp-action="Index" asp-controller="User" class="btn btn-success">Back to user list</a>
+            <a asp-action="Index" asp-controller="User" class="btn btn-outline-dark">Back to user list</a>
             @{
                 var parms = new Dictionary<string, string>
                     {
                     {"id", Model.Id.ToString() }
                 };
             }
-            <a class="btn btn-success" asp-controller="User" asp-action="Edit" asp-all-route-data="parms">Edit user</a>
+            <a class="btn btn-outline-dark" asp-controller="User" asp-action="Edit" asp-all-route-data="parms">Edit user</a>
         </div>
         <div class="card-body">
             <div class="col-md-4">
