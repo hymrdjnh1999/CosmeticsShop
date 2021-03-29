@@ -9,8 +9,8 @@ namespace Cosmetics.ViewModels.Catalogs.Products
 {
     public class GetProductRequest : QueryParamRequest
     {
-        public string SearchKeyWord { get; set; }
-        public int CategoryId { get; set; }
+        public string Keyword { get; set; }
+        public int? CategoryId { get; set; }
 
     }
 }

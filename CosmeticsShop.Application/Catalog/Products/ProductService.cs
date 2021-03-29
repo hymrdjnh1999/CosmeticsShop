@@ -107,7 +107,7 @@ namespace CosmeticsShop.Application.Catalog.Products
             _context.Products.Remove(product);
             return await _context.SaveChangesAsync();
         }
-        public async Task<PageResponse<ProductViewModel>> GetAll(PublicPagingRequest request)
+        public async Task<PageResponse<ProductViewModel>> GetAll(GetProductRequest request)
         {
             int PageIndex = request.PageIndex;
             int PageSize = request.PageSize;
@@ -176,8 +176,6 @@ namespace CosmeticsShop.Application.Catalog.Products
 
             var pagedResult = new PageResponse<ProductViewModel>()
             {
-
-
                 Items = data,
                 TotalRecords = totalRow,
                 PageIndex = (PageIndex - 1) * PageSize,

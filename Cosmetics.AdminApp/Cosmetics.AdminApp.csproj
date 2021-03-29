@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Cosmetics.Ultilities\Cosmetics.Ultilities.csproj" />
     <ProjectReference Include="..\Cosmetics.ViewModels\Cosmetics.ViewModels.csproj" />
   </ItemGroup>
 

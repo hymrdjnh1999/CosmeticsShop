@@ -142,16 +142,16 @@ namespace CosmeticsShop.Data.Extentions
                 new Role()
                 {
                     Id = new Guid(ROLE_ID),
-                    Name = "SupperAdmin",
-                    NormalizedName = "SupperAdmin",
-                    Description = "Supper Administrator role"
+                    Name = "Manager",
+                    NormalizedName = "Manager",
+                    Description = "Manager role"
                 },
                 new Role()
                 {
                     Id = new Guid(ROLE_ID2),
-                    Name = "Admin",
-                    NormalizedName = "Admin",
-                    Description = "Administrator role"
+                    Name = "Customer",
+                    NormalizedName = "Customer",
+                    Description = "Customer role"
                 });
             var hasher = new PasswordHasher<User>();
             modelBuilder.Entity<User>().HasData(
@@ -162,7 +162,7 @@ namespace CosmeticsShop.Data.Extentions
                     NormalizedEmail = "tiendinhdev99@gmail.com",
                     Dob = new DateTime(1999, 06, 21),
                     UserName = "voibenho99",
-                    NormalizedUserName = "admin",
+                    NormalizedUserName = "manager",
                     Name = "Voi Bé Nhỏ",
                     SecurityStamp = string.Empty,
                     EmailConfirmed = true,
@@ -175,11 +175,11 @@ namespace CosmeticsShop.Data.Extentions
                     NormalizedEmail = "Haianh@gmail.com",
                     Dob = new DateTime(2001, 07, 11),
                     UserName = "haianh",
-                    NormalizedUserName = "haianhadmin",
+                    NormalizedUserName = "haianhmanager",
                     Name = "Hải Anh",
                     SecurityStamp = string.Empty,
                     EmailConfirmed = true,
-                    PasswordHash = hasher.HashPassword(null, "1111")
+                    PasswordHash = hasher.HashPassword(null, "Abcd@123")
                 },
                 new User()
                 {
@@ -188,11 +188,11 @@ namespace CosmeticsShop.Data.Extentions
                     NormalizedEmail = "Tranphuong18032001@gmail.com",
                     Dob = new DateTime(2001, 03, 18),
                     UserName = "tranphuong",
-                    NormalizedUserName = "tranphuongadmin",
+                    NormalizedUserName = "tranphuongmanager",
                     Name = "Thu Phương",
                     SecurityStamp = string.Empty,
                     EmailConfirmed = true,
-                    PasswordHash = hasher.HashPassword(null, "rhyder2001")
+                    PasswordHash = hasher.HashPassword(null, "Abcd@123")
                 });
             modelBuilder.Entity<IdentityUserRole<Guid>>().HasData(
                 new IdentityUserRole<Guid>()
