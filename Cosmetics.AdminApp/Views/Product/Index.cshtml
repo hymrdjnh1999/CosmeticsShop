@@ -1,0 +1,140 @@
+﻿@using Cosmetics.ViewModels.Common;
+@model PageResponse<Cosmetics.ViewModels.Catalogs.Products.ProductViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts{
+    <script>
+        setTimeout(() => $('#msgAlert').fadeOut('slow'), 1500)
+    </script>
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">Tables</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Dashboard</a></li>
+        <li class="breadcrumb-item active">Product List</li>
+    </ol>
+
+    <div class="card mb-12">
+        <div class="card-header d-flex justify-content-between">
+            <form asp-action="Index" method="get">
+                <div class="form-outline mb-4 d-flex">
+                    <input name="keyword" value="@ViewBag.Keyword" type="text" id="userSearchBox" placeholder="Search here..." class="form-control  border-dark" />
+                    <input asp-for="PageSize" value="@Model.PageSize" type="hidden" />
+                    <button type="submit" class="btn btn-outline-dark ml-2">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </form>
+
+            <div>
+                <a asp-action="Create" asp-controller="Product" class="btn btn-outline-dark ">
+                    <i class="fas fa-plus mr-2"></i>
+                    Create new product
+                </a>
+            </div>
+
+        </div>
+        <div class="card-body">
+            @if (ViewBag.SuccessMsg != null)
+            {
+                <div class="d-flex justify-content-center">
+                    <div id="msgAlert" class="alert alert-success w-25" role="alert">
+                        @ViewBag.SuccessMsg
+                    </div>
+                </div>
+            }
+            <div class="d-flex w-25 align-items-center mb-3">
+                @await Component.InvokeAsync("ChangePageSize", Model)
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered border-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">
+                                Product Id
+                            </th>
+                            <th scope="col">
+                                Name
+                            </th>
+                            <th scope="col">
+                                Description
+                            </th>
+                            <th scope="col">
+                                Details
+                            </th>
+                            <th scope="col">
+                                Price
+                            </th>
+                            <th scope="col">
+                                Original Price
+                            </th>
+                            <th scope="col">
+                                Gender
+                            </th>
+                            <th scope="col">
+                                Stock
+                            </th>
+                            <th scope="col">
+                                View Count
+                            </th>
+                            <th scope="col">
+                                Original country
+                            </th>
+                            <th scope="col">
+                                Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Items)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </td>
+                                <td>
+                                    @Html.ActionLink(item.Name, "Details", new { id = item.Id })
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Details)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Price)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OriginalPrice)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ForGender)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Stock)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ViewCount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OriginalCountry)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                                    @Html.ActionLink("Details", "Details", new { id = item.Id })
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            @await Component.InvokeAsync("Pager", Model)
+        </div>
+    </div>
+</div>

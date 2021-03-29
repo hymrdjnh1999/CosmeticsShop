@@ -28,8 +28,8 @@ namespace Cosmetics.WebAPI.Controllers
 
 
 
-        [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] PublicPagingRequest request)
+        [HttpGet("paging")]
+        public async Task<IActionResult> Get([FromQuery] GetProductRequest request)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

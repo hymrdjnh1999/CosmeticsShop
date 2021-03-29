@@ -9,5 +9,10 @@ namespace Cosmetics.Ultilities.Constants
     public class SystemConstants
     {
         public const string MainConnectionString = "CosmeticsDb";
+        public class AppSettings
+        {
+            public const string Token = "Token";
+            public const string BaseAddress = "BaseAddress";
+        }
     }
 }

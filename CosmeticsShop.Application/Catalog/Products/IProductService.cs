@@ -28,7 +28,7 @@ namespace CosmeticsShop.Application.Catalog.Products
         Task<List<ProductImageViewModel>> GetListImage(int productId);
         Task<ProductImageViewModel> GetImageById(int id);
 
-        Task<PageResponse<ProductViewModel>> GetAll(PublicPagingRequest request);
+        Task<PageResponse<ProductViewModel>> GetAll(GetProductRequest request);
 
 
     }
