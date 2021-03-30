@@ -1,4 +1,5 @@
 using Cosmetics.AdminApp.Services;
+using Cosmetics.ViewModels.Catalogs.Products;
 using Cosmetics.ViewModels.Systems.Users;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -56,6 +57,7 @@ namespace Cosmetics.AdminApp
 
             // Fluent Validation
             services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
+            services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreateProductValidator>());
 
         }
 

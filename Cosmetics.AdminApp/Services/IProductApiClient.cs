@@ -1,4 +1,5 @@
 ﻿using Cosmetics.ViewModels.Catalogs.Products;
+using Cosmetics.ViewModels.Catalogs.Products.Manage;
 using Cosmetics.ViewModels.Common;
 using System;
 using System.Collections.Generic;
@@ -10,5 +11,6 @@ namespace Cosmetics.AdminApp.Services
     public interface IProductApiClient
     {
         Task<PageResponse<ProductViewModel>> GetPaging(GetProductRequest request);
+        Task<bool> Create(ProductCreateRequest request);
     }
 }

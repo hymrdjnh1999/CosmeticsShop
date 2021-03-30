@@ -12,7 +12,7 @@
 }
 
 <div class="container-fluid">
-    <h1 class="mt-4">Tables</h1>
+    <h1 class="mt-4">Products</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Dashboard</a></li>
         <li class="breadcrumb-item active">Product List</li>
@@ -100,8 +100,8 @@
                                     @Html.DisplayFor(modelItem => item.OriginalCountry)
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
-                                    @Html.ActionLink("Details", "Details", new { id = item.Id })
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) | 
+                                    @Html.ActionLink("Details", "Details", new { id = item.Id }) | 
                                     @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                                 </td>
                             </tr>

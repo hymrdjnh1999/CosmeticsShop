@@ -1,5 +1,6 @@
 ﻿using Cosmetics.AdminApp.Services;
 using Cosmetics.ViewModels.Catalogs.Products;
+using Cosmetics.ViewModels.Catalogs.Products.Manage;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -39,6 +40,32 @@ namespace Cosmetics.AdminApp.Controllers
                 ViewBag.SuccessMsg = TempData["result"];
             }
             return View(data);
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Create([FromForm] ProductCreateRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(request);
+            }
+
+            var result = await _productApiClient.Create(request);
+            if (result)
+            {
+                TempData["result"] = "Create product successfully!";
+                return RedirectToAction("Index");
+            }
+            ModelState.AddModelError("", "Create product failed!");
+            return View(request);
         }
     }
 }

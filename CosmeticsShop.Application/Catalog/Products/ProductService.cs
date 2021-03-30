@@ -61,8 +61,8 @@ namespace CosmeticsShop.Application.Catalog.Products
                 OriginalCountry = request.OriginalCountry,
                 OriginalPrice = request.OriginalPrice,
                 Stock = request.Stock,
-                Description = request.Description,
-                Details = request.Details,
+                Description = request.Description ?? "",
+                Details = request.Details ?? "",
                 ViewCount = 0,
                 DateCreated = DateTime.Now,
             };

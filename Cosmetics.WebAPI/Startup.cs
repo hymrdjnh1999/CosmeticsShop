@@ -1,4 +1,6 @@
 using Cosmetics.Ultilities.Constants;
+using Cosmetics.ViewModels.Catalogs.Products;
+using Cosmetics.ViewModels.Catalogs.Products.Manage;
 using Cosmetics.ViewModels.Systems.Users;
 using CosmeticsShop.Application.Catalog.Products;
 using CosmeticsShop.Application.Common;
@@ -51,8 +53,10 @@ namespace Cosmetics.WebAPI
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
+            services.AddTransient<IValidator<ProductCreateRequest>, CreateProductValidator>();
 
             services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
+            services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreateProductValidator>());
 
 
 
