@@ -83,7 +83,7 @@ namespace Cosmetics.AdminApp.Services
         public async Task<PageResponse<ProductViewModel>> GetPaging(GetProductRequest request)
         {
             var requestUrl = $"/api/products/paging?pageIndex=" +
-               $"{request.PageIndex}&pageSize={request.PageSize}&keyword={request.Keyword}";
+               $"{request.PageIndex}&pageSize={request.PageSize}&keyword={request.Keyword}&categoryId={request.CategoryId}";
 
             var data = await GetAsync<PageResponse<ProductViewModel>>(requestUrl);
 

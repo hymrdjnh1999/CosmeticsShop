@@ -53,6 +53,7 @@ namespace Cosmetics.AdminApp
             // Denpendency injections 
             services.AddTransient<IUserApiClient, UserApiClient>();
             services.AddTransient<IRoleClientApi, RoleApiClient>();
+            services.AddTransient<ICategoryApiClient, CategoryApiClient>();
             services.AddTransient<IProductApiClient, ProductApiClient>();
 
             // Fluent Validation
