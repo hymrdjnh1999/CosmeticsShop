@@ -2,6 +2,7 @@
 using Cosmetics.ViewModels.Catalogs.Products;
 using Cosmetics.ViewModels.Catalogs.Products.Manage;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -14,27 +15,34 @@ namespace Cosmetics.AdminApp.Controllers
     {
         private readonly IProductApiClient _productApiClient;
         private readonly IConfiguration _config;
+        private readonly ICategoryApiClient _categoryApiClient;
         public ProductController(IProductApiClient productApiClient,
-            IConfiguration config)
+            IConfiguration config,
+            ICategoryApiClient categoryApiClient)
         {
             _config = config;
             _productApiClient = productApiClient;
+            _categoryApiClient = categoryApiClient;
         }
 
 
-        public async Task<IActionResult> Index(string keyword = "", int pageIndex = 1, int pageSize = 10, int categoryId = 1)
+        public async Task<IActionResult> Index([FromQuery] GetProductRequest request)
         {
 
-            var request = new GetProductRequest()
-            {
-                Keyword = keyword,
-                PageIndex = pageIndex,
-                PageSize = pageSize,
-                CategoryId = categoryId
-            };
 
             var data = await _productApiClient.GetPaging(request);
-            ViewBag.Keyword = keyword;
+            ViewBag.Keyword = request.Keyword;
+            var categories = await _categoryApiClient.GetAll();
+            if (categories != null)
+            {
+                ViewBag.Categories = categories.Select(x => new SelectListItem()
+                {
+                    Text = x.Name,
+                    Value = x.Id.ToString(),
+                    Selected = request.CategoryId.HasValue && request.CategoryId.Value == x.Id
+                });
+            }
+
             if (TempData["result"] != null)
             {
                 ViewBag.SuccessMsg = TempData["result"];

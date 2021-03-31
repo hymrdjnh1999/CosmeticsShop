@@ -45,7 +45,8 @@ namespace Cosmetics.AdminApp.Services
 
                 return myDeserializedObjList;
             }
-            return JsonConvert.DeserializeObject<TResponse>(body);
+            var result = JsonConvert.DeserializeObject<TResponse>(body); 
+            return result;
         }
     }
 }

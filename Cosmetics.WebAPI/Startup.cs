@@ -2,6 +2,7 @@ using Cosmetics.Ultilities.Constants;
 using Cosmetics.ViewModels.Catalogs.Products;
 using Cosmetics.ViewModels.Catalogs.Products.Manage;
 using Cosmetics.ViewModels.Systems.Users;
+using CosmeticsShop.Application.Catalog.Categories;
 using CosmeticsShop.Application.Catalog.Products;
 using CosmeticsShop.Application.Common;
 using CosmeticsShop.Application.Systems.Roles;
@@ -52,6 +53,7 @@ namespace Cosmetics.WebAPI
             services.AddTransient<RoleManager<Role>, RoleManager<Role>>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IRoleService, RoleService>();
+            services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
             services.AddTransient<IValidator<ProductCreateRequest>, CreateProductValidator>();
 

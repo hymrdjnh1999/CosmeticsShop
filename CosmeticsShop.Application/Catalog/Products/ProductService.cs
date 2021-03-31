@@ -107,16 +107,24 @@ namespace CosmeticsShop.Application.Catalog.Products
             _context.Products.Remove(product);
             return await _context.SaveChangesAsync();
         }
+
         public async Task<PageResponse<ProductViewModel>> GetAll(GetProductRequest request)
         {
             int PageIndex = request.PageIndex;
             int PageSize = request.PageSize;
-
-            var products = from p in _context.Products select p;
+            var totalRecords = 0;
             if (request.CategoryId == null)
             {
-                var count = await products.CountAsync();
-                var result = await products.Skip((PageIndex - 1) * PageSize).Take(PageSize).Select(x => new ProductViewModel()
+                var result = from p in _context.Products select p;
+
+                if (request.Keyword != null)
+                {
+                    result = result.Where(x => x.Name.Contains(request.Keyword));
+
+                }
+                totalRecords = await result.CountAsync();
+
+                var products = await result.Skip((PageIndex - 1) * PageSize).Take(PageSize).Select(x => new ProductViewModel()
                 {
                     Id = x.Id,
                     Name = x.Name,
@@ -130,34 +138,33 @@ namespace CosmeticsShop.Application.Catalog.Products
                     Stock = x.Stock,
                     ViewCount = x.ViewCount
                 }).ToListAsync();
-
                 var responseData = new PageResponse<ProductViewModel>()
                 {
-
-
-                    Items = result,
-                    TotalRecords = count,
-                    PageIndex = (PageIndex - 1) * PageSize,
-                    PageSize = PageSize,
+                    Items = products,
+                    TotalRecords = totalRecords,
+                    PageIndex = PageIndex,
+                    PageSize = PageSize
                 };
+
                 return responseData;
+
             }
 
-            var queryResult = from p in _context.Products
-                              join pic in _context.ProductInCategories on p.Id equals pic.ProductId
-                              join c in _context.Categories on pic.CategoryId equals c.Id
-                              select new { p, pic, c };
+            var query = from p in _context.Products
+                        join pic in _context.ProductInCategories on p.Id equals pic.ProductId
+                        join c in _context.Categories on pic.CategoryId equals c.Id
+                        select new { p, pic, c };
 
-            if (request.CategoryId != null)
+            query = query.Where(p => p.pic.CategoryId == request.CategoryId);
+
+            if (request.Keyword != null)
             {
-                queryResult = queryResult.Where(p => p.pic.CategoryId == request.CategoryId);
+                query = query.Where(x => x.p.Name.Contains(request.Keyword));
+
             }
+            totalRecords = await query.Select(x => x.p).CountAsync();
 
-
-
-            int totalRow = await queryResult.CountAsync();
-
-            var data = await queryResult.Skip((PageIndex - 1) * PageSize)
+            var data = await query.Skip((PageIndex - 1) * PageSize)
                 .Take(PageSize)
                 .Select(x => new ProductViewModel()
                 {
@@ -172,66 +179,19 @@ namespace CosmeticsShop.Application.Catalog.Products
                     OriginalCountry = x.p.OriginalCountry,
                     Stock = x.p.Stock,
                     ViewCount = x.p.ViewCount
-                }).ToListAsync();
+                })
+                .ToListAsync();
 
-            var pagedResult = new PageResponse<ProductViewModel>()
+            var response = new PageResponse<ProductViewModel>()
             {
                 Items = data,
-                TotalRecords = totalRow,
-                PageIndex = (PageIndex - 1) * PageSize,
-                PageSize = PageSize,
+                TotalRecords = totalRecords,
+                PageIndex = PageIndex,
+                PageSize = PageSize
             };
 
-            return pagedResult;
+            return response;
         }
-
-        //public async Task<PageResponse<ProductViewModel>> GetAllPaging(GetProductRequest query)
-        //{
-        //    var queryResult = from p in _context.Products
-        //                      join pic in _context.ProductInCategories on p.Id equals pic.ProductId
-        //                      join c in _context.Categories on pic.CategoryId equals c.Id
-        //                      select new { p, pic };
-        //    if (!string.IsNullOrEmpty(query.SearchKeyWord))
-        //    {
-        //        queryResult = queryResult.Where(x => x.p.Name.Contains(query.SearchKeyWord));
-        //    }
-        //    if (query.CategoryIds.Count > 0)
-        //    {
-        //        queryResult = queryResult.Where(p => query.CategoryIds.Contains(p.pic.CategoryId));
-        //    }
-        //    int totalRow = await queryResult.CountAsync();
-
-        //    int PageIndex = query.PageIndex;
-        //    int PageSize = query.PageSize;
-
-        //    var data = await queryResult.Skip((PageIndex - 1) * PageSize)
-        //        .Take(PageSize)
-        //        .Select(x => new ProductViewModel()
-        //        {
-        //            Id = x.p.Id,
-        //            Name = x.p.Name,
-        //            Price = x.p.Price,
-        //            ForGender = x.p.ForGender,
-        //            OriginalPrice = x.p.OriginalPrice,
-        //            DateCreated = x.p.DateCreated,
-        //            Description = x.p.Description,
-        //            Details = x.p.Details,
-        //            OriginalCountry = x.p.OriginalCountry,
-        //            Stock = x.p.Stock,
-        //            ViewCount = x.p.ViewCount
-        //        }).ToListAsync();
-
-        //    var pagedResult = new PageResponse<ProductViewModel>()
-        //    {
-        //        Items = data,
-        //        TotalRecords = totalRow,
-        //        Skip = (PageIndex - 1) * PageSize,
-        //        Take = PageSize,
-
-        //    };
-        //    return pagedResult;
-
-        //}
 
         public async Task<ProductViewModel> GetById(int id)
         {
