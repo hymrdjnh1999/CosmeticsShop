@@ -12,5 +12,7 @@ namespace Cosmetics.AdminApp.Services
     {
         Task<PageResponse<ProductViewModel>> GetPaging(GetProductRequest request);
         Task<bool> Create(ProductCreateRequest request);
+        Task<ApiResult<bool>> CategoryAssign(CategoryAssignRequest request);
+        Task<ProductViewModel> GetById(int id);
     }
 }

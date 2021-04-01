@@ -187,24 +187,20 @@ namespace CosmeticsShop.Application.Systems.Users
             {
                 return new ApiErrorResult<bool>("User is not exists");
             }
-            var removedRoles = request.Roles.Where(x => x.Selected == false).Select(x => x.Name).ToList();
             var userRoles = await _userManager.GetRolesAsync(user);
 
-            foreach (var roleName in removedRoles)
+            foreach (var role in request.Roles)
             {
-                if (userRoles.Contains(roleName))
+                if (role.Selected && !userRoles.Contains(role.Name))
                 {
-                    await _userManager.RemoveFromRoleAsync(user, roleName);
-                }
-            }
+                    await _userManager.AddToRoleAsync(user, role.Name);
 
-            var addedRoles = request.Roles.Where(x => x.Selected).Select(x => x.Name).ToList();
-            foreach (var roleName in addedRoles)
-            {
-                if (!userRoles.Contains(roleName))
-                {
-                    await _userManager.AddToRoleAsync(user, roleName);
                 }
+                else if (!role.Selected || userRoles.Contains(role.Name))
+                {
+                    await _userManager.RemoveFromRoleAsync(user, role.Name);
+                }
+
             }
 
             return new ApiSuccessResult<bool>();

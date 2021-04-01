@@ -15,5 +15,6 @@ namespace Cosmetics.ViewModels.Catalogs.Categories
         public bool IsOutstanding { get; set; }
         public int? ParentId { get; set; }
         public Status Status { get; set; }
+
     }
 }

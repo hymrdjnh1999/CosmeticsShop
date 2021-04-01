@@ -1,6 +1,7 @@
 ﻿using Cosmetics.AdminApp.Services;
 using Cosmetics.ViewModels.Catalogs.Products;
 using Cosmetics.ViewModels.Catalogs.Products.Manage;
+using Cosmetics.ViewModels.Common;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
@@ -26,7 +27,7 @@ namespace Cosmetics.AdminApp.Controllers
         }
 
 
-        public async Task<IActionResult> Index([FromQuery] GetProductRequest request)
+        public async Task<IActionResult> Index(GetProductRequest request)
         {
 
 
@@ -74,6 +75,54 @@ namespace Cosmetics.AdminApp.Controllers
             }
             ModelState.AddModelError("", "Create product failed!");
             return View(request);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> CategroryAssign(int id)
+        {
+
+            var categoryAssignRequest = await GetCategoryAssignRequest(id);
+
+            return View(categoryAssignRequest);
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CategroryAssign(CategoryAssignRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+            var result = await _productApiClient.CategoryAssign(request);
+
+            if (result.IsSuccess)
+            {
+                TempData["result"] = "Role assign successfully";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", result.Message);
+            var categoryAssignRequest = await GetCategoryAssignRequest(request.Id);
+
+            return View(categoryAssignRequest);
+        }
+        private async Task<CategoryAssignRequest> GetCategoryAssignRequest(int id)
+        {
+            var productViewModel = await _productApiClient.GetById(id);
+            var categories = await _categoryApiClient.GetAll();
+            var categoryAssignRequest = new CategoryAssignRequest();
+            categoryAssignRequest.Id = id;
+
+            foreach (var category in categories)
+            {
+                categoryAssignRequest.Categories.Add(new SelectItemDynamic<int>()
+                {
+                    Id = category.Id,
+                    Name = category.Name,
+                    Selected = productViewModel.Categories.Contains(category.Name)
+                });
+            }
+            return categoryAssignRequest;
         }
     }
 }
