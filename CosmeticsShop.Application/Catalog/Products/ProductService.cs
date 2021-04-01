@@ -51,6 +51,36 @@ namespace CosmeticsShop.Application.Catalog.Products
 
         }
 
+        public async Task<ApiResult<bool>> CategoryAssign(CategoryAssignRequest request)
+        {
+            var product = await _context.Products.FindAsync(request.Id);
+            if (product == null)
+            {
+                return new ApiErrorResult<bool>($"Cannot find product with id: {request.Id}");
+            }
+            foreach (var category in request.Categories)
+            {
+                var productInCategory = await _context.ProductInCategories
+                    .FirstOrDefaultAsync(x => x.CategoryId == category.Id
+                    && x.ProductId == request.Id);
+
+                if (productInCategory != null && category.Selected == false)
+                {
+                    _context.ProductInCategories.Remove(productInCategory);
+                }
+                else if (productInCategory == null && category.Selected)
+                {
+                    await _context.ProductInCategories.AddAsync(new ProductInCategory()
+                    {
+                        CategoryId = category.Id,
+                        ProductId = request.Id
+                    });
+                }
+            }
+            await _context.SaveChangesAsync();
+            return new ApiSuccessResult<bool>();
+        }
+
         public async Task<int> Create(ProductCreateRequest request)
         {
             var product = new Product()
@@ -195,8 +225,14 @@ namespace CosmeticsShop.Application.Catalog.Products
 
         public async Task<ProductViewModel> GetById(int id)
         {
+
             var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
             if (product == null) return null;
+            var categoryNames = await (from c in _context.Categories
+                                       join pic in _context.ProductInCategories on c.Id equals pic.CategoryId
+                                       where pic.ProductId == id
+                                       select c.Name).ToListAsync();
+
             var productViewModel = new ProductViewModel()
             {
                 Id = product.Id,
@@ -209,7 +245,8 @@ namespace CosmeticsShop.Application.Catalog.Products
                 OriginalPrice = product.OriginalPrice,
                 Price = product.Price,
                 Stock = product.Stock,
-                ViewCount = product.ViewCount
+                ViewCount = product.ViewCount,
+                Categories = categoryNames
             };
             return productViewModel;
         }

@@ -45,7 +45,7 @@ namespace Cosmetics.WebAPI.Controllers
             var product = await _productServices.GetById(id);
             if (product == null)
             {
-                return BadRequest($"Không tồn tại sản phẩm có id: {id}");
+                return BadRequest($"Cannot find product with id: {id}");
             }
 
             return Ok(product);
@@ -81,6 +81,21 @@ namespace Cosmetics.WebAPI.Controllers
             }
 
             return Ok("Updated");
+        }
+
+        [HttpPut("{id}/categories")]
+        public async Task<IActionResult> CategoryAssign([FromBody] CategoryAssignRequest request)
+        {
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var response = await _productServices.CategoryAssign(request);
+            if (!response.IsSuccess)
+            {
+                return BadRequest("Assign category is not ok!");
+            }
+
+            return Ok(response);
         }
 
         [HttpDelete("{id}")]

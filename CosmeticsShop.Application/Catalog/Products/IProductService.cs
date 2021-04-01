@@ -29,6 +29,8 @@ namespace CosmeticsShop.Application.Catalog.Products
         Task<ProductImageViewModel> GetImageById(int id);
 
         Task<PageResponse<ProductViewModel>> GetAll(GetProductRequest request);
+        Task<ApiResult<bool>> CategoryAssign(CategoryAssignRequest request);
+
 
 
     }

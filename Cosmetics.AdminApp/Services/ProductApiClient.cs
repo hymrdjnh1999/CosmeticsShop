@@ -34,6 +34,25 @@ namespace Cosmetics.AdminApp.Services
             _configuration = configuration;
         }
 
+        public async Task<ApiResult<bool>> CategoryAssign(CategoryAssignRequest request)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var sessions = _httpContextAccessor.HttpContext.Session.GetString("Token");
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+
+            var json = JsonConvert.SerializeObject(request);
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await client.PutAsync($"/api/products/{request.Id}/categories", httpContent);
+            var result = await response.Content.ReadAsStringAsync();
+            var test = JsonConvert.DeserializeObject<ApiErrorResult<bool>>(result);
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<ApiSuccessResult<bool>>(result);
+
+            return JsonConvert.DeserializeObject<ApiErrorResult<bool>>(result);
+        }
         public async Task<bool> Create(ProductCreateRequest request)
         {
             var sessions = _httpContextAccessor
@@ -80,13 +99,35 @@ namespace Cosmetics.AdminApp.Services
             return response.IsSuccessStatusCode;
         }
 
+        public async Task<ProductViewModel> GetById(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+
+            var bearerToken = _httpContextAccessor.HttpContext.Session.GetString("Token");
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", bearerToken);
+
+            var requestUrl = $"/api/products/{id}";
+
+            var response = await client.GetAsync(requestUrl);
+
+            var result = await response.Content.ReadAsStringAsync();
+
+            if (response.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<ProductViewModel>(result);
+            }
+
+            return JsonConvert.DeserializeObject<ProductViewModel>(result);
+        }
+
         public async Task<PageResponse<ProductViewModel>> GetPaging(GetProductRequest request)
         {
             var requestUrl = $"/api/products/paging?pageIndex=" +
                $"{request.PageIndex}&pageSize={request.PageSize}&keyword={request.Keyword}&categoryId={request.CategoryId}";
 
             var data = await GetAsync<PageResponse<ProductViewModel>>(requestUrl);
-
 
             return data;
         }
