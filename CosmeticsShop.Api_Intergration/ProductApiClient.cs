@@ -15,7 +15,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cosmetics.AdminApp.Services
+namespace CosmeticsShop.Api_Intergration
 {
     public class ProductApiClient : BaseApiClient, IProductApiClient
     {

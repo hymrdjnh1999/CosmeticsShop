@@ -36,6 +36,7 @@ namespace CosmeticsShop.Data.EntityFrameWork
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
             modelBuilder.ApplyConfiguration(new ProductImageConfiguration());
+            modelBuilder.ApplyConfiguration(new SliderConfiguration());
 
             modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("UserClaims").HasKey(x => x.Id);
             modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("UserRoles").HasKey(x => new { x.UserId, x.RoleId });
@@ -48,6 +49,7 @@ namespace CosmeticsShop.Data.EntityFrameWork
             modelBuilder.Seed();
         }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Slider> Sliders { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<Cart> Carts { get; set; }

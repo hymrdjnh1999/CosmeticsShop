@@ -7,7 +7,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace Cosmetics.AdminApp.Services
+namespace CosmeticsShop.Api_Intergration
 {
     public class CategoryApiClient : BaseApiClient, ICategoryApiClient
     {

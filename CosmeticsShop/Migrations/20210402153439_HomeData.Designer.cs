@@ -4,14 +4,16 @@ using CosmeticsShop.Data.EntityFrameWork;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CosmeticsShop.Data.Migrations
 {
     [DbContext(typeof(CosmeticsDbContext))]
-    partial class CosmeticsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210402153439_HomeData")]
+    partial class HomeData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

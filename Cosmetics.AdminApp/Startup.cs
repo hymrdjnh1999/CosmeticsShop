@@ -1,6 +1,6 @@
-using Cosmetics.AdminApp.Services;
 using Cosmetics.ViewModels.Catalogs.Products;
 using Cosmetics.ViewModels.Systems.Users;
+using CosmeticsShop.Api_Intergration;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;

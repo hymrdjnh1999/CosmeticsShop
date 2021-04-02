@@ -1,7 +1,7 @@
-﻿using Cosmetics.AdminApp.Services;
-using Cosmetics.ViewModels.Catalogs.Products;
+﻿using Cosmetics.ViewModels.Catalogs.Products;
 using Cosmetics.ViewModels.Catalogs.Products.Manage;
 using Cosmetics.ViewModels.Common;
+using CosmeticsShop.Api_Intergration;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;

@@ -3,13 +3,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace Cosmetics.AdminApp.Services
+namespace CosmeticsShop.Api_Intergration
 {
     public class BaseApiClient
     {
@@ -45,7 +43,7 @@ namespace Cosmetics.AdminApp.Services
 
                 return myDeserializedObjList;
             }
-            var result = JsonConvert.DeserializeObject<TResponse>(body); 
+            var result = JsonConvert.DeserializeObject<TResponse>(body);
             return result;
         }
     }
