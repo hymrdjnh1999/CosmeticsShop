@@ -23,6 +23,7 @@ namespace Cosmetics.ViewModels.Catalogs.Products.Manage
         public int Stock { get; set; }
         public int ViewCount { get; set; }
         public DateTime DateCreated { get; set; }
+        [DisplayName("Is featured")]
         public bool IsOutstanding { get; set; }
         [DisplayName("Gender")]
         public ForGender ForGender { get; set; }

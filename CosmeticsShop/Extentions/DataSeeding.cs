@@ -211,6 +211,63 @@ namespace CosmeticsShop.Data.Extentions
                     RoleId = new Guid(ROLE_ID2)
                 }
                 );
+
+            modelBuilder.Entity<Slider>().HasData(
+               new Slider
+               {
+                   Id = 1,
+                   Name = "First Slide",
+                   SortOrder = 1,
+                   Status = Status.Active,
+                   Url = "#",
+                   Image = "https://www.gettyimages.pt/gi-resources/images/Homepage/Hero/PT/PT_hero_42_153645159.jpg"
+               },
+                new Slider
+                {
+                    Id = 2,
+                    Name = "Second Slide",
+                    SortOrder = 2,
+                    Status = Status.Active,
+                    Url = "#",
+                    Image = "https://cdn.shopify.com/s/files/1/0003/8718/6741/files/212HEROES-Desktop_1560x600_40ae22ae-9303-4773-af47-796d63fff29d_1800x.jpg"
+                },
+                new Slider
+                {
+                    Id = 3,
+                    Name = "Third Slide",
+                    SortOrder = 3,
+                    Status = Status.Active,
+                    Url = "#",
+                    Image = "https://cdn.shopify.com/s/files/1/0003/8718/6741/files/JC-WebBanner-1560x600_1800x.jpg"
+                },
+                 new Slider
+                 {
+                     Id = 4,
+                     Name = "Fourth Slide",
+                     SortOrder = 4,
+                     Status = Status.Active,
+                     Url = "#",
+                     Image = "https://cdn.shopify.com/s/files/1/0003/8718/6741/files/LE_BELLE_LE_MALE_1560x600_7921449a-7a2c-4aba-b1cc-939576de9067_1800x.jpg"
+                 },
+                new Slider
+                {
+                    Id = 5,
+                    Name = "Fiveth Slide",
+                    SortOrder = 5,
+                    Status = Status.Active,
+                    Url = "#",
+                    Image = "https://cdn.shopify.com/s/files/1/0003/8718/6741/files/imgpsh_fullsize_anim_8_aa16529c-d632-45c7-89b0-35b1b5c81fee_1800x.jpg?v=1615517435"
+                },
+                new Slider
+                {
+                    Id = 6,
+                    Name = "Sixth Slide",
+                    SortOrder = 6,
+                    Status = Status.Active,
+                    Url = "#",
+                    Image = "https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg"
+                }
+           );
         }
     }
 }
