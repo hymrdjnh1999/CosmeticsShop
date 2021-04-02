@@ -1,25 +1,24 @@
-﻿@{
+﻿@model HomeViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
-
 @section slider{
-    @* Slider here, below code is try hard, change after *@
+        @* Slide section *@
     <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
         <ol class="carousel-indicators">
-            <li data-target="#carouselExampleFade" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleFade" data-slide-to="1"></li>
-            <li data-target="#carouselExampleFade" data-slide-to="2"></li>
+            @for (int count = 0; count < Model.Slides.Count; count++)
+            {
+                <li data-target="#carouselExampleFade" data-slide-to="@count" class="@(count == 0 ? "active": "")"></li>
+            }
         </ol>
         <div class="carousel-inner">
-            <div class="carousel-item active" data-interval="2000">
-                <img src="https://cdn.shopify.com/s/files/1/0003/8718/6741/files/imgpsh_fullsize_anim_8_aa16529c-d632-45c7-89b0-35b1b5c81fee_1800x.jpg?v=1615517435" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item" data-interval="2000">
-                <img src="https://cdn.shopify.com/s/files/1/0003/8718/6741/files/212HEROES-Desktop_1560x600_40ae22ae-9303-4773-af47-796d63fff29d_1800x.jpg?v=1616667133" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item" data-interval="2000">
-                <img src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg" class="d-block w-100" alt="...">
-            </div>
+            @for (int count = 0; count < Model.Slides.Count; count++)
+            {
+                <div class="carousel-item @(count == 0 ? "active" : "")" data-interval="2000">
+                    <img src="@Model.Slides[count].Image" class="d-block w-100" alt="@Model.Slides[count].Name">
+                </div>
+            }
+
         </div>
         <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

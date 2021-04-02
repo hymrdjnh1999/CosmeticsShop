@@ -251,6 +251,20 @@ namespace CosmeticsShop.Application.Catalog.Products
             return productViewModel;
         }
 
+        public async Task<List<ProductViewModel>> GetFeaturedProducts()
+        {
+            var products = await _context.Products.Where(x => x.IsOutstanding == true).Take(8).OrderByDescending(x => x.DateCreated).Select(x => new ProductViewModel()
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Price = x.Price,
+                OriginalPrice = x.OriginalPrice
+
+            }).ToListAsync();
+
+            return products;
+        }
+
         public async Task<ProductImageViewModel> GetImageById(int id)
         {
             var image = await _context.ProductImages.FirstOrDefaultAsync(x => x.Id == id);

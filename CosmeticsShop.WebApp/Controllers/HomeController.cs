@@ -1,4 +1,6 @@
-﻿using CosmeticsShop.WebApp.Models;
+﻿using CosmeticsShop.Api_Intergration;
+using CosmeticsShop.Application.Ultilities;
+using CosmeticsShop.WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,15 +14,25 @@ namespace CosmeticsShop.WebApp.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ISlideApiClient _slideApiClient;
+        private readonly IProductApiClient _productApiClient;
+        public HomeController(ILogger<HomeController> logger, ISlideApiClient slideApiClient, IProductApiClient productApiClient)
         {
             _logger = logger;
+            _slideApiClient = slideApiClient;
+            _productApiClient = productApiClient;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var slides = await _slideApiClient.GetAll();
+            var featuredProducts = await _productApiClient.GetFeaturedProducts();
+            var homeViewModel = new HomeViewModel()
+            {
+                Slides = slides,
+                FeaturedProducts = featuredProducts
+            };
+            return View(homeViewModel);
         }
 
         public IActionResult Privacy()

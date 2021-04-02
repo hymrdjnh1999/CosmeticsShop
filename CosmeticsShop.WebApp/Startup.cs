@@ -1,5 +1,9 @@
+using CosmeticsShop.Api_Intergration;
+using CosmeticsShop.Application.Common;
+using CosmeticsShop.Application.Ultilities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,6 +28,27 @@ namespace CosmeticsShop.WebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            //Http Client
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            //Http Client
+            services.AddHttpClient();
+
+            // Runtime compilation
+            services.AddRazorPages()
+                .AddRazorRuntimeCompilation();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+            });
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<ISlideApiClient, SlideApiClient>();
+            services.AddTransient<IProductApiClient, ProductApiClient>();
+            services.AddTransient<ICategoryApiClient, CategoryApiClient>();
+            services.AddTransient<IUserApiClient, UserApiClient>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +70,7 @@ namespace CosmeticsShop.WebApp
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

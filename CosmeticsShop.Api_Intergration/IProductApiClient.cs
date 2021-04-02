@@ -14,5 +14,6 @@ namespace CosmeticsShop.Api_Intergration
         Task<bool> Create(ProductCreateRequest request);
         Task<ApiResult<bool>> CategoryAssign(CategoryAssignRequest request);
         Task<ProductViewModel> GetById(int id);
+        Task<List<ProductViewModel>> GetFeaturedProducts();
     }
 }
