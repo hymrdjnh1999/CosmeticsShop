@@ -26,7 +26,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Domain", "2.Domain", "{E7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.Hosting", "3.Hosting", "{32381EFA-E438-435B-ADEC-5FB46EF00AB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cosmetics.AdminApp", "Cosmetics.AdminApp\Cosmetics.AdminApp.csproj", "{BB8556F8-FDAD-4CD1-91CC-AB9E7E3450B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cosmetics.AdminApp", "Cosmetics.AdminApp\Cosmetics.AdminApp.csproj", "{BB8556F8-FDAD-4CD1-91CC-AB9E7E3450B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CosmeticsShop.Api_Intergration", "CosmeticsShop.Api_Intergration\CosmeticsShop.Api_Intergration.csproj", "{2DBF1B4A-1991-48DF-9621-914EC6BF1B9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +64,10 @@ Global
 		{BB8556F8-FDAD-4CD1-91CC-AB9E7E3450B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB8556F8-FDAD-4CD1-91CC-AB9E7E3450B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB8556F8-FDAD-4CD1-91CC-AB9E7E3450B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DBF1B4A-1991-48DF-9621-914EC6BF1B9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DBF1B4A-1991-48DF-9621-914EC6BF1B9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DBF1B4A-1991-48DF-9621-914EC6BF1B9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DBF1B4A-1991-48DF-9621-914EC6BF1B9E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{06D9C240-8D20-4E4D-998F-D1CD7A11E96C} = {F89BA2AD-29B1-44CC-B9BF-7A40CE9CB263}
 		{D415AB02-6B66-41CF-9135-30C04E715DE1} = {32381EFA-E438-435B-ADEC-5FB46EF00AB5}
 		{BB8556F8-FDAD-4CD1-91CC-AB9E7E3450B2} = {32381EFA-E438-435B-ADEC-5FB46EF00AB5}
+		{2DBF1B4A-1991-48DF-9621-914EC6BF1B9E} = {32381EFA-E438-435B-ADEC-5FB46EF00AB5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {868D84EA-A7C7-455A-9B47-1B14F302A9CC}

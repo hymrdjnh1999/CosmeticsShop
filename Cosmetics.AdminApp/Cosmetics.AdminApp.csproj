@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Cosmetics.Ultilities\Cosmetics.Ultilities.csproj" />
     <ProjectReference Include="..\Cosmetics.ViewModels\Cosmetics.ViewModels.csproj" />
+    <ProjectReference Include="..\CosmeticsShop.Api_Intergration\CosmeticsShop.Api_Intergration.csproj" />
   </ItemGroup>
 
 </Project>

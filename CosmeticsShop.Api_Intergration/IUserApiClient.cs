@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Cosmetics.AdminApp.Services
+namespace CosmeticsShop.Api_Intergration
 {
     public interface IUserApiClient
     {

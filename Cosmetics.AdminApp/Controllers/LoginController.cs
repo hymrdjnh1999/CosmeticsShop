@@ -1,5 +1,5 @@
-﻿using Cosmetics.AdminApp.Services;
-using Cosmetics.ViewModels.Systems.Users;
+﻿using Cosmetics.ViewModels.Systems.Users;
+using CosmeticsShop.Api_Intergration;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;

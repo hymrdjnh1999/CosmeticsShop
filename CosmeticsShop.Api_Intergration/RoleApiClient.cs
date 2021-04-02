@@ -10,7 +10,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace Cosmetics.AdminApp.Services
+namespace CosmeticsShop.Api_Intergration
 {
     public class RoleApiClient : IRoleClientApi
     {
