@@ -7,6 +7,7 @@ using CosmeticsShop.Application.Catalog.Products;
 using CosmeticsShop.Application.Common;
 using CosmeticsShop.Application.Systems.Roles;
 using CosmeticsShop.Application.Systems.Users;
+using CosmeticsShop.Application.Ultilities;
 using CosmeticsShop.Data.Entities;
 using CosmeticsShop.Data.EntityFrameWork;
 using FluentValidation;
@@ -14,7 +15,6 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -24,8 +24,6 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Cosmetics.WebAPI
 {
@@ -53,6 +51,7 @@ namespace Cosmetics.WebAPI
             services.AddTransient<RoleManager<Role>, RoleManager<Role>>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IRoleService, RoleService>();
+            services.AddTransient<ISlideService, SlideService>();
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
             services.AddTransient<IValidator<ProductCreateRequest>, CreateProductValidator>();

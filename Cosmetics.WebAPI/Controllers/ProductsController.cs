@@ -25,15 +25,22 @@ namespace Cosmetics.WebAPI.Controllers
             _productServices = productService;
         }
 
-
-
-
         [HttpGet("paging")]
         public async Task<IActionResult> Get([FromQuery] GetProductRequest request)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             var products = await _productServices.GetAll(request);
+            return Ok(products);
+        }
+
+        [HttpGet("featured")]
+        public async Task<IActionResult> GetFeaturedProducts()
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var products = await _productServices.GetFeaturedProducts();
+
             return Ok(products);
         }
 

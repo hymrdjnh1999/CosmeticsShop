@@ -30,6 +30,7 @@ namespace CosmeticsShop.Application.Catalog.Products
 
         Task<PageResponse<ProductViewModel>> GetAll(GetProductRequest request);
         Task<ApiResult<bool>> CategoryAssign(CategoryAssignRequest request);
+        Task<List<ProductViewModel>> GetFeaturedProducts();
 
 
 

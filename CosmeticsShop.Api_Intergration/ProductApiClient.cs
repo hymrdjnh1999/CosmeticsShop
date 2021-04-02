@@ -122,6 +122,14 @@ namespace CosmeticsShop.Api_Intergration
             return JsonConvert.DeserializeObject<ProductViewModel>(result);
         }
 
+        public async Task<List<ProductViewModel>> GetFeaturedProducts()
+        {
+            var requestUrl = $"/api/products/featured";
+            var data = await GetAsync<List<ProductViewModel>>(requestUrl);
+            return data;
+
+        }
+
         public async Task<PageResponse<ProductViewModel>> GetPaging(GetProductRequest request)
         {
             var requestUrl = $"/api/products/paging?pageIndex=" +
