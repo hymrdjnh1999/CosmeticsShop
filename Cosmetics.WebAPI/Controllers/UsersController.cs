@@ -52,7 +52,7 @@ namespace Cosmetics.WebAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid id, [FromBody] UpdateUserRequest request)
+        public async Task<IActionResult> Update(Guid id, [FromBody] UserViewModel request)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

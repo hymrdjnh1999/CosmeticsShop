@@ -32,7 +32,6 @@
                     </button>
                 </div>
             </form>
-
             <div>
                 <a asp-action="Create" asp-controller="User" class="btn btn-outline-dark ">
                     <i class="fas fa-plus mr-2"></i>
@@ -75,37 +74,45 @@
                             <th>
                                 Email
                             </th>
-                            <th>
-                                Actions
-                            </th>
+                            @if (Model.CurrentRoles.Contains("Manager"))
+                            {
+                                <th>
+                                    Actions
+                                </th>
+                            }
                         </tr>
                     </thead>
                     <tbody>
                         @for (var count = 0; count < Model.Items.Count; count++)
                         {
-                            <tr>
-                                <td>@(count + 1)</td>
-                                <td>
-                                    @Html.ActionLink(Model.Items[count].Name, "Details", new { id = Model.Items[count].Id })
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => Model.Items[count].UserName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => Model.Items[count].Dob)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => Model.Items[count].PhoneNumber)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => Model.Items[count].Email)
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Edit", "Edit", new { id = Model.Items[count].Id }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = Model.Items[count].Id }) |
-                                    @Html.ActionLink("Assign role", "RoleAssign", new { id = Model.Items[count].Id })
-                                </td>
-                            </tr>
+                            if (Model.Items[count].Id != Model.CurrentLoggedId)
+                            {
+                                <tr>
+                                    <td>@(count + 1)</td>
+                                    <td>
+                                        @Html.ActionLink(Model.Items[count].Name, "Details", new { id = Model.Items[count].Id })
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => Model.Items[count].UserName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => Model.Items[count].Dob)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => Model.Items[count].PhoneNumber)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => Model.Items[count].Email)
+                                    </td>
+                                    @if (Model.CurrentRoles.Contains("Manager"))
+                                    {
+                                        <td>
+                                            @Html.ActionLink("Edit", "Details", new { id = Model.Items[count].Id }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = Model.Items[count].Id })
+                                        </td>
+                                    }
+                                </tr>
+                            }
                         }
                     </tbody>
                 </table>

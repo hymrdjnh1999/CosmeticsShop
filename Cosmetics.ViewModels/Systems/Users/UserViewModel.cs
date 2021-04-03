@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cosmetics.ViewModels.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -22,5 +23,6 @@ namespace Cosmetics.ViewModels.Systems.Users
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public IList<string> Roles { get; set; }
+        public List<SelectItem> RoleAssignRequest { get; set; }
     }
 }

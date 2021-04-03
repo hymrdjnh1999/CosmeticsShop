@@ -40,7 +40,7 @@ namespace CosmeticsShop.Application.Systems.Users
         {
             var user = await _userManager.FindByNameAsync(request.UserName);
 
-            if (user == null) return new ApiErrorResult<string>("User name is not exists!");
+            if (user == null) return new ApiErrorResult<string>("User is not exists!");
 
             var result = await _signInManager.PasswordSignInAsync(user, request.Password, request.RememberMe, true);
             if (!result.Succeeded)
@@ -54,7 +54,8 @@ namespace CosmeticsShop.Application.Systems.Users
                 new Claim(ClaimTypes.Email,user.Email),
                 new Claim(ClaimTypes.GivenName,user.Name),
                 new Claim(ClaimTypes.Role,string.Join(";",roles)),
-                new Claim(ClaimTypes.Name,user.Name)
+                new Claim(ClaimTypes.Name,user.Name),
+                new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
             };
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -206,7 +207,7 @@ namespace CosmeticsShop.Application.Systems.Users
             return new ApiSuccessResult<bool>();
         }
 
-        public async Task<ApiResult<bool>> Update(Guid id, UpdateUserRequest request)
+        public async Task<ApiResult<bool>> Update(Guid id, UserViewModel request)
         {
             var user = await _userManager.FindByIdAsync(id.ToString());
             user.Dob = request.Dob;

@@ -15,7 +15,7 @@ namespace CosmeticsShop.Api_Intergration
 
         Task<ApiResult<bool>> RegisterUser(RegisterRequest request);
 
-        Task<ApiResult<bool>> UpdateUser(Guid id, UpdateUserRequest request);
+        Task<ApiResult<bool>> UpdateUser(Guid id, UserViewModel request);
 
         Task<ApiResult<UserViewModel>> GetById(Guid id);
 

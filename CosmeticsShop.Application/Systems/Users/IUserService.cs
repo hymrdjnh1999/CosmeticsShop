@@ -16,7 +16,7 @@ namespace CosmeticsShop.Application.Systems.Users
 
         Task<ApiResult<PageResponse<UserViewModel>>> GetUserPaging(GetUserPagingRequest request);
 
-        Task<ApiResult<bool>> Update(Guid id, UpdateUserRequest request);
+        Task<ApiResult<bool>> Update(Guid id, UserViewModel request);
 
         Task<ApiResult<UserViewModel>> GetById(Guid id);
 

@@ -57,6 +57,7 @@ namespace Cosmetics.AdminApp.Controllers
                 userPrincipal,
                 authProperties);
 
+
             return RedirectToAction("Index", "Home");
 
         }

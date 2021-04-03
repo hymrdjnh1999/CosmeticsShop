@@ -68,7 +68,7 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="Details" class="control-label"></label>
-                        <textarea rows="3" asp-for="Details" class="form-control" placeholder="Enter product Details"></textarea>
+                        <textarea rows="3"  id="productDetails" asp-for="Details" class="form-control" placeholder="Enter product Details"></textarea>
                         <span asp-validation-for="Details" class="text-danger"></span>
                     </div>
 
@@ -79,7 +79,7 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="ThumbnailImage" class="control-label"></label>
-                        <input type="file" id="productDetails" asp-for="ThumbnailImage" class="form-control" placeholder="Enter product Details" />
+                        <input type="file" asp-for="ThumbnailImage" class="form-control" placeholder="Enter product Details" />
                         <span asp-validation-for="ThumbnailImage" class="text-danger"></span>
                     </div>
                     <div class="form-group">

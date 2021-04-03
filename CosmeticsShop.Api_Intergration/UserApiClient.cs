@@ -157,7 +157,7 @@ namespace CosmeticsShop.Api_Intergration
             return JsonConvert.DeserializeObject<ApiErrorResult<bool>>(result);
         }
 
-        public async Task<ApiResult<bool>> UpdateUser(Guid id, UpdateUserRequest request)
+        public async Task<ApiResult<bool>> UpdateUser(Guid id, UserViewModel request)
         {
             var bearerToken = _httpContextAccessor.HttpContext.Session.GetString("Token");
 

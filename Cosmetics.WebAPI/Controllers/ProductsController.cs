@@ -149,6 +149,20 @@ namespace Cosmetics.WebAPI.Controllers
             return Ok(image);
         }
 
+        [HttpGet("images")]
+        public async Task<IActionResult> GetProductImages(int id)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var image = await _productServices.GetImageById(id);
+            if (image == null)
+            {
+                return BadRequest($"Không tồn tại sản phẩm có id: {id}");
+            }
+
+            return Ok(image);
+        }
+
         [HttpPut("{productId}/images/{id}")]
         public async Task<IActionResult> UpdateImage(int id, [FromForm] ProductImageUpdateRequest request)
         {
