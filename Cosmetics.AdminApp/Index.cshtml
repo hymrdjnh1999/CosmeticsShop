@@ -1,0 +1,125 @@
+﻿@using Cosmetics.ViewModels.Common;
+@model PageResponse<Cosmetics.ViewModels.Systems.Users.UserViewModel>;
+@using Cosmetics.ViewModels.Systems.Users;
+
+@{
+    ViewData["Title"] = "User List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+@section Scripts{
+    <script>
+        setTimeout(() => $('#msgAlert').fadeOut('slow'), 1500)
+    </script>
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">Users</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Dashboard</a></li>
+        <li class="breadcrumb-item active">User List</li>
+    </ol>
+
+    <div class="card mb-12">
+        <div class="card-header d-flex justify-content-between">
+            <form asp-action="Index" method="get">
+                <div class="form-outline mb-4 d-flex">
+                    <input name="keyword" value="@ViewBag.Keyword" type="text" id="userSearchBox" placeholder="Search here..." class="form-control  border-dark" />
+                    <input asp-for="PageSize" value="@Model.PageSize" type="hidden" />
+                    <button type="submit" class="btn btn-outline-dark ml-2">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </form>
+            <div>
+                <a asp-action="Create" asp-controller="User" class="btn btn-outline-dark ">
+                    <i class="fas fa-plus mr-2"></i>
+                    Create new user
+                </a>
+            </div>
+
+        </div>
+        <div class="card-body">
+            @if (ViewBag.SuccessMsg != null)
+            {
+                <div class="d-flex justify-content-center">
+                    <div id="msgAlert" class="alert alert-success w-25" role="alert">
+                        @ViewBag.SuccessMsg
+                    </div>
+                </div>
+            }
+            <div class="d-flex w-25 align-items-center mb-3">
+                @await Component.InvokeAsync("ChangePageSize", Model)
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                No
+                            </th>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                UserName
+                            </th>
+                            <th>
+                                Date of birth
+                            </th>
+                            <th>
+                                PhoneNumber
+                            </th>
+                            <th>
+                                Email
+                            </th>
+                            @if (Model.CurrentRoles.Contains("Manager"))
+                            {
+                                <th>
+                                    Actions
+                                </th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (var count = 0; count < Model.Items.Count; count++)
+                        {
+                            if (Model.Items[count].Id != Model.CurrentLoggedId)
+                            {
+                                <tr>
+                                    <td>@(count + 1)</td>
+                                    <td>
+                                        @Html.ActionLink(Model.Items[count].Name, "Details", new { id = Model.Items[count].Id })
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => Model.Items[count].UserName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => Model.Items[count].Dob)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => Model.Items[count].PhoneNumber)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => Model.Items[count].Email)
+                                    </td>
+                                    @if (Model.CurrentRoles.Contains("Manager"))
+                                    {
+                                        <td>
+                                            @Html.ActionLink("Edit", "Details", new { id = Model.Items[count].Id }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = Model.Items[count].Id })
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            @await Component.InvokeAsync("Pager", Model)
+        </div>
+    </div>
+</div>
+
