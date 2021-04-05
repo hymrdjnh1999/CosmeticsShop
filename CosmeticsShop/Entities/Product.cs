@@ -19,8 +19,8 @@ namespace CosmeticsShop.Data.Entities
         public int Stock { get; set; }
         public int ViewCount { get; set; }
         public DateTime DateCreated { get; set; }
-        public bool? IsOutstanding { get; set; }
-        public ForGender? ForGender { get; set; }
+        public bool IsOutstanding { get; set; }
+        public ForGender ForGender { get; set; }
         public List<ProductInCategory> ProductInCategories { get; set; }
         public List<OrderDetail> OrderDetails { get; set; }
         public List<ProductInCosmeticsCollection> ProductInCosmeticsCollections { get; set; }

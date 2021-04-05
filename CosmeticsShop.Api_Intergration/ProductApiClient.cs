@@ -101,25 +101,11 @@ namespace CosmeticsShop.Api_Intergration
 
         public async Task<ProductViewModel> GetById(int id)
         {
-            var client = _httpClientFactory.CreateClient();
-            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
-
-            var bearerToken = _httpContextAccessor.HttpContext.Session.GetString("Token");
-
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", bearerToken);
-
             var requestUrl = $"/api/products/{id}";
 
-            var response = await client.GetAsync(requestUrl);
+            var response = await GetAsync<ProductViewModel>(requestUrl);
 
-            var result = await response.Content.ReadAsStringAsync();
-
-            if (response.IsSuccessStatusCode)
-            {
-                return JsonConvert.DeserializeObject<ProductViewModel>(result);
-            }
-
-            return JsonConvert.DeserializeObject<ProductViewModel>(result);
+            return response;
         }
 
         public async Task<List<ProductViewModel>> GetFeaturedProducts()
@@ -140,6 +126,43 @@ namespace CosmeticsShop.Api_Intergration
             return data;
         }
 
+        public async Task<bool> Update(ProductViewModel request)
+        {
+            var sessions = _httpContextAccessor
+                .HttpContext
+                .Session
+                .GetString(SystemConstants.AppSettings.Token);
 
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration[SystemConstants.AppSettings.BaseAddress]);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+
+            var requestContent = new MultipartFormDataContent();
+            if (request.ThumbnailImage != null)
+            {
+                byte[] data;
+                using (var br = new BinaryReader(request.ThumbnailImage.OpenReadStream()))
+                {
+                    data = br.ReadBytes((int)request.ThumbnailImage.OpenReadStream().Length);
+                }
+                ByteArrayContent bytes = new ByteArrayContent(data);
+                requestContent.Add(bytes, "thumbnailImage", request.ThumbnailImage.FileName);
+            }
+
+            var nameJs = new StringContent(request.Name.ToString());
+            requestContent.Add(nameJs, "name");
+            var descriptionJs = new StringContent(request.Description.ToString());
+            requestContent.Add(descriptionJs, "description");
+            var detailsJs = new StringContent(request.Details.ToString());
+            requestContent.Add(detailsJs, "details");
+            var originalCountryJs = new StringContent(request.OriginalCountry.ToString());
+            requestContent.Add(originalCountryJs, "originalCountry");
+            var forGenderJs = new StringContent(
+                (request.ForGender == ForGender.Male ? 1 : request.ForGender == ForGender.Female ? 2 : 3).ToString());
+            requestContent.Add(forGenderJs, "forgender");
+            var response = await client.PutAsync($"/api/products/{request.Id}", requestContent);
+
+            return response.IsSuccessStatusCode;
+        }
     }
 }

@@ -6,7 +6,7 @@
 
 
 <div class="container-fluid">
-    <h1 class="mt-4">Tables</h1>
+    <h1 class="mt-4">User</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Dashboard</a></li>
         <li class="breadcrumb-item active">User Details</li>
@@ -15,12 +15,6 @@
     <div class="card mb-4">
         <div class="card-header d-flex justify-content-start">
             <a asp-action="Index" asp-controller="User" class="btn btn-outline-dark">Back to user list</a>
-            @{
-                var parms = new Dictionary<string, string>
-                                                                                                            {
-                    {"id", Model.Id.ToString() }
-                };
-            }
         </div>
         <div class="card-body">
             <div class="col-12">

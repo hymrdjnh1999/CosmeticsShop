@@ -1,4 +1,6 @@
-﻿using CosmeticsShop.Data.Enums;
+﻿using Cosmetics.ViewModels.Common;
+using CosmeticsShop.Data.Enums;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,7 +21,7 @@ namespace Cosmetics.ViewModels.Catalogs.Products
         public decimal OriginalPrice { get; set; }
         [DisplayName("For gender")]
 
-        public ForGender? ForGender { get; set; }
+        public ForGender ForGender { get; set; }
         [DisplayName("Date created")]
         public DateTime DateCreated { get; set; }
         public int Stock { get; set; }
@@ -30,7 +32,8 @@ namespace Cosmetics.ViewModels.Catalogs.Products
 
         public string OriginalCountry { get; set; }
         public IList<string> Categories { get; set; }
-
-
+        public List<SelectItemDynamic<int>> CategoriesAssignRequest { get; set; }
+        = new List<SelectItemDynamic<int>>();
+        public IFormFile ThumbnailImage { get; set; }
     }
 }
