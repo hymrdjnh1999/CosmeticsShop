@@ -76,7 +76,8 @@ namespace Cosmetics.WebAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update([FromForm] ProductUpdateRequest request)
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Update([FromForm] ProductViewModel request)
         {
 
             if (!ModelState.IsValid)

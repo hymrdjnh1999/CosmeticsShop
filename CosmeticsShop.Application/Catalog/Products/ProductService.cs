@@ -7,6 +7,7 @@ using Cosmetics.ViewModels.Common;
 using CosmeticsShop.Application.Common;
 using CosmeticsShop.Data.Entities;
 using CosmeticsShop.Data.EntityFrameWork;
+using CosmeticsShop.Data.Enums;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -227,11 +228,11 @@ namespace CosmeticsShop.Application.Catalog.Products
         {
 
             var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
-            if (product == null) return null;
-            var categoryNames = await (from c in _context.Categories
-                                       join pic in _context.ProductInCategories on c.Id equals pic.CategoryId
-                                       where pic.ProductId == id
-                                       select c.Name).ToListAsync();
+            if (product == null)
+            {
+                return null;
+            }
+            var categoriesName = await GetProductInCategories(id);
 
             var productViewModel = new ProductViewModel()
             {
@@ -246,14 +247,24 @@ namespace CosmeticsShop.Application.Catalog.Products
                 Price = product.Price,
                 Stock = product.Stock,
                 ViewCount = product.ViewCount,
-                Categories = categoryNames
+                Categories = categoriesName
+
             };
             return productViewModel;
         }
+        private async Task<List<string>> GetProductInCategories(int id)
+        {
+            var categoryNames = await (from c in _context.Categories
+                                       join pic in _context.ProductInCategories on c.Id equals pic.CategoryId
+                                       where pic.ProductId == id
+                                       select c.Name).ToListAsync();
+            return categoryNames;
 
+        }
         public async Task<List<ProductViewModel>> GetFeaturedProducts()
         {
-            var products = await _context.Products.Where(x => x.IsOutstanding == true).Take(8).OrderByDescending(x => x.DateCreated).Select(x => new ProductViewModel()
+            // Update when have manage categories
+            var products = await _context.Products.Where(x => x.Id > 0).Take(8).OrderByDescending(x => x.DateCreated).Select(x => new ProductViewModel()
             {
                 Id = x.Id,
                 Name = x.Name,
@@ -311,13 +322,12 @@ namespace CosmeticsShop.Application.Catalog.Products
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<int> Update(ProductUpdateRequest request)
+        public async Task<int> Update(ProductViewModel request)
         {
             var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == request.Id);
             if (product == null)
-                throw new CosmeticsException("Không tìm thấy sản phẩm này");
+                throw new CosmeticsException($"Cannot found product width id: {request.Id}");
             product.Name = request.Name;
-            product.IsOutstanding = request.IsOutstanding;
             product.OriginalCountry = request.OriginalCountry;
             product.ForGender = request.ForGender;
             product.Description = request.Description;

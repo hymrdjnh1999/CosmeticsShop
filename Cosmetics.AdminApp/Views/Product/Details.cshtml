@@ -1,0 +1,108 @@
+﻿@model Cosmetics.ViewModels.Catalogs.Products.ProductViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts {
+    <script src="https://cdn.ckeditor.com/ckeditor5/27.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#productDetails'))
+            .then(editor => {
+                console.log(editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        ClassicEditor
+            .create(document.querySelector('#productDescription'))
+            .then(editor => {
+                console.log(editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+}
+<div class="container-fluid">
+    <h1 class="mt-4">Product</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Dashboard</a></li>
+        <li class="breadcrumb-item active">Product Details</li>
+    </ol>
+
+    <div class="card mb-4">
+        <div class="card-header d-flex justify-content-start">
+            <a asp-action="Index" asp-controller="Product" class="btn btn-outline-dark">Back to product list</a>
+
+        </div>
+        <div class="card-body">
+            <div class="col-12">
+                <form asp-action="Update" enctype="multipart/form-data" method="post">
+                    <input asp-for="Id" type="hidden" />
+                    <div class="row">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="form-group  col-6">
+                            <label asp-for="Name" class="control-label"></label>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-6">
+                            <label asp-for="Price" class="control-label"></label>
+                            <input asp-for="Price" class="form-control" />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-6">
+                            <label asp-for="OriginalPrice" class="control-label"></label>
+                            <input asp-for="OriginalPrice" class="form-control" />
+                            <span asp-validation-for="OriginalPrice" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-6">
+                            <label asp-for="ForGender" class="control-label"></label>
+                            <input disabled asp-for="ForGender" class="form-control" />
+                            <span asp-validation-for="ForGender" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-6">
+                            <label asp-for="Details" class="control-label"></label>
+                            <textarea rows="3" id="productDetails" asp-for="Details" class="form-control"></textarea>
+                            <span asp-validation-for="Details" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group  col-6">
+                            <label asp-for="Description" class="control-label"></label>
+                            <textarea rows="3" id="productDescription" asp-for="Description" class="form-control"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="form-group col-6">
+                            <label asp-for="DateCreated" class="control-label"></label>
+                            <input asp-for="DateCreated" class="form-control" disabled />
+                            <span asp-validation-for="DateCreated" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-6">
+                            <label asp-for="Stock" class="control-label"></label>
+                            <input asp-for="Stock" class="form-control" />
+                            <span asp-validation-for="Stock" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-6">
+                            <label asp-for="ViewCount" class="control-label"></label>
+                            <input asp-for="ViewCount" class="form-control" disabled />
+                            <span asp-validation-for="ViewCount" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-6">
+                            <label asp-for="OriginalCountry" class="control-label"></label>
+                            <input asp-for="OriginalCountry" class="form-control" />
+                            <span asp-validation-for="OriginalCountry" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-outline-dark" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

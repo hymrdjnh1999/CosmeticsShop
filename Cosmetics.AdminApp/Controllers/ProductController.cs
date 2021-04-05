@@ -30,7 +30,6 @@ namespace Cosmetics.AdminApp.Controllers
         public async Task<IActionResult> Index(GetProductRequest request)
         {
 
-
             var data = await _productApiClient.GetPaging(request);
             ViewBag.Keyword = request.Keyword;
             var categories = await _categoryApiClient.GetAll();
@@ -68,6 +67,7 @@ namespace Cosmetics.AdminApp.Controllers
             }
 
             var result = await _productApiClient.Create(request);
+
             if (result)
             {
                 TempData["result"] = "Create product successfully!";
@@ -75,6 +75,37 @@ namespace Cosmetics.AdminApp.Controllers
             }
             ModelState.AddModelError("", "Create product failed!");
             return View(request);
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            var categoryAssignRequest = await GetCategoryAssignRequest(id);
+            var product = await _productApiClient.GetById(id);
+            product.CategoriesAssignRequest = categoryAssignRequest.Categories;
+
+
+            return View(product);
+        }
+
+        [HttpPost]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Update([FromForm] ProductViewModel request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(request);
+            }
+
+            var result = await _productApiClient.Update(request);
+            if (result)
+            {
+                TempData["result"] = "Update product successfully!";
+                return RedirectToAction("Index");
+            }
+            ModelState.AddModelError("", "Update product failed!");
+            return RedirectToAction("Details", request.Id);
         }
 
         [HttpGet]
