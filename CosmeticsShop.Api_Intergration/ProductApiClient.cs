@@ -149,17 +149,25 @@ namespace CosmeticsShop.Api_Intergration
                 requestContent.Add(bytes, "thumbnailImage", request.ThumbnailImage.FileName);
             }
 
-            var nameJs = new StringContent(request.Name.ToString());
-            requestContent.Add(nameJs, "name");
-            var descriptionJs = new StringContent(request.Description.ToString());
-            requestContent.Add(descriptionJs, "description");
-            var detailsJs = new StringContent(request.Details.ToString());
-            requestContent.Add(detailsJs, "details");
-            var originalCountryJs = new StringContent(request.OriginalCountry.ToString());
-            requestContent.Add(originalCountryJs, "originalCountry");
-            var forGenderJs = new StringContent(
-                (request.ForGender == ForGender.Male ? 1 : request.ForGender == ForGender.Female ? 2 : 3).ToString());
-            requestContent.Add(forGenderJs, "forgender");
+            requestContent.Add(new StringContent(request.Name.ToString()), "name");
+
+            requestContent.Add(new StringContent(request.Description.ToString()), "description");
+
+            requestContent.Add(new StringContent(request.Details.ToString()), "details");
+
+            requestContent.Add(new StringContent(request.OriginalCountry.ToString()), "originalCountry");
+
+            requestContent.Add(new StringContent(
+                (request.ForGender == ForGender.Male ? 1 : request.ForGender == ForGender.Female ? 2 : 3).ToString()), "forgender");
+
+            requestContent.Add(new StringContent(request.Id.ToString()), "id");
+
+            requestContent.Add(new StringContent(request.OriginalPrice.ToString()), "originalPrice");
+
+            requestContent.Add(new StringContent(request.Price.ToString()), "Price");
+
+            requestContent.Add(new StringContent(request.Stock.ToString()), "Stock");
+
             var response = await client.PutAsync($"/api/products/{request.Id}", requestContent);
 
             return response.IsSuccessStatusCode;

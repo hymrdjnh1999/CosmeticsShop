@@ -263,7 +263,8 @@ namespace CosmeticsShop.Application.Catalog.Products
         }
         public async Task<List<ProductViewModel>> GetFeaturedProducts()
         {
-            var products = await _context.Products.Where(x => x.IsOutstanding == true).Take(8).OrderByDescending(x => x.DateCreated).Select(x => new ProductViewModel()
+            // Update when have manage categories
+            var products = await _context.Products.Where(x => x.Id > 0).Take(8).OrderByDescending(x => x.DateCreated).Select(x => new ProductViewModel()
             {
                 Id = x.Id,
                 Name = x.Name,
@@ -321,13 +322,12 @@ namespace CosmeticsShop.Application.Catalog.Products
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<int> Update(ProductUpdateRequest request)
+        public async Task<int> Update(ProductViewModel request)
         {
             var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == request.Id);
             if (product == null)
-                throw new CosmeticsException("Không tìm thấy sản phẩm này");
+                throw new CosmeticsException($"Cannot found product width id: {request.Id}");
             product.Name = request.Name;
-            product.IsOutstanding = request.IsOutstanding;
             product.OriginalCountry = request.OriginalCountry;
             product.ForGender = request.ForGender;
             product.Description = request.Description;

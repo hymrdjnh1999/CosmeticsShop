@@ -84,6 +84,8 @@ namespace Cosmetics.AdminApp.Controllers
             var categoryAssignRequest = await GetCategoryAssignRequest(id);
             var product = await _productApiClient.GetById(id);
             product.CategoriesAssignRequest = categoryAssignRequest.Categories;
+
+
             return View(product);
         }
 
@@ -103,7 +105,7 @@ namespace Cosmetics.AdminApp.Controllers
                 return RedirectToAction("Index");
             }
             ModelState.AddModelError("", "Update product failed!");
-            return View(request);
+            return RedirectToAction("Details", request.Id);
         }
 
         [HttpGet]
