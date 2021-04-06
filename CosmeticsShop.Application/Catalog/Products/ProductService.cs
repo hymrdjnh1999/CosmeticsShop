@@ -327,41 +327,29 @@ namespace CosmeticsShop.Application.Catalog.Products
             var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == request.Id);
             if (product == null)
                 throw new CosmeticsException($"Cannot found product width id: {request.Id}");
+
             product.Name = request.Name;
             product.OriginalCountry = request.OriginalCountry;
             product.ForGender = request.ForGender;
             product.Description = request.Description;
+            product.OriginalPrice = request.OriginalPrice;
+            product.Price = request.Price;
+            product.Stock = request.Stock;
+
+            _context.Products.Attach(product);
 
             if (request.ThumbnailImage != null)
             {
-                if (product.ProductInCategories != null)
+                var thumbnail = await _context.ProductImages.FirstOrDefaultAsync(x => x.IsDefault == true && x.ProductId == request.Id);
+                if (thumbnail != null)
                 {
-                    var thumbnail = await _context.ProductImages.FirstOrDefaultAsync(x => x.IsDefault == true && x.ProductId == request.Id);
-                    if (thumbnail != null)
-                    {
-                        thumbnail.FileSize = request.ThumbnailImage.Length;
-                        thumbnail.ImagePath = await SaveFile(request.ThumbnailImage);
-                        _context.ProductImages.Update(thumbnail);
-                    }
+                    thumbnail.FileSize = request.ThumbnailImage.Length;
+                    thumbnail.ImagePath = await SaveFile(request.ThumbnailImage);
+                    _context.ProductImages.Update(thumbnail);
                 }
-                else
-                {
-                    product.ProductImages = new List<ProductImage>()
-                {
-                    new ProductImage()
-                    {
-                        Caption= "Thumbnail image",
-                        DateCreated = DateTime.Now,
-                        FileSize = request.ThumbnailImage.Length,
-                        IsDefault = true,
-                        SortOrder = 1,
-                        ImagePath = await SaveFile(request.ThumbnailImage)
-                    }
-                };
-                }
-
             }
-            return await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
+            return 1 /*1 is success*/;
 
         }
 
