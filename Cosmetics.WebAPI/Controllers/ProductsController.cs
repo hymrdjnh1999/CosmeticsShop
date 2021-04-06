@@ -76,7 +76,8 @@ namespace Cosmetics.WebAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update([FromForm] ProductUpdateRequest request)
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Update([FromForm] ProductViewModel request)
         {
 
             if (!ModelState.IsValid)
@@ -178,7 +179,7 @@ namespace Cosmetics.WebAPI.Controllers
             return Ok("Updated");
         }
 
-        [HttpPost("{productId}/{id}/images")]
+        [HttpPost("{id}/images")]
         public async Task<IActionResult> AddImage(int id, [FromForm] ProductImageCreateRequest request)
         {
             if (!ModelState.IsValid)
