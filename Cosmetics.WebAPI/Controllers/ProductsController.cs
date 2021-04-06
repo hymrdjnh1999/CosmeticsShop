@@ -179,7 +179,7 @@ namespace Cosmetics.WebAPI.Controllers
             return Ok("Updated");
         }
 
-        [HttpPost("{productId}/{id}/images")]
+        [HttpPost("{id}/images")]
         public async Task<IActionResult> AddImage(int id, [FromForm] ProductImageCreateRequest request)
         {
             if (!ModelState.IsValid)

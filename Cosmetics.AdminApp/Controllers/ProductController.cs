@@ -101,42 +101,53 @@ namespace Cosmetics.AdminApp.Controllers
             var result = await _productApiClient.Update(request);
             if (result)
             {
-                TempData["result"] = "Update product successfully!";
-                return RedirectToAction("Index");
+                var categoryRequest = new CategoryAssignRequest()
+                {
+                    Categories = request.CategoriesAssignRequest,
+                    Id = request.Id
+                };
+
+                var categoryAssignResult = await _productApiClient.CategoryAssign(categoryRequest);
+                if (categoryAssignResult.IsSuccess)
+                {
+                    TempData["result"] = "Update product successfully!";
+                    return RedirectToAction("Index");
+                }
+
             }
             ModelState.AddModelError("", "Update product failed!");
             return RedirectToAction("Details", request.Id);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> CategroryAssign(int id)
-        {
+        //[HttpGet]
+        //public async Task<IActionResult> CategroryAssign(int id)
+        //{
 
-            var categoryAssignRequest = await GetCategoryAssignRequest(id);
+        //    var categoryAssignRequest = await GetCategoryAssignRequest(id);
 
-            return View(categoryAssignRequest);
+        //    return View(categoryAssignRequest);
 
-        }
+        //}
 
-        [HttpPost]
-        public async Task<IActionResult> CategroryAssign(CategoryAssignRequest request)
-        {
-            if (!ModelState.IsValid)
-                return View();
+        //[HttpPost]
+        //public async Task<IActionResult> CategroryAssign(CategoryAssignRequest request)
+        //{
+        //    if (!ModelState.IsValid)
+        //        return View();
 
-            var result = await _productApiClient.CategoryAssign(request);
 
-            if (result.IsSuccess)
-            {
-                TempData["result"] = "Role assign successfully";
-                return RedirectToAction("Index");
-            }
 
-            ModelState.AddModelError("", result.Message);
-            var categoryAssignRequest = await GetCategoryAssignRequest(request.Id);
+        //    if (result.IsSuccess)
+        //    {
+        //        TempData["result"] = "Role assign successfully";
+        //        return RedirectToAction("Index");
+        //    }
 
-            return View(categoryAssignRequest);
-        }
+        //    ModelState.AddModelError("", result.Message);
+        //    var categoryAssignRequest = await GetCategoryAssignRequest(request.Id);
+
+        //    return View(categoryAssignRequest);
+        //}
         private async Task<CategoryAssignRequest> GetCategoryAssignRequest(int id)
         {
             var productViewModel = await _productApiClient.GetById(id);
