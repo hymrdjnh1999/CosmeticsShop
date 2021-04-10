@@ -146,28 +146,32 @@ namespace CosmeticsShop.Application.Catalog.Products
             var totalRecords = 0;
             if (request.CategoryId == null)
             {
-                var result = from p in _context.Products select p;
+                var result = from p in _context.Products
+                             join pi in _context.ProductImages on p.Id equals pi.ProductId
+                             where pi.IsDefault
+                             select new { p, pi };
 
                 if (request.Keyword != null)
                 {
-                    result = result.Where(x => x.Name.Contains(request.Keyword));
+                    result = result.Where(x => x.p.Name.Contains(request.Keyword));
 
                 }
                 totalRecords = await result.CountAsync();
 
                 var products = await result.Skip((PageIndex - 1) * PageSize).Take(PageSize).Select(x => new ProductViewModel()
                 {
-                    Id = x.Id,
-                    Name = x.Name,
-                    Price = x.Price,
-                    ForGender = x.ForGender,
-                    OriginalPrice = x.OriginalPrice,
-                    DateCreated = x.DateCreated,
-                    Description = x.Description,
-                    Details = x.Details,
-                    OriginalCountry = x.OriginalCountry,
-                    Stock = x.Stock,
-                    ViewCount = x.ViewCount
+                    Id = x.p.Id,
+                    Name = x.p.Name,
+                    Price = x.p.Price,
+                    ForGender = x.p.ForGender,
+                    OriginalPrice = x.p.OriginalPrice,
+                    DateCreated = x.p.DateCreated,
+                    Description = x.p.Description,
+                    Details = x.p.Details,
+                    OriginalCountry = x.p.OriginalCountry,
+                    Stock = x.p.Stock,
+                    ViewCount = x.p.ViewCount,
+                    ImagePath = x.pi.ImagePath
                 }).ToListAsync();
                 var responseData = new PageResponse<ProductViewModel>()
                 {
@@ -184,7 +188,10 @@ namespace CosmeticsShop.Application.Catalog.Products
             var query = from p in _context.Products
                         join pic in _context.ProductInCategories on p.Id equals pic.ProductId
                         join c in _context.Categories on pic.CategoryId equals c.Id
-                        select new { p, pic, c };
+                        join pi in _context.ProductImages on p.Id equals pi.ProductId into ppi
+                        from pi in ppi.DefaultIfEmpty()
+                        where pi.IsDefault
+                        select new { p, pic, c, pi };
 
             query = query.Where(p => p.pic.CategoryId == request.CategoryId);
 
@@ -209,7 +216,8 @@ namespace CosmeticsShop.Application.Catalog.Products
                     Details = x.p.Details,
                     OriginalCountry = x.p.OriginalCountry,
                     Stock = x.p.Stock,
-                    ViewCount = x.p.ViewCount
+                    ViewCount = x.p.ViewCount,
+                    ImagePath = x.pi.ImagePath
                 })
                 .ToListAsync();
 
