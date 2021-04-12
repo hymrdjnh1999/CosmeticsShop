@@ -29,14 +29,18 @@
 <div class="container-fluid">
     <h1 class="mt-4">Products</h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Dashboard</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Product">Product List</a></li>
         <li class="breadcrumb-item active">Create new product</li>
     </ol>
 
     <div class="card mb-4">
         <div class="card-header d-flex justify-content-between">
-            <a asp-action="Index" asp-controller="Product" class="btn btn-outline-dark">Back to product list</a>
-
+            <div>
+                <a asp-action="Index" asp-controller="Product" class="btn btn-outline-dark">Back to product list</a>
+            </div>
+                <label for="create-product-btn" class="btn btn-outline-dark px-4">
+                    Create
+                </label>
         </div>
         <div class="card-body">
             <div >
@@ -104,8 +108,8 @@
                         </select>
                         <span asp-validation-for="ForGender" class="text-danger"></span>
                     </div>
-                    <div class="form-group col-6 mt-5 d-flex justify-content-center">
-                        <input type="submit" value="Create" class="btn btn-outline-dark px-xl-5" />
+                    <div class="d-none">
+                        <input type="submit" value="Create" id="create-product-btn"  class="btn btn-outline-dark px-xl-5" />
                     </div>
                 </form>
             </div>
