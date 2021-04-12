@@ -1,4 +1,6 @@
-﻿using CosmeticsShop.Application.Catalog.Categories;
+﻿using Cosmetics.ViewModels.Catalogs.Categories;
+using Cosmetics.ViewModels.Common;
+using CosmeticsShop.Application.Catalog.Categories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,7 +12,6 @@ namespace Cosmetics.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class CategoriesController : Controller
     {
         private readonly ICategoryService _categoryService;
@@ -26,6 +27,47 @@ namespace Cosmetics.WebAPI.Controllers
         {
             var categories = await _categoryService.GetAll();
             return Ok(categories);
+        }
+
+        [HttpGet("paging")]
+        public async Task<IActionResult> GetAllPaging([FromQuery] PaginateRequest request)
+        {
+            var categories = await _categoryService.GetAllPaging(request);
+            return Ok(categories);
+        }
+
+
+        [HttpGet("{id}")]
+        [Authorize]
+
+        public async Task<IActionResult> GetById(int id)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var category = await _categoryService.GetById(id);
+            if (category == null)
+            {
+                return BadRequest($"Cannot find category with id: {id}");
+            }
+
+            return Ok(category);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Create([FromBody] CategoryCreateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var categoryId = await _categoryService.Create(request);
+            if (categoryId == 0)
+            {
+                return BadRequest();
+            }
+
+            var product = await _categoryService.GetById(categoryId);
+
+            return CreatedAtAction(nameof(GetById), new { Id = categoryId }, categoryId);
         }
     }
 }

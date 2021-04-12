@@ -44,6 +44,8 @@ namespace Cosmetics.WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
+
         public async Task<IActionResult> GetById(int id)
         {
             if (!ModelState.IsValid)

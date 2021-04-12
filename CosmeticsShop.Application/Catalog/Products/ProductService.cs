@@ -340,6 +340,7 @@ namespace CosmeticsShop.Application.Catalog.Products
             product.OriginalCountry = request.OriginalCountry;
             product.ForGender = request.ForGender;
             product.Description = request.Description;
+            product.Details = request.Details;
             product.OriginalPrice = request.OriginalPrice;
             product.Price = request.Price;
             product.Stock = request.Stock;

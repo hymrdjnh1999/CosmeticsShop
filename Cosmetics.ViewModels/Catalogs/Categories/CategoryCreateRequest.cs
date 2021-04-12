@@ -7,15 +7,10 @@ using System.Threading.Tasks;
 
 namespace Cosmetics.ViewModels.Catalogs.Categories
 {
-    public class CategoryViewModel
+    public class CategoryCreateRequest
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public int SortOrder { get; set; }
-        public bool IsOutstanding { get; set; }
-        public int? ParentId { get; set; }
-        public Status Status { get; set; }
-        public DateTime CreatedDate { get; set; }
 
     }
 }

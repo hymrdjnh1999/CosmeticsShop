@@ -46,5 +46,27 @@ namespace CosmeticsShop.Api_Intergration
             var result = JsonConvert.DeserializeObject<TResponse>(body);
             return result;
         }
+        protected async Task<TResponse> GetWithParamsAsync<TResponse, PRequest>(string url, PRequest request)
+        {
+            var sessions = _httpContextAccessor
+                .HttpContext
+                .Session
+                .GetString(SystemConstants.AppSettings.Token);
+
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration[SystemConstants.AppSettings.BaseAddress]);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+            var response = await client.GetAsync(url);
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+            {
+                TResponse myDeserializedObjList = (TResponse)JsonConvert.DeserializeObject(body,
+                    typeof(TResponse));
+
+                return myDeserializedObjList;
+            }
+            var result = JsonConvert.DeserializeObject<TResponse>(body);
+            return result;
+        }
     }
 }
