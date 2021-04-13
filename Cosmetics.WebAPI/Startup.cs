@@ -39,7 +39,7 @@ namespace Cosmetics.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<CosmeticsDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString(SystemConstants.MainConnectionString)));
+          
 
             // Identity
             services.AddIdentity<User, Role>().AddEntityFrameworkStores<CosmeticsDbContext>().AddDefaultTokenProviders();
@@ -59,7 +59,8 @@ namespace Cosmetics.WebAPI
             services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
             services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreateProductValidator>());
 
-
+            string connectionString = Configuration.GetConnectionString("CosmeticsDb");
+            services.AddDbContext<CosmeticsDbContext>(options => options.UseSqlServer("Server=LAPTOP-VFHH6PA5\\SQLEXPRESS;Database=CosmeticsDb;Trusted_Connection=True;"));
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>

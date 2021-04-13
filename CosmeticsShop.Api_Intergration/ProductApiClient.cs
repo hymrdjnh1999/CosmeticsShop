@@ -83,9 +83,9 @@ namespace CosmeticsShop.Api_Intergration
             requestContent.Add(stockJs, "stock");
             var nameJs = new StringContent(request.Name.ToString());
             requestContent.Add(nameJs, "name");
-            var descriptionJs = new StringContent(request.Description.ToString());
+            var descriptionJs = new StringContent((request.Description ?? "").ToString() );
             requestContent.Add(descriptionJs, "description");
-            var detailsJs = new StringContent(request.Details.ToString());
+            var detailsJs = new StringContent((request.Details ?? "").ToString());
             requestContent.Add(detailsJs, "details");
             var originalCountryJs = new StringContent(request.OriginalCountry.ToString());
             requestContent.Add(originalCountryJs, "originalCountry");
