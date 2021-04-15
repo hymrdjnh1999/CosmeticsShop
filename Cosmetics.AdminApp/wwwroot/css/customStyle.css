@@ -2,3 +2,22 @@
     width: 20px;
     height: 20px;
 }
+
+
+
+.table-body:hover {
+    background-color: #333E48;
+    color: white !important;
+}
+
+    .table-body:hover .table-body-td {
+        color: white !important;
+    }
+
+    .table-body:hover .actions-btn a {
+        color: white !important;
+    }
+
+.card-body{
+    background-color: rgba(0,0,0,0.03)
+}

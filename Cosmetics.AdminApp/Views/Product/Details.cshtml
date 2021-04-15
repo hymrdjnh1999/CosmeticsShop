@@ -23,23 +23,31 @@
             .catch(error => {
                 console.error(error);
             });
+      
+        
+            
     </script>
 }
 <div class="container-fluid">
     <h1 class="mt-4">Product</h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Dashboard</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Product">Product List</a></li>
         <li class="breadcrumb-item active">Product Details</li>
     </ol>
 
     <div class="card mb-4">
-        <div class="card-header d-flex justify-content-start">
+        <div class="card-header d-flex justify-content-between">
             <a asp-action="Index" asp-controller="Product" class="btn btn-outline-dark">Back to product list</a>
-
+            <div>
+                <label class="m-0 btn btn-outline-dark d-flex align-items-center justify-content-center" for="updateProductBtnForm">
+                    <i class="far fa-save mr-2"></i>
+                    Save
+                </label>
+            </div>
         </div>
         <div class="card-body">
             <div class="col-12">
-                <form asp-action="Update" enctype="multipart/form-data" method="post">
+                <form asp-action="Update" enctype="multipart/form-data" method="post" id="productUpdateForm">
                     <input asp-for="Id" type="hidden" />
                     <div class="row">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -63,6 +71,25 @@
                             <label asp-for="ForGender" class="control-label"></label>
                             <input disabled asp-for="ForGender" class="form-control" />
                             <span asp-validation-for="ForGender" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-6">
+                            <label asp-for="ThumbnailImage" class="control-label"></label>
+                            <input  asp-for="ThumbnailImage" class="form-control" type="file" accept="image/*"/>
+                            <span asp-validation-for="ThumbnailImage" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-6">
+                            <label asp-for="Categories" class="control-label"></label>
+                            <div class="d-flex flex-wrap row">
+                                @for (int i = 0; i < Model.CategoriesAssignRequest.Count; i++)
+                                {
+                                <div class="d-flex align-items-center col-4">
+                                    <input type="checkbox" asp-for="CategoriesAssignRequest[i].Selected" class="mr-2 is-trending-checkbox" />
+                                    <input type="hidden" asp-for="CategoriesAssignRequest[i].Name" value="@Model.CategoriesAssignRequest[i].Name" />
+                                    <input type="hidden" asp-for="CategoriesAssignRequest[i].Id" value="@Model.CategoriesAssignRequest[i].Id" />
+                                    <label asp-for="CategoriesAssignRequest[i].Selected">@Model.CategoriesAssignRequest[i].Name</label>
+                                </div>
+                                }
+                            </div>
                         </div>
                         <div class="form-group col-6">
                             <label asp-for="Details" class="control-label"></label>
@@ -99,7 +126,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <input type="submit" value="Save" class="btn btn-outline-dark" />
+                        <input type="submit" id="updateProductBtnForm" class="d-none" />
                     </div>
                 </form>
             </div>

@@ -33,6 +33,7 @@ namespace Cosmetics.ViewModels.Catalogs.Products
         public IList<string> Categories { get; set; }
         public List<SelectItemDynamic<int>> CategoriesAssignRequest { get; set; }
         = new List<SelectItemDynamic<int>>();
+        public string ImagePath { get; set; }
         public IFormFile ThumbnailImage { get; set; }
     }
 }

@@ -16,7 +16,6 @@ namespace Cosmetics.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class ProductsController : ControllerBase
     {
         private readonly IProductService _productServices;
@@ -45,6 +44,8 @@ namespace Cosmetics.WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
+
         public async Task<IActionResult> GetById(int id)
         {
             if (!ModelState.IsValid)
@@ -60,6 +61,8 @@ namespace Cosmetics.WebAPI.Controllers
 
         [HttpPost]
         [Consumes("multipart/form-data")]
+        [Authorize]
+
         public async Task<IActionResult> Create([FromForm] ProductCreateRequest request)
         {
             if (!ModelState.IsValid)
@@ -77,6 +80,8 @@ namespace Cosmetics.WebAPI.Controllers
 
         [HttpPut("{id}")]
         [Consumes("multipart/form-data")]
+        [Authorize]
+
         public async Task<IActionResult> Update([FromForm] ProductViewModel request)
         {
 
@@ -92,6 +97,8 @@ namespace Cosmetics.WebAPI.Controllers
         }
 
         [HttpPut("{id}/categories")]
+        [Authorize]
+
         public async Task<IActionResult> CategoryAssign([FromBody] CategoryAssignRequest request)
         {
 
@@ -107,6 +114,8 @@ namespace Cosmetics.WebAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
+
         public async Task<IActionResult> Delete(int id)
         {
             if (!ModelState.IsValid)
@@ -121,6 +130,8 @@ namespace Cosmetics.WebAPI.Controllers
         }
 
         [HttpPatch("{id}/price")]
+        [Authorize]
+
         public async Task<IActionResult> UpdatePrice([FromBody] decimal newPrice, int id)
         {
             if (!ModelState.IsValid)
@@ -165,6 +176,8 @@ namespace Cosmetics.WebAPI.Controllers
         }
 
         [HttpPut("{productId}/images/{id}")]
+        [Authorize]
+
         public async Task<IActionResult> UpdateImage(int id, [FromForm] ProductImageUpdateRequest request)
         {
 
@@ -179,7 +192,9 @@ namespace Cosmetics.WebAPI.Controllers
             return Ok("Updated");
         }
 
-        [HttpPost("{productId}/{id}/images")]
+        [HttpPost("{id}/images")]
+        [Authorize]
+
         public async Task<IActionResult> AddImage(int id, [FromForm] ProductImageCreateRequest request)
         {
             if (!ModelState.IsValid)
@@ -196,6 +211,8 @@ namespace Cosmetics.WebAPI.Controllers
         }
 
         [HttpDelete("{productId}/images/{id}")]
+        [Authorize]
+
         public async Task<IActionResult> DeleteImage(int id)
         {
             if (!ModelState.IsValid)

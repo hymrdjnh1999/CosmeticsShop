@@ -1,0 +1,104 @@
+﻿@using Cosmetics.ViewModels.Common;
+@using CosmeticsShop.Data.Enums;
+@model PageResponse<Cosmetics.ViewModels.Catalogs.Categories.CategoryViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts{
+    <script>
+        setTimeout(() => $('#msgAlert').fadeOut('slow'), 1500)
+    </script>
+}
+
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
+<div class="container-fluid">
+    <h1 class="mt-4">Products</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Dashboard</a></li>
+        <li class="breadcrumb-item active">Category List</li>
+    </ol>
+
+    <div class="card mb-12">
+        <div class="card-header d-flex justify-content-between">
+            <form asp-action="Index" method="get">
+                <div class="form-outline mb-4 d-flex">
+                    <input name="keyword" value="@ViewBag.Keyword" type="text" id="categorySearchBox" placeholder="Search here..." class="form-control  border-dark" />
+                    <input asp-for="PageSize" value="@Model.PageSize" type="hidden" />
+                    <button type="submit" class="btn btn-outline-dark ml-2">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </form>
+
+            <div>
+                <a asp-action="Create" asp-controller="Category" class="btn btn-outline-dark ">
+                    <i class="fas fa-plus mr-2"></i>
+                    Create new category
+                </a>
+            </div>
+
+        </div>
+        <div class="card-body">
+            @if (ViewBag.SuccessMsg != null)
+            {
+                <div class="d-flex justify-content-center">
+                    <div id="msgAlert" class="alert alert-success w-25" role="alert">
+                        @ViewBag.SuccessMsg
+                    </div>
+                </div>
+            }
+            <div class="d-flex w-25 align-items-center mb-3">
+                @await Component.InvokeAsync("ChangePageSize", Model)
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered border-dark">
+                    <thead class="m-0">
+                        <tr>
+                            <th scope="col">
+                                Id
+                            </th>
+                            <th scope="col">
+                                Name
+                            </th>
+                            <th scope="col">
+                                Status
+                            </th>
+                            <th style="flex: 0.7" scope="col">
+                                Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        @for (int count = 0; count <  Model.Items.Count; count++)
+                        {
+                            <tr class=" table-body @(count % 2 == 0 ? "table-body-active" : "" )">
+                                <td>
+                                    @Html.DisplayFor(modelItem => Model.Items[count].Id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => Model.Items[count].Name)
+                                </td>
+                                <td class="table-body-td  @(Model.Items[count].Status == Status.Active ? "text-success" : "text-danger")  ">
+                                    @Html.DisplayFor(modelItem => Model.Items[count].Status)
+                                </td>
+                                <td class="d-flex align-items-center" style="flex: 1">
+                                    <span class="actions-btn">
+                                        @Html.ActionLink("Edit", "Details", new { id = Model.Items[count].Id })
+                                    </span> 
+                                    <span class="mx-2">|</span>
+                                    <span  class="actions-btn">
+                                        @Html.ActionLink("Delete", "Delete", new { id = Model.Items[count].Id })
+
+                                    </span>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            @await Component.InvokeAsync("Pager", Model)
+        </div>
+    </div>
+</div>
