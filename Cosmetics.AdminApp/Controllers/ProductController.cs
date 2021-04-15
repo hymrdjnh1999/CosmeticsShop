@@ -79,19 +79,17 @@ namespace Cosmetics.AdminApp.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Update(int id)
         {
             var categoryAssignRequest = await GetCategoryAssignRequest(id);
             var product = await _productApiClient.GetById(id);
             product.CategoriesAssignRequest = categoryAssignRequest.Categories;
-
-
             return View(product);
         }
 
         [HttpPost]
         [Consumes("multipart/form-data")]
-        public async Task<IActionResult> Update([FromForm] ProductViewModel request)
+        public async Task<IActionResult> Update([FromForm] ProductUpdateRequest request)
         {
             if (!ModelState.IsValid)
             {
@@ -116,7 +114,7 @@ namespace Cosmetics.AdminApp.Controllers
 
             }
             ModelState.AddModelError("", "Update product failed!");
-            return RedirectToAction("Details", request.Id);
+            return View(request);
         }
 
         //[HttpGet]

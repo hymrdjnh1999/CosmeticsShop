@@ -21,18 +21,18 @@ namespace Cosmetics.ViewModels.Catalogs.Products
 
             RuleFor(x => x.ForGender).NotEmpty()
                 .WithMessage("Product for gender is require");
-
+                
             RuleFor(x => x.OriginalPrice).NotEmpty()
                 .WithMessage("Original price is require").GreaterThan(100000).WithMessage("Product original price is must greater than 100000!");
 
-          
-
             RuleFor(x => x).Custom((request, context) =>
             {
-                if (request.OriginalPrice > request.Price)
+                if (request.OriginalPrice < request.Price)
                 {
                     context.AddFailure("Original price is not less than price");
                 }
+
+
             });
 
             RuleFor(x => x.Stock).NotEmpty().WithMessage("Stock is require").GreaterThan(-1).WithMessage("Stock is can not negative");

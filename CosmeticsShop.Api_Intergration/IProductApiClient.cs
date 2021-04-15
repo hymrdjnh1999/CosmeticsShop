@@ -12,9 +12,9 @@ namespace CosmeticsShop.Api_Intergration
     {
         Task<PageResponse<ProductViewModel>> GetPaging(GetProductRequest request);
         Task<bool> Create(ProductCreateRequest request);
-        Task<bool> Update(ProductViewModel request);
+        Task<bool> Update(ProductUpdateRequest request);
         Task<ApiResult<bool>> CategoryAssign(CategoryAssignRequest request);
-        Task<ProductViewModel> GetById(int id);
+        Task<ProductUpdateRequest> GetById(int id);
         Task<List<ProductViewModel>> GetFeaturedProducts();
     }
 }

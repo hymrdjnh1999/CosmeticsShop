@@ -99,11 +99,11 @@ namespace CosmeticsShop.Api_Intergration
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<ProductViewModel> GetById(int id)
+        public async Task<ProductUpdateRequest> GetById(int id)
         {
             var requestUrl = $"/api/products/{id}";
 
-            var response = await GetAsync<ProductViewModel>(requestUrl);
+            var response = await GetAsync<ProductUpdateRequest>(requestUrl);
 
             return response;
         }
@@ -126,7 +126,7 @@ namespace CosmeticsShop.Api_Intergration
             return data;
         }
 
-        public async Task<bool> Update(ProductViewModel request)
+        public async Task<bool> Update(ProductUpdateRequest request)
         {
             var sessions = _httpContextAccessor
                 .HttpContext
@@ -149,13 +149,13 @@ namespace CosmeticsShop.Api_Intergration
                 requestContent.Add(bytes, "thumbnailImage", request.ThumbnailImage.FileName);
             }
 
-            requestContent.Add(new StringContent(request.Name.ToString()), "name");
+            requestContent.Add(new StringContent((request.Name ?? "").ToString()), "name");
 
-            requestContent.Add(new StringContent(request.Description.ToString()), "description");
+            requestContent.Add(new StringContent((request.Description ?? "").ToString()), "description");
 
-            requestContent.Add(new StringContent(request.Details.ToString()), "details");
+            requestContent.Add(new StringContent((request.Details ?? "").ToString()), "details");
 
-            requestContent.Add(new StringContent(request.OriginalCountry.ToString()), "originalCountry");
+            requestContent.Add(new StringContent((request.OriginalCountry ?? "" ).ToString()), "originalCountry");
 
             requestContent.Add(new StringContent(
                 (request.ForGender == ForGender.Male ? 1 : request.ForGender == ForGender.Female ? 2 : 3).ToString()), "forgender");
