@@ -5,7 +5,7 @@
 
 
 .bg-login {
-    background-image: url(img/bg-01.jpg);
+    background-image: url(/css/img/bg-basic.jpg);
 }
 
 
@@ -93,12 +93,7 @@
     transition: ease 0.4s;
 }
 
-.bg-linear {
-    background: -webkit-linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
-    background: -o-linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
-    background: -moz-linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
-    background: linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
-}
+
 .table-body:hover {
     background-color: #333E48;
     color: white !important;
@@ -115,3 +110,14 @@
 .card-body{
     background-color: rgba(0,0,0,0.03)
 }
+/* Start List User */
+.bg-alternating:nth-child(even) {
+    background-color: #f0f1f5;
+}
+.bg-alternating:nth-child(odd){
+    background-color: #fff;
+}
+.bg-alternating:hover{
+    background-color:blue;
+}
+/* End List User */
