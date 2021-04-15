@@ -1,5 +1,5 @@
-﻿@model Cosmetics.ViewModels.Catalogs.Products.ProductViewModel
-
+﻿@model Cosmetics.ViewModels.Catalogs.Products.Manage.ProductUpdateRequest
+@using CosmeticsShop.Data.Enums; 
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -48,9 +48,11 @@
         <div class="card-body">
             <div class="col-12">
                 <form asp-action="Update" enctype="multipart/form-data" method="post" id="productUpdateForm">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
                     <input asp-for="Id" type="hidden" />
                     <div class="row">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
 
                         <div class="form-group  col-6">
                             <label asp-for="Name" class="control-label"></label>
@@ -69,12 +71,22 @@
                         </div>
                         <div class="form-group col-6">
                             <label asp-for="ForGender" class="control-label"></label>
-                            <input disabled asp-for="ForGender" class="form-control" />
+                            @{ 
+                                var genders = new List<SelectListItem>() {
+                                    new SelectListItem{Value= "1", Text= "Male", Selected = Model.ForGender == ForGender.Male},
+                                    new SelectListItem{Value= "2", Text="Female", Selected = Model.ForGender == ForGender.Female },
+                                    new SelectListItem{Value= "3", Text="Both", Selected = Model.ForGender == ForGender.Both}
+                                };
+                            }
+                        <div>
+                            <select class="form-select p-1" aria-label="Default select example" asp-for="ForGender" asp-items="genders">
+                            </select>
+                        </div>
                             <span asp-validation-for="ForGender" class="text-danger"></span>
                         </div>
                         <div class="form-group col-6">
                             <label asp-for="ThumbnailImage" class="control-label"></label>
-                            <input  asp-for="ThumbnailImage" class="form-control" type="file" accept="image/*"/>
+                            <input asp-for="ThumbnailImage" class="form-control" type="file" accept="image/*" />
                             <span asp-validation-for="ThumbnailImage" class="text-danger"></span>
                         </div>
                         <div class="form-group col-6">
@@ -82,12 +94,12 @@
                             <div class="d-flex flex-wrap row">
                                 @for (int i = 0; i < Model.CategoriesAssignRequest.Count; i++)
                                 {
-                                <div class="d-flex align-items-center col-4">
-                                    <input type="checkbox" asp-for="CategoriesAssignRequest[i].Selected" class="mr-2 is-trending-checkbox" />
-                                    <input type="hidden" asp-for="CategoriesAssignRequest[i].Name" value="@Model.CategoriesAssignRequest[i].Name" />
-                                    <input type="hidden" asp-for="CategoriesAssignRequest[i].Id" value="@Model.CategoriesAssignRequest[i].Id" />
-                                    <label asp-for="CategoriesAssignRequest[i].Selected">@Model.CategoriesAssignRequest[i].Name</label>
-                                </div>
+                                    <div class="d-flex align-items-center col-4">
+                                        <input type="checkbox" asp-for="CategoriesAssignRequest[i].Selected" class="mr-2 is-trending-checkbox" />
+                                        <input type="hidden" asp-for="CategoriesAssignRequest[i].Name" value="@Model.CategoriesAssignRequest[i].Name" />
+                                        <input type="hidden" asp-for="CategoriesAssignRequest[i].Id" value="@Model.CategoriesAssignRequest[i].Id" />
+                                        <label asp-for="CategoriesAssignRequest[i].Selected">@Model.CategoriesAssignRequest[i].Name</label>
+                                    </div>
                                 }
                             </div>
                         </div>

@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Cosmetics.ViewModels.Catalogs.Products
 {
-    public class CreateProductValidator : AbstractValidator<ProductCreateRequest>
+    public class UpdateProductValidator : AbstractValidator<ProductUpdateRequest>
     {
-        public CreateProductValidator()
+        public UpdateProductValidator()
         {
             RuleFor(x => x.Name).NotEmpty()
                 .WithMessage("Product name is require")
@@ -22,11 +22,9 @@ namespace Cosmetics.ViewModels.Catalogs.Products
             RuleFor(x => x.ForGender).NotEmpty()
                 .WithMessage("Product for gender is require");
 
-            RuleFor(x => x.ThumbnailImage).NotEmpty()
-                .WithMessage("Thumbnail is require");
 
             RuleFor(x => x.OriginalPrice).NotEmpty()
-                .WithMessage("Original price is require").GreaterThan(100000).WithMessage("Product original price is must greater than 100000!"); 
+                .WithMessage("Original price is require").GreaterThan(100000).WithMessage("Product original price is must greater than 100000!");
 
             RuleFor(x => x).Custom((request, context) =>
             {

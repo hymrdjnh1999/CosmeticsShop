@@ -232,7 +232,7 @@ namespace CosmeticsShop.Application.Catalog.Products
             return response;
         }
 
-        public async Task<ProductViewModel> GetById(int id)
+        public async Task<ProductUpdateRequest> GetById(int id)
         {
 
             var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
@@ -242,7 +242,7 @@ namespace CosmeticsShop.Application.Catalog.Products
             }
             var categoriesName = await GetProductInCategories(id);
 
-            var productViewModel = new ProductViewModel()
+            var productViewModel = new ProductUpdateRequest()
             {
                 Id = product.Id,
                 DateCreated = product.DateCreated,
@@ -330,7 +330,7 @@ namespace CosmeticsShop.Application.Catalog.Products
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<int> Update(ProductViewModel request)
+        public async Task<int> Update(ProductUpdateRequest request)
         {
             var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == request.Id);
             if (product == null)

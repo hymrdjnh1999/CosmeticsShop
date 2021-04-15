@@ -82,7 +82,7 @@ namespace Cosmetics.WebAPI.Controllers
         [Consumes("multipart/form-data")]
         [Authorize]
 
-        public async Task<IActionResult> Update([FromForm] ProductViewModel request)
+        public async Task<IActionResult> Update([FromForm] ProductUpdateRequest request)
         {
 
             if (!ModelState.IsValid)

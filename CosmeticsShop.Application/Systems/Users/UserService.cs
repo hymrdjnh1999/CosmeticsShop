@@ -1,6 +1,7 @@
 ﻿using Cosmetics.ViewModels.Common;
 using Cosmetics.ViewModels.Systems.Users;
 using CosmeticsShop.Data.Entities;
+using CosmeticsShop.Data.EntityFrameWork;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -23,22 +24,25 @@ namespace CosmeticsShop.Application.Systems.Users
         private readonly SignInManager<User> _signInManager;
         private readonly RoleManager<Role> _roleManager;
         private readonly IConfiguration _config;
+        private readonly CosmeticsDbContext _context;
         public UserService(UserManager<User> userMananger,
             SignInManager<User> signInManaager,
             RoleManager<Role> roleManager,
             IConfiguration config,
-            IHttpContextAccessor httpContextAccessor
+            IHttpContextAccessor httpContextAccessor,
+            CosmeticsDbContext context
             )
         {
             _userManager = userMananger;
             _signInManager = signInManaager;
             _roleManager = roleManager;
             _config = config;
+            _context = context;
         }
 
         public async Task<ApiResult<string>> Authenticate(LoginRequest request)
         {
-            var user = await _userManager.FindByNameAsync(request.UserName);
+            var user = await _context.Users.Where(x => x.UserName == request.UserName).FirstOrDefaultAsync();
 
             if (user == null) return new ApiErrorResult<string>("User is not exists!");
 
