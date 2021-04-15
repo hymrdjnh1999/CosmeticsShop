@@ -43,9 +43,10 @@
                 </label>
         </div>
         <div class="card-body">
-            <div >
+            <div>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <form asp-action="Create" class="row" enctype="multipart/form-data" method="post">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
                     <div class="form-group col-6">
                         <label asp-for="Name" class="control-label"></label>
                         <input asp-for="Name" class="form-control" placeholder="Enter product name" />
@@ -95,7 +96,7 @@
 
                     <div class="form-group col-6">
                         <label asp-for="ThumbnailImage" class="control-label"></label>
-                        <input accept="image/*" type="file" asp-for="ThumbnailImage" class="form-control-file"/>
+                        <input accept="image/*" type="file" asp-for="ThumbnailImage" class="form-control-file" />
                         <span asp-validation-for="ThumbnailImage" class="text-danger"></span>
                     </div>
                     <div class="form-group col-6">
@@ -109,7 +110,7 @@
                         <span asp-validation-for="ForGender" class="text-danger"></span>
                     </div>
                     <div class="d-none">
-                        <input type="submit" value="Create" id="create-product-btn"  class="btn btn-outline-dark px-xl-5" />
+                        <input type="submit" value="Create" id="create-product-btn" class="btn btn-outline-dark px-xl-5" />
                     </div>
                 </form>
             </div>

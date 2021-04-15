@@ -21,8 +21,7 @@ namespace Cosmetics.ViewModels.Catalogs.Products
 
             RuleFor(x => x.ForGender).NotEmpty()
                 .WithMessage("Product for gender is require");
-
-
+                
             RuleFor(x => x.OriginalPrice).NotEmpty()
                 .WithMessage("Original price is require").GreaterThan(100000).WithMessage("Product original price is must greater than 100000!");
 
@@ -32,6 +31,7 @@ namespace Cosmetics.ViewModels.Catalogs.Products
                 {
                     context.AddFailure("Original price is not less than price");
                 }
+
 
             });
 

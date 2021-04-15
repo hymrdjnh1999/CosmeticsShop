@@ -25,7 +25,7 @@
                 <div class="form-outline mb-4 d-flex">
                     <input name="keyword" value="@ViewBag.Keyword" type="text" id="productSearchBox" placeholder="Search here..." class="form-control  border-dark" />
                     <input asp-for="PageSize" value="@Model.PageSize" type="hidden" />
-                    <select onchange="this.form.submit()" name="CategoryId" asp-items="@ViewBag.Categories" class="mx-2 border-dark">
+                    <select onchange="this.form.submit()" name="CategoryId" asp-items="@ViewBag.Categories" class="mx-2 border-dark rounded">
                         <option>---Select Category---</option>
                     </select>
                     <button type="submit" class="btn btn-outline-dark ml-2">
