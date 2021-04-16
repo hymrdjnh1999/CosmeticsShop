@@ -23,9 +23,16 @@
             .catch(error => {
                 console.error(error);
             });
-      
-        
+
+       
             
+    </script>
+ <script type="text/javascript">
+            // Add the following code if you want the name of the file appear on select
+            $(".custom-file-input").on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            });
     </script>
 }
 <div class="container-fluid">
@@ -52,8 +59,6 @@
 
                     <input asp-for="Id" type="hidden" />
                     <div class="row">
-
-
                         <div class="form-group  col-6">
                             <label asp-for="Name" class="control-label"></label>
                             <input asp-for="Name" class="form-control" />
@@ -64,30 +69,39 @@
                             <input asp-for="Price" class="form-control" />
                             <span asp-validation-for="Price" class="text-danger"></span>
                         </div>
-                        <div class="form-group col-6">
-                            <label asp-for="OriginalPrice" class="control-label"></label>
-                            <input asp-for="OriginalPrice" class="form-control" />
-                            <span asp-validation-for="OriginalPrice" class="text-danger"></span>
-                        </div>
-                        <div class="form-group col-6">
-                            <label asp-for="ForGender" class="control-label"></label>
-                            @{ 
-                                var genders = new List<SelectListItem>() {
+                        <div class="d-flex justify-content-between col-12">
+                            <div class="row col-6 d-flex justify-content-between">
+                                <div style="flex:3">
+                                    <label asp-for="OriginalPrice" class="control-label"></label>
+                                    <input asp-for="OriginalPrice" class="form-control" />
+                                    <span asp-validation-for="OriginalPrice" class="text-danger"></span>
+                                </div>
+                                <div class="form-group ml-2 py-1" style="flex:1">
+                                    <label asp-for="ForGender" class="control-label"></label>
+                                    @{
+                                        var genders = new List<SelectListItem>() {
                                     new SelectListItem{Value= "1", Text= "Male", Selected = Model.ForGender == ForGender.Male},
                                     new SelectListItem{Value= "2", Text="Female", Selected = Model.ForGender == ForGender.Female },
                                     new SelectListItem{Value= "3", Text="Both", Selected = Model.ForGender == ForGender.Both}
                                 };
-                            }
-                        <div>
-                            <select class="form-select p-1" aria-label="Default select example" asp-for="ForGender" asp-items="genders">
-                            </select>
-                        </div>
-                            <span asp-validation-for="ForGender" class="text-danger"></span>
-                        </div>
-                        <div class="form-group col-6">
-                            <label asp-for="ThumbnailImage" class="control-label"></label>
-                            <input asp-for="ThumbnailImage" class="form-control" type="file" accept="image/*" />
-                            <span asp-validation-for="ThumbnailImage" class="text-danger"></span>
+                                    }
+                                    <div>
+                                        <select class="form-select p-1 w-100" aria-label="Default select example" asp-for="ForGender" asp-items="genders">
+                                        </select>
+                                    </div>
+                                    <span asp-validation-for="ForGender" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="ThumbnailImage" class="control-label"></label>
+                                    <div class="custom-file">
+                                        <input accept="image/" asp-for="ThumbnailImage" class="custom-file-input" id="customFile">
+                                        <label class="custom-file-label" for="customFile">Edit thumbnail</label>
+                                    </div>
+                                    <span asp-validation-for="ThumbnailImage" class="text-danger"></span>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group col-6">
                             <label asp-for="Categories" class="control-label"></label>
@@ -103,39 +117,47 @@
                                 }
                             </div>
                         </div>
-                        <div class="form-group col-6">
-                            <label asp-for="Details" class="control-label"></label>
-                            <textarea rows="3" id="productDetails" asp-for="Details" class="form-control"></textarea>
-                            <span asp-validation-for="Details" class="text-danger"></span>
+                       
+                        <div class="row col-12">
+                            <div class="form-group col-6">
+                                <label asp-for="Stock" class="control-label"></label>
+                                <input asp-for="Stock" class="form-control" />
+                                <span asp-validation-for="Stock" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-6">
+                                <label asp-for="DateCreated" class="control-label"></label>
+                                <input asp-for="DateCreated" class="form-control" disabled />
+                                <span asp-validation-for="DateCreated" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group col-6">
+                                <label asp-for="ViewCount" class="control-label"></label>
+                                <input asp-for="ViewCount" class="form-control" disabled />
+                                <span asp-validation-for="ViewCount" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-6">
+                                <label asp-for="OriginalCountry" class="control-label"></label>
+                                <input asp-for="OriginalCountry" class="form-control" />
+                                <span asp-validation-for="OriginalCountry" class="text-danger"></span>
+                            </div>
                         </div>
 
-                        <div class="form-group  col-6">
-                            <label asp-for="Description" class="control-label"></label>
-                            <textarea rows="3" id="productDescription" asp-for="Description" class="form-control"></textarea>
-                            <span asp-validation-for="Description" class="text-danger"></span>
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label asp-for="Details" class="control-label"></label>
+                                <textarea rows="3" id="productDetails" asp-for="Details" class="form-control"></textarea>
+                                <span asp-validation-for="Details" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group  col-6">
+                                <label asp-for="Description" class="control-label"></label>
+                                <textarea rows="3" id="productDescription" asp-for="Description" class="form-control"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
                         </div>
 
 
-                        <div class="form-group col-6">
-                            <label asp-for="DateCreated" class="control-label"></label>
-                            <input asp-for="DateCreated" class="form-control" disabled />
-                            <span asp-validation-for="DateCreated" class="text-danger"></span>
-                        </div>
-                        <div class="form-group col-6">
-                            <label asp-for="Stock" class="control-label"></label>
-                            <input asp-for="Stock" class="form-control" />
-                            <span asp-validation-for="Stock" class="text-danger"></span>
-                        </div>
-                        <div class="form-group col-6">
-                            <label asp-for="ViewCount" class="control-label"></label>
-                            <input asp-for="ViewCount" class="form-control" disabled />
-                            <span asp-validation-for="ViewCount" class="text-danger"></span>
-                        </div>
-                        <div class="form-group col-6">
-                            <label asp-for="OriginalCountry" class="control-label"></label>
-                            <input asp-for="OriginalCountry" class="form-control" />
-                            <span asp-validation-for="OriginalCountry" class="text-danger"></span>
-                        </div>
+
                     </div>
                     <div class="form-group">
                         <input type="submit" id="updateProductBtnForm" class="d-none" />
