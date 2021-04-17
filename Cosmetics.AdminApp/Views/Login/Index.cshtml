@@ -26,15 +26,19 @@
                         <div class="col-lg-5">
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                 <div class="card-header"><h3 class="text-center font-weight-light my-4">Đăng Nhập</h3></div>
+                                <span class="text-danger d-flex justify-content-center mt-4">@ViewBag.Error</span>
                                 <div class="card-body">
                                     <form asp-action="Index" asp-controller="Login" method="post">
                                         <div class="form-group">
                                             <label class="small mb-1">Tài khoản</label>
                                             <input class="form-control py-4" asp-for="UserName" type="text" placeholder="Nhập tài khoản" />
+                                            <span asp-validation-for="UserName" class="text-danger"></span>
                                         </div>
                                         <div class="form-group">
                                             <label class="small mb-1" for="inputPassword">Mật khẩu</label>
                                             <input class="form-control py-4" asp-for="Password" type="password" placeholder="Nhập mật khẩu" />
+                                            <span asp-validation-for="Password" class="text-danger"></span>
+
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox">
