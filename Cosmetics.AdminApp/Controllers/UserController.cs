@@ -42,7 +42,7 @@ namespace Cosmetics.AdminApp.Controllers
         {
 
             var currentLoginId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var roles = User.FindFirst(ClaimTypes.Role).Value;
+            var roles = (User.Identity as ClaimsIdentity).FindFirst("Role").Value;
             var request = new GetUserPagingRequest()
             {
                 Keyword = keyword,
@@ -105,7 +105,7 @@ namespace Cosmetics.AdminApp.Controllers
         {
             var result = await _userApiClient.GetById(id);
             var user = result.ResultObj;
-            
+
             if (result.IsSuccess)
             {
                 ViewBag.IsManager = TempData["isManager"];

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -159,6 +160,7 @@ namespace CosmeticsShop.Application.Systems.Users
         {
             var user = await _userManager.FindByNameAsync(request.UserName);
 
+
             if (user != null)
                 return new ApiErrorResult<bool>("User name is exists!");
 
@@ -177,6 +179,8 @@ namespace CosmeticsShop.Application.Systems.Users
             };
 
             var registerResult = await _userManager.CreateAsync(user, request.Password);
+
+            await _userManager.AddToRolesAsync(user, new string[] { "Customer" });
             if (!registerResult.Succeeded)
             {
                 return new ApiErrorResult<bool>("Register is not success!");

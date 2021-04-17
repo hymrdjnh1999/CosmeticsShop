@@ -119,7 +119,7 @@
                                     <a class="d-block" href="@Url.Action("Update","Product")/@item.Id">
                                         <i style="width:22px;height:22px" class="fas fa-edit"></i>
                                     </a>
-                                    @if (!isManager)
+                                    @if (isManager)
                                     {
                                         <span class="mx-2">|</span>
                                         <a class="d-block text-danger" href="@Url.Action("Delete","Product")/@item.Id">
