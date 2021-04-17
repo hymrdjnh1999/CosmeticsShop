@@ -1,9 +1,19 @@
 ﻿@using Cosmetics.ViewModels.Common;
 @model PageResponse<Cosmetics.ViewModels.Catalogs.Products.ProductViewModel>
+@using System.Security.Claims;
+
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var identity = User.Identity as ClaimsIdentity;
+    var roles = identity?.FindFirst("Role")?.Value ?? null;
+    bool isManager = false;
+    if (!string.IsNullOrEmpty(roles))
+    {
+        isManager = roles.Contains("Manager");
+    }
 }
 @section Scripts{
     <script>
@@ -105,8 +115,18 @@
                                     @Html.DisplayFor(modelItem => item.OriginalCountry)
                                 </td>
                                 <td class="d-flex align-items-center" style="flex: 1">
-                                    @Html.ActionLink("Edit", "Update", new { id = item.Id }) <span class="mx-2">|</span>
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                    @*@Html.ActionLink("Edit", "Update", new { id = item.Id })*@
+                                    <a class="d-block" href="@Url.Action("Update","Product")/@item.Id">
+                                        <i style="width:22px;height:22px" class="fas fa-edit"></i>
+                                    </a>
+                                    @if (isManager)
+                                    {
+                                        <span class="mx-2">|</span>
+                                        <a class="d-block text-danger" href="@Url.Action("Delete","Product")/@item.Id">
+                                    
+                                            <i style="width:22px;height:22px" class="fas fa-trash"></i>
+                                        </a>
+                                    }
                                 </td>
                             </tr>
                         }

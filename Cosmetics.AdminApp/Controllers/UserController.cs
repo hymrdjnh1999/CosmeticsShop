@@ -42,7 +42,7 @@ namespace Cosmetics.AdminApp.Controllers
         {
 
             var currentLoginId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var roles = User.FindFirst(ClaimTypes.Role).Value;
+            var roles = (User.Identity as ClaimsIdentity).FindFirst("Role").Value;
             var request = new GetUserPagingRequest()
             {
                 Keyword = keyword,
@@ -58,6 +58,7 @@ namespace Cosmetics.AdminApp.Controllers
             }
             data.ResultObj.CurrentLoggedId = new Guid(currentLoginId);
             data.ResultObj.CurrentRoles = roles;
+            TempData["isManager"] = roles.Contains("Manager");
             return View(data.ResultObj);
         }
 
@@ -107,6 +108,7 @@ namespace Cosmetics.AdminApp.Controllers
 
             if (result.IsSuccess)
             {
+                ViewBag.IsManager = TempData["isManager"];
                 var roles = await GetRoleAssignRequest(user);
                 user.RoleAssignRequest = roles.Roles;
                 return View(user);
