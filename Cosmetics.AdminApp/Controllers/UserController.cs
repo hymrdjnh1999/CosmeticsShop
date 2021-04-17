@@ -58,6 +58,7 @@ namespace Cosmetics.AdminApp.Controllers
             }
             data.ResultObj.CurrentLoggedId = new Guid(currentLoginId);
             data.ResultObj.CurrentRoles = roles;
+            TempData["isManager"] = roles.Contains("Manager");
             return View(data.ResultObj);
         }
 
@@ -104,9 +105,10 @@ namespace Cosmetics.AdminApp.Controllers
         {
             var result = await _userApiClient.GetById(id);
             var user = result.ResultObj;
-
+            
             if (result.IsSuccess)
             {
+                ViewBag.IsManager = TempData["isManager"];
                 var roles = await GetRoleAssignRequest(user);
                 user.RoleAssignRequest = roles.Roles;
                 return View(user);

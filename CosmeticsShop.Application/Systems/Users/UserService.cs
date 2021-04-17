@@ -57,7 +57,7 @@ namespace CosmeticsShop.Application.Systems.Users
             {
                 new Claim(ClaimTypes.Email,user.Email),
                 new Claim(ClaimTypes.GivenName,user.Name),
-                new Claim(ClaimTypes.Role,string.Join(";",roles)),
+                new Claim("Role",string.Join(";",roles)),
                 new Claim(ClaimTypes.Name,user.Name),
                 new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
             };
@@ -194,18 +194,21 @@ namespace CosmeticsShop.Application.Systems.Users
             }
             var userRoles = await _userManager.GetRolesAsync(user);
 
-            foreach (var role in request.Roles)
+            if (request.Roles != null)
             {
-                if (role.Selected && !userRoles.Contains(role.Name))
+                foreach (var role in request.Roles)
                 {
-                    await _userManager.AddToRoleAsync(user, role.Name);
+                    if (role.Selected && !userRoles.Contains(role.Name))
+                    {
+                        await _userManager.AddToRoleAsync(user, role.Name);
+
+                    }
+                    else if (!role.Selected || userRoles.Contains(role.Name))
+                    {
+                        await _userManager.RemoveFromRoleAsync(user, role.Name);
+                    }
 
                 }
-                else if (!role.Selected || userRoles.Contains(role.Name))
-                {
-                    await _userManager.RemoveFromRoleAsync(user, role.Name);
-                }
-
             }
 
             return new ApiSuccessResult<bool>();
