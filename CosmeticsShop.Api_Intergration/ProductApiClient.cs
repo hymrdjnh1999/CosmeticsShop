@@ -47,13 +47,13 @@ namespace CosmeticsShop.Api_Intergration
 
             var response = await client.PutAsync($"/api/products/{request.Id}/categories", httpContent);
             var result = await response.Content.ReadAsStringAsync();
-            var test = JsonConvert.DeserializeObject<ApiErrorResult<bool>>(result);
+
             if (response.IsSuccessStatusCode)
                 return JsonConvert.DeserializeObject<ApiSuccessResult<bool>>(result);
 
             return JsonConvert.DeserializeObject<ApiErrorResult<bool>>(result);
         }
-        public async Task<bool> Create(ProductCreateRequest request)
+        public async Task<ProductUpdateRequest> Create(ProductCreateRequest request)
         {
             var sessions = _httpContextAccessor
                  .HttpContext
@@ -83,9 +83,9 @@ namespace CosmeticsShop.Api_Intergration
             requestContent.Add(stockJs, "stock");
             var nameJs = new StringContent(request.Name.ToString());
             requestContent.Add(nameJs, "name");
-            var descriptionJs = new StringContent(request.Description.ToString());
+            var descriptionJs = new StringContent((request.Description ?? "").ToString());
             requestContent.Add(descriptionJs, "description");
-            var detailsJs = new StringContent(request.Details.ToString());
+            var detailsJs = new StringContent((request.Details ?? "").ToString());
             requestContent.Add(detailsJs, "details");
             var originalCountryJs = new StringContent(request.OriginalCountry.ToString());
             requestContent.Add(originalCountryJs, "originalCountry");
@@ -96,7 +96,14 @@ namespace CosmeticsShop.Api_Intergration
             requestContent.Add(forGenderJs, "forgender");
 
             var response = await client.PostAsync($"/api/products", requestContent);
-            return response.IsSuccessStatusCode;
+            var result = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+            {
+                var product = JsonConvert.DeserializeObject<ProductUpdateRequest>(result);
+                return product;
+            }
+
+            return null;
         }
 
         public async Task<ProductUpdateRequest> GetById(int id)
@@ -155,7 +162,7 @@ namespace CosmeticsShop.Api_Intergration
 
             requestContent.Add(new StringContent((request.Details ?? "").ToString()), "details");
 
-            requestContent.Add(new StringContent((request.OriginalCountry ?? "" ).ToString()), "originalCountry");
+            requestContent.Add(new StringContent((request.OriginalCountry ?? "").ToString()), "originalCountry");
 
             requestContent.Add(new StringContent(
                 (request.ForGender == ForGender.Male ? 1 : request.ForGender == ForGender.Female ? 2 : 3).ToString()), "forgender");
@@ -167,6 +174,7 @@ namespace CosmeticsShop.Api_Intergration
             requestContent.Add(new StringContent(request.Price.ToString()), "Price");
 
             requestContent.Add(new StringContent(request.Stock.ToString()), "Stock");
+            requestContent.Add(new StringContent(request.SelectedId.ToString()), "SelectedId");
 
             var response = await client.PutAsync($"/api/products/{request.Id}", requestContent);
 

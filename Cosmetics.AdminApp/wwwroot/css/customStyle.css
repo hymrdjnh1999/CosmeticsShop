@@ -21,3 +21,32 @@
 .card-body{
     background-color: rgba(0,0,0,0.03)
 }
+
+li.active-result {
+    padding: 10px 6px !important;
+}
+
+    li.active-result.highlighted {
+        background-color: rgba(0,0,0,0.15) !important;
+        background-image: unset !important;
+    }
+
+ul.chosen-choices {
+    position: unset !important;
+    border-radius: 4px;
+    padding: 4px !important;
+    border: 1px solid #ced4da !important;
+}
+
+li.search-choice {
+    padding: 6px !important;
+}
+
+    li.search-choice span {
+        margin-right: 10px;
+    }
+
+    li.search-choice a.search-choice-close {
+        top: 50% !important;
+        transform: translateY(-50%);
+    }

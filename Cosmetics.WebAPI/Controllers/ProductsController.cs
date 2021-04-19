@@ -74,8 +74,9 @@ namespace Cosmetics.WebAPI.Controllers
             }
 
             var product = await _productServices.GetById(productId);
+            product.Id = productId;
 
-            return CreatedAtAction(nameof(GetById), new { Id = productId }, product);
+            return CreatedAtAction("Create", product);
         }
 
         [HttpPut("{id}")]
@@ -101,7 +102,6 @@ namespace Cosmetics.WebAPI.Controllers
 
         public async Task<IActionResult> CategoryAssign([FromBody] CategoryAssignRequest request)
         {
-
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             var response = await _productServices.CategoryAssign(request);

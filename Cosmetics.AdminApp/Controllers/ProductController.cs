@@ -51,29 +51,49 @@ namespace Cosmetics.AdminApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-
-            return View();
+            var categories = await GetCategoryAssignRequest();
+            ProductCreateRequest productCreateRequest = new ProductCreateRequest()
+            {
+                CategoriesAssignRequest = categories
+            };
+            return View(productCreateRequest);
         }
 
         [HttpPost]
         [Consumes("multipart/form-data")]
         public async Task<IActionResult> Create([FromForm] ProductCreateRequest request)
         {
+            var categories = await GetCategoryAssignRequest();
+
             if (!ModelState.IsValid)
             {
+                request.CategoriesAssignRequest = categories;
                 return View(request);
             }
 
-            var result = await _productApiClient.Create(request);
+            var product = await _productApiClient.Create(request);
 
-            if (result)
+            if (product != null)
             {
-                TempData["result"] = "Create product successfully!";
-                return RedirectToAction("Index");
+                var categoryRequest = new CategoryAssignRequest()
+                {
+                    Categories = categories,
+                    Id = product.Id,
+                    SelectedCategories = request.SelectedId
+                };
+
+                var categoryAssignResult = await _productApiClient.CategoryAssign(categoryRequest);
+                if (categoryAssignResult.IsSuccess)
+                {
+                    TempData["result"] = "Create product successfully!";
+                    return RedirectToAction("Index");
+                }
+
             }
             ModelState.AddModelError("", "Create product failed!");
+            request.CategoriesAssignRequest = categories;
             return View(request);
         }
 
@@ -84,6 +104,7 @@ namespace Cosmetics.AdminApp.Controllers
             var categoryAssignRequest = await GetCategoryAssignRequest(id);
             var product = await _productApiClient.GetById(id);
             product.CategoriesAssignRequest = categoryAssignRequest.Categories;
+            product.SelectedId = categoryAssignRequest.SelectedCategories;
             return View(product);
         }
 
@@ -91,8 +112,11 @@ namespace Cosmetics.AdminApp.Controllers
         [Consumes("multipart/form-data")]
         public async Task<IActionResult> Update([FromForm] ProductUpdateRequest request)
         {
+            var categoryAssignRequest = await GetCategoryAssignRequest(request.Id);
             if (!ModelState.IsValid)
             {
+                request.CategoriesAssignRequest = categoryAssignRequest.Categories;
+                ModelState.AddModelError("", "Update product failed!");
                 return View(request);
             }
 
@@ -102,7 +126,8 @@ namespace Cosmetics.AdminApp.Controllers
                 var categoryRequest = new CategoryAssignRequest()
                 {
                     Categories = request.CategoriesAssignRequest,
-                    Id = request.Id
+                    Id = request.Id,
+                    SelectedCategories = request.SelectedId
                 };
 
                 var categoryAssignResult = await _productApiClient.CategoryAssign(categoryRequest);
@@ -113,6 +138,7 @@ namespace Cosmetics.AdminApp.Controllers
                 }
 
             }
+            request.CategoriesAssignRequest = categoryAssignRequest.Categories;
             ModelState.AddModelError("", "Update product failed!");
             return View(request);
         }
@@ -152,17 +178,38 @@ namespace Cosmetics.AdminApp.Controllers
             var categories = await _categoryApiClient.GetAll();
             var categoryAssignRequest = new CategoryAssignRequest();
             categoryAssignRequest.Id = id;
-
+            List<string> selectedCategories = new List<string>();
             foreach (var category in categories)
             {
                 categoryAssignRequest.Categories.Add(new SelectItemDynamic<int>()
                 {
                     Id = category.Id,
                     Name = category.Name,
-                    Selected = productViewModel.Categories.Contains(category.Name)
+                    Selected = productViewModel.Categories.Contains(category.Id.ToString())
                 });
+                if (productViewModel.Categories.Contains(category.Id.ToString()))
+                {
+                    selectedCategories.Add(category.Id.ToString());
+                }
             }
+            categoryAssignRequest.SelectedCategories = selectedCategories.ToArray();
             return categoryAssignRequest;
+        }
+        private async Task<List<SelectItemDynamic<int>>> GetCategoryAssignRequest()
+        {
+            var categories = await _categoryApiClient.GetAll();
+            var categoryAssignRequest = new CategoryAssignRequest();
+            foreach (var category in categories)
+            {
+                categoryAssignRequest.Categories.Add(new SelectItemDynamic<int>()
+                {
+                    Id = category.Id,
+                    Name = category.Name,
+                    Selected = false
+                });
+
+            }
+            return categoryAssignRequest.Categories;
         }
     }
 }

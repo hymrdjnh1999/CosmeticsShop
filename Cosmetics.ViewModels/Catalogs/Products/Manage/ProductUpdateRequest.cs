@@ -1,4 +1,5 @@
 ﻿using Cosmetics.ViewModels.Common;
+using CosmeticsShop.Data.Entities;
 using CosmeticsShop.Data.Enums;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -33,6 +34,8 @@ namespace Cosmetics.ViewModels.Catalogs.Products.Manage
         public IList<string> Categories { get; set; }
         public List<SelectItemDynamic<int>> CategoriesAssignRequest { get; set; }
         = new List<SelectItemDynamic<int>>();
+        public IEnumerable<Category> CategoryList { get; set; }
+        public string[] SelectedId { get; set; }
         public string ImagePath { get; set; }
         public IFormFile ThumbnailImage { get; set; }
 

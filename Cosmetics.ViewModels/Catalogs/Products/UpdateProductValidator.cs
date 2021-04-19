@@ -25,6 +25,9 @@ namespace Cosmetics.ViewModels.Catalogs.Products
             RuleFor(x => x.OriginalPrice).NotEmpty()
                 .WithMessage("Original price is require").GreaterThan(100000).WithMessage("Product original price is must greater than 100000!");
 
+            RuleFor(x => x.SelectedId).NotEmpty()
+                .WithMessage("Category is require");
+
             RuleFor(x => x).Custom((request, context) =>
             {
                 if (request.OriginalPrice < request.Price)
