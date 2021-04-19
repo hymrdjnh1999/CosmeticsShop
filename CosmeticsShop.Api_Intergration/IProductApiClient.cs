@@ -11,7 +11,7 @@ namespace CosmeticsShop.Api_Intergration
     public interface IProductApiClient
     {
         Task<PageResponse<ProductViewModel>> GetPaging(GetProductRequest request);
-        Task<bool> Create(ProductCreateRequest request);
+        Task<ProductUpdateRequest> Create(ProductCreateRequest request);
         Task<bool> Update(ProductUpdateRequest request);
         Task<ApiResult<bool>> CategoryAssign(CategoryAssignRequest request);
         Task<ProductUpdateRequest> GetById(int id);

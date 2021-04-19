@@ -11,5 +11,13 @@ namespace Cosmetics.ViewModels.Catalogs.Products
     {
         public int Id { get; set; }
         public List<SelectItemDynamic<int>> Categories { get; set; } = new List<SelectItemDynamic<int>>();
+        public string[] SelectedCategories { get; set; }
+        public IEnumerable<SelectItemDynamic<int>> ListCategory
+        {
+            get
+            {
+                return Categories;
+            }
+        }
     }
 }

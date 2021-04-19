@@ -32,6 +32,29 @@
             $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
         });
     </script>
+
+    <script type="text/javascript" src="~/js/chosen.jquery.min.js"></script>
+
+    <script>
+        $('#updateProductBtnForm').on('Click').submit();
+
+        const handleOnChange = () => {
+            alert('test');
+        }
+
+        $(function () {
+            //normal dropdown
+            //$("#normalDropDown").chosen({
+            //    disable_search_threshold : 5
+            //});
+
+            //multiselect DropDown
+            $("#multiSelectCreate").chosen({
+                width: "100%"
+            });
+        });
+
+    </script>
 }
 
 <div class="container-fluid">
@@ -80,12 +103,14 @@
                         </div>
                         <div class="form-group col-4">
                             <label asp-for="ForGender" class="control-label mr-2"></label>
-                            <select class="form-select p-1" aria-label="Default select example" asp-for="ForGender">
-                                <option value="" selected>Select gender</option>
-                                <option value="1">Male</option>
-                                <option value="2">Female</option>
-                                <option value="3">Both</option>
-                            </select>
+                            <div>
+                                <select class="form-select p-1" aria-label="Default select example" asp-for="ForGender">
+                                    <option value="" selected>Select gender</option>
+                                    <option value="1">Male</option>
+                                    <option value="2">Female</option>
+                                    <option value="3">Both</option>
+                                </select>
+                            </div>
                             <span asp-validation-for="ForGender" class="text-danger"></span>
                         </div>
                     </div>
@@ -94,11 +119,14 @@
                         <input asp-for="Stock" class="form-control" placeholder="Enter product stock" />
                         <span asp-validation-for="Stock" class="text-danger"></span>
                     </div>
-                    <div class="form-group col-6 ">
-                        <label>Categories</label>
-                        <div class="d-flex align-items-center">
-                            <input class=" is-trending-checkbox " asp-for="IsOutstanding" />
-                            <label class="ml-2" asp-for="IsOutstanding">Is trending</label>
+                    <div class=" col-6 ">
+                        <div class="form-group">
+                            <label class="control-label">Categories</label>
+                            @Html.HiddenFor(x => x.Stock)
+                            <div class="">
+                                @Html.ListBoxFor(model => model.SelectedId, new MultiSelectList(Model.CategoriesAssignRequest, "Id", "Name"), new { id = "multiSelectCreate", multiple = "multiple" })
+                            </div>
+                            <span asp-validation-for="SelectedId" class="text-danger"></span>
                         </div>
                     </div>
 

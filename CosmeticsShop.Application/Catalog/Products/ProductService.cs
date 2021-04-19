@@ -59,21 +59,21 @@ namespace CosmeticsShop.Application.Catalog.Products
             {
                 return new ApiErrorResult<bool>($"Cannot find product with id: {request.Id}");
             }
-            foreach (var category in request.Categories)
-            {
-                var productInCategory = await _context.ProductInCategories
-                    .FirstOrDefaultAsync(x => x.CategoryId == category.Id
-                    && x.ProductId == request.Id);
+            var categories = await _context.Categories.Select(x => x.Id.ToString()).ToArrayAsync();
 
-                if (productInCategory != null && category.Selected == false)
+            foreach (var categoryId in categories)
+            {
+                var productInCategory = await _context.ProductInCategories.Where(x => x.CategoryId == int.Parse(categoryId) && x.ProductId == product.Id).FirstOrDefaultAsync();
+                var isAdd = request.SelectedCategories.Contains(categoryId);
+                if (!isAdd && productInCategory !=null)
                 {
                     _context.ProductInCategories.Remove(productInCategory);
                 }
-                else if (productInCategory == null && category.Selected)
+                else if (isAdd && productInCategory == null)
                 {
                     await _context.ProductInCategories.AddAsync(new ProductInCategory()
                     {
-                        CategoryId = category.Id,
+                        CategoryId = int.Parse(categoryId),
                         ProductId = request.Id
                     });
                 }
@@ -81,7 +81,7 @@ namespace CosmeticsShop.Application.Catalog.Products
             await _context.SaveChangesAsync();
             return new ApiSuccessResult<bool>();
         }
-
+       
         public async Task<int> Create(ProductCreateRequest request)
         {
             var product = new Product()
@@ -236,11 +236,17 @@ namespace CosmeticsShop.Application.Catalog.Products
         {
 
             var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
+
             if (product == null)
             {
                 return null;
             }
-            var categoriesName = await GetProductInCategories(id);
+            var queryCtgs = from pic in _context.ProductInCategories
+                            join c in _context.Categories on pic.CategoryId equals c.Id
+                            select new { pic, c };
+            var categories = await queryCtgs.Where(x => x.pic.ProductId == id).Select(x => x.c).ToListAsync() as IEnumerable<Category>;
+
+            var categoryIds = await GetProductInCategories(id);
 
             var productViewModel = new ProductUpdateRequest()
             {
@@ -255,7 +261,8 @@ namespace CosmeticsShop.Application.Catalog.Products
                 Price = product.Price,
                 Stock = product.Stock,
                 ViewCount = product.ViewCount,
-                Categories = categoriesName
+                Categories = categoryIds,
+                CategoryList = categories
 
             };
             return productViewModel;
@@ -265,7 +272,7 @@ namespace CosmeticsShop.Application.Catalog.Products
             var categoryNames = await (from c in _context.Categories
                                        join pic in _context.ProductInCategories on c.Id equals pic.CategoryId
                                        where pic.ProductId == id
-                                       select c.Name).ToListAsync();
+                                       select c.Id.ToString()).ToListAsync();
             return categoryNames;
 
         }
