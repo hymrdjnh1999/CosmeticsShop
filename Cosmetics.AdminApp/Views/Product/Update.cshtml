@@ -54,31 +54,22 @@
                             <div class="form-group ml-2 py-1" style="flex:1">
                                 <label asp-for="ForGender" class="control-label"></label>
                                 @{
-                                var genders = new List<SelectListItem>
-                                    () {
+                                    var genders = new List<SelectListItem>
+                                        () {
                                     new SelectListItem{Value= "1", Text= "Male", Selected = Model.ForGender == ForGender.Male},
                                     new SelectListItem{Value= "2", Text="Female", Selected = Model.ForGender == ForGender.Female },
                                     new SelectListItem{Value= "3", Text="Both", Selected = Model.ForGender == ForGender.Both}
                                     };
-                                    }
-                                    <div>
-                                        <select class="form-select p-1 w-100" aria-label="Default select example" asp-for="ForGender" asp-items="genders">
-                                        </select>
-                                    </div>
-                                    <span asp-validation-for="ForGender" class="text-danger"></span>
+                                }
+                                <div>
+                                    <select class="form-select p-1 w-100" aria-label="Default select example" asp-for="ForGender" asp-items="genders">
+                                    </select>
+                                </div>
+                                <span asp-validation-for="ForGender" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label asp-for="ThumbnailImage" class="control-label"></label>
-                            <div class="custom-file">
-                                <input accept="image/" asp-for="ThumbnailImage" class="custom-file-input" id="customFile">
-                                <label class="custom-file-label" for="customFile">Edit thumbnail</label>
-                            </div>
-                            <span asp-validation-for="ThumbnailImage" class="text-danger"></span>
-                        </div>
-                    </div>
+
                     <div class="col-6 ">
                         <div class="form-group">
                             <label asp-for="Categories" class="control-label"></label>
@@ -117,20 +108,37 @@
                             <span asp-validation-for="OriginalCountry" class="text-danger"></span>
                         </div>
                     </div>
-                    <div class=" col-6">
-                        <div class="form-group">
-                            <label asp-for="Details" class="control-label"></label>
-                            <textarea rows="3" id="productDetails" asp-for="Details" class="form-control"></textarea>
-                            <span asp-validation-for="Details" class="text-danger"></span>
+                    <div class="d-flex w-100">
+                        <div class=" col-6">
+                            <div class="form-group">
+                                <label asp-for="Details" class="control-label"></label>
+                                <textarea rows="3" id="productDetails" asp-for="Details" class="form-control"></textarea>
+                                <span asp-validation-for="Details" class="text-danger"></span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="  col-6">
-                        <div class="form-group">
-                            <label asp-for="Description" class="control-label"></label>
-                            <textarea rows="3" id="productDescription" asp-for="Description" class="form-control"></textarea>
-                            <span asp-validation-for="Description" class="text-danger"></span>
+                        <div class="  col-6">
+                            <div class="form-group">
+                                <label asp-for="Description" class="control-label"></label>
+                                <textarea rows="3" id="productDescription" asp-for="Description" class="form-control"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                            <div class="w-100 justify-content-end">
+                                <div class="form-group">
+                                    <label asp-for="ThumbnailImage" class="control-label"></label>
+                                    <div class="custom-file">
+                                        <input accept="image/*" asp-for="ThumbnailImage" class="custom-file-input" id="customFile">
+                                        <label class="custom-file-label" for="customFile">Edit thumbnail</label>
+                                    </div>
+                                    <span asp-validation-for="ThumbnailImage" class="text-danger"></span>
+                                </div>
+                                <div>
+                                    <img id="impPrev" class="mw-100" style="height:auto" />
+                                </div>
+                            </div>
                         </div>
+                       
                     </div>
+                   
                 </div>
                 <div class="form-group">
                     <input type="submit" id="updateProductBtnForm" class="d-none" />
@@ -144,51 +152,61 @@
 
     <script src="https://cdn.ckeditor.com/ckeditor5/27.0.0/classic/ckeditor.js"></script>
     <script>
-            ClassicEditor
-                .create(document.querySelector('#productDetails'))
-                .then(editor => {
-                    console.log(editor);
-                })
-                .catch(error => {
-                    console.error(error);
-                });
-            ClassicEditor
-                .create(document.querySelector('#productDescription'))
-                .then(editor => {
-                    console.log(editor);
-                })
-                .catch(error => {
-                    console.error(error);
-                });
+        ClassicEditor
+            .create(document.querySelector('#productDetails'))
+            .then(editor => {
+                console.log(editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        ClassicEditor
+            .create(document.querySelector('#productDescription'))
+            .then(editor => {
+                console.log(editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
     </script>
     <script type="text/javascript">
-            // Add the following code if you want the name of the file appear on select
-            $(".custom-file-input").on("change", function () {
-                var fileName = $(this).val().split("\\").pop();
-                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-            });
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
     </script>
     <script type="text/javascript" src="~/js/chosen.jquery.min.js"></script>
 
     <script>
-            $('#updateProductBtnForm').on('Click').submit();
+        $('#updateProductBtnForm').on('Click').submit();
 
-            const handleOnChange = () => {
-                alert('test');
-            }
+        const handleOnChange = () => {
+            alert('test');
+        }
 
-            $(function () {
-                //normal dropdown
-                //$("#normalDropDown").chosen({
-                //    disable_search_threshold : 5
-                //});
+        $(function () {
+            //normal dropdown
+            //$("#normalDropDown").chosen({
+            //    disable_search_threshold : 5
+            //});
 
-                //multiselect DropDown
-                $("#multiSelectDropDown").chosen({
-                    width: "100%"
-                });
+            //multiselect DropDown
+            $("#multiSelectDropDown").chosen({
+                width: "100%"
             });
+        });
 
+    </script>
+    <script type="text/javascript">
+        $('#customFile').change((e) => {
+            if (e.target.files && e.target.files[0]) {
+                var ImageDir = new FileReader();
+                ImageDir.onload =  (a) =>{
+                    $('#impPrev').attr('src', a.target.result);
+                }
+                ImageDir.readAsDataURL(e.target.files[0]);
+            }  })
     </script>
 
 }

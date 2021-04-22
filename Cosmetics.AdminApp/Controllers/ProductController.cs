@@ -96,7 +96,23 @@ namespace Cosmetics.AdminApp.Controllers
             request.CategoriesAssignRequest = categories;
             return View(request);
         }
+        public class DeleteRequest
+        {
+            public int product_id;
+        }
+        [HttpPost]
+        public async Task Delete(int id)
+        {
+            if (id > 0)
+            {
+                var result = await _productApiClient.Delete(id);
+                if(result)
+                TempData["result"] = "Xóa thành công!";
+                RedirectToAction("Index");
+            }
 
+            RedirectToAction("Index");
+        }
 
         [HttpGet]
         public async Task<IActionResult> Update(int id)

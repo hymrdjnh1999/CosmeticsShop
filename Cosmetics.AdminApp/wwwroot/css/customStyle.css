@@ -50,3 +50,13 @@ li.search-choice {
         top: 50% !important;
         transform: translateY(-50%);
     }
+
+.btn-delete {
+  outline:none;
+  border: unset;
+  background-color: unset;
+}
+
+.btn-delete:hover i{
+    color: rgba(0,0,0,0.23)
+}
