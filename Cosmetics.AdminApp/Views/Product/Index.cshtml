@@ -15,11 +15,7 @@
         isManager = roles.Contains("Manager");
     }
 }
-@section Scripts{
-    <script>
-        setTimeout(() => $('#msgAlert').fadeOut('slow'), 1500)
-    </script>
-}
+
 
 @inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
 <div class="container-fluid">
@@ -122,10 +118,10 @@
                                     @if (isManager)
                                     {
                                         <span class="mx-2">|</span>
-                                        <a class="d-block text-danger" href="@Url.Action("Delete","Product")/@item.Id">
-                                    
+                                        <input type="hidden" value="@item.Id" id="product_delete_id" />
+                                        <button data-target="#exampleModalCenter" data-toggle="modal" class="d-block text-danger btn-delete">
                                             <i style="width:22px;height:22px" class="fas fa-trash"></i>
-                                        </a>
+                                        </button>
                                     }
                                 </td>
                             </tr>
@@ -135,6 +131,63 @@
             </div>
 
             @await Component.InvokeAsync("Pager", Model)
+
+            <!-- Button trigger modal -->
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Bạn có chắc chắn muốn xóa sản sản phẩm này?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                            <button type="submit" class="btn btn-danger" data-dismiss="modal" id="delete_submit_btn">Xóa</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+@section Scripts{
+    <script>
+        setTimeout(() => $('#msgAlert').fadeOut('slow'), 1500)
+    </script>
+    <script>
+        $('#delete_submit_btn').on('click', () => {
+
+            const delete_id = $('#product_delete_id').val();
+            $.ajax(
+                {
+                    type: "POST",
+                    url: "Product/Delete",
+                    dataType: "text",
+                    data: { id: delete_id },
+                    async: true,
+                    success: function (response) {
+                        location.reload();
+                       
+                    },
+                    failure: function (response) {
+                        alert('false')
+
+                    },
+                    error: function (response) {
+                        alert('error')
+
+                    }
+                });
+        })
+
+    </script>
+
+
+}

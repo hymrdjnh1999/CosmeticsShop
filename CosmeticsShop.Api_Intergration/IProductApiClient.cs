@@ -13,6 +13,7 @@ namespace CosmeticsShop.Api_Intergration
         Task<PageResponse<ProductViewModel>> GetPaging(GetProductRequest request);
         Task<ProductUpdateRequest> Create(ProductCreateRequest request);
         Task<bool> Update(ProductUpdateRequest request);
+        Task<bool> Delete(int product_id);
         Task<ApiResult<bool>> CategoryAssign(CategoryAssignRequest request);
         Task<ProductUpdateRequest> GetById(int id);
         Task<List<ProductViewModel>> GetFeaturedProducts();

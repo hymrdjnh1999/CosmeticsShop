@@ -106,6 +106,22 @@ namespace CosmeticsShop.Api_Intergration
             return null;
         }
 
+        public async Task<bool> Delete(int product_id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var sessions = _httpContextAccessor.HttpContext.Session.GetString("Token");
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+            var response = await client.DeleteAsync($"/api/products/{product_id}");
+            var result = await response.Content.ReadAsStringAsync();
+
+            if (response.IsSuccessStatusCode)
+                return true;
+
+            return false;
+        }
+
         public async Task<ProductUpdateRequest> GetById(int id)
         {
             var requestUrl = $"/api/products/{id}";
