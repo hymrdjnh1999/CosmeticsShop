@@ -118,8 +118,7 @@
                                     @if (isManager)
                                     {
                                         <span class="mx-2">|</span>
-                                        <input type="hidden" value="@item.Id" id="product_delete_id" />
-                                        <button data-target="#exampleModalCenter" data-toggle="modal" class="d-block text-danger btn-delete">
+                                        <button onclick="getValue(@item.Id)" data-target="#exampleModalCenter" data-toggle="modal" class="d-block text-danger btn-delete">
                                             <i style="width:22px;height:22px" class="fas fa-trash"></i>
                                         </button>
                                     }
@@ -162,9 +161,10 @@
         setTimeout(() => $('#msgAlert').fadeOut('slow'), 1500)
     </script>
     <script>
+        var delete_id = -1;
+        const getValue = (id) => delete_id = id;
         $('#delete_submit_btn').on('click', () => {
-
-            const delete_id = $('#product_delete_id').val();
+            
             $.ajax(
                 {
                     type: "POST",
