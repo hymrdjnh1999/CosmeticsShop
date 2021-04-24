@@ -3,6 +3,7 @@
     ViewData["Title"] = "User details";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var isManager = ViewBag.IsManager;
+    var customIsManager = ViewBag.CustomIsManager;
 }
 
 
@@ -39,14 +40,20 @@
                                 <div class="d-flex align-items-center">
                                     @for (int i = 0; i < Model.RoleAssignRequest.Count; i++)
                                     {
-                                        <label class="d-flex  align-items-center mr-2">
-                                            <span class="mr-2">
-                                                @Model.RoleAssignRequest[i].Name
-                                            </span>
+                                    <label class="d-flex  align-items-center mr-2">
+                                        <span class="mr-2">
+                                            @Model.RoleAssignRequest[i].Name
+                                        </span>
+                                        <input type="hidden" asp-for="RoleAssignRequest[i].Name" value="@Model.RoleAssignRequest[i].Name" />
+                                        <input type="hidden" asp-for="RoleAssignRequest[i].Id" value="@Model.RoleAssignRequest[i].Id" />
+                                        @if (!customIsManager)
+                                        {
+
                                             <input type="checkbox" asp-for="RoleAssignRequest[i].Selected" class="ml-2" />
-                                            <input type="hidden" asp-for="RoleAssignRequest[i].Name" value="@Model.RoleAssignRequest[i].Name" />
-                                            <input type="hidden" asp-for="RoleAssignRequest[i].Id" value="@Model.RoleAssignRequest[i].Id" />
-                                        </label>
+                                        }
+                                       
+
+                                    </label>
 
                                     }
                                 </div>
@@ -106,7 +113,7 @@
                 @if (isManager)
                 {
                     <div class="d-flex justify-content-center">
-                        <input type="submit" value="Update" class="btn btn-outline-dark" form="user-update-form" />
+                        <input type="submit" value="Save" class="btn btn-outline-dark" form="user-update-form" />
                     </div>
                 }
                 </div>
