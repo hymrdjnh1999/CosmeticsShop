@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -58,7 +59,8 @@ namespace Cosmetics.AdminApp.Controllers
             }
             data.ResultObj.CurrentLoggedId = new Guid(currentLoginId);
             data.ResultObj.CurrentRoles = roles;
-            TempData["isManager"] = roles.Contains("Manager");
+
+            HttpContext.Session.SetString("isManager", roles.Contains("Manager").ToString());
             return View(data.ResultObj);
         }
 
@@ -108,9 +110,20 @@ namespace Cosmetics.AdminApp.Controllers
 
             if (result.IsSuccess)
             {
-                ViewBag.IsManager = TempData["isManager"];
+                try
+                {
+                    var isManager = Boolean.Parse(HttpContext.Session.GetString("isManager"));
+                    ViewBag.IsManager = isManager;
+                }
+                catch (Exception)
+                {
+                    return RedirectToAction("Error", "Home");
+
+                }
+
                 var roles = await GetRoleAssignRequest(user);
                 user.RoleAssignRequest = roles.Roles;
+                ViewBag.CustomIsManager = user.RoleAssignRequest.Find(x => x.Name == "Manager").Selected ;
                 return View(user);
             }
 
