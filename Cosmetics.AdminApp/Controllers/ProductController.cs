@@ -106,8 +106,8 @@ namespace Cosmetics.AdminApp.Controllers
             if (id > 0)
             {
                 var result = await _productApiClient.Delete(id);
-                if(result)
-                TempData["result"] = "Xóa thành công!";
+                if (result)
+                    TempData["result"] = "Xóa thành công!";
                 RedirectToAction("Index");
             }
 
@@ -122,6 +122,20 @@ namespace Cosmetics.AdminApp.Controllers
             product.CategoriesAssignRequest = categoryAssignRequest.Categories;
             product.SelectedId = categoryAssignRequest.SelectedCategories;
             return View(product);
+        }
+
+        [HttpGet("product/{id}/images")]
+        public async Task<IActionResult> Images(int id, [FromQuery] QueryParamRequest request)
+        {
+
+            if (!ModelState.IsValid || id == 0)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+
+            var images = await _productApiClient.GetProductImages(id, request);
+            ViewBag.ProductId = id;
+            return View(images);
         }
 
         [HttpPost]

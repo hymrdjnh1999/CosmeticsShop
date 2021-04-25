@@ -1,3 +1,4 @@
+using Cosmetics.ViewModels.Catalogs.ProductImages;
 using Cosmetics.ViewModels.Catalogs.Products;
 using Cosmetics.ViewModels.Systems.Users;
 using CosmeticsShop.Api_Intergration;
@@ -62,6 +63,7 @@ namespace Cosmetics.AdminApp
             services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
             services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreateProductValidator>());
             services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<UpdateProductValidator>());
+            services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ProductImageCreateValidator>());
 
         }
 
@@ -94,6 +96,10 @@ namespace Cosmetics.AdminApp
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(
+                    name: "product",
+                    pattern: "{controller=Product}/{productId}/actions={images}"
+                    );
             });
         }
     }

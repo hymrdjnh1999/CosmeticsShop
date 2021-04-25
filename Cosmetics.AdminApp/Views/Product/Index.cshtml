@@ -115,6 +115,10 @@
                                     <a class="d-block" href="@Url.Action("Update","Product")/@item.Id">
                                         <i style="width:22px;height:22px" class="fas fa-edit"></i>
                                     </a>
+
+                                    <a class="d-block" href="Product/@item.Id/images">
+                                        <i style="width:22px;height:22px" class="fas fa-image"></i>
+                                    </a>
                                     @if (isManager)
                                     {
                                         <span class="mx-2">|</span>
@@ -137,7 +141,7 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Xóa sản phẩm</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>

@@ -1,4 +1,5 @@
-﻿using Cosmetics.ViewModels.Catalogs.Products;
+﻿using Cosmetics.ViewModels.Catalogs.ProductImages;
+using Cosmetics.ViewModels.Catalogs.Products;
 using Cosmetics.ViewModels.Catalogs.Products.Manage;
 using Cosmetics.ViewModels.Common;
 using System;
@@ -17,5 +18,7 @@ namespace CosmeticsShop.Api_Intergration
         Task<ApiResult<bool>> CategoryAssign(CategoryAssignRequest request);
         Task<ProductUpdateRequest> GetById(int id);
         Task<List<ProductViewModel>> GetFeaturedProducts();
+
+        Task<PageResponse<ProductImageViewModel>> GetProductImages(int productId, QueryParamRequest request);
     }
 }

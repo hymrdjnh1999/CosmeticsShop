@@ -1,0 +1,116 @@
+﻿@using Cosmetics.ViewModels.Common;
+@model PageResponse<Cosmetics.ViewModels.Catalogs.ProductImages.ProductImageViewModel>
+@{
+    ViewData["Title"] = "Ảnh sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
+
+<div class="container-fluid">
+    <h1 class="mt-4">Products</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Dashboard</a></li>
+        <li class="breadcrumb-item active">Product images</li>
+    </ol>
+
+    <div class="card mb-12">
+        <div class="card-header d-flex justify-content-between">
+            <a asp-action="Index" asp-controller="Product" class="btn btn-outline-dark">Quay lại danh sách sản phẩm</a>
+            <div>
+
+                <a href="images/add" class="btn btn-outline-dark ">
+                    <i class="fas fa-plus mr-2"></i>
+                    Thêm ảnh mới
+                </a>
+            </div>
+
+        </div>
+        <div class="card-body">
+            @if (ViewBag.SuccessMsg != null)
+            {
+                <div class="d-flex justify-content-center">
+                    <div id="msgAlert" class="alert alert-success w-25" role="alert">
+                        @ViewBag.SuccessMsg
+                    </div>
+                </div>
+            }
+            <div class="d-flex w-25 align-items-center mb-3">
+                <input asp-for="PageSize" value="@Model.PageSize" type="hidden" />
+                @await Component.InvokeAsync("ChangePageSize", Model)
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered border-dark">
+                    <thead class="m-0">
+                        <tr>
+                            <th>
+                                Id
+                            </th>
+
+                            <th>
+                                Ảnh
+                            </th>
+                            <th>
+                                Chú thích
+                            </th>
+                            <th>
+                                Thumbnail
+                            </th>
+                            <th>Chức năng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Items)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ImagePath)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Caption)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IsDefault)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            @await Component.InvokeAsync("Pager", Model)
+
+            <!-- Button trigger modal -->
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Xóa sản phẩm</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Bạn có chắc chắn muốn xóa sản sản phẩm này?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                            <button type="submit" class="btn btn-danger" data-dismiss="modal" id="delete_submit_btn">Xóa</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
