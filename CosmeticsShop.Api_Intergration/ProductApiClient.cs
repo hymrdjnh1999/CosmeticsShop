@@ -1,4 +1,5 @@
 ﻿using Cosmetics.Ultilities.Constants;
+using Cosmetics.ViewModels.Catalogs.ProductImages;
 using Cosmetics.ViewModels.Catalogs.Products;
 using Cosmetics.ViewModels.Catalogs.Products.Manage;
 using Cosmetics.ViewModels.Common;
@@ -146,6 +147,14 @@ namespace CosmeticsShop.Api_Intergration
 
             var data = await GetAsync<PageResponse<ProductViewModel>>(requestUrl);
 
+            return data;
+        }
+
+        public async Task<PageResponse<ProductImageViewModel>> GetProductImages(int productId, QueryParamRequest request)
+        {
+
+            var requestUrl = $"/api/products/{productId}/images?pageSize={request.PageSize}&pageIndex={request.PageIndex}";
+            var data = await GetAsync<PageResponse<ProductImageViewModel>>(requestUrl);
             return data;
         }
 

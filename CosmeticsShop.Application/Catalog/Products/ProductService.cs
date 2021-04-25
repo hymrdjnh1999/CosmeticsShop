@@ -42,9 +42,7 @@ namespace CosmeticsShop.Application.Catalog.Products
                 DateCreated = DateTime.Now,
                 FileSize = request.ImageFile.Length,
                 ImagePath = await SaveFile(request.ImageFile),
-                IsDefault = request.IsDefault,
                 ProductId = productId,
-                SortOrder = request.SortOrder
             };
             _context.ProductImages.Add(image);
             await _context.SaveChangesAsync();
@@ -65,7 +63,7 @@ namespace CosmeticsShop.Application.Catalog.Products
             {
                 var productInCategory = await _context.ProductInCategories.Where(x => x.CategoryId == int.Parse(categoryId) && x.ProductId == product.Id).FirstOrDefaultAsync();
                 var isAdd = request.SelectedCategories.Contains(categoryId);
-                if (!isAdd && productInCategory !=null)
+                if (!isAdd && productInCategory != null)
                 {
                     _context.ProductInCategories.Remove(productInCategory);
                 }
@@ -81,7 +79,7 @@ namespace CosmeticsShop.Application.Catalog.Products
             await _context.SaveChangesAsync();
             return new ApiSuccessResult<bool>();
         }
-       
+
         public async Task<int> Create(ProductCreateRequest request)
         {
             var product = new Product()
@@ -157,7 +155,6 @@ namespace CosmeticsShop.Application.Catalog.Products
 
                 }
                 totalRecords = await result.CountAsync();
-
                 var products = await result.Skip((PageIndex - 1) * PageSize).Take(PageSize).Select(x => new ProductViewModel()
                 {
                     Id = x.p.Id,
@@ -328,7 +325,38 @@ namespace CosmeticsShop.Application.Catalog.Products
                 .ToListAsync();
             return images;
         }
+        public async Task<PageResponse<ProductImageViewModel>> GetImages(int productId, QueryParamRequest request)
+        {
 
+            var product = await _context.Products.Where(x => x.Id == productId).FirstOrDefaultAsync();
+
+            if (product == null)
+            {
+                return null;
+            }
+
+            var query = from pi in _context.ProductImages where pi.ProductId == productId select pi;
+            var records = await query.CountAsync();
+            var images = await query.Take(request.PageSize).Select(x => new ProductImageViewModel()
+            {
+                Id = x.Id,
+                Caption = x.Caption,
+                DateCreated = x.DateCreated,
+                FileSize = x.FileSize,
+                ImagePath = x.ImagePath,
+                IsDefault = x.IsDefault,
+                ProductId = x.ProductId,
+                SortOrder = x.SortOrder
+            }).Skip((request.PageIndex - 1) * request.PageSize).ToListAsync();
+            var response = new PageResponse<ProductImageViewModel>()
+            {
+                Items = images,
+                PageIndex = request.PageIndex,
+                PageSize = request.PageSize,
+                TotalRecords = records
+            };
+            return response;
+        }
         public async Task<int> RemoveImage(int imageId)
         {
             var image = await _context.ProductImages.FindAsync(imageId);
@@ -419,5 +447,7 @@ namespace CosmeticsShop.Application.Catalog.Products
             await _storageService.SaveFileAsync(file.OpenReadStream(), fileName);
             return fileName;
         }
+
+
     }
 }
