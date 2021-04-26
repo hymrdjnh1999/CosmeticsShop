@@ -177,6 +177,7 @@ namespace Cosmetics.WebAPI.Controllers
         }
 
         [HttpGet("{productId}/images")]
+        [Authorize]
         public async Task<IActionResult> GetProductImages(int productId, [FromQuery] QueryParamRequest request)
         {
             if (!ModelState.IsValid)
@@ -190,9 +191,24 @@ namespace Cosmetics.WebAPI.Controllers
             return Ok(images);
         }
 
+        [HttpPut("{productId}/images/{imageId}/thumbnail")]
+        [Authorize]
+        public async Task<IActionResult> ChangeThumbnail(int productId, int imageId)
+        {
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var affectedResult = await _productServices.ChangeThumbnail(productId,imageId);
+            if (!affectedResult)
+            {
+                return BadRequest();
+            }
+
+            return Ok("Updated");
+        }
+
         [HttpPut("{productId}/images/{id}")]
         [Authorize]
-
         public async Task<IActionResult> UpdateImage(int id, [FromForm] ProductImageUpdateRequest request)
         {
 
@@ -208,6 +224,7 @@ namespace Cosmetics.WebAPI.Controllers
         }
 
         [HttpPost("{id}/images")]
+        [Consumes("multipart/form-data")]
         [Authorize]
 
         public async Task<IActionResult> AddImage(int id, [FromForm] ProductImageCreateRequest request)

@@ -337,7 +337,7 @@ namespace CosmeticsShop.Application.Catalog.Products
 
             var query = from pi in _context.ProductImages where pi.ProductId == productId select pi;
             var records = await query.CountAsync();
-            var images = await query.Take(request.PageSize).Select(x => new ProductImageViewModel()
+            var images = await query.Select(x => new ProductImageViewModel()
             {
                 Id = x.Id,
                 Caption = x.Caption,
@@ -347,7 +347,7 @@ namespace CosmeticsShop.Application.Catalog.Products
                 IsDefault = x.IsDefault,
                 ProductId = x.ProductId,
                 SortOrder = x.SortOrder
-            }).Skip((request.PageIndex - 1) * request.PageSize).ToListAsync();
+            }).Skip((request.PageIndex - 1) * request.PageSize).Take(request.PageSize).ToListAsync();
             var response = new PageResponse<ProductImageViewModel>()
             {
                 Items = images,
@@ -448,6 +448,24 @@ namespace CosmeticsShop.Application.Catalog.Products
             return fileName;
         }
 
+        public async Task<bool> ChangeThumbnail(int productId, int imageId)
+        {
+            var product = await _context.Products.Where(x => x.Id == productId).FirstOrDefaultAsync();
 
+            if (product == null) return false;
+
+
+            var image = await _context.ProductImages.Where(x => x.Id == imageId && x.ProductId == productId).FirstOrDefaultAsync();
+
+            if (image == null) return false;
+            var thumbnail = await _context.ProductImages.Where(x => x.IsDefault && x.ProductId == productId).FirstOrDefaultAsync();
+            thumbnail.IsDefault = false;
+            image.IsDefault = true;
+            _context.ProductImages.Attach(image);
+            _context.ProductImages.Attach(thumbnail);
+            await _context.SaveChangesAsync();
+            return true;
+
+        }
     }
 }

@@ -35,6 +35,41 @@ namespace CosmeticsShop.Api_Intergration
             _configuration = configuration;
         }
 
+        public async Task<bool> AddImage(ProductImageCreateRequest request)
+        {
+            var sessions = _httpContextAccessor
+              .HttpContext
+              .Session
+              .GetString(SystemConstants.AppSettings.Token);
+
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration[SystemConstants.AppSettings.BaseAddress]);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+
+            var requestContent = new MultipartFormDataContent();
+            if (request.ImageFile != null)
+            {
+                byte[] data;
+                using (var br = new BinaryReader(request.ImageFile.OpenReadStream()))
+                {
+                    data = br.ReadBytes((int)request.ImageFile.OpenReadStream().Length);
+                }
+                ByteArrayContent bytes = new ByteArrayContent(data);
+                requestContent.Add(bytes, "imageFile", request.ImageFile.FileName);
+            }
+
+            var contentJs = new StringContent((request.Caption ?? "").ToString());
+            requestContent.Add(contentJs, "caption");
+
+
+            var response = await client.PostAsync($"/api/products/{request.ProductId}/images", requestContent);
+            if (response.IsSuccessStatusCode)
+                return true;
+
+            return false;
+
+        }
+
         public async Task<ApiResult<bool>> CategoryAssign(CategoryAssignRequest request)
         {
             var client = _httpClientFactory.CreateClient();
@@ -54,6 +89,21 @@ namespace CosmeticsShop.Api_Intergration
 
             return JsonConvert.DeserializeObject<ApiErrorResult<bool>>(result);
         }
+
+        public async Task<bool> ChangeThumbnail(int imageId, int productId)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var sessions = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+            var response = await client.PutAsync($"/api/products/{productId}/images/{imageId}/thumbnail", null);
+
+            if (response.IsSuccessStatusCode)
+                return true;
+
+            return false;
+        }
+
         public async Task<ProductUpdateRequest> Create(ProductCreateRequest request)
         {
             var sessions = _httpContextAccessor
@@ -115,7 +165,6 @@ namespace CosmeticsShop.Api_Intergration
 
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
             var response = await client.DeleteAsync($"/api/products/{product_id}");
-            var result = await response.Content.ReadAsStringAsync();
 
             if (response.IsSuccessStatusCode)
                 return true;
@@ -139,6 +188,8 @@ namespace CosmeticsShop.Api_Intergration
             return data;
 
         }
+
+
 
         public async Task<PageResponse<ProductViewModel>> GetPaging(GetProductRequest request)
         {

@@ -1,4 +1,5 @@
 ﻿using Cosmetics.ViewModels.Catalogs.ProductImages;
+using CosmeticsShop.Api_Intergration;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using System;
@@ -10,6 +11,12 @@ namespace Cosmetics.AdminApp.Controllers
 {
     public class ProductImageController : Controller
     {
+        private readonly IProductApiClient _productApiClient;
+        public ProductImageController(IProductApiClient productApiClient)
+        {
+            _productApiClient = productApiClient;
+        }
+
         [HttpGet("product/{productId}/images/add")]
         public IActionResult Add(int productId)
         {
@@ -26,14 +33,24 @@ namespace Cosmetics.AdminApp.Controllers
             return View(model);
         }
 
-        [HttpPost]
+        [HttpPost("product/{productId}/images/add")]
         [Consumes("multipart/form-data")]
-        public IActionResult Add(ProductImageCreateRequest request)
+        public async Task<IActionResult> Add(ProductImageCreateRequest request)
         {
             if (!ModelState.IsValid)
             {
                 return View(request);
             }
+
+
+            var result = await _productApiClient.AddImage(request);
+
+            if (!result)
+            {
+                return View(request);
+            }
+
+            TempData["result"] = "Thêm ảnh thành công!";
             return LocalRedirect($"/Product/{request.ProductId}/images");
         }
     }

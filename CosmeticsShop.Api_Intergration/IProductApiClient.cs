@@ -18,7 +18,8 @@ namespace CosmeticsShop.Api_Intergration
         Task<ApiResult<bool>> CategoryAssign(CategoryAssignRequest request);
         Task<ProductUpdateRequest> GetById(int id);
         Task<List<ProductViewModel>> GetFeaturedProducts();
-
         Task<PageResponse<ProductImageViewModel>> GetProductImages(int productId, QueryParamRequest request);
+        Task<bool> AddImage(ProductImageCreateRequest request);
+        Task<bool> ChangeThumbnail(int imageId, int productId);
     }
 }

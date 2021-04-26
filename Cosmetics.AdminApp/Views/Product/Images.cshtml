@@ -3,15 +3,17 @@
 @{
     ViewData["Title"] = "Ảnh sản phẩm";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var productId = ViewBag.ProductId;
 }
 
 @inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
 
+
 <div class="container-fluid">
-    <h1 class="mt-4">Products</h1>
+    <h1 class="mt-4">Ảnh sản phẩm</h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Dashboard</a></li>
-        <li class="breadcrumb-item active">Product images</li>
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Trung tâm điều khiển</a></li>
+        <li class="breadcrumb-item active">Ảnh sản phẩm </li>
     </ol>
 
     <div class="card mb-12">
@@ -42,43 +44,54 @@
             <div class="table-responsive">
                 <table class="table table-bordered border-dark">
                     <thead class="m-0">
-                        <tr>
-                            <th>
+                        <tr class="d-flex">
+                            <th style="flex: 0.3">
                                 Id
                             </th>
 
-                            <th>
+                            <th style="flex: 1">
                                 Ảnh
                             </th>
-                            <th>
+                            <th style="flex: 2">
                                 Chú thích
                             </th>
-                            <th>
+                            <th style="flex: 1">
                                 Thumbnail
                             </th>
-                            <th>Chức năng</th>
+                            <th style="flex: 1">Chức năng</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model.Items)
                         {
-                            <tr>
-                                <td>
+                            <tr class="d-flex">
+                                <td style="flex: 0.3">
                                     @Html.DisplayFor(modelItem => item.Id)
                                 </td>
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ImagePath)
+                                <td style="flex: 1" class="d-flex justify-content-center">
+                                    <img width="auto" height="100px"
+                                         src="@Configuration["BaseImageAddress"]@item.ImagePath" title="ảnh sản phẩm" />
                                 </td>
-                                <td>
+                                <td style="flex: 2">
                                     @Html.DisplayFor(modelItem => item.Caption)
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.IsDefault)
+                                <td style="flex: 1">
+                                    @if (item.IsDefault)
+                                    {
+                                        <input type="checkbox" checked="@item.IsDefault" disabled style="width:20px;height:20px" />
+                                    }
+                                    else
+                                    {
+                                        <button onclick="getChangeId(@item.Id)" data-target="#change_thumbnail" data-toggle="modal" class="d-block  btn-outline-dark">
+                                            Chọn
+                                        </button>
+
+
+                                    }
                                 </td>
-                                <td>
+                                <td style="flex: 1">
                                     @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                                     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
                                 </td>
                             </tr>
@@ -91,21 +104,21 @@
 
             <!-- Button trigger modal -->
             <!-- Modal -->
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal fade" id="change_thumbnail" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalCenterTitle">Xóa sản phẩm</h5>
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Chọn ảnh thumbnail</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            Bạn có chắc chắn muốn xóa sản sản phẩm này?
+                            Bạn có chắc chắn muốn chọn ảnh này làm thumbnail?
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                            <button type="submit" class="btn btn-danger" data-dismiss="modal" id="delete_submit_btn">Xóa</button>
+                            <button type="submit" class="btn btn-success" data-dismiss="modal" id="change_btn">Xác nhận</button>
 
                         </div>
                     </div>
@@ -114,3 +127,36 @@
         </div>
     </div>
 </div>
+@section Scripts{
+    <script>
+        setTimeout(() => $('#msgAlert').fadeOut('slow'), 1500)
+    </script>
+    <script>
+        var change_id = -1;
+        const getChangeId = (id) => change_id = id;
+        $('#change_btn').on('click', () => {
+
+            $.ajax(
+                {
+                    type: "PUT",
+                    url: `images/${change_id}/thumbnail`,
+                    dataType: "text",
+                    data: { imageId: change_id,productId: @productId },
+                    async: true,
+                    success: function (response) {
+                        location.reload();
+
+                    },
+                    failure: function (response) {
+                        alert('false')
+
+                    },
+                    error: function (response) {
+                        alert('error')
+
+                    }
+                });
+        })
+
+    </script>
+}
