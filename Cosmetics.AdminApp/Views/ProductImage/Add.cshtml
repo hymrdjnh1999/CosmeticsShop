@@ -5,6 +5,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+
 @section Scripts{
     <script type="text/javascript">
         // Add the following code if you want the name of the file appear on select
@@ -31,19 +33,19 @@
     </script>
 }
 <div class="container-fluid">
-    <h1 class="mt-4">Products</h1>
+    <h1 class="mt-4">Thêm ảnh sản phẩm</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a href="#" onclick="redirectToAction()">Danh sách ảnh sản phẩm</a></li>
-        <li class="breadcrumb-item active">Create new product</li>
+        <li class="breadcrumb-item active">Thêm ảnh mới</li>
     </ol>
 
     <div class="card mb-4">
         <div class="card-header d-flex justify-content-between">
             <div>
-                <a asp-action="Index" asp-controller="Product" class="btn btn-outline-dark">Back to product list</a>
+                <a href="#" onclick="redirectToAction()" class="btn btn-outline-dark">Quay lại </a>
             </div>
             <label for="add-product-image-btn" class="btn btn-outline-dark px-4">
-                Create
+                Tạo mới
             </label>
         </div>
         <div class="card-body">
@@ -55,16 +57,16 @@
                         <input asp-for="ProductId" class="form-control" type="hidden" />
                     </div>
                     <div class="form-group">
-                        <label asp-for="Caption" class="control-label"></label>
-                        <input type="text" asp-for="Caption" class="form-control" />
+                        <label class="control-label">Chú thích</label>
+                        <input placeholder="Nhập chú thích" type="text" asp-for="Caption" class="form-control" />
                         <span asp-validation-for="Caption" class="text-danger"></span>
                     </div>
                     <div class="w-100 justify-content-end">
                         <div class="form-group">
-                            <label asp-for="ImageFile" class="control-label"></label>
+                            <label  class="control-label">Ảnh</label>
                             <div class="custom-file">
                                 <input asp-for="ImageFile" accept="image/*" class="custom-file-input" id="customFile">
-                                <label class="custom-file-label" for="customFile">Edit thumbnail</label>
+                                <label class="custom-file-label" for="customFile">Chọn ảnh</label>
                             </div>
                             <span asp-validation-for="ImageFile" class="text-danger"></span>
                         </div>
@@ -72,7 +74,7 @@
                             <img id="impPrev" class="mw-100" style="height:auto" />
                         </div>
                     </div>
-                    <input class="" type="submit" id="add-product-image-btn" />
+                    <input class="d-none" type="submit" id="add-product-image-btn" />
                 </form>
             </div>
         </div>

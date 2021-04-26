@@ -112,16 +112,14 @@
                                 </td>
                                 <td class="d-flex align-items-center" style="flex: 1">
                                     @*@Html.ActionLink("Edit", "Update", new { id = item.Id })*@
-                                    <a class="d-block" href="@Url.Action("Update","Product")/@item.Id">
+                                    <a class="d-block mr-2" href="@Url.Action("Update","Product")/@item.Id">
                                         <i style="width:22px;height:22px" class="fas fa-edit"></i>
                                     </a>
-
-                                    <a class="d-block" href="Product/@item.Id/images">
+                                    <a class="d-block mr-2" href="Product/@item.Id/images">
                                         <i style="width:22px;height:22px" class="fas fa-image"></i>
                                     </a>
                                     @if (isManager)
                                     {
-                                        <span class="mx-2">|</span>
                                         <button onclick="getValue(@item.Id)" data-target="#exampleModalCenter" data-toggle="modal" class="d-block text-danger btn-delete">
                                             <i style="width:22px;height:22px" class="fas fa-trash"></i>
                                         </button>

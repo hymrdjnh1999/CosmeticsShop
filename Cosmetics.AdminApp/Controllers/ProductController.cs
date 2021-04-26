@@ -5,7 +5,6 @@ using CosmeticsShop.Api_Intergration;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -96,10 +95,7 @@ namespace Cosmetics.AdminApp.Controllers
             request.CategoriesAssignRequest = categories;
             return View(request);
         }
-        public class DeleteRequest
-        {
-            public int product_id;
-        }
+
         [HttpPost]
         public async Task Delete(int id)
         {
@@ -111,8 +107,9 @@ namespace Cosmetics.AdminApp.Controllers
                 RedirectToAction("Index");
             }
 
-            RedirectToAction("Index");
+            RedirectToAction("Error", "Home");
         }
+
 
         [HttpGet]
         public async Task<IActionResult> Update(int id)
@@ -122,6 +119,21 @@ namespace Cosmetics.AdminApp.Controllers
             product.CategoriesAssignRequest = categoryAssignRequest.Categories;
             product.SelectedId = categoryAssignRequest.SelectedCategories;
             return View(product);
+        }
+
+
+        [HttpPut("product/{productId}/images/{imageId}/thumbnail")]
+        public async Task<IActionResult> ChangeThumbnail(int imageId, int productId)
+        {
+            if (imageId > 0)
+            {
+                var result = await _productApiClient.ChangeThumbnail(imageId, productId);
+                if (result)
+                    TempData["result"] = "Cập nhật thành công!";
+                return Redirect("/");
+            }
+
+            return RedirectToAction("Error", "Home");
         }
 
         [HttpGet("product/{id}/images")]
@@ -135,6 +147,10 @@ namespace Cosmetics.AdminApp.Controllers
 
             var images = await _productApiClient.GetProductImages(id, request);
             ViewBag.ProductId = id;
+            if (TempData["result"] != null)
+            {
+                ViewBag.SuccessMsg = TempData["result"];
+            }
             return View(images);
         }
 
