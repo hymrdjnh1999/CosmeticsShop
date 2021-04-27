@@ -203,7 +203,7 @@ namespace CosmeticsShop.Data.Extentions
                 new IdentityUserRole<Guid>()
                 {
                     UserId = new Guid(HAIANH_ID),
-                    RoleId = new Guid(ROLE_ID2)
+                    RoleId = new Guid(ROLE_ID)
                 },
                 new IdentityUserRole<Guid>()
                 {
