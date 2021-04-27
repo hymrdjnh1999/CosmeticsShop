@@ -8,13 +8,13 @@
 <div class="container-fluid">
     <h1 class="mt-4">User</h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="User">User List</a></li>
-        <li class="breadcrumb-item active">User Details</li>
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="User">Danh Sách Người Dùng</a></li>
+        <li class="breadcrumb-item active">Chi Tiết Người Dùng</li>
     </ol>
 
     <div class="card mb-4">
         <div class="card-header d-flex justify-content-start">
-            <a asp-action="Index" asp-controller="User" class="btn btn-outline-dark">Back to user list</a>
+            <a asp-action="Index" asp-controller="User" class="btn btn-outline-dark"><i class="fas fa-chevron-left back-list-product mr-2"></i>Về danh sách người dùng</a>
         </div>
         <div class="card-body">
             <div class="col-12">
@@ -24,12 +24,12 @@
 
                     <div class=" row">
                         <div class="form-group col-6">
-                            <label asp-for="UserName" class="control-label font-weight-bold"></label>
+                            <label asp-for="UserName" class="control-label font-weight-bold">Tên Người Dùng</label>
                             <input asp-for="UserName" disabled class="form-control" />
                             <span asp-validation-for="UserName" class="text-danger"></span>
                         </div>
                         <div class="form-group col-6">
-                            <label class="control-label  font-weight-bold">Roles</label>
+                            <label class="control-label  font-weight-bold">Vai Trò</label>
                             <div class="d-flex align-items-center">
                                 @for (int i = 0; i < Model.RoleAssignRequest.Count; i++)
                                 {
@@ -49,13 +49,13 @@
 
                     <div class="row">
                         <div class="form-group col-6">
-                            <label asp-for="Name" class="control-label font-weight-bold"></label>
+                            <label asp-for="Name" class="control-label font-weight-bold">Tên</label>
                             <input asp-for="Name" class="form-control" />
                             <span asp-validation-for="Name" class="text-danger"></span>
                         </div>
 
                         <div class="form-group col-6">
-                            <label asp-for="Email" class="control-label font-weight-bold"></label>
+                            <label asp-for="Email" class="control-label font-weight-bold">Email</label>
                             <input asp-for="Email" disabled class="form-control" />
                             <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
@@ -63,18 +63,18 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-6">
-                            <label asp-for="Dob" class="control-label font-weight-bold"></label>
+                            <label asp-for="Dob" class="control-label font-weight-bold">Ngày Sinh</label>
                             <input asp-for="Dob" class="form-control" />
                             <span asp-validation-for="Dob" class="text-danger"></span>
                         </div>
                         <div class="form-group col-6">
-                            <label asp-for="PhoneNumber" class="control-label font-weight-bold"></label>
+                            <label asp-for="PhoneNumber" class="control-label font-weight-bold">Số Điện Thoại</label>
                             <input asp-for="PhoneNumber" class="form-control" />
                             <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <input type="submit" value="Update" class="btn btn-outline-dark" />
+                        <input type="submit" value="Cập Nhật" class="btn btn-outline-dark" />
                     </div>
                 </form>
 

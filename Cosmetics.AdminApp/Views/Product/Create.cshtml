@@ -6,26 +6,53 @@
 }
 
 @section Scripts {
- <script src="https://cdn.ckeditor.com/ckeditor5/27.0.0/classic/ckeditor.js"></script>
- <script>
-     ClassicEditor
-         .create(document.querySelector('#productDetails'))
-         .then(editor => {
-             console.log(editor);
-         })
-         .catch(error => {
-             console.error(error);
-         }); 
-     ClassicEditor
-         .create(document.querySelector('#productDescription'))
-         .then(editor => {
-             console.log(editor);
-         })
-         .catch(error => {
-             console.error(error);
-         });
- </script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/27.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#productDetails'))
+            .then(editor => {
+                console.log(editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        ClassicEditor
+            .create(document.querySelector('#productDescription'))
+            .then(editor => {
+                console.log(editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+    <script type="text/javascript">
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+
+    <script type="text/javascript" src="~/js/chosen.jquery.min.js"></script>
+
+    <script>
+        $('#updateProductBtnForm').on('Click').submit();
+        const handleOnChange = () => {
+            alert('test');
+        }
+        $(function () {
+            //normal dropdown
+            //$("#normalDropDown").chosen({
+            //    disable_search_threshold : 5
+            //});
+            //multiselect DropDown
+            $("#multiSelectCreate").chosen({
+                width: "100%"
+            });
+        });
+    </script>
 }
+
 <div class="container-fluid">
     <h1 class="mt-4">Products</h1>
     <ol class="breadcrumb mb-4">
@@ -38,14 +65,15 @@
             <div>
                 <a asp-action="Index" asp-controller="Product" class="btn btn-outline-dark">Back to product list</a>
             </div>
-                <label for="create-product-btn" class="btn btn-outline-dark px-4">
-                    Create
-                </label>
+            <label for="create-product-btn" class="btn btn-outline-dark px-4">
+                Create
+            </label>
         </div>
         <div class="card-body">
-            <div >
+            <div>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <form asp-action="Create" class="row" enctype="multipart/form-data" method="post">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
                     <div class="form-group col-6">
                         <label asp-for="Name" class="control-label"></label>
                         <input asp-for="Name" class="form-control" placeholder="Enter product name" />
@@ -63,10 +91,24 @@
                         <input type="number" asp-for="Price" class="form-control" placeholder="Enter product price" />
                         <span asp-validation-for="Price" class="text-danger"></span>
                     </div>
-                    <div class="form-group col-6">
-                        <label asp-for="OriginalPrice" class="control-label"></label>
-                        <input type="number" asp-for="OriginalPrice" class="form-control" placeholder="Enter original price" />
-                        <span asp-validation-for="OriginalPrice" class="text-danger"></span>
+                    <div class="d-flex col-6 row">
+                        <div class="form-group col-8">
+                            <label asp-for="OriginalPrice" class="control-label"></label>
+                            <input type="number" asp-for="OriginalPrice" class="form-control" placeholder="Enter original price" />
+                            <span asp-validation-for="OriginalPrice" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-4">
+                            <label asp-for="ForGender" class="control-label mr-2"></label>
+                            <div>
+                                <select class="form-select p-1" aria-label="Default select example" asp-for="ForGender">
+                                    <option value="" selected>Select gender</option>
+                                    <option value="1">Male</option>
+                                    <option value="2">Female</option>
+                                    <option value="3">Both</option>
+                                </select>
+                            </div>
+                            <span asp-validation-for="ForGender" class="text-danger"></span>
+                        </div>
                     </div>
                     <div class="form-group col-6">
                         <label asp-for="Stock" class="control-label"></label>
@@ -93,28 +135,28 @@
                         <span asp-validation-for="Description" class="text-danger"></span>
                     </div>
 
-                    <div class="form-group col-6">
-                        <label asp-for="ThumbnailImage" class="control-label"></label>
-                        <input accept="image/*" type="file" asp-for="ThumbnailImage" class="form-control-file"/>
-                        <span asp-validation-for="ThumbnailImage" class="text-danger"></span>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label asp-for="ThumbnailImage" class="control-label"></label>
+                            <div class="custom-file">
+                                <input accept="image/" asp-for="ThumbnailImage" class="custom-file-input" id="customFile">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                            <span asp-validation-for="ThumbnailImage" class="text-danger"></span>
+                        </div>
+
                     </div>
-                    <div class="form-group col-6">
-                        <label asp-for="ForGender" class="control-label mr-2"></label>
-                        <select class="form-select p-1" aria-label="Default select example" asp-for="ForGender">
-                            <option value="" selected>Select gender</option>
-                            <option value="1">Male</option>
-                            <option value="2">Female</option>
-                            <option value="3">Both</option>
-                        </select>
-                        <span asp-validation-for="ForGender" class="text-danger"></span>
+                    <div class="form-group col-6 offset-3">
+                        <label for="create-product-btn" class="btn btn-outline-dark col-12 px-4 mt-4">
+                            Create
+                        </label>
                     </div>
                     <div class="d-none">
-                        <input type="submit" value="Create" id="create-product-btn"  class="btn btn-outline-dark px-xl-5" />
+                        <input type="submit" value="Create" id="create-product-btn" class="btn btn-outline-dark px-xl-5" />
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
 

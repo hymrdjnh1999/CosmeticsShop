@@ -16,17 +16,17 @@
     <h1 class="mt-4">Products</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Dashboard</a></li>
-        <li class="breadcrumb-item active">Product List</li>
+        <li class="breadcrumb-item active">Danh Sách Sản Phẩm</li>
     </ol>
 
     <div class="card mb-12">
         <div class="card-header d-flex justify-content-between">
             <form asp-action="Index" method="get">
-                <div class="form-outline mb-4 d-flex">
-                    <input name="keyword" value="@ViewBag.Keyword" type="text" id="productSearchBox" placeholder="Search here..." class="form-control  border-dark" />
+                <div class="form-outline my-2 d-flex">
+                    <input name="keyword" value="@ViewBag.Keyword" type="text" id="productSearchBox" placeholder="Tìm kiếm..." class="form-control  border-dark" />
                     <input asp-for="PageSize" value="@Model.PageSize" type="hidden" />
                     <select onchange="this.form.submit()" name="CategoryId" asp-items="@ViewBag.Categories" class="mx-2 border-dark">
-                        <option>---Select Category---</option>
+                        <option>---Lựa chọn danh mục---</option>
                     </select>
                     <button type="submit" class="btn btn-outline-dark ml-2">
                         <i class="fas fa-search"></i>
@@ -34,10 +34,10 @@
                 </div>
             </form>
 
-            <div>
+            <div class="my-2">
                 <a asp-action="Create" asp-controller="Product" class="btn btn-outline-dark ">
                     <i class="fas fa-plus mr-2"></i>
-                    Create new product
+                    Tạo Mới Sản Phẩm
                 </a>
             </div>
 
@@ -54,66 +54,122 @@
             <div class="d-flex w-25 align-items-center mb-3">
                 @await Component.InvokeAsync("ChangePageSize", Model)
             </div>
-            <div class="table-responsive">
-                <table class="table table-bordered border-dark">
-                    <thead class="m-0">
+            @* <div class="table-responsive">
+            <table class="table table-bordered border-dark">
+                <thead class="m-0">
+                    <tr class="d-flex">
+
+                        <th style="flex: 1" scope="col">Thumbnail</th>
+                        <th style="flex: 2" scope="col">
+                            Name
+                        </th>
+                        <th style="flex: 0.7" scope="col">
+                            Price
+                        </th>
+                        <th style="flex: 0.7" scope="col">
+                            Original Price
+                        </th>
+                        <th style="flex: 0.7" scope="col">
+                            Stock
+                        </th>
+                        <th style="flex: 0.7" scope="col">
+                            Original country
+                        </th>
+                        <th style="flex: 1" scope="col">
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
                         <tr class="d-flex">
 
-                            <th style="flex: 1" scope="col">Thumbnail</th>
-                            <th style="flex: 2" scope="col">
-                                Name
-                            </th>
-                            <th style="flex: 0.7" scope="col">
-                                Price
-                            </th>
-                            <th style="flex: 0.7" scope="col">
-                                Original Price
-                            </th>
-                            <th style="flex: 0.7" scope="col">
-                                Stock
-                            </th>
-                            <th style="flex: 0.7" scope="col">
-                                Original country
-                            </th>
-                            <th style="flex: 1" scope="col">
-                                Actions
-                            </th>
+                            <td style="flex: 1">
+                                <img width="100%" height="80px"
+                                     src="@Configuration["BaseImageAddress"]@item.ImagePath" alt="@item.Name" />
+                            </td>
+                            <td class="d-flex align-items-center" style="flex: 2">
+                                @Html.ActionLink(item.Name, "Details", new { id = item.Id })
+                            </td>
+                            <td class="d-flex align-items-center" style="flex: 0.7">
+                                @Html.DisplayFor(modelItem => item.Price)
+                            </td>
+                            <td class="d-flex align-items-center" style="flex: 0.7">
+                                @Html.DisplayFor(modelItem => item.OriginalPrice)
+                            </td>
+                            <td class="d-flex align-items-center" style="flex: 0.7">
+                                @Html.DisplayFor(modelItem => item.Stock)
+                            </td>
+                            <td class="d-flex align-items-center" style="flex: 0.7">
+                                @Html.DisplayFor(modelItem => item.OriginalCountry)
+                            </td>
+                            <td class="d-flex align-items-center" style="flex: 1">
+                                @Html.ActionLink("Edit", "Details", new { id = item.Id }) <span class="mx-2">|</span>
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.Items)
-                        {
-                            <tr class="d-flex">
+                    }
+                </tbody>
+            </table>
+        </div>*@
+            <div class="container-fluid">
+                <div class="container   ">
 
-                                <td style="flex: 1">
-                                    <img width="100%" height="80px"
-                                         src="@Configuration["BaseImageAddress"]@item.ImagePath" alt="@item.Name" />
-                                </td>
-                                <td class="d-flex align-items-center" style="flex: 2">
-                                    @Html.ActionLink(item.Name, "Details", new { id = item.Id })
-                                </td>
-                                <td class="d-flex align-items-center" style="flex: 0.7">
-                                    @Html.DisplayFor(modelItem => item.Price)
-                                </td>
-                                <td class="d-flex align-items-center" style="flex: 0.7">
-                                    @Html.DisplayFor(modelItem => item.OriginalPrice)
-                                </td>
-                                <td class="d-flex align-items-center" style="flex: 0.7">
-                                    @Html.DisplayFor(modelItem => item.Stock)
-                                </td>
-                                <td class="d-flex align-items-center" style="flex: 0.7">
-                                    @Html.DisplayFor(modelItem => item.OriginalCountry)
-                                </td>
-                                <td class="d-flex align-items-center" style="flex: 1">
-                                    @Html.ActionLink("Edit", "Details", new { id = item.Id }) <span class="mx-2">|</span>
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+
+                    <div class="row list-product-dark font-weight-bold text-white text-capitalize" >
+                        <div class="col col-2"> Ảnh Thu Nhỏ</div>
+                        <div class="col col-2"> Tên</div>
+                        <div class="col col-2"> Giá Bán</div>
+                        <div class="col col-2"> Giá Gốc</div>
+                        <div class="col col-1"> Kho</div>
+                        <div class="col col-1"> Xuất xứ</div>
+                        <div class="col col-2"> Tác Vụ</div>
+                    </div>
+                    @foreach (var item in Model.Items)
+                    {
+                        <div class="row list-product text-decoration-none text-break ">
+                            <div class="col col-2">
+                                <img class="w-75" 
+                                     src="@Configuration["BaseImageAddress"]@item.ImagePath" alt="@item.Name" />
+                            </div>
+                            <div class="col col-2">
+                                <a class="" href="Product/Details/@item.Id">@item.Name</a>
+                            </div>
+                            <div class="col col-2"> @Html.DisplayFor(modelItem => item.Price)</div>
+                            <div class="col col-2"> @Html.DisplayFor(modelItem => item.OriginalPrice)</div>
+                            <div class="col col-1"> @Html.DisplayFor(modelItem => item.Stock)</div>
+                            <div class="col col-1"> @Html.DisplayFor(modelItem => item.OriginalCountry)</div>
+                            <div class="col col-2">
+                                @Html.ActionLink("Sửa", "Details", new { id = item.Id }) <span class="mx-2">|</span>
+                                @Html.ActionLink("Xóa", "Delete", new { id = item.Id })
+                            </div>
+                        </div>
+                    }
+                        
+                    </div>
+                <!-- <div class="container d-flex">
+            <div class="row d-flex flex-wrap">
+                <div class="col">
+                    1 of 2
+                </div>
+                <div class="col">
+                    2 of 2
+                </div>
             </div>
-
+            <div class="row d-flex flex-wrap">
+                <div class="col">
+                    1 of 3
+                </div>
+                <div class="col">
+                    2 of 3
+                </div>
+                <div class="col">
+                    3 of 3
+                </div>
+            </div>
+        </div> -->
+            </div>
             @await Component.InvokeAsync("Pager", Model)
         </div>
     </div>

@@ -16,14 +16,14 @@
     <h1 class="mt-4">Products</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Dashboard</a></li>
-        <li class="breadcrumb-item active">Category List</li>
+        <li class="breadcrumb-item active">Danh Sách Danh Mục</li>
     </ol>
 
     <div class="card mb-12">
         <div class="card-header d-flex justify-content-between">
             <form asp-action="Index" method="get">
                 <div class="form-outline mb-4 d-flex">
-                    <input name="keyword" value="@ViewBag.Keyword" type="text" id="categorySearchBox" placeholder="Search here..." class="form-control  border-dark" />
+                    <input name="keyword" value="@ViewBag.Keyword" type="text" id="categorySearchBox" placeholder="Tìm kiếm..." class="form-control  border-dark" />
                     <input asp-for="PageSize" value="@Model.PageSize" type="hidden" />
                     <button type="submit" class="btn btn-outline-dark ml-2">
                         <i class="fas fa-search"></i>
@@ -34,7 +34,7 @@
             <div>
                 <a asp-action="Create" asp-controller="Category" class="btn btn-outline-dark ">
                     <i class="fas fa-plus mr-2"></i>
-                    Create new category
+                    Tạo Danh Mục Mới
                 </a>
             </div>
 
@@ -59,13 +59,13 @@
                                 Id
                             </th>
                             <th scope="col">
-                                Name
+                                Tên
                             </th>
                             <th scope="col">
-                                Status
+                                Trạng Thái
                             </th>
                             <th style="flex: 0.7" scope="col">
-                                Actions
+                                Tác Vụ
                             </th>
                         </tr>
                     </thead>
@@ -84,11 +84,11 @@
                                 </td>
                                 <td class="d-flex align-items-center" style="flex: 1">
                                     <span class="actions-btn">
-                                        @Html.ActionLink("Edit", "Details", new { id = Model.Items[count].Id })
+                                        @Html.ActionLink("Sửa", "Details", new { id = Model.Items[count].Id })
                                     </span> 
                                     <span class="mx-2">|</span>
                                     <span  class="actions-btn">
-                                        @Html.ActionLink("Delete", "Delete", new { id = Model.Items[count].Id })
+                                        @Html.ActionLink("Xóa", "Delete", new { id = Model.Items[count].Id })
 
                                     </span>
                                 </td>
