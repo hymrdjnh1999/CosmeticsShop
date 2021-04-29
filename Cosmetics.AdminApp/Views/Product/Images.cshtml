@@ -37,6 +37,14 @@
                     </div>
                 </div>
             }
+            @if (ViewBag.ErrorMsg != null)
+            {
+                <div class="d-flex justify-content-center">
+                    <div id="msgAlert" class="alert alert-danger w-25" role="alert">
+                        @ViewBag.ErrorMsg
+                    </div>
+                </div>
+            }
             <div class="d-flex w-25 align-items-center mb-3">
                 <input asp-for="PageSize" value="@Model.PageSize" type="hidden" />
                 @await Component.InvokeAsync("ChangePageSize", Model)
@@ -83,7 +91,7 @@
                                     }
                                     else
                                     {
-                                        <button onclick="getChangeId(@item.Id)" data-target="#change_thumbnail" data-toggle="modal" class="d-block  btn-outline-dark">
+                                        <button onclick="getImageId(@item.Id)" data-target="#change_thumbnail" data-toggle="modal" class="d-block  btn-outline-dark">
                                             Chọn
                                         </button>
 
@@ -91,8 +99,10 @@
                                     }
                                 </td>
                                 <td style="flex: 1">
-                                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                    <span class=" btn btn-outline-info p-1" onclick="redirectToEdit(@item.Id)">Sửa</span>
+                                    <button onclick="getImageId(@item.Id)" data-target="#deleteModal" data-toggle="modal" class="p-1 d-inline-block btn btn-outline-danger">
+                                        Xóa
+                                    </button>
                                 </td>
                             </tr>
                         }
@@ -101,7 +111,26 @@
             </div>
 
             @await Component.InvokeAsync("Pager", Model)
+            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteModalTitle">Xác nhận xóa ảnh</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Bạn có chắc chắn muốn xóa ảnh này?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                            <button type="submit" class="btn btn-danger" data-dismiss="modal" id="deleteImage">Xóa</button>
 
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- Button trigger modal -->
             <!-- Modal -->
             <div class="modal fade" id="change_thumbnail" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -128,20 +157,27 @@
     </div>
 </div>
 @section Scripts{
+
+    <script>
+        const redirectToEdit = (imageId) => {
+            const productImages = `/product/images/${imageId}/edit?productId=${@productId}`
+            return window.location.assign(productImages)
+        }
+    </script>
     <script>
         setTimeout(() => $('#msgAlert').fadeOut('slow'), 1500)
     </script>
     <script>
-        var change_id = -1;
-        const getChangeId = (id) => change_id = id;
+        let imageId = -1;
+        const getImageId = (id) => imageId = id;
         $('#change_btn').on('click', () => {
 
             $.ajax(
                 {
                     type: "PUT",
-                    url: `images/${change_id}/thumbnail`,
+                    url: `images/${imageId}/thumbnail`,
                     dataType: "text",
-                    data: { imageId: change_id,productId: @productId },
+                    data: { imageId,productId: @productId },
                     async: true,
                     success: function (response) {
                         location.reload();
@@ -157,6 +193,27 @@
                     }
                 });
         })
+        $('#deleteImage').on('click', () => {
+            $.ajax(
+                {
+                    type: "DELETE",
+                    url: `/product/${@productId}/images?imageId=${imageId}`,
+                    dataType: "text",
+                    data: { imageId },
+                    async: true,
+                    success: function (response) {
+                        location.reload();
 
+                    },
+                    failure: function (response) {
+                        alert('false')
+
+                    },
+                    error: function (response) {
+                        alert('error')
+
+                    }
+                });
+        })
     </script>
 }

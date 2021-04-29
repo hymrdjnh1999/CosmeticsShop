@@ -151,6 +151,10 @@ namespace Cosmetics.AdminApp.Controllers
             {
                 ViewBag.SuccessMsg = TempData["result"];
             }
+            if (TempData["error"] != null)
+            {
+                ViewBag.ErrorMsg = TempData["error"];
+            }
             return View(images);
         }
 
@@ -162,7 +166,7 @@ namespace Cosmetics.AdminApp.Controllers
             if (!ModelState.IsValid)
             {
                 request.CategoriesAssignRequest = categoryAssignRequest.Categories;
-                ModelState.AddModelError("", "Update product failed!");
+                ModelState.AddModelError("", "Cập nhập thông tin sản phẩm không thành công!");
                 return View(request);
             }
 
@@ -179,7 +183,7 @@ namespace Cosmetics.AdminApp.Controllers
                 var categoryAssignResult = await _productApiClient.CategoryAssign(categoryRequest);
                 if (categoryAssignResult.IsSuccess)
                 {
-                    TempData["result"] = "Update product successfully!";
+                    TempData["result"] = "Cập nhật sản phẩm thành công!";
                     return RedirectToAction("Index");
                 }
 

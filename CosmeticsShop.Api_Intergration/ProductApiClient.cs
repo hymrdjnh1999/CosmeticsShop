@@ -181,6 +181,16 @@ namespace CosmeticsShop.Api_Intergration
             return response;
         }
 
+        public async Task<ProductImageViewModel> GetImageById(int productId, int imageId)
+        {
+            var requestUrl = $"/api/products/{productId}/images/{imageId}";
+
+            var image = await GetAsync<ProductImageViewModel>(requestUrl);
+
+            return image;
+        }
+
+
         public async Task<List<ProductViewModel>> GetFeaturedProducts()
         {
             var requestUrl = $"/api/products/featured";
@@ -255,6 +265,61 @@ namespace CosmeticsShop.Api_Intergration
             var response = await client.PutAsync($"/api/products/{request.Id}", requestContent);
 
             return response.IsSuccessStatusCode;
+        }
+
+        public async Task<bool> UpdateProductImage(ProductImageUpdateRequest request)
+        {
+            var sessions = _httpContextAccessor
+             .HttpContext
+             .Session
+             .GetString(SystemConstants.AppSettings.Token);
+
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration[SystemConstants.AppSettings.BaseAddress]);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+
+            var requestContent = new MultipartFormDataContent();
+            if (request.ImageFile != null)
+            {
+                byte[] data;
+                using (var br = new BinaryReader(request.ImageFile.OpenReadStream()))
+                {
+                    data = br.ReadBytes((int)request.ImageFile.OpenReadStream().Length);
+                }
+                ByteArrayContent bytes = new ByteArrayContent(data);
+                requestContent.Add(bytes, "imageFile", request.ImageFile.FileName);
+            }
+
+            var contentJs = new StringContent((request.Caption ?? "").ToString());
+            requestContent.Add(contentJs, "caption");
+
+
+            var response = await client.PutAsync($"/api/products/images/{request.Id}", requestContent);
+            if (response.IsSuccessStatusCode)
+                return true;
+
+            return false;
+        }
+
+        public async Task<ApiResult<bool>> DeleteImage(int productId, int imageId)
+        {
+            var sessions = _httpContextAccessor
+             .HttpContext
+             .Session
+             .GetString(SystemConstants.AppSettings.Token);
+
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration[SystemConstants.AppSettings.BaseAddress]);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+
+            var response = await client.DeleteAsync($"/api/products/{productId}/images/{imageId}");
+            var result = await response.Content.ReadAsStringAsync();
+            if (!response.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<ApiErrorResult<bool>>(result); ;
+            }
+            return JsonConvert.DeserializeObject<ApiSuccessResult<bool>>(result);
+
         }
     }
 }

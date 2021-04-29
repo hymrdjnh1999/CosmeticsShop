@@ -357,12 +357,34 @@ namespace CosmeticsShop.Application.Catalog.Products
             };
             return response;
         }
-        public async Task<int> RemoveImage(int imageId)
+        public async Task<ApiResult<bool>> RemoveImage(int productId, int imageId)
         {
             var image = await _context.ProductImages.FindAsync(imageId);
-            if (image == null) throw new CosmeticsException($"Không tìm thấy ảnh với id: {imageId}");
+            var product = await _context.Products.FindAsync(productId);
+            if (image == null || product == null) return new ApiErrorResult<bool>("Không tìm thấy image");
+
+            var countProductImage = await _context.ProductImages.Where(x => x.ProductId == productId).CountAsync();
+
+            if (image.IsDefault && countProductImage > 1)
+            {
+                var ThumbnailNew = await _context.ProductImages.Where(x => !x.IsDefault).FirstOrDefaultAsync();
+                ThumbnailNew.IsDefault = true;
+            }
+
+            if (countProductImage == 1)
+            {
+
+                return new ApiSuccessResult<bool>() { IsSuccess = true, ResultObj = false, Message = "Không thể xóa hết ảnh của sản phẩm!" };
+            }
+
             _context.ProductImages.Remove(image);
-            return await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
+            return new ApiSuccessResult<bool>()
+            {
+                IsSuccess = true,
+                Message = "Xóa thành công",
+                ResultObj = true
+            };
         }
 
         public async Task<int> Update(ProductUpdateRequest request)
@@ -408,8 +430,6 @@ namespace CosmeticsShop.Application.Catalog.Products
             productImage.ImagePath = await SaveFile(request.ImageFile);
             productImage.FileSize = request.ImageFile.Length;
             productImage.Caption = request.Caption;
-            productImage.IsDefault = request.IsDefault;
-            productImage.SortOrder = request.SortOrder;
             _context.ProductImages.Update(productImage);
             return await _context.SaveChangesAsync();
         }

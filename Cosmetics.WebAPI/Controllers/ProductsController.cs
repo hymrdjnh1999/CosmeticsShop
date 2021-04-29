@@ -198,7 +198,7 @@ namespace Cosmetics.WebAPI.Controllers
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var affectedResult = await _productServices.ChangeThumbnail(productId,imageId);
+            var affectedResult = await _productServices.ChangeThumbnail(productId, imageId);
             if (!affectedResult)
             {
                 return BadRequest();
@@ -207,7 +207,7 @@ namespace Cosmetics.WebAPI.Controllers
             return Ok("Updated");
         }
 
-        [HttpPut("{productId}/images/{id}")]
+        [HttpPut("images/{id}")]
         [Authorize]
         public async Task<IActionResult> UpdateImage(int id, [FromForm] ProductImageUpdateRequest request)
         {
@@ -244,18 +244,17 @@ namespace Cosmetics.WebAPI.Controllers
 
         [HttpDelete("{productId}/images/{id}")]
         [Authorize]
-
-        public async Task<IActionResult> DeleteImage(int id)
+        public async Task<IActionResult> DeleteImage(int productId, int id)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var deleted = await _productServices.RemoveImage(id);
-            if (deleted == 0)
+            var result = await _productServices.RemoveImage(productId, id);
+            if (!result.IsSuccess)
             {
-                return BadRequest();
+                return BadRequest(result);
             }
 
-            return Ok("Deleted");
+            return Ok(result);
         }
 
     }

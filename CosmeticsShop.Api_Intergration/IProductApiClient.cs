@@ -21,5 +21,8 @@ namespace CosmeticsShop.Api_Intergration
         Task<PageResponse<ProductImageViewModel>> GetProductImages(int productId, QueryParamRequest request);
         Task<bool> AddImage(ProductImageCreateRequest request);
         Task<bool> ChangeThumbnail(int imageId, int productId);
+        Task<bool> UpdateProductImage(ProductImageUpdateRequest request);
+        Task<ProductImageViewModel> GetImageById(int productId, int imageId);
+        Task<ApiResult<bool>> DeleteImage(int productId, int imageId);
     }
 }
