@@ -3,3 +3,378 @@
     height: 10px;
     border-radius: 100%;
 }
+
+body{
+    margin-bottom: -60px;
+}
+
+/* Header */
+/* Announcement Bar*/
+
+#section-announcement {
+    background: #da2131;
+    color: #f2f3cf;
+    width: 100%;
+    height: 46.4px;
+}
+
+.announcementBar {
+    position: relative;
+    text-align: center;
+    z-index: 1;
+}
+
+.announcement__content {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.announcementBar__Wrapper {
+    padding: 12px 15px;
+}
+
+.announcementBar p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.navbar::after {
+    padding: 0px 0px;
+}
+
+.shopify-section--header {
+    position: relative;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    border-bottom: 1px solid #ccc;
+}
+
+/* VND */
+.header__wrapper {
+    font-family: "Space Grotesk", sans-serif;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    justify-content: space-between;
+    -webkit-box-pack: justify;
+    padding: 15px 50px 13px 50px;
+}
+
+
+.select {
+    position: relative;
+    color: currentColor;
+    line-height: 1;
+    vertical-align: middle;
+    width: 340px;
+}
+
+.select option {
+    background: white;
+    color: black;
+}
+
+.currencySelector__select {
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Logo */
+.header__logo {
+    position: relative;
+    margin-bottom: 0;
+    justify-content: center;
+}
+
+.header__logolink, .header__logoimage {
+    display: block;
+}
+
+.header__logoLink img::before {
+    vertical-align: unset;
+    border-style: none;
+}
+
+/* Horizontal List */
+
+.horizontalList {
+    list-style: none;
+    margin: 7px -8px;
+}
+
+.horizontalList--spacing .horizontalList__item {
+    margin-right: 14px;
+    margin-left: 14px;
+}
+
+.horizontalList__item {
+    display: inline-block;
+    margin: 6px 13px 6px 13px;
+}
+
+.horizontalList__spacing {
+    margin-left: -14px;
+    margin-right: -14px;
+}
+
+.horizontalList li a {
+    font-size: 13px;
+    color: #161616;
+    font-weight: 600;
+}
+
+.horizontalList li a:hover {
+    text-decoration: none;
+}
+.horizontalList--nav li a:hover {
+    text-decoration: none;
+}
+/* Horizontal Nav */
+.header__wrapper--nav {
+    font-family: "Space Grotesk", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.horizontalList--nav {
+    justify-content: center;
+    align-content: center;
+    color: black;
+    margin: 6px 37px 6px 8px;
+}
+
+.horizontalList__item--nav {
+    display: inline-block;
+    margin: 6px 20px 6px 20px;
+}
+
+.horizontalList__item--nav > a {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 14px;
+    color: black;
+}
+
+Linklist__Item > .Link {
+    display: block;
+    width: 100%;
+    text-align: inherit;
+}
+
+/*Container*/
+#main {
+    display: block;
+}
+.shopify-section--bordered > .section--spacingNormal {
+    padding: 80px 0;
+}
+
+.shopify-section--bordered {
+    border-top: 1px solid #d9d9d9;
+}
+h2 {
+    font-size: 24px;
+}
+.gird--product {
+    padding-left: 40px;
+    margin-bottom: 60px;
+    border: 1px solid black;
+}
+
+.gird--product img{
+    width: 327.8px;
+    height: 491.7px;
+}
+
+.productItem__wapper {
+    display: block;
+    position: relative;
+}
+
+.productItem__info {
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.productItem__title {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.productItem__info h2 a {
+    font-size: 16px;
+    color: black;
+    text-decoration: none;
+    display: block;
+    width: 327.8px;
+    word-wrap: break-word;
+}
+
+.price {
+    display: inline-block;
+}
+
+.text--subdued {
+    color: #cfa247;
+    font-family: 'Space Grotesk' sans-serif;
+    font-weight: 600;
+}
+
+.sectionFooter {
+/*    margin-top: 30px;*/
+    text-align: center;
+}
+
+.sectionFooter a , .linksection a{
+    text-decoration: none;
+    color: white;
+    border: 1px solid #1c1b1b;
+    background: #1c1b1b;
+    padding: 14px 28px;
+    font-size: 15px;
+    letter-spacing: 3px;
+    font-weight: 600;
+}
+
+.sectionFooter a:hover , .linksection a:hover{
+    color: black;
+    background: white;
+}
+
+.linksection {
+    padding-top: 30px;
+}
+
+.buttonRegister a{
+    text-decoration: none;
+    color: white;
+    border: 1px solid #1c1b1b;
+    background: #1c1b1b;
+    padding: 14px 28px;
+    font-size: 15px;
+    letter-spacing: 3px;
+    font-weight: 600;
+}
+.featureText--withImage {
+    display: table;
+    width: 100%;
+    text-align: justify;
+    table-layout: fixed;
+}
+.featureText__imageWrapper {
+    display: table-cell;
+    width: 50%;
+    vertical-align: middle;
+}
+
+.featureText__contentWrapperfeft {
+    padding-left: 100px;
+}
+
+.featureText__contentWrapperright {
+
+    margin-left: 180px;
+    padding-right: 100px;
+}
+
+.form__submit {
+    border-color: #000000;
+    color: #ffffff;
+}
+/*Footer*/
+.footer_Container {
+    background: black;
+    color: white;
+    padding: 75px 0 42px 0;
+}
+
+.footer_conent {
+    padding: 0 80px;
+}
+
+.footer__block:first-child {
+    margin-top: 0;
+}
+
+.footer__block {
+    margin-bottom: 50px;
+    flex: 0 1 auto;
+}
+
+.footer__title {
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.linklist {
+    list-style: none;
+    padding: 0;
+}
+
+.linklist__Item {
+    position: relative;
+    display: block;
+    margin-bottom: 12px;
+    width: 100%;
+    line-height: 1.5;
+    text-align: left;
+    color: #828489;
+}
+
+.link--primary {
+    font-size: 15px;
+    color: #828489;
+}
+
+.link--primary:hover {
+    text-decoration: none;
+    color: white;
+    transition: color 1s ease-in-out, opacity 1s ease-in-out;
+}
+
+.footer__content {
+    font-size: 15px;
+    color: #828489;
+}
+
+.footer__inner {
+    display: flex;
+}
+
+.rte a {
+    color: #dfb054;
+    text-decoration: none;
+}
+
+.rte a:hover {
+    color: white;
+}
+
+.bct-section {
+    border-top: 1px solid #2a2b2e;
+    padding: 50px 0 0 0;
+}
+
+.bct-section img{
+    width: 11%;
+    border: 0;
+}
+
+.img--footer{
+    width: 25%;
+}
+
+
+
+.footer-aside img:before {
+    border-style: none;
+}
+
+

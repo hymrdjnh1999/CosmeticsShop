@@ -1,20 +1,4 @@
 ﻿{
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:59131",
-      "sslPort": 44374
-    }
-  },
-  "profiles": {
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
     "Cosmetics.WebAPI": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
@@ -26,4 +10,3 @@
       }
     }
   }
-}
