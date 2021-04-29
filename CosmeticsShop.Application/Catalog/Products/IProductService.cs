@@ -23,7 +23,7 @@ namespace CosmeticsShop.Application.Catalog.Products
         Task<bool?> UpdateStock(int productId, int addedStock);
         Task<ProductUpdateRequest> GetById(int id);
         Task<int> AddImage(int productId, ProductImageCreateRequest request);
-        Task<int> RemoveImage(int imageId);
+        Task<ApiResult<bool>> RemoveImage(int productId, int imageId);
         Task<int> UpdateImage(int imageId, ProductImageUpdateRequest request);
         Task<List<ProductImageViewModel>> GetListImage(int productId);
         Task<ProductImageViewModel> GetImageById(int id);

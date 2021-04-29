@@ -1,11 +1,9 @@
-﻿@model Cosmetics.ViewModels.Catalogs.ProductImages.ProductImageCreateRequest
+﻿@model Cosmetics.ViewModels.Catalogs.ProductImages.ProductImageUpdateRequest
 
 @{
-    ViewData["Title"] = "Thêm ảnh cho sản phẩm";
+    ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
 
 @section Scripts{
     <script type="text/javascript">
@@ -28,18 +26,16 @@
     </script>
 
     <script>
+        const productImages = '/product/@Model.ProductId/images';
+        const redirectToAction = () => window.location.assign(productImages)
 
-        const redirectToAction = () => {
-            const productImages = '/product/@Model.ProductId/images';
-            return window.location.assign(productImages)
-        }
     </script>
 }
 <div class="container-fluid">
-    <h1 class="mt-4">Thêm ảnh sản phẩm</h1>
+    <h1 class="mt-4">Sửa ảnh sản phẩm</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a href="#" onclick="redirectToAction()">Danh sách ảnh sản phẩm</a></li>
-        <li class="breadcrumb-item active">Thêm ảnh mới</li>
+        <li class="breadcrumb-item active">Sửa ảnh</li>
     </ol>
 
     <div class="card mb-4">
@@ -47,18 +43,16 @@
             <div>
                 <a href="#" onclick="redirectToAction()" class="btn btn-outline-dark">Quay lại </a>
             </div>
-            <label for="add-product-image-btn" class="btn btn-outline-dark px-4">
-                Tạo mới
+            <label for="submitSaveProductI" class="btn btn-outline-dark px-4">
+                Lưu lại
             </label>
         </div>
         <div class="card-body">
             <div>
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <form asp-controller="ProductImage" method="post" asp-action="Add" enctype="multipart/form-data">
-                    <div class="form-group">
-
-                        <input asp-for="ProductId" class="form-control" type="hidden" />
-                    </div>
+                <form asp-action="Edit" enctype="multipart/form-data">
+                    <input asp-for="Id" type="hidden" class="form-control" />
+                    <input asp-for="ProductId" type="hidden" class="form-control" />
                     <div class="form-group">
                         <label class="control-label">Chú thích</label>
                         <input placeholder="Nhập chú thích" type="text" asp-for="Caption" class="form-control" />
@@ -77,10 +71,13 @@
                             <img id="impPrev" class="mw-100" style="height:auto" />
                         </div>
                     </div>
-                    <input class="d-none" type="submit" id="add-product-image-btn" />
+                    <div class="form-group">
+                        <input type="submit" id="submitSaveProductI" class="d-none" />
+                    </div>
                 </form>
             </div>
         </div>
     </div>
+
 </div>
 
