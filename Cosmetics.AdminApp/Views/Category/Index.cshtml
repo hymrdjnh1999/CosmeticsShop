@@ -5,11 +5,7 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@section Scripts{
-    <script>
-        setTimeout(() => $('#msgAlert').fadeOut('slow'), 1500)
-    </script>
-}
+
 
 @inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
 <div class="container-fluid">
@@ -69,8 +65,8 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody >
-                        @for (int count = 0; count <  Model.Items.Count; count++)
+                    <tbody>
+                        @for (int count = 0; count < Model.Items.Count; count++)
                         {
                             <tr class=" table-body @(count % 2 == 0 ? "table-body-active" : "" )">
                                 <td>
@@ -84,10 +80,11 @@
                                 </td>
                                 <td class="d-flex align-items-center" style="flex: 1">
                                     <span class="actions-btn">
-                                        @Html.ActionLink("Edit", "Details", new { id = Model.Items[count].Id })
-                                    </span> 
+                                        <span id="editCategoryBtn" onclick="editCategory(@Model.Items[count].Id)" class="btn btn-outline-info">Sửa</span>
+                                    </span>
                                     <span class="mx-2">|</span>
-                                    <span  class="actions-btn">
+                                    <span class="actions-btn">
+
                                         @Html.ActionLink("Delete", "Delete", new { id = Model.Items[count].Id })
 
                                     </span>
@@ -102,3 +99,12 @@
         </div>
     </div>
 </div>
+
+@section Scripts{
+    <script>
+        const editCategory = (categoryId) => window.location.assign(`category/${categoryId}`)
+    </script>
+    <script>
+        setTimeout(() => $('#msgAlert').fadeOut('slow'), 1500)
+    </script>
+}

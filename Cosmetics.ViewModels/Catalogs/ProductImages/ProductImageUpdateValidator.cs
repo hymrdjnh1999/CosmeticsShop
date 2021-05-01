@@ -11,9 +11,6 @@ namespace Cosmetics.ViewModels.Catalogs.ProductImages
     {
         public ProductImageUpdateValidator()
         {
-            RuleFor(x => x.ImageFile).NotEmpty()
-                .WithMessage("Ảnh sản phẩm không được để trống");
-
             RuleFor(x => x.Caption).NotEmpty()
                 .WithMessage("Chú thích không được để trống");
         }

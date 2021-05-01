@@ -1,3 +1,4 @@
+using Cosmetics.ViewModels.Catalogs.Categories;
 using Cosmetics.ViewModels.Catalogs.ProductImages;
 using Cosmetics.ViewModels.Catalogs.Products;
 using Cosmetics.ViewModels.Systems.Users;
@@ -65,6 +66,7 @@ namespace Cosmetics.AdminApp
             services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<UpdateProductValidator>());
             services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ProductImageCreateValidator>());
             services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ProductImageUpdateValidator>());
+            services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CategoryUpdateValidator>());
 
         }
 
