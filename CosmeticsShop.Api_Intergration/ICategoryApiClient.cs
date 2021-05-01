@@ -14,5 +14,7 @@ namespace CosmeticsShop.Api_Intergration
         Task<PageResponse<CategoryViewModel>> GetAllPaging(PaginateRequest request);
 
         Task<int> Create(CategoryCreateRequest request);
+        Task<bool> Edit(CategoryUpdateRequest request);
+        Task<CategoryViewModel> GetById(int id);
     }
 }

@@ -69,5 +69,21 @@ namespace Cosmetics.WebAPI.Controllers
 
             return CreatedAtAction(nameof(GetById), new { Id = categoryId }, categoryId);
         }
+
+        [HttpPut]
+        [Authorize]
+        public async Task<IActionResult> Edit([FromBody] CategoryUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _categoryService.Edit(request);
+            if (!result)
+            {
+                return BadRequest();
+            }
+            return Ok();
+        }
+
+
     }
 }

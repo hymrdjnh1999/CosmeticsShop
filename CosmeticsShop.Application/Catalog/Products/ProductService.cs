@@ -423,12 +423,15 @@ namespace CosmeticsShop.Application.Catalog.Products
         {
 
             var productImage = await _context.ProductImages.FindAsync(imageId);
-            if (productImage == null || request.ImageFile == null)
+            if (productImage == null)
             {
-                throw new CosmeticsException("Error");
+                return 0;
             }
-            productImage.ImagePath = await SaveFile(request.ImageFile);
-            productImage.FileSize = request.ImageFile.Length;
+            if (request.ImageFile != null)
+            {
+                productImage.ImagePath = await SaveFile(request.ImageFile);
+                productImage.FileSize = request.ImageFile.Length;
+            }
             productImage.Caption = request.Caption;
             _context.ProductImages.Update(productImage);
             return await _context.SaveChangesAsync();
