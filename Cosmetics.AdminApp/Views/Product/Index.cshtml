@@ -54,65 +54,7 @@
             <div class="d-flex w-25 align-items-center mb-3">
                 @await Component.InvokeAsync("ChangePageSize", Model)
             </div>
-            @* <div class="table-responsive">
-            <table class="table table-bordered border-dark">
-                <thead class="m-0">
-                    <tr class="d-flex">
-
-                        <th style="flex: 1" scope="col">Thumbnail</th>
-                        <th style="flex: 2" scope="col">
-                            Name
-                        </th>
-                        <th style="flex: 0.7" scope="col">
-                            Price
-                        </th>
-                        <th style="flex: 0.7" scope="col">
-                            Original Price
-                        </th>
-                        <th style="flex: 0.7" scope="col">
-                            Stock
-                        </th>
-                        <th style="flex: 0.7" scope="col">
-                            Original country
-                        </th>
-                        <th style="flex: 1" scope="col">
-                            Actions
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.Items)
-                    {
-                        <tr class="d-flex">
-
-                            <td style="flex: 1">
-                                <img width="100%" height="80px"
-                                     src="@Configuration["BaseImageAddress"]@item.ImagePath" alt="@item.Name" />
-                            </td>
-                            <td class="d-flex align-items-center" style="flex: 2">
-                                @Html.ActionLink(item.Name, "Details", new { id = item.Id })
-                            </td>
-                            <td class="d-flex align-items-center" style="flex: 0.7">
-                                @Html.DisplayFor(modelItem => item.Price)
-                            </td>
-                            <td class="d-flex align-items-center" style="flex: 0.7">
-                                @Html.DisplayFor(modelItem => item.OriginalPrice)
-                            </td>
-                            <td class="d-flex align-items-center" style="flex: 0.7">
-                                @Html.DisplayFor(modelItem => item.Stock)
-                            </td>
-                            <td class="d-flex align-items-center" style="flex: 0.7">
-                                @Html.DisplayFor(modelItem => item.OriginalCountry)
-                            </td>
-                            <td class="d-flex align-items-center" style="flex: 1">
-                                @Html.ActionLink("Edit", "Details", new { id = item.Id }) <span class="mx-2">|</span>
-                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>*@
+            
             <div class="container-fluid">
                 <div class="container   ">
 

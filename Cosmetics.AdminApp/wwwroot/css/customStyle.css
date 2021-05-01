@@ -193,7 +193,7 @@ transform: scale(1.05);
 /*.back-list-product{
     padding-right:0 10px;
 }*/
-..back-list-product:hover{
+.back-list-product:hover{
     color:white;
 }
 .thumbnail-product-cs{
