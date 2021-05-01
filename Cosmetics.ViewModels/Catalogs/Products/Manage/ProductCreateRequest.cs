@@ -1,4 +1,5 @@
-﻿using CosmeticsShop.Data.Enums;
+﻿using Cosmetics.ViewModels.Common;
+using CosmeticsShop.Data.Enums;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -29,5 +30,9 @@ namespace Cosmetics.ViewModels.Catalogs.Products.Manage
         public ForGender ForGender { get; set; }
         [DisplayName("Thumbnail")]
         public IFormFile ThumbnailImage { get; set; }
+        public List<SelectItemDynamic<int>> CategoriesAssignRequest { get; set; }
+     = new List<SelectItemDynamic<int>>();
+        public string[] SelectedId { get; set; }
+
     }
 }

@@ -8,7 +8,7 @@ namespace Cosmetics.ViewModels.Common
 {
     public class PageResponse<T> : PageResponseBase
     {
-        public List<T> Items { get; set; }
+        public List<T> Items { get; set; } = new List<T>();
 
     }
 }

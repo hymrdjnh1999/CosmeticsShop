@@ -1,15 +1,21 @@
 ﻿@using Cosmetics.ViewModels.Common;
 @model PageResponse<Cosmetics.ViewModels.Catalogs.Products.ProductViewModel>
+@using System.Security.Claims;
+
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var identity = User.Identity as ClaimsIdentity;
+    var roles = identity?.FindFirst("Role")?.Value ?? null;
+    bool isManager = false;
+    if (!string.IsNullOrEmpty(roles))
+    {
+        isManager = roles.Contains("Manager");
+    }
 }
-@section Scripts{
-    <script>
-        setTimeout(() => $('#msgAlert').fadeOut('slow'), 1500)
-    </script>
-}
+
 
 @inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
 <div class="container-fluid">
@@ -25,8 +31,8 @@
                 <div class="form-outline my-2 d-flex">
                     <input name="keyword" value="@ViewBag.Keyword" type="text" id="productSearchBox" placeholder="Tìm kiếm..." class="form-control  border-dark" />
                     <input asp-for="PageSize" value="@Model.PageSize" type="hidden" />
-                    <select onchange="this.form.submit()" name="CategoryId" asp-items="@ViewBag.Categories" class="mx-2 border-dark">
-                        <option>---Lựa chọn danh mục---</option>
+                    <select onchange="this.form.submit()" name="CategoryId" asp-items="@ViewBag.Categories" class="mx-2 border-dark rounded">
+                        <option>---Select Category---</option>
                     </select>
                     <button type="submit" class="btn btn-outline-dark ml-2">
                         <i class="fas fa-search"></i>
@@ -54,65 +60,135 @@
             <div class="d-flex w-25 align-items-center mb-3">
                 @await Component.InvokeAsync("ChangePageSize", Model)
             </div>
-            
-            <div class="container-fluid">
-                <div class="container   ">
+            <div class="table-responsive">
+                <table class="table table-bordered border-dark">
+                    <thead class="m-0">
+                        <tr class="d-flex">
 
+                            <th style="flex: 1" scope="col">Thumbnail</th>
+                            <th style="flex: 2" scope="col">
+                                Name
+                            </th>
+                            <th style="flex: 0.7" scope="col">
+                                Price
+                            </th>
+                            <th style="flex: 0.7" scope="col">
+                                Original Price
+                            </th>
+                            <th style="flex: 0.7" scope="col">
+                                Stock
+                            </th>
+                            <th style="flex: 0.7" scope="col">
+                                Original country
+                            </th>
+                            <th style="flex: 1" scope="col">
+                                Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Items)
+                        {
+                            <tr class="d-flex">
 
-                    <div class="row list-product-dark font-weight-bold text-white text-capitalize" >
-                        <div class="col col-2"> Ảnh Thu Nhỏ</div>
-                        <div class="col col-2"> Tên</div>
-                        <div class="col col-2"> Giá Bán</div>
-                        <div class="col col-2"> Giá Gốc</div>
-                        <div class="col col-1"> Kho</div>
-                        <div class="col col-1"> Xuất xứ</div>
-                        <div class="col col-2"> Tác Vụ</div>
-                    </div>
-                    @foreach (var item in Model.Items)
-                    {
-                        <div class="row list-product text-decoration-none text-break ">
-                            <div class="col col-2">
-                                <img class="w-75" 
-                                     src="@Configuration["BaseImageAddress"]@item.ImagePath" alt="@item.Name" />
-                            </div>
-                            <div class="col col-2">
-                                <a class="" href="Product/Details/@item.Id">@item.Name</a>
-                            </div>
-                            <div class="col col-2"> @Html.DisplayFor(modelItem => item.Price)</div>
-                            <div class="col col-2"> @Html.DisplayFor(modelItem => item.OriginalPrice)</div>
-                            <div class="col col-1"> @Html.DisplayFor(modelItem => item.Stock)</div>
-                            <div class="col col-1"> @Html.DisplayFor(modelItem => item.OriginalCountry)</div>
-                            <div class="col col-2">
-                                @Html.ActionLink("Sửa", "Details", new { id = item.Id }) <span class="mx-2">|</span>
-                                @Html.ActionLink("Xóa", "Delete", new { id = item.Id })
-                            </div>
-                        </div>
-                    }
-                        
-                    </div>
-                <!-- <div class="container d-flex">
-            <div class="row d-flex flex-wrap">
-                <div class="col">
-                    1 of 2
-                </div>
-                <div class="col">
-                    2 of 2
-                </div>
-            </div>
-            <div class="row d-flex flex-wrap">
-                <div class="col">
-                    1 of 3
-                </div>
-                <div class="col">
-                    2 of 3
-                </div>
-                <div class="col">
-                    3 of 3
-                </div>
-            </div>
-        </div> -->
+                                <td style="flex: 1">
+                                    <img width="100%" height="80px"
+                                         src="@Configuration["BaseImageAddress"]@item.ImagePath" alt="@item.Name" />
+                                </td>
+                                <td class="d-flex align-items-center" style="flex: 2">
+                                    @Html.ActionLink(item.Name, "Update", new { id = item.Id })
+                                </td>
+                                <td class="d-flex align-items-center" style="flex: 0.7">
+                                    @Html.DisplayFor(modelItem => item.Price)
+                                </td>
+                                <td class="d-flex align-items-center" style="flex: 0.7">
+                                    @Html.DisplayFor(modelItem => item.OriginalPrice)
+                                </td>
+                                <td class="d-flex align-items-center" style="flex: 0.7">
+                                    @Html.DisplayFor(modelItem => item.Stock)
+                                </td>
+                                <td class="d-flex align-items-center" style="flex: 0.7">
+                                    @Html.DisplayFor(modelItem => item.OriginalCountry)
+                                </td>
+                                <td class="d-flex align-items-center" style="flex: 1">
+                                    @*@Html.ActionLink("Edit", "Update", new { id = item.Id })*@
+                                    <a class="d-block mr-2" href="@Url.Action("Update","Product")/@item.Id">
+                                        <i style="width:22px;height:22px" class="fas fa-edit"></i>
+                                    </a>
+                                    <a class="d-block mr-2" href="Product/@item.Id/images">
+                                        <i style="width:22px;height:22px" class="fas fa-image"></i>
+                                    </a>
+                                    @if (isManager)
+                                    {
+                                        <button onclick="getValue(@item.Id)" data-target="#exampleModalCenter" data-toggle="modal" class="d-block text-danger btn-delete">
+                                            <i style="width:22px;height:22px" class="fas fa-trash"></i>
+                                        </button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
             @await Component.InvokeAsync("Pager", Model)
+
+            <!-- Button trigger modal -->
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Xóa sản phẩm</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Bạn có chắc chắn muốn xóa sản sản phẩm này?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                            <button type="submit" class="btn btn-danger" data-dismiss="modal" id="delete_submit_btn">Xóa</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+@section Scripts{
+    <script>
+        setTimeout(() => $('#msgAlert').fadeOut('slow'), 1500)
+    </script>
+    <script>
+        var delete_id = -1;
+        const getValue = (id) => delete_id = id;
+        $('#delete_submit_btn').on('click', () => {
+            
+            $.ajax(
+                {
+                    type: "POST",
+                    url: "Product/Delete",
+                    dataType: "text",
+                    data: { id: delete_id },
+                    async: true,
+                    success: function (response) {
+                        location.reload();
+                       
+                    },
+                    failure: function (response) {
+                        alert('false')
+
+                    },
+                    error: function (response) {
+                        alert('error')
+
+                    }
+                });
+        })
+
+    </script>
+
+
+}

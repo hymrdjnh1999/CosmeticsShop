@@ -2,6 +2,8 @@
 @{
     ViewData["Title"] = "User details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var isManager = ViewBag.IsManager;
+    var customIsManager = ViewBag.CustomIsManager;
 }
 
 
@@ -17,68 +19,104 @@
             <a asp-action="Index" asp-controller="User" class="btn btn-outline-dark"><i class="fas fa-chevron-left back-list-product mr-2"></i>Về danh sách người dùng</a>
         </div>
         <div class="card-body">
-            <div class="col-12">
-                <form asp-action="Edit">
+            <div class="">
+                <form asp-action="Edit" class="row col-12" id="user-update-form">
                     <input asp-for="Id" type="hidden" />
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                    <div class=" row">
-                        <div class="form-group col-6">
-                            <label asp-for="UserName" class="control-label font-weight-bold">Tên Người Dùng</label>
-                            <input asp-for="UserName" disabled class="form-control" />
-                            <span asp-validation-for="UserName" class="text-danger"></span>
-                        </div>
-                        <div class="form-group col-6">
-                            <label class="control-label  font-weight-bold">Vai Trò</label>
-                            <div class="d-flex align-items-center">
-                                @for (int i = 0; i < Model.RoleAssignRequest.Count; i++)
-                                {
+
+                    <div class="form-group col-6">
+                        <label asp-for="UserName" class="control-label font-weight-bold"></label>
+                        <input asp-for="UserName" disabled class="form-control" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+
+                    @if (isManager)
+                    {
+
+                        <div class="col-6">
+                            <div class="form-group ">
+                                <label class="control-label  font-weight-bold">Roles</label>
+                                <div class="d-flex align-items-center">
+                                    @for (int i = 0; i < Model.RoleAssignRequest.Count; i++)
+                                    {
                                     <label class="d-flex  align-items-center mr-2">
                                         <span class="mr-2">
                                             @Model.RoleAssignRequest[i].Name
                                         </span>
-                                        <input type="checkbox" asp-for="RoleAssignRequest[i].Selected" class="ml-2" />
                                         <input type="hidden" asp-for="RoleAssignRequest[i].Name" value="@Model.RoleAssignRequest[i].Name" />
                                         <input type="hidden" asp-for="RoleAssignRequest[i].Id" value="@Model.RoleAssignRequest[i].Id" />
+                                        @if (!customIsManager)
+                                        {
+
+                                            <input type="checkbox" asp-for="RoleAssignRequest[i].Selected" class="ml-2" />
+                                        }
+                                       
+
                                     </label>
 
-                                }
+                                    }
+                                </div>
                             </div>
                         </div>
+                    }
+
+
+                <div class="form-group col-6">
+                    <label asp-for="Name" class="control-label font-weight-bold"></label>
+                    @if (isManager)
+                    {
+                        <input asp-for="Name" class="form-control" />
+                    }
+                    else
+                    {
+                        <input asp-for="Name" disabled class="form-control" />
+
+                    }
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                    <div class="form-group col-6">
+                        <label asp-for="Email" class="control-label font-weight-bold"></label>
+                        <input asp-for="Email" disabled class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
 
-                    <div class="row">
-                        <div class="form-group col-6">
-                            <label asp-for="Name" class="control-label font-weight-bold">Tên</label>
-                            <input asp-for="Name" class="form-control" />
-                            <span asp-validation-for="Name" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group col-6">
-                            <label asp-for="Email" class="control-label font-weight-bold">Email</label>
-                            <input asp-for="Email" disabled class="form-control" />
-                            <span asp-validation-for="Email" class="text-danger"></span>
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-6">
-                            <label asp-for="Dob" class="control-label font-weight-bold">Ngày Sinh</label>
+                    <div class="form-group col-6">
+                        <label asp-for="Dob" class="control-label font-weight-bold"></label>
+                        @if (isManager)
+                        {
                             <input asp-for="Dob" class="form-control" />
-                            <span asp-validation-for="Dob" class="text-danger"></span>
-                        </div>
-                        <div class="form-group col-6">
-                            <label asp-for="PhoneNumber" class="control-label font-weight-bold">Số Điện Thoại</label>
-                            <input asp-for="PhoneNumber" class="form-control" />
-                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <input type="submit" value="Cập Nhật" class="btn btn-outline-dark" />
-                    </div>
-                </form>
+                        }
+                        else
+                        {
+                            <input asp-for="Dob" disabled class="form-control" />
 
-            </div>
+                        }
+
+                        <span asp-validation-for="Dob" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-6">
+                        <label asp-for="PhoneNumber" class="control-label font-weight-bold"></label>
+                        @if (isManager)
+                        {
+                            <input asp-for="PhoneNumber" class="form-control" />
+                        }
+                        else
+                        {
+                            <input asp-for="PhoneNumber" disabled class="form-control" />
+                        }
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+
+                </form>
+                @if (isManager)
+                {
+                    <div class="d-flex justify-content-center">
+                        <input type="submit" value="Save" class="btn btn-outline-dark" form="user-update-form" />
+                    </div>
+                }
+                </div>
         </div>
     </div>
 </div>

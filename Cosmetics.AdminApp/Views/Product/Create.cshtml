@@ -37,19 +37,23 @@
 
     <script>
         $('#updateProductBtnForm').on('Click').submit();
+
         const handleOnChange = () => {
             alert('test');
         }
+
         $(function () {
             //normal dropdown
             //$("#normalDropDown").chosen({
             //    disable_search_threshold : 5
             //});
+
             //multiselect DropDown
             $("#multiSelectCreate").chosen({
                 width: "100%"
             });
         });
+
     </script>
 }
 
@@ -115,11 +119,14 @@
                         <input asp-for="Stock" class="form-control" placeholder="Enter product stock" />
                         <span asp-validation-for="Stock" class="text-danger"></span>
                     </div>
-                    <div class="form-group col-6 ">
-                        <label>Categories</label>
-                        <div class="d-flex align-items-center">
-                            <input class=" is-trending-checkbox " asp-for="IsOutstanding" />
-                            <label class="ml-2" asp-for="IsOutstanding">Is trending</label>
+                    <div class=" col-6 ">
+                        <div class="form-group">
+                            <label class="control-label">Categories</label>
+                            @Html.HiddenFor(x => x.Stock)
+                            <div class="">
+                                @Html.ListBoxFor(model => model.SelectedId, new MultiSelectList(Model.CategoriesAssignRequest, "Id", "Name"), new { id = "multiSelectCreate", multiple = "multiple" })
+                            </div>
+                            <span asp-validation-for="SelectedId" class="text-danger"></span>
                         </div>
                     </div>
 
@@ -146,11 +153,7 @@
                         </div>
 
                     </div>
-                    <div class="form-group col-6 offset-3">
-                        <label for="create-product-btn" class="btn btn-outline-dark col-12 px-4 mt-4">
-                            Create
-                        </label>
-                    </div>
+
                     <div class="d-none">
                         <input type="submit" value="Create" id="create-product-btn" class="btn btn-outline-dark px-xl-5" />
                     </div>
