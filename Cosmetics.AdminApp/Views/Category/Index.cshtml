@@ -73,7 +73,12 @@
                                     @Html.DisplayFor(modelItem => Model.Items[count].Id)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => Model.Items[count].Name)
+                                    <span class="actions-btn">
+                                        <a href="#"  onclick="editCategory(@Model.Items[count].Id)">
+                                            @Model.Items[count].Name
+                                        </a>
+                                    </span>
+
                                 </td>
                                 <td class="table-body-td  @(Model.Items[count].Status == Status.Active ? "text-success" : "text-danger")  ">
                                     @Html.DisplayFor(modelItem => Model.Items[count].Status)
