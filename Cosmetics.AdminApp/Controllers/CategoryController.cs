@@ -83,7 +83,7 @@ namespace Cosmetics.AdminApp.Controllers
             {
                 return View(request);
             }
-           
+
             var result = await _categoryApiClient.Edit(request);
 
             if (result)
@@ -93,6 +93,34 @@ namespace Cosmetics.AdminApp.Controllers
             }
             ModelState.AddModelError("", "Cập nhật danh mục thất bại!");
             return View(request);
+        }
+        [HttpDelete]
+        public async Task Delete(int id)
+        {
+
+            var category = await _categoryApiClient.GetById(id);
+            if (category == null)
+            {
+
+                RedirectToAction("Error", "Home");
+            }
+            else
+            {
+                var result = await _categoryApiClient.Delete(id);
+
+                if (result)
+                {
+                    TempData["result"] = "Xóa danh mục thành công";
+                    RedirectToAction("Index");
+                }
+                else
+                {
+
+                TempData["error"] = "Xóa danh mục thất bại";
+                RedirectToAction("Index");
+                }
+
+            }
         }
 
     }

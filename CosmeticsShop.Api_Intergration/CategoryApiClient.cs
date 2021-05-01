@@ -54,6 +54,28 @@ namespace CosmeticsShop.Api_Intergration
             return JsonConvert.DeserializeObject<int>(result);
         }
 
+        public async Task<bool> Delete(int id)
+        {
+            var sessions = _httpContextAccessor
+             .HttpContext
+             .Session
+             .GetString(SystemConstants.AppSettings.Token);
+
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_config[SystemConstants.AppSettings.BaseAddress]);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+
+            var response = await client.DeleteAsync($"/api/categories/{id}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+
+            return false;
+
+        }
+
         public async Task<bool> Edit(CategoryUpdateRequest request)
         {
             var sessions = _httpContextAccessor

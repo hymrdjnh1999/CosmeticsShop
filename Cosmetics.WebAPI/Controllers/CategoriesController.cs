@@ -84,6 +84,19 @@ namespace Cosmetics.WebAPI.Controllers
             return Ok();
         }
 
+        [HttpDelete("{id}")]
+        [Authorize]
+        public async Task<IActionResult> Delete(int id)
+        {
+
+            var result = await _categoryService.Delete(id);
+            if (!result)
+            {
+                return BadRequest();
+            }
+            return Ok();
+        }
+
 
     }
 }

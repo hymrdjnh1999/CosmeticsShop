@@ -34,6 +34,20 @@ namespace CosmeticsShop.Application.Catalog.Categories
             return category.Id;
         }
 
+        public async Task<bool> Delete(int id)
+        {
+            var category = await _context.Categories.FindAsync(id);
+            if (category == null)
+            {
+                return false;
+            }
+            _context.Categories.Remove(category);
+
+            await _context.SaveChangesAsync();
+            return true;
+
+        }
+
         public async Task<bool> Edit(CategoryUpdateRequest request)
         {
             var category = await _context.Categories.FindAsync(request.Id);
