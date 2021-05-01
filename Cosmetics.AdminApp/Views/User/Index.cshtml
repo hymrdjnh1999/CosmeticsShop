@@ -57,7 +57,7 @@
                 @await Component.InvokeAsync("ChangePageSize", Model)
             </div>
             <div class="table-responsive">
-                <table class="table table-bordered ">
+                <table class="table table-bordered text-center">
                     <thead class="thead-dark text-white">
                         <tr>
                             <th>
@@ -110,10 +110,11 @@
                                     </td>
                                     @if (Model.CurrentRoles.Contains("Manager"))
                                     {
-                                        <td>
-                                            @Html.ActionLink("Edit", "Details", new { id = Model.Items[count].Id }) |
-                                            @Html.ActionLink("Delete", "Delete", new { id = Model.Items[count].Id })
-                                        </td>
+                                <td class="btn-edit_del">
+                                    <a href="@Url.Action("Details","User",  new { id = Model.Items[count].Id })" class="btn btn-outline-info px-2">Edit</a>
+                                    |
+                                    <a href="@Url.Action("Delete","User",  new { id = Model.Items[count].Id })" class="btn btn-outline-danger px-0">Delete</a>
+                                </td>
                                     }
                                 </tr>
                             }

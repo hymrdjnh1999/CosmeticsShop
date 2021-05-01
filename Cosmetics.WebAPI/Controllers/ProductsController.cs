@@ -74,15 +74,16 @@ namespace Cosmetics.WebAPI.Controllers
             }
 
             var product = await _productServices.GetById(productId);
+            product.Id = productId;
 
-            return CreatedAtAction(nameof(GetById), new { Id = productId }, product);
+            return CreatedAtAction("Create", product);
         }
 
         [HttpPut("{id}")]
         [Consumes("multipart/form-data")]
         [Authorize]
 
-        public async Task<IActionResult> Update([FromForm] ProductViewModel request)
+        public async Task<IActionResult> Update([FromForm] ProductUpdateRequest request)
         {
 
             if (!ModelState.IsValid)
@@ -101,7 +102,6 @@ namespace Cosmetics.WebAPI.Controllers
 
         public async Task<IActionResult> CategoryAssign([FromBody] CategoryAssignRequest request)
         {
-
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             var response = await _productServices.CategoryAssign(request);
@@ -161,23 +161,54 @@ namespace Cosmetics.WebAPI.Controllers
             return Ok(image);
         }
 
-        [HttpGet("images")]
-        public async Task<IActionResult> GetProductImages(int id)
+        [HttpGet("images/{id}")]
+
+        public async Task<IActionResult> GetAllPaging(int id)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var image = await _productServices.GetImageById(id);
-            if (image == null)
+            var images = await _productServices.GetImageById(id);
+            if (images == null)
             {
                 return BadRequest($"Không tồn tại sản phẩm có id: {id}");
             }
 
-            return Ok(image);
+            return Ok(images);
         }
 
-        [HttpPut("{productId}/images/{id}")]
+        [HttpGet("{productId}/images")]
         [Authorize]
+        public async Task<IActionResult> GetProductImages(int productId, [FromQuery] QueryParamRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var images = await _productServices.GetImages(productId, request);
+            if (images == null)
+            {
+                return BadRequest($"Không tồn tại sản phẩm có id: {productId}");
+            }
 
+            return Ok(images);
+        }
+
+        [HttpPut("{productId}/images/{imageId}/thumbnail")]
+        [Authorize]
+        public async Task<IActionResult> ChangeThumbnail(int productId, int imageId)
+        {
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var affectedResult = await _productServices.ChangeThumbnail(productId, imageId);
+            if (!affectedResult)
+            {
+                return BadRequest();
+            }
+
+            return Ok("Updated");
+        }
+
+        [HttpPut("images/{id}")]
+        [Authorize]
         public async Task<IActionResult> UpdateImage(int id, [FromForm] ProductImageUpdateRequest request)
         {
 
@@ -193,6 +224,7 @@ namespace Cosmetics.WebAPI.Controllers
         }
 
         [HttpPost("{id}/images")]
+        [Consumes("multipart/form-data")]
         [Authorize]
 
         public async Task<IActionResult> AddImage(int id, [FromForm] ProductImageCreateRequest request)
@@ -212,18 +244,17 @@ namespace Cosmetics.WebAPI.Controllers
 
         [HttpDelete("{productId}/images/{id}")]
         [Authorize]
-
-        public async Task<IActionResult> DeleteImage(int id)
+        public async Task<IActionResult> DeleteImage(int productId, int id)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var deleted = await _productServices.RemoveImage(id);
-            if (deleted == 0)
+            var result = await _productServices.RemoveImage(productId, id);
+            if (!result.IsSuccess)
             {
-                return BadRequest();
+                return BadRequest(result);
             }
 
-            return Ok("Deleted");
+            return Ok(result);
         }
 
     }
