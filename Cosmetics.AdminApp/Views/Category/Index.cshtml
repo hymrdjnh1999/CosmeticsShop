@@ -52,9 +52,9 @@
                 @await Component.InvokeAsync("ChangePageSize", Model)
             </div>
             <div class="table-responsive">
-                <table class="table table-bordered border-dark">
-                    <thead class="m-0">
-                        <tr>
+                <table class="table table-bordered border-dark text-center">
+                    <thead class="thead-dark text-white">
+                        <tr class="bg-alternating">
                             <th scope="col">
                                 Id
                             </th>
@@ -72,17 +72,22 @@
                     <tbody >
                         @for (int count = 0; count <  Model.Items.Count; count++)
                         {
-                            <tr class=" table-body @(count % 2 == 0 ? "table-body-active" : "" )">
+                            <tr class="bg-alternating ">
                                 <td>
                                     @Html.DisplayFor(modelItem => Model.Items[count].Id)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => Model.Items[count].Name)
                                 </td>
-                                <td class="table-body-td  @(Model.Items[count].Status == Status.Active ? "text-success" : "text-danger")  ">
+                                <td class="table-body-td  @(Model.Items[count].Status == Status.Active ? "text-success" : "text-danger text-center")  ">
                                     @Html.DisplayFor(modelItem => Model.Items[count].Status)
                                 </td>
-                                <td class="d-flex align-items-center" style="flex: 1">
+                                <td class="btn-edit_del">
+                                    <a href="@Url.Action("Details","Details",  new { id = Model.Items[count].Id })" class="btn btn-outline-info px-2">Edit</a>
+                                    |
+                                    <a href="@Url.Action("Delete","Delete",  new { id = Model.Items[count].Id })" class="btn btn-outline-danger px-0">Delete</a>
+                                </td>
+                                @*<td class="d-flex align-items-center" style="flex: 1">
                                     <span class="actions-btn">
                                         @Html.ActionLink("Sửa", "Details", new { id = Model.Items[count].Id })
                                     </span> 
@@ -91,7 +96,7 @@
                                         @Html.ActionLink("Xóa", "Delete", new { id = Model.Items[count].Id })
 
                                     </span>
-                                </td>
+                                </td>*@
                             </tr>
                         }
                     </tbody>
