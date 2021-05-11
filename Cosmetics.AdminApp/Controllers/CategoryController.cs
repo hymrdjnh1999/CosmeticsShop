@@ -56,11 +56,71 @@ namespace Cosmetics.AdminApp.Controllers
 
             if (result > 0)
             {
-                TempData["result"] = "Create category successfully!";
+                TempData["result"] = "Tạo danh mục thành công!";
                 return RedirectToAction("Index");
             }
-            ModelState.AddModelError("", "Create category failed!");
+            ModelState.AddModelError("", "Tạo danh mục thất bại!");
             return View(request);
+        }
+
+
+        [HttpGet("category/{id}")]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var category = await _categoryApiClient.GetById(id);
+            if (category == null)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+            var model = new CategoryUpdateRequest() { Id = id, Name = category.Name };
+            return View(model);
+        }
+
+        [HttpPost("category/{id}")]
+        public async Task<IActionResult> Edit(CategoryUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(request);
+            }
+
+            var result = await _categoryApiClient.Edit(request);
+
+            if (result)
+            {
+                TempData["result"] = "Cập nhật danh mục thành công";
+                return RedirectToAction("Index");
+            }
+            ModelState.AddModelError("", "Cập nhật danh mục thất bại!");
+            return View(request);
+        }
+        [HttpDelete]
+        public async Task Delete(int id)
+        {
+
+            var category = await _categoryApiClient.GetById(id);
+            if (category == null)
+            {
+
+                RedirectToAction("Error", "Home");
+            }
+            else
+            {
+                var result = await _categoryApiClient.Delete(id);
+
+                if (result)
+                {
+                    TempData["result"] = "Xóa danh mục thành công";
+                    RedirectToAction("Index");
+                }
+                else
+                {
+
+                TempData["error"] = "Xóa danh mục thất bại";
+                RedirectToAction("Index");
+                }
+
+            }
         }
 
     }

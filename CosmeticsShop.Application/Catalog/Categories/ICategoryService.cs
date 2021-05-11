@@ -13,7 +13,9 @@ namespace CosmeticsShop.Application.Catalog.Categories
         Task<List<CategoryViewModel>> GetAll();
         Task<PageResponse<CategoryViewModel>> GetAllPaging(PaginateRequest request);
         Task<CategoryViewModel> GetById(int id);
+        Task<bool> Delete(int id);
         Task<int> Create(CategoryCreateRequest request);
+        Task<bool> Edit(CategoryUpdateRequest request);
 
     }
 }

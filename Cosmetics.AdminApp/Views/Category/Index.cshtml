@@ -5,11 +5,7 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@section Scripts{
-    <script>
-        setTimeout(() => $('#msgAlert').fadeOut('slow'), 1500)
-    </script>
-}
+
 
 @inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
 <div class="container-fluid">
@@ -69,15 +65,20 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody >
-                        @for (int count = 0; count <  Model.Items.Count; count++)
+                    <tbody>
+                        @for (int count = 0; count < Model.Items.Count; count++)
                         {
                             <tr class="bg-alternating ">
                                 <td>
                                     @Html.DisplayFor(modelItem => Model.Items[count].Id)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => Model.Items[count].Name)
+                                    <span class="actions-btn">
+                                        <a href="#"  onclick="editCategory(@Model.Items[count].Id)">
+                                            @Model.Items[count].Name
+                                        </a>
+                                    </span>
+
                                 </td>
                                 <td class="table-body-td  @(Model.Items[count].Status == Status.Active ? "text-success" : "text-danger text-center")  ">
                                     @Html.DisplayFor(modelItem => Model.Items[count].Status)
@@ -89,12 +90,13 @@
                                 </td>
                                 @*<td class="d-flex align-items-center" style="flex: 1">
                                     <span class="actions-btn">
-                                        @Html.ActionLink("Sửa", "Details", new { id = Model.Items[count].Id })
-                                    </span> 
+                                        <span id="editCategoryBtn" onclick="editCategory(@Model.Items[count].Id)" class="btn btn-outline-info">Sửa</span>
+                                    </span>
                                     <span class="mx-2">|</span>
-                                    <span  class="actions-btn">
-                                        @Html.ActionLink("Xóa", "Delete", new { id = Model.Items[count].Id })
-
+                                    <span class="actions-btn">
+                                        <button onclick="getValue(@Model.Items[count].Id)" data-target="#deleteCategoryModal" data-toggle="modal" class="btn btn-outline-danger">
+                                            Xóa
+                                        </button>
                                     </span>
                                 </td>*@
                             </tr>
@@ -104,6 +106,68 @@
             </div>
 
             @await Component.InvokeAsync("Pager", Model)
+
+            <!-- Button trigger modal -->
+            <!-- Modal -->
+            <div class="modal fade" id="deleteCategoryModal" tabindex="-1" role="dialog" aria-labelledby="deleteCategoryTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteCategoryTitle">Xóa danh mục</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Bạn có chắc chắn muốn xóa sản danh mục này?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                            <button type="submit" class="btn btn-danger" data-dismiss="modal" id="delete_submit_btn">Xóa</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
+
+@section Scripts{
+    <script>
+        const editCategory = (categoryId) => window.location.assign(`category/${categoryId}`)
+    </script>
+    <script>
+        setTimeout(() => $('#msgAlert').fadeOut('slow'), 1500)
+    </script>
+    <script>
+        var delete_id = -1;
+        const getValue = (id) => delete_id = id;
+        $('#delete_submit_btn').on('click', () => {
+
+            $.ajax(
+                {
+                    type: "delete",
+                    url: `category/delete/`,
+                    dataType: "text",
+                    data: { id: delete_id },
+                    async: true,
+                    success: function (response) {
+                        location.reload();
+
+                    },
+                    failure: function (response) {
+                        alert('false')
+
+                    },
+                    error: function (response) {
+                        alert('error')
+
+                    }
+                });
+        })
+
+    </script>
+
+}

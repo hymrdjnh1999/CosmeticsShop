@@ -365,10 +365,11 @@ namespace CosmeticsShop.Application.Catalog.Products
 
             var countProductImage = await _context.ProductImages.Where(x => x.ProductId == productId).CountAsync();
 
-            if (image.IsDefault && countProductImage > 1)
+            if (countProductImage > 1 && image.IsDefault)
             {
-                var ThumbnailNew = await _context.ProductImages.Where(x => !x.IsDefault).FirstOrDefaultAsync();
+                var ThumbnailNew = await _context.ProductImages.Where(x => x.Id != imageId && x.ProductId == productId).FirstOrDefaultAsync();
                 ThumbnailNew.IsDefault = true;
+                _context.ProductImages.Attach(ThumbnailNew);
             }
 
             if (countProductImage == 1)
@@ -423,12 +424,15 @@ namespace CosmeticsShop.Application.Catalog.Products
         {
 
             var productImage = await _context.ProductImages.FindAsync(imageId);
-            if (productImage == null || request.ImageFile == null)
+            if (productImage == null)
             {
-                throw new CosmeticsException("Error");
+                return 0;
             }
-            productImage.ImagePath = await SaveFile(request.ImageFile);
-            productImage.FileSize = request.ImageFile.Length;
+            if (request.ImageFile != null)
+            {
+                productImage.ImagePath = await SaveFile(request.ImageFile);
+                productImage.FileSize = request.ImageFile.Length;
+            }
             productImage.Caption = request.Caption;
             _context.ProductImages.Update(productImage);
             return await _context.SaveChangesAsync();
@@ -478,8 +482,16 @@ namespace CosmeticsShop.Application.Catalog.Products
             var image = await _context.ProductImages.Where(x => x.Id == imageId && x.ProductId == productId).FirstOrDefaultAsync();
 
             if (image == null) return false;
-            var thumbnail = await _context.ProductImages.Where(x => x.IsDefault && x.ProductId == productId).FirstOrDefaultAsync();
-            thumbnail.IsDefault = false;
+            var thumbnail = await _context.ProductImages.Where(x => x.IsDefault && x.Id != imageId).FirstOrDefaultAsync();
+
+            if (thumbnail == null)
+            {
+                thumbnail.IsDefault = true;
+            }
+            else
+            {
+                thumbnail.IsDefault = false;
+            }
             image.IsDefault = true;
             _context.ProductImages.Attach(image);
             _context.ProductImages.Attach(thumbnail);
