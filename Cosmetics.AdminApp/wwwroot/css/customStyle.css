@@ -249,4 +249,13 @@ li.search-choice a.search-choice-close {
 .btn-edit_del a{
     padding:1px 3px;
 }
+<<<<<<< HEAD
 
+=======
+.p-choose {
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    background-color: #fff;
+    padding: 11px;
+}
+>>>>>>> a41bb3419fa543eaaee6e0d86502fd00e16d5528
