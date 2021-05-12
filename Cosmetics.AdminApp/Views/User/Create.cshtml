@@ -9,13 +9,13 @@
 <div class="container-fluid">
     <h1 class="mt-4">Tables</h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="User">User List</a></li>
-        <li class="breadcrumb-item active">Create new user</li>
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="User">Danh Sách Người Dùng</a></li>
+        <li class="breadcrumb-item active">Tạo Mới Người Dùng</li>
     </ol>
 
     <div class="card mb-4">
         <div class="card-header">
-            <a asp-action="Index" asp-controller="User" class="btn btn-outline-dark">Back to user list</a>
+            <a asp-action="Index" asp-controller="User" class="btn btn-outline-dark"><i class="fas fa-chevron-left back-list-product mr-2"></i>Về danh sách người dùng</a>
         </div>
         <div class="card-body">
             <div class="col-md-4">
@@ -23,42 +23,42 @@
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                     <div class="form-group">
-                        <label asp-for="Name" class="control-label"></label>
+                        <label asp-for="Name" class="control-label">Tên</label>
                         <input asp-for="Name" class="form-control" />
                         <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Dob" class="control-label"></label>
+                        <label asp-for="Dob" class="control-label">Ngày Sinh</label>
                         <input asp-for="Dob" class="form-control" />
                         <span asp-validation-for="Dob" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Email" class="control-label"></label>
+                        <label asp-for="Email" class="control-label">Địa Chỉ Email</label>
                         <input asp-for="Email" class="form-control" />
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="PhoneNumber" class="control-label"></label>
+                        <label asp-for="PhoneNumber" class="control-label">Số Điện Thoại</label>
                         <input asp-for="PhoneNumber" class="form-control" />
                         <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="UserName" class="control-label"></label>
+                        <label asp-for="UserName" class="control-label">Tên Người Dùng</label>
                         <input asp-for="UserName" class="form-control" />
                         <span asp-validation-for="UserName" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Password" class="control-label"></label>
+                        <label asp-for="Password" class="control-label">Mật Khẩu</label>
                         <input asp-for="Password" class="form-control" />
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="ConfirmPassword" class="control-label"></label>
+                        <label asp-for="ConfirmPassword" class="control-label">Xác Nhận Mật Khẩu</label>
                         <input asp-for="ConfirmPassword" class="form-control" />
                         <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <input type="submit" value="Create" class="btn btn-outline-dark" />
+                        <input type="submit" value="Tạo" class="btn btn-outline-dark px-4" />
                     </div>
                 </form>
             </div>

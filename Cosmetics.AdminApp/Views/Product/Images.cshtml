@@ -18,7 +18,7 @@
 
     <div class="card mb-12">
         <div class="card-header d-flex justify-content-between">
-            <a asp-action="Index" asp-controller="Product" class="btn btn-outline-dark">Quay lại danh sách sản phẩm</a>
+            <a asp-action="Index" asp-controller="Product" class="btn btn-outline-dark"><i class="fas fa-chevron-left back-list-product mr-2"></i>Quay lại danh sách sản phẩm</a>
             <div>
 
                 <a href="images/add" class="btn btn-outline-dark ">
@@ -52,55 +52,55 @@
             <div class="table-responsive">
                 <table class="table table-bordered border-dark">
                     <thead class="m-0">
-                        <tr class="d-flex">
-                            <th style="flex: 0.3">
+                        <tr class="d-flex list-product-dark text-white">
+                            <th class="tb-col" style="flex: 0.3">
                                 Id
                             </th>
 
-                            <th style="flex: 1">
+                            <th class="tb-col" style="flex: 1">
                                 Ảnh
                             </th>
-                            <th style="flex: 2">
+                            <th class="tb-col" style="flex: 2">
                                 Chú thích
                             </th>
-                            <th style="flex: 1">
+                            <th class="tb-col" style="flex: 1">
                                 Thumbnail
                             </th>
-                            <th style="flex: 1">Chức năng</th>
+                            <th class="tb-col" style="flex: 1">Chức năng</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model.Items)
                         {
-                            <tr class="d-flex">
-                                <td style="flex: 0.3">
+                            <tr class="d-flex list-product">
+                                <td class="pro-item" style="flex: 0.3">
                                     @Html.DisplayFor(modelItem => item.Id)
                                 </td>
 
-                                <td style="flex: 1" class="d-flex justify-content-center">
-                                    <img width="auto" height="100px"
+                                <td style="flex: 1" class="d-flex pro-item">
+                                    <img class="w-100" height="100px"
                                          src="@Configuration["BaseImageAddress"]@item.ImagePath" title="ảnh sản phẩm" />
                                 </td>
-                                <td style="flex: 2">
+                                <td class="pro-item" style="flex: 2">
                                     @Html.DisplayFor(modelItem => item.Caption)
                                 </td>
-                                <td style="flex: 1">
+                                <td class="pro-item" style="flex: 1">
                                     @if (item.IsDefault)
                                     {
                                         <input type="checkbox" checked="@item.IsDefault" disabled style="width:20px;height:20px" />
                                     }
                                     else
                                     {
-                                        <button onclick="getImageId(@item.Id)" data-target="#change_thumbnail" data-toggle="modal" class="d-block  btn-outline-dark">
+                                        <button onclick="getImageId(@item.Id)" data-target="#change_thumbnail" data-toggle="modal" class="d-block btn btn-outline-dark">
                                             Chọn
                                         </button>
 
 
                                     }
                                 </td>
-                                <td style="flex: 1">
-                                    <span class=" btn btn-outline-info p-1" onclick="redirectToEdit(@item.Id)">Sửa</span>
-                                    <button onclick="getImageId(@item.Id)" data-target="#deleteModal" data-toggle="modal" class="p-1 d-inline-block btn btn-outline-danger">
+                                <td class="pro-item justify-content-around" style="flex: 1">
+                                    <span class=" btn btn-outline-info px-3" onclick="redirectToEdit(@item.Id)">Sửa</span>
+                                    <button onclick="getImageId(@item.Id)" data-target="#deleteModal" data-toggle="modal" class="px-3 d-inline-block btn btn-outline-danger">
                                         Xóa
                                     </button>
                                 </td>
