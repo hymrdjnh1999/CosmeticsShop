@@ -6,18 +6,18 @@
 }
 
 <div class="container-fluid">
-    <h1 class="mt-4">Tables</h1>
+    <h1 class="mt-4">Người Dùng</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Dashboard</a></li>
-        <li class="breadcrumb-item active">Assign user roles</li>
+        <li class="breadcrumb-item active">Chỉ định vai trò người dùng</li>
     </ol>
 
     <div class="card mb-4">
         <div class="card-header d-flex justify-content-between">
-            <a asp-action="Index" asp-controller="User" class="btn btn-outline-dark">Back to user list</a>
+            <a asp-action="Index" asp-controller="User" class="btn btn-outline-dark"><i class="fas fa-chevron-left back-list-product mr-2"></i>Về danh sách người dùng</a>
             @{
                 var parms = new Dictionary<string, string>
-                                                                                                {
+                 {
                     {"id", Model.Id.ToString() }
                 };
             }

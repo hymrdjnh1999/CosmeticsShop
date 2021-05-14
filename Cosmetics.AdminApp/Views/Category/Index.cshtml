@@ -9,7 +9,7 @@
 
 @inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
 <div class="container-fluid">
-    <h1 class="mt-4">Products</h1>
+    <h1 class="mt-4">Danh Mục</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Dashboard</a></li>
         <li class="breadcrumb-item active">Danh Sách Danh Mục</li>
@@ -28,7 +28,7 @@
             </form>
 
             <div>
-                <a asp-action="Create" asp-controller="Category" class="btn btn-outline-dark ">
+                <a asp-action="Create" asp-controller="Category" type="submit" class="btn btn-outline-dark ">
                     <i class="fas fa-plus mr-2"></i>
                     Tạo Danh Mục Mới
                 </a>
@@ -83,22 +83,22 @@
                                 <td class="table-body-td  @(Model.Items[count].Status == Status.Active ? "text-success" : "text-danger text-center")  ">
                                     @Html.DisplayFor(modelItem => Model.Items[count].Status)
                                 </td>
-                                <td class="btn-edit_del">
-                                    <a href="@Url.Action("Details","Details",  new { id = Model.Items[count].Id })" class="btn btn-outline-info px-2">Edit</a>
-                                    |
+                                @*<td class="btn-edit_del">
+                                    <a href="@Url.Action("Details","Details",  new { id = Model.Items[count].Id })" class="">Edit</a>
+                                    
                                     <a href="@Url.Action("Delete","Delete",  new { id = Model.Items[count].Id })" class="btn btn-outline-danger px-0">Delete</a>
-                                </td>
-                                @*<td class="d-flex align-items-center" style="flex: 1">
+                                </td>*@
+                                <td class="d-flex align-items-center justify-content-center" style="flex: 1">
                                     <span class="actions-btn">
                                         <span id="editCategoryBtn" onclick="editCategory(@Model.Items[count].Id)" class="btn btn-outline-info">Sửa</span>
                                     </span>
-                                    <span class="mx-2">|</span>
+                                    <span class="mx-1"></span>
                                     <span class="actions-btn">
                                         <button onclick="getValue(@Model.Items[count].Id)" data-target="#deleteCategoryModal" data-toggle="modal" class="btn btn-outline-danger">
                                             Xóa
                                         </button>
                                     </span>
-                                </td>*@
+                                </td>
                             </tr>
                         }
                     </tbody>

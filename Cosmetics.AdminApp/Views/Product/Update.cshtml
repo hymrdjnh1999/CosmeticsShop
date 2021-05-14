@@ -8,7 +8,7 @@
 }
 
 <div class="container-fluid">
-    <h1 class="mt-4">Product</h1>
+    <h1 class="mt-4">Sản Phẩm</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Product">Danh Sách Sản Phẩm</a></li>
         <li class="breadcrumb-item active">Chi Tiết Sản Phẩm</li>
@@ -39,7 +39,7 @@
                     </div>
                     <div class=" col-6">
                         <div class="form-group">
-                            <label asp-for="Price" class="control-label">Giá</label>
+                            <label asp-for="Price" class="control-label">Giá Bán</label>
                             <input asp-for="Price" class="form-control" />
                             <span asp-validation-for="Price" class="text-danger"></span>
                         </div>
@@ -124,7 +124,7 @@
                             </div>
                             <div class="w-100 justify-content-end">
                                 <div class="form-group">
-                                    <label asp-for="ThumbnailImage" class="control-label">Ảnh Thu Nhỏ</label>
+                                    <label asp-for="ThumbnailImage" class="control-label">Ảnh</label>
                                     <div class="custom-file">
                                         <input asp-for="ThumbnailImage" accept="image/*" class="custom-file-input" id="customFile">
                                         <label class="custom-file-label" for="customFile">Edit thumbnail</label>
