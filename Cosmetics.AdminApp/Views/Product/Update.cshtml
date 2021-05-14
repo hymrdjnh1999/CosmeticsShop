@@ -20,13 +20,13 @@
             <div>
                 <label class="m-0 btn btn-outline-dark d-flex align-items-center justify-content-center" for="updateProductBtnForm">
                     <i class="far fa-save mr-2"></i>
-                    Lưu
+                    Lưu lại
                 </label>
             </div>
         </div>
         <div class="card-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <form asp-action="Update" enctype="multipart/form-data" method="post" id="productUpdateForm">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                 <input asp-for="Id" type="hidden" />
                 <div class="row">
@@ -127,7 +127,7 @@
                                     <label asp-for="ThumbnailImage" class="control-label">Ảnh Thu Nhỏ</label>
                                     <div class="custom-file">
                                         <input asp-for="ThumbnailImage" accept="image/*" class="custom-file-input" id="customFile">
-                                        <label class="custom-file-label" for="customFile">Edit thumbnail</label>
+                                        <label class="custom-file-label" for="customFile">Sửa ảnh thu nhỏ</label>
                                     </div>
                                     <span asp-validation-for="ThumbnailImage" class="text-danger"></span>
                                 </div>

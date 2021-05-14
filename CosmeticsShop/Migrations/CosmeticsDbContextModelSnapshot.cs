@@ -243,6 +243,19 @@ namespace CosmeticsShop.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Orders");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            OrderDate = new DateTime(2021, 4, 21, 10, 19, 20, 0, DateTimeKind.Utc),
+                            ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
+                            ShipEmail = "shiple@gmail.com",
+                            ShipName = "Voi be nho",
+                            ShipPhoneNumber = "0984869201",
+                            Status = 1,
+                            UserId = new Guid("94c14234-d9b7-4a8b-91c8-68b53378fe6b")
+                        });
                 });
 
             modelBuilder.Entity("CosmeticsShop.Data.Entities.OrderDetail", b =>
@@ -264,6 +277,15 @@ namespace CosmeticsShop.Data.Migrations
                     b.HasIndex("OrderId");
 
                     b.ToTable("OrderDetails");
+
+                    b.HasData(
+                        new
+                        {
+                            ProductId = 1,
+                            OrderId = 1,
+                            Price = 1200000m,
+                            Quantity = 1
+                        });
                 });
 
             modelBuilder.Entity("CosmeticsShop.Data.Entities.Product", b =>
@@ -557,7 +579,7 @@ namespace CosmeticsShop.Data.Migrations
                         new
                         {
                             Id = new Guid("bd5b83d2-5c75-4f96-a63f-1eca425bdfe5"),
-                            ConcurrencyStamp = "5c67eaaa-1633-4018-9367-bd00d518a069",
+                            ConcurrencyStamp = "7a39cb84-768a-4737-a633-a87c35be6308",
                             Description = "Manager role",
                             Name = "Manager",
                             NormalizedName = "Manager"
@@ -565,7 +587,15 @@ namespace CosmeticsShop.Data.Migrations
                         new
                         {
                             Id = new Guid("efebfd93-b27d-4c91-8a71-74fd71944893"),
-                            ConcurrencyStamp = "29bedd97-79c8-4f28-ba0c-1b665714d822",
+                            ConcurrencyStamp = "813802ce-490f-4cd6-aa2c-3ad09731e449",
+                            Description = "Staff role",
+                            Name = "Staff",
+                            NormalizedName = "Staff"
+                        },
+                        new
+                        {
+                            Id = new Guid("8c6d931d-a8fe-493c-88d1-2a8a9e1bb9b7"),
+                            ConcurrencyStamp = "62b89397-0ac0-4ef7-b61a-efa1c1c5333e",
                             Description = "Customer role",
                             Name = "Customer",
                             NormalizedName = "Customer"
@@ -766,9 +796,27 @@ namespace CosmeticsShop.Data.Migrations
                     b.HasData(
                         new
                         {
+                            Id = new Guid("94c14234-d9b7-4a8b-91c8-68b53378fe6b"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "f6b37108-2360-4177-9706-368dccd05f17",
+                            Dob = new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "cosmeticstest@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            Name = "Test",
+                            NormalizedEmail = "cosmeticstest@gmail.com",
+                            NormalizedUserName = "Test",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDlhvyEw8l7BxrGG3DbPdb/jtJSwYpIpv1VxFmXERPEM95Rw3T5kTJZBrR4Qa0xzug==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "cosmeticstest"
+                        },
+                        new
+                        {
                             Id = new Guid("1c856746-f8aa-4026-b854-f18da9787cf3"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cd9c4490-3968-4e7f-b123-dfe83cee6731",
+                            ConcurrencyStamp = "96fdcd3f-da98-40d1-81d3-d52eb5188bb9",
                             Dob = new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "tiendinhdev99@gmail.com",
                             EmailConfirmed = true,
@@ -776,7 +824,7 @@ namespace CosmeticsShop.Data.Migrations
                             Name = "Voi Bé Nhỏ",
                             NormalizedEmail = "tiendinhdev99@gmail.com",
                             NormalizedUserName = "manager",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIxuaxHdepAlgdT5zqy5fmkUpzCACNZpVYr5fKXInM4dOsvIigKUxFhK9tRyt2ckQA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAimLncCoJxeo2WWldj9yRYukc9ECPqgd2+A61g6ZVPlJWK18RPjja0p+F6ehysU3w==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -786,7 +834,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = new Guid("d8b63b91-c360-4e3d-9b3a-2dce31f00cc4"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f53250f0-e347-4684-becf-1c11aed57e12",
+                            ConcurrencyStamp = "5bb5f4e3-97ac-493b-8b59-c5fefb4b9732",
                             Dob = new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Haianh@gmail.com",
                             EmailConfirmed = true,
@@ -794,7 +842,7 @@ namespace CosmeticsShop.Data.Migrations
                             Name = "Hải Anh",
                             NormalizedEmail = "Haianh@gmail.com",
                             NormalizedUserName = "haianhmanager",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFQh6c/cYvH6HkRpuEeZsebjEYRU1BRc8rONMKa4MP7jkTQc0aAlnV0bTSQ3apxvug==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKNC0jLbGGSpM5JmG8LP8pDxc/zWiphYq7+Mf80F3RG/08k/hkR3YmnMH/pP9mIBwg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -804,7 +852,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = new Guid("33674f31-0bd2-43cd-9090-3f0d4bab1c58"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ceff1170-d507-4bcc-98eb-0b80b8735d05",
+                            ConcurrencyStamp = "3ed495f8-ee90-4572-bd2b-323cf98b4d29",
                             Dob = new DateTime(2001, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Tranphuong18032001@gmail.com",
                             EmailConfirmed = true,
@@ -812,7 +860,7 @@ namespace CosmeticsShop.Data.Migrations
                             Name = "Thu Phương",
                             NormalizedEmail = "Tranphuong18032001@gmail.com",
                             NormalizedUserName = "tranphuongmanager",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPTrAVfiYF66757sy4zQZxnwxOX4B+1VAMMe7MY/Zbc5b17AYfgTzl+mSZgCjeL+1Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDtbgUZbuA3KkTqj22pH8RSMMg3wxwbdZPlTXLNmH2jC8Mp71K2935DbJVVtkuItNg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -909,6 +957,11 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             UserId = new Guid("33674f31-0bd2-43cd-9090-3f0d4bab1c58"),
                             RoleId = new Guid("efebfd93-b27d-4c91-8a71-74fd71944893")
+                        },
+                        new
+                        {
+                            UserId = new Guid("94c14234-d9b7-4a8b-91c8-68b53378fe6b"),
+                            RoleId = new Guid("8c6d931d-a8fe-493c-88d1-2a8a9e1bb9b7")
                         });
                 });
 

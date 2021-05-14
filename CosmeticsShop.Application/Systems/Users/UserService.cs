@@ -43,39 +43,49 @@ namespace CosmeticsShop.Application.Systems.Users
 
         public async Task<ApiResult<string>> Authenticate(LoginRequest request)
         {
-            var user = await _context.Users.Where(x => x.UserName == request.UserName).FirstOrDefaultAsync();
 
-            if (user == null) return new ApiErrorResult<string>("User is not exists!");
-
-            var result = await _signInManager.PasswordSignInAsync(user, request.Password, request.RememberMe, true);
-            if (!result.Succeeded)
+            try
             {
-                return new ApiErrorResult<string>("Password is wrong!");
-            }
+                var user = await _context.Users.Where(x => request.UserName == x.UserName).SingleOrDefaultAsync();
+                if (user == null) return new ApiErrorResult<string>("User is not exists!");
 
-            var roles = await _userManager.GetRolesAsync(user);
-            var claims = new[]
-            {
+                var result = await _signInManager.PasswordSignInAsync(user, request.Password, request.RememberMe, true);
+                if (!result.Succeeded)
+                {
+                    return new ApiErrorResult<string>("Password is wrong!");
+                }
+
+                var roles = await _userManager.GetRolesAsync(user);
+                var claims = new[]
+                {
                 new Claim(ClaimTypes.Email,user.Email),
                 new Claim(ClaimTypes.GivenName,user.Name),
                 new Claim("Role",string.Join(";",roles)),
                 new Claim(ClaimTypes.Name,user.Name),
                 new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
             };
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var token = new JwtSecurityToken(_config["Tokens:Issuer"],
-                _config["Tokens:Issuer"],
-                claims,
-                expires: DateTime.Now.AddHours(3),
-                signingCredentials: creds);
+                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]));
+                var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+                var token = new JwtSecurityToken(_config["Tokens:Issuer"],
+                    _config["Tokens:Issuer"],
+                    claims,
+                    expires: DateTime.Now.AddHours(3),
+                    signingCredentials: creds);
 
-            var apiResult = new ApiResult<string>()
+                var apiResult = new ApiResult<string>()
+                {
+                    IsSuccess = true,
+                    ResultObj = new JwtSecurityTokenHandler().WriteToken(token)
+                };
+                return apiResult;
+            }
+            catch (Exception)
             {
-                IsSuccess = true,
-                ResultObj = new JwtSecurityTokenHandler().WriteToken(token)
-            };
-            return apiResult;
+
+                return new ApiErrorResult<string>("Lỗi đăng nhập");
+            }
+
+
         }
 
         public async Task<ApiResult<bool>> Delete(Guid id)

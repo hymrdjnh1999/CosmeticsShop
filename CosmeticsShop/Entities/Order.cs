@@ -16,6 +16,7 @@ namespace CosmeticsShop.Data.Entities
         public string ShipAddress { set; get; }
         public string ShipEmail { set; get; }
         public string ShipPhoneNumber { set; get; }
+        public decimal Price { set; get; }
         public OrderStatus Status { set; get; }
         public List<OrderDetail> OrderDetails { set; get; }
         public User User { set; get; }

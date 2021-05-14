@@ -59,6 +59,7 @@ namespace Cosmetics.AdminApp.Controllers
             }
             data.ResultObj.CurrentLoggedId = new Guid(currentLoginId);
             data.ResultObj.CurrentRoles = roles;
+            data.ResultObj.TotalRecords -= 1; 
 
             HttpContext.Session.SetString("isManager", roles.Contains("Manager").ToString());
             return View(data.ResultObj);

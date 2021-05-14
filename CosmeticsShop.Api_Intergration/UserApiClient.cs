@@ -43,6 +43,7 @@ namespace CosmeticsShop.Api_Intergration
                 return JsonConvert.DeserializeObject<ApiSuccessResult<string>>(await response.Content.ReadAsStringAsync());
             }
             var errorObj = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<ApiErrorResult<string>>(errorObj);
         }
 
