@@ -111,9 +111,9 @@
                                     @if (Model.CurrentRoles.Contains("Manager"))
                                     {
                                 <td class="btn-edit_del">
-                                    <a href="@Url.Action("Details","User",  new { id = Model.Items[count].Id })" class="btn btn-outline-info px-2">Edit</a>
-                                    |
-                                    <a href="@Url.Action("Delete","User",  new { id = Model.Items[count].Id })" class="btn btn-outline-danger px-0">Delete</a>
+                                    <a href="@Url.Action("Details","User",  new { id = Model.Items[count].Id })" class="p-1 btn actions-btn btn-outline-info px-2">Edit</a>
+                                    
+                                    <a href="@Url.Action("Delete","User",  new { id = Model.Items[count].Id })" class="p-1 ml-2 btn actions-btn btn-outline-danger px-0">Delete</a>
                                 </td>
                                     }
                                 </tr>

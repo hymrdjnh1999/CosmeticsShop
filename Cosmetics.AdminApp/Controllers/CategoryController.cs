@@ -37,14 +37,14 @@ namespace Cosmetics.AdminApp.Controllers
             return View(categories);
         }
 
-        [HttpGet]
+        [HttpGet("category/create")]
         public IActionResult Create()
         {
 
             return View();
         }
 
-        [HttpPost]
+        [HttpPost("category/create")]
         public async Task<IActionResult> Create(CategoryCreateRequest request)
         {
             if (!ModelState.IsValid)
@@ -67,6 +67,7 @@ namespace Cosmetics.AdminApp.Controllers
         [HttpGet("category/{id}")]
         public async Task<IActionResult> Edit(int id)
         {
+
             var category = await _categoryApiClient.GetById(id);
             if (category == null)
             {
@@ -116,8 +117,8 @@ namespace Cosmetics.AdminApp.Controllers
                 else
                 {
 
-                TempData["error"] = "Xóa danh mục thất bại";
-                RedirectToAction("Index");
+                    TempData["error"] = "Xóa danh mục thất bại";
+                    RedirectToAction("Index");
                 }
 
             }
