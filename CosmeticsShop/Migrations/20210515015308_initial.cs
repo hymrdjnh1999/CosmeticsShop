@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CosmeticsShop.Data.Migrations
 {
-    public partial class updatedatabase : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -391,6 +391,7 @@ namespace CosmeticsShop.Data.Migrations
                     ShipAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ShipEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ShipPhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -500,9 +501,9 @@ namespace CosmeticsShop.Data.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Description", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { new Guid("bd5b83d2-5c75-4f96-a63f-1eca425bdfe5"), "7a39cb84-768a-4737-a633-a87c35be6308", "Manager role", "Manager", "Manager" },
-                    { new Guid("efebfd93-b27d-4c91-8a71-74fd71944893"), "813802ce-490f-4cd6-aa2c-3ad09731e449", "Staff role", "Staff", "Staff" },
-                    { new Guid("8c6d931d-a8fe-493c-88d1-2a8a9e1bb9b7"), "62b89397-0ac0-4ef7-b61a-efa1c1c5333e", "Customer role", "Customer", "Customer" }
+                    { new Guid("bd5b83d2-5c75-4f96-a63f-1eca425bdfe5"), "f394ee4a-ea09-456a-97ac-f7d13da11915", "Manager role", "Manager", "Manager" },
+                    { new Guid("efebfd93-b27d-4c91-8a71-74fd71944893"), "00e2e6d8-8851-4576-a884-9b4222fd064c", "Staff role", "Staff", "Staff" },
+                    { new Guid("8c6d931d-a8fe-493c-88d1-2a8a9e1bb9b7"), "41d0c684-de7d-4b4d-b4ab-d24ff653959f", "Customer role", "Customer", "Customer" }
                 });
 
             migrationBuilder.InsertData(
@@ -534,16 +535,16 @@ namespace CosmeticsShop.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Dob", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { new Guid("94c14234-d9b7-4a8b-91c8-68b53378fe6b"), 0, "f6b37108-2360-4177-9706-368dccd05f17", new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "cosmeticstest@gmail.com", true, false, null, "Test", "cosmeticstest@gmail.com", "Test", "AQAAAAEAACcQAAAAEDlhvyEw8l7BxrGG3DbPdb/jtJSwYpIpv1VxFmXERPEM95Rw3T5kTJZBrR4Qa0xzug==", null, false, "", false, "cosmeticstest" },
-                    { new Guid("1c856746-f8aa-4026-b854-f18da9787cf3"), 0, "96fdcd3f-da98-40d1-81d3-d52eb5188bb9", new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "tiendinhdev99@gmail.com", true, false, null, "Voi Bé Nhỏ", "tiendinhdev99@gmail.com", "manager", "AQAAAAEAACcQAAAAEAimLncCoJxeo2WWldj9yRYukc9ECPqgd2+A61g6ZVPlJWK18RPjja0p+F6ehysU3w==", null, false, "", false, "voibenho99" },
-                    { new Guid("d8b63b91-c360-4e3d-9b3a-2dce31f00cc4"), 0, "5bb5f4e3-97ac-493b-8b59-c5fefb4b9732", new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "Haianh@gmail.com", true, false, null, "Hải Anh", "Haianh@gmail.com", "haianhmanager", "AQAAAAEAACcQAAAAEKNC0jLbGGSpM5JmG8LP8pDxc/zWiphYq7+Mf80F3RG/08k/hkR3YmnMH/pP9mIBwg==", null, false, "", false, "haianh" },
-                    { new Guid("33674f31-0bd2-43cd-9090-3f0d4bab1c58"), 0, "3ed495f8-ee90-4572-bd2b-323cf98b4d29", new DateTime(2001, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "Tranphuong18032001@gmail.com", true, false, null, "Thu Phương", "Tranphuong18032001@gmail.com", "tranphuongmanager", "AQAAAAEAACcQAAAAEDtbgUZbuA3KkTqj22pH8RSMMg3wxwbdZPlTXLNmH2jC8Mp71K2935DbJVVtkuItNg==", null, false, "", false, "tranphuong" }
+                    { new Guid("94c14234-d9b7-4a8b-91c8-68b53378fe6b"), 0, "6c10b5e0-b98f-4320-a5f4-7d224e286346", new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "cosmeticstest@gmail.com", true, false, null, "Test", "cosmeticstest@gmail.com", "Test", "AQAAAAEAACcQAAAAEDtat+ooiZtCL4/T8+RU46zR6hdHx4gpeh/8cAxNfFtZCKus1rBQlHkdHMfohzPdJA==", null, false, "", false, "cosmeticstest" },
+                    { new Guid("1c856746-f8aa-4026-b854-f18da9787cf3"), 0, "76574fe9-6a20-4ed0-9c21-d3c094811bcd", new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "tiendinhdev99@gmail.com", true, false, null, "Voi Bé Nhỏ", "tiendinhdev99@gmail.com", "manager", "AQAAAAEAACcQAAAAEP4NI9J24VJ42F8bMBvl5kKGFCxfW92os5AUoeVqFprBiv9H8YC65zcpJLK12YVFhA==", null, false, "", false, "voibenho99" },
+                    { new Guid("d8b63b91-c360-4e3d-9b3a-2dce31f00cc4"), 0, "f30b8535-9af5-46b3-955d-c034919b99e9", new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "Haianh@gmail.com", true, false, null, "Hải Anh", "Haianh@gmail.com", "haianhmanager", "AQAAAAEAACcQAAAAEIOqH3aJzyDHl3yy2aBiTh9CXPKOJebhEkYZLfeKqjJaenEhqahuFr4chU+TyPSjDA==", null, false, "", false, "haianh" },
+                    { new Guid("33674f31-0bd2-43cd-9090-3f0d4bab1c58"), 0, "40f942fc-c44a-455f-bcce-0bcc12b6d3ac", new DateTime(2001, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "Tranphuong18032001@gmail.com", true, false, null, "Thu Phương", "Tranphuong18032001@gmail.com", "tranphuongmanager", "AQAAAAEAACcQAAAAEJ/g43xpOiTmC+9QK+fA95XdqEMFZQqJHFwB+twgn1Z4WtL++JWeJLMHbMioC6/2eQ==", null, false, "", false, "tranphuong" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Orders",
-                columns: new[] { "Id", "OrderDate", "ShipAddress", "ShipEmail", "ShipName", "ShipPhoneNumber", "Status", "UserId" },
-                values: new object[] { 1, new DateTime(2021, 4, 21, 10, 19, 20, 0, DateTimeKind.Utc), "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi", "shiple@gmail.com", "Voi be nho", "0984869201", 1, new Guid("94c14234-d9b7-4a8b-91c8-68b53378fe6b") });
+                columns: new[] { "Id", "OrderDate", "Price", "ShipAddress", "ShipEmail", "ShipName", "ShipPhoneNumber", "Status", "UserId" },
+                values: new object[] { 1, new DateTime(2021, 4, 21, 10, 19, 20, 0, DateTimeKind.Utc), 480000m, "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi", "shiple@gmail.com", "Voi be nho", "0984869201", 1, new Guid("94c14234-d9b7-4a8b-91c8-68b53378fe6b") });
 
             migrationBuilder.InsertData(
                 table: "ProductInCategories",
@@ -570,7 +571,12 @@ namespace CosmeticsShop.Data.Migrations
             migrationBuilder.InsertData(
                 table: "OrderDetails",
                 columns: new[] { "OrderId", "ProductId", "Price", "Quantity" },
-                values: new object[] { 1, 1, 1200000m, 1 });
+                values: new object[] { 1, 1, 120000m, 1 });
+
+            migrationBuilder.InsertData(
+                table: "OrderDetails",
+                columns: new[] { "OrderId", "ProductId", "Price", "Quantity" },
+                values: new object[] { 1, 2, 360000m, 3 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Carts_ProductId",

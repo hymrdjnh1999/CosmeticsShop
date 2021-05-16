@@ -74,7 +74,15 @@ namespace CosmeticsShop.Application.Catalog.Orders
 
         public async Task<OrderViewModel> GetById(int id)
         {
-            var order = await _context.Orders.FindAsync(id);
+            var query = from o in _context.Orders where o.Id == id select o;
+            var order = await query.FirstOrDefaultAsync();
+            if (order == null) return null;
+            var productQuery = from od in _context.OrderDetails
+                               where od.OrderId == id
+                               join p in _context.Products on od.ProductId equals p.Id
+                               select p;
+            var user = await _context.Users.Where(x => x.Id == order.UserId).FirstOrDefaultAsync();
+
             var orderViewModel = new OrderViewModel()
             {
                 Id = id,
@@ -84,22 +92,40 @@ namespace CosmeticsShop.Application.Catalog.Orders
                 ShipAddress = order.ShipAddress,
                 ShipEmail = order.ShipEmail,
                 Status = order.Status,
-                UserId = order.UserId,
+                UserNameOrder = user.Name,
                 ShipPhoneNumber = order.ShipPhoneNumber,
+                ProductQuantity = await productQuery.CountAsync()
             };
-            //var productCount = await _context.OrderDetails.Where(x => x.OrderId == id).Include(x => x.ProductId).
             return orderViewModel;
         }
-        public async Task<List<Product>> GetOrderProducts(int orderid)
+        public async Task<List<OrderProductViewModel>> GetOrderProducts(int orderid)
         {
             var query = from od in _context.OrderDetails
-                        where od.OrderId == 1
+                        where od.OrderId == orderid
                         join p in _context.Products on od.ProductId equals p.Id
-                        select p;
-            var products = await query.ToListAsync();
+                        select new { p, od };
+
+            var products = await query.Select(x => new OrderProductViewModel()
+            {
+                Id = x.od.ProductId,
+                Name = x.p.Name,
+                Price = x.od.Price,
+                Quantity = x.od.Quantity
+            }).ToListAsync();
 
             return products;
         }
 
+        public async Task<bool> UpdateStatus(OrderViewModel request)
+        {
+            var order = await _context.Orders.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
+            if (order == null) return false;
+
+            order.Status = request.Status;
+
+            _context.Orders.Update(order);
+            await _context.SaveChangesAsync();
+            return true;
+        }
     }
 }

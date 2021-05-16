@@ -248,7 +248,8 @@ namespace CosmeticsShop.Data.Extentions
                     ShipPhoneNumber = "0984869201",
                     Status = OrderStatus.InProgress,
                     ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
-                    OrderDate = new DateTime(2021, 04, 21, 10, 19, 20, DateTimeKind.Utc)
+                    OrderDate = new DateTime(2021, 04, 21, 10, 19, 20, DateTimeKind.Utc),
+                    Price = 480000
                 });
             modelBuilder.Entity<OrderDetail>().HasData(
                 new OrderDetail()
@@ -256,8 +257,16 @@ namespace CosmeticsShop.Data.Extentions
                     OrderId = 1,
                     ProductId = 1,
                     Quantity = 1,
-                    Price = 1200000
-                });
+                    Price = 120000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 1,
+                    ProductId = 2,
+                    Quantity = 3,
+                    Price = 360000
+                }
+                );
 
             modelBuilder.Entity<Slider>().HasData(
                new Slider

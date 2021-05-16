@@ -31,10 +31,42 @@ namespace Cosmetics.WebAPI.Controllers
             var products = await _orderService.GetAll(request);
             return Ok(products);
         }
-        //[HttpGet("{id}")]
-        //public async Task<IActionResult> GetById(int id)
-        //{
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            if (id == 0)
+            {
+                return BadRequest(id);
+            }
 
-        //}
+            var order = await _orderService.GetById(id);
+            if (order == null)
+            {
+                return BadRequest(id);
+            }
+            return Ok(order);
+        }
+        [HttpGet("{id}/products")]
+        public async Task<IActionResult> GetOrderProducts(int id)
+        {
+            if (id <= 0)
+            {
+                return BadRequest(id);
+            }
+            var products = await _orderService.GetOrderProducts(id);
+            return Ok(products);
+        }
+
+        [HttpPut("status")]
+        public async Task<IActionResult> UpdateStatus(OrderViewModel request)
+        {
+            var result = await _orderService.UpdateStatus(request);
+            if (!result)
+            {
+                return BadRequest();
+            }
+            return Ok();
+        }
+
     }
 }
