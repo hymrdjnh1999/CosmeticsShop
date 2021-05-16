@@ -18,8 +18,10 @@ namespace Cosmetics.ViewModels.Catalogs.Orders
         public int ProductQuantity { get; set; }
         [DisplayName("Giá trị")]
         public decimal Price { get; set; }
-        public List<Product> OrderProducts { get; set; } = new List<Product>();
+        public List<OrderProductViewModel> OrderProducts { get; set; }
         public Guid UserId { set; get; }
+        [DisplayName("Nguời đặt")]
+        public string UserNameOrder { get; set; }
         [DisplayName("Nguời nhận")]
         public string ShipName { set; get; }
         [DisplayName("Địa chỉ nhận")]
