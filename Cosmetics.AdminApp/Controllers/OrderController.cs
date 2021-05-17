@@ -1,7 +1,9 @@
 ﻿using Cosmetics.ViewModels.Catalogs.Orders;
+using Cosmetics.ViewModels.Common;
 using CosmeticsShop.Api_Intergration;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -24,6 +26,13 @@ namespace Cosmetics.AdminApp.Controllers
             {
                 ViewBag.SuccessMsg = TempData["result"];
             }
+            var categories = OrderCategorySearch.Categories;
+            var category = categories.Where(x => x.Value == request.Type).FirstOrDefault();
+            if (category != null)
+            {
+                category.Selected = true;
+            }
+            ViewBag.Categories = categories;
             return View(orders);
         }
         [HttpGet("order/{id}")]
@@ -48,7 +57,6 @@ namespace Cosmetics.AdminApp.Controllers
                 ViewBag.Error = "Cập nhật không thành công!";
                 return View(request);
             }
-
             TempData["result"] = "Cập nhật trạng thái đơn hàng thành công!";
             return RedirectToAction("Index");
 

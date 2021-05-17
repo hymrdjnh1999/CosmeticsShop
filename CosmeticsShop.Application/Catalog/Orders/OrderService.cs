@@ -2,6 +2,7 @@
 using Cosmetics.ViewModels.Common;
 using CosmeticsShop.Data.Entities;
 using CosmeticsShop.Data.EntityFrameWork;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
@@ -19,17 +20,34 @@ namespace CosmeticsShop.Application.Catalog.Orders
         {
             _context = context;
         }
+        private IQueryable<Order> GetQueryOrders(SelectListItem item, IQueryable<Order> query, string keyWord)
+        {
+            switch (item.Value)
+            {
+                case "id":
+                    return query.Where(x => x.Id.ToString() == keyWord);
+                case "phone":
+                    return query.Where(x => x.ShipPhoneNumber.Contains(keyWord));
+                case "shipname":
+                    return query.Where(x => x.ShipName.Contains(keyWord));
+                default:
+                    return query;
+            }
+        }
         public async Task<PageResponse<OrderViewModel>> GetAll(GetOrderRequest request)
         {
-            var test = from o in _context.Orders select o;
-
             var query = from o in _context.Orders select o;
 
-            if (!String.IsNullOrEmpty(request.KeyWord))
+            var category = OrderCategorySearch.Categories.Where(x => x.Value == request.Type).FirstOrDefault();
+            if (!String.IsNullOrEmpty(request.KeyWord) && category == null)
             {
                 query = query.Where(x => x.Id.ToString() == request.KeyWord ||
-                x.ShipAddress.Contains(request.KeyWord) ||
-                x.ShipPhoneNumber.Contains(request.KeyWord));
+                x.Id.ToString() == request.KeyWord ||
+                x.ShipPhoneNumber.Contains(request.KeyWord) || x.ShipName.Contains(request.KeyWord));
+            }
+            if (category != null && request.KeyWord != null)
+            {
+                query = GetQueryOrders(category, query, request.KeyWord);
             }
             var pageIndex = request.PageIndex;
             var pageSize = request.PageSize;
@@ -38,6 +56,7 @@ namespace CosmeticsShop.Application.Catalog.Orders
             var orders = await query.Select(x => new OrderViewModel()
             {
                 Id = x.Id,
+                Price = x.Price,
                 OrderDate = x.OrderDate,
                 ShipAddress = x.ShipAddress,
                 ShipEmail = x.ShipEmail ?? "",
@@ -57,7 +76,6 @@ namespace CosmeticsShop.Application.Catalog.Orders
                                select new { p, od };
                 var productInOrders = products.Select(x => x.p).ToList();
                 item.ProductQuantity = productInOrders.Count();
-                item.Price = productInOrders[0].Price;
             }
 
             var pageResponse = new PageResponse<OrderViewModel>()
