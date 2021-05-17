@@ -1,4 +1,5 @@
 ﻿using Cosmetics.ViewModels.Catalogs.Orders;
+using Cosmetics.ViewModels.Common;
 using CosmeticsShop.Application.Catalog.Orders;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -20,16 +21,15 @@ namespace Cosmetics.WebAPI.Controllers
         }
         [HttpGet("paging")]
         [Authorize]
-
         public async Task<IActionResult> Index([FromQuery] GetOrderRequest request)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || request.PageSize <= 0)
             {
-                return BadRequest(ModelState);
+                return Ok(new PageResponse<OrderViewModel>() { Items = new List<OrderViewModel>(), PageIndex = 1, PageSize = 5, TotalRecords = 0 });
             }
 
-            var products = await _orderService.GetAll(request);
-            return Ok(products);
+            var orders = await _orderService.GetAll(request);
+            return Ok(orders);
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
