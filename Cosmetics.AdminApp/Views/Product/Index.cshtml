@@ -21,7 +21,7 @@
 <div class="container-fluid">
     <h1 class="mt-4">Sản Phẩm</h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Dashboard</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Bảng điều khiển</a></li>
         <li class="breadcrumb-item active">Danh Sách Sản Phẩm</li>
     </ol>
 
@@ -114,15 +114,15 @@
                                 <td class="d-flex align-items-center justify-content-around pro-item" style="flex: 1.2">
                                     @*@Html.ActionLink("Edit", "Update", new { id = item.Id })*@
                                     <a class="d-block btn btn-outline-info px-2" href="@Url.Action("Update","Product")/@item.Id">
-                                        Edit
+                                        Sửa
                                     </a>
                                     <a class="d-block btn btn-outline-primary px-2" href="Product/@item.Id/images">
-                                        Img
+                                        Ảnh
                                     </a>
                                     @if (isManager)
                                     {
                                         <button onclick="getValue(@item.Id)" data-target="#exampleModalCenter" data-toggle="modal" class="d-block btn btn-outline-danger px-2">
-                                            Del
+                                        Xóa
                                         </button>
                                     }
                                 </td>

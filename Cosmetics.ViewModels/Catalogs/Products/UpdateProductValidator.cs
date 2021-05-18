@@ -13,32 +13,31 @@ namespace Cosmetics.ViewModels.Catalogs.Products
         public UpdateProductValidator()
         {
             RuleFor(x => x.Name).NotEmpty()
-                .WithMessage("Product name is require")
-                .MaximumLength(200).WithMessage("Product name max is 200 character");
+                .WithMessage("Tên sản phẩm không được để trống")
+                .MaximumLength(200).WithMessage("Tên sản phẩm không được dài hơn 200 ký tự");
 
             RuleFor(x => x.Price).NotEmpty()
-                .WithMessage("Price is require").GreaterThan(100000).WithMessage("Product price is must greater than 100000!");
+                .WithMessage("Giá bán không được để trống").GreaterThan(9999).WithMessage("Giá bán không được nhỏ hơn 10.000");
 
             RuleFor(x => x.ForGender).NotEmpty()
-                .WithMessage("Product for gender is require");
-                
+                .WithMessage("Giới tính sản phẩm nhắm đến không được để trống");
+
             RuleFor(x => x.OriginalPrice).NotEmpty()
-                .WithMessage("Original price is require").GreaterThan(100000).WithMessage("Product original price is must greater than 100000!");
+                .WithMessage("Giá nhập không được đẻ trống").WithMessage("Giá nhập không được nhỏ hơn 10.000");
 
             RuleFor(x => x.SelectedId).NotEmpty()
-                .WithMessage("Category is require");
+                .WithMessage("Danh mục của sản phẩm không được để trống");
 
             RuleFor(x => x).Custom((request, context) =>
             {
                 if (request.OriginalPrice < request.Price)
                 {
-                    context.AddFailure("Original price is not less than price");
+                    context.AddFailure("Giá bán không được lớn hơn giá nhập");
                 }
-
-
             });
 
-            RuleFor(x => x.Stock).NotEmpty().WithMessage("Stock is require").GreaterThan(-1).WithMessage("Stock is can not negative");
+            RuleFor(x => x.Stock).NotEmpty().WithMessage("Số lượng trong kho không được để trống").GreaterThan(-1)
+                .WithMessage("Số lượng trong kho không được âm");
 
         }
     }
