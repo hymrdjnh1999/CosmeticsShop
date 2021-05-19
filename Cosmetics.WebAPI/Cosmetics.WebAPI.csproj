@@ -5,6 +5,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Controllers\OrdersController.cs~RF23c0c17.TMP" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<Folder Include="wwwroot\user-content\" />
 	</ItemGroup>
 

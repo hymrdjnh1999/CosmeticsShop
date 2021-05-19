@@ -135,8 +135,10 @@ namespace CosmeticsShop.Data.Extentions
             const string ADMIN_ID = "1C856746-F8AA-4026-B854-F18DA9787CF3";
             const string HAIANH_ID = "D8B63B91-C360-4E3D-9B3A-2DCE31F00CC4";
             const string PHUONGID = "33674F31-0BD2-43CD-9090-3F0D4BAB1C58";
+            const string TESTID = "94C14234-D9B7-4A8B-91C8-68B53378FE6B";
             const string ROLE_ID = "BD5B83D2-5C75-4F96-A63F-1ECA425BDFE5";
             const string ROLE_ID2 = "EFEBFD93-B27D-4C91-8A71-74FD71944893";
+            const string ROLE_ID3 = "8C6D931D-A8FE-493C-88D1-2A8A9E1BB9B7";
 
             modelBuilder.Entity<Role>().HasData(
                 new Role()
@@ -149,12 +151,32 @@ namespace CosmeticsShop.Data.Extentions
                 new Role()
                 {
                     Id = new Guid(ROLE_ID2),
+                    Name = "Staff",
+                    NormalizedName = "Staff",
+                    Description = "Staff role"
+                },
+                new Role()
+                {
+                    Id = new Guid(ROLE_ID3),
                     Name = "Customer",
                     NormalizedName = "Customer",
                     Description = "Customer role"
                 });
             var hasher = new PasswordHasher<User>();
             modelBuilder.Entity<User>().HasData(
+                 new User()
+                 {
+                     Id = new Guid(TESTID),
+                     Email = "cosmeticstest@gmail.com",
+                     NormalizedEmail = "cosmeticstest@gmail.com",
+                     Dob = new DateTime(1999, 06, 21),
+                     UserName = "cosmeticstest",
+                     NormalizedUserName = "Test",
+                     Name = "Test",
+                     SecurityStamp = string.Empty,
+                     EmailConfirmed = true,
+                     PasswordHash = hasher.HashPassword(null, "Adolphin@123")
+                 },
                 new User()
                 {
                     Id = new Guid(ADMIN_ID),
@@ -166,7 +188,7 @@ namespace CosmeticsShop.Data.Extentions
                     Name = "Voi Bé Nhỏ",
                     SecurityStamp = string.Empty,
                     EmailConfirmed = true,
-                    PasswordHash = hasher.HashPassword(null, "adolphin123")
+                    PasswordHash = hasher.HashPassword(null, "Adolphin@123")
                 },
                 new User()
                 {
@@ -179,7 +201,7 @@ namespace CosmeticsShop.Data.Extentions
                     Name = "Hải Anh",
                     SecurityStamp = string.Empty,
                     EmailConfirmed = true,
-                    PasswordHash = hasher.HashPassword(null, "Abcd@123")
+                    PasswordHash = hasher.HashPassword(null, "Adolphin@123")
                 },
                 new User()
                 {
@@ -203,12 +225,46 @@ namespace CosmeticsShop.Data.Extentions
                 new IdentityUserRole<Guid>()
                 {
                     UserId = new Guid(HAIANH_ID),
-                    RoleId = new Guid(ROLE_ID2)
+                    RoleId = new Guid(ROLE_ID)
                 },
                 new IdentityUserRole<Guid>()
                 {
                     UserId = new Guid(PHUONGID),
                     RoleId = new Guid(ROLE_ID2)
+                },
+                new IdentityUserRole<Guid>()
+                {
+                    UserId = new Guid(TESTID),
+                    RoleId = new Guid(ROLE_ID3)
+                }
+                );
+            modelBuilder.Entity<Order>().HasData(
+                new Order()
+                {
+                    UserId = new Guid(TESTID),
+                    Id = 1,
+                    ShipEmail = "shiple@gmail.com",
+                    ShipName = "Voi be nho",
+                    ShipPhoneNumber = "0984869201",
+                    Status = OrderStatus.InProgress,
+                    ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
+                    OrderDate = new DateTime(2021, 04, 21, 10, 19, 20, DateTimeKind.Utc),
+                    Price = 480000
+                });
+            modelBuilder.Entity<OrderDetail>().HasData(
+                new OrderDetail()
+                {
+                    OrderId = 1,
+                    ProductId = 1,
+                    Quantity = 1,
+                    Price = 120000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 1,
+                    ProductId = 2,
+                    Quantity = 3,
+                    Price = 360000
                 }
                 );
 

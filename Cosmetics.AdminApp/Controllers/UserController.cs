@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -42,7 +43,7 @@ namespace Cosmetics.AdminApp.Controllers
         {
 
             var currentLoginId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var roles = User.FindFirst(ClaimTypes.Role).Value;
+            var roles = (User.Identity as ClaimsIdentity).FindFirst("Role").Value;
             var request = new GetUserPagingRequest()
             {
                 Keyword = keyword,
@@ -58,6 +59,9 @@ namespace Cosmetics.AdminApp.Controllers
             }
             data.ResultObj.CurrentLoggedId = new Guid(currentLoginId);
             data.ResultObj.CurrentRoles = roles;
+            data.ResultObj.TotalRecords -= 1; 
+
+            HttpContext.Session.SetString("isManager", roles.Contains("Manager").ToString());
             return View(data.ResultObj);
         }
 
@@ -107,8 +111,20 @@ namespace Cosmetics.AdminApp.Controllers
 
             if (result.IsSuccess)
             {
+                try
+                {
+                    var isManager = Boolean.Parse(HttpContext.Session.GetString("isManager"));
+                    ViewBag.IsManager = isManager;
+                }
+                catch (Exception)
+                {
+                    return RedirectToAction("Error", "Home");
+
+                }
+
                 var roles = await GetRoleAssignRequest(user);
                 user.RoleAssignRequest = roles.Roles;
+                ViewBag.CustomIsManager = user.RoleAssignRequest.Find(x => x.Name == "Manager").Selected ;
                 return View(user);
             }
 

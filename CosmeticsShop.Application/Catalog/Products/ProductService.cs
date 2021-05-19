@@ -42,9 +42,7 @@ namespace CosmeticsShop.Application.Catalog.Products
                 DateCreated = DateTime.Now,
                 FileSize = request.ImageFile.Length,
                 ImagePath = await SaveFile(request.ImageFile),
-                IsDefault = request.IsDefault,
                 ProductId = productId,
-                SortOrder = request.SortOrder
             };
             _context.ProductImages.Add(image);
             await _context.SaveChangesAsync();
@@ -59,21 +57,21 @@ namespace CosmeticsShop.Application.Catalog.Products
             {
                 return new ApiErrorResult<bool>($"Cannot find product with id: {request.Id}");
             }
-            foreach (var category in request.Categories)
-            {
-                var productInCategory = await _context.ProductInCategories
-                    .FirstOrDefaultAsync(x => x.CategoryId == category.Id
-                    && x.ProductId == request.Id);
+            var categories = await _context.Categories.Select(x => x.Id.ToString()).ToArrayAsync();
 
-                if (productInCategory != null && category.Selected == false)
+            foreach (var categoryId in categories)
+            {
+                var productInCategory = await _context.ProductInCategories.Where(x => x.CategoryId == int.Parse(categoryId) && x.ProductId == product.Id).FirstOrDefaultAsync();
+                var isAdd = request.SelectedCategories.Contains(categoryId);
+                if (!isAdd && productInCategory != null)
                 {
                     _context.ProductInCategories.Remove(productInCategory);
                 }
-                else if (productInCategory == null && category.Selected)
+                else if (isAdd && productInCategory == null)
                 {
                     await _context.ProductInCategories.AddAsync(new ProductInCategory()
                     {
-                        CategoryId = category.Id,
+                        CategoryId = int.Parse(categoryId),
                         ProductId = request.Id
                     });
                 }
@@ -157,7 +155,6 @@ namespace CosmeticsShop.Application.Catalog.Products
 
                 }
                 totalRecords = await result.CountAsync();
-
                 var products = await result.Skip((PageIndex - 1) * PageSize).Take(PageSize).Select(x => new ProductViewModel()
                 {
                     Id = x.p.Id,
@@ -232,17 +229,23 @@ namespace CosmeticsShop.Application.Catalog.Products
             return response;
         }
 
-        public async Task<ProductViewModel> GetById(int id)
+        public async Task<ProductUpdateRequest> GetById(int id)
         {
 
             var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
+
             if (product == null)
             {
                 return null;
             }
-            var categoriesName = await GetProductInCategories(id);
+            var queryCtgs = from pic in _context.ProductInCategories
+                            join c in _context.Categories on pic.CategoryId equals c.Id
+                            select new { pic, c };
+            var categories = await queryCtgs.Where(x => x.pic.ProductId == id).Select(x => x.c).ToListAsync() as IEnumerable<Category>;
 
-            var productViewModel = new ProductViewModel()
+            var categoryIds = await GetProductInCategories(id);
+
+            var productViewModel = new ProductUpdateRequest()
             {
                 Id = product.Id,
                 DateCreated = product.DateCreated,
@@ -255,7 +258,8 @@ namespace CosmeticsShop.Application.Catalog.Products
                 Price = product.Price,
                 Stock = product.Stock,
                 ViewCount = product.ViewCount,
-                Categories = categoriesName
+                Categories = categoryIds,
+                CategoryList = categories
 
             };
             return productViewModel;
@@ -265,7 +269,7 @@ namespace CosmeticsShop.Application.Catalog.Products
             var categoryNames = await (from c in _context.Categories
                                        join pic in _context.ProductInCategories on c.Id equals pic.CategoryId
                                        where pic.ProductId == id
-                                       select c.Name).ToListAsync();
+                                       select c.Id.ToString()).ToListAsync();
             return categoryNames;
 
         }
@@ -321,16 +325,70 @@ namespace CosmeticsShop.Application.Catalog.Products
                 .ToListAsync();
             return images;
         }
+        public async Task<PageResponse<ProductImageViewModel>> GetImages(int productId, QueryParamRequest request)
+        {
 
-        public async Task<int> RemoveImage(int imageId)
+            var product = await _context.Products.Where(x => x.Id == productId).FirstOrDefaultAsync();
+
+            if (product == null)
+            {
+                return null;
+            }
+
+            var query = from pi in _context.ProductImages where pi.ProductId == productId select pi;
+            var records = await query.CountAsync();
+            var images = await query.Select(x => new ProductImageViewModel()
+            {
+                Id = x.Id,
+                Caption = x.Caption,
+                DateCreated = x.DateCreated,
+                FileSize = x.FileSize,
+                ImagePath = x.ImagePath,
+                IsDefault = x.IsDefault,
+                ProductId = x.ProductId,
+                SortOrder = x.SortOrder
+            }).Skip((request.PageIndex - 1) * request.PageSize).Take(request.PageSize).ToListAsync();
+            var response = new PageResponse<ProductImageViewModel>()
+            {
+                Items = images,
+                PageIndex = request.PageIndex,
+                PageSize = request.PageSize,
+                TotalRecords = records
+            };
+            return response;
+        }
+        public async Task<ApiResult<bool>> RemoveImage(int productId, int imageId)
         {
             var image = await _context.ProductImages.FindAsync(imageId);
-            if (image == null) throw new CosmeticsException($"Không tìm thấy ảnh với id: {imageId}");
+            var product = await _context.Products.FindAsync(productId);
+            if (image == null || product == null) return new ApiErrorResult<bool>("Không tìm thấy image");
+
+            var countProductImage = await _context.ProductImages.Where(x => x.ProductId == productId).CountAsync();
+
+            if (countProductImage > 1 && image.IsDefault)
+            {
+                var ThumbnailNew = await _context.ProductImages.Where(x => x.Id != imageId && x.ProductId == productId).FirstOrDefaultAsync();
+                ThumbnailNew.IsDefault = true;
+                _context.ProductImages.Attach(ThumbnailNew);
+            }
+
+            if (countProductImage == 1)
+            {
+
+                return new ApiSuccessResult<bool>() { IsSuccess = true, ResultObj = false, Message = "Không thể xóa hết ảnh của sản phẩm!" };
+            }
+
             _context.ProductImages.Remove(image);
-            return await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
+            return new ApiSuccessResult<bool>()
+            {
+                IsSuccess = true,
+                Message = "Xóa thành công",
+                ResultObj = true
+            };
         }
 
-        public async Task<int> Update(ProductViewModel request)
+        public async Task<int> Update(ProductUpdateRequest request)
         {
             var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == request.Id);
             if (product == null)
@@ -366,15 +424,16 @@ namespace CosmeticsShop.Application.Catalog.Products
         {
 
             var productImage = await _context.ProductImages.FindAsync(imageId);
-            if (productImage == null || request.ImageFile == null)
+            if (productImage == null)
             {
-                throw new CosmeticsException("Error");
+                return 0;
             }
-            productImage.ImagePath = await SaveFile(request.ImageFile);
-            productImage.FileSize = request.ImageFile.Length;
+            if (request.ImageFile != null)
+            {
+                productImage.ImagePath = await SaveFile(request.ImageFile);
+                productImage.FileSize = request.ImageFile.Length;
+            }
             productImage.Caption = request.Caption;
-            productImage.IsDefault = request.IsDefault;
-            productImage.SortOrder = request.SortOrder;
             _context.ProductImages.Update(productImage);
             return await _context.SaveChangesAsync();
         }
@@ -411,6 +470,34 @@ namespace CosmeticsShop.Application.Catalog.Products
             var fileName = $"{Guid.NewGuid()}{Path.GetExtension(originalFileName)}";
             await _storageService.SaveFileAsync(file.OpenReadStream(), fileName);
             return fileName;
+        }
+
+        public async Task<bool> ChangeThumbnail(int productId, int imageId)
+        {
+            var product = await _context.Products.Where(x => x.Id == productId).FirstOrDefaultAsync();
+
+            if (product == null) return false;
+
+
+            var image = await _context.ProductImages.Where(x => x.Id == imageId && x.ProductId == productId).FirstOrDefaultAsync();
+
+            if (image == null) return false;
+            var thumbnail = await _context.ProductImages.Where(x => x.IsDefault && x.Id != imageId).FirstOrDefaultAsync();
+
+            if (thumbnail == null)
+            {
+                thumbnail.IsDefault = true;
+            }
+            else
+            {
+                thumbnail.IsDefault = false;
+            }
+            image.IsDefault = true;
+            _context.ProductImages.Attach(image);
+            _context.ProductImages.Attach(thumbnail);
+            await _context.SaveChangesAsync();
+            return true;
+
         }
     }
 }

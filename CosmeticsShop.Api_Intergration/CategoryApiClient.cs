@@ -54,6 +54,49 @@ namespace CosmeticsShop.Api_Intergration
             return JsonConvert.DeserializeObject<int>(result);
         }
 
+        public async Task<bool> Delete(int id)
+        {
+            var sessions = _httpContextAccessor
+             .HttpContext
+             .Session
+             .GetString(SystemConstants.AppSettings.Token);
+
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_config[SystemConstants.AppSettings.BaseAddress]);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+
+            var response = await client.DeleteAsync($"/api/categories/{id}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+
+            return false;
+
+        }
+
+        public async Task<bool> Edit(CategoryUpdateRequest request)
+        {
+            var sessions = _httpContextAccessor
+              .HttpContext
+              .Session
+              .GetString(SystemConstants.AppSettings.Token);
+
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_config[SystemConstants.AppSettings.BaseAddress]);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+            var json = JsonConvert.SerializeObject(request);
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PutAsync($"/api/categories", httpContent);
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public async Task<List<CategoryViewModel>> GetAll()
         {
             var categories = await GetAsync<List<CategoryViewModel>>("/api/categories");
@@ -67,6 +110,13 @@ namespace CosmeticsShop.Api_Intergration
               $"{request.PageIndex}&pageSize={request.PageSize}&keyword={request.Keyword}";
             var categories = await GetAsync<PageResponse<CategoryViewModel>>(requestUrl);
             return categories;
+        }
+
+        public async Task<CategoryViewModel> GetById(int id)
+        {
+            var requestUrl = $"/api/categories/{id}";
+            var category = await GetAsync<CategoryViewModel>(requestUrl);
+            return category;
         }
     }
 }
