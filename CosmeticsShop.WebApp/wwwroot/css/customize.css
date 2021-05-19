@@ -4,13 +4,12 @@
     border-radius: 100%;
 }
 
-body{
+body {
     margin-bottom: -60px;
 }
 
 /* Header */
 /* Announcement Bar*/
-
 #section-announcement {
     background: #da2131;
     color: #f2f3cf;
@@ -52,14 +51,11 @@ body{
     border-bottom: 1px solid #ccc;
 }
 
-/* VND */
+/* Search */
 .header__wrapper {
     font-family: "Space Grotesk", sans-serif;
-    display: flex;
-    -webkit-box-align: center;
     align-items: center;
     justify-content: space-between;
-    -webkit-box-pack: justify;
     padding: 15px 50px 13px 50px;
 }
 
@@ -69,7 +65,40 @@ body{
     color: currentColor;
     line-height: 1;
     vertical-align: middle;
-    width: 340px;
+    width: 180px;
+}
+
+.select__transparent select {
+    padding-right: 15px;
+    background: transparent;
+    border: none;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: inherit;
+    text-transform: uppercase;
+}
+
+#btnSearch {
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: url(image/icon-search.png) no-repeat center;
+    cursor: pointer;
+    border: none;
+}
+
+.box-search {
+    padding: 0 15px;
+    font-size: 14px;
+    position: relative;
+}
+
+input:focus {
+    outline: none;
 }
 
 .select option {
@@ -87,7 +116,6 @@ body{
 .header__logo {
     position: relative;
     margin-bottom: 0;
-    justify-content: center;
 }
 
 .header__logolink, .header__logoimage {
@@ -104,6 +132,7 @@ body{
 .horizontalList {
     list-style: none;
     margin: 7px -8px;
+
 }
 
 .horizontalList--spacing .horizontalList__item {
@@ -117,7 +146,7 @@ body{
 }
 
 .horizontalList__spacing {
-    margin-left: -14px;
+    margin-left: -50px;
     margin-right: -14px;
 }
 
@@ -130,6 +159,7 @@ body{
 .horizontalList li a:hover {
     text-decoration: none;
 }
+
 .horizontalList--nav li a:hover {
     text-decoration: none;
 }
@@ -172,6 +202,7 @@ Linklist__Item > .Link {
 #main {
     display: block;
 }
+
 .shopify-section--bordered > .section--spacingNormal {
     padding: 80px 0;
 }
@@ -179,16 +210,18 @@ Linklist__Item > .Link {
 .shopify-section--bordered {
     border-top: 1px solid #d9d9d9;
 }
+
 h2 {
     font-size: 24px;
 }
+
 .gird--product {
     padding-left: 40px;
     margin-bottom: 60px;
     border: 1px solid black;
 }
 
-.gird--product img{
+.gird--product img {
     width: 327.8px;
     height: 491.7px;
 }
@@ -213,7 +246,6 @@ h2 {
     color: black;
     text-decoration: none;
     display: block;
-    width: 327.8px;
     word-wrap: break-word;
 }
 
@@ -227,12 +259,14 @@ h2 {
     font-weight: 600;
 }
 
+/*Xem Tất Cả*/
 .sectionFooter {
-/*    margin-top: 30px;*/
+    /*    margin-top: 30px;*/
     text-align: center;
 }
 
-.sectionFooter a , .linksection a{
+
+.sectionFooter a, .linksection a {
     text-decoration: none;
     color: white;
     border: 1px solid #1c1b1b;
@@ -241,18 +275,45 @@ h2 {
     font-size: 15px;
     letter-spacing: 3px;
     font-weight: 600;
+    transition: all 2s;
+    position: relative;
+    text-align: center;
+}
+.wrapper a span {
+    position: relative;
+    z-index: 2;
 }
 
-.sectionFooter a:hover , .linksection a:hover{
+.wrapper a:after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: white;
+    transition: all 2s;
+}
+.wrapper a:hover {
     color: black;
     background: white;
 }
 
+.wrapper a:hover:after {
+    width: 100%;
+}
+
+/*.sectionFooter a:hover, .linksection a:hover {
+    color: black;
+    background: white;
+}*/
+
+/*Khám phá thêm*/
 .linksection {
     padding-top: 30px;
 }
 
-.buttonRegister a{
+.buttonRegister a {
     text-decoration: none;
     color: white;
     border: 1px solid #1c1b1b;
@@ -262,12 +323,15 @@ h2 {
     letter-spacing: 3px;
     font-weight: 600;
 }
+
+
 .featureText--withImage {
     display: table;
     width: 100%;
     text-align: justify;
     table-layout: fixed;
 }
+
 .featureText__imageWrapper {
     display: table-cell;
     width: 50%;
@@ -279,7 +343,6 @@ h2 {
 }
 
 .featureText__contentWrapperright {
-
     margin-left: 180px;
     padding-right: 100px;
 }
@@ -288,6 +351,11 @@ h2 {
     border-color: #000000;
     color: #ffffff;
 }
+
+.item{
+    grid-column: 1 / 4;
+}
+
 /*Footer*/
 .footer_Container {
     background: black;
@@ -333,11 +401,11 @@ h2 {
     color: #828489;
 }
 
-.link--primary:hover {
-    text-decoration: none;
-    color: white;
-    transition: color 1s ease-in-out, opacity 1s ease-in-out;
-}
+    .link--primary:hover {
+        text-decoration: none;
+        color: white;
+        transition: color 1s ease-in-out, opacity 1s ease-in-out;
+    }
 
 .footer__content {
     font-size: 15px;
@@ -353,28 +421,25 @@ h2 {
     text-decoration: none;
 }
 
-.rte a:hover {
-    color: white;
-}
+    .rte a:hover {
+        color: white;
+    }
 
 .bct-section {
     border-top: 1px solid #2a2b2e;
     padding: 50px 0 0 0;
 }
 
-.bct-section img{
-    width: 11%;
-    border: 0;
-}
+    .bct-section img {
+        width: 11%;
+        border: 0;
+    }
 
-.img--footer{
+.img--footer {
     width: 25%;
 }
-
-
 
 .footer-aside img:before {
     border-style: none;
 }
-
 

@@ -4,5 +4,314 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Detail</h1>
 
+@* Next content code here *@
+@* product detail container *@
+<div id="main">
+    <div class="container">
+        <div class="product product__wrapper d-flex">
+            @*Ảnh sản phẩm  *@
+            <div class="product__gallery">
+                <div class="product__slideShowNav">
+                    <div class="product__slideShowNavScroller" style="padding-top: 50px;">
+                        <a href="#">
+                            <img class="aspect__Ratio" src="~/images/SpDetail.webp" alt="Alternate Text" />
+                        </a>
+                        <a href="#">
+                            <img class="aspect__Ratio" src="~/images/SpDetail.webp" alt="Alternate Text" />
+                        </a>
+                        <a href="#">
+                            <img class="aspect__Ratio" src="~/images/sp2.jpg" alt="Alternate Text" />
+                        </a>
+                        <a href="#">
+                            <img class="aspect__Ratio" src="~/images/sp2.jpg" alt="Alternate Text" />
+                        </a>
+                        <a href="#">
+                            <img class="aspect__Ratio" src="~/images/sp2.jpg" alt="Alternate Text" />
+                        </a>
+                        <a href="#">
+                            <img class="aspect__Ratio" src="~/images/sp3.png" alt="Alternate Text" />
+                        </a>
+                        <a href="#">
+                            <img class="aspect__Ratio" src="~/images/SpDetail.webp" alt="Alternate Text" />
+                        </a>
+                        <a href="#">
+                            <img class="aspect__Ratio" src="~/images/SpDetail.webp" alt="Alternate Text" />
+                        </a>
+                        <a href="#">
+                            <img class="aspect__Ratio" src="~/images/sp2.jpg" alt="Alternate Text" />
+                        </a>
+                    </div>
+                    <div>
+                        <div class="product__slideShowList">
+                            <img src="~/images/sp1.jpg" alt="Alternate Text" style="width: 530px;" />
+                        </div>
+                        <div class="product__slideShow">
+                            <img src="~/images/sp1.jpg" alt="Alternate Text" style="width: 530px;" />
+                        </div>
+                        <div class="product__slideShow">
+                            <img src="~/images/sp2.jpg" alt="Alternate Text" style="width: 530px;" />
+                        </div>
+                        <div class="product__slideShow">
+                            <img src="~/images/sp2.jpg" alt="Alternate Text" style="width: 530px;" />
+                        </div>
+                        <div class="product__slideShow">
+                            <img src="~/images/sp2.jpg" alt="Alternate Text" style="width: 530px;" />
+                        </div>
+                        <div class="product__slideShow">
+                            <img src="~/images/sp3.png" alt="Alternate Text" style="width: 530px;" />
+                        </div>
+                        <div class="product__slideShowList">
+                            <img src="~/images/sp1.jpg" alt="Alternate Text" style="width: 530px;" />
+                        </div>
+                        <div class="product__slideShow">
+                            <img src="~/images/sp1.jpg" alt="Alternate Text" style="width: 530px;" />
+                        </div>
+                        <div class="product__slideShow">
+                            <img src="~/images/sp2.jpg" alt="Alternate Text" style="width: 530px;" />
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            @* Thông Tin sản Phẩm Chi Tiết *@
+            <div class="product_infoWrapper">
+                @* Option sp *@
+                <div class="product_info">
+                    <div class="product_meta" style="padding-top: 65px;">
+                        <h1 class="productMeta__Title justify-content-start">[NEW] Carolina Herrera 212 Heroes <br> EDT</h1>
+                        <div class="productMeta__PriceList">
+                            <span class="productMeta__Price price text--subdued" data-money-convertible="">2.050.000 VND</span>
+                        </div>
+                    </div>
+                    @* From product *@
+                    <div class="productFrom">
+                        <div class="productFrom__Variants">
+                            <div class="productFrom__Option" style="position: relative; margin-bottom: 10px;">
+                                <button type="button" class="product__Item">
+                                    <span class="productForm__OptionName">Size: <span class="productForm__SelectedValue">50ml + Body Spray 50ml + Móc Khoá</span></span>
+                                    <span> <img src="~/images/icons8-drop-down.png" class="productFrom_IconDropdown justify-content-center" style=" margin-left: 80px;" alt="Alternate Text" /></span>
+                                </button>
+                            </div>
+                            @* Số lượng *@
+                            <div class="productFrom__QuantitySelector">
+                                <div class="quantitySelector quantitySelector__Large">
+                                    <span class="quantitySelector__Button" data-action="increase-quantity">
+                                        <img style="width: 11px;" src="~/images/icons8-subtract-24.png" alt="Alternate Text" />
+                                    </span>
+                                    <input type="text" class="quantitySelector__CurrentQuantity" pattern="[0-9]*" name="quantity" value="1">
+                                    <span class="quantitySelector__Button" data-action="increase-quantity">
+                                        <img style="width: 11px;" src="~/images/icons8-addtion.png" alt="Alternate Text" />
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sectionFooter_Product">
+                            <div class="wrapper">
+                                <a href="#" class="justify-content-center text-center align-items-center"><span>MUA NGAY</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @* Chi Tiết Thông Tin Sản Phẩm *@
+                <div class="productMeta__Description rte">
+                    @* Video *@
+                    <p>
+                        <div class="videoWrapper">
+                            <iframe width="410" height="225" src="https://cdn.shopify.com/s/files/1/0003/8718/6741/files/SCH-16250212HEROESMAN2020WITHOUTHASHTAG63sVI.mp4?v=1616645691"></iframe>
+                        </div>
+                    </p>
+                    <p>
+                        <h2 style="text-align: center;" data-mce-style="text-align: center;">CAROLINA HERRERA 212 HEROES EDT</h2>
+                    </p>
+                    <p>Lấy cảm hứng từ đô thị phồn hoa New York với nguồn năng lượng tươi trẻ, đầy nhiệt huyết không bao giờ ngừng chuyển động, 212 của nhà Carolina Herrera đại diện cho sự giao thoa hoàn hảo của nét đẹp của những giá trị xưa cũ cùng những điều mới lạ tân thời.</p>
+                    <p><meta charset="utf-8"><img style="width: 400px; padding-bottom: 24px;" src="https://cdn.shopify.com/s/files/1/0003/8718/6741/files/KJ_B_W_International_English_Visual_Campaign_600x600.jpg?v=1616576045"><br><meta charset="utf-8"></p>
+                    <p>
+                        <strong>212 Heroes</strong> là sáng tạo thơm mới nhất của dòng sản phẩm 212 trứ danh –
+                        được ra đời như một sự ngợi ca vẻ đẹp của tuổi trẻ - tôn vinh những giá trị của nghệ thuật đường phố đầy tự do và mang
+                        tính nguyên bản của thế hệ hiện đại. 212 Heroes là đứa trẻ mang cá tính của những dãy phố chạy dài khắp New York, nơi mà những nổi
+                        loạn thanh xuân được khơi dậy cùng những giấc mơ và đam mê cháy bỏng sẽ trở thành hiện thực, chốn nương náu dành cho tất cả mọi người và chẳng có ai bị bỏ lại phía sau.
+                    </p>
+
+                    <p>
+                        <meta charset="utf-8"><img style="width: 400px;" src="https://cdn.shopify.com/s/files/1/0003/8718/6741/files/GROUP_International_English_Visual_Campaign_600x600.jpg?v=1616648262"><br><meta charset="utf-8">
+                        <strong>#Forever Young</strong> chính là thông điệp mà 212 Heroes muốn gửi gắm trong những nốt hương nam tính hiện đại và trẻ trung.
+                        Tự hào với sự kiến tạo nên một sáng tạo thơm từ những nguyên liệu hoàn toàn thuần chay cùng thiết kế dáng chai lấy cảm hứng từ ván trượt skateboard –
+                        một biểu tượng đại diện cho cá tính bứt phá của những người trẻ, cùng việc lựa chọn những đại sứ thương hiệu cho sản phẩm truyền đi niềm cảm hứng ước
+                        mơ của thanh xuân mãnh liệt, dám dấn thân cho đam mê và khát vọng để cháy hết mình. 212 Heroes là minh chứng cho việc người trẻ dám chọn cách sống là
+                        nguyên bản của chính mình chính là điều quả cảm nhất.
+                    </p>
+                    <p>
+                        <strong>
+                            <img style="width: 410px;" src="https://cdn.shopify.com/s/files/1/0003/8718/6741/files/212Heroes_Ingredients_Etailing_480x480.jpg?v=1616644496">
+                        </strong>
+                    </p>
+                    <h3 style="text-align: center; font-size: 22px;">MÙI HƯƠNG</h3>
+                    <p>
+                        212 Heroes tươi trẻ, năng động đầy cuốn hút với Lê và Gừng bùng nổ ở tầng hương đầu, kết hợp cùng sự nam tính trẻ trung ở tầng hương trung tâm của
+                        Hoa Phong Lữ quyện cùng Cây Xô Thơm từ Madagascar, nhưng yếu tố Da Thuộc cùng Xạ Hương ở đoạn cuối hành trình tỏa hương lại lưu giữ một cảm xúc lắng đọng khó diễn tả
+                        bằng lời. Cốt lõi của 212 Heroes với công thức thuần chay- được xem là một cuộc cách mạng trong thế giới nước hoa và xu hướng mà thế hệ trẻ ngày nay đang hướng đến.
+                    </p>
+                    <p>Hương đầu: Hương Gừng và Lê</p>
+                    <p>Hương giữa: Hoa Phong Lữ và Lá Xô Thơm</p>
+                    <p>Hương cuối: Hương Da Thuộc và Xạ Hương</p>
+                    <p>
+                        <img style="width: 410px;" src="https://cdn.shopify.com/s/files/1/0003/8718/6741/files/Internacional_Social_Specific_Format_6_600x600.jpg?v=1616644572">
+
+                    </p>
+                    <h3 style="text-align: center; font-size: 22px;">THIẾT KẾ CHAI</h3>
+                    <p>
+                        212 Heroes mở ra một chương mới trong ngành công nghiệp thiết kế nước hoa với sự kết hợp của chai thủy tinh và chrome tạo nên hình dáng của một chiếc ván trượt-
+                        thể hiện tinh thần và bản lĩnh của một thế hệ mới.&nbsp;<meta charset="utf-8">
+                        <img style="width: 410px;" src="https://cdn.shopify.com/s/files/1/0003/8718/6741/files/Storytelling_assets_etailing_5_600x600.jpg?v=1616644547" alt="">
+                        <img style="width: 410px;" src="https://cdn.shopify.com/s/files/1/0003/8718/6741/files/Etailing_Comparison_Chart_600x600.jpg?v=1616653515" alt="">
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="list--bqtcc shopify-section--bordered">
+        <section class="section section--spacingNormal"  style=" padding-bottom: 0;">
+            <div class="sectionHeader--center">
+                <div class="container-fluid">
+                    <h2 class="justify-content-center text-center u-h1" style="margin-bottom: 30px;">BỘ QUÀ TẶNG CAO CẤP</h2>
+                    <div class="grid">
+                        <div class="row ">
+                            @*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/HoverSanPhamMoi1.webp" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@@*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/HoverSanPhamMoi1.webp" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@@*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/HoverSanPhamMoi1.webp" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@@*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/HoverSanPhamMoi1.webp" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="list--bqtcc shopify-section--bordered">
+        <section class="section section--spacingNormal"  style=" padding-bottom: 0;">
+            <div class="sectionHeader--center">
+                <div class="container-fluid">
+                    <h2 class="justify-content-center text-center u-h1" style="margin-bottom: 30px;">BỘ QUÀ TẶNG CAO CẤP</h2>
+                    <div class="grid">
+                        <div class="row ">
+                            @*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/HoverSanPhamMoi1.webp" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@@*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/HoverSanPhamMoi1.webp" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@@*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/HoverSanPhamMoi1.webp" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@@*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/HoverSanPhamMoi1.webp" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

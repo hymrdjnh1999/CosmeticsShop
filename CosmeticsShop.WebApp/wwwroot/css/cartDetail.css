@@ -1,0 +1,299 @@
+﻿body {
+}
+
+.pageHeader {
+    margin: 50px 0;
+}
+
+.pageContent {
+    max-width: 1000px;
+    margin: 35px auto;
+    margin-bottom: 80px;
+}
+
+.cart__ItemList {
+    display: table;
+    table-layout: auto;
+    border-spacing: 0 30px;
+    width: 100%;
+}
+
+.cart__head {
+    display: table-header-group;
+}
+
+.cart__HeadItem {
+    display: table-cell;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.aspectRatio {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 18px;
+}
+
+.cart_Item {
+    table-layout: fixed;
+    /*margin: 30px 0;*/
+    width: 100%;
+    display: table-row;
+}
+
+.cartItem__imageWrapper {
+    width: 90px;
+    min-width: 120px;
+    text-align: center;
+}
+
+.cartItem__imageWrapper, cartItem__Info, .cartItem__Actions, cartItem__LinePrice, .cart__NoteContainer {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.cartItem__Info {
+    padding-left: 25px;
+    padding-top: 40px;
+    width: 425px;
+}
+
+.cartItem__Title {
+    font-size: 15px;
+}
+
+    .cartItem__Title a {
+        color: black;
+        text-decoration: none;
+    }
+
+.cartItem__Meta {
+    font-size: 14px;
+}
+
+.cartItem__Variant, .cartItem__Title {
+    margin-bottom: 0.45em;
+}
+
+.cartItem__QuantitySelector {
+    margin-bottom: 6px;
+}
+
+.cartItem__Actions {
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.quantitySelector {
+    border: 1px solid #cfa247 !important;
+}
+
+.quantitySelector__Button {
+    padding: 7px 14px 8px 14px;
+}
+
+.quantitySelector__CurrentQuantity {
+    display: inline-block;
+    width: 20px;
+    padding: 0;
+    font-size: 13px;
+    text-align: center;
+    letter-spacing: normal;
+    background: transparent;
+    border: none;
+    color: #cfa247;
+}
+
+.cartItem__Remove {
+    font-size: 12px;
+    margin: 8px 0;
+    text-decoration: none;
+}
+
+.cartItem__Actions a {
+    text-decoration: none;
+    color: #cfa247;
+}
+
+.link--underline {
+    color: #cfa247;
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px solid #cfa247;
+}
+
+.cart__Footer {
+    padding-top: 25px;
+    border-top: 1px solid #d9d9d9;
+}
+
+.cart__NoteContainer {
+    color: #000000;
+    width: 340px;
+}
+
+.cart__Note {
+    margin-top: 10px;
+}
+
+.form__Textarea {
+    display: block;
+    padding: 12px 14px;
+    border-radius: 0;
+    border: 1px solid #d9d9d9;
+    width: 100%;
+    line-height: normal;
+    resize: none;
+    transition: border-color 0.1s ease-in-out;
+    background: transparent;
+}
+
+.cart__Recap, .cart__NoteContainer {
+    display: table-cell;
+}
+
+.cart__Recap, .cart__Checkout {
+    margin-top: 16px;
+}
+
+.cart__Recap {
+    width: 660px;
+    text-align: right;
+}
+
+.cart__Checkout {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+.sectionFooter__cart {
+    margin-top: 40px;
+    text-align: left;
+}
+
+
+    .sectionFooter__cart a {
+        text-decoration: none;
+        color: white;
+        border: 1px solid #1c1b1b;
+        background: #1c1b1b;
+        padding: 14px 28px;
+        font-size: 15px;
+        letter-spacing: 3px;
+        font-weight: 600;
+        transition: all 2s;
+        position: relative;
+        text-align: center;
+    }
+
+
+/*Thông Tin Đặt Hàng*/
+.content {
+    height: 1000px;
+}
+
+.wrap {
+    padding: 0 5%;
+    width: 90%;
+    max-width: 78.5714285714em;
+    margin: 0 auto;
+    zoom: 1;
+}
+
+.main {
+    padding-top: 4em;
+}
+
+.main {
+    width: 52%;
+    padding-right: 6%;
+    float: left;
+}
+
+.main__header {
+    padding-bottom: 2em;
+    text-align: center;
+}
+
+    .main__header a {
+        text-decoration: none;
+    }
+
+.logo {
+    display: block;
+}
+
+.logo__text {
+    color: #333;
+    font-size: 28px;
+}
+
+.breadcrumb {
+    margin-top: 1em;
+    padding: 0 !important;
+    background-color: white !important;
+}
+
+    .breadcrumb li a {
+        text-decoration: none;
+        color: #737373;
+    }
+
+.breadcrumb--center {
+    text-align: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+}
+
+.breadcrumb-item {
+    font-size: .8571428571em;
+}
+
+.breadcrumb-link {
+    color: #737373;
+}
+
+.breadcrumb__chevron-icon {
+    margin: 0 .6428571429em;
+}
+
+/*Side Bar*/
+.content {
+    overflow: hidden;
+}
+.sidebar {
+    padding-top: 4em;
+    position: relative;
+    background-color: #efefef;
+}
+
+@media (min-width: 1000px) {
+    .sidebar {
+        width: 38%;
+        padding-left: 4%;
+        background-position: left top;
+        float: right;
+    }
+
+    .sidebar::after {
+        left: 0;
+        background-position: left top;
+        -webkit-box-shadow: 1px 0 0 #d7d7d7 inset;
+    }
+    .wrap {
+        padding: 0 5%;
+        width: 90%;
+        max-width: 78.5714285714em;
+    }
+}
+
+.wrap {
+    margin: 0 auto;
+}

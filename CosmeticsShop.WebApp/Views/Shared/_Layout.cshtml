@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/customize.css" />
+    <link rel="stylesheet" href="~/css/productDetail.css" />
+    <link rel="stylesheet" href="~/css/loginFrom.css" />
+    <link rel="stylesheet" href="~/css/cartDetail.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="//cdn.shopify.com/s/files/1/0003/8718/6741/files/favicon_fc3d6d9d-ad9e-4948-ab41-e7c8af30e908_32x32.png?v=1589251208" type="image/png">
@@ -24,21 +27,22 @@
             </div>
         </div>
         <div id="shopify-section-header" class="shopify-section shopify-section--header">
-            <div class="header__wrapper">
-                @* VND *@
-                <div class="header__currencyselector">
-                    <div class="select select__transparent">
-                        <select class="currencySelector__select u-h8">
-                            <option value="VND" selected="selected">VND</option>
-                            <option value="USD">USD</option>
-                        </select>
-                    </div>
+            <div class="header__wrapper d-flex">
+                @* Search *@
+                <div class="select select__transparent" style=" padding-left: -40px;">
+                    <ul class="horizontalList horizontalList__spacing">
+                        <li class="horizontalList__item">
+                            <a href="#" data-action="open-modal" aria-controls="search">
+                                 Tìm Sản Phẩm
+                            </a>
+                        </li>
+                    </ul>
                 </div>
 
                 @* Logo *@
-                <div class="header__logo">
-                    <a href="/" class="header__logoLink">
-                        <img class="Header__LogoImage Header__LogoImage--primary" src="//cdn.shopify.com/s/files/1/0003/8718/6741/files/Asset_1_2x_25b16eed-a574-4d6f-ac37-42aa9a91febb_170x.png?v=1589280350"
+                <div class="header__logo" style="justify-content: center; align-items: center;">
+                    <a href="/" class="header__logoLink" >
+                        <img class="header__logoimage header__logoimage--primary" src="//cdn.shopify.com/s/files/1/0003/8718/6741/files/Asset_1_2x_25b16eed-a574-4d6f-ac37-42aa9a91febb_170x.png?v=1589280350"
                              srcset="" width="170" alt="Paris France Beauty">
                     </a>
                 </div>
@@ -48,9 +52,9 @@
                         <li class="horizontalList__item">
                             <a href="#" class="">Tài Khoản</a>
                         </li>
-                        <li class="horizontalList__item">
-                            <a href="#" class="" data-action="open-modal" aria-controls="search">Tìm Sản Phẩm</a>
-                        </li>
+                        @*<li class="horizontalList__item">
+                            <a href="#" data-action="open-modal" aria-controls="search">Tìm Sản Phẩm</a>
+                        </li>*@
                         <li class="horizontalList__item">
                             <a href="#" class="" data-action="open-drawer" data-drawer-id="sidebar-cart" aria-label="Mở Giỏ Hàng">Giỏ Hàng (<span class="header__cartCount">0</span>)</a>
                         </li>
@@ -106,7 +110,7 @@
 
 
     @* Container start ====================================================================================================================================*@
-    
+
     @* Container end ==================================================================================================================================== *@
 
 
@@ -214,3 +218,4 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+

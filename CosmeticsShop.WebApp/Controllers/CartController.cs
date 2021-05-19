@@ -6,18 +6,19 @@ using System.Threading.Tasks;
 
 namespace CosmeticsShop.WebApp.Controllers
 {
-    public class ProductController : Controller
+    public class CartController : Controller
     {
         public IActionResult Index()
         {
             return View();
         }
-
-        public IActionResult Detail()
+        public IActionResult CartDetail()
         {
             return View();
         }
-
-      
+        public IActionResult InforOrder()
+        {
+            return View();
+        }
     }
 }
