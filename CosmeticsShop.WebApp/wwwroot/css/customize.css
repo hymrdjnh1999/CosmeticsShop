@@ -445,3 +445,8 @@ h2 {
 .footer-aside img:before {
     border-style: none;
 }
+
+.content-section {
+    padding-left: 50px;
+    padding-right: 50px;
+}

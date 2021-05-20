@@ -1,4 +1,5 @@
 ﻿using Cosmetics.Ultilities.Constants;
+using Cosmetics.ViewModels.Catalogs.ProductImages;
 using Cosmetics.ViewModels.Catalogs.Products;
 using Cosmetics.ViewModels.Catalogs.Products.Manage;
 using Cosmetics.ViewModels.Common;
@@ -34,6 +35,41 @@ namespace CosmeticsShop.Api_Intergration
             _configuration = configuration;
         }
 
+        public async Task<bool> AddImage(ProductImageCreateRequest request)
+        {
+            var sessions = _httpContextAccessor
+              .HttpContext
+              .Session
+              .GetString(SystemConstants.AppSettings.Token);
+
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration[SystemConstants.AppSettings.BaseAddress]);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+
+            var requestContent = new MultipartFormDataContent();
+            if (request.ImageFile != null)
+            {
+                byte[] data;
+                using (var br = new BinaryReader(request.ImageFile.OpenReadStream()))
+                {
+                    data = br.ReadBytes((int)request.ImageFile.OpenReadStream().Length);
+                }
+                ByteArrayContent bytes = new ByteArrayContent(data);
+                requestContent.Add(bytes, "imageFile", request.ImageFile.FileName);
+            }
+
+            var contentJs = new StringContent((request.Caption ?? "").ToString());
+            requestContent.Add(contentJs, "caption");
+
+
+            var response = await client.PostAsync($"/api/products/{request.ProductId}/images", requestContent);
+            if (response.IsSuccessStatusCode)
+                return true;
+
+            return false;
+
+        }
+
         public async Task<ApiResult<bool>> CategoryAssign(CategoryAssignRequest request)
         {
             var client = _httpClientFactory.CreateClient();
@@ -47,13 +83,28 @@ namespace CosmeticsShop.Api_Intergration
 
             var response = await client.PutAsync($"/api/products/{request.Id}/categories", httpContent);
             var result = await response.Content.ReadAsStringAsync();
-            var test = JsonConvert.DeserializeObject<ApiErrorResult<bool>>(result);
+
             if (response.IsSuccessStatusCode)
                 return JsonConvert.DeserializeObject<ApiSuccessResult<bool>>(result);
 
             return JsonConvert.DeserializeObject<ApiErrorResult<bool>>(result);
         }
-        public async Task<bool> Create(ProductCreateRequest request)
+
+        public async Task<bool> ChangeThumbnail(int imageId, int productId)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var sessions = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+            var response = await client.PutAsync($"/api/products/{productId}/images/{imageId}/thumbnail", null);
+
+            if (response.IsSuccessStatusCode)
+                return true;
+
+            return false;
+        }
+
+        public async Task<ProductUpdateRequest> Create(ProductCreateRequest request)
         {
             var sessions = _httpContextAccessor
                  .HttpContext
@@ -83,9 +134,9 @@ namespace CosmeticsShop.Api_Intergration
             requestContent.Add(stockJs, "stock");
             var nameJs = new StringContent(request.Name.ToString());
             requestContent.Add(nameJs, "name");
-            var descriptionJs = new StringContent(request.Description.ToString());
+            var descriptionJs = new StringContent((request.Description ?? "").ToString());
             requestContent.Add(descriptionJs, "description");
-            var detailsJs = new StringContent(request.Details.ToString());
+            var detailsJs = new StringContent((request.Details ?? "").ToString());
             requestContent.Add(detailsJs, "details");
             var originalCountryJs = new StringContent(request.OriginalCountry.ToString());
             requestContent.Add(originalCountryJs, "originalCountry");
@@ -94,27 +145,53 @@ namespace CosmeticsShop.Api_Intergration
             var forGenderJs = new StringContent(
                 (request.ForGender == ForGender.Male ? 1 : request.ForGender == ForGender.Female ? 2 : 3).ToString());
             requestContent.Add(forGenderJs, "forgender");
-
             var response = await client.PostAsync($"/api/products", requestContent);
-            return response.IsSuccessStatusCode;
+            var result = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+            {
+                var product = JsonConvert.DeserializeObject<ProductUpdateRequest>(result);
+                return product;
+            }
+
+            return null;
         }
 
-        public async Task<ProductViewModel> GetById(int id)
+        public async Task<bool> Delete(int product_id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var sessions = _httpContextAccessor.HttpContext.Session.GetString("Token");
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+            var response = await client.DeleteAsync($"/api/products/{product_id}");
+
+            if (response.IsSuccessStatusCode)
+                return true;
+
+            return false;
+        }
+
+        public async Task<ProductUpdateRequest> GetById(int id)
         {
             var requestUrl = $"/api/products/{id}";
 
-            var response = await GetAsync<ProductViewModel>(requestUrl);
+            var response = await GetAsync<ProductUpdateRequest>(requestUrl);
 
             return response;
         }
 
-        public async Task<List<ProductViewModel>> GetFeaturedProducts()
+        public async Task<ProductImageViewModel> GetImageById(int productId, int imageId)
         {
-            var requestUrl = $"/api/products/featured";
-            var data = await GetAsync<List<ProductViewModel>>(requestUrl);
-            return data;
+            var requestUrl = $"/api/products/{productId}/images/{imageId}";
 
+            var image = await GetAsync<ProductImageViewModel>(requestUrl);
+
+            return image;
         }
+
+
+
+
 
         public async Task<PageResponse<ProductViewModel>> GetPaging(GetProductRequest request)
         {
@@ -126,7 +203,15 @@ namespace CosmeticsShop.Api_Intergration
             return data;
         }
 
-        public async Task<bool> Update(ProductViewModel request)
+        public async Task<PageResponse<ProductImageViewModel>> GetProductImages(int productId, QueryParamRequest request)
+        {
+
+            var requestUrl = $"/api/products/{productId}/images?pageSize={request.PageSize}&pageIndex={request.PageIndex}";
+            var data = await GetAsync<PageResponse<ProductImageViewModel>>(requestUrl);
+            return data;
+        }
+
+        public async Task<bool> Update(ProductUpdateRequest request)
         {
             var sessions = _httpContextAccessor
                 .HttpContext
@@ -149,13 +234,13 @@ namespace CosmeticsShop.Api_Intergration
                 requestContent.Add(bytes, "thumbnailImage", request.ThumbnailImage.FileName);
             }
 
-            requestContent.Add(new StringContent(request.Name.ToString()), "name");
+            requestContent.Add(new StringContent((request.Name ?? "").ToString()), "name");
 
-            requestContent.Add(new StringContent(request.Description.ToString()), "description");
+            requestContent.Add(new StringContent((request.Description ?? "").ToString()), "description");
 
-            requestContent.Add(new StringContent(request.Details.ToString()), "details");
+            requestContent.Add(new StringContent((request.Details ?? "").ToString()), "details");
 
-            requestContent.Add(new StringContent(request.OriginalCountry.ToString()), "originalCountry");
+            requestContent.Add(new StringContent((request.OriginalCountry ?? "").ToString()), "originalCountry");
 
             requestContent.Add(new StringContent(
                 (request.ForGender == ForGender.Male ? 1 : request.ForGender == ForGender.Female ? 2 : 3).ToString()), "forgender");
@@ -167,10 +252,66 @@ namespace CosmeticsShop.Api_Intergration
             requestContent.Add(new StringContent(request.Price.ToString()), "Price");
 
             requestContent.Add(new StringContent(request.Stock.ToString()), "Stock");
+            requestContent.Add(new StringContent(request.SelectedId.ToString()), "SelectedId");
 
             var response = await client.PutAsync($"/api/products/{request.Id}", requestContent);
 
             return response.IsSuccessStatusCode;
+        }
+
+        public async Task<bool> UpdateProductImage(ProductImageUpdateRequest request)
+        {
+            var sessions = _httpContextAccessor
+             .HttpContext
+             .Session
+             .GetString(SystemConstants.AppSettings.Token);
+
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration[SystemConstants.AppSettings.BaseAddress]);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+
+            var requestContent = new MultipartFormDataContent();
+            if (request.ImageFile != null)
+            {
+                byte[] data;
+                using (var br = new BinaryReader(request.ImageFile.OpenReadStream()))
+                {
+                    data = br.ReadBytes((int)request.ImageFile.OpenReadStream().Length);
+                }
+                ByteArrayContent bytes = new ByteArrayContent(data);
+                requestContent.Add(bytes, "imageFile", request.ImageFile.FileName);
+            }
+
+            var contentJs = new StringContent((request.Caption ?? "").ToString());
+            requestContent.Add(contentJs, "caption");
+
+
+            var response = await client.PutAsync($"/api/products/images/{request.Id}", requestContent);
+            if (response.IsSuccessStatusCode)
+                return true;
+
+            return false;
+        }
+
+        public async Task<ApiResult<bool>> DeleteImage(int productId, int imageId)
+        {
+            var sessions = _httpContextAccessor
+             .HttpContext
+             .Session
+             .GetString(SystemConstants.AppSettings.Token);
+
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration[SystemConstants.AppSettings.BaseAddress]);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+
+            var response = await client.DeleteAsync($"/api/products/{productId}/images/{imageId}");
+            var result = await response.Content.ReadAsStringAsync();
+            if (!response.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<ApiErrorResult<bool>>(result); ;
+            }
+            return JsonConvert.DeserializeObject<ApiSuccessResult<bool>>(result);
+
         }
     }
 }

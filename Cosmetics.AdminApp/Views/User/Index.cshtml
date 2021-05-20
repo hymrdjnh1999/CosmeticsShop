@@ -18,14 +18,14 @@
     <h1 class="mt-4">Users</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Dashboard</a></li>
-        <li class="breadcrumb-item active">User List</li>
+        <li class="breadcrumb-item active">Danh Sách Người Dùng</li>
     </ol>
 
     <div class="card mb-12">
         <div class="card-header d-flex justify-content-between">
             <form asp-action="Index" method="get">
                 <div class="form-outline mb-4 d-flex">
-                    <input name="keyword" value="@ViewBag.Keyword" type="text" id="userSearchBox" placeholder="Search here..." class="form-control  border-dark" />
+                    <input name="keyword" value="@ViewBag.Keyword" type="text" id="userSearchBox" placeholder="Tìm kiếm..." class="form-control  border-dark" />
                     <input asp-for="PageSize" value="@Model.PageSize" type="hidden" />
                     <button type="submit" class="btn btn-outline-dark ml-2">
                         <i class="fas fa-search"></i>
@@ -37,7 +37,7 @@
                 <div>
                     <a asp-action="Create" asp-controller="User" class="btn btn-outline-dark ">
                         <i class="fas fa-plus mr-2"></i>
-                        Create new user
+                        Tạo Tài Khoản Mới
                     </a>
                 </div>
             }
@@ -57,31 +57,31 @@
                 @await Component.InvokeAsync("ChangePageSize", Model)
             </div>
             <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
+                <table class="table table-bordered text-center">
+                    <thead class="thead-dark text-white">
                         <tr>
                             <th>
-                                No
+                                STT
                             </th>
                             <th>
-                                Name
+                                Tên
                             </th>
                             <th>
-                                UserName
+                                Tên Người Dùng
                             </th>
                             <th>
-                                Date of birth
+                                Ngày Sinh
                             </th>
                             <th>
-                                PhoneNumber
+                                Số Điện Thoại
                             </th>
                             <th>
-                                Email
+                                Địa Chỉ Email
                             </th>
                             @if (Model.CurrentRoles.Contains("Manager"))
                             {
                                 <th>
-                                    Actions
+                                    Tác Vụ
                                 </th>
                             }
                         </tr>
@@ -91,7 +91,7 @@
                         {
                             if (Model.Items[count].Id != Model.CurrentLoggedId)
                             {
-                                <tr>
+                                <tr class="bg-alternating ">
                                     <td>@(count + 1)</td>
                                     <td>
                                         @Html.ActionLink(Model.Items[count].Name, "Details", new { id = Model.Items[count].Id })
@@ -110,10 +110,11 @@
                                     </td>
                                     @if (Model.CurrentRoles.Contains("Manager"))
                                     {
-                                        <td>
-                                            @Html.ActionLink("Edit", "Details", new { id = Model.Items[count].Id }) |
-                                            @Html.ActionLink("Delete", "Delete", new { id = Model.Items[count].Id })
-                                        </td>
+                                <td class="btn-edit_del">
+                                    <a href="@Url.Action("Details","User",  new { id = Model.Items[count].Id })" class="p-1 btn actions-btn btn-outline-info px-2">Sửa</a>
+                                    
+                                    <a href="@Url.Action("Delete","User",  new { id = Model.Items[count].Id })" class="p-1 ml-2 btn actions-btn btn-outline-danger px-0">Xóa</a>
+                                </td>
                                     }
                                 </tr>
                             }

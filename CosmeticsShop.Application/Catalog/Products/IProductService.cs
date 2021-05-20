@@ -15,15 +15,15 @@ namespace CosmeticsShop.Application.Catalog.Products
     public interface IProductService
     {
         Task<int> Create(ProductCreateRequest request);
-        Task<int> Update(ProductViewModel request);
+        Task<int> Update(ProductUpdateRequest request);
         Task<int?> Delete(int productId);
         //Task<PageResponse<ProductViewModel>> GetAllPaging(GetProductRequest query);
         Task<bool?> UpdatePrice(int productId, decimal newPrice);
         Task<bool?> UpdateViewCount(int productId);
         Task<bool?> UpdateStock(int productId, int addedStock);
-        Task<ProductViewModel> GetById(int id);
+        Task<ProductUpdateRequest> GetById(int id);
         Task<int> AddImage(int productId, ProductImageCreateRequest request);
-        Task<int> RemoveImage(int imageId);
+        Task<ApiResult<bool>> RemoveImage(int productId, int imageId);
         Task<int> UpdateImage(int imageId, ProductImageUpdateRequest request);
         Task<List<ProductImageViewModel>> GetListImage(int productId);
         Task<ProductImageViewModel> GetImageById(int id);
@@ -31,7 +31,8 @@ namespace CosmeticsShop.Application.Catalog.Products
         Task<PageResponse<ProductViewModel>> GetAll(GetProductRequest request);
         Task<ApiResult<bool>> CategoryAssign(CategoryAssignRequest request);
         Task<List<ProductViewModel>> GetFeaturedProducts();
-
+        Task<PageResponse<ProductImageViewModel>> GetImages(int productId, QueryParamRequest request);
+        Task<bool> ChangeThumbnail(int productId, int imageId);
 
 
     }

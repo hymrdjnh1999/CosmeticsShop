@@ -2,13 +2,14 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+
 @section slider{
     @* Slide section *@
     <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
         <ol class="carousel-indicators">
             @for (int count = 0; count < Model.Slides.Count; count++)
             {
-                <li data-target="#carouselExampleFade" data-slide-to="@count" class="@(count == 0 ? "active": "")"></li>
+                <li data-target="#carouselExampleFade" data-slide-to="@count" class="@(count == 0 ? "active" : "")"></li>
             }
         </ol>
         <div class="carousel-inner">
@@ -32,12 +33,38 @@
 }
 @* Next content code here *@
 @* container *@
+@{
+    var categories = ViewBag.Categories;
+    var baseImg = "https://localhost:5001/user-content/";
+}
 <div id="main">
+    <div class="content-section" id="content-area">
+        @foreach (var item in categories)
+        {
+            <div>
+                <h2 class="justify-content-center text-center u-h1" style="margin-bottom: 30px;">@item.CategoryName</h2>
+                <div class="grid categories-area">
+                    @foreach (var product in item.Products)
+                    {
+
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="product-in-category-img" style="baseImg:@product.Images[0]">
+
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+
+        }
+    </div>
+
     <div class="list--spm shopify-section--bordered">
         <section class="section section--spacingNormal">
             <div class="sectionHeader--center">
                 <div class="container-fluid">
-                    <h2 class="justify-content-center text-center u-h1" style="margin-bottom: 30px;">SẢN PHẨM MỚI</h2>
+
                     <div class="grid">
                         <div class="row">
                             @*<div class="col">*@

@@ -15,7 +15,6 @@ namespace CosmeticsShop.Data.Configurations
         {
             builder.ToTable("Sliders").HasKey(x => x.Id);
             builder.Property(x => x.Id).UseIdentityColumn();
-            builder.Property(x => x.SortOrder).IsRequired();
             builder.Property(x => x.Url).IsRequired();
             builder.Property(x => x.Image).IsRequired();
 

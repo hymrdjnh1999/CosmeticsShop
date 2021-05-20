@@ -1,0 +1,158 @@
+﻿@model Cosmetics.ViewModels.Catalogs.Orders.OrderViewModel
+@using CosmeticsShop.Data.Enums;
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">Đơn hàng chi tiết</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Order">Danh sách đơn hàng</a></li>
+        <li class="breadcrumb-item active">Chi tiết đơn hàng</li>
+    </ol>
+
+    <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between">
+            <a asp-action="Index" asp-controller="Order" class="btn btn-outline-dark"><i class="fas fa-chevron-left back-list-product mr-2"></i>Về danh sách hóa đơn</a>
+            @if (Model.Status != OrderStatus.Success)
+            {
+                <div>
+                    <label class="m-0 btn btn-outline-dark d-flex align-items-center justify-content-center" for="orderUpdateStatus">
+                        <i class="far fa-save mr-2"></i>
+                        Lưu lại
+                    </label>
+                </div>
+            }
+        </div>
+        <div class="card-body">
+            <form asp-action="Update" class="row col-12">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group col-6">
+                    <label asp-for="OrderDate" class="control-label"></label>
+                    <span class="border border-info rounded d-flex" style="padding:6px 12px">@Model.OrderDate</span>
+                    <span asp-validation-for="OrderDate" class="text-danger"></span>
+                </div>
+                <div class="form-group col-6">
+                    <label asp-for="Status" class="control-label"></label>
+                    @if (Model.Status != OrderStatus.Success)
+                    {
+                <div>
+                    <select asp-for="Status" id="orderStatus" style="padding:6px 12px">
+                        @if (Model.Status == OrderStatus.InProgress)
+                        {
+                            <option selected value="@OrderStatus.InProgress">Đang xử lý</option>
+                            <option value="@OrderStatus.Shipping">Đang giao hàng</option>
+                            <option value="@OrderStatus.Success">Thành công</option>
+                        }
+                        @if (Model.Status == OrderStatus.Shipping)
+                        {
+                            <option selected value="@OrderStatus.Shipping">Đang giao hàng</option>
+                            <option value="@OrderStatus.Success">Thành công</option>
+                        }
+                    </select>
+                </div>
+                    }
+                    else
+                    {
+                        <span class="border border-info rounded d-flex" style="padding:6px 12px">Đã hoàn thành</span>
+                    }
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+                <div class="form-group col-6">
+                    <label class="control-label">Sản phẩm</label>
+                    <table class="table-bordered">
+                        <thead>
+                            <tr>
+                                <td style="width:65%">
+                                    Tên
+                                </td>
+                                <td style="width:15%">
+                                    Số lượng
+                                </td>
+                                <td class="width:20%">
+                                    Đơn giá
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model.OrderProducts)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.Name
+                                    </td>
+                                    <td>
+                                        @item.Quantity
+                                    </td>
+                                    <td>
+                                        @item.Price VND
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+                </div>
+                <div class="form-group col-6">
+                    <label asp-for="ProductQuantity" class="control-label"></label>
+                    <span class="border border-info rounded d-flex" style="padding:6px 12px">@Model.ProductQuantity</span>
+                    <span asp-validation-for="ProductQuantity" class="text-danger"></span>
+                </div>
+                <div class="form-group col-6">
+                    <label asp-for="Price" class="control-label"></label>
+                    <span class="border border-info rounded d-flex" style="padding:6px 12px">@Model.Price</span>
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="form-group col-6">
+                    <label asp-for="UserNameOrder" class="control-label"></label>
+                    <span class="border border-info rounded d-flex" style="padding:6px 12px">@Model.UserNameOrder</span>
+                    <span asp-validation-for="UserId" class="text-danger"></span>
+                </div>
+                <div class="form-group col-6">
+                    <label asp-for="ShipName" class="control-label"></label>
+                    <span class="border border-info rounded d-flex" style="padding:6px 12px">@Model.ShipName</span>
+                    <span asp-validation-for="ShipName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-6">
+                    <label asp-for="ShipEmail" class="control-label"></label>
+                    <span class="border border-info rounded d-flex" style="padding:6px 12px">@Model.ShipEmail</span>
+                    <span asp-validation-for="ShipEmail" class="text-danger"></span>
+                </div>
+                <div class="form-group col-6">
+                    <label asp-for="ShipPhoneNumber" class="control-label"></label>
+                    <span class="border border-info rounded d-flex" style="padding:6px 12px">@Model.ShipPhoneNumber</span>
+                    <span asp-validation-for="ShipPhoneNumber" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-6">
+                    <label asp-for="ShipAddress" class="control-label"></label>
+                    <span class="border border-info rounded d-flex w-100" style="padding:6px 12px ">@Model.ShipAddress</span>
+                    <span asp-validation-for="ShipAddress" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input id="orderUpdateStatus" type="submit" value="Save" class="d-none btn btn-primary" />
+                </div>
+                <div class="form-group col-6 d-none">
+                    <label asp-for="Id" class="control-label"></label>
+                    <input disabled asp-for="Id" class="form-control" />
+                    <span asp-validation-for="Id" class="text-danger"></span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    <script>
+        ()=> {
+            const optionElements = document.querySelectorAll('#orderStatus option');
+            optionElements.forEach(item => item.setAttribute('style', 'padding: 6px 12px;display:block;'));
+        }
+    </script>
+}

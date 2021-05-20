@@ -1,4 +1,5 @@
-﻿using Cosmetics.ViewModels.Catalogs.Products;
+﻿using Cosmetics.ViewModels.Catalogs.Categories;
+using Cosmetics.ViewModels.Catalogs.Products;
 using Cosmetics.ViewModels.Ultilities;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,6 @@ namespace CosmeticsShop.WebApp.Models
     public class HomeViewModel
     {
         public List<SlideViewModel> Slides { get; set; }
-        public List<ProductViewModel> FeaturedProducts { get; set; }
+        public List<HomeCategoryViewModel> Categories { get; set; }
     }
 }

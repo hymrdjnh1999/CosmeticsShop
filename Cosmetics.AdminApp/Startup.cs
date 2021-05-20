@@ -1,3 +1,5 @@
+using Cosmetics.ViewModels.Catalogs.Categories;
+using Cosmetics.ViewModels.Catalogs.ProductImages;
 using Cosmetics.ViewModels.Catalogs.Products;
 using Cosmetics.ViewModels.Systems.Users;
 using CosmeticsShop.Api_Intergration;
@@ -27,7 +29,8 @@ namespace Cosmetics.AdminApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(opts => opts.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             //Add session
             services.AddSession(opt =>
@@ -57,11 +60,15 @@ namespace Cosmetics.AdminApp
             services.AddTransient<IRoleClientApi, RoleApiClient>();
             services.AddTransient<ICategoryApiClient, CategoryApiClient>();
             services.AddTransient<IProductApiClient, ProductApiClient>();
+            services.AddTransient<IOrderApiClient, OrderApiClient>();
 
             // Fluent Validation
             services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
             services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreateProductValidator>());
             services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<UpdateProductValidator>());
+            services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ProductImageCreateValidator>());
+            services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ProductImageUpdateValidator>());
+            services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CategoryUpdateValidator>());
 
         }
 
@@ -94,6 +101,10 @@ namespace Cosmetics.AdminApp
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(
+                    name: "product",
+                    pattern: "{controller=Product}/{productId}/actions={images}"
+                    );
             });
         }
     }

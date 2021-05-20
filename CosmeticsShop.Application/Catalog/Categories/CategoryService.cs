@@ -1,4 +1,6 @@
 ﻿using Cosmetics.ViewModels.Catalogs.Categories;
+using Cosmetics.ViewModels.Catalogs.ProductImages;
+using Cosmetics.ViewModels.Catalogs.Products;
 using Cosmetics.ViewModels.Common;
 using CosmeticsShop.Data.Entities;
 using CosmeticsShop.Data.EntityFrameWork;
@@ -32,6 +34,34 @@ namespace CosmeticsShop.Application.Catalog.Categories
             _context.Categories.Add(category);
             await _context.SaveChangesAsync();
             return category.Id;
+        }
+
+        public async Task<bool> Delete(int id)
+        {
+            var category = await _context.Categories.FindAsync(id);
+            if (category == null)
+            {
+                return false;
+            }
+            _context.Categories.Remove(category);
+
+            await _context.SaveChangesAsync();
+            return true;
+
+        }
+
+        public async Task<bool> Edit(CategoryUpdateRequest request)
+        {
+            var category = await _context.Categories.FindAsync(request.Id);
+            if (category == null)
+            {
+                return false;
+            }
+
+            category.Name = request.Name;
+            _context.Categories.Update(category);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
         public async Task<List<CategoryViewModel>> GetAll()
@@ -105,6 +135,80 @@ namespace CosmeticsShop.Application.Catalog.Categories
             };
             return productViewModel;
 
+        }
+
+        public async Task<List<HomeCategoryViewModel>> GetProductCategories()
+        {
+            var homeCategories = new List<HomeCategoryViewModel>() {
+                new HomeCategoryViewModel()
+                {
+                    CategoryName = "Sản phẩm mới",
+                    Products = new List<HomeProductViewModel>()
+                },
+                new HomeCategoryViewModel()
+                {
+                    CategoryName = "Sản phẩm khuyến mãi",
+                    Products = new List<HomeProductViewModel>()
+                },
+                new HomeCategoryViewModel()
+                {
+                    CategoryName = "Sản phẩm được yêu thích",
+                    Products = new List<HomeProductViewModel>()
+                },
+                new HomeCategoryViewModel()
+                {
+                    CategoryName = "Bộ quà tặng cao cấp",
+                    Products = new List<HomeProductViewModel>()
+                },
+                new HomeCategoryViewModel()
+                {
+                    CategoryName = "Bộ quà tặng cao cấp",
+                    Products = new List<HomeProductViewModel>()
+                },
+                 new HomeCategoryViewModel()
+                {
+                    CategoryName = "Sản phẩm không nên bỏ qua",
+                    Products = new List<HomeProductViewModel>()
+                },
+
+            };
+            foreach (var item in homeCategories)
+            {
+                var category = await _context.Categories.Where(x => x.Name == item.CategoryName).FirstOrDefaultAsync();
+                var pic = await _context.ProductInCategories.Where(x => x.CategoryId == category.Id).ToListAsync();
+                var query = from pc in pic
+                            join p in _context.Products on pc.ProductId equals p.Id
+                            select p;
+                var productsInCategory = query
+                    .Select(p => new HomeProductViewModel()
+                    {
+                        Id = p.Id,
+                        Name = p.Name,
+                        Price = p.Price,
+                        OriginalPrice = p.OriginalPrice,
+                    }).ToList();
+                foreach (var product in productsInCategory)
+                {
+                    var images = await _context.ProductImages.Where(x => x.ProductId == product.Id)
+                        .Select(x => new ProductImageViewModel()
+                        {
+                            Id = x.Id,
+                            ProductId = product.Id,
+                            Caption = x.Caption,
+                            DateCreated = x.DateCreated,
+                            FileSize = x.FileSize,
+                            ImagePath = x.ImagePath,
+                            IsDefault = x.IsDefault,
+                            SortOrder = x.SortOrder
+                        }).OrderByDescending(x => x.IsDefault)
+                        .ToListAsync();
+                    product.Images = images;
+                }
+                item.Products = productsInCategory;
+
+            }
+
+            return homeCategories;
         }
     }
 }
