@@ -64,7 +64,7 @@ namespace Cosmetics.WebAPI
             services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<UpdateProductValidator>());
 
             string connectionString = Configuration.GetConnectionString("CosmeticsDb");
-            services.AddDbContext<CosmeticsDbContext>(options => options.UseSqlServer("Server=LAPTOP-VFHH6PA5\\SQLEXPRESS;Database=CosmeticsDb;Trusted_Connection=True;"));
+            services.AddDbContext<CosmeticsDbContext>(options => options.UseSqlServer(connectionString));
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>

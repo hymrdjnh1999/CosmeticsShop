@@ -324,6 +324,19 @@ namespace CosmeticsShop.Data.Extentions
                     Image = "https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg"
                 }
            );
+            string clientID = "1D37E388-3C9D-490B-A0D1-93F20C4292B5";
+            modelBuilder.Entity<Clients>().HasData(
+                new Clients()
+                {
+                    Id = new Guid(clientID),
+                    Address = "8 Nghách 167 ngõ 521 Trương Định - Hoàng Mai - Hà Nội",
+                    Avatar = "",
+                    Dob = new DateTime(1999, 6, 21),
+                    Name = "Voi Bé Nhỏ",
+                    PhoneNumber = "0984869201",
+                    Status = Status.Active
+                });
+
         }
     }
 }

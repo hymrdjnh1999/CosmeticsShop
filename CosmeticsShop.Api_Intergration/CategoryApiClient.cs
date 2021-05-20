@@ -118,5 +118,12 @@ namespace CosmeticsShop.Api_Intergration
             var category = await GetAsync<CategoryViewModel>(requestUrl);
             return category;
         }
+
+        public async Task<List<HomeCategoryViewModel>> GetHomeProductCategories()
+        {
+            var requestUrl = $"/api/categories/products";
+            var productCategories = await GetAsync<List<HomeCategoryViewModel>>(requestUrl);
+            return productCategories;
+        }
     }
 }

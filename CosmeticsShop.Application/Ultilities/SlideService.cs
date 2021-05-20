@@ -23,7 +23,7 @@ namespace CosmeticsShop.Application.Ultilities
 
         public async Task<List<SlideViewModel>> GetAll()
         {
-            var slides = await _context.Sliders.Where(x => x.Status != Status.InActive).Select(x => new SlideViewModel()
+            var slides = await _context.Sliders.Select(x => new SlideViewModel()
             {
                 Id = x.Id,
                 Description = x.Description,
@@ -32,7 +32,7 @@ namespace CosmeticsShop.Application.Ultilities
                 SortOrder = x.SortOrder,
                 Status = x.Status,
                 Url = x.Url
-            }).OrderBy(x => x.SortOrder).ToListAsync();
+            }).ToListAsync();
 
             return slides;
         }
