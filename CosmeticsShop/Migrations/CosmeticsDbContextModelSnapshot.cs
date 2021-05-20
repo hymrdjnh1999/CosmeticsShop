@@ -557,7 +557,7 @@ namespace CosmeticsShop.Data.Migrations
                         new
                         {
                             Id = new Guid("bd5b83d2-5c75-4f96-a63f-1eca425bdfe5"),
-                            ConcurrencyStamp = "072cf013-5349-4b69-8929-b0d3f91df4f6",
+                            ConcurrencyStamp = "46c5a968-df0d-4fd6-8856-d48e225b82e2",
                             Description = "Manager role",
                             Name = "Manager",
                             NormalizedName = "Manager"
@@ -565,7 +565,7 @@ namespace CosmeticsShop.Data.Migrations
                         new
                         {
                             Id = new Guid("efebfd93-b27d-4c91-8a71-74fd71944893"),
-                            ConcurrencyStamp = "1fc06b7e-5cd4-4204-83df-dcc964467a72",
+                            ConcurrencyStamp = "a2f3810d-647d-4547-9b7c-185b2a718c6d",
                             Description = "Customer role",
                             Name = "Customer",
                             NormalizedName = "Customer"
@@ -768,7 +768,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = new Guid("1c856746-f8aa-4026-b854-f18da9787cf3"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c1e9b185-569c-4397-8ded-0f62a26217a0",
+                            ConcurrencyStamp = "27a4cc12-c2d4-44b4-8123-884d60bf77d1",
                             Dob = new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "tiendinhdev99@gmail.com",
                             EmailConfirmed = true,
@@ -776,7 +776,7 @@ namespace CosmeticsShop.Data.Migrations
                             Name = "Voi Bé Nhỏ",
                             NormalizedEmail = "tiendinhdev99@gmail.com",
                             NormalizedUserName = "manager",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAjmoeVtAYxkzjnTeJ0Fj4DRFeMtKf4HvZnRkm3zYrx5BJ65zk7ZX49vm4y5RaBleQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELHaaIWtmSnw8WmLYWz6B48z5ZGG/GnuoJQcL9GFbMbI/5HfO34hblTNJmieYLvDSg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -786,7 +786,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = new Guid("d8b63b91-c360-4e3d-9b3a-2dce31f00cc4"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4496ffbc-2af9-4667-a270-75c66127a910",
+                            ConcurrencyStamp = "023807e3-bd07-47b3-8087-0d525313d196",
                             Dob = new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Haianh@gmail.com",
                             EmailConfirmed = true,
@@ -794,7 +794,7 @@ namespace CosmeticsShop.Data.Migrations
                             Name = "Hải Anh",
                             NormalizedEmail = "Haianh@gmail.com",
                             NormalizedUserName = "haianhmanager",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFZF8bdJghXkch6LluWVYxtzpIenpAKF9QbmwuHrLRe4I/mL4McaXP3SwMIKKDSLFA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEjNiOeiCYPBXMMs8f4PXDrdbLwtIPE646++zWZaFafQ0d0NzfOC+nqz7SlRhH/Kqg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -804,7 +804,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = new Guid("33674f31-0bd2-43cd-9090-3f0d4bab1c58"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "08b8a1e1-bb00-439a-9b85-40b50de65208",
+                            ConcurrencyStamp = "33e33057-b05e-435e-b1dd-d8da00c7775b",
                             Dob = new DateTime(2001, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Tranphuong18032001@gmail.com",
                             EmailConfirmed = true,
@@ -812,7 +812,7 @@ namespace CosmeticsShop.Data.Migrations
                             Name = "Thu Phương",
                             NormalizedEmail = "Tranphuong18032001@gmail.com",
                             NormalizedUserName = "tranphuongmanager",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJI6FeiqqyRKT2Cc0cSFZ4MnMfdXjsZhx/8P+jXGvwLRXlVkjIZJ3ADGTG3lxAOlSQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENdGSd6/uaDCNHrAKjxyjLiiEguqtdk9fS8KFciiIDd5h49yBIC5RNQrf12s5FPJJA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
