@@ -97,6 +97,13 @@ namespace Cosmetics.WebAPI.Controllers
             return Ok();
         }
 
+        [HttpGet("products")]
+        public async Task<IActionResult> GetProductCategories()
+        {
+            var productCategories = await _categoryService.GetProductCategories();
+            return Ok(productCategories);
+        }
+
 
     }
 }

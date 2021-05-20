@@ -2,13 +2,14 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+
 @section slider{
-        @* Slide section *@
+    @* Slide section *@
     <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
         <ol class="carousel-indicators">
             @for (int count = 0; count < Model.Slides.Count; count++)
             {
-                <li data-target="#carouselExampleFade" data-slide-to="@count" class="@(count == 0 ? "active": "")"></li>
+                <li data-target="#carouselExampleFade" data-slide-to="@count" class="@(count == 0 ? "active" : "")"></li>
             }
         </ol>
         <div class="carousel-inner">
@@ -31,4 +32,759 @@
     </div>
 }
 @* Next content code here *@
-<div></div>
+@* container *@
+@{
+    var categories = ViewBag.Categories;
+    var baseImg = "https://localhost:5001/user-content/";
+}
+<div id="main">
+    <div class="content-section" id="content-area">
+        @foreach (var item in categories)
+        {
+            <div>
+                <h2 class="justify-content-center text-center u-h1" style="margin-bottom: 30px;">@item.CategoryName</h2>
+                <div class="grid categories-area">
+                    @foreach (var product in item.Products)
+                    {
+
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="product-in-category-img" style="baseImg:@product.Images[0]">
+
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+
+        }
+    </div>
+
+    <div class="list--spm shopify-section--bordered">
+        <section class="section section--spacingNormal">
+            <div class="sectionHeader--center">
+                <div class="container-fluid">
+
+                    <div class="grid">
+                        <div class="row">
+                            @*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/sp1.jpg" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span>2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@
+                            @*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/sp1.jpg" alt="Alternate Text" />
+                                </div>
+                                <div class="productItem__info justify-content-center text-center">
+                                    <h2 class="productItem__title">
+                                        <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                    </h2>
+                                    <div class="productItem__price">
+                                        <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@
+                            @*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/sp1.jpg" alt="Alternate Text" />
+                                </div>
+                                <div class="productItem__info justify-content-center text-center">
+                                    <h2 class="productItem__title">
+                                        <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                    </h2>
+                                    <div class="productItem__price">
+                                        <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@
+                            @*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/sp1.jpg" alt="Alternate Text" />
+                                </div>
+                                <div class="productItem__info justify-content-center text-center">
+                                    <h2 class="productItem__title">
+                                        <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                    </h2>
+                                    <div class="productItem__price">
+                                        <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@
+
+                        </div>
+                        <div class="row">
+                            @*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/sp1.jpg" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@
+                            @*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/sp1.jpg" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@
+                            @*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/sp1.jpg" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@
+                            @*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/sp1.jpg" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@
+                        </div>
+                        <div class="sectionFooter">
+                            <div class="wrapper">
+                                <a href="#" class="justify-content-center text-center"><span>XEM TẤT CẢ →</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="list--bqtcc shopify-section--bordered">
+        <section class="section section--spacingNormal">
+            <div class="sectionHeader--center">
+                <div class="container-fluid">
+                    <h2 class="justify-content-center text-center u-h1" style="margin-bottom: 30px;">BỘ QUÀ TẶNG CAO CẤP</h2>
+                    <div class="grid">
+                        <div class="row ">
+                            @*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/HoverSanPhamMoi1.webp" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@@*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/HoverSanPhamMoi1.webp" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@@*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/HoverSanPhamMoi1.webp" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@@*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/HoverSanPhamMoi1.webp" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@
+                        </div>
+                        <div class="row ">
+                            @*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/HoverSanPhamMoi1.webp" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@
+                            @*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/HoverSanPhamMoi1.webp" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@
+                            @*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/HoverSanPhamMoi1.webp" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@
+                            @*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/HoverSanPhamMoi1.webp" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@
+                        </div>
+                        <div class="sectionFooter">
+                            <div class="wrapper">
+                                <a href="#" class="justify-content-center text-center"><span>XEM TẤT CẢ →</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="list--spknbq shopify-section--bordered">
+        <section class="section section--spacingNormal">
+            <div class="sectionHeader--center">
+                <div class="container-fluid">
+                    <h2 class="justify-content-center text-center u-h1" style="margin-bottom: 30px;">SẢN PHẨM KHÔNG NÊN BỎ QUA</h2>
+                    <div class="grid">
+                        <div class="row">
+                            @*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/HoverSanPhamMoi3.webp" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@ @*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/HoverSanPhamMoi3.webp" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@ @*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/HoverSanPhamMoi3.webp" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@ @*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/HoverSanPhamMoi3.webp" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@
+
+                        </div>
+                        <div class="row">
+                            @*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/HoverSanPhamMoi3.webp" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@
+
+                            @*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/HoverSanPhamMoi3.webp" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @*</div>*@
+                            </div>
+                            @*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/HoverSanPhamMoi3.webp" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @*</div>*@
+                            </div>
+                            @*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/HoverSanPhamMoi3.webp" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @*</div>*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sectionFooter">
+                        <div class="wrapper">
+                            <a href="#" class="justify-content-center text-center"><span>XEM TẤT CẢ →</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+    <div class="list--spkm shopify-section--bordered">
+        <section class="section section--spacingNormal">
+            <div class="sectionHeader--center">
+                <div class="container-fluid">
+                    <h2 class="justify-content-center text-center u-h1" style="margin-bottom: 30px;">SẢN PHẨM KHUYẾN MÃI</h2>
+                    <div class="grid">
+                        <div class="row ">
+                            @*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/HoverSanPhamMoi8.webp" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@
+                            @*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/HoverSanPhamMoi8.webp" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@
+                            @*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/HoverSanPhamMoi8.webp" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@
+                            @*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/HoverSanPhamMoi8.webp" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@
+                        </div>
+                        <div class="row ">
+                            @*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/HoverSanPhamMoi8.webp" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@@*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/HoverSanPhamMoi8.webp" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@
+                            @*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/HoverSanPhamMoi8.webp" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@
+                            @*<div class="col">*@
+                            <div class="gird--product">
+                                <div class="productItem__wapper">
+                                    <img src="~/images/HoverSanPhamMoi8.webp" alt="Alternate Text" />
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*</div>*@
+
+                        </div>
+                    </div>
+                    <div class="sectionFooter">
+                        <div class="wrapper">
+                            <a href="#" class="justify-content-center text-center"><span>XEM TẤT CẢ →</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="container-fluid">
+        <div class=" row">
+            @*<div class="col">*@
+            <div>
+                <img style="width: 765.6px; height: 540.38px;" src="~/images/HEROES.jpg" alt="Alternate Text" />
+            </div>
+            @*</div>
+                <div class="col">*@
+            <div class="featureText__contentWrapperfeft" style="padding-top: 80px;">
+                <h2 class="u-h1">CAROLINA HERRERA</h2>
+                <div style="width: 650.6px; height: 430.38px;">
+                    <p><strong>212 HEROES</strong> - <em>Khúc ca của thanh xuân nhiệt huyết</em></p>
+                    <p>
+                        Năm 2021, Carolina Herrera một lần nữa thổi hồn cho 212 Men <br /> với một diện mạo mới, một cái tên mới: 212 MEN HEROES <br />
+                        mang thiết kế lấy cảm hứng từ ván trượt skateboard – môn thể <br /> thao đường phố đầy liều lĩnh và mạo hiểm của những cậu trẻ,
+                        <br /> thả mình trên những chiếc ván trượt lướt qua những con phố <br />
+                        sầm uất tất bật, bỏ ngoài tai những vướng bận của tuổi trưởng <br /> thành để được sống trọn thanh xuân, để được một lần nữa làm <br />
+                        “những đứa trẻ không bao giờ lớn”
+                    </p>
+                    <div class="linksection">
+                        <div class="wrapper">
+                            <a href="#" class="justify-content-center text-center"><span>KHÁM PHÁ THÊM →</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*</div>*@
+        </div>
+        @*<div class="row d-flex">*@
+        <div class="featureText__imageWrapper d-flex">
+            <div class="featureText__contentWrapperright" style="padding-top: 80px; max-width: 430px; padding-left: 40px;">
+                <h2 class="u-h1">CAROLINA HERRERA</h2>
+                <div style="width: 650.6px; height: 430.38px;">
+                    <p><strong>212 HEROES</strong> - <em>khúc ca của thanh xuân nhiệt huyết</em></p>
+                    <p>
+                        năm 2021, carolina herrera một lần nữa thổi hồn cho 212 men <br /> với một diện mạo mới, một cái tên mới: 212 men heroes <br />
+                        mang thiết kế lấy cảm hứng từ ván trượt skateboard – môn thể <br /> thao đường phố đầy liều lĩnh và mạo hiểm của những cậu trẻ,
+                        <br /> thả mình trên những chiếc ván trượt lướt qua những con phố <br />
+                        sầm uất tất bật, bỏ ngoài tai những vướng bận của tuổi trưởng <br /> thành để được sống trọn thanh xuân, để được một lần nữa làm <br />
+                        “những đứa trẻ không bao giờ lớn”
+                    </p>
+                    <div class="linksection">
+                        <div class="wrapper featureText--withImage">
+                            <a href="#" class="justify-content-center text-center"><span>KHÁM PHÁ THÊM →</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <img style="width: 765.6px; height: 540.38px; margin-left: 120px;" src="~/images/heroes.jpg" alt="alternate text" />
+            </div>
+        </div>
+
+        @*</div>*@
+        <div class="row d-flex">
+            <div>
+                <img style="width: 765.6px; height: 540.38px;" src="~/images/HEROES.jpg" alt="Alternate Text" />
+            </div>
+            <div class="featureText__contentWrapperfeft" style="padding-top: 80px;">
+                <h2 class="u-h1">CAROLINA HERRERA</h2>
+                <div style="width: 650.6px; height: 430.38px;">
+                    <p><strong>212 HEROES</strong> - <em>Khúc ca của thanh xuân nhiệt huyết</em></p>
+                    <p>
+                        Năm 2021, Carolina Herrera một lần nữa thổi hồn cho 212 Men <br /> với một diện mạo mới, một cái tên mới: 212 MEN HEROES <br />
+                        mang thiết kế lấy cảm hứng từ ván trượt skateboard – môn thể <br /> thao đường phố đầy liều lĩnh và mạo hiểm của những cậu trẻ,
+                        <br /> thả mình trên những chiếc ván trượt lướt qua những con phố <br />
+                        sầm uất tất bật, bỏ ngoài tai những vướng bận của tuổi trưởng <br /> thành để được sống trọn thanh xuân, để được một lần nữa làm <br />
+                        “những đứa trẻ không bao giờ lớn”
+                    </p>
+                    <div class="linksection">
+                        <div class="wrapper">
+                            <a href="#" class="justify-content-center text-center"><span>KHÁM PHÁ THÊM →</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="featureText__imageWrapper d-flex">
+            <div class="featureText__contentWrapperright" style="padding-top: 80px; max-width: 430px; padding-left: 40px;">
+                <h2 class="u-h1">CAROLINA HERRERA</h2>
+                <div style="width: 650.6px; height: 430.38px;">
+                    <p><strong>212 HEROES</strong> - <em>khúc ca của thanh xuân nhiệt huyết</em></p>
+                    <p>
+                        năm 2021, carolina herrera một lần nữa thổi hồn cho 212 men <br /> với một diện mạo mới, một cái tên mới: 212 men heroes <br />
+                        mang thiết kế lấy cảm hứng từ ván trượt skateboard – môn thể <br /> thao đường phố đầy liều lĩnh và mạo hiểm của những cậu trẻ,
+                        <br /> thả mình trên những chiếc ván trượt lướt qua những con phố <br />
+                        sầm uất tất bật, bỏ ngoài tai những vướng bận của tuổi trưởng <br /> thành để được sống trọn thanh xuân, để được một lần nữa làm <br />
+                        “những đứa trẻ không bao giờ lớn”
+                    </p>
+                    <div class="linksection">
+                        <div class="wrapper featureText--withImage">
+                            <a href="#" class="justify-content-center text-center"><span>KHÁM PHÁ THÊM →</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <img style="width: 765.6px; height: 540.38px; margin-left: 120px;" src="~/images/heroes.jpg" alt="alternate text" />
+            </div>
+        </div>
+        <div class="row d-flex">
+            <div>
+                <img style="width: 765.6px; height: 540.38px;" src="~/images/HEROES.jpg" alt="Alternate Text" />
+            </div>
+            <div class="featureText__contentWrapperfeft" style="padding-top: 80px;">
+                <h2 class="u-h1">CAROLINA HERRERA</h2>
+                <div style="width: 650.6px; height: 430.38px;">
+                    <p><strong>212 HEROES</strong> - <em>Khúc ca của thanh xuân nhiệt huyết</em></p>
+                    <p>
+                        Năm 2021, Carolina Herrera một lần nữa thổi hồn cho 212 Men <br /> với một diện mạo mới, một cái tên mới: 212 MEN HEROES <br />
+                        mang thiết kế lấy cảm hứng từ ván trượt skateboard – môn thể <br /> thao đường phố đầy liều lĩnh và mạo hiểm của những cậu trẻ,
+                        <br /> thả mình trên những chiếc ván trượt lướt qua những con phố <br />
+                        sầm uất tất bật, bỏ ngoài tai những vướng bận của tuổi trưởng <br /> thành để được sống trọn thanh xuân, để được một lần nữa làm <br />
+                        “những đứa trẻ không bao giờ lớn”
+                    </p>
+                    <div class="linksection">
+                        <div class="wrapper">
+                            <a href="#" class="justify-content-center text-center"><span>KHÁM PHÁ THÊM →</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="featureText__imageWrapper d-flex">
+            <div class="featureText__contentWrapperright" style="padding-top: 80px; max-width: 430px; padding-left: 40px;">
+                <h2 class="u-h1">CAROLINA HERRERA</h2>
+                <div style="width: 650.6px; height: 430.38px;">
+                    <p><strong>212 HEROES</strong> - <em>khúc ca của thanh xuân nhiệt huyết</em></p>
+                    <p>
+                        năm 2021, carolina herrera một lần nữa thổi hồn cho 212 men <br /> với một diện mạo mới, một cái tên mới: 212 men heroes <br />
+                        mang thiết kế lấy cảm hứng từ ván trượt skateboard – môn thể <br /> thao đường phố đầy liều lĩnh và mạo hiểm của những cậu trẻ,
+                        <br /> thả mình trên những chiếc ván trượt lướt qua những con phố <br />
+                        sầm uất tất bật, bỏ ngoài tai những vướng bận của tuổi trưởng <br /> thành để được sống trọn thanh xuân, để được một lần nữa làm <br />
+                        “những đứa trẻ không bao giờ lớn”
+                    </p>
+                    <div class="linksection">
+                        <div class="wrapper featureText--withImage">
+                            <a href="#" class="justify-content-center text-center"><span>KHÁM PHÁ THÊM →</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <img style="width: 765.6px; height: 540.38px; margin-left: 120px;" src="~/images/heroes.jpg" alt="alternate text" />
+            </div>
+        </div>
+    </div>
+    <div class="shopify-section--bordered">
+        <div class="shopify-section--bordered" style="padding-left: 450px;">
+            <section class="section section--spacingNormal" style="width: 600px; border: 1px solid; align-items: center; ">
+                <div class="sectionHeader sectionHeader--center justify-content-center text-center">
+                    <div>
+                        <h2 style="letter-spacing: 2px; color: #000000; padding-bottom: 20px">Newsletter</h2>
+                        <div>
+                            <p>Nhận thông tin khuyến mãi mới nhất từ Paris France Beauty!</p>
+                        </div>
+                    </div>
+                    <form class="form-group d-flex" style="width: 600px; ">
+                        <div class="form-group" style="width: 400px; height: 34px;">
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Vui lòng điền Email của bạn">
+                        </div>
+                        <div class="buttonRegister" style="padding-left: 10px; border-radius:">
+                            <a href="#" class="justify-content-center">ĐĂNG KÝ</a>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
