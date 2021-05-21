@@ -186,7 +186,7 @@ namespace CosmeticsShop.Application.Catalog.Categories
                         Name = p.Name,
                         Price = p.Price,
                         OriginalPrice = p.OriginalPrice,
-                    }).ToList();
+                    }).Take(8).Skip(0).ToList();
                 foreach (var product in productsInCategory)
                 {
                     var images = await _context.ProductImages.Where(x => x.ProductId == product.Id)

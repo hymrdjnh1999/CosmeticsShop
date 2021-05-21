@@ -447,3 +447,10 @@ h2 {
     padding-left: 50px;
     padding-right: 50px;
 }
+
+.product-in-category-img{
+    padding-top:100%;
+    background-position:center;
+    background-size:cover;
+    background-repeat:no-repeat;
+}

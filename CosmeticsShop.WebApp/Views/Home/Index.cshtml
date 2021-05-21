@@ -44,16 +44,18 @@
             <div>
                 <h2 class="justify-content-center text-center u-h1" style="margin-bottom: 30px;">@item.CategoryName</h2>
                 <div class="grid categories-area">
-                    @foreach (var product in item.Products)
-                    {
+                    <div class="row">
+                        @foreach (var product in item.Products)
+                        {
 
-                        <div class="col-lg-3 col-md-4 col-sm-6">
-                            <div class="product-in-category-img" style="baseImg:@product.Images[0]">
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <div class="product-in-category-img" style="background-image:url('https://localhost:5001/user-content/@product.Images[0].ImagePath')">
 
+                                </div>
                             </div>
-                        </div>
 
-                    }
+                        }
+                    </div>
                 </div>
             </div>
 
