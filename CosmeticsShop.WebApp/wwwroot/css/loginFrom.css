@@ -8,8 +8,8 @@
 .pageContentForm {
     max-width: 400px;
     margin: 35px auto;
-    margin-bottom: 80px;
-    margin-top: 80px;
+    margin-bottom: 160px;
+    margin-top: 160px;
 }
 
 .pageContentForm--fitScreen {
@@ -50,6 +50,10 @@
     margin-bottom: 15px;
 }
 
+.form--spacingTight {
+    margin-bottom: 15px;
+}
+
 .form__Input {
     -webkit-appearance: none;
     display: block;
@@ -60,13 +64,13 @@
     line-height: normal;
     resize: none;
     transition: border-color 0.1s ease-in-out;
-    background: transparent;
+    background: 0 0;
 }
 
 .form__FloatingLabel {
     position: absolute;
     color: #cfa247;
-    bottom: calc(100% - 8px);
+    bottom: calc(100% - 17px);
     left: 10px;
     padding: 0 5px;
     line-height: normal;
@@ -76,6 +80,18 @@
     pointer-events: none;
     transform: translateY(3px);
     transition: all 0.3s ease-in-out;
+}
+
+
+::placeholder { /* chạy tốt trên Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #cfa247 !important;
+    opacity: 1; /* Firefox */
+}
+
+.form__Input:not(:placeholder-shown) ~ .form__FloatingLabel {
+    opacity: 1;
+    background: #fff;
+    transform: translateY(0);
 }
 
 .link--primaryFrom:hover {
@@ -102,34 +118,30 @@
     margin-top: 20px;
 }
 
-/*.button__full {
-    width: 100%;
-}
 
-.button--primary {
-    color: #fff;
-    border-color: #1c1b1b;
-}*/
-
-.sectionFooter_From {
+.sectionFooter_FromLogin, .sectionFooter_FromRegister {
     height: 46.4px;
     padding-top: 15px;
     max-width: 400px;
 }
 
-    .sectionFooter_From a {
+    .sectionFooter_FromLogin a, .sectionFooter_FromRegister a {
         font-family: 'Space Grotesk';
         text-decoration: none;
         color: white;
         border: 1px solid #1c1b1b;
         background: #1c1b1b;
-        padding: 14px 141px;
+        padding: 14px 144px;
         font-size: 15px;
         letter-spacing: 3px;
         font-weight: 600;
         transition: all 2s;
         position: relative;
         text-align: center;
+    }
+
+    .sectionFooter_FromRegister a {
+        padding: 14px 127px;
     }
 
 
