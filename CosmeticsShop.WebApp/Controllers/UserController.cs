@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Cosmetics.ViewModels.Systems.Clients;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,19 +9,24 @@ namespace CosmeticsShop.WebApp.Controllers
 {
     public class UserController : Controller
     {
-        public IActionResult Index()
+
+        public IActionResult Login()
         {
             return View();
         }
 
-        public IActionResult LoginFrom()
+        [HttpGet]
+        public IActionResult Register()
         {
             return View();
         }
-
-        public IActionResult RegisterFrom()
+        [HttpPost]
+        public IActionResult Register(ClientRegisterRequest request)
         {
-            return View();
+            if (!ModelState.IsValid)
+                return View(request);
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

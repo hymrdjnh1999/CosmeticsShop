@@ -1,6 +1,7 @@
-﻿
+﻿@model Cosmetics.ViewModels.Systems.Clients.ClientLoginRequest
+
 @{
-    ViewData["Title"] = "CreateAccount";
+    ViewData["Title"] = "Account";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -9,7 +10,7 @@
     <section data-section-id="login" data-section-type="login">
         <div class="container">
             <div class="pageContentForm pageContentForm--fitScreen pageContentForm--extraNarrow ">
-                <form method="post" action="#" accept-charset="UTF-8">
+                <form method="post" asp-action="Login" accept-charset="UTF-8">
                     <input type="hidden" name="form_type" value="recover_customer_password">
                     <input type="hidden" name="utf8" value="✓">
                 </form>
@@ -17,13 +18,9 @@
                     <input type="hidden" name="form_type" value="customer_login">
                     <input type="hidden" name="utf8" value="✓">
                     <div class="form_Header">
-                        <h1 class="form_Title">Đăng Ký</h1>
-                        <p class="form_Legend">Bạn vui lòng điền các thông tin sau:</p>
+                        <h1 class="form_Title">Đăng Nhập</h1>
+                        <p class="form_Legend">Vui lòng điền Email và Mật Khẩu:</p>
                     </div>
-                    <div class="form__Item">
-                        <input type="email" class="form__Input" name="" required="required" placeholder="Họ Và Tên" aria-label="name" autofocus="">
-                        <label class="form__FloatingLabel">Họ Và Tên</label>
-                    </div> 
                     <div class="form__Item">
                         <input type="email" class="form__Input" name="customer[email]" required="required" placeholder="Email" aria-label="Email" autofocus="">
                         <label class="form__FloatingLabel">Email</label>
@@ -31,15 +28,16 @@
                     <div class="form__Item">
                         <input type="password" class="form__Input" name="customer[password]" required="required" placeholder="Mật khẩu" aria-label="Mật khẩu">
                         <label class="form__FloatingLabel">Mật khẩu</label>
-                    </div> 
-                    <div class="form__Item">
-                        <input type="password" class="form__Input" name="customer[password]" required="required" placeholder="Nhập Lại Mật khẩu" aria-label="Mật khẩu">
-                        <label class="form__FloatingLabel">Nhập Lại Mật khẩu</label>
+                        <button type="button" class="form__ItemHelp link--primaryFrom" data-action="toggle-recover-form">Quên Mật Khẩu?</button>
                     </div>
                     <div class="sectionFooter_From form__Submit">
                         <div class="wrapper">
                             <a href="#" class="justify-content-center text-center align-items-center"><span>ĐĂNG NHẬP</span></a>
                         </div>
+                    </div>
+                    <div class="form__Hint form__Hint--center">
+                        <span class="text--subdued">Bạn chưa có Tài Khoản?</span>
+                        <a href="/User/Register" class="link--secondary">Tạo Tài Khoản!</a>
                     </div>
                 </form>
             </div>
