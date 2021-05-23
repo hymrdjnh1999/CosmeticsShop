@@ -306,6 +306,8 @@ h2 {
         width: 100%;
     }
 
+
+
 /*.sectionFooter a:hover, .linksection a:hover {
     color: black;
     background: white;
@@ -369,7 +371,7 @@ h2 {
 .footer_conent {
     padding: 0 80px;
 }
-
+/*
 .footer__block:first-child {
     margin-top: 0;
 }
@@ -378,7 +380,7 @@ h2 {
     margin-bottom: 50px;
     flex: 0 1 auto;
 }
-
+*/
 .footer__title {
     font-size: 15px;
     margin-bottom: 20px;

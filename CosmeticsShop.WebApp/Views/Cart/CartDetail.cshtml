@@ -46,11 +46,12 @@
                         <div class="cartItem__QuantitySelector">
                             <div class="quantitySelector">
                                 <span class=" quantitySelector__Button" data-action="increase-quantity">
-                                    <img style="width: 11px;" src="~/images/icons8-subtract-24.png" alt="Alternate Text" />
+                                      <button name="button" type="submit"> - </button>
                                 </span>
                                 <input type="text" class="quantitySelector__CurrentQuantity" pattern="[0-9]*" name="quantity" value="1">
                                 <span class=" quantitySelector__Button" data-action="increase-quantity">
-                                    <img style="width: 11px;" src="~/images/icons8-addtion.png" alt="Alternate Text" />
+                                    @*<img style="width: 11px;" src="~/images/icons8-addtion.png" alt="Alternate Text" />*@
+                                      <button name="button" type="submit">+</button>
                                 </span>
                             </div>
                         </div>
@@ -63,7 +64,7 @@
                 <div class="cart__Footer">
                     <div class="cart__NoteContainer">
                         <span>Ghi chú:</span>
-                        <textarea class="cart__Note form__Textarea" style="color: #cfa247;" name="note" id="cart-note" rows="4" placeholder="Nếu quý khách có yêu cầu xuất hoa đơn, vui lòng điền thông tin vào đây, PARIS FRANCE BEAUTY sẽ giao sản phẩm kèm với hóa đơn cho quý khách. Ngoài ra, nếu quý khách có thêm yêu cầu hay ý kiến gì vui lòng điền vào đây. Cám ơn quý khách!"></textarea>
+                        <textarea class="cart__Note form__Textarea" name="note" id="cart-note" rows="4" placeholder="Nếu quý khách có yêu cầu xuất hoa đơn, vui lòng điền thông tin vào đây, PARIS FRANCE BEAUTY sẽ giao sản phẩm kèm với hóa đơn cho quý khách. Ngoài ra, nếu quý khách có thêm yêu cầu hay ý kiến gì vui lòng điền vào đây. Cám ơn quý khách!"></textarea>
                     </div>
                     <div class="cart__Recap">
                         <span class="cart__Total" style="text-align: right;">
@@ -72,10 +73,10 @@
                                 <span class="saso-cart-total"></span>
                             </span>
                         </span>
-                        <span class="cart__Taxes text--subdued">Giá đã bao gồm thuế VAT và phí giao hàng miễn phí</span> </br>
+                        <span class="cart__Taxes text--subdued">Giá đã bao gồm thuế VAT và phí giao hàng miễn phí</span> <br>
                         <div class="sectionFooter__cart">
                             <div class="wrapper">
-                                <a href="#" class="justify-content-center text-center"><span>CHECKOUT</span></a>
+                                <button name="button" type="submit" href="#" class="justify-content-center text-center"><span>CHECKOUT</span></button>
                             </div>
                         </div>
                     </div>
@@ -87,7 +88,7 @@
         <section class="section section--spacingNormal" style=" padding-bottom: 0;">
             <div class="sectionHeader--center">
                 <div class="container-fluid">
-                    <h2 class="justify-content-center text-center u-h1" style="margin-bottom: 30px;">XEM GẦN ĐÂY</h2>
+                    <h2 class="justify-content-center text-center u-h1" style=" margin-top: 80px; margin-bottom: 30px;">XEM GẦN ĐÂY</h2>
                     <div class="grid">
                         <div class="row ">
                             @*<div class="col">*@
@@ -154,3 +155,6 @@
         </section>
     </div>
 </div>
+
+
+
