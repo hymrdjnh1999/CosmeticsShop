@@ -117,14 +117,17 @@ namespace CosmeticsShop.Application.Catalog.Products
 
             await _context.SaveChangesAsync();
 
-            for (int count = 0; count < request.SelectedId.Length; count++)
+            if (request.SelectedId != null)
             {
-                _context.ProductInCategories.Add(new ProductInCategory()
+                for (int count = 0; count < request.SelectedId.Length; count++)
                 {
-                    CategoryId = int.Parse(request.SelectedId[count]),
-                    ProductId = product.Id
-                });
-                await _context.SaveChangesAsync();
+                    _context.ProductInCategories.Add(new ProductInCategory()
+                    {
+                        CategoryId = int.Parse(request.SelectedId[count]),
+                        ProductId = product.Id
+                    });
+                    await _context.SaveChangesAsync();
+                }
             }
             return product.Id;
 

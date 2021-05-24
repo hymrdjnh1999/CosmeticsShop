@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="~/css/registerFrom.css" />
     <link rel="stylesheet" href="~/css/cartDetail.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <script src="https://kit.fontawesome.com/c0378fb81e.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="//cdn.shopify.com/s/files/1/0003/8718/6741/files/favicon_fc3d6d9d-ad9e-4948-ab41-e7c8af30e908_32x32.png?v=1589251208" type="image/png">
 </head>
@@ -34,7 +35,7 @@
                     <ul class="horizontalList horizontalList__spacing">
                         <li class="horizontalList__item">
                             <a href="#" data-action="open-modal" aria-controls="search">
-                                 Tìm Sản Phẩm
+                                Tìm Sản Phẩm
                             </a>
                         </li>
                     </ul>
@@ -42,7 +43,7 @@
 
                 @* Logo *@
                 <div class="header__logo" style="justify-content: center; align-items: center;">
-                    <a href="/" class="header__logoLink" >
+                    <a href="/" class="header__logoLink">
                         <img class="header__logoimage header__logoimage--primary" src="//cdn.shopify.com/s/files/1/0003/8718/6741/files/Asset_1_2x_25b16eed-a574-4d6f-ac37-42aa9a91febb_170x.png?v=1589280350"
                              srcset="" width="170" alt="Paris France Beauty">
                     </a>
@@ -51,11 +52,11 @@
                 <div class="header__mainnav">
                     <ul class="horizontalList horizontalList__spacing">
                         <li class="horizontalList__item">
-                            <a href="#" class="">Tài Khoản</a>
+                            @Html.ActionLink("Tài khoản", "Login", "User")
                         </li>
                         @*<li class="horizontalList__item">
-                            <a href="#" data-action="open-modal" aria-controls="search">Tìm Sản Phẩm</a>
-                        </li>*@
+                                <a href="#" data-action="open-modal" aria-controls="search">Tìm Sản Phẩm</a>
+                            </li>*@
                         <li class="horizontalList__item">
                             <a href="#" class="" data-action="open-drawer" data-drawer-id="sidebar-cart" aria-label="Mở Giỏ Hàng">Giỏ Hàng (<span class="header__cartCount">0</span>)</a>
                         </li>

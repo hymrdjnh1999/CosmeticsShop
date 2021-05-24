@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Configurations\ClientConfiguration.cs~RF81bc86.TMP" />
     <None Remove="Entities\Transaction.cs~RF7e285a3.TMP" />
   </ItemGroup>
 

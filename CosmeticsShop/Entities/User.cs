@@ -11,8 +11,6 @@ namespace CosmeticsShop.Data.Entities
     {
         public DateTime Dob { get; set; }
         public string Name { get; set; }
-        public List<Cart> Carts { get; set; }
-        public List<Order> Orders { get; set; }
-        public List<Transaction> Transactions { get; set; }
+
     }
 }

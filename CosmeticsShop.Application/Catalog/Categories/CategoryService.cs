@@ -139,42 +139,11 @@ namespace CosmeticsShop.Application.Catalog.Categories
 
         public async Task<List<HomeCategoryViewModel>> GetProductCategories()
         {
-            var homeCategories = new List<HomeCategoryViewModel>() {
-                new HomeCategoryViewModel()
-                {
-                    CategoryName = "Sản phẩm mới",
-                    Products = new List<HomeProductViewModel>()
-                },
-                new HomeCategoryViewModel()
-                {
-                    CategoryName = "Sản phẩm khuyến mãi",
-                    Products = new List<HomeProductViewModel>()
-                },
-                new HomeCategoryViewModel()
-                {
-                    CategoryName = "Sản phẩm được yêu thích",
-                    Products = new List<HomeProductViewModel>()
-                },
-                new HomeCategoryViewModel()
-                {
-                    CategoryName = "Bộ quà tặng cao cấp",
-                    Products = new List<HomeProductViewModel>()
-                },
-                new HomeCategoryViewModel()
-                {
-                    CategoryName = "Bộ quà tặng cao cấp",
-                    Products = new List<HomeProductViewModel>()
-                },
-                 new HomeCategoryViewModel()
-                {
-                    CategoryName = "Sản phẩm không nên bỏ qua",
-                    Products = new List<HomeProductViewModel>()
-                },
-
-            };
-            foreach (var item in homeCategories)
+            var topCategories = await _context.Categories.Where(x => x.IsOutstanding).ToListAsync();
+            var listHomeCategory = new List<HomeCategoryViewModel>();
+            foreach (var category in topCategories)
             {
-                var category = await _context.Categories.Where(x => x.Name == item.CategoryName).FirstOrDefaultAsync();
+                if (category == null) continue;
                 var pic = await _context.ProductInCategories.Where(x => x.CategoryId == category.Id).ToListAsync();
                 var query = from pc in pic
                             join p in _context.Products on pc.ProductId equals p.Id
@@ -186,7 +155,7 @@ namespace CosmeticsShop.Application.Catalog.Categories
                         Name = p.Name,
                         Price = p.Price,
                         OriginalPrice = p.OriginalPrice,
-                    }).ToList();
+                    }).Take(8).Skip(0).ToList();
                 foreach (var product in productsInCategory)
                 {
                     var images = await _context.ProductImages.Where(x => x.ProductId == product.Id)
@@ -204,11 +173,15 @@ namespace CosmeticsShop.Application.Catalog.Categories
                         .ToListAsync();
                     product.Images = images;
                 }
-                item.Products = productsInCategory;
 
+                listHomeCategory.Add(new HomeCategoryViewModel()
+                {
+                    CategoryName = category.Name,
+                    Products = productsInCategory
+                });
             }
 
-            return homeCategories;
+            return listHomeCategory;
         }
     }
 }

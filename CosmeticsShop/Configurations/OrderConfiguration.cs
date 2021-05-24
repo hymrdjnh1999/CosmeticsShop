@@ -23,7 +23,7 @@ namespace CosmeticsShop.Data.Configurations
 
             builder.Property(o => o.ShipPhoneNumber).IsRequired();
 
-            builder.HasOne(o => o.User).WithMany(u => u.Orders).HasForeignKey(o => o.UserId);
+            builder.HasOne(o => o.Client).WithMany(c => c.Orders).HasForeignKey(o => o.ClientId);
 
         }
     }
