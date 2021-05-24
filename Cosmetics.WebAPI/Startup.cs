@@ -1,11 +1,14 @@
 using Cosmetics.Ultilities.Constants;
 using Cosmetics.ViewModels.Catalogs.Products;
 using Cosmetics.ViewModels.Catalogs.Products.Manage;
+using Cosmetics.ViewModels.Systems.Clients;
 using Cosmetics.ViewModels.Systems.Users;
+using CosmeticsShop.Application.Catalog.Carts;
 using CosmeticsShop.Application.Catalog.Categories;
 using CosmeticsShop.Application.Catalog.Orders;
 using CosmeticsShop.Application.Catalog.Products;
 using CosmeticsShop.Application.Common;
+using CosmeticsShop.Application.Systems.Clients;
 using CosmeticsShop.Application.Systems.Roles;
 using CosmeticsShop.Application.Systems.Users;
 using CosmeticsShop.Application.Ultilities;
@@ -46,6 +49,7 @@ namespace Cosmetics.WebAPI
             services.AddIdentity<User, Role>().AddEntityFrameworkStores<CosmeticsDbContext>().AddDefaultTokenProviders();
             // Declare Dependency injection
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IClientService, ClientService>();
             services.AddTransient<IStorageService, FileStorageService>();
             services.AddTransient<UserManager<User>, UserManager<User>>();
             services.AddTransient<SignInManager<User>, SignInManager<User>>();
@@ -53,6 +57,7 @@ namespace Cosmetics.WebAPI
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<ISlideService, SlideService>();
+            services.AddTransient<ICartService, CartService>();
             services.AddTransient<IOrderService, OrderService>();
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
@@ -61,6 +66,8 @@ namespace Cosmetics.WebAPI
             //Validator
             services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
             services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreateProductValidator>());
+            services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ClientLoginValidation>());
+            services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ClientRegisterValidation>());
             services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<UpdateProductValidator>());
 
             string connectionString = Configuration.GetConnectionString("CosmeticsDb");

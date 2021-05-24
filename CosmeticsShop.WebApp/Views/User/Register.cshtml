@@ -5,9 +5,9 @@
 }
 
 @section Scripts {
-<script>
-    $('#clientSubmiRegisterBtn').on('click', () => $('#clientRegisterForm').submit())
-</script>
+    <script>
+        $('#clientSubmiRegisterBtn').on('click', () => $('#clientRegisterForm').submit())
+    </script>
 }
 
 <div id="main">
@@ -23,25 +23,31 @@
                     <input type="hidden" name="utf8" value="✓">
                     <div class="form_Header">
                         <h1 class="form_Title">Đăng Ký</h1>
-                        <p class="form_Legend">Bạn vui lòng điền các thông tin sau:</p>
+                        <p class="form_Legend">Bạn vui lòng điền các thông tin sau</p>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        @if (ViewBag.Error != null)
+                        {
+                            <span class="text-danger">@ViewBag.Error</span>
+                        }
+
                     </div>
                     <div class="form__Item">
-                        <input asp-for="FullName" class="form__Input" placeholder="Họ Và Tên">
-                        <label class="form__FloatingLabel">Email</label>
+                        <input asp-for="FullName" class="form__Input" placeholder="Họ và tên">
+                        <label class="form__FloatingLabel">Họ và tên</label>
                         <span asp-validation-for="FullName" class="text-danger"></span>
                     </div>
                     <div class="form__Item">
                         <input asp-for="Email" type="email" class="form__Input" required="required" placeholder="Email" aria-label="Email" autofocus="">
-                       
+                        <label class="form__FloatingLabel">Email</label>
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                     <div class="form__Item">
-                        <input asp-for="Password" type="password" class="form__Input"  required="required" placeholder="Mật khẩu" aria-label="Mật khẩu">
+                        <input asp-for="Password" type="password" class="form__Input" required="required" placeholder="Mật khẩu" aria-label="Mật khẩu">
                         <label class="form__FloatingLabel">Mật khẩu</label>
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                     <div class="form__Item">
-                        <input asp-for="RepeatPassword" type="password" class="form__Input"  required="required" placeholder="Nhập Lại Mật khẩu" aria-label="Mật khẩu">
+                        <input asp-for="RepeatPassword" type="password" class="form__Input" required="required" placeholder="Nhập Lại Mật khẩu" aria-label="Mật khẩu">
                         <label class="form__FloatingLabel">Nhập Lại Mật khẩu</label>
                         <span asp-validation-for="RepeatPassword" class="text-danger"></span>
                     </div>
@@ -55,7 +61,7 @@
                         <a href="/User/Login" class="link--secondary">Đăng nhập</a>
                     </div>
                 </form>
-               
+
             </div>
         </div>
     </section>

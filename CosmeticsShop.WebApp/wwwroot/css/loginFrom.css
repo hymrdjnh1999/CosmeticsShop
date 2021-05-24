@@ -119,19 +119,20 @@
 }
 
 
-.sectionFooter_FromLogin, .sectionFooter_FromRegister {
+.sectionFooter_From {
     height: 46.4px;
     padding-top: 15px;
     max-width: 400px;
 }
 
-    .sectionFooter_FromLogin a, .sectionFooter_FromRegister a {
+    .sectionFooter_From a, .sectionFooter_From a {
+        display:block;
         font-family: 'Space Grotesk';
         text-decoration: none;
         color: white;
         border: 1px solid #1c1b1b;
         background: #1c1b1b;
-        padding: 14px 144px;
+        padding: 14px 0;
         font-size: 15px;
         letter-spacing: 3px;
         font-weight: 600;
@@ -140,9 +141,7 @@
         text-align: center;
     }
 
-    .sectionFooter_FromRegister a {
-        padding: 14px 127px;
-    }
+  
 
 
 

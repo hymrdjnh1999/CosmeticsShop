@@ -29,7 +29,7 @@ namespace Cosmetics.ViewModels.Systems.Clients
 
             RuleFor(x => x).Custom((request, context) =>
             {
-                if (request.Password != request.RepeatPassword)
+                if (request.RepeatPassword != request.Password)
                 {
                     context.AddFailure("Mật khẩu nhập lại không chính xác !");
                 }
