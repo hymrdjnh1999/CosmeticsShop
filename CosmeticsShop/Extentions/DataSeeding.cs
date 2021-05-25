@@ -88,7 +88,7 @@ namespace CosmeticsShop.Data.Extentions
                     OriginalCountry = "Ý"
                 }
             );
-
+            
             modelBuilder.Entity<CosmeticsCollection>().HasData(
                 new CosmeticsCollection()
                 {
