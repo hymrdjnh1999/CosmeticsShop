@@ -24,7 +24,7 @@ namespace CosmeticsShop.Data.Extentions
                 new Category
                 {
                     Id = 1,
-                    IsOutstanding = true,
+                    IsOutstanding = false,
                     Name = "Nước Hoa",
                     SortOrder = 1,
                     Status = Status.Active,
@@ -50,6 +50,38 @@ namespace CosmeticsShop.Data.Extentions
                      Status = Status.Active,
                      ParentId = 1,
 
+                 },
+                 new Category
+                 {
+                     Id = 4,
+                     IsOutstanding = true,
+                     Name = "Sản phẩm mới",
+                     SortOrder = 4,
+                     Status = Status.Active,
+                 },
+                 new Category
+                 {
+                     Id = 5,
+                     IsOutstanding = true,
+                     Name = "Sản phẩm được yêu thích",
+                     SortOrder = 5,
+                     Status = Status.Active,
+                 },
+                 new Category
+                 {
+                     Id = 6,
+                     IsOutstanding = true,
+                     Name = "Siêu phẩm không thể bỏ qua",
+                     SortOrder = 6,
+                     Status = Status.Active,
+                 },
+                 new Category
+                 {
+                     Id = 7,
+                     IsOutstanding = true,
+                     Name = "Bộ quà tặng cao cấp",
+                     SortOrder = 7,
+                     Status = Status.Active,
                  }
             );
 
@@ -138,7 +170,6 @@ namespace CosmeticsShop.Data.Extentions
             const string TESTID = "94C14234-D9B7-4A8B-91C8-68B53378FE6B";
             const string ROLE_ID = "BD5B83D2-5C75-4F96-A63F-1ECA425BDFE5";
             const string ROLE_ID2 = "EFEBFD93-B27D-4C91-8A71-74FD71944893";
-            const string ROLE_ID3 = "8C6D931D-A8FE-493C-88D1-2A8A9E1BB9B7";
 
             modelBuilder.Entity<Role>().HasData(
                 new Role()
@@ -154,29 +185,10 @@ namespace CosmeticsShop.Data.Extentions
                     Name = "Staff",
                     NormalizedName = "Staff",
                     Description = "Staff role"
-                },
-                new Role()
-                {
-                    Id = new Guid(ROLE_ID3),
-                    Name = "Customer",
-                    NormalizedName = "Customer",
-                    Description = "Customer role"
                 });
             var hasher = new PasswordHasher<User>();
             modelBuilder.Entity<User>().HasData(
-                 new User()
-                 {
-                     Id = new Guid(TESTID),
-                     Email = "cosmeticstest@gmail.com",
-                     NormalizedEmail = "cosmeticstest@gmail.com",
-                     Dob = new DateTime(1999, 06, 21),
-                     UserName = "cosmeticstest",
-                     NormalizedUserName = "Test",
-                     Name = "Test",
-                     SecurityStamp = string.Empty,
-                     EmailConfirmed = true,
-                     PasswordHash = hasher.HashPassword(null, "Adolphin@123")
-                 },
+
                 new User()
                 {
                     Id = new Guid(ADMIN_ID),
@@ -231,17 +243,12 @@ namespace CosmeticsShop.Data.Extentions
                 {
                     UserId = new Guid(PHUONGID),
                     RoleId = new Guid(ROLE_ID2)
-                },
-                new IdentityUserRole<Guid>()
-                {
-                    UserId = new Guid(TESTID),
-                    RoleId = new Guid(ROLE_ID3)
                 }
                 );
             modelBuilder.Entity<Order>().HasData(
                 new Order()
                 {
-                    UserId = new Guid(TESTID),
+                    ClientId = new Guid(TESTID),
                     Id = 1,
                     ShipEmail = "shiple@gmail.com",
                     ShipName = "Voi be nho",
@@ -324,6 +331,35 @@ namespace CosmeticsShop.Data.Extentions
                     Image = "https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg"
                 }
            );
+            string clientID = "1D37E388-3C9D-490B-A0D1-93F20C4292B5";
+            var hasherClient = new PasswordHasher<Client>();
+            modelBuilder.Entity<Client>().HasData(
+                new Client()
+                {
+                    Id = new Guid(clientID),
+                    Address = "8 Nghách 167 ngõ 521 Trương Định - Hoàng Mai - Hà Nội",
+                    Avatar = "",
+                    Dob = new DateTime(1999, 6, 21),
+                    Name = "Voi Bé Nhỏ",
+                    PhoneNumber = "0984869201",
+                    Status = Status.Active,
+                    Email = "tiendinhdev99@gmail.com",
+                    Password = hasherClient.HashPassword(null, "Adolphin@123")
+                },
+                new Client()
+                {
+                    Id = new Guid(TESTID),
+                    Address = "8 Nghách 167 ngõ 521 Trương Định - Hoàng Mai - Hà Nội",
+                    Avatar = "",
+                    Dob = new DateTime(1999, 6, 21),
+                    Name = "Do tien dinh",
+                    PhoneNumber = "0984869201",
+                    Status = Status.Active,
+                    Email = "test1234@gmail.com",
+                    Password = hasherClient.HashPassword(null, "Adolphin@123")
+                }
+                ); ;
+
         }
     }
 }

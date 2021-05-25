@@ -1,4 +1,6 @@
 ﻿using Cosmetics.ViewModels.Catalogs.Categories;
+using Cosmetics.ViewModels.Catalogs.ProductImages;
+using Cosmetics.ViewModels.Catalogs.Products;
 using Cosmetics.ViewModels.Common;
 using CosmeticsShop.Data.Entities;
 using CosmeticsShop.Data.EntityFrameWork;
@@ -133,6 +135,53 @@ namespace CosmeticsShop.Application.Catalog.Categories
             };
             return productViewModel;
 
+        }
+
+        public async Task<List<HomeCategoryViewModel>> GetProductCategories()
+        {
+            var topCategories = await _context.Categories.Where(x => x.IsOutstanding).ToListAsync();
+            var listHomeCategory = new List<HomeCategoryViewModel>();
+            foreach (var category in topCategories)
+            {
+                if (category == null) continue;
+                var pic = await _context.ProductInCategories.Where(x => x.CategoryId == category.Id).ToListAsync();
+                var query = from pc in pic
+                            join p in _context.Products on pc.ProductId equals p.Id
+                            select p;
+                var productsInCategory = query
+                    .Select(p => new HomeProductViewModel()
+                    {
+                        Id = p.Id,
+                        Name = p.Name,
+                        Price = p.Price,
+                        OriginalPrice = p.OriginalPrice,
+                    }).Take(8).Skip(0).ToList();
+                foreach (var product in productsInCategory)
+                {
+                    var images = await _context.ProductImages.Where(x => x.ProductId == product.Id)
+                        .Select(x => new ProductImageViewModel()
+                        {
+                            Id = x.Id,
+                            ProductId = product.Id,
+                            Caption = x.Caption,
+                            DateCreated = x.DateCreated,
+                            FileSize = x.FileSize,
+                            ImagePath = x.ImagePath,
+                            IsDefault = x.IsDefault,
+                            SortOrder = x.SortOrder
+                        }).OrderByDescending(x => x.IsDefault)
+                        .ToListAsync();
+                    product.Images = images;
+                }
+
+                listHomeCategory.Add(new HomeCategoryViewModel()
+                {
+                    CategoryName = category.Name,
+                    Products = productsInCategory
+                });
+            }
+
+            return listHomeCategory;
         }
     }
 }

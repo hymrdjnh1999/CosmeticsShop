@@ -193,35 +193,7 @@ namespace Cosmetics.AdminApp.Controllers
             return View(request);
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> CategroryAssign(int id)
-        //{
-
-        //    var categoryAssignRequest = await GetCategoryAssignRequest(id);
-
-        //    return View(categoryAssignRequest);
-
-        //}
-
-        //[HttpPost]
-        //public async Task<IActionResult> CategroryAssign(CategoryAssignRequest request)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return View();
-
-
-
-        //    if (result.IsSuccess)
-        //    {
-        //        TempData["result"] = "Role assign successfully";
-        //        return RedirectToAction("Index");
-        //    }
-
-        //    ModelState.AddModelError("", result.Message);
-        //    var categoryAssignRequest = await GetCategoryAssignRequest(request.Id);
-
-        //    return View(categoryAssignRequest);
-        //}
+        
         private async Task<CategoryAssignRequest> GetCategoryAssignRequest(int id)
         {
             var productViewModel = await _productApiClient.GetById(id);

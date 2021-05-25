@@ -17,7 +17,7 @@ namespace CosmeticsShop.Data.Configurations
 
             builder.Property(x => x.Id).UseIdentityColumn();
 
-            builder.HasOne(t => t.User).WithMany(u => u.Transactions).HasForeignKey(t => t.UserId);
+            builder.HasOne(t => t.Client).WithMany(c => c.Transactions).HasForeignKey(t => t.ClientId);
 
         }
     }

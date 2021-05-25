@@ -10,6 +10,7 @@ namespace CosmeticsShop.Api_Intergration
     public interface ICategoryApiClient
     {
         Task<List<CategoryViewModel>> GetAll();
+        Task<List<HomeCategoryViewModel>> GetHomeProductCategories();
 
         Task<PageResponse<CategoryViewModel>> GetAllPaging(PaginateRequest request);
 

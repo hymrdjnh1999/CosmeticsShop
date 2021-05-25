@@ -10,5 +10,6 @@ namespace Cosmetics.ViewModels.Catalogs.Orders
     public class GetOrderRequest : QueryParamRequest
     {
         public string KeyWord { get; set; }
+        public string Type { get; set; }
     }
 }

@@ -16,22 +16,24 @@ namespace CosmeticsShop.WebApp.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly ISlideApiClient _slideApiClient;
         private readonly IProductApiClient _productApiClient;
-        public HomeController(ILogger<HomeController> logger, ISlideApiClient slideApiClient, IProductApiClient productApiClient)
+        private readonly ICategoryApiClient _categoryApiClient;
+        public HomeController(ILogger<HomeController> logger, ISlideApiClient slideApiClient, IProductApiClient productApiClient, ICategoryApiClient categoryApiClient)
         {
             _logger = logger;
             _slideApiClient = slideApiClient;
             _productApiClient = productApiClient;
+            _categoryApiClient = categoryApiClient;
         }
 
         public async Task<IActionResult> Index()
         {
             var slides = await _slideApiClient.GetAll();
-            var featuredProducts = await _productApiClient.GetFeaturedProducts();
+            var productCategory = await _categoryApiClient.GetHomeProductCategories();
             var homeViewModel = new HomeViewModel()
             {
                 Slides = slides,
-                FeaturedProducts = featuredProducts
             };
+            ViewBag.Categories = productCategory;
             return View(homeViewModel);
         }
 

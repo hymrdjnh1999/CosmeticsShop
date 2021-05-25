@@ -3,9 +3,6 @@ using Cosmetics.ViewModels.Common;
 using CosmeticsShop.Application.Catalog.Categories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Cosmetics.WebAPI.Controllers
@@ -95,6 +92,13 @@ namespace Cosmetics.WebAPI.Controllers
                 return BadRequest();
             }
             return Ok();
+        }
+
+        [HttpGet("products")]
+        public async Task<IActionResult> GetProductCategories()
+        {
+            var productCategories = await _categoryService.GetProductCategories();
+            return Ok(productCategories);
         }
 
 

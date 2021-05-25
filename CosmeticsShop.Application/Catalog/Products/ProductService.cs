@@ -96,6 +96,7 @@ namespace CosmeticsShop.Application.Catalog.Products
                 DateCreated = DateTime.Now,
             };
 
+
             if (request.ThumbnailImage != null)
             {
                 product.ProductImages = new List<ProductImage>()
@@ -115,6 +116,19 @@ namespace CosmeticsShop.Application.Catalog.Products
             _context.Products.Add(product);
 
             await _context.SaveChangesAsync();
+
+            if (request.SelectedId != null)
+            {
+                for (int count = 0; count < request.SelectedId.Length; count++)
+                {
+                    _context.ProductInCategories.Add(new ProductInCategory()
+                    {
+                        CategoryId = int.Parse(request.SelectedId[count]),
+                        ProductId = product.Id
+                    });
+                    await _context.SaveChangesAsync();
+                }
+            }
             return product.Id;
 
         }

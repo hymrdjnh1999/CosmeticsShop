@@ -145,7 +145,6 @@ namespace CosmeticsShop.Api_Intergration
             var forGenderJs = new StringContent(
                 (request.ForGender == ForGender.Male ? 1 : request.ForGender == ForGender.Female ? 2 : 3).ToString());
             requestContent.Add(forGenderJs, "forgender");
-
             var response = await client.PostAsync($"/api/products", requestContent);
             var result = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
@@ -191,13 +190,6 @@ namespace CosmeticsShop.Api_Intergration
         }
 
 
-        public async Task<List<ProductViewModel>> GetFeaturedProducts()
-        {
-            var requestUrl = $"/api/products/featured";
-            var data = await GetAsync<List<ProductViewModel>>(requestUrl);
-            return data;
-
-        }
 
 
 
