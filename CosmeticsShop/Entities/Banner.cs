@@ -17,5 +17,6 @@ namespace CosmeticsShop.Data.Entities
         public int SortOrder { get; set; }
         public Status Status { get; set; }
         public long FileSize { get; set; }
+        public bool IsOutstanding { get; set; }
     }
 }

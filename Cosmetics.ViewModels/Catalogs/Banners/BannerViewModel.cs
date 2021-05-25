@@ -20,6 +20,7 @@ namespace Cosmetics.ViewModels.Catalogs.Banners
         public int SortOrder { get; set; }
         public long FileSize { get; set; }
         public Status Status { get; set; }
+        public bool IsOutstanding { get; set; }
 
     }
 }

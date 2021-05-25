@@ -452,6 +452,39 @@ namespace CosmeticsShop.Data.Migrations
 
                     b.ToTable("ProductImages");
                 });
+            modelBuilder.Entity("CosmeticsShop.Data.Entities.Banner", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                    .HasAnnotation("SqlServer:IdentitySeed", 1)
+                    .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                b.Property<string>("Description")
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<DateTime>("DateCreated")
+                    .HasColumnType("datetime2");
+
+                b.Property<long>("FileSize")
+                    .HasColumnType("bigint");
+
+                b.Property<string>("ImagePath")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<bool>("IsDefault")
+                    .HasColumnType("bit");
+
+
+                b.Property<int>("SortOrder")
+                    .HasColumnType("int");
+
+                b.HasKey("Id");
+
+
+            });
 
             modelBuilder.Entity("CosmeticsShop.Data.Entities.ProductInCategory", b =>
                 {

@@ -18,6 +18,7 @@ namespace CosmeticsShop.Data.Configurations
 
             builder.Property(x => x.Id).UseIdentityColumn();
 
+
             builder.Property(x => x.ImagePath).IsRequired();
 
             builder.Property(c => c.Status).HasDefaultValue(Status.Active);
