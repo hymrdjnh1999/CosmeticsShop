@@ -14,13 +14,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-secondary">
-        <a class="navbar-brand py-4" href="#">
-            <div class="d-flex justify-content-center ">
-                <img class="w-25 rounded" src="./css/img/logo.png" alt="" />
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-secondary shadow">
+
+        <a class="navbar-brand py-4" asp-controller="Home" asp-action="Index" >
+            <div class="d-flex justify-content-center " >
+                <img class="w-25 rounded" src="/css/img/logo.png" alt="" />
             </div>
         </a>
-        <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
+        <button class="btn btn-link btn-sm order-1 order-lg-0 text-white" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
+        <div class="navbar-text" asp-controller="Home" asp-action="Index">
+            <a href="/" class="text-decoration-none-hover mr-2" >Home</a>
+        </div>
         <!-- Navbar Search-->
         <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
             <div class="input-group d-none">
@@ -34,7 +38,7 @@
         <ul class="navbar-nav ml-auto ml-md-0">
             <li class="nav-item dropdown d-flex align-content-center justify-content-center align-bottom">
 
-                <div class="text-white py-3 ">Xin chào <a class="text-white font-weight-bold" href="/Profile/Index">@User.Identity.Name</a></div>
+                <div class="text-white py-3 ">Xin chào <a class="text-white font-weight-bold text-decoration-none-hover" href="/Profile/Index">@User.Identity.Name</a></div>
 
                 <a class="nav-link dropdown-toggle py-3 text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">

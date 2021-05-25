@@ -21,6 +21,7 @@ namespace CosmeticsShop.Data.EntityFrameWork
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new AppConfigurations());
+            modelBuilder.ApplyConfiguration(new BannerConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfigurations());
             modelBuilder.ApplyConfiguration(new CategoryConfigurations());
             modelBuilder.ApplyConfiguration(new ProductInCategoryConfiguration());
@@ -51,6 +52,7 @@ namespace CosmeticsShop.Data.EntityFrameWork
         public DbSet<Product> Products { get; set; }
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Banner> Banners { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Order> Orders { get; set; }
