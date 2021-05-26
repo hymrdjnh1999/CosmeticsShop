@@ -17,7 +17,7 @@ namespace Cosmetics.WebAPI.Controllers
         {
             _cartService = cartService;
         }
-        [HttpPost]
+        [HttpPost("AddToCart")]
         public async Task<IActionResult> AddToCart(ClientCartViewModel request)
         {
             var result = await _cartService.AddToCart(request);

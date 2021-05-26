@@ -1,4 +1,5 @@
-﻿using Cosmetics.ViewModels.Systems.Clients;
+﻿using Cosmetics.ViewModels.Catalogs.Carts;
+using Cosmetics.ViewModels.Systems.Clients;
 using CosmeticsShop.Api_Intergration;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -22,11 +24,12 @@ namespace CosmeticsShop.WebApp.Controllers
     {
         private readonly IConfiguration _config;
         private readonly IClientApi _clientApi;
-        public UserController(IClientApi clientApi, IConfiguration configuration)
+        private readonly ICartApiClient _cartApiClient;
+        public UserController(IClientApi clientApi, IConfiguration configuration, ICartApiClient cartApiClient)
         {
             _clientApi = clientApi;
             _config = configuration;
-
+            _cartApiClient = cartApiClient;
         }
 
         [HttpPost]
@@ -73,9 +76,15 @@ namespace CosmeticsShop.WebApp.Controllers
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                 userPrincipal,
                 authProperties);
-            var user = User.Claims.ToList();
+            var cartJs = HttpContext.Session.GetString("Cart");
+            if (cartJs != null)
+            {
+                var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(cartJs);
+                cart = await _cartApiClient.AddToCart(cart);
+                ViewBag.Cart = cart;
+            }
 
-           
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -87,6 +96,7 @@ namespace CosmeticsShop.WebApp.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
+
 
             return View();
         }
@@ -114,6 +124,12 @@ namespace CosmeticsShop.WebApp.Controllers
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                 userPrincipal,
                 authProperties);
+            var cartJs = HttpContext.Session.GetString("Cart");
+            if (cartJs != null)
+            {
+                var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(cartJs);
+                ViewBag.Cart = cart;
+            }
             return RedirectToAction("Index", "Home");
         }
         private ClaimsPrincipal ValidateToken(string jwtToken)
