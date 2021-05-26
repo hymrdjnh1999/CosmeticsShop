@@ -58,7 +58,16 @@
                                 <a href="#" data-action="open-modal" aria-controls="search">Tìm Sản Phẩm</a>
                             </li>*@
                         <li class="horizontalList__item">
-                            <a href="#" class="" data-action="open-drawer" data-drawer-id="sidebar-cart" aria-label="Mở Giỏ Hàng">Giỏ Hàng (<span class="header__cartCount">0</span>)</a>
+                            <a href="/cart/cartdetail" class="" data-action="open-drawer" data-drawer-id="sidebar-cart" aria-label="Mở Giỏ Hàng">
+                                Giỏ Hàng (@if (ViewBag.Cart != null)
+                                {
+                                    <span class="header__cartCount" id="cartQuantity">@ViewBag.Cart.Products.Count</span>
+                                }
+                                else
+                                {
+                                    <span class="header__cartCount" id="cartQuantity">0</span>
+                                })
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -217,6 +226,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/common.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
