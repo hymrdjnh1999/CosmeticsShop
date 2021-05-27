@@ -25,11 +25,13 @@ namespace CosmeticsShop.Application.Catalog.Carts
                 cart = new Cart()
                 {
                     DateCreated = DateTime.Now,
-                    Price = request.Products.Sum(x => x.ProductPrice),
-                    Quantity = request.Products.Count
+                    Price = request.Products.Sum(x => x.ProductPrice * x.Quantity),
+                    Quantity = request.Products.Count,
+                    ClientId = request.ClientId ?? Guid.NewGuid()
                 };
                 _context.Carts.Add(cart);
                 await _context.SaveChangesAsync();
+                request.Id = cart.Id;
                 foreach (var item in request.Products)
                 {
                     var productIncart = new ProductInCart()
@@ -43,11 +45,12 @@ namespace CosmeticsShop.Application.Catalog.Carts
                     _context.ProductInCarts.Add(productIncart);
                     await _context.SaveChangesAsync();
                 }
+
             }
             else
             {
                 cart.Quantity = request.Products.Count;
-                cart.Price = request.Products.Sum(x => x.ProductPrice);
+                cart.Price = request.Products.Sum(x => x.ProductPrice * x.Quantity);
                 _context.Carts.Attach(cart);
             }
             await _context.SaveChangesAsync();

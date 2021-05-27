@@ -41,79 +41,51 @@
 		</ul>
 		</div>*@
 
-				@* Logo *@
-				<div class="header__logo" style="display: block; margin-left: 45%; ">
-					<a href="/" class="header__logoLink">
-						<img class="header__logoimage header__logoimage--primary" src="//cdn.shopify.com/s/files/1/0003/8718/6741/files/Asset_1_2x_25b16eed-a574-4d6f-ac37-42aa9a91febb_170x.png?v=1589280350"
-							 srcset="" width="170" alt="Paris France Beauty">
-					</a>
-				</div>
-
-				@* Horizontal List *@
-				<div class="header__mainnav">
-					<ul class="horizontalList horizontalList__spacing">
-						<li class="horizontalList__item">
-							@Html.ActionLink("Tài khoản", "Login", "User")
-						</li>
-						<li class="horizontalList__item">
-							@*							<a href="#" id="loginSubmitBtn" data-action="open-modal" aria-controls="search">Tìm Sản Phẩm</a>*@
-							<button style="background-color: white; border: none" type="button" data-toggle="dropdown">
-								Tìm Sản Phẩm
-							</button>
-							<ul class="box-search dropdown-menu">
-								<li>
-									<input type="text" id="search" name="search" placeholder="Nhập từ khóa...">
-									<button id="btnSearch"></button>
-
-								</li>
-							</ul>
-						</li>
-						<li class="horizontalList__item">
-							<a href="#" class="" data-action="open-drawer" data-drawer-id="sidebar-cart" aria-label="Mở Giỏ Hàng">Giỏ Hàng (<span class="header__cartCount">0</span>)</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-			@* Nav *@
-			<div class="header__wrapper--nav header__mainnav nav justify-content-center text-center" aria-label="Main navigation">
-				<ul class="horizontalList--nav">
-					@*<li class="horizontalList__item horizontalList__item--nav dropdown" aria-haspopup="true">
-	 	<a href="#" class="dropbtn">NƯỚC HOA</a>
-	 	<div class="dropdown-content">
-	 	<a href="#">Đầm</a>
-	 	<a href="#">Áo phông</a>
-	 	<a href="#">Áo sơ mi</a>
-	 	<a href="#">Quần</a>
-	 	<a href="#">Chân váy</a>
-	 	<a href="#">Đồ mặc nhà</a>
-	 	<a href="#">Jumpsuit</a>
-	 	<a href="#">Áo dài cách tân</a>
-	 	<a href="#">Áo vest</a>
-	 	<a href="#">Măng tô</a>
-	 	<a href="#">Áo khoác</a>
-	 	<a href="#">Áo len</a>
-	 	</div>
-	 	</li>
-					*@
-					@*<li class="horizontalList__item " aria-haspopup="true">
-	 	<a href="#" class="dropbtn lh-54">
-	 	NƯỚC HOA
-	 	<span class="header__LinkSpacer">NƯỚC HOA</span>
-	 	</a>
-	 	<div class="horizontalList__item  dropdown-content" aria-hidden="true">
-	 	<div class="megaMenu__Inner">
-	 	<div class="megaMenu megaMenu__Item--fit">
-
-	 	<a href="#" class="megaMenu__Title text--subdued">Thương Hiệu</a>
-	 	<ul class="linklist">
-	 	<li class="linklist__Item">
-	 	<a href="#" class="link link--secondary">CarolinaHerrera</a>
-	 	</li>
-	 	</ul>
-	 	</div>
-	 	</div>
-	 	</div>
-	 	</li>*@
+                @* Logo *@
+                <div class="header__logo" style="justify-content: center; align-items: center;">
+                    <a href="/" class="header__logoLink">
+                        <img class="header__logoimage header__logoimage--primary" src="//cdn.shopify.com/s/files/1/0003/8718/6741/files/Asset_1_2x_25b16eed-a574-4d6f-ac37-42aa9a91febb_170x.png?v=1589280350"
+                             srcset="" width="170" alt="Paris France Beauty">
+                    </a>
+                </div>
+                @* Horizontal List *@
+                <div class="header__mainnav">
+                    <ul class="horizontalList horizontalList__spacing">
+                        <li class="horizontalList__item">
+                            @Html.ActionLink("Tài khoản", "Login", "User")
+                        </li>
+                        @*<li class="horizontalList__item">
+                                <a href="#" data-action="open-modal" aria-controls="search">Tìm Sản Phẩm</a>
+                            </li>*@
+                        <li class="horizontalList__item">
+                            <a href="/cart/cartdetail" class="" data-action="open-drawer" data-drawer-id="sidebar-cart" aria-label="Mở Giỏ Hàng">
+                                Giỏ Hàng (@if (ViewBag.Cart != null)
+                                {
+                                    <span class="header__cartCount" id="cartQuantity">@ViewBag.Cart.Products.Count</span>
+                                }
+                                else
+                                {
+                                    <span class="header__cartCount" id="cartQuantity">0</span>
+                                })
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            @* Nav *@
+            <div class="header__wrapper--nav header__mainnav nav justify-content-center text-center" aria-label="Main navigation">
+                <ul class="horizontalList--nav">
+                    @*<li class="horizontalList__item--nav nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                NƯỚC HOA
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown">
+                                <a class="dropdown-item" href="#">Thương Hiệu</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </li>*@
 
 
 					<li class="horizontalList__item--nav">
@@ -262,11 +234,11 @@
 	</div>
 	@* footer end==================================================================================================================================== *@
 
-	<script src="~/lib/jquery/dist/jquery.min.js"></script>
-	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="~/js/site.js" asp-append-version="true"></script>
-	@await RenderSectionAsync("Scripts", required: false)
-
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/common.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
 
