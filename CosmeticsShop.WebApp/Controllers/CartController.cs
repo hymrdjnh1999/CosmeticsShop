@@ -24,6 +24,11 @@ namespace CosmeticsShop.WebApp.Controllers
         {
             return View();
         }
+
+        public IActionResult Bill()
+        {
+            return View();
+        }
         [HttpPost]
         public JsonResult AddToCart([FromBody] ProductInCartViewModel productCart)
         {
