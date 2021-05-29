@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Cosmetics.ViewModels.Catalogs.Banners
 {
-    class BannerUpdateValidator : AbstractValidator<BannerUpdateRequest>
+    public class BannerUpdateValidator : AbstractValidator<BannerUpdateRequest>
     {
          public BannerUpdateValidator()
         {

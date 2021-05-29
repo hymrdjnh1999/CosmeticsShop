@@ -6,21 +6,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CosmeticsShop.Api_Intergration
+namespace CosmeticsShop.Application.Catalog.Banners
 {
-    public class BannerApiClient : IBannerApiClient
+    class BannerService : IBannerService
     {
         public Task<int> Create(BannerCreateRequest request)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> Edit(BannerUpdateRequest request)
+        public Task<int> Delete(int bannerId)
         {
             throw new NotImplementedException();
         }
@@ -30,12 +25,18 @@ namespace CosmeticsShop.Api_Intergration
             throw new NotImplementedException();
         }
 
-        public Task<PageResponse<BannerViewModel>> GetAllPaging(PaginateRequest request)
+
+        public Task<PageResponse<BannerViewModel>> GetAllPaging(string bannerId, QueryParamRequest request)
         {
             throw new NotImplementedException();
         }
 
-        public Task<BannerViewModel> GetById(int id)
+        public Task<BannerViewModel> GetById()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> Update(BannerUpdateRequest request)
         {
             throw new NotImplementedException();
         }

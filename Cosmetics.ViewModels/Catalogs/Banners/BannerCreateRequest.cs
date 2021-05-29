@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Cosmetics.ViewModels.Catalogs.Banners
 {
-    class BannerCreateRequest
+    public class BannerCreateRequest
     {
         public string Description { get; set; }
         public IFormFile ImageFile { get; set; }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Cosmetics.ViewModels.Catalogs.Banners
 {
-    class BannerViewModel
+    public class BannerViewModel
     {
         public int Id { get; set; }
         [DisplayName("Ảnh")]
@@ -25,9 +25,3 @@ namespace Cosmetics.ViewModels.Catalogs.Banners
     }
 }
 
-namespace Cosmetics.ViewModels
-{
-    public class BannerCreateRequest
-    {
-    }
-}

@@ -1,11 +1,165 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿@using Cosmetics.ViewModels.Common;
+@using CosmeticsShop.Data.Enums;
+@model PageResponse<Cosmetics.ViewModels.Catalogs.Banners.BannerViewModel>
+@{
+    ViewData["Title"] = "Quản Lý Ảnh Bìa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-namespace Cosmetics.AdminApp.Views.Banner
-{
-    public class index
-    {
-    }
+
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
+<div class="container-fluid">
+    <h1 class="mt-4">Ảnh Bìa</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Bảng Điều Khiển</a></li>
+        <li class="breadcrumb-item active">Danh Sách Ảnh Bìa</li>
+    </ol>
+
+    <div class="card mb-12">
+        <div class="card-header d-flex justify-content-between">
+            <form asp-action="Index" method="get">
+                <div class="form-outline mb-4 d-flex">
+                    <input name="keyword" value="@ViewBag.Keyword" type="text" id="bannerSearchBox" placeholder="Tìm kiếm..." class="form-control  border-dark" />
+                    <input asp-for="PageSize" value="@Model.PageSize" type="hidden" />
+                    <button type="submit" class="btn btn-outline-dark ml-2">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </form>
+
+            <div>
+                <a asp-action="Create" asp-controller="Banner" class="btn btn-outline-dark ">
+                    <i class="fas fa-plus mr-2"></i>
+                    Thêm Ảnh mới
+                </a>
+            </div>
+
+        </div>
+        <div class="card-body">
+            @if (ViewBag.SuccessMsg != null)
+            {
+                <div class="d-flex justify-content-center">
+                    <div id="msgAlert" class="alert alert-success w-25" role="alert">
+                        @ViewBag.SuccessMsg
+                    </div>
+                </div>
+            }
+            <div class="d-flex w-25 align-items-center mb-3">
+                @await Component.InvokeAsync("ChangePageSize", Model)
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered border-dark text-center">
+                    <thead class="thead-dark text-white">
+                        <tr class="bg-alternating d-flex">
+                            <th scope="col" style="flex:0.1">
+                                Id
+                            </th>
+                            <th scope="col" style="flex:1">
+                                Ảnh Bìa
+                            </th>
+                            <th scope="col" style="flex:0.3">
+                                    Mô Tả
+                                </th>
+                            <th style="flex: 0.2" scope="col">
+                                Tác Vụ
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Items)
+                        {
+                            <tr class="bg-alternating d-flex">
+                                <td style="flex:0.1">
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </td>
+                                <td style="1">
+                                    <img width="100%" height="80px" src="@Configuration["BaseImageAddress"]@item.ImagePath" alt="@item.Description" />
+                                </td>
+                                <td style="flex:0.3">
+
+                                    <a href="#" onclick="editBanner(@item.Id)">
+                                        @item.Description
+                                    </a>
+                                </td>
+                                @*<td class="table-body-td  @(Model.Items[count].Status == Status.Active ? "text-success" : "text-danger text-center")  ">
+                    @Html.DisplayFor(modelItem => Model.Items[count].Status)
+                </td>*@
+
+                                <td class="d-flex align-items-center justify-content-end" style="flex: 0.2">
+                                    <span class="actions-btn">
+                                        <span id="editBannerBtn" onclick="editBanner(@item.Id)" class="btn btn-outline-info">Sửa</span>
+                                    </span>
+
+                                    <span class="actions-btn ml-2">
+                                        <button onclick="getValue(@item.Id)" data-target="#deleteBannerModal" data-toggle="modal" class="btn btn-outline-danger">
+                                            Xóa
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            @await Component.InvokeAsync("Pager", Model)
+
+            <!-- Button trigger modal -->
+            <!-- Modal -->
+            <div class="modal fade" id="deleteBannerModal" tabindex="-1" role="dialog" aria-labelledby="deleteBannerTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteBannerTitle">Xóa Ảnh Bìa</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Bạn có chắc chắn muốn xóa ảnh này?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                            <button type="submit" class="btn btn-danger" data-dismiss="modal" id="delete_submit_btn">Xóa</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        const editBanner = (bannerId) => window.location.assign(`banner/${bannerId}`)
+    </script>
+    <script>
+        setTimeout(() => $('#msgAlert').fadeOut('slow'), 1500)
+    </script>
+    <script>
+        var delete_id = -1;
+        const getValue = (id) => delete_id = id;
+        $('#delete_submit_btn').on('click', () => {
+            $.ajax(
+                {
+                    type: "delete",
+                    url: `banner/delete/`,
+                    dataType: "text",
+                    data: { id: delete_id },
+                    async: true,
+                    success: function (response) {
+                        location.reload();
+                    },
+                    failure: function (response) {
+                        alert('false')
+                    },
+                    error: function (response) {
+                        alert('error')
+                    }
+                });
+        })
+    </script>
+
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Cosmetics.ViewModels.Catalogs.Banners
 {
-    class BannerCreateValidator : AbstractValidator<BannerCreateRequest>
+    public class BannerCreateValidator : AbstractValidator<BannerCreateRequest>
     {
         public BannerCreateValidator() { 
             RuleFor(x => x.ImageFile).NotEmpty()
