@@ -1,28 +1,32 @@
-﻿
+﻿@model Cosmetics.ViewModels.Catalogs.Orders.ClientCreateOrderViewModel
 @{
     ViewData["Title"] = "Thông Tin Đặt Hàng";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var cart = ViewBag.CartDetail;
+    var products = cart.Products;
+    var imgUrlBase = "https://localhost:5001/user-content/";
 }
 
 <div class="content" data-content>
     <div class="wrap">
         <div class="main">
             <div class="main__header">
-                <a href="#"><span class="logo__text justify-content-center">Paris France Beauty</span></a>
+                <a href="#"><span class="logo__text justify-content-center">Cosmetics Shop</span></a>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-center justify-content-center" role="list">
                         <li class="breadcrumb-item">
-                            <a href="#" class="breadcrumb-link">Giỏ Hàng</a>
+                            <a href="/cart/cartdetail" class="breadcrumb-link">Giỏ Hàng</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="#" class="breadcrumb-link" style=" color: black;">Thông Tin Đặt Hàng</a>
+                            <span class="breadcrumb-link" style=" color: black;">Thông Tin Đặt Hàng</span>
                         </li>
                     </ol>
                 </nav>
             </div>
             <main class="main_content" role="main">
                 <div class="step" data-step="contact_information" data-last-step="false">
-                    <form class="edit_checkout animate-floating-labels" novalidate="novalidate" data-customer-information-form="true" data-email-or-phone="true" action="" accept-charset="UTF-8" method="post">
+                    <form class="edit_checkout animate-floating-labels" asp-action="InforOrder" asp-controller="Cart" method="post">
                         <div class="step_sections">
                             <div class="section_header">
                                 <div class="layout-flex layout-flex--tight-vertical layout-flex--loose-horizontal layout-flex--wrap">
@@ -30,13 +34,16 @@
                                         Địa Chỉ Nhận Hàng
                                     </h2>
 
-                                    <p class="layout-flex__item">
-                                        <span aria-hidden="true">Bạn đã có tài khoản?</span>
-                                        <a href="#">
-                                            <span class="visually-hidden">Bạn đã có tài khoản?</span>
-                                            Đăng Nhập
-                                        </a>
-                                    </p>
+                                    @if (!ViewBag.isLogin)
+                                    {
+                                        <p class="layout-flex__item">
+                                            <span aria-hidden="true">Bạn đã có tài khoản?</span>
+                                            <a href="/user/login">
+                                                <span class="visually-hidden">Bạn đã có tài khoản?</span>
+                                                Đăng Nhập
+                                            </a>
+                                        </p>
+                                    }
                                 </div>
                             </div>
                             <div class="step_sections">
@@ -45,25 +52,28 @@
                                     <input type="hidden" name="utf8" value="✓">
 
                                     <div class="form__Item">
-                                        <input type="email" class="form__Input" name="customer[email]" required="required" placeholder="Họ và Tên" aria-label="name" autofocus="">
+                                        <input class="form__Input" asp-for="ClientName" required="required" placeholder="Họ và Tên" aria-label="name" autofocus="">
                                         <label class="form__FloatingLabel">Họ và Tên</label>
+                                        <span asp-validation-for="ClientName" class="text-danger"></span>
                                     </div>
                                     <div class="form__Item">
-                                        <input type="password" class="form__Input" name="customer[note]" required="required" placeholder="Ghi chú của bạn (không bắt buộc điền)" aria-label="Ghi chú">
+                                        <input class="form__Input" asp-for="ClientNote" placeholder="Ghi chú của bạn (không bắt buộc điền)" aria-label="Ghi chú">
                                         <label class="form__FloatingLabel">Ghi chú của bạn (không bắt buộc điền)</label>
                                     </div>
                                     <div class="form__Item">
-                                        <input type="password" class="form__Input" name="customer[Address]" required="required" placeholder="Địa chỉ" aria-label="address">
+                                        <input class="form__Input" asp-for="ShipAddress" placeholder="Địa chỉ" aria-label="address">
                                         <label class="form__FloatingLabel">Địa chỉ</label>
+                                        <span asp-validation-for="ShipAddress" class="text-danger"></span>
                                     </div>
                                     <div class="form__Item">
-                                        <input type="password" class="form__Input" name="customer[Address]" required="required" placeholder="Số điện thoại" aria-label="address">
+                                        <input class="form__Input" asp-for="ShipPhone" placeholder="Số điện thoại" aria-label="address">
                                         <label class="form__FloatingLabel">Số điện thoại</label>
+                                        <span asp-validation-for="ShipPhone" class="text-danger"></span>
                                     </div>
                                     <div class="field field--show-floating-label">
                                         <div class="checkbox-wrapper">
                                             <div class="checkbox_input">
-                                                <input class="input-checkbox" data-backup="remember_me" type="checkbox" value="1" name="checkout[remember_me]" id="checkout_remember_me">
+                                                <input class="input-checkbox" id="checkout_remember_me" type="checkbox" asp-for="SaveShipInfo">
                                                 <label class="checkbox__label" for="checkout_remember_me">
                                                     Lưu lại thông tin của tôi trên hệ thống để sử dụng lại lần sau
                                                 </label>
@@ -80,8 +90,8 @@
                                     </div>
                                 </div>
 
-                                <span href="#" class="step__footer__previous-link">
-                                    <button name="button" type="submit" class="step__footer__previous-link-content">Quay trở lại giỏ hàng</button>
+                                <span class="step__footer__previous-link d-flex align-items-center ml-4">
+                                    <a href="/cart/cartdetail" class="step__footer__previous-link-content">Quay trở lại giỏ hàng</a>
                                 </span>
                             </div>
                         </div>
@@ -89,70 +99,42 @@
                 </div>
 
             </main>
-            <footer class="main__footer" role="contentinfo">
-                <ul class="policy-list" role="list">
-                    <li class="policy-list__item ">
-                        <a data-modal="policy-refund-policy" data-title-text="Chính sách hoàn tiền" data-close-text="Đóng" data-iframe="true" href="">Chính sách hoàn tiền</a>
-                    </li>
-                    <li class="policy-list__item ">
-                        <a data-modal="policy-privacy-policy" data-title-text="Chính sách bảo mật cá nhân" data-close-text="Đóng" data-iframe="true" href="">Chính sách bảo mật cá nhân</a>
-                    </li>
-                    <li class="policy-list__item ">
-                        <a data-modal="policy-terms-of-service" data-title-text="Điều khoản của dịch vụ" data-close-text="Đóng" data-iframe="true" href="">Điều khoản của dịch vụ</a>
-                    </li>
-                </ul>
-            </footer>
+
         </div>
         @* Tóm Tắt sản phẩm *@
-        <div class="sidebar" role="complementary">
+        <div class="sidebar order-detail-product-wrap" role="complementary">
             <div class="sidebar__header">
                 <div class="sidebar__content">
                     @* Tóm tất sản phẩm *@
-                    <div class="order-summary__section order-summary__section--product-list">
-                        <div class="order-summary__section__content">
-                            <table class="product-table">
-                                @*  Table *@
-                                <caption class="visually-hidden">Giỏ Hàng</caption>
-                                <thead class="product-table__header">
-                                    <tr>
-                                        <th scope="col"><span class="visually-hidden">Hình sản phẩm</span></th>
-                                        <th scope="col"><span class="visually-hidden">Mô tả</span></th>
-                                        <th scope="col"><span class="visually-hidden">Số lượng</span></th>
-                                        <th scope="col"><span class="visually-hidden">Giá</span></th>
-                                    </tr>
-                                </thead>
-                                <tbody data-order-summary-section="line-items">
-                                    <tr class="product" data-product-type="Perfume" data-customer-ready-visible="">
-                                        @* thumbnail *@
-                                        <td class="product__image">
-                                            <div class="product-thumbnail ">
-                                                <div class="product-thumbnail__wrapper">
-                                                    <img alt="[New] Carolina Herrera Very Good Girl EDP - 50ml + Mini" class="product-thumbnail__image" src="//cdn.shopify.com/s/files/1/0003/8718/6741/products/GWP_50ml_ecc11e8e-d8ec-44b1-9da6-5c281424bb04_small.jpg?v=1620294554">
-                                                </div>
-                                                <span class="product-thumbnail__quantity" aria-hidden="true">1</span>
-                                            </div>
+                    <div class="order-summary__section order-summary__section--product-list flex-column">
 
-                                        </td>
-                                        @* Mô tả  *@
-                                        <th class="product__description" scope="row">
-                                            <span class="product__description__name order-summary__emphasis">[New] Carolina Herrera Very Good Girl EDP</span>
-                                            <span class="product__description__variant order-summary__small-text">50ml + Mini</span>
-                                        </th>
-                                        @* Số Lượng *@
-                                        <td class="product__quantity">
-                                            <span class="visually-hidden">
-                                                1
-                                            </span>
-                                        </td>
-                                        @* Giá *@
-                                        <td class="product__price">
-                                            <span class="order-summary__emphasis skeleton-while-loading">₫3,000,000</span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        @foreach (var item in products)
+                        {
+                            <div class=" d-flex pt-3 order-items ">
+                                <div class="product-thumbnail ">
+                                    <div class="product-thumbnail__wrapper">
+                                        <img alt="@item.ProductName" class="product-thumbnail__image" src="@imgUrlBase@item.ProductImage">
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <span class="product__description__name order-summary__emphasis">[New] Carolina Herrera Very Good Girl EDP</span>
+
+                                    </div>
+                                    <div class="d-flex align-items-start mx-2" style="font-size:12px;">
+                                        <span class="mr-2">
+                                            x
+                                        </span>
+                                        <span>
+                                            @item.Quantity
+                                        </span>
+                                    </div>
+                                    <span class="order-summary__emphasis skeleton-while-loading">@item.ProductPrice</span>
+                                </div>
+                            </div>
+                        }
                     </div>
+
                     @* Tổng chi phí *@
                     <div class="order_section order_section--total" data-order-summary-section="payment-lines">
                         <table>
@@ -171,7 +153,7 @@
                                     <td class="total_price">
                                         @* price *@
                                         <span class="order_emphasis skeleton-while-loading" data-checkout-subtotal-price-target="300000000">
-                                            ₫3,000,000
+                                            @cart.CartPrice 
                                         </span>
                                     </td>
                                 </tr>
@@ -198,14 +180,17 @@
                                         <span class="payment_total">Tổng Cộng</span>
                                         @* Thuế *@
                                         <span class="payment_taxes order_text">
-                                            Đã bao gồm Thuế VAT: <span data-checkout-total-taxes-target="27272700">₫272,727</span>
+                                            @{ 
+                                                var vat = cart.CartPrice / 10;
+                                            }
+                                            Đã bao gồm Thuế VAT: <span data-checkout-total-taxes-target="27272700">@vat</span>
                                         </span>
                                     </th>
 
                                     @* Giá  *@
                                     <td class="total_price payment-due" data-presentment-currency="VND">
                                         <span class="payment_price" data-checkout-payment-due-target="300000000">
-                                            ₫3,000,000
+                                            @cart.CartPrice
                                         </span>
                                     </td>
                                 </tr>
