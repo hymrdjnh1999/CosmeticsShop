@@ -9,14 +9,16 @@ using System.Threading.Tasks;
 
 namespace CosmeticsShop.Data.Configurations
 {
-    public class ClientConfiguration : IEntityTypeConfiguration<Clients>
+    public class ClientConfiguration : IEntityTypeConfiguration<Client>
     {
-        public void Configure(EntityTypeBuilder<Clients> builder)
+        public void Configure(EntityTypeBuilder<Client> builder)
         {
             builder.ToTable("Clients").HasKey(x => x.Id);
-            builder.Property(x => x.PhoneNumber).IsRequired().HasMaxLength(20);
             builder.Property(x => x.Name).IsRequired();
-            builder.Property(x => x.Address).IsRequired();
+            builder.Property(x => x.Email).IsRequired();
+            builder.Property(x => x.Avatar).IsRequired(false);
+            builder.Property(x => x.Address).IsRequired(false);
+            builder.Property(x => x.PhoneNumber).IsRequired(false);
         }
     }
 }

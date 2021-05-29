@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-
+@using Cosmetics.ViewModels.Catalogs.Carts
 @section slider{
     @* Slide section *@
     <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
@@ -37,609 +37,93 @@
     var categories = ViewBag.Categories;
 
 }
+@section Scripts{
+    <script>
+
+        function handleAddToCart(product) {
+            const productCart = JSON.stringify(product);
+            console.log('product',product)
+            $.ajax({
+                type: 'POST',
+                data: productCart,
+                dataType: 'json',
+                contentType: 'application/json;',
+                url: 'Cart/AddToCart',
+                success: async (response) => {
+                    $('#notificationMsg').removeClass("d-none").addClass('d-block').html("Thêm sản phẩm vào giỏ thành công!")
+                    $('#cartQuantity').html(response?.products?.length ?? 0)
+                    await new Promise(resolve => setTimeout(() => {
+                        $('#notificationMsg').fadeOut('slow');
+                        resolve();
+                    }, 1500))
+                    $('#notificationMsg').addClass('d-none').removeClass('d-block')
+                },
+                error: (response) => {
+                    console.log(response)
+                }
+            })
+        }
+
+    </script>
+}
 <div id="main">
+
     <div class="content-section" id="content-area">
+        <div id="notificationWrap" class="w-25 position-fixed d-flex items-center" style="top:40px; left:50%; transform:translateX(-50%); z-index:100;">
+            <span id="notificationMsg" class="alert alert-success w-100 d-none" role="alert">
+            </span>
+        </div>
         @foreach (var item in categories)
         {
-            <div class="shopify-section--bordered">
-                <div class=" section--spacingNormal">
-                    <h2 class="justify-content-center text-center u-h1" style="margin-bottom: 30px;">@item.CategoryName</h2>
-                    <div class="grid categories-area">
-                        <div class="row">
-                            @foreach (var product in item.Products)
-                            {
-                                <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <a href="" class="product__item ">
-                                        <div class="gird--product productItem__wapper  img-product">
-                                            <div class="product-in-category-img product__item-img" style="background-image:url('https://localhost:5001/user-content/@product.Images[0].ImagePath')">
-                                                <div class="product__add-to-cart-btn">
-                                                    <i class="fas fa-cart-plus product__add-to-cart-icon"></i>
+            if (item.Products.Count > 0)
+            {
+                <div class="shopify-section--bordered">
+                    <div class=" section--spacingNormal">
+                        <h2 class="justify-content-center text-center u-h1" style="margin-bottom: 30px;">@item.CategoryName</h2>
+                        <div class="grid categories-area">
+                            <div class="row">
+                                @foreach (var product in item.Products)
+                                {
+                                    <div class="col-lg-3 col-md-4 col-sm-6  position-relative">
+
+                                        <div class="product__item text-decoration-none" style="cursor:pointer;">
+
+                                            <div class="gird--product productItem__wapper  img-product">
+                                                <div class="product-in-category-img product__item-img" style="background-image:url('https://localhost:5001/user-content/@product.Images[0].ImagePath')">
+                                                    <div class="product__add-to-cart-btn"
+                                                         onclick='handleAddToCart({ Id: @product.Id, ProductName: `@product.Name`, ProductPrice: @product.Price, Quantity: 1,ProductImage:`@product.Images[0].ImagePath` })' style="cursor:pointer;">
+                                                        <i id="addToCartBtn" class="fas fa-cart-plus product__add-to-cart-icon"></i>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            @* code infor here *@
-                                            <div class="productItem__info justify-content-center text-center">
-                                                <h2 class="productItem__title">
-                                                    <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-                                                </h2>
-                                                <div class="productItem__price">
-                                                    <span class="price text--subdued">2.050.000 VND</span>
+
+                                                @* code infor here *@
+                                                <div class="productItem__info justify-content-center text-center">
+                                                    <h2 class="productItem__title">
+                                                        <span class="text-decoration-none product-name" style="cursor:pointer;">@product.Name</span>
+                                                    </h2>
+                                                    <div class="productItem__price">
+                                                        <span class="price text--subdued priceFormat">@product.Price</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </a>
+
+                                    </div>
+                                }
+                            </div>
+                            <div class="sectionFooter">
+                                <div class="wrapper">
+                                    <a href="#" class="justify-content-center text-center"><span>XEM TẤT CẢ →</span></a>
                                 </div>
-                            }
-                        </div>
-                        <div class="sectionFooter">
-                            <div class="wrapper">
-                                <a href="#" class="justify-content-center text-center"><span>XEM TẤT CẢ →</span></a>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
+            }
         }
     </div>
 
-    <!--<div class="list--spm shopify-section--bordered">
-        <section class="section section--spacingNormal">
-            <div class="sectionHeader--center">
-                <div class="container-fluid">
-
-                    <div class="grid">
-                        <div class="row">-->
-    @*<div class="col">*@
-    <!--<div class="gird--product">
-        <div class="productItem__wapper">
-            <img src="~/images/sp1.jpg" alt="Alternate Text" />
-            <div class="productItem__info justify-content-center text-center">
-                <h2 class="productItem__title">
-                    <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-                </h2>
-                <div class="productItem__price">
-                    <span class="price text--subdued">Từ <span>2.050.000 VND</span></span>
-                </div>
-            </div>
-        </div>
-    </div>-->
-    @*</div>*@
-    @*<div class="col">*@
-    <!--<div class="gird--product">
-        <div class="productItem__wapper">
-            <img src="~/images/sp1.jpg" alt="Alternate Text" />
-        </div>
-        <div class="productItem__info justify-content-center text-center">
-            <h2 class="productItem__title">
-                <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-            </h2>
-            <div class="productItem__price">
-                <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
-            </div>
-        </div>
-    </div>-->
-    @*</div>*@
-    @*<div class="col">*@
-    <!--<div class="gird--product">
-        <div class="productItem__wapper">
-            <img src="~/images/sp1.jpg" alt="Alternate Text" />
-        </div>
-        <div class="productItem__info justify-content-center text-center">
-            <h2 class="productItem__title">
-                <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-            </h2>
-            <div class="productItem__price">
-                <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
-            </div>
-        </div>
-    </div>-->
-    @*</div>*@
-    @*<div class="col">*@
-    <!--<div class="gird--product">
-        <div class="productItem__wapper">
-            <img src="~/images/sp1.jpg" alt="Alternate Text" />
-        </div>
-        <div class="productItem__info justify-content-center text-center">
-            <h2 class="productItem__title">
-                <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-            </h2>
-            <div class="productItem__price">
-                <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
-            </div>
-        </div>
-    </div>-->
-    @*</div>*@
-
-    <!--</div>
-    <div class="row">-->
-    @*<div class="col">*@
-    <!--<div class="gird--product">
-        <div class="productItem__wapper">
-            <img src="~/images/sp1.jpg" alt="Alternate Text" />
-            <div class="productItem__info justify-content-center text-center">
-                <h2 class="productItem__title">
-                    <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-                </h2>
-                <div class="productItem__price">
-                    <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
-                </div>
-            </div>
-        </div>
-    </div>-->
-    @*</div>*@
-    @*<div class="col">*@
-    <!--<div class="gird--product">
-        <div class="productItem__wapper">
-            <img src="~/images/sp1.jpg" alt="Alternate Text" />
-            <div class="productItem__info justify-content-center text-center">
-                <h2 class="productItem__title">
-                    <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-                </h2>
-                <div class="productItem__price">
-                    <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
-                </div>
-            </div>
-        </div>
-    </div>-->
-    @*</div>*@
-    @*<div class="col">*@
-    <!--<div class="gird--product">
-        <div class="productItem__wapper">
-            <img src="~/images/sp1.jpg" alt="Alternate Text" />
-            <div class="productItem__info justify-content-center text-center">
-                <h2 class="productItem__title">
-                    <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-                </h2>
-                <div class="productItem__price">
-                    <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
-                </div>
-            </div>
-        </div>
-    </div>-->
-    @*</div>*@
-    @*<div class="col">*@
-    <!--<div class="gird--product">
-        <div class="productItem__wapper">
-            <img src="~/images/sp1.jpg" alt="Alternate Text" />
-            <div class="productItem__info justify-content-center text-center">
-                <h2 class="productItem__title">
-                    <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-                </h2>
-                <div class="productItem__price">
-                    <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
-                </div>
-            </div>
-        </div>
-    </div>-->
-    @*</div>*@
-    <!--</div>
-                        <div class="sectionFooter">
-                            <div class="wrapper">
-                                <a href="#" class="justify-content-center text-center"><span>XEM TẤT CẢ →</span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-    <div class="list--bqtcc shopify-section--bordered">
-        <section class="section section--spacingNormal">
-            <div class="sectionHeader--center">
-                <div class="container-fluid">
-                    <h2 class="justify-content-center text-center u-h1" style="margin-bottom: 30px;">BỘ QUÀ TẶNG CAO CẤP</h2>
-                    <div class="grid">
-                        <div class="row ">-->
-    @*<div class="col">*@
-    <!--<div class="gird--product">
-        <div class="productItem__wapper">
-            <img src="~/images/HoverSanPhamMoi1.webp" alt="Alternate Text" />
-            <div class="productItem__info justify-content-center text-center">
-                <h2 class="productItem__title">
-                    <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-                </h2>
-                <div class="productItem__price">
-                    <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
-                </div>
-            </div>
-        </div>
-    </div>-->
-    @*</div>*@@*<div class="col">*@
-    <!--<div class="gird--product">
-        <div class="productItem__wapper">
-            <img src="~/images/HoverSanPhamMoi1.webp" alt="Alternate Text" />
-            <div class="productItem__info justify-content-center text-center">
-                <h2 class="productItem__title">
-                    <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-                </h2>
-                <div class="productItem__price">
-                    <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
-                </div>
-            </div>
-        </div>
-    </div>-->
-    @*</div>*@@*<div class="col">*@
-    <!--<div class="gird--product">
-        <div class="productItem__wapper">
-            <img src="~/images/HoverSanPhamMoi1.webp" alt="Alternate Text" />
-            <div class="productItem__info justify-content-center text-center">
-                <h2 class="productItem__title">
-                    <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-                </h2>
-                <div class="productItem__price">
-                    <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
-                </div>
-            </div>
-        </div>
-    </div>-->
-    @*</div>*@@*<div class="col">*@
-    <!--<div class="gird--product">
-        <div class="productItem__wapper">
-            <img src="~/images/HoverSanPhamMoi1.webp" alt="Alternate Text" />
-            <div class="productItem__info justify-content-center text-center">
-                <h2 class="productItem__title">
-                    <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-                </h2>
-                <div class="productItem__price">
-                    <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
-                </div>
-            </div>
-        </div>
-    </div>-->
-    @*</div>*@
-    <!--</div>
-    <div class="row ">-->
-    @*<div class="col">*@
-    <!--<div class="gird--product">
-        <div class="productItem__wapper">
-            <img src="~/images/HoverSanPhamMoi1.webp" alt="Alternate Text" />
-            <div class="productItem__info justify-content-center text-center">
-                <h2 class="productItem__title">
-                    <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-                </h2>
-                <div class="productItem__price">
-                    <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
-                </div>
-            </div>
-        </div>
-    </div>-->
-    @*</div>*@
-    @*<div class="col">*@
-    <!--<div class="gird--product">
-        <div class="productItem__wapper">
-            <img src="~/images/HoverSanPhamMoi1.webp" alt="Alternate Text" />
-            <div class="productItem__info justify-content-center text-center">
-                <h2 class="productItem__title">
-                    <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-                </h2>
-                <div class="productItem__price">
-                    <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
-                </div>
-            </div>
-        </div>
-    </div>-->
-    @*</div>*@
-    @*<div class="col">*@
-    <!--<div class="gird--product">
-        <div class="productItem__wapper">
-            <img src="~/images/HoverSanPhamMoi1.webp" alt="Alternate Text" />
-            <div class="productItem__info justify-content-center text-center">
-                <h2 class="productItem__title">
-                    <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-                </h2>
-                <div class="productItem__price">
-                    <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
-                </div>
-            </div>
-        </div>
-    </div>-->
-    @*</div>*@
-    @*<div class="col">*@
-    <!--<div class="gird--product">
-        <div class="productItem__wapper">
-            <img src="~/images/HoverSanPhamMoi1.webp" alt="Alternate Text" />
-            <div class="productItem__info justify-content-center text-center">
-                <h2 class="productItem__title">
-                    <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-                </h2>
-                <div class="productItem__price">
-                    <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
-                </div>
-            </div>
-        </div>
-    </div>-->
-    @*</div>*@
-    <!--</div>
-                        <div class="sectionFooter">
-                            <div class="wrapper">
-                                <a href="#" class="justify-content-center text-center"><span>XEM TẤT CẢ →</span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-    <div class="list--spknbq shopify-section--bordered">
-        <section class="section section--spacingNormal">
-            <div class="sectionHeader--center">
-                <div class="container-fluid">
-                    <h2 class="justify-content-center text-center u-h1" style="margin-bottom: 30px;">SẢN PHẨM KHÔNG NÊN BỎ QUA</h2>
-                    <div class="grid">
-                        <div class="row">-->
-    @*<div class="col">*@
-    <!--<div class="gird--product">
-        <div class="productItem__wapper">
-            <img src="~/images/HoverSanPhamMoi3.webp" alt="Alternate Text" />
-            <div class="productItem__info justify-content-center text-center">
-                <h2 class="productItem__title">
-                    <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-                </h2>
-                <div class="productItem__price">
-                    <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
-                </div>
-            </div>
-        </div>
-    </div>-->
-    @*</div>*@ @*<div class="col">*@
-    <!--<div class="gird--product">
-        <div class="productItem__wapper">
-            <img src="~/images/HoverSanPhamMoi3.webp" alt="Alternate Text" />
-            <div class="productItem__info justify-content-center text-center">
-                <h2 class="productItem__title">
-                    <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-                </h2>
-                <div class="productItem__price">
-                    <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
-                </div>
-            </div>
-        </div>
-    </div>-->
-    @*</div>*@ @*<div class="col">*@
-    <!--<div class="gird--product">
-        <div class="productItem__wapper">
-            <img src="~/images/HoverSanPhamMoi3.webp" alt="Alternate Text" />
-            <div class="productItem__info justify-content-center text-center">
-                <h2 class="productItem__title">
-                    <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-                </h2>
-                <div class="productItem__price">
-                    <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
-                </div>
-            </div>
-        </div>
-    </div>-->
-    @*</div>*@ @*<div class="col">*@
-    <!--<div class="gird--product">
-        <div class="productItem__wapper">
-            <img src="~/images/HoverSanPhamMoi3.webp" alt="Alternate Text" />
-            <div class="productItem__info justify-content-center text-center">
-                <h2 class="productItem__title">
-                    <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-                </h2>
-                <div class="productItem__price">
-                    <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
-                </div>
-            </div>
-        </div>
-    </div>-->
-    @*</div>*@
-
-    <!--</div>
-    <div class="row">-->
-    @*<div class="col">*@
-    <!--<div class="gird--product">
-        <div class="productItem__wapper">
-            <img src="~/images/HoverSanPhamMoi3.webp" alt="Alternate Text" />
-            <div class="productItem__info justify-content-center text-center">
-                <h2 class="productItem__title">
-                    <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-                </h2>
-                <div class="productItem__price">
-                    <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
-                </div>
-            </div>
-        </div>
-    </div>-->
-    @*</div>*@
-
-    @*<div class="col">*@
-    <!--<div class="gird--product">
-        <div class="productItem__wapper">
-            <img src="~/images/HoverSanPhamMoi3.webp" alt="Alternate Text" />
-            <div class="productItem__info justify-content-center text-center">
-                <h2 class="productItem__title">
-                    <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-                </h2>
-                <div class="productItem__price">
-                    <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
-                </div>
-            </div>
-        </div>-->
-    @*</div>*@
-    <!--</div>-->
-    @*<div class="col">*@
-    <!--<div class="gird--product">
-        <div class="productItem__wapper">
-            <img src="~/images/HoverSanPhamMoi3.webp" alt="Alternate Text" />
-            <div class="productItem__info justify-content-center text-center">
-                <h2 class="productItem__title">
-                    <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-                </h2>
-                <div class="productItem__price">
-                    <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
-                </div>
-            </div>
-        </div>-->
-    @*</div>*@
-    <!--</div>-->
-    @*<div class="col">*@
-    <!--<div class="gird--product">
-        <div class="productItem__wapper">
-            <img src="~/images/HoverSanPhamMoi3.webp" alt="Alternate Text" />
-            <div class="productItem__info justify-content-center text-center">
-                <h2 class="productItem__title">
-                    <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-                </h2>
-                <div class="productItem__price">
-                    <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
-                </div>
-            </div>
-        </div>-->
-    @*</div>*@
-    <!--</div>
-                        </div>
-                    </div>
-                    <div class="sectionFooter">
-                        <div class="wrapper">
-                            <a href="#" class="justify-content-center text-center"><span>XEM TẤT CẢ →</span></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-    </div>
-    <div class="list--spkm shopify-section--bordered">
-        <section class="section section--spacingNormal">
-            <div class="sectionHeader--center">
-                <div class="container-fluid">
-                    <h2 class="justify-content-center text-center u-h1" style="margin-bottom: 30px;">SẢN PHẨM KHUYẾN MÃI</h2>
-                    <div class="grid">
-                        <div class="row ">-->
-    @*<div class="col">*@
-    <!--<div class="gird--product">
-        <div class="productItem__wapper">
-            <img src="~/images/HoverSanPhamMoi8.webp" alt="Alternate Text" />
-            <div class="productItem__info justify-content-center text-center">
-                <h2 class="productItem__title">
-                    <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-                </h2>
-                <div class="productItem__price">
-                    <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
-                </div>
-            </div>
-        </div>
-    </div>-->
-    @*</div>*@
-    @*<div class="col">*@
-    <!--<div class="gird--product">
-        <div class="productItem__wapper">
-            <img src="~/images/HoverSanPhamMoi8.webp" alt="Alternate Text" />
-            <div class="productItem__info justify-content-center text-center">
-                <h2 class="productItem__title">
-                    <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-                </h2>
-                <div class="productItem__price">
-                    <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
-                </div>
-            </div>
-        </div>
-    </div>-->
-    @*</div>*@
-    @*<div class="col">*@
-    <!--<div class="gird--product">
-        <div class="productItem__wapper">
-            <img src="~/images/HoverSanPhamMoi8.webp" alt="Alternate Text" />
-            <div class="productItem__info justify-content-center text-center">
-                <h2 class="productItem__title">
-                    <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-                </h2>
-                <div class="productItem__price">
-                    <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
-                </div>
-            </div>
-        </div>
-    </div>-->
-    @*</div>*@
-    @*<div class="col">*@
-    <!--<div class="gird--product">
-        <div class="productItem__wapper">
-            <img src="~/images/HoverSanPhamMoi8.webp" alt="Alternate Text" />
-            <div class="productItem__info justify-content-center text-center">
-                <h2 class="productItem__title">
-                    <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-                </h2>
-                <div class="productItem__price">
-                    <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
-                </div>
-            </div>
-        </div>
-    </div>-->
-    @*</div>*@
-    <!--</div>
-    <div class="row ">-->
-    @*<div class="col">*@
-    <!--<div class="gird--product">
-        <div class="productItem__wapper">
-            <img src="~/images/HoverSanPhamMoi8.webp" alt="Alternate Text" />
-            <div class="productItem__info justify-content-center text-center">
-                <h2 class="productItem__title">
-                    <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-                </h2>
-                <div class="productItem__price">
-                    <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
-                </div>
-            </div>
-        </div>
-    </div>-->
-    @*</div>*@@*<div class="col">*@
-    <!--<div class="gird--product">
-        <div class="productItem__wapper">
-            <img src="~/images/HoverSanPhamMoi8.webp" alt="Alternate Text" />
-            <div class="productItem__info justify-content-center text-center">
-                <h2 class="productItem__title">
-                    <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-                </h2>
-                <div class="productItem__price">
-                    <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
-                </div>
-            </div>
-        </div>
-    </div>-->
-    @*</div>*@
-    @*<div class="col">*@
-    <!--<div class="gird--product">
-        <div class="productItem__wapper">
-            <img src="~/images/HoverSanPhamMoi8.webp" alt="Alternate Text" />
-            <div class="productItem__info justify-content-center text-center">
-                <h2 class="productItem__title">
-                    <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-                </h2>
-                <div class="productItem__price">
-                    <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
-                </div>
-            </div>
-        </div>
-    </div>-->
-    @*</div>*@
-    @*<div class="col">*@
-    <!--<div class="gird--product">
-        <div class="productItem__wapper">
-            <img src="~/images/HoverSanPhamMoi8.webp" alt="Alternate Text" />
-            <div class="productItem__info justify-content-center text-center">
-                <h2 class="productItem__title">
-                    <a href="#">[NEW] Carolina Herrera 212 Heroes EDT</a>
-                </h2>
-                <div class="productItem__price">
-                    <span class="price text--subdued">Từ <span data-money-convertible="">2.050.000 VND</span></span>
-                </div>
-            </div>
-        </div>
-    </div>-->
-    @*</div>*@
-
-    <!--</div>
-                    </div>
-                    <div class="sectionFooter">
-                        <div class="wrapper">
-                            <a href="#" class="justify-content-center text-center"><span>XEM TẤT CẢ →</span></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>-->
     <div class="container-fluid">
         <div class=" row">
             <div class="col">
@@ -755,7 +239,7 @@
                 </div>
 
             </div>
-        </div> 
+        </div>
         <div class=" row">
             <div class="col">
                 <div>

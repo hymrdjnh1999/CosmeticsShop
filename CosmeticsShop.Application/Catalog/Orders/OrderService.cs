@@ -62,7 +62,7 @@ namespace CosmeticsShop.Application.Catalog.Orders
                 ShipEmail = x.ShipEmail ?? "",
                 ShipName = x.ShipName,
                 Status = x.Status,
-                UserId = x.UserId,
+                UserId = x.ClientId,
                 ShipPhoneNumber = x.ShipPhoneNumber,
             }).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
 
@@ -99,7 +99,7 @@ namespace CosmeticsShop.Application.Catalog.Orders
                                where od.OrderId == id
                                join p in _context.Products on od.ProductId equals p.Id
                                select p;
-            var user = await _context.Users.Where(x => x.Id == order.UserId).FirstOrDefaultAsync();
+            var user = await _context.Clients.Where(x => x.Id == order.ClientId).FirstOrDefaultAsync();
 
             var orderViewModel = new OrderViewModel()
             {

@@ -3,9 +3,6 @@ using Cosmetics.ViewModels.Common;
 using CosmeticsShop.Application.Catalog.Categories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Cosmetics.WebAPI.Controllers
