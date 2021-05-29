@@ -72,8 +72,9 @@ namespace CosmeticsShop.WebApp.Controllers
             else
             {
                 cart = new ClientCartViewModel();
-                cart.Products.Add(productCart);
 
+                cart.Products.Add(productCart);
+                cart.CartPrice = productCart.ProductPrice;
                 if (token != null)
                 {
                     var clientId = User.Claims.ToList().Where(x => x.Type == "Id").FirstOrDefault().Value;
