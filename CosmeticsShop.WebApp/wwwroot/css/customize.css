@@ -618,3 +618,9 @@ h2 {
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
+.order-detail-product-wrap {
+    padding-left: 44px;
+    padding-right: 44px;
+    margin-top: 64px;
+}

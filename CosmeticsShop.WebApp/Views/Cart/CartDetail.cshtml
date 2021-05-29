@@ -33,7 +33,6 @@
                     @foreach (var product in cart.Products)
                     {
                         <div class="cart_Item d-flex mt-2">
-
                             <div class="cartItem__imageWrapper " style="flex:1">
                                 <div class="aspectRatio">
                                     <a class="d-block pr-2" href="#">
@@ -85,9 +84,9 @@
                                 </span>
                             </span>
                             <span class="cart__Taxes text--subdued">Giá đã bao gồm thuế VAT và phí giao hàng miễn phí</span> <br>
-                            <div class="sectionFooter__cart">
+                            <div class="sectionFooter mt-3">
                                 <div class="wrapper d-flex justify-content-end">
-                                    <input value="CHECKOUT" class="text-uppercase d-block text-center" type="submit" />
+                                    <a href="/cart/infororder" class="text-uppercase text-center"><span>CHECKOUT</span></a>
                                 </div>
                             </div>
                         </div>
@@ -96,7 +95,12 @@
             }
             else
             {
-                <span class="text-center d-block">Giỏ hàng trống!</span>
+                <span class="text-center d-block">Giỏ hàng của bạn chưa có sản phẩm.</span>
+                <div class="sectionFooter mt-3">
+                    <div class="wrapper d-flex justify-content-center">
+                        <a href="/" class="text-uppercase text-center"><span>Quay lại trang chủ</span></a>
+                    </div>
+                </div>
             }
 
         </div>

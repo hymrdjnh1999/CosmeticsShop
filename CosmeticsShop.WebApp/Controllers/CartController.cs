@@ -34,8 +34,22 @@ namespace CosmeticsShop.WebApp.Controllers
             }
             return View();
         }
+        [HttpGet]
         public IActionResult InforOrder()
         {
+            var isLogin = HttpContext.Session.GetString("Token");
+            ViewBag.isLogin = false;
+            if (isLogin != null)
+            {
+                ViewBag.isLogin = true;
+            }
+            var cartJS = HttpContext.Session.GetString("Cart");
+            if (cartJS == null)
+            {
+                return RedirectToAction("CartDetail", "Cart");
+            }
+            var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(cartJS);
+            ViewBag.CartDetail = cart;
             return View();
         }
         [HttpPost]
