@@ -3,7 +3,7 @@
     ViewData["Title"] = "Thông Tin Đặt Hàng";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-    var cart = ViewBag.CartDetail;
+    var cart = ViewBag.Cart;
     var products = cart.Products;
     var imgUrlBase = "https://localhost:5001/user-content/";
 }
@@ -64,6 +64,14 @@
                                         <input class="form__Input" asp-for="ShipAddress" placeholder="Địa chỉ" aria-label="address">
                                         <label class="form__FloatingLabel">Địa chỉ</label>
                                         <span asp-validation-for="ShipAddress" class="text-danger"></span>
+                                    </div>
+                                    <div class="form__Item">
+                                        <input class="form__Input" asp-for="TotalPrice" type="hidden" value="@cart.CartPrice">
+                                    </div>
+                                    <div class="form__Item">
+                                        <input class="form__Input" type="email" asp-for="Email" placeholder="Email" aria-label="email">
+                                        <label class="form__FloatingLabel">Email</label>
+                                        <span asp-validation-for="Email" class="text-danger"></span>
                                     </div>
                                     <div class="form__Item">
                                         <input class="form__Input" asp-for="ShipPhone" placeholder="Số điện thoại" aria-label="address">
@@ -129,7 +137,7 @@
                                             @item.Quantity
                                         </span>
                                     </div>
-                                    <span class="order-summary__emphasis skeleton-while-loading">@item.ProductPrice</span>
+                                    <span class="order-summary__emphasis skeleton-while-loading priceFormat">@item.ProductPrice</span>
                                 </div>
                             </div>
                         }
@@ -152,8 +160,8 @@
                                     <th class="total_name" scope="row">Phụ Tổng</th>
                                     <td class="total_price">
                                         @* price *@
-                                        <span class="order_emphasis skeleton-while-loading" data-checkout-subtotal-price-target="300000000">
-                                            @cart.CartPrice 
+                                        <span class="order_emphasis skeleton-while-loading priceFormat" data-checkout-subtotal-price-target="300000000">
+                                            @cart.CartPrice
                                         </span>
                                     </td>
                                 </tr>
@@ -168,7 +176,7 @@
                                     @* Calculated at next step *@
                                     <td class="total_price">
                                         <span class=" order_text" data-checkout-total-shipping-target="0">
-                                            Calculated at next step
+                                            Miễn phí
                                         </span>
                                     </td>
                                 </tr>
@@ -180,16 +188,16 @@
                                         <span class="payment_total">Tổng Cộng</span>
                                         @* Thuế *@
                                         <span class="payment_taxes order_text">
-                                            @{ 
+                                            @{
                                                 var vat = cart.CartPrice / 10;
                                             }
-                                            Đã bao gồm Thuế VAT: <span data-checkout-total-taxes-target="27272700">@vat</span>
+                                            Đã bao gồm Thuế VAT: <span class="priceFormat" data-checkout-total-taxes-target="27272700">@vat</span>
                                         </span>
                                     </th>
 
                                     @* Giá  *@
                                     <td class="total_price payment-due" data-presentment-currency="VND">
-                                        <span class="payment_price" data-checkout-payment-due-target="300000000">
+                                        <span class="payment_price priceFormat" data-checkout-payment-due-target="300000000">
                                             @cart.CartPrice
                                         </span>
                                     </td>

@@ -1,4 +1,5 @@
-﻿using Cosmetics.ViewModels.Catalogs.Orders;
+﻿
+using Cosmetics.ViewModels.Catalogs.Orders;
 using Cosmetics.ViewModels.Common;
 using CosmeticsShop.Application.Catalog.Orders;
 using Microsoft.AspNetCore.Authorization;
@@ -67,6 +68,10 @@ namespace Cosmetics.WebAPI.Controllers
             }
             return Ok();
         }
+        //[HttpPost]
+        //public async Task<IActionResult> ClientCreateOrder(ClientCreateOrderViewModel request)
+        //{
 
+        //}
     }
 }

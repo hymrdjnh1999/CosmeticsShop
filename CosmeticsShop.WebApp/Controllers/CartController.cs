@@ -1,4 +1,5 @@
 ﻿using Cosmetics.ViewModels.Catalogs.Carts;
+using Cosmetics.ViewModels.Catalogs.Orders;
 using Cosmetics.ViewModels.Catalogs.Products;
 using CosmeticsShop.Api_Intergration;
 using Microsoft.AspNetCore.Http;
@@ -48,8 +49,15 @@ namespace CosmeticsShop.WebApp.Controllers
             {
                 return RedirectToAction("CartDetail", "Cart");
             }
+
             var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(cartJS);
-            ViewBag.CartDetail = cart;
+            ViewBag.Cart = cart;
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> InforOrder(ClientCreateOrderViewModel request)
+        {
+
             return View();
         }
         [HttpPost]

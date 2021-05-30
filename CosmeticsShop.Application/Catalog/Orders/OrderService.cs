@@ -2,6 +2,7 @@
 using Cosmetics.ViewModels.Common;
 using CosmeticsShop.Data.Entities;
 using CosmeticsShop.Data.EntityFrameWork;
+using CosmeticsShop.Data.Enums;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -144,6 +145,22 @@ namespace CosmeticsShop.Application.Catalog.Orders
             _context.Orders.Update(order);
             await _context.SaveChangesAsync();
             return true;
+        }
+
+        public Task<bool> ClientCreateOrder(ClientCreateOrderViewModel request)
+        {
+            var newOrder = new Order()
+            {
+                OrderDate = DateTime.Now,
+                Price = request.TotalPrice,
+                ShipAddress = request.ShipAddress,
+                ShipPhoneNumber = request.ShipPhone,
+                ShipEmail = request.Email,
+                Note = request.ClientNote,
+                ShipName = request.ClientName,
+                Status = OrderStatus.InProgress
+            };
+
         }
     }
 }
