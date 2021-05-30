@@ -14,8 +14,7 @@ namespace CosmeticsShop.Data.Configurations
         public void Configure(EntityTypeBuilder<Cart> builder)
         {
             builder.ToTable("Carts").HasKey(c => c.Id);
-
-            builder.Property(c => c.Id).UseIdentityColumn();
+            builder.Property(x => x.ClientId).IsRequired(false);
         }
     }
 }

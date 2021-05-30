@@ -19,6 +19,7 @@ namespace CosmeticsShop.Data.Configurations
             builder.Property(o => o.ShipName).IsRequired();
             builder.Property(o => o.ShipPhoneNumber).IsRequired();
             builder.Property(o => o.ClientId).IsRequired(false);
+            builder.Property(o => o.CartId).IsRequired(false);
         }
     }
 }

@@ -9,6 +9,7 @@ namespace CosmeticsShop.Api_Intergration
 {
     public interface IClientOrderApi
     {
-        Task<bool> ClientCreateOrder(ClientCreateOrderViewModel request);
+        Task<int> ClientCreateOrder(ClientCreateOrderViewModel request);
+        Task<ClientOrderViewModel> GetOrder(Guid cartId, int orderId);
     }
 }

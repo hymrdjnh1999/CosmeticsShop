@@ -23,12 +23,19 @@ namespace CosmeticsShop.Api_Intergration
         {
 
         }
-        public async Task<bool> ClientCreateOrder(ClientCreateOrderViewModel request)
+        public async Task<int> ClientCreateOrder(ClientCreateOrderViewModel request)
         {
 
             string url = "/api/orders/client";
-            var result = await PostAsync<bool, ClientCreateOrderViewModel>(url, request);
+            var result = await PostAsync<int, ClientCreateOrderViewModel>(url, request);
 
+            return result;
+        }
+
+        public async Task<ClientOrderViewModel> GetOrder(Guid cartId, int orderId)
+        {
+            string url = $"/api/orders/client/{cartId}/{orderId}";
+            var result = await GetAsync<ClientOrderViewModel>(url);
             return result;
         }
     }

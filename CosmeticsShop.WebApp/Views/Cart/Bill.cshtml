@@ -2,6 +2,10 @@
 @{
     ViewData["Title"] = "Cảm ơn bạn đã mua sản phẩm của ";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var cart = ViewBag.Cart;
+    var products = cart.Products;
+    var imgUrlBase = "https://localhost:5001/user-content/";
 }
 
 <div class="content" data-content>
@@ -34,7 +38,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="content-box" style=" height: 400px;">
+                                <div>
                                     <div class="content-box__row content-box__row--no-border">
                                         <h2 class="heading-2 os-step__title">Thông tin khách hàng</h2>
                                     </div>
@@ -45,7 +49,7 @@
                                                     <h3 class="heading-3">Địa chỉ nhận hàng</h3>
                                                     <address class="address">test test<br>test<br>test<br>test<br>test 84<br>Vietnam<br>&lrm;00 00000000</address>
                                                     <h3 class="heading-3">Hình thức thanh toán</h3>
-                                                    <ul class="payment-method-list"  stye="list-style-type: none;     padding-left: 0px;">
+                                                    <ul class="payment-method-list" stye="list-style-type: none;     padding-left: 0px;">
                                                         <li class="payment-method-list__item">
                                                             <span class="payment-method-list__item__info">Thanh toán khi được giao sản phẩm đến tận tay (Cash On Delivery)</span>
                                                             <span class="payment-method-list__item__amount emphasis"> - ₫3,000,000</span>
@@ -95,55 +99,39 @@
             </footer>
         </div>
         @* Tóm Tắt sản phẩm *@
-        <div class="sidebar" role="complementary">
+        <div class="sidebar order-detail-product-wrap" role="complementary">
             <div class="sidebar__header">
                 <div class="sidebar__content">
                     @* Tóm tất sản phẩm *@
-                    <div class="order-summary__section order-summary__section--product-list">
-                        <div class="order-summary__section__content">
-                            <table class="product-table">
-                                @*  Table *@
-                                <caption class="visually-hidden">Giỏ Hàng</caption>
-                                <thead class="product-table__header">
-                                    <tr>
-                                        <th scope="col"><span class="visually-hidden">Hình sản phẩm</span></th>
-                                        <th scope="col"><span class="visually-hidden">Mô tả</span></th>
-                                        <th scope="col"><span class="visually-hidden">Số lượng</span></th>
-                                        <th scope="col"><span class="visually-hidden">Giá</span></th>
-                                    </tr>
-                                </thead>
-                                <tbody data-order-summary-section="line-items">
-                                    <tr class="product" data-product-type="Perfume" data-customer-ready-visible="">
-                                        @* thumbnail *@
-                                        <td class="product__image">
-                                            <div class="product-thumbnail ">
-                                                <div class="product-thumbnail__wrapper">
-                                                    <img alt="[New] Carolina Herrera Very Good Girl EDP - 50ml + Mini" class="product-thumbnail__image" src="//cdn.shopify.com/s/files/1/0003/8718/6741/products/GWP_50ml_ecc11e8e-d8ec-44b1-9da6-5c281424bb04_small.jpg?v=1620294554">
-                                                </div>
-                                                <span class="product-thumbnail__quantity" aria-hidden="true">1</span>
-                                            </div>
+                    <div class="order-summary__section order-summary__section--product-list flex-column">
 
-                                        </td>
-                                        @* Mô tả  *@
-                                        <th class="product__description" scope="row">
-                                            <span class="product__description__name order-summary__emphasis">[New] Carolina Herrera Very Good Girl EDP</span>
-                                            <span class="product__description__variant order-summary__small-text">50ml + Mini</span>
-                                        </th>
-                                        @* Số Lượng *@
-                                        <td class="product__quantity">
-                                            <span class="visually-hidden">
-                                                1
-                                            </span>
-                                        </td>
-                                        @* Giá *@
-                                        <td class="product__price">
-                                            <span class="order-summary__emphasis skeleton-while-loading">₫3,000,000</span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        @foreach (var item in products)
+                        {
+                            <div class=" d-flex pt-3 order-items ">
+                                <div class="product-thumbnail ">
+                                    <div class="product-thumbnail__wrapper">
+                                        <img alt="@item.ProductName" class="product-thumbnail__image" src="@imgUrlBase@item.ProductImage">
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <span class="product__description__name order-summary__emphasis">[New] Carolina Herrera Very Good Girl EDP</span>
+
+                                    </div>
+                                    <div class="d-flex align-items-start mx-2" style="font-size:12px;">
+                                        <span class="mr-2">
+                                            x
+                                        </span>
+                                        <span>
+                                            @item.Quantity
+                                        </span>
+                                    </div>
+                                    <span class="order-summary__emphasis skeleton-while-loading priceFormat">@item.ProductPrice</span>
+                                </div>
+                            </div>
+                        }
                     </div>
+
                     @* Tổng chi phí *@
                     <div class="order_section order_section--total" data-order-summary-section="payment-lines">
                         <table>
@@ -161,8 +149,8 @@
                                     <th class="total_name" scope="row">Phụ Tổng</th>
                                     <td class="total_price">
                                         @* price *@
-                                        <span class="order_emphasis skeleton-while-loading" data-checkout-subtotal-price-target="300000000">
-                                            ₫3,000,000
+                                        <span class="order_emphasis skeleton-while-loading priceFormat" data-checkout-subtotal-price-target="300000000">
+                                            @cart.CartPrice
                                         </span>
                                     </td>
                                 </tr>
@@ -177,7 +165,7 @@
                                     @* Calculated at next step *@
                                     <td class="total_price">
                                         <span class=" order_text" data-checkout-total-shipping-target="0">
-                                            Calculated at next step
+                                            Miễn phí
                                         </span>
                                     </td>
                                 </tr>
@@ -189,14 +177,17 @@
                                         <span class="payment_total">Tổng Cộng</span>
                                         @* Thuế *@
                                         <span class="payment_taxes order_text">
-                                            Đã bao gồm Thuế VAT: <span data-checkout-total-taxes-target="27272700">₫272,727</span>
+                                            @{
+                                                var vat = cart.CartPrice / 10;
+                                            }
+                                            Đã bao gồm Thuế VAT: <span class="priceFormat" data-checkout-total-taxes-target="27272700">@vat</span>
                                         </span>
                                     </th>
 
                                     @* Giá  *@
                                     <td class="total_price payment-due" data-presentment-currency="VND">
-                                        <span class="payment_price" data-checkout-payment-due-target="300000000">
-                                            ₫3,000,000
+                                        <span class="payment_price priceFormat" data-checkout-payment-due-target="300000000">
+                                            @cart.CartPrice
                                         </span>
                                     </td>
                                 </tr>
@@ -206,6 +197,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 

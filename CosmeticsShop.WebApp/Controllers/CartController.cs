@@ -17,15 +17,18 @@ namespace CosmeticsShop.WebApp.Controllers
     {
         private readonly ICartApiClient _cartApiClient;
         private readonly IClientOrderApi _clientOrderApi;
+        private ClientCartViewModel GetCartViewModel()
+        {
+            var cartJS = HttpContext.Session.GetString("Cart");
+            var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(cartJS);
+            return cart;
+        }
         public CartController(ICartApiClient cartApiClient, IClientOrderApi clientOrderApi)
         {
             _cartApiClient = cartApiClient;
             _clientOrderApi = clientOrderApi;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
+
         [HttpGet]
         public IActionResult CartDetail()
         {
@@ -57,24 +60,42 @@ namespace CosmeticsShop.WebApp.Controllers
             return View();
         }
 
-        public IActionResult Bill()
+        [HttpGet("{cartId}/thanks/{orderId}")]
+        public IActionResult Bill(Guid cartId, int orderId)
         {
+            var cart = GetCartViewModel();
+             
+            if (orderId < 1 || cart == null || cartId != cart.Id)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+            
+            ViewBag.Cart = cart;
             return View();
         }
         [HttpPost]
         public async Task<IActionResult> InforOrder(ClientCreateOrderViewModel request)
         {
 
-            var cartJS = HttpContext.Session.GetString("Cart");
-            var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(cartJS);
+            var cart = GetCartViewModel();
             ViewBag.Cart = cart;
             request.ClientCart = cart;
+            var isLogin = HttpContext.Session.GetString("Token");
+            ViewBag.isLogin = false;
+            if (isLogin != null)
+            {
+                ViewBag.isLogin = true;
+            }
             if (!ModelState.IsValid)
             {
                 return View();
             }
-            var result = await  _clientOrderApi.ClientCreateOrder(request);
-            return View();
+            var result = await _clientOrderApi.ClientCreateOrder(request);
+            if (result < 1)
+            {
+                return View();
+            }
+            return RedirectToAction("bill", new { orderId = result });
         }
         [HttpPost]
         public async Task<JsonResult> AddToCart([FromBody] ProductInCartViewModel productCart)
@@ -109,7 +130,10 @@ namespace CosmeticsShop.WebApp.Controllers
             }
             else
             {
-                cart = new ClientCartViewModel();
+                cart = new ClientCartViewModel()
+                {
+                    Id = Guid.NewGuid()
+                };
 
                 cart.Products.Add(productCart);
                 cart.CartPrice = productCart.ProductPrice;
@@ -117,9 +141,9 @@ namespace CosmeticsShop.WebApp.Controllers
                 {
                     var clientId = User.Claims.ToList().Where(x => x.Type == "Id").FirstOrDefault().Value;
                     cart.ClientId = new Guid(clientId);
-                    cart = await _cartApiClient.AddToCart(cart);
 
                 }
+                cart = await _cartApiClient.AddToCart(cart);
                 var serializeCart = JsonConvert.SerializeObject(cart);
                 HttpContext.Session.SetString("Cart", serializeCart);
             }

@@ -64,6 +64,7 @@ namespace CosmeticsShop.WebApp.Controllers
                 ViewBag.Error = apiResult.ResultObj;
                 return View(request);
             }
+
             var userPrincipal = ValidateToken(apiResult.ResultObj);
             var authProperties = new AuthenticationProperties
             {
@@ -72,14 +73,15 @@ namespace CosmeticsShop.WebApp.Controllers
             };
 
             HttpContext.Session.SetString("Token", apiResult.ResultObj);
-
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                 userPrincipal,
                 authProperties);
             var cartJs = HttpContext.Session.GetString("Cart");
             if (cartJs != null)
             {
+                var clientId = User.Claims.Where(x => x.Type == "Id").FirstOrDefault().Value;
                 var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(cartJs);
+                cart.ClientId = new Guid(clientId);
                 cart = await _cartApiClient.AddToCart(cart);
                 ViewBag.Cart = cart;
             }
