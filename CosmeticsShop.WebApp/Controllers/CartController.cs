@@ -16,9 +16,11 @@ namespace CosmeticsShop.WebApp.Controllers
     public class CartController : Controller
     {
         private readonly ICartApiClient _cartApiClient;
-        public CartController(ICartApiClient cartApiClient)
+        private readonly IClientOrderApi _clientOrderApi;
+        public CartController(ICartApiClient cartApiClient, IClientOrderApi clientOrderApi)
         {
             _cartApiClient = cartApiClient;
+            _clientOrderApi = clientOrderApi;
         }
         public IActionResult Index()
         {
@@ -58,6 +60,15 @@ namespace CosmeticsShop.WebApp.Controllers
         public async Task<IActionResult> InforOrder(ClientCreateOrderViewModel request)
         {
 
+            var cartJS = HttpContext.Session.GetString("Cart");
+            var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(cartJS);
+            ViewBag.Cart = cart;
+            request.ClientCart = cart;
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            var result = await  _clientOrderApi.ClientCreateOrder(request);
             return View();
         }
         [HttpPost]

@@ -19,7 +19,7 @@ namespace Cosmetics.ViewModels.Catalogs.Orders
         [DisplayName("Giá trị")]
         public decimal Price { get; set; }
         public List<OrderProductViewModel> OrderProducts { get; set; }
-        public Guid UserId { set; get; }
+        public Guid? UserId { set; get; }
         [DisplayName("Nguời đặt")]
         public string UserNameOrder { get; set; }
         [DisplayName("Nguời nhận")]

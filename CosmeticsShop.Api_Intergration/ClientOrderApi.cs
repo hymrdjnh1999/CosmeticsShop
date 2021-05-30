@@ -26,7 +26,7 @@ namespace CosmeticsShop.Api_Intergration
         public async Task<bool> ClientCreateOrder(ClientCreateOrderViewModel request)
         {
 
-            string url = "/api/orders";
+            string url = "/api/orders/client";
             var result = await PostAsync<bool, ClientCreateOrderViewModel>(url, request);
 
             return result;

@@ -68,10 +68,11 @@ namespace Cosmetics.WebAPI.Controllers
             }
             return Ok();
         }
-        //[HttpPost]
-        //public async Task<IActionResult> ClientCreateOrder(ClientCreateOrderViewModel request)
-        //{
-
-        //}
+        [HttpPost("client")]
+        public async Task<IActionResult> ClientCreateOrder(ClientCreateOrderViewModel request)
+        {
+            var result = await _orderService.ClientCreateOrder(request);
+            return Ok(result);
+        }
     }
 }

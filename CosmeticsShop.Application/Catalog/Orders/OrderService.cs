@@ -147,7 +147,8 @@ namespace CosmeticsShop.Application.Catalog.Orders
             return true;
         }
 
-        public Task<bool> ClientCreateOrder(ClientCreateOrderViewModel request)
+
+        public async Task<bool> ClientCreateOrder(ClientCreateOrderViewModel request)
         {
             var newOrder = new Order()
             {
@@ -158,9 +159,44 @@ namespace CosmeticsShop.Application.Catalog.Orders
                 ShipEmail = request.Email,
                 Note = request.ClientNote,
                 ShipName = request.ClientName,
-                Status = OrderStatus.InProgress
+                Status = OrderStatus.InProgress,
             };
+            if (request.ClientID != null)
+            {
+                newOrder.ClientId = (Guid)request.ClientID;
+            }
+            else
+            {
+                newOrder.ClientId = null;
+            }
+            _context.Orders.Add(newOrder);
 
+
+            var productsInCart = request.ClientCart.Products;
+            newOrder.OrderDetails = new List<OrderDetail>();
+            foreach (var product in productsInCart)
+            {
+                var newOrderDetails = new OrderDetail()
+                {
+                    OrderId = newOrder.Id,
+                    Price = product.ProductPrice,
+                    Quantity = product.Quantity,
+                    ProductId = product.Id
+                };
+
+                newOrder.OrderDetails.Add(newOrderDetails);
+            }
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                var test = e;
+                throw;
+            }
+            return true;
         }
     }
 }
