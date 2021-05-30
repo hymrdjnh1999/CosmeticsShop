@@ -56,6 +56,11 @@ namespace CosmeticsShop.WebApp.Controllers
             ViewBag.Cart = cart;
             return View();
         }
+
+        public IActionResult Bill()
+        {
+            return View();
+        }
         [HttpPost]
         public async Task<IActionResult> InforOrder(ClientCreateOrderViewModel request)
         {
