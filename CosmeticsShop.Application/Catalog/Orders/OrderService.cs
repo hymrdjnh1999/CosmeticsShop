@@ -2,6 +2,7 @@
 using Cosmetics.ViewModels.Common;
 using CosmeticsShop.Data.Entities;
 using CosmeticsShop.Data.EntityFrameWork;
+using CosmeticsShop.Data.Enums;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -143,6 +144,58 @@ namespace CosmeticsShop.Application.Catalog.Orders
 
             _context.Orders.Update(order);
             await _context.SaveChangesAsync();
+            return true;
+        }
+
+
+        public async Task<bool> ClientCreateOrder(ClientCreateOrderViewModel request)
+        {
+            var newOrder = new Order()
+            {
+                OrderDate = DateTime.Now,
+                Price = request.TotalPrice,
+                ShipAddress = request.ShipAddress,
+                ShipPhoneNumber = request.ShipPhone,
+                ShipEmail = request.Email,
+                Note = request.ClientNote,
+                ShipName = request.ClientName,
+                Status = OrderStatus.InProgress,
+            };
+            if (request.ClientID != null)
+            {
+                newOrder.ClientId = (Guid)request.ClientID;
+            }
+            else
+            {
+                newOrder.ClientId = null;
+            }
+            _context.Orders.Add(newOrder);
+
+
+            var productsInCart = request.ClientCart.Products;
+            newOrder.OrderDetails = new List<OrderDetail>();
+            foreach (var product in productsInCart)
+            {
+                var newOrderDetails = new OrderDetail()
+                {
+                    OrderId = newOrder.Id,
+                    Price = product.ProductPrice,
+                    Quantity = product.Quantity,
+                    ProductId = product.Id
+                };
+
+                newOrder.OrderDetails.Add(newOrderDetails);
+            }
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                var test = e;
+                throw;
+            }
             return true;
         }
     }

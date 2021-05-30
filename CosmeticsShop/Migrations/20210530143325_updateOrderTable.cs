@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CosmeticsShop.Data.Migrations
 {
-    public partial class upgradeDb : Migration
+    public partial class updateOrderTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -301,10 +301,11 @@ namespace CosmeticsShop.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ClientId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ClientId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     ShipName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ShipAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ShipEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ShipPhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false)
@@ -317,7 +318,7 @@ namespace CosmeticsShop.Data.Migrations
                         column: x => x.ClientId,
                         principalTable: "Clients",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -526,8 +527,8 @@ namespace CosmeticsShop.Data.Migrations
                 columns: new[] { "Id", "Address", "Avatar", "Dob", "Email", "Name", "Password", "PhoneNumber", "Status" },
                 values: new object[,]
                 {
-                    { new Guid("1d37e388-3c9d-490b-a0d1-93f20c4292b5"), "8 Nghách 167 ngõ 521 Trương Định - Hoàng Mai - Hà Nội", "", new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "tiendinhdev99@gmail.com", "Voi Bé Nhỏ", "AQAAAAEAACcQAAAAEAKOl9bU+uX1XszoT50wla/2ITqC07GpG0k5e890WiRd2XZbh+nee/uTHBHKnMKJSA==", "0984869201", 2 },
-                    { new Guid("94c14234-d9b7-4a8b-91c8-68b53378fe6b"), "8 Nghách 167 ngõ 521 Trương Định - Hoàng Mai - Hà Nội", "", new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "test1234@gmail.com", "Do tien dinh", "AQAAAAEAACcQAAAAEHJcCQujbiXJr4bDtv0/lA8bJQhFAHualsCoVEYBrKahM8onMQ7psFngYehqAic2rw==", "0984869201", 2 }
+                    { new Guid("1d37e388-3c9d-490b-a0d1-93f20c4292b5"), "8 Nghách 167 ngõ 521 Trương Định - Hoàng Mai - Hà Nội", "", new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "tiendinhdev99@gmail.com", "Voi Bé Nhỏ", "AQAAAAEAACcQAAAAENBOVXm8ZUfXIulxu2QGNGYTdmytRaMP139Bi88lh8x1ApEe3BdhoO0oxpGMojxsow==", "0984869201", 2 },
+                    { new Guid("94c14234-d9b7-4a8b-91c8-68b53378fe6b"), "8 Nghách 167 ngõ 521 Trương Định - Hoàng Mai - Hà Nội", "", new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "test1234@gmail.com", "Do tien dinh", "AQAAAAEAACcQAAAAEEVnrfJrssguB85iUlaTNbZTeQxwZazRL6notbGMUqrdvP0O7pp1TGfMj6jCSBqcgQ==", "0984869201", 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -553,8 +554,8 @@ namespace CosmeticsShop.Data.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Description", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { new Guid("bd5b83d2-5c75-4f96-a63f-1eca425bdfe5"), "87c300be-526e-4b65-97a7-9c38177482ae", "Manager role", "Manager", "Manager" },
-                    { new Guid("efebfd93-b27d-4c91-8a71-74fd71944893"), "916ccfd5-913c-4c46-b311-84e983b95b61", "Staff role", "Staff", "Staff" }
+                    { new Guid("bd5b83d2-5c75-4f96-a63f-1eca425bdfe5"), "952c78d0-163c-47f0-9381-10c85bf8ce39", "Manager role", "Manager", "Manager" },
+                    { new Guid("efebfd93-b27d-4c91-8a71-74fd71944893"), "4d45a6a6-3b18-42fa-92cc-2c4fd9111b3a", "Staff role", "Staff", "Staff" }
                 });
 
             migrationBuilder.InsertData(
@@ -585,15 +586,24 @@ namespace CosmeticsShop.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Dob", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { new Guid("1c856746-f8aa-4026-b854-f18da9787cf3"), 0, "d268db21-ede6-4c86-b9e3-4a12f42d9d42", new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "tiendinhdev99@gmail.com", true, false, null, "Voi Bé Nhỏ", "tiendinhdev99@gmail.com", "manager", "AQAAAAEAACcQAAAAEG/UNqj8wLz1xnlhsYXH5bH9H9E2kDELabv/SpWAhlpRwX8ZA2mf6QZieysDlZEWaQ==", null, false, "", false, "voibenho99" },
-                    { new Guid("d8b63b91-c360-4e3d-9b3a-2dce31f00cc4"), 0, "a6273ad1-ca15-4aca-a5be-4029d59fe4bf", new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "Haianh@gmail.com", true, false, null, "Hải Anh", "Haianh@gmail.com", "haianhmanager", "AQAAAAEAACcQAAAAEEJW8BkCehMhF5WcAa3tBFZcYVgMRNmjFFouH0GfMxELa+U6ypOhNxdZcQlQqcC4ew==", null, false, "", false, "haianh" },
-                    { new Guid("33674f31-0bd2-43cd-9090-3f0d4bab1c58"), 0, "c9d80984-8c84-44e0-8f1d-27b58494dd69", new DateTime(2001, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "Tranphuong18032001@gmail.com", true, false, null, "Thu Phương", "Tranphuong18032001@gmail.com", "tranphuongmanager", "AQAAAAEAACcQAAAAEAKXp7O6A0s1JDmfH7Yms9qKDQX9MnVoMH9vZPMk4DhVx36bn+kONbekGkoBAqkHiw==", null, false, "", false, "tranphuong" }
+                    { new Guid("1c856746-f8aa-4026-b854-f18da9787cf3"), 0, "1e5909d9-2702-44c8-b220-759d82aafba3", new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "tiendinhdev99@gmail.com", true, false, null, "Voi Bé Nhỏ", "tiendinhdev99@gmail.com", "manager", "AQAAAAEAACcQAAAAEKlpAh5cpWN5rMOjOoPQqXZrK9DxEsU82AOzS5suRYxFjELfR4Pi+y2+kTmLT5CgBg==", null, false, "", false, "voibenho99" },
+                    { new Guid("d8b63b91-c360-4e3d-9b3a-2dce31f00cc4"), 0, "6ca25b91-5b25-4b32-ac43-75e30bbe35f0", new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "Haianh@gmail.com", true, false, null, "Hải Anh", "Haianh@gmail.com", "haianhmanager", "AQAAAAEAACcQAAAAENqDtXYeVMGL7AMXe75x5pIYbmu5FO+YQgw/jh9hbMSVqZ12lND1RONVU6g7wEoNKQ==", null, false, "", false, "haianh" },
+                    { new Guid("33674f31-0bd2-43cd-9090-3f0d4bab1c58"), 0, "d55d18a9-c92f-46d2-b020-80d6635b127e", new DateTime(2001, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "Tranphuong18032001@gmail.com", true, false, null, "Thu Phương", "Tranphuong18032001@gmail.com", "tranphuongmanager", "AQAAAAEAACcQAAAAEBwLDt3dEwYGXjX3MD24FrvakRSsAZIn0p0jMjf6kYrIup39LIK980HmC4mMhc+hNA==", null, false, "", false, "tranphuong" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Orders",
-                columns: new[] { "Id", "ClientId", "OrderDate", "Price", "ShipAddress", "ShipEmail", "ShipName", "ShipPhoneNumber", "Status" },
-                values: new object[] { 1, new Guid("94c14234-d9b7-4a8b-91c8-68b53378fe6b"), new DateTime(2021, 4, 21, 10, 19, 20, 0, DateTimeKind.Utc), 480000m, "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi", "shiple@gmail.com", "Voi be nho", "0984869201", 1 });
+                columns: new[] { "Id", "ClientId", "Note", "OrderDate", "Price", "ShipAddress", "ShipEmail", "ShipName", "ShipPhoneNumber", "Status" },
+                values: new object[] { 1, new Guid("94c14234-d9b7-4a8b-91c8-68b53378fe6b"), null, new DateTime(2021, 4, 21, 10, 19, 20, 0, DateTimeKind.Utc), 480000m, "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi", "shiple@gmail.com", "Voi be nho", "0984869201", 1 });
+
+            migrationBuilder.InsertData(
+                table: "ProductImages",
+                columns: new[] { "Id", "Caption", "DateCreated", "FileSize", "ImagePath", "IsDefault", "ProductId", "SortOrder" },
+                values: new object[,]
+                {
+                    { 1, "test", new DateTime(2021, 5, 30, 21, 33, 24, 511, DateTimeKind.Local).AddTicks(5236), 12345L, "123123.jpg", true, 1, 1 },
+                    { 2, "test", new DateTime(2021, 5, 30, 21, 33, 24, 512, DateTimeKind.Local).AddTicks(6538), 12345L, "123123.jpg", true, 2, 2 }
+                });
 
             migrationBuilder.InsertData(
                 table: "ProductInCategories",

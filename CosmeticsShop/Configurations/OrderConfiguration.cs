@@ -14,17 +14,11 @@ namespace CosmeticsShop.Data.Configurations
         public void Configure(EntityTypeBuilder<Order> builder)
         {
             builder.ToTable("Orders").HasKey(o => o.Id);
-
             builder.Property(x => x.Id).UseIdentityColumn();
-
             builder.Property(o => o.ShipAddress).IsRequired();
-
             builder.Property(o => o.ShipName).IsRequired();
-
             builder.Property(o => o.ShipPhoneNumber).IsRequired();
-
-            builder.HasOne(o => o.Client).WithMany(c => c.Orders).HasForeignKey(o => o.ClientId);
-
+            builder.Property(o => o.ClientId).IsRequired(false);
         }
     }
 }

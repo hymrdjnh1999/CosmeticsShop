@@ -15,5 +15,6 @@ namespace CosmeticsShop.Application.Catalog.Orders
         Task<OrderViewModel> GetById(int id);
         Task<bool> UpdateStatus(OrderViewModel request);
         Task<List<OrderProductViewModel>> GetOrderProducts(int orderId);
+        Task<bool> ClientCreateOrder(ClientCreateOrderViewModel request);
     }
 }
