@@ -1,4 +1,5 @@
 ﻿using Cosmetics.ViewModels.Catalogs.Orders;
+using Cosmetics.ViewModels.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,6 @@ namespace CosmeticsShop.Api_Intergration
     public interface IClientOrderApi
     {
         Task<int> ClientCreateOrder(ClientCreateOrderViewModel request);
-        Task<ClientOrderViewModel> GetOrder(Guid cartId, int orderId);
+        Task<ApiResult<ClientOrderViewModel>> GetOrder(Guid cartId, int orderId);
     }
 }

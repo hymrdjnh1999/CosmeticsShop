@@ -303,11 +303,7 @@ main_content {
     padding-top: .1428571429rem;
 }
 
-.main h2 {
-    color: #333;
-    width: 250px;
-    font-size: 20px;
-}
+
 
 .section__title {
     color: #333;
@@ -440,10 +436,6 @@ main_content {
         transition: color .2s ease-in-out;
     }
 
-/*Side bar Tóm tắt đơn đặt hàng*/
-.content {
-    height: 680px;
-}
 
 .wrap {
     padding: 0 5%;

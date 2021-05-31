@@ -159,6 +159,7 @@ namespace CosmeticsShop.Application.Catalog.Orders
                 ShipEmail = request.Email,
                 Note = request.ClientNote,
                 ShipName = request.ClientName,
+                CartId = request.ClientCart.Id,
                 Status = OrderStatus.InProgress,
             };
             if (request.ClientID != null)
@@ -187,7 +188,15 @@ namespace CosmeticsShop.Application.Catalog.Orders
                 newOrder.OrderDetails.Add(newOrderDetails);
             }
 
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                var test = e;
+                throw;
+            }
             return newOrder.Id;
         }
 
