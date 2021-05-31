@@ -187,12 +187,12 @@
 }
 
 .sectionFooter__cart {
-/*    margin-top: 40px;*/
+    /*    margin-top: 40px;*/
     text-align: left;
 }
 
 
-    .sectionFooter__cart button{
+    .sectionFooter__cart button {
         text-decoration: none;
         color: white;
         border: 1px solid #1c1b1b;
@@ -207,7 +207,7 @@
     }
 
 
-.wrapper button span{
+.wrapper button span {
     position: relative;
     z-index: 2;
 }
@@ -223,15 +223,15 @@
     transition: all 2s;
 }
 
-    .wrapper button:hover {
-        color: #1c1b1b;
-        background: white;
-    }
+.wrapper button:hover {
+    color: #1c1b1b;
+    background: white;
+}
 
-        .wrapper button:hover:after {
-            color: black;
-            width: 100%;
-        }
+    .wrapper button:hover:after {
+        color: black;
+        width: 100%;
+    }
 
 
 
@@ -303,11 +303,7 @@ main_content {
     padding-top: .1428571429rem;
 }
 
-.main h2 {
-    color: #333;
-    width: 250px;
-    font-size: 20px;
-}
+
 
 .section__title {
     color: #333;
@@ -388,11 +384,13 @@ main_content {
     border: none;
     background: white;
     color: #1c1b1b;
-    text-decoration: none!important;
+    text-decoration: none !important;
 }
-.step__footer__previous-link-content:hover{
-    color: #000;
-}
+
+    .step__footer__previous-link-content:hover {
+        color: #000;
+    }
+
 .step_footer {
     display: flex;
     justify-content: start;
@@ -438,10 +436,6 @@ main_content {
         transition: color .2s ease-in-out;
     }
 
-/*Side bar Tóm tắt đơn đặt hàng*/
-.content {
-    height: 680px;
-}
 
 .wrap {
     padding: 0 5%;
@@ -616,7 +610,7 @@ td:first-child, th:first-child {
     text-align: left;
 }
 
-.order-items:last-child{
+.order-items:last-child {
     margin-bottom: 14px;
 }
 
@@ -664,16 +658,15 @@ td:first-child, th:first-child {
 }
 
 .product-thumbnail__quantity {
-   
     background-color: rgba(114,114,114,.9);
     color: #fff;
     position: absolute;
     border-radius: 50%;
-    width:24px;
-    height:24px;
+    width: 24px;
+    height: 24px;
     text-align: center;
     top: -10px;
-    z-index:3; 
+    z-index: 3;
     right: 0;
 }
 

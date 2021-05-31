@@ -2,13 +2,18 @@
 @{
     ViewData["Title"] = "Cảm ơn bạn đã mua sản phẩm của ";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var cart = ViewBag.Cart;
+    var products = cart.Products;
+    var imgUrlBase = "https://localhost:5001/user-content/";
+    var order = ViewBag.Order;
 }
 
 <div class="content" data-content>
     <div class="wrap">
         <div class="main">
             <div class="main__header">
-                <a href="#"><span class="logo__text justify-content-center">Paris France Beauty</span></a>
+                <a href="#"><span class="logo__text justify-content-center">Cosmetics Online Shop</span></a>
             </div>
             <main class="main_content" role="main">
                 <div class="step" data-step="thank_you" data-last-step="false">
@@ -16,67 +21,74 @@
                         <div class="section_header  os-header">
                             <img src="https://img.icons8.com/fluent-systems-regular/60/000000/instagram-check-mark.png" />
                             <div class="os-header__heading">
-                                <span class="os-order-number">
-                                    Đơn hàng 12384
+                                <span class="os-order-number text-center">
+                                    <span class="font-weight-bold">Mã đơn hàng</span> <span>@order.Id</span>
                                 </span>
-                                <h2 class="os-header__title" id="main-header" tabindex="-1">
-                                    Cám ơn test!
-                                </h2>
+                                @if (cart.ClientId != null)
+                                {
+                                    <h2 class="os-header__title" id="main-header" tabindex="-1">
+                                        Cám ơn test!
+                                    </h2>
+                                }
                             </div>
                         </div>
                         <div class="section">
                             <div id="setion_content">
-                                <div class="content-box">
-                                    <div class="content-box__row text-container">
-                                        <h2 class="heading-2 os-step__title">Đơn đặt mua của bạn đã được xác nhận</h2>
+                                <div class="">
+                                    <div>
+                                        <h2>Đơn đặt mua của bạn đã được xác nhận</h2>
                                         <div class="os-step__special-description">
-                                            <p style="margin-bottom: 0;">Cảm ơn bạn đã mua sản phẩm của chúng tôi. Đơn hàng của bạn đã được đăng ký và chúng tôi sẽ sớm liên hệ với bạn để xác nhận chi tiết giao hàng.</p>
+                                            <p>Cảm ơn bạn đã mua sản phẩm của chúng tôi. Đơn hàng của bạn đã được đăng ký và chúng tôi sẽ sớm liên hệ với bạn để xác nhận chi tiết giao hàng.</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="content-box" style=" height: 400px;">
+                                <div>
                                     <div class="content-box__row content-box__row--no-border">
-                                        <h2 class="heading-2 os-step__title">Thông tin khách hàng</h2>
-                                    </div>
-                                    <div class="content-box__row">
-                                        <div class="section__content">
-                                            <div class="section__content__column section__content__column--half">
-                                                <div class="text-container">
-                                                    <h3 class="heading-3">Địa chỉ nhận hàng</h3>
-                                                    <address class="address">test test<br>test<br>test<br>test<br>test 84<br>Vietnam<br>&lrm;00 00000000</address>
-                                                    <h3 class="heading-3">Hình thức thanh toán</h3>
-                                                    <ul class="payment-method-list"  stye="list-style-type: none;     padding-left: 0px;">
-                                                        <li class="payment-method-list__item">
-                                                            <span class="payment-method-list__item__info">Thanh toán khi được giao sản phẩm đến tận tay (Cash On Delivery)</span>
-                                                            <span class="payment-method-list__item__amount emphasis"> - ₫3,000,000</span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="section__content__column section__content__column--half">
-                                                <div class="text-container">
-
-                                                    <h3 class="heading-3">Địa chỉ gửi hóa đơn</h3>
-                                                    <address class="address">test test<br>test<br>test<br>test<br>test 84<br>Vietnam<br>&lrm;00 00000000</address>
-                                                </div>
-                                            </div>
+                                        <h2 class="heading-2 os-step__title">Thông tin đặt hàng</h2>
+                                        <div class="d-flex">
+                                            <span class="font-weight-bold">Người nhận:</span>
+                                            <span class="ml-2">@order.ShipName</span>
+                                        </div>
+                                        <div class="d-flex">
+                                            <span class="font-weight-bold">Số điện thoại:</span>
+                                            <span class="ml-2">@order.ShipPhoneNumber</span>
+                                        </div>
+                                        <div class="d-flex">
+                                            <span class="font-weight-bold">Địa chỉ nhận:</span>
+                                            <span class="ml-2 " style="flex:1;">@order.ShipAddress</span>
+                                        </div>
+                                        <div class="d-flex">
+                                            <span class="font-weight-bold">Email</span>
+                                            <span class="ml-2">@order.ShipEmail</span>
+                                        </div>
+                                        <div class="d-flex">
+                                            <span class="font-weight-bold">Ghi chú:</span>
+                                            <span class="ml-2">@order.Note</span>
                                         </div>
                                     </div>
+
+                                    <div class="text-container mt-3">
+                                        <h2 class="heading-3">Hình thức thanh toán</h2>
+                                        <ul class="payment-method-list" stye="list-style-type: none;     padding-left: 0px;">
+                                            <li class="payment-method-list__item">
+                                                <span class="payment-method-list__item__info">Thanh toán khi được giao sản phẩm đến tận tay (Cash On Delivery)</span>
+                                                <span class="payment-method-list__item__amount emphasis"> - ₫3,000,000</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="step_footer" data-step-footer style="margin-top: 20px">
-
-                    <div class="sectionFooter__cart">
+                <div class="step_footer mt-5">
+                    <div class="sectionFooter">
                         <div class="wrapper">
-                            <button name="button" type="submit" href="#" class="justify-content-center text-center"><span>Tiếp tục mua hàng</span></button>
+                            <a href="/"><span>Tiếp tục mua hàng</span></a>
                         </div>
                     </div>
-                    <span href="#" class="step__footer__previous-link">
-                        <button name="button" type="submit" class="step__footer__previous-link-content">Quay trở lại giỏ hàng</button>
-                    </span>
+                    <a href="/cart/cartDetail" class="d-flex align-items-center justify-content-center ml-2 " style="text-decoration:none; color: #000;">Quay trở lại giỏ hàng</a>
                 </div>
 
             </main>
@@ -95,55 +107,39 @@
             </footer>
         </div>
         @* Tóm Tắt sản phẩm *@
-        <div class="sidebar" role="complementary">
+        <div class="sidebar order-detail-product-wrap" role="complementary">
             <div class="sidebar__header">
                 <div class="sidebar__content">
                     @* Tóm tất sản phẩm *@
-                    <div class="order-summary__section order-summary__section--product-list">
-                        <div class="order-summary__section__content">
-                            <table class="product-table">
-                                @*  Table *@
-                                <caption class="visually-hidden">Giỏ Hàng</caption>
-                                <thead class="product-table__header">
-                                    <tr>
-                                        <th scope="col"><span class="visually-hidden">Hình sản phẩm</span></th>
-                                        <th scope="col"><span class="visually-hidden">Mô tả</span></th>
-                                        <th scope="col"><span class="visually-hidden">Số lượng</span></th>
-                                        <th scope="col"><span class="visually-hidden">Giá</span></th>
-                                    </tr>
-                                </thead>
-                                <tbody data-order-summary-section="line-items">
-                                    <tr class="product" data-product-type="Perfume" data-customer-ready-visible="">
-                                        @* thumbnail *@
-                                        <td class="product__image">
-                                            <div class="product-thumbnail ">
-                                                <div class="product-thumbnail__wrapper">
-                                                    <img alt="[New] Carolina Herrera Very Good Girl EDP - 50ml + Mini" class="product-thumbnail__image" src="//cdn.shopify.com/s/files/1/0003/8718/6741/products/GWP_50ml_ecc11e8e-d8ec-44b1-9da6-5c281424bb04_small.jpg?v=1620294554">
-                                                </div>
-                                                <span class="product-thumbnail__quantity" aria-hidden="true">1</span>
-                                            </div>
+                    <div class="order-summary__section order-summary__section--product-list flex-column">
 
-                                        </td>
-                                        @* Mô tả  *@
-                                        <th class="product__description" scope="row">
-                                            <span class="product__description__name order-summary__emphasis">[New] Carolina Herrera Very Good Girl EDP</span>
-                                            <span class="product__description__variant order-summary__small-text">50ml + Mini</span>
-                                        </th>
-                                        @* Số Lượng *@
-                                        <td class="product__quantity">
-                                            <span class="visually-hidden">
-                                                1
-                                            </span>
-                                        </td>
-                                        @* Giá *@
-                                        <td class="product__price">
-                                            <span class="order-summary__emphasis skeleton-while-loading">₫3,000,000</span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        @foreach (var item in products)
+                        {
+                            <div class=" d-flex pt-3 order-items ">
+                                <div class="product-thumbnail ">
+                                    <div class="product-thumbnail__wrapper">
+                                        <img alt="@item.ProductName" class="product-thumbnail__image" src="@imgUrlBase@item.ProductImage">
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <span class="product__description__name order-summary__emphasis text-wrap2">@item.ProductName</span>
+
+                                    </div>
+                                    <div class="d-flex align-items-start mx-2" style="font-size:12px;">
+                                        <span class="mr-2">
+                                            x
+                                        </span>
+                                        <span>
+                                            @item.Quantity
+                                        </span>
+                                    </div>
+                                    <span class="order-summary__emphasis skeleton-while-loading priceFormat">@item.ProductPrice</span>
+                                </div>
+                            </div>
+                        }
                     </div>
+
                     @* Tổng chi phí *@
                     <div class="order_section order_section--total" data-order-summary-section="payment-lines">
                         <table>
@@ -161,8 +157,8 @@
                                     <th class="total_name" scope="row">Phụ Tổng</th>
                                     <td class="total_price">
                                         @* price *@
-                                        <span class="order_emphasis skeleton-while-loading" data-checkout-subtotal-price-target="300000000">
-                                            ₫3,000,000
+                                        <span class="order_emphasis skeleton-while-loading priceFormat" data-checkout-subtotal-price-target="300000000">
+                                            @cart.CartPrice
                                         </span>
                                     </td>
                                 </tr>
@@ -177,7 +173,7 @@
                                     @* Calculated at next step *@
                                     <td class="total_price">
                                         <span class=" order_text" data-checkout-total-shipping-target="0">
-                                            Calculated at next step
+                                            Miễn phí
                                         </span>
                                     </td>
                                 </tr>
@@ -189,14 +185,17 @@
                                         <span class="payment_total">Tổng Cộng</span>
                                         @* Thuế *@
                                         <span class="payment_taxes order_text">
-                                            Đã bao gồm Thuế VAT: <span data-checkout-total-taxes-target="27272700">₫272,727</span>
+                                            @{
+                                                var vat = cart.CartPrice / 10;
+                                            }
+                                            Đã bao gồm Thuế VAT: <span class="priceFormat" data-checkout-total-taxes-target="27272700">@vat</span>
                                         </span>
                                     </th>
 
                                     @* Giá  *@
                                     <td class="total_price payment-due" data-presentment-currency="VND">
-                                        <span class="payment_price" data-checkout-payment-due-target="300000000">
-                                            ₫3,000,000
+                                        <span class="payment_price priceFormat" data-checkout-payment-due-target="300000000">
+                                            @cart.CartPrice
                                         </span>
                                     </td>
                                 </tr>
@@ -206,6 +205,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 

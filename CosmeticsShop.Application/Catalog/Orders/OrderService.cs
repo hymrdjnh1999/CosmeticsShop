@@ -148,7 +148,7 @@ namespace CosmeticsShop.Application.Catalog.Orders
         }
 
 
-        public async Task<bool> ClientCreateOrder(ClientCreateOrderViewModel request)
+        public async Task<int> ClientCreateOrder(ClientCreateOrderViewModel request)
         {
             var newOrder = new Order()
             {
@@ -159,6 +159,7 @@ namespace CosmeticsShop.Application.Catalog.Orders
                 ShipEmail = request.Email,
                 Note = request.ClientNote,
                 ShipName = request.ClientName,
+                CartId = request.ClientCart.Id,
                 Status = OrderStatus.InProgress,
             };
             if (request.ClientID != null)
@@ -196,7 +197,28 @@ namespace CosmeticsShop.Application.Catalog.Orders
                 var test = e;
                 throw;
             }
-            return true;
+            return newOrder.Id;
+        }
+
+        public async Task<ApiResult<ClientOrderViewModel>> ClientGetOrder(Guid cartId, int orderId)
+        {
+            var order = await _context.Orders.Where(x => x.CartId == cartId && x.Id == orderId).FirstOrDefaultAsync();
+            if (order == null)
+            {
+                return new ApiErrorResult<ClientOrderViewModel>("Không tồn tại");
+            }
+            var clientOrder = new ClientOrderViewModel()
+            {
+                Id = order.Id,
+                Note = order.Note,
+                ShipAddress = order.ShipAddress,
+                ShipEmail = order.ShipEmail,
+                ShipName = order.ShipName,
+                ShipPhoneNumber = order.ShipPhoneNumber,
+                Status = order.Status,
+                TotalPrice = order.Price
+            };
+            return new ApiSuccessResult<ClientOrderViewModel>(clientOrder);
         }
     }
 }

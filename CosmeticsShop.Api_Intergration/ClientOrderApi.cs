@@ -1,4 +1,5 @@
 ﻿using Cosmetics.ViewModels.Catalogs.Orders;
+using Cosmetics.ViewModels.Common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -23,12 +24,19 @@ namespace CosmeticsShop.Api_Intergration
         {
 
         }
-        public async Task<bool> ClientCreateOrder(ClientCreateOrderViewModel request)
+        public async Task<int> ClientCreateOrder(ClientCreateOrderViewModel request)
         {
 
             string url = "/api/orders/client";
-            var result = await PostAsync<bool, ClientCreateOrderViewModel>(url, request);
+            var result = await PostAsync<int, ClientCreateOrderViewModel>(url, request);
 
+            return result;
+        }
+
+        public async Task<ApiResult<ClientOrderViewModel>> GetOrder(Guid cartId, int orderId)
+        {
+            string url = $"/api/orders/client/{cartId}/order/{orderId}";
+            var result = await GetAsync<ApiResult<ClientOrderViewModel>>(url);
             return result;
         }
     }

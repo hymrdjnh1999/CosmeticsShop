@@ -17,15 +17,19 @@ namespace CosmeticsShop.WebApp.Controllers
     {
         private readonly ICartApiClient _cartApiClient;
         private readonly IClientOrderApi _clientOrderApi;
+        private ClientCartViewModel GetCartViewModel()
+        {
+            var cartJS = HttpContext.Session.GetString("Cart");
+            if (cartJS == null) { return null; }
+            var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(cartJS);
+            return cart;
+        }
         public CartController(ICartApiClient cartApiClient, IClientOrderApi clientOrderApi)
         {
             _cartApiClient = cartApiClient;
             _clientOrderApi = clientOrderApi;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
+
         [HttpGet]
         public IActionResult CartDetail()
         {
@@ -57,24 +61,55 @@ namespace CosmeticsShop.WebApp.Controllers
             return View();
         }
 
-        public IActionResult Bill()
+        [HttpGet("{cartId}/thanks/{orderId}")]
+        public async Task<IActionResult> Bill(Guid cartId, int orderId)
         {
+            var cart = GetCartViewModel();
+
+            if (cart != null)
+            {
+                HttpContext.Session.Remove("Cart");
+            }
+
+            if (orderId < 1)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+
+            var order = await _clientOrderApi.GetOrder(cartId, orderId);
+
+            if (!order.IsSuccess)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+            var clientCart = await _cartApiClient.GetCart(cartId);
+            ViewBag.Order = order.ResultObj;
+            ViewBag.Cart = clientCart.ResultObj;
             return View();
         }
         [HttpPost]
         public async Task<IActionResult> InforOrder(ClientCreateOrderViewModel request)
         {
 
-            var cartJS = HttpContext.Session.GetString("Cart");
-            var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(cartJS);
+            var cart = GetCartViewModel();
             ViewBag.Cart = cart;
             request.ClientCart = cart;
+            var isLogin = HttpContext.Session.GetString("Token");
+            ViewBag.isLogin = false;
+            if (isLogin != null)
+            {
+                ViewBag.isLogin = true;
+            }
             if (!ModelState.IsValid)
             {
                 return View();
             }
-            var result = await  _clientOrderApi.ClientCreateOrder(request);
-            return View();
+            var result = await _clientOrderApi.ClientCreateOrder(request);
+            if (result < 1)
+            {
+                return View();
+            }
+            return RedirectToAction("bill", new { orderId = result, cartId = cart.Id });
         }
         [HttpPost]
         public async Task<JsonResult> AddToCart([FromBody] ProductInCartViewModel productCart)
@@ -100,26 +135,25 @@ namespace CosmeticsShop.WebApp.Controllers
                 {
                     var clientId = User.Claims.ToList().Where(x => x.Type == "Id").FirstOrDefault().Value;
                     cart.ClientId = new Guid(clientId);
-                    cart = await _cartApiClient.AddToCart(cart);
-
                 }
+              
                 cart.CartPrice = cart.Products.Sum(x => x.ProductPrice * x.Quantity);
+                cart = await _cartApiClient.AddToCart(cart);
                 cartJS = JsonConvert.SerializeObject(cart);
                 HttpContext.Session.SetString("Cart", cartJS);
             }
             else
             {
                 cart = new ClientCartViewModel();
-
                 cart.Products.Add(productCart);
                 cart.CartPrice = productCart.ProductPrice;
                 if (token != null)
                 {
                     var clientId = User.Claims.ToList().Where(x => x.Type == "Id").FirstOrDefault().Value;
                     cart.ClientId = new Guid(clientId);
-                    cart = await _cartApiClient.AddToCart(cart);
 
                 }
+                cart = await _cartApiClient.AddToCart(cart);
                 var serializeCart = JsonConvert.SerializeObject(cart);
                 HttpContext.Session.SetString("Cart", serializeCart);
             }

@@ -74,5 +74,15 @@ namespace Cosmetics.WebAPI.Controllers
             var result = await _orderService.ClientCreateOrder(request);
             return Ok(result);
         }
+        [HttpGet("client/{cartId}/order/{orderId}")]
+        public async Task<IActionResult> ClientGetOrder(Guid cartId, int orderId)
+        {
+            var result = await _orderService.ClientGetOrder(cartId, orderId);
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
     }
 }
