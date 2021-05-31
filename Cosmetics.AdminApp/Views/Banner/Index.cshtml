@@ -54,12 +54,15 @@
                             <th scope="col" style="flex:0.1">
                                 Id
                             </th>
+                            <th scope="col" style="flex:0.3">
+                                Tên
+                            </th>
                             <th scope="col" style="flex:1">
                                 Ảnh Bìa
                             </th>
                             <th scope="col" style="flex:0.3">
-                                    Mô Tả
-                                </th>
+                                Mô Tả
+                            </th>
                             <th style="flex: 0.2" scope="col">
                                 Tác Vụ
                             </th>
@@ -78,13 +81,14 @@
                                 <td style="flex:0.3">
 
                                     <a href="#" onclick="editBanner(@item.Id)">
+                                        @item.Name
+                                    </a>
+                                </td><td style="flex:0.3">
+
+                                    <a href="#" >
                                         @item.Description
                                     </a>
                                 </td>
-                                @*<td class="table-body-td  @(Model.Items[count].Status == Status.Active ? "text-success" : "text-danger text-center")  ">
-                    @Html.DisplayFor(modelItem => Model.Items[count].Status)
-                </td>*@
-
                                 <td class="d-flex align-items-center justify-content-end" style="flex: 0.2">
                                     <span class="actions-btn">
                                         <span id="editBannerBtn" onclick="editBanner(@item.Id)" class="btn btn-outline-info">Sửa</span>

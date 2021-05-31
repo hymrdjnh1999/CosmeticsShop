@@ -20,6 +20,8 @@ namespace CosmeticsShop.Data.Configurations
 
 
             builder.Property(x => x.ImagePath).IsRequired();
+            builder.Property(x => x.Name).IsRequired();
+            builder.Property(x => x.Description).IsRequired();
 
             builder.Property(c => c.Status).HasDefaultValue(Status.Active);
         }

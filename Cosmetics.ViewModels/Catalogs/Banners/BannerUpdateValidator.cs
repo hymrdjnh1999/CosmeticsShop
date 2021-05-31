@@ -12,6 +12,8 @@ namespace Cosmetics.ViewModels.Catalogs.Banners
          public BannerUpdateValidator()
         {
             RuleFor(x => x.Description).NotEmpty()
+                .WithMessage("Tên không được để trống");
+            RuleFor(x => x.Description).NotEmpty()
                 .WithMessage("Mô tả không được để trống");
         }
     }

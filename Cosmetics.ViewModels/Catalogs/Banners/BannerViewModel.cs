@@ -12,6 +12,7 @@ namespace Cosmetics.ViewModels.Catalogs.Banners
     {
         public int Id { get; set; }
         [DisplayName("Ảnh")]
+        public string Name { get; set; }
         public string ImagePath { get; set; }
         [DisplayName("Mô Tả")]
         public string Description { get; set; }
