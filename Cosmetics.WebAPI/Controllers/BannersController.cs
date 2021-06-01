@@ -37,11 +37,11 @@ namespace Cosmetics.WebAPI.Controllers
             var banner = await _bannerService.GetById(bannerId);
             banner.Id = bannerId;
 
-            return CreatedAtAction(nameof(GetById), new { Id = bannerId }, bannerId);
+            return CreatedAtAction("Create",banner);
         }
         [Authorize]
         [HttpGet("paging")]
-        public async Task<IActionResult> Index([FromQuery] GetBannerPagingRequest request)
+        public async Task<IActionResult> Index([FromQuery] PaginateRequest request)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

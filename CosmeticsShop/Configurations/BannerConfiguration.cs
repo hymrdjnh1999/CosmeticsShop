@@ -14,7 +14,7 @@ namespace CosmeticsShop.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Banner> builder)
         {
-            builder.ToTable("Banner").HasKey(x => x.Id);
+            builder.ToTable("Banners").HasKey(x => x.Id);
 
             builder.Property(x => x.Id).UseIdentityColumn();
 

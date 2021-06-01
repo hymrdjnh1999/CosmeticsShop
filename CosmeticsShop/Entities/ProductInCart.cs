@@ -8,7 +8,7 @@ namespace CosmeticsShop.Data.Entities
 {
     public class ProductInCart
     {
-        public int CartId { get; set; }
+        public Guid CartId { get; set; }
         public int ProductId { get; set; }
         public int Quantity { get; set; }
         public decimal ProductPrice { get; set; }

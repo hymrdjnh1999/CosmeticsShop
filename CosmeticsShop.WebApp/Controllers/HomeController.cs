@@ -1,8 +1,10 @@
 ﻿using CosmeticsShop.Api_Intergration;
 using CosmeticsShop.Application.Ultilities;
 using CosmeticsShop.WebApp.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -33,6 +35,13 @@ namespace CosmeticsShop.WebApp.Controllers
             {
                 Slides = slides,
             };
+            var cartJs = HttpContext.Session.GetString("Cart");
+            if (cartJs != null)
+            {
+                var cart = JsonConvert.DeserializeObject(cartJs);
+                ViewBag.Cart = cart;
+            }
+
             ViewBag.Categories = productCategory;
             return View(homeViewModel);
         }

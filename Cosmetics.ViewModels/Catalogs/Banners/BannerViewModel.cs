@@ -11,8 +11,9 @@ namespace Cosmetics.ViewModels.Catalogs.Banners
     public class BannerViewModel
     {
         public int Id { get; set; }
-        [DisplayName("Ảnh")]
+        [DisplayName("Tên")]
         public string Name { get; set; }
+        [DisplayName("Ảnh Bìa")]
         public string ImagePath { get; set; }
         [DisplayName("Mô Tả")]
         public string Description { get; set; }

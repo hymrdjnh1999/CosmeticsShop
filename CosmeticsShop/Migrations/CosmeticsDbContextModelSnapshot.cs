@@ -98,14 +98,11 @@ namespace CosmeticsShop.Data.Migrations
 
             modelBuilder.Entity("CosmeticsShop.Data.Entities.Cart", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ClientId")
+                    b.Property<Guid?>("ClientId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateCreated")
@@ -271,7 +268,7 @@ namespace CosmeticsShop.Data.Migrations
                             Dob = new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "tiendinhdev99@gmail.com",
                             Name = "Voi Bé Nhỏ",
-                            Password = "AQAAAAEAACcQAAAAEIqpTt5VQWMLvU4SyC5n/PdCfB27oAlA5wWAIbL6pViFrYNxJXH7nl1Pm5DDNWNRBw==",
+                            Password = "AQAAAAEAACcQAAAAEKliSfzlYSJrT7EORj3afINfhxCtVKIlhofNAyBd4B2bBVs9bK2CIqYX1Xt5upgl1Q==",
                             PhoneNumber = "0984869201",
                             Status = 2
                         },
@@ -283,7 +280,7 @@ namespace CosmeticsShop.Data.Migrations
                             Dob = new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "test1234@gmail.com",
                             Name = "Do tien dinh",
-                            Password = "AQAAAAEAACcQAAAAECPKjj79HVC0G8BKfzsmkXwCP4dOSZejJ10rV0U18KQX6Y8jVPQmkeUyreDnZoigzg==",
+                            Password = "AQAAAAEAACcQAAAAEF6mzkSB+DbWLUXiTPDbQxQXn1hJd8kx5VAlHchAEkZouzM6XjWawhZMoNMYh4LNVw==",
                             PhoneNumber = "0984869201",
                             Status = 2
                         });
@@ -357,8 +354,14 @@ namespace CosmeticsShop.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<Guid>("ClientId")
+                    b.Property<Guid?>("CartId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ClientId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
@@ -553,12 +556,36 @@ namespace CosmeticsShop.Data.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductImages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Caption = "test",
+                            DateCreated = new DateTime(2021, 5, 31, 20, 5, 33, 979, DateTimeKind.Local).AddTicks(7164),
+                            FileSize = 12345L,
+                            ImagePath = "123123.jpg",
+                            IsDefault = true,
+                            ProductId = 1,
+                            SortOrder = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Caption = "test",
+                            DateCreated = new DateTime(2021, 5, 31, 20, 5, 33, 982, DateTimeKind.Local).AddTicks(2802),
+                            FileSize = 12345L,
+                            ImagePath = "123123.jpg",
+                            IsDefault = true,
+                            ProductId = 2,
+                            SortOrder = 2
+                        });
                 });
 
             modelBuilder.Entity("CosmeticsShop.Data.Entities.ProductInCart", b =>
                 {
-                    b.Property<int>("CartId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CartId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -755,7 +782,7 @@ namespace CosmeticsShop.Data.Migrations
                         new
                         {
                             Id = new Guid("bd5b83d2-5c75-4f96-a63f-1eca425bdfe5"),
-                            ConcurrencyStamp = "71e0d55b-d633-4314-a346-a5ee9bf3d2dd",
+                            ConcurrencyStamp = "dbf3c1fa-a55a-49a3-96f2-4d902bc06a47",
                             Description = "Manager role",
                             Name = "Manager",
                             NormalizedName = "Manager"
@@ -763,7 +790,7 @@ namespace CosmeticsShop.Data.Migrations
                         new
                         {
                             Id = new Guid("efebfd93-b27d-4c91-8a71-74fd71944893"),
-                            ConcurrencyStamp = "308ea5d0-b58f-4a5d-862f-a07e8abbb71f",
+                            ConcurrencyStamp = "2a63ee7e-2392-491f-9318-dfc400f4aac3",
                             Description = "Staff role",
                             Name = "Staff",
                             NormalizedName = "Staff"
@@ -966,7 +993,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = new Guid("1c856746-f8aa-4026-b854-f18da9787cf3"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "417bf621-c5e2-453a-b1af-5f707dc22bd5",
+                            ConcurrencyStamp = "5a2b9bdb-5a12-4beb-93da-e3bd4ec9a0a5",
                             Dob = new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "tiendinhdev99@gmail.com",
                             EmailConfirmed = true,
@@ -974,7 +1001,7 @@ namespace CosmeticsShop.Data.Migrations
                             Name = "Voi Bé Nhỏ",
                             NormalizedEmail = "tiendinhdev99@gmail.com",
                             NormalizedUserName = "manager",
-                            PasswordHash = "AQAAAAEAACcQAAAAECvc4pjMoWfy9XjfGxD0Oo8OGuTniwt2kV3O/pb0rEjm63N0dz4p9qm0VDdCicW3fg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFxmmEGFz73ZlyM7Jvrdoa2xRtS0wQCqiajgG6A7wuIq9aVVSSV2wIX/RiUfdtFI6A==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -984,7 +1011,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = new Guid("d8b63b91-c360-4e3d-9b3a-2dce31f00cc4"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "881f0f9c-9d23-4062-a3d2-ddc660fc5367",
+                            ConcurrencyStamp = "078135d2-b1f0-4451-8fc6-77913c089705",
                             Dob = new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Haianh@gmail.com",
                             EmailConfirmed = true,
@@ -992,7 +1019,7 @@ namespace CosmeticsShop.Data.Migrations
                             Name = "Hải Anh",
                             NormalizedEmail = "Haianh@gmail.com",
                             NormalizedUserName = "haianhmanager",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJYq0v1TtCX3103c5igAE918bP1p0RMCSVI3c1ueLOZkZsfe2G+sMAa+qbMDuZeUnw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIW5lim72bvSTaQnVoUMu8ykid+blL202/BKez8QQS91KB40KGZMwH6XJiatAvPMZg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -1002,7 +1029,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = new Guid("33674f31-0bd2-43cd-9090-3f0d4bab1c58"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0eb55a09-123d-47be-a2db-180d0deb5327",
+                            ConcurrencyStamp = "30f7bebf-6c5d-44b0-93fe-b8daf123406c",
                             Dob = new DateTime(2001, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Tranphuong18032001@gmail.com",
                             EmailConfirmed = true,
@@ -1010,7 +1037,7 @@ namespace CosmeticsShop.Data.Migrations
                             Name = "Thu Phương",
                             NormalizedEmail = "Tranphuong18032001@gmail.com",
                             NormalizedUserName = "tranphuongmanager",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJ3DLDWxp2jc0zJ0fwL84uOJYaFdllTy4e58oppxuWn3QSn2A5wR0djPkcRq4GvK/A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEE0tFsjMAyp7oKlmvrCs4cebfBHI6w4dgroFK4pBWS6M57scki/hO+bNFeBF3OVpIw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -1134,9 +1161,7 @@ namespace CosmeticsShop.Data.Migrations
                 {
                     b.HasOne("CosmeticsShop.Data.Entities.Client", "Client")
                         .WithMany("Carts")
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ClientId");
 
                     b.Navigation("Client");
                 });
@@ -1145,9 +1170,7 @@ namespace CosmeticsShop.Data.Migrations
                 {
                     b.HasOne("CosmeticsShop.Data.Entities.Client", "Client")
                         .WithMany("Orders")
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ClientId");
 
                     b.Navigation("Client");
                 });
