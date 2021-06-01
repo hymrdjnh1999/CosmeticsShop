@@ -122,15 +122,15 @@ namespace CosmeticsShop.Api_Intergration
             return banners;
         }
 
+
         public async Task<PageResponse<BannerViewModel>> GetAllPaging(PaginateRequest request)
         {
-            
+
             var requestUrl = $"/api/banners/paging?pageIndex=" +
               $"{request.PageIndex}&pageSize={request.PageSize}&keyword={request.Keyword}";
             var banners = await GetAsync<PageResponse<BannerViewModel>>(requestUrl);
             return banners;
         }
-
         public async Task<BannerUpdateRequest> GetById(int id)
         {
             var requestUrl = $"/api/banners/{id}";

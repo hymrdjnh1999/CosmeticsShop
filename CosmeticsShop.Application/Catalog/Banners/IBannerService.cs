@@ -16,7 +16,7 @@ namespace CosmeticsShop.Application.Catalog.Banners
         Task<bool?> Delete(int bannerId);
         Task<List<BannerViewModel>> GetAll();
         Task<BannerUpdateRequest> GetById(int bannerId);
-        Task<PageResponse<BannerViewModel>> GetAllPaging(GetBannerPagingRequest request);
+        Task<PageResponse<BannerViewModel>> GetAllPaging(PaginateRequest request);
 
     }
 

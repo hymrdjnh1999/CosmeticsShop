@@ -4,6 +4,7 @@ using Cosmetics.ViewModels.Common;
 using CosmeticsShop.Application.Common;
 using CosmeticsShop.Data.Entities;
 using CosmeticsShop.Data.EntityFrameWork;
+using CosmeticsShop.Data.Enums;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -39,7 +40,9 @@ namespace CosmeticsShop.Application.Catalog.Banners
                 DateCreated = DateTime.Now,
                 FileSize = request.ImageFile.Length,
                 IsDefault = true,
+                IsOutstanding = true,
                 SortOrder = 1,
+                Status = Status.Active,
                 ImagePath = await this.SaveFile(request.ImageFile)
             };
             _context.Banners.Add(banner);
@@ -70,7 +73,8 @@ namespace CosmeticsShop.Application.Catalog.Banners
                 DateCreated = x.DateCreated,
                 Name = x.Name,
                 SortOrder = x.SortOrder,
-                Status = x.Status
+                Status = x.Status,
+                IsOutstanding = x.IsOutstanding
             }).ToListAsync();
 
             return banners;
@@ -86,7 +90,6 @@ namespace CosmeticsShop.Application.Catalog.Banners
             {
                 return null;
             }
-
             var bannerUpdateRequest = new BannerUpdateRequest()
             {
                 Id = banner.Id,
@@ -98,9 +101,6 @@ namespace CosmeticsShop.Application.Catalog.Banners
             };
             return bannerUpdateRequest;
         }
-
-      
-
         public async Task<bool> Update(BannerUpdateRequest request)
         {
             var banner = await _context.Banners.FindAsync(request.Id);
@@ -115,7 +115,6 @@ namespace CosmeticsShop.Application.Catalog.Banners
             _context.Banners.Update(banner);
             await _context.SaveChangesAsync();
             return true;
-
         }
 
         public async Task<bool?> Delete(int id)
@@ -131,7 +130,7 @@ namespace CosmeticsShop.Application.Catalog.Banners
             return true;
         }
 
-        public async Task<PageResponse<BannerViewModel>> GetAllPaging(GetBannerPagingRequest request)
+        public async Task<PageResponse<BannerViewModel>> GetAllPaging(PaginateRequest request)
         {
             int PageIndex = request.PageIndex;
             int PageSize = request.PageSize;
@@ -143,20 +142,20 @@ namespace CosmeticsShop.Application.Catalog.Banners
                 query = query.Where(x => x.Name.Contains(request.Keyword));
             }
             totalRecords = await query.CountAsync();
-            
+
             var data = await query
                 .Select(x => new BannerViewModel()
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Description = x.Description,
-                DateCreated = x.DateCreated,
-                FileSize = x.FileSize,
-                ImagePath = x.ImagePath,
-                IsDefault = x.IsDefault,
-                SortOrder = x.SortOrder,
-                Status = x.Status
-            }).Skip((PageIndex - 1) * PageSize)
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Description = x.Description,
+                    DateCreated = x.DateCreated,
+                    FileSize = x.FileSize,
+                    ImagePath = x.ImagePath,
+                    IsDefault = x.IsDefault,
+                    SortOrder = x.SortOrder,
+                    Status = x.Status
+                }).Skip((PageIndex - 1) * PageSize)
                 .Take(PageSize).ToListAsync();
             var response = new PageResponse<BannerViewModel>()
             {
@@ -168,7 +167,7 @@ namespace CosmeticsShop.Application.Catalog.Banners
             return response;
         }
 
-        
+
     }
 
     
