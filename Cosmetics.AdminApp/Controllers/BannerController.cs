@@ -27,42 +27,45 @@ namespace Cosmetics.AdminApp.Controllers
                 PageIndex = pageIndex,
                 PageSize = pageSize
             };
-
-            var banners = await _bannerApiClient.GetAllPaging(paginateRequest);
+            var data = await _bannerApiClient.GetAllPaging(paginateRequest);
             ViewBag.Keyword = paginateRequest.Keyword;
+            
 
             if (TempData["result"] != null)
             {
                 ViewBag.SuccessMsg = TempData["result"];
             }
-
-            return View(banners);
+            return View(data);
         }
-
+        
         [HttpGet("banner/create")]
         public IActionResult Create()
         {
-
+            if (!ModelState.IsValid )
+            {
+                return RedirectToAction("Error", "Home");
+            }
             return View();
         }
 
         [HttpPost("banner/create")]
+        [Consumes("multipart/form-data")]
         public async Task<IActionResult> Create(BannerCreateRequest request)
         {
             if (!ModelState.IsValid)
             {
+                /* return RedirectToAction("Error", "Home");*/
                 return View(request);
-            }
 
+            }
             var result = await _bannerApiClient.Create(request);
 
-            if (result )
+            if (!result )
             {
-                TempData["result"] = "Tạo ảnh bìa thành công!";
-                return RedirectToAction("Index");
+                return View(request);
             }
-            ModelState.AddModelError("", "Tạo ảnh bìa thất bại!");
-            return View(request);
+            TempData["result"] = "Thêm ảnh thành công!";
+            return LocalRedirect($"/Banner");
         }
 
         [HttpGet("banner/{id}")]
@@ -139,4 +142,4 @@ namespace Cosmetics.AdminApp.Controllers
 
 
 }
-}
+

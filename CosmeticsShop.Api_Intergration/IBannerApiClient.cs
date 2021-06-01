@@ -14,9 +14,9 @@ namespace CosmeticsShop.Api_Intergration
 
         Task<PageResponse<BannerViewModel>> GetAllPaging(PaginateRequest request);
 
-        Task<int> Create(BannerCreateRequest request);
+        Task<bool> Create(BannerCreateRequest request);
         Task<bool> Edit(BannerUpdateRequest request);
-        Task<BannerViewModel> GetById(int id);
+        Task<BannerUpdateRequest> GetById(int id);
         Task<bool> Delete(int id);
     }
 }

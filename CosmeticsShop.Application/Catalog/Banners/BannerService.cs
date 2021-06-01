@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace CosmeticsShop.Application.Catalog.Banners
 {
-    class BannerService : IBannerService
+    public class BannerService : IBannerService
     {
         private readonly CosmeticsDbContext _context;
         private readonly IStorageService _storageService;
@@ -34,6 +34,7 @@ namespace CosmeticsShop.Application.Catalog.Banners
             }
             var banner = new Banner()
             {
+                Name = request.Name,
                 Description = request.Description ?? "Banner Images",
                 DateCreated = DateTime.Now,
                 FileSize = request.ImageFile.Length,
@@ -55,7 +56,7 @@ namespace CosmeticsShop.Application.Catalog.Banners
             return fileName;
         }
 
-      
+
 
         public async Task<List<BannerViewModel>> GetAll()
         {
@@ -67,7 +68,7 @@ namespace CosmeticsShop.Application.Catalog.Banners
                 Description = x.Description,
                 IsDefault = x.IsDefault,
                 DateCreated = x.DateCreated,
-
+                Name = x.Name,
                 SortOrder = x.SortOrder,
                 Status = x.Status
             }).ToListAsync();
@@ -76,39 +77,9 @@ namespace CosmeticsShop.Application.Catalog.Banners
         }
 
 
-       /* public async Task<PageResponse<BannerViewModel>> GetAllPaging(int bannerId, QueryParamRequest request)
-        {
-            var banner = await _context.Banners.Where(x => x.Id == bannerId).FirstOrDefaultAsync();
 
-            if (banner == null)
-            {
-                return null;
-            }
 
-            var query = from b in _context.Banners where b.Id == bannerId select b;
-            var records = await query.CountAsync();
-            var banners = await query.Select(x => new BannerViewModel()
-            {
-                Id = x.Id,
-                Description = x.Description,
-                DateCreated = x.DateCreated,
-                FileSize = x.FileSize,
-                ImagePath = x.ImagePath,
-                IsDefault = x.IsDefault,
-                SortOrder = x.SortOrder,
-                Status = x.Status
-            }).Skip((request.PageIndex - 1) * request.PageSize).Take(request.PageSize).ToListAsync();
-            var response = new PageResponse<BannerViewModel>()
-            {
-                Items = banners,
-                PageIndex = request.PageIndex,
-                PageSize = request.PageSize,
-                TotalRecords = records
-            };
-            return response;
-        }*/
-
-        public async Task<BannerViewModel> GetById(int id)
+        public async Task<BannerUpdateRequest> GetById(int id)
         {
             var banner = await _context.Banners.FindAsync(id);
             if (banner == null)
@@ -116,15 +87,16 @@ namespace CosmeticsShop.Application.Catalog.Banners
                 return null;
             }
 
-            var bannerViewModel = new BannerViewModel()
+            var bannerUpdateRequest = new BannerUpdateRequest()
             {
                 Id = banner.Id,
+                Name = banner.Name,
                 ImagePath = banner.ImagePath,
                 Description = banner.Description,
                 SortOrder = banner.SortOrder,
                 Status = banner.Status
             };
-            return bannerViewModel;
+            return bannerUpdateRequest;
         }
 
       
@@ -146,7 +118,7 @@ namespace CosmeticsShop.Application.Catalog.Banners
 
         }
 
-        public async Task<bool> Delete(int id)
+        public async Task<bool?> Delete(int id)
         {
             var banner = await _context.Banners.FindAsync(id);
             if (banner == null)
@@ -159,17 +131,21 @@ namespace CosmeticsShop.Application.Catalog.Banners
             return true;
         }
 
-        public async Task<PageResponse<BannerViewModel>> GetAllPaging(PaginateRequest request)
+        public async Task<PageResponse<BannerViewModel>> GetAllPaging(GetBannerPagingRequest request)
         {
+            int PageIndex = request.PageIndex;
+            int PageSize = request.PageSize;
+            var totalRecords = 0;
             var query = from b in _context.Banners select b;
 
             if (request.Keyword != null)
             {
                 query = query.Where(x => x.Name.Contains(request.Keyword));
             }
-            var totalRecords = await query.CountAsync();
+            totalRecords = await query.CountAsync();
             
-            var banners = await query.Select(x => new BannerViewModel()
+            var data = await query
+                .Select(x => new BannerViewModel()
             {
                 Id = x.Id,
                 Name = x.Name,
@@ -180,16 +156,19 @@ namespace CosmeticsShop.Application.Catalog.Banners
                 IsDefault = x.IsDefault,
                 SortOrder = x.SortOrder,
                 Status = x.Status
-            }).Skip((request.PageIndex - 1) * request.PageSize).Take(request.PageSize).ToListAsync();
+            }).Skip((PageIndex - 1) * PageSize)
+                .Take(PageSize).ToListAsync();
             var response = new PageResponse<BannerViewModel>()
             {
-                Items = banners,
-                PageIndex = request.PageIndex,
-                PageSize = request.PageSize,
-                TotalRecords = totalRecords
+                Items = data,
+                TotalRecords = totalRecords,
+                PageIndex = PageIndex,
+                PageSize = PageSize
             };
             return response;
         }
+
+        
     }
 
     

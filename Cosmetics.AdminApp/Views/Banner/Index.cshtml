@@ -2,7 +2,7 @@
 @using CosmeticsShop.Data.Enums;
 @model PageResponse<Cosmetics.ViewModels.Catalogs.Banners.BannerViewModel>
 @{
-    ViewData["Title"] = "Quản Lý Ảnh Bìa";
+    ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -57,13 +57,13 @@
                             <th scope="col" style="flex:0.3">
                                 Tên
                             </th>
-                            <th scope="col" style="flex:1">
+                            <th scope="col" style="flex:0.5">
                                 Ảnh Bìa
                             </th>
-                            <th scope="col" style="flex:0.3">
+                            <th scope="col" style="flex:0.5">
                                 Mô Tả
                             </th>
-                            <th style="flex: 0.2" scope="col">
+                            <th style="flex: 0.3" scope="col">
                                 Tác Vụ
                             </th>
                         </tr>
@@ -75,17 +75,19 @@
                                 <td style="flex:0.1">
                                     @Html.DisplayFor(modelItem => item.Id)
                                 </td>
-                                <td style="1">
-                                    <img width="100%" height="80px" src="@Configuration["BaseImageAddress"]@item.ImagePath" alt="@item.Description" />
-                                </td>
                                 <td style="flex:0.3">
 
                                     <a href="#" onclick="editBanner(@item.Id)">
                                         @item.Name
                                     </a>
-                                </td><td style="flex:0.3">
+                                </td>
+                                <td style="1">
+                                    <img width="100%" height="80px" src="@Configuration["BaseImageAddress"]@item.ImagePath" alt="@item.Description" />
+                                </td>
 
-                                    <a href="#" >
+                                <td style="flex:0.3">
+
+                                    <a href="#">
                                         @item.Description
                                     </a>
                                 </td>

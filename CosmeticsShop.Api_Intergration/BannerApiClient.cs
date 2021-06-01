@@ -3,6 +3,7 @@ using Cosmetics.ViewModels.Catalogs.Banners;
 using Cosmetics.ViewModels.Common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace CosmeticsShop.Api_Intergration
 {
-    public class BannerApiClient : BaseApiClient,IBannerApiClient
+    public class BannerApiClient : BaseApiClient, IBannerApiClient
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IConfiguration _configuration;
@@ -49,48 +50,94 @@ namespace CosmeticsShop.Api_Intergration
                 ByteArrayContent bytes = new ByteArrayContent(data);
                 requestContent.Add(bytes, "imageFile", request.ImageFile.FileName);
             }
+            
+            var nameJs = new StringContent(request.Name.ToString());
+            requestContent.Add(nameJs, "name");
+            var descriptionJs = new StringContent((request.Description ?? "").ToString());
+            requestContent.Add(descriptionJs, "description");
 
-            var contentJs = new StringContent((request.Description ?? "").ToString());
-            requestContent.Add(contentJs, "description");
 
-
-            var response = await client.PostAsync($"/api/banners/{request.BannerId}", requestContent);
+            var response = await client.PostAsync($"/api/banners/create", requestContent);
             if (response.IsSuccessStatusCode)
-            {return true;
-
-            }
-                
+                return true;
 
             return false;
 
         }
 
-        public Task<bool> Delete(int id)
+        public async Task<bool> Delete(int id)
         {
-            throw new NotImplementedException();
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var sessions = _httpContextAccessor.HttpContext.Session.GetString("Token");
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+            var response = await client.DeleteAsync($"/api/banners/{id}");
+
+            if (response.IsSuccessStatusCode)
+                return true;
+
+            return false;
         }
 
-        public Task<bool> Edit(BannerUpdateRequest request)
+        public async Task<bool> Edit(BannerUpdateRequest request)
         {
-            throw new NotImplementedException();
+            var sessions = _httpContextAccessor
+             .HttpContext
+             .Session
+             .GetString(SystemConstants.AppSettings.Token);
+
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration[SystemConstants.AppSettings.BaseAddress]);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+
+            var requestContent = new MultipartFormDataContent();
+
+            var nameJs = new StringContent(request.Name.ToString());
+            requestContent.Add(nameJs, "name");
+
+            if (request.ImageFile != null)
+            {
+                byte[] data;
+                using (var br = new BinaryReader(request.ImageFile.OpenReadStream()))
+                {
+                    data = br.ReadBytes((int)request.ImageFile.OpenReadStream().Length);
+                }
+                ByteArrayContent bytes = new ByteArrayContent(data);
+                requestContent.Add(bytes, "imageFile", request.ImageFile.FileName);
+            }
+            
+            var descriptionJs = new StringContent((request.Description ?? "").ToString());
+            requestContent.Add(descriptionJs, "description");
+
+
+            var response = await client.PutAsync($"/api/banners/{request.Id}", requestContent);
+
+            return response.IsSuccessStatusCode;
         }
 
         public async Task<List<BannerViewModel>> GetAll()
         {
-            var banners = await GetAsync<List<BannerViewModel>>("/api/banner");
+            var banners = await GetAsync<List<BannerViewModel>>("/api/banners");
             return banners;
         }
 
         public async Task<PageResponse<BannerViewModel>> GetAllPaging(PaginateRequest request)
         {
-            var requestUrl = $"/api/products/banner/pageSize={request.PageSize}&pageIndex={request.PageIndex}";
-            var data = await GetAsync<PageResponse<BannerViewModel>>(requestUrl);
-            return data;
+            
+            var requestUrl = $"/api/banners/paging?pageIndex=" +
+              $"{request.PageIndex}&pageSize={request.PageSize}&keyword={request.Keyword}";
+            var banners = await GetAsync<PageResponse<BannerViewModel>>(requestUrl);
+            return banners;
         }
 
-        public Task<BannerViewModel> GetById(int id)
+        public async Task<BannerUpdateRequest> GetById(int id)
         {
-            throw new NotImplementedException();
+            var requestUrl = $"/api/banners/{id}";
+
+            var banner = await GetAsync<BannerUpdateRequest>(requestUrl);
+
+            return banner;
         }
     }
 }

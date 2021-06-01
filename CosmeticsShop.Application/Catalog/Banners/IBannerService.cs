@@ -13,10 +13,10 @@ namespace CosmeticsShop.Application.Catalog.Banners
 
         Task<int> Create(BannerCreateRequest request);
         Task<bool> Update(BannerUpdateRequest request);
-        Task<bool> Delete(int bannerId);
+        Task<bool?> Delete(int bannerId);
         Task<List<BannerViewModel>> GetAll();
-        Task<BannerViewModel> GetById(int bannerId);
-        Task<PageResponse<BannerViewModel>> GetAllPaging(PaginateRequest request);
+        Task<BannerUpdateRequest> GetById(int bannerId);
+        Task<PageResponse<BannerViewModel>> GetAllPaging(GetBannerPagingRequest request);
 
     }
 
