@@ -83,35 +83,40 @@ namespace CosmeticsShop.Application.Catalog.Banners
 
 
 
-        public async Task<BannerUpdateRequest> GetById(int id)
+        public async Task<BannerViewModel> GetById(int id)
         {
-            var banner = await _context.Banners.FindAsync(id);
-            if (banner == null)
-            {
-                return null;
-            }
-            var bannerUpdateRequest = new BannerUpdateRequest()
+            var banner = await _context.Banners.FirstOrDefaultAsync(x => x.Id == id);
+            if (banner == null) return null;
+            var bannerViewModel = new BannerViewModel()
             {
                 Id = banner.Id,
-                Name = banner.Name,
-                ImagePath = banner.ImagePath,
                 Description = banner.Description,
-                SortOrder = banner.SortOrder,
-                Status = banner.Status
+                DateCreated = banner.DateCreated,
+                FileSize = banner.FileSize,
+                ImagePath = banner.ImagePath,
+                IsDefault = banner.IsDefault,
+                Name = banner.Name,
+                Status = banner.Status,
+                SortOrder = banner.SortOrder
             };
-            return bannerUpdateRequest;
+            return bannerViewModel;
         }
         public async Task<bool> Update(BannerUpdateRequest request)
         {
             var banner = await _context.Banners.FindAsync(request.Id);
-
             if (banner == null)
             {
                 return false;
             }
+            banner.Id = request.Id;
             banner.Name = request.Name;
-            banner.ImagePath = request.ImagePath;
             banner.Description = request.Description;
+            if (request.ImageFile != null)
+            {
+                banner.FileSize = request.ImageFile.Length;
+                banner.ImagePath = await SaveFile(request.ImageFile);
+            }
+
             _context.Banners.Update(banner);
             await _context.SaveChangesAsync();
             return true;

@@ -66,6 +66,23 @@ namespace Cosmetics.WebAPI.Controllers
             var banners = await _bannerService.GetAll(request);
             return Ok(banners);
         }*/
+
+
+        [HttpPut("banner/{id}")]
+        [Authorize]
+        public async Task<IActionResult> Update( BannerUpdateRequest request)
+        {
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var affectedResult = await _bannerService.Update(request);
+            if (affectedResult == false)
+            {
+                return BadRequest();
+            }
+
+            return Ok("Updated");
+        }
         [HttpGet("{id}")]
         [Authorize]
 

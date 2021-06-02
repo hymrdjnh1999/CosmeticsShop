@@ -68,8 +68,8 @@ namespace Cosmetics.AdminApp.Controllers
             return View(request);
         }
 
-        [HttpGet("banner/{id}")]
-        public async Task<IActionResult> Edit(int id)
+        /*[HttpGet("banner/{id}")]
+        public async Task<IActionResult> Update(int id)
         {
 
             var banner = await _bannerApiClient.GetById(id);
@@ -81,20 +81,41 @@ namespace Cosmetics.AdminApp.Controllers
                 Id = id, 
                 Name = banner.Name,
                 Description = banner.Description,
-                ImagePath = banner.ImagePath
+*//*                ImagePath = banner.ImagePath
+*//*            };
+            return View(model);
+        }*/
+
+        [HttpGet("banner/{bannerId}")]
+        public async Task<IActionResult> Update(int bannerId)
+        {
+
+            if (!ModelState.IsValid || bannerId == 0 )
+            {
+                return RedirectToAction("Error", "Home");
+            }
+            var banner = await _bannerApiClient.GetById(bannerId);
+            if (banner == null)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+            var model = new BannerUpdateRequest()
+            {
+                Id = bannerId,
+                Description = banner.Description,
+                Name = banner.Name
             };
             return View(model);
         }
-
-        [HttpPost("banner/{id}")]
-        public async Task<IActionResult> Edit(BannerUpdateRequest request)
+        [HttpPost("banner/{bannerId}")]
+        public async Task<IActionResult> Update(BannerUpdateRequest request)
         {
             if (!ModelState.IsValid)
             {
                 return View(request);
             }
 
-            var result = await _bannerApiClient.Edit(request);
+            var result = await _bannerApiClient.Update(request);
 
             if (result)
             {
@@ -103,6 +124,7 @@ namespace Cosmetics.AdminApp.Controllers
             }
             ModelState.AddModelError("", "Cập nhật ảnh bìa thất bại!");
             return View(request);
+            
         }
         [HttpDelete]
         public async Task Delete(int id)
