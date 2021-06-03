@@ -23,29 +23,29 @@
     <link rel="shortcut icon" href="//cdn.shopify.com/s/files/1/0003/8718/6741/files/favicon_fc3d6d9d-ad9e-4948-ab41-e7c8af30e908_32x32.png?v=1589251208" type="image/png">
 </head>
 <body>
-    @* Header *@
-    @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">*@
+	@* Header *@
+	@*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">*@
 
-    <div class="pageContainer">
-        <div id="shopify-section-announcement" class="shopify-section">
-            <div id="section-announcement" class="announcementBar__Wrapper">
-                <div class="announcementBar">
-                    <p class="announcement__content justify-content-center text-center">HOLIDAY SALES - MỸ PHẨM GIVENCHY & MAKE UP FOR EVER SIÊU GIẢM GIÁ 50%</p>
-                </div>
-            </div>
-        </div>
-        <div id="shopify-section-header" class="shopify-section shopify-section--header">
-            <div class="header__wrapper d-flex">
-                @* Search *@
-                <div class="select select__transparent" style=" padding-left: -40px;">
-                    <ul class="horizontalList horizontalList__spacing">
-                        <li class="horizontalList__item">
-                            <a href="#" data-action="open-modal" aria-controls="search">
-                                Tìm Sản Phẩm
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+	<div class="pageContainer">
+		<div id="shopify-section-announcement" class="shopify-section">
+			<div id="section-announcement" class="announcementBar__Wrapper">
+				<div class="announcementBar">
+					<p class="announcement__content justify-content-center text-center">HOLIDAY SALES - MỸ PHẨM GIVENCHY & MAKE UP FOR EVER SIÊU GIẢM GIÁ 50%</p>
+				</div>
+			</div>
+		</div>
+		<div id="shopify-section-header" class="shopify-section shopify-section--header">
+			<div class="header__wrapper d-flex">
+				@* Search *@
+				@*<div class="select select__transparent" style=" padding-left: -40px;">
+		<ul class="horizontalList horizontalList__spacing">
+		<li class="horizontalList__item">
+		<a href="#" data-action="open-modal" aria-controls="search">
+		Tìm Sản Phẩm
+		</a>
+		</li>
+		</ul>
+		</div>*@
 
                 @* Logo *@
                 <div class="header__logo" style="justify-content: center; align-items: center;">
@@ -117,141 +117,152 @@
                             </div>
                         </li>*@
 
-                    <li class="horizontalList__item--nav">
-                        <a href="#" class="heading">NƯỚC HOA</a>
-                    </li>
 
-                    <li class="horizontalList__item--nav">
-                        <a href="#" class="heading">TRANG ĐIỂM</a>
-                    </li>
-                    <li class="horizontalList__item--nav">
-                        <a href="#" class="heading">CHĂM SÓC DA</a>
-                    </li>
-                    <li class="horizontalList__item--nav">
-                        <a href="#" class="heading">KHUYẾN MÃI</a>
-                    </li>
-                    <li class="horizontalList__item--nav">
-                        <a href="#" class="heading">XU HƯỚNG</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
+					<li class="horizontalList__item--nav">
+						<a href="#" class="heading">	NƯỚC HOA</a>
+					</li>
+					<li class="horizontalList__item--nav">
+						<a href="#" class="heading">TRANG ĐIỂM</a>
+					</li>
+					<li class="horizontalList__item--nav">
+						<a href="#" class="heading">CHĂM SÓC DA</a>
+					</li>
+					@*	<li class="dropdown lh-54 horizontallist__item--nav">
+	 	<a href="#" class="heading">chăm sóc da</a>
+	 	<div class="dropdown-content">
+	 	<a href="#">chăm sóc da mặt</a>
+	 	<a href="#">chăm sóc da mặt</a>
+	 	<a href="#">chăm sóc da mặt</a>
+	 	<a href="#">chăm sóc da mặt</a>
 
-    @*</nav>*@
-    @* header end==================================================================================================================================== *@
-    @RenderSection("slider", required: false)
-    <div>
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+	 	</div>
+	 	</li>*@
+
+					<li class="horizontalList__item--nav">
+						<a href="#" class="heading">KHUYẾN MÃI</a>
+					</li>
+					<li class="horizontalList__item--nav">
+						<a href="#" class="heading">XU HƯỚNG</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	@*</nav>*@
+	@* header end==================================================================================================================================== *@
+	@RenderSection("slider", required: false)
+	<div>
+		<main role="main" class="pb-3">
+			@RenderBody()
+		</main>
+	</div>
 
 
 
 
-    @* Container start ====================================================================================================================================*@
+	@* Container start ====================================================================================================================================*@
 
-    @* Container end ==================================================================================================================================== *@
-
-
+	@* Container end ==================================================================================================================================== *@
 
 
 
-    @* footer end==================================================================================================================================== *@
-    <div id="shopify-section-footer" class="shopify-section shopify-section--footer">
-        <div class="footer_Container">
-            <div class="footer_conent">
-                <div class="footer__inner">
-                    <div class="footer__block footer__block--links col l-4 m-12 c-12">
-                        <h2 class="footer__title">VỀ PARIS FRANCE BEAUTY</h2>
-                        <ul class="linklist">
-                            <li class="linklist__Item">
-                                <a href="#" class="link link--primary">Lịch Sử Thương Hiệu</a>
-                            </li>
-                            <li class="linklist__Item">
-                                <a href="#" class="link link--primary">Ưu Đãi Tặng Đối Tác</a>
-                            </li>
-                            <li class="linklist__Item">
-                                <a href="#" class="link link--primary">Thông Tin Liên Hệ </a>
-                            </li>
-                            <li class="linklist__Item">
-                                <a href="#" class="link link--primary">Danh Sách Cửa Hàng</a>
-                            </li>
-                            <li class="linklist__Item">
-                                <a href="#" class="link link--primary">Nộp Đơn Xin Việc</a>
-                            </li>
-                            <li class="linklist__Item">
-                                <a href="#" class="link link--primary">Hợp Tác Kinh Doanh</a>
-                            </li>
-                        </ul>
-                    </div>
 
-                    <div class="footer__block footer__block--links col l-4 m-12 c-12">
-                        <h2 class="footer__title">QUY ĐỊNH & CHÍNH SÁCH</h2>
-                        <ul class="linklist">
-                            <li class="linklist__Item">
-                                <a href="#" class="link link--primary">Chính Sách & Quy Định Chung</a>
-                            </li>
-                            <li class="linklist__Item">
-                                <a href="#" class="link link--primary">Chính Sách Bảo Mật</a>
-                            </li>
-                            <li class="linklist__Item">
-                                <a href="#" class="link link--primary">Chính Sách Đổi Trả & Hoàn Tiền</a>
-                            </li>
-                            <li class="linklist__Item">
-                                <a href="#" class="link link--primary">Chính Sách Vận Chuyển</a>
-                            </li>
-                            <li class="linklist__Item">
-                                <a href="#" class="link link--primary">Quy Định & Hình Thức Thanh Toán</a>
-                            </li>
-                        </ul>
-                    </div>
 
-                    <div class="footer__block footer__block--text col l-4 m-12 c-12">
-                        <h2 class="footer__title">GIẤY PHÉP KINH DOANH</h2>
-                        <div class="footer__content rte">
-                            <p>
-                                "Tất cả sản phẩm của PARIS FRANCE BEAUTY được độc quyền phân phối chính hãng bởi CÔNG TY TNHH TMDV&nbsp;
-                                PHƯƠNG PHÁT."<br><br>"VPĐD: SAIGON TRADE CENTER - Phòng 609-610, 37 Tôn Đức Thắng, P. Bến Nghé, Q.1, Tp.&nbsp;HCM."
-                                <br><br><strong>Email:</strong> <a href="mailto:parisfrance@phuongphat.com" title="mailto:parisfrance@phuongphat.com">
-                                    parisfrance@phuongphat.com
-                                </a><br><br><strong>Hotline:</strong>&nbsp;(+84) <strong>7838 109 06</strong>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="bct-section">
-                    <a href="http://online.gov.vn/HomePage/CustomWebsiteDisplay.aspx?DocId=51903">
-                        <img alt="Đã Thông Báo Bộ Công Thương" src="~/images/BoCongThuong.png">
-                    </a>
-                </div>
-                <div class="footer-aside d-flex" style="padding-top: 5px;">
-                    <div style="margin-right: -90px;">
-                        <a href="#">
-                            <img class="img--footer" src="~/images/Amex.png" />
-                        </a>
-                    </div>
-                    <div style="margin-right: -90px;">
-                        <a href="#">
-                            <img class="img--footer" src="~/images/JCB.png" />
-                        </a>
-                    </div>
-                    <div style="margin-right: -90px;">
-                        <a href="#">
-                            <img class="img--footer" src="~/images/Mastercard.png" />
-                        </a>
-                    </div>
-                    <div style="margin-right: -90px;">
-                        <a href="#">
-                            <img class="img--footer" src="~/images/visa.png" />
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    @* footer end==================================================================================================================================== *@
+	@* footer end==================================================================================================================================== *@
+	<div id="shopify-section-footer" class="shopify-section shopify-section--footer">
+		<div class="footer_Container">
+			<div class="footer_conent">
+				<div class="footer__inner">
+					<div class="footer__block footer__block--links col l-4 m-12 c-12">
+						<h2 class="footer__title">VỀ PARIS FRANCE BEAUTY</h2>
+						<ul class="linklist">
+							<li class="linklist__Item">
+								<a href="#" class="link link--primary">Lịch Sử Thương Hiệu</a>
+							</li>
+							<li class="linklist__Item">
+								<a href="#" class="link link--primary">Ưu Đãi Tặng Đối Tác</a>
+							</li>
+							<li class="linklist__Item">
+								<a href="#" class="link link--primary">Thông Tin Liên Hệ </a>
+							</li>
+							<li class="linklist__Item">
+								<a href="#" class="link link--primary">Danh Sách Cửa Hàng</a>
+							</li>
+							<li class="linklist__Item">
+								<a href="#" class="link link--primary">Nộp Đơn Xin Việc</a>
+							</li>
+							<li class="linklist__Item">
+								<a href="#" class="link link--primary">Hợp Tác Kinh Doanh</a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="footer__block footer__block--links col l-4 m-12 c-12">
+						<h2 class="footer__title">QUY ĐỊNH & CHÍNH SÁCH</h2>
+						<ul class="linklist">
+							<li class="linklist__Item">
+								<a href="#" class="link link--primary">Chính Sách & Quy Định Chung</a>
+							</li>
+							<li class="linklist__Item">
+								<a href="#" class="link link--primary">Chính Sách Bảo Mật</a>
+							</li>
+							<li class="linklist__Item">
+								<a href="#" class="link link--primary">Chính Sách Đổi Trả & Hoàn Tiền</a>
+							</li>
+							<li class="linklist__Item">
+								<a href="#" class="link link--primary">Chính Sách Vận Chuyển</a>
+							</li>
+							<li class="linklist__Item">
+								<a href="#" class="link link--primary">Quy Định & Hình Thức Thanh Toán</a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="footer__block footer__block--text col l-4 m-12 c-12">
+						<h2 class="footer__title">GIẤY PHÉP KINH DOANH</h2>
+						<div class="footer__content rte">
+							<p>
+								"Tất cả sản phẩm của PARIS FRANCE BEAUTY được độc quyền phân phối chính hãng bởi CÔNG TY TNHH TMDV&nbsp;
+								PHƯƠNG PHÁT."<br><br>"VPĐD: SAIGON TRADE CENTER - Phòng 609-610, 37 Tôn Đức Thắng, P. Bến Nghé, Q.1, Tp.&nbsp;HCM."
+								<br><br><strong>Email:</strong> <a href="mailto:parisfrance@phuongphat.com" title="mailto:parisfrance@phuongphat.com">
+									parisfrance@phuongphat.com
+								</a><br><br><strong>Hotline:</strong>&nbsp;(+84) <strong>7838 109 06</strong>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="bct-section">
+					<a href="http://online.gov.vn/HomePage/CustomWebsiteDisplay.aspx?DocId=51903">
+						<img alt="Đã Thông Báo Bộ Công Thương" src="~/images/BoCongThuong.png">
+					</a>
+				</div>
+				<div class="footer-aside d-flex" style="padding-top: 5px;">
+					<div style="margin-right: -90px;">
+						<a href="#">
+							<img class="img--footer" src="~/images/Amex.png" />
+						</a>
+					</div>
+					<div style="margin-right: -90px;">
+						<a href="#">
+							<img class="img--footer" src="~/images/JCB.png" />
+						</a>
+					</div>
+					<div style="margin-right: -90px;">
+						<a href="#">
+							<img class="img--footer" src="~/images/Mastercard.png" />
+						</a>
+					</div>
+					<div style="margin-right: -90px;">
+						<a href="#">
+							<img class="img--footer" src="~/images/visa.png" />
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	@* footer end==================================================================================================================================== *@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
