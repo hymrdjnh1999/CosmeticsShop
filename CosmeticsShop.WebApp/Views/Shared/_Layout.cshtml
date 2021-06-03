@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var isLogin = ViewBag.IsLogin;
+
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -11,6 +16,7 @@
     <link rel="stylesheet" href="~/css/loginFrom.css" />
     <link rel="stylesheet" href="~/css/registerFrom.css" />
     <link rel="stylesheet" href="~/css/cartDetail.css" />
+    <link rel="stylesheet" href="~/css/index.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <script src="https://kit.fontawesome.com/c0378fb81e.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&display=swap" rel="stylesheet">
@@ -50,10 +56,34 @@
                 </div>
                 @* Horizontal List *@
                 <div class="header__mainnav">
-                    <ul class="horizontalList horizontalList__spacing">
-                        <li class="horizontalList__item">
-                            @Html.ActionLink("Tài khoản", "Login", "User")
-                        </li>
+                    <ul class="horizontalList horizontalList__spacing d-flex items-center">
+                        @if (isLogin == null || !isLogin)
+                        {
+                            <li class="horizontalList__item">
+                                @Html.ActionLink("Tài khoản", "Login", "User")
+                            </li>
+                        }
+                        else
+                        {
+                            var avatar = ViewBag.Avatar;
+                            var userName = ViewBag.Name;
+
+                            <div class="d-flex align-items-center position-relative">
+                                <img class="rounded-circle mr-2 user-avatar" src="@avatar" />
+                                <span class="font-weight-bold user-name" >@userName</span>
+                                <ul class="user-menu position-absolute">
+                                    <li class="user-menu-items">
+                                       <a href="#" class="user-menu-link">Thông tin cá nhân</a>
+                                    </li>
+                                    <li class="user-menu-items">
+                                        <a href="#" class="user-menu-link">Đơn hàng của tôi</a>
+                                    </li>
+                                    <li class="user-menu-items">
+                                        <a href="/user/Logout" class="user-menu-link">Đăng xuất</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        }
                         @*<li class="horizontalList__item">
                                 <a href="#" data-action="open-modal" aria-controls="search">Tìm Sản Phẩm</a>
                             </li>*@

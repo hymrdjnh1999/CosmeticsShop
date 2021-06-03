@@ -43,8 +43,11 @@ namespace CosmeticsShop.Application.Systems.Clients
             {
                 var claims = new[]
                 {
-                    new Claim(ClaimTypes.Email,request.Email),
-                    new Claim(ClaimTypes.Name,client.Name),
+                    new Claim("PhoneNumber",client.PhoneNumber),
+                    new Claim("Dob",client.Dob.ToString()),
+                    new Claim("Avatar",client.Avatar),
+                    new Claim("Email",request.Email),
+                    new Claim("Name",client.Name),
                     new Claim("Id",client.Id.ToString())
                 };
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]));

@@ -20,7 +20,7 @@ using System.Threading.Tasks;
 
 namespace CosmeticsShop.WebApp.Controllers
 {
-    public class UserController : Controller
+    public class UserController : ClientBaseController
     {
         private readonly IConfiguration _config;
         private readonly IClientApi _clientApi;
@@ -42,6 +42,7 @@ namespace CosmeticsShop.WebApp.Controllers
         [HttpGet]
         public IActionResult Login()
         {
+
             var sessions = HttpContext.Session.GetString("Token");
             if (sessions != null)
             {
@@ -53,6 +54,8 @@ namespace CosmeticsShop.WebApp.Controllers
                 var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(cartJs);
                 ViewBag.Cart = cart;
             }
+
+
 
             return View();
         }
@@ -103,6 +106,7 @@ namespace CosmeticsShop.WebApp.Controllers
         [HttpGet]
         public IActionResult Register()
         {
+
             var cartJs = HttpContext.Session.GetString("Cart");
             if (cartJs != null)
             {

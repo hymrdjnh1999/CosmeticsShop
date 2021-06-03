@@ -99,6 +99,7 @@ namespace CosmeticsShop.WebApp
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
         }
     }
 }
