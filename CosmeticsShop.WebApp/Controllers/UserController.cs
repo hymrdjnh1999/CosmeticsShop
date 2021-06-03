@@ -47,6 +47,12 @@ namespace CosmeticsShop.WebApp.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
+            var cartJs = HttpContext.Session.GetString("Cart");
+            if (cartJs != null)
+            {
+                var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(cartJs);
+                ViewBag.Cart = cart;
+            }
 
             return View();
         }
@@ -93,6 +99,12 @@ namespace CosmeticsShop.WebApp.Controllers
         [HttpGet]
         public IActionResult Register()
         {
+            var cartJs = HttpContext.Session.GetString("Cart");
+            if (cartJs != null)
+            {
+                var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(cartJs);
+                ViewBag.Cart = cart;
+            }
             var sessions = HttpContext.Session.GetString("Token");
             if (sessions != null)
             {
