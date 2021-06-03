@@ -8,8 +8,12 @@ body {
     margin-bottom: -60px;
 }
 
+
 /* Header */
+
+
 /* Announcement Bar*/
+
 #section-announcement {
     background: #da2131;
     color: #f2f3cf;
@@ -51,14 +55,12 @@ body {
     border-bottom: 1px solid #ccc;
 }
 
-
 .header__wrapper {
     font-family: "Space Grotesk", sans-serif;
     align-items: center;
     justify-content: space-between;
     padding: 15px 50px 13px 50px;
 }
-
 
 .select {
     position: relative;
@@ -80,6 +82,8 @@ body {
 }
 
 
+/* Search */
+
 #search {
     width: 250px;
     height: 38px;
@@ -92,7 +96,6 @@ body {
     font-weight: 500;
 }
 
-
 #btnSearch {
     width: 18px;
     height: 18px;
@@ -104,7 +107,6 @@ body {
     color: #cfa247;
     cursor: pointer;
     border: none;
-
 }
 
 .box-search {
@@ -118,7 +120,6 @@ body {
     margin-top: 10px !important;
     margin-left: -82px !important;
 }
-
 
 input:focus {
     outline: none;
@@ -135,13 +136,16 @@ input:focus {
     font-weight: 600;
 }
 
+
 /* Logo */
+
 .header__logo {
     position: relative;
     margin-bottom: 0;
 }
 
-.header__logolink, .header__logoimage {
+.header__logolink,
+.header__logoimage {
     display: block;
 }
 
@@ -149,6 +153,7 @@ input:focus {
         vertical-align: unset;
         border-style: none;
     }
+
 
 /* Horizontal List */
 
@@ -167,9 +172,9 @@ input:focus {
     margin: 6px 8px 6px 8px;
 }
 
-.horizontalList__Item a:hover{
-    color: #cfa247;
-}
+    .horizontalList__Item a:hover {
+        color: #cfa247;
+    }
 
 .horizontalList__spacing {
     margin-left: -50px;
@@ -184,7 +189,6 @@ input:focus {
     font-weight: 600;
 }
 
-
 .horizontalList li button {
     font-size: 13px;
     color: #161616;
@@ -193,7 +197,6 @@ input:focus {
 
 .horizontalList li a:hover {
     color: #1c1b1b;
-
     text-decoration: none;
 }
 
@@ -240,35 +243,10 @@ input:focus {
         font-size: 14px;
         color: black;
     }
- 
-/* DropDown*/
-.linklist {
-    list-style: none;
-    padding: 0;
-}
 
-.linklist__Item {
-    position: relative;
-    display: block;
-    margin-bottom: 12px;
-    width: 100%;
-    line-height: 1.5;
-    text-align: left;
-    color: #828489;
-}
-
-.link--primary, .link--primaryFrom {
-    font-size: 15px;
-    color: #828489;
-}
-
-    .link--primary:hover {
-        text-decoration: none;
-        color: white;
-        transition: color 1s ease-in-out, opacity 1s ease-in-out;
-    }
 
 /* DropDown*/
+
 .linklist {
     list-style: none;
     padding: 0;
@@ -291,7 +269,8 @@ input:focus {
         color: #cfa247;
     }
 
-.link--primary, .link--primaryFrom {
+.link--primary,
+.link--primaryFrom {
     font-size: 15px;
     color: #828489;
 }
@@ -308,18 +287,23 @@ input:focus {
 }
 
 .linklist__Item > .link {
-
     display: block;
     width: 100%;
     text-align: inherit;
 }
-
 
 li.dropdown:first-child {
     margin-left: unset;
 }
 
 
+/*.rmrootgroup {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+*/
 
 .dropdownMenu {
     position: absolute;
@@ -349,8 +333,10 @@ li.dropdown:first-child {
     color: white;
     padding: 10px 16px;
     background-color: inherit;
-    font: inherit; /* Important for vertical align on mobile phones */
-    margin: 0; /* Important for vertical align on mobile phones */
+    font: inherit;
+    /* Important for vertical align on mobile phones */
+    margin: 0;
+    /* Important for vertical align on mobile phones */
 }
 
 
@@ -358,15 +344,14 @@ li.dropdown:first-child {
         border-bottom: 1px solid black;
     }*/
 
-    .dropDown:hover .dropbtn {
-        background-color: white;
-        color: #cfa247;
-    }
+.dropDown:hover .dropbtn {
+    background-color: white;
+    color: #cfa247;
+}
 
 .dropDown {
     flex: 1;
     /* display: flex;*/
-
     margin-left: 10px;
 }
 
@@ -385,17 +370,13 @@ li.dropdown:first-child {
     display: block;
 }
 
-
-
 .megaMenu[aria-hidden=false] {
     opacity: 1;
     visibility: visible;
 }
 
-
 .megaMenu {
     max-height: calc(100vh - 124px);
-
 }
 
 .megaMenu {
@@ -408,7 +389,6 @@ li.dropdown:first-child {
     opacity: 0;
     overflow: auto;
     overscroll-behavior: contain;
-
     text-align: left;
     background: #fff;
     border-bottom: 1px solid #d9d9d9;
@@ -429,7 +409,6 @@ li.dropdown:first-child {
 
 .megaMenu--spacingEvenly .megaMenu__Inner {
     justify-content: space-evenly;
-
 }
 
 .megaMenu__Item--fit {
@@ -448,9 +427,11 @@ li.dropdown:first-child {
 
 :active {
     outline: 0;
-
 }
+
+
 /*Container*/
+
 #main {
     display: block;
 }
@@ -510,14 +491,16 @@ h2 {
     font-weight: 600;
 }
 
+
 /*Xem Tất Cả*/
+
 .sectionFooter {
     /*    margin-top: 30px;*/
     text-align: center;
 }
 
-
-    .sectionFooter a, .linksection a {
+    .sectionFooter a,
+    .linksection a {
         text-decoration: none;
         color: white;
         border: 1px solid #1c1b1b;
@@ -530,7 +513,6 @@ h2 {
         position: relative;
         text-align: center;
     }
-
 
 .wrapper a span {
     position: relative;
@@ -559,13 +541,14 @@ h2 {
     }
 
 
-
 /*.sectionFooter a:hover, .linksection a:hover {
     color: black;
     background: white;
 }*/
 
+
 /*Khám phá thêm*/
+
 .linksection {
     padding-top: 30px;
 }
@@ -580,7 +563,6 @@ h2 {
     letter-spacing: 3px;
     font-weight: 600;
 }
-
 
 .featureText--withImage {
     display: table;
@@ -613,7 +595,9 @@ h2 {
     grid-column: 1 / 4;
 }
 
+
 /*Footer*/
+
 .footer_Container {
     background: black;
     color: white;
@@ -623,7 +607,7 @@ h2 {
 .footer_conent {
     padding: 0 80px;
 }
-/*
+
 .footer__block:first-child {
     margin-top: 0;
 }
@@ -632,7 +616,7 @@ h2 {
     margin-bottom: 50px;
     flex: 0 1 auto;
 }
-*/
+
 .footer__title {
     font-size: 15px;
     margin-bottom: 20px;
@@ -696,7 +680,6 @@ h2 {
     position: relative;
     background-position: 50%;
 }
-
 
 .product__add-to-cart-btn {
     width: 40px;
@@ -822,13 +805,10 @@ h2 {
 }
 */
 
-
 .product-name {
     font-size: 16px;
     color: #000000;
-
 }
-
 
 ::-webkit-scrollbar {
     width: 6px;
@@ -838,7 +818,6 @@ h2 {
     background: #f1f1f1;
 }
 
-
 ::-webkit-scrollbar-thumb {
     background: #888;
     border-radius: 3px;
@@ -847,7 +826,6 @@ h2 {
     ::-webkit-scrollbar-thumb:hover {
         background: #555;
     }
-
 
 @media screen and (min-width: 1240px) {
     .header__mainnav .horizontalList {
@@ -859,7 +837,7 @@ h2 {
         bottom: 0;
         left: 0;
         padding: 10px 0;
-        width: 100%;
+/*        width: 100%;*/
         text-align: center;
     }
 
@@ -868,4 +846,3 @@ h2 {
         margin-left: 21px;
     }
 }
-
