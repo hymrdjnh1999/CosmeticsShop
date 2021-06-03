@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace CosmeticsShop.Api_Intergration
@@ -23,7 +24,12 @@ namespace CosmeticsShop.Api_Intergration
             _httpContextAccessor = httpContextAccessor;
             _httpClientFactory = httpClientFactory;
         }
-
+        protected HttpClient GetClient()
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration[SystemConstants.AppSettings.BaseAddress]);
+            return client;
+        }
         protected async Task<TResponse> GetAsync<TResponse>(string url)
         {
             var sessions = _httpContextAccessor
@@ -68,5 +74,19 @@ namespace CosmeticsShop.Api_Intergration
             var result = JsonConvert.DeserializeObject<TResponse>(body);
             return result;
         }
+        protected async Task<TResponse> PostAsync<TResponse, TBody>(string postUrl, TBody body)
+        {
+            var client = GetClient();
+            var json = JsonConvert.SerializeObject(body);
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(postUrl, httpContent);
+            var result = await response.Content.ReadAsStringAsync();
+            if (!response.IsSuccessStatusCode)
+            {
+                return (TResponse)JsonConvert.DeserializeObject(result, typeof(TResponse));
+            }
+            return (TResponse)JsonConvert.DeserializeObject(result, typeof(TResponse));
+        }
+
     }
 }

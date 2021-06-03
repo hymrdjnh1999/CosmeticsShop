@@ -120,7 +120,30 @@ namespace CosmeticsShop.Data.Extentions
                     OriginalCountry = "Ý"
                 }
             );
-
+            modelBuilder.Entity<ProductImage>().HasData(
+                new ProductImage()
+                {
+                    Id = 1,
+                    Caption = "test",
+                    DateCreated = DateTime.Now,
+                    FileSize = 12345,
+                    ImagePath = "123123.jpg",
+                    ProductId = 1,
+                    IsDefault = true,
+                    SortOrder = 1
+                },
+                 new ProductImage()
+                 {
+                     Id = 2,
+                     Caption = "test",
+                     DateCreated = DateTime.Now,
+                     FileSize = 12345,
+                     ImagePath = "123123.jpg",
+                     ProductId = 2,
+                     IsDefault = true,
+                     SortOrder = 2
+                 }
+                );
             modelBuilder.Entity<CosmeticsCollection>().HasData(
                 new CosmeticsCollection()
                 {

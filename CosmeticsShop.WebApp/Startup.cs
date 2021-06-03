@@ -1,3 +1,4 @@
+using Cosmetics.ViewModels.Catalogs.Orders;
 using Cosmetics.ViewModels.Systems.Clients;
 using CosmeticsShop.Api_Intergration;
 using FluentValidation.AspNetCore;
@@ -58,8 +59,10 @@ namespace CosmeticsShop.WebApp
             services.AddTransient<ICategoryApiClient, CategoryApiClient>();
             services.AddTransient<IClientApi, ClientApi>();
             services.AddTransient<ICartApiClient, CartApiClient>();
+            services.AddTransient<IClientOrderApi, ClientOrderApi>();
 
 
+            services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ClientCreateOrderValidator>());
             services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ClientLoginValidation>());
             services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ClientRegisterValidation>());
 
@@ -96,6 +99,7 @@ namespace CosmeticsShop.WebApp
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
         }
     }
 }

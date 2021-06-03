@@ -17,11 +17,26 @@ namespace Cosmetics.WebAPI.Controllers
         {
             _cartService = cartService;
         }
-        [HttpPost]
+        [HttpPost("AddToCart")]
         public async Task<IActionResult> AddToCart(ClientCartViewModel request)
         {
             var result = await _cartService.AddToCart(request);
             return Ok(result);
         }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetClientCart(Guid id)
+        {
+            var result = await _cartService.GetClientCart(id);
+            if (!result.IsSuccess)
+                return BadRequest(result);
+            return Ok(result);
+        }
+        [HttpPost("delete")]
+        public async Task<IActionResult> RemoveProductInCart(DeleteProductInCartRequest request)
+        {
+            var result = await _cartService.RemoveProductInCart(request);
+            return Ok(result);
+        }
+
     }
 }

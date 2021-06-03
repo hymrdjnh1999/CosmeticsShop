@@ -1,4 +1,6 @@
-﻿using Cosmetics.ViewModels.Catalogs.Carts;
+﻿using Cosmetics.Ultilities.Constants;
+using Cosmetics.ViewModels.Catalogs.Carts;
+using Cosmetics.ViewModels.Common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -19,20 +21,38 @@ namespace CosmeticsShop.Api_Intergration
         public CartApiClient(IHttpClientFactory httpClientFactory, IConfiguration configuration, IHttpContextAccessor httpContextAccessor) :
             base(httpClientFactory, httpContextAccessor, configuration)
         {
-
+            _httpClientFactory = httpClientFactory;
+            _configuration = configuration;
+            _httpContextAccessor = httpContextAccessor;
         }
         public async Task<ClientCartViewModel> AddToCart(ClientCartViewModel request)
         {
             var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration[SystemConstants.AppSettings.BaseAddress]);
             var json = JsonConvert.SerializeObject(request);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("Carts/AddToCart", httpContent);
+            var response = await client.PostAsync("/api/Carts/AddToCart", httpContent);
             var result = await response.Content.ReadAsStringAsync();
-            if (response.IsSuccessStatusCode)
+            if (!response.IsSuccessStatusCode)
             {
                 return null;
             }
-            return JsonConvert.DeserializeObject<ClientCartViewModel>(result);
+            var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(result);
+            return cart;
+        }
+
+        public async Task<ApiResult<ClientCartViewModel>> GetCart(Guid id)
+        {
+            var url = $"/api/carts/{id}";
+            var result = await GetAsync<ApiResult<ClientCartViewModel>>(url);
+            return result;
+        }
+
+        public async Task<ApiResult<ClientCartViewModel>> RemoveProduct(DeleteProductInCartRequest request)
+        {
+            var url = $"api/carts/delete";
+            var result = await PostAsync<ApiResult<ClientCartViewModel>, DeleteProductInCartRequest>(url, request);
+            return result;
         }
 
         public Task<ClientCartViewModel> UpdateCart(ClientCartViewModel request)

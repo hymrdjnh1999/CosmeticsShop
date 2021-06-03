@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var isLogin = ViewBag.IsLogin;
+
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -13,6 +18,7 @@
     <link rel="stylesheet" href="~/css/cartDetail.css" />
     <link rel="stylesheet" href="~/css/inforCart.css" />
     <link rel="stylesheet" href="~/css/billCart.css" />
+    <link rel="stylesheet" href="~/css/index.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <script src="https://kit.fontawesome.com/c0378fb81e.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&display=swap" rel="stylesheet">
@@ -33,6 +39,7 @@
         <div id="shopify-section-header" class="shopify-section shopify-section--header">
             <div class="header__wrapper d-flex">
 
+
                 @* Logo *@
                 <div class="header__logo" style="display: block; margin-left: 45%;">
                     <a href="/" class="header__logoLink">
@@ -42,26 +49,49 @@
                 </div>
                 @* Horizontal List *@
                 <div class="header__mainnav">
-                    <ul class="horizontalList horizontalList__spacing">
-                        <li class="horizontalList__item">
-                            @Html.ActionLink("Tài khoản", "Login", "User")
-                        </li>
 
-                        <li class="horizontalList__item">
-                            @*							<a href="#" id="loginSubmitBtn" data-action="open-modal" aria-controls="search">Tìm Sản Phẩm</a>*@
-                            <button style="background-color: white; border: none" type="button" data-toggle="dropdown">
-                                Tìm Sản Phẩm
-                            </button>
-                            <ul class="box-search dropdown-menu">
-                                <li>
-                                    <input type="text" id="search" name="search" placeholder="Nhập từ khóa...">
-                                    <button id="btnSearch"></button>
+                    <ul class="horizontalList horizontalList__spacing d-flex items-center">
+                        @if (isLogin == null || !isLogin)
+                        {
+                            <li class="horizontalList__item">
+                                @Html.ActionLink("Tài khoản", "Login", "User")
+                            </li>
+                        }
+                        else
+                        {
+                            var avatar = ViewBag.Avatar;
+                            var userName = ViewBag.Name;
 
-                                </li>
-                            </ul>
-                        </li>
+                            <div class="d-flex align-items-center position-relative">
+                                <img class="rounded-circle mr-2 user-avatar" src="@avatar" />
+                                <span class="font-weight-bold user-name" >@userName</span>
+                                <ul class="user-menu position-absolute">
+                                    <li class="user-menu-items">
+                                       <a href="#" class="user-menu-link">Thông tin cá nhân</a>
+                                    </li>
+                                    <li class="user-menu-items">
+                                        <a href="#" class="user-menu-link">Đơn hàng của tôi</a>
+                                    </li>
+                                    <li class="user-menu-items">
+                                        <a href="/user/Logout" class="user-menu-link">Đăng xuất</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        }
+                        @*<li class="horizontalList__item">
+                                <a href="#" data-action="open-modal" aria-controls="search">Tìm Sản Phẩm</a>
+                            </li>*@
                         <li class="horizontalList__item">
-                            <a href="#" class="" data-action="open-drawer" data-drawer-id="sidebar-cart" aria-label="Mở Giỏ Hàng">Giỏ Hàng (<span class="header__cartCount">0</span>)</a>
+                            <a href="/cart/cartdetail" class="" data-action="open-drawer" data-drawer-id="sidebar-cart" aria-label="Mở Giỏ Hàng">
+                                Giỏ Hàng (@if (ViewBag.Cart != null)
+                                {
+                                    <span class="header__cartCount" id="cartQuantity">@ViewBag.Cart.Products.Count</span>
+                                }
+                                else
+                                {
+                                    <span class="header__cartCount" id="cartQuantity">0</span>
+                                })
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -177,7 +207,7 @@
                             </div>
                         </div>
 
-                    </li>
+ </li>
                     <li class="horizontalList__item dropDown" aria-haspopup="true">
                         <a class="dropbtn" href="#">TRANG ĐIỂM<span class="header__LinkSpacer">TRANG ĐIỂM</span></a>
                         <div class="megaMenu megaMenu--spacingEvenly dropdown-content" aria-hidden="false">
@@ -272,115 +302,139 @@
         </main>
     </div>
 
+	 	</div>
+	 	</li>*@
+
+					<li class="horizontalList__item--nav">
+						<a href="#" class="heading">KHUYẾN MÃI</a>
+					</li>
+					<li class="horizontalList__item--nav">
+						<a href="#" class="heading">XU HƯỚNG</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	@*</nav>*@
+	@* header end==================================================================================================================================== *@
+	@RenderSection("slider", required: false)
+	<div>
+		<main role="main" class="pb-3">
+			@RenderBody()
+		</main>
+	</div>
 
 
 
-    @* Container start ====================================================================================================================================*@
 
-    @* Container end ==================================================================================================================================== *@
+	@* Container start ====================================================================================================================================*@
 
-
-
+	@* Container end ==================================================================================================================================== *@
 
 
-    @* footer end==================================================================================================================================== *@
-    <div id="shopify-section-footer" class="shopify-section shopify-section--footer">
-        <div class="footer_Container">
-            <div class="footer_conent">
-                <div class="footer__inner">
-                    <div class="footer__block footer__block--links col l-4 m-12 c-12">
-                        <h2 class="footer__title">VỀ PARIS FRANCE BEAUTY</h2>
-                        <ul class="linklist">
-                            <li class="linklist__Item">
-                                <a href="#" class="link link--primary">Lịch Sử Thương Hiệu</a>
-                            </li>
-                            <li class="linklist__Item">
-                                <a href="#" class="link link--primary">Ưu Đãi Tặng Đối Tác</a>
-                            </li>
-                            <li class="linklist__Item">
-                                <a href="#" class="link link--primary">Thông Tin Liên Hệ </a>
-                            </li>
-                            <li class="linklist__Item">
-                                <a href="#" class="link link--primary">Danh Sách Cửa Hàng</a>
-                            </li>
-                            <li class="linklist__Item">
-                                <a href="#" class="link link--primary">Nộp Đơn Xin Việc</a>
-                            </li>
-                            <li class="linklist__Item">
-                                <a href="#" class="link link--primary">Hợp Tác Kinh Doanh</a>
-                            </li>
-                        </ul>
-                    </div>
 
-                    <div class="footer__block footer__block--links col l-4 m-12 c-12">
-                        <h2 class="footer__title">QUY ĐỊNH & CHÍNH SÁCH</h2>
-                        <ul class="linklist">
-                            <li class="linklist__Item">
-                                <a href="#" class="link link--primary">Chính Sách & Quy Định Chung</a>
-                            </li>
-                            <li class="linklist__Item">
-                                <a href="#" class="link link--primary">Chính Sách Bảo Mật</a>
-                            </li>
-                            <li class="linklist__Item">
-                                <a href="#" class="link link--primary">Chính Sách Đổi Trả & Hoàn Tiền</a>
-                            </li>
-                            <li class="linklist__Item">
-                                <a href="#" class="link link--primary">Chính Sách Vận Chuyển</a>
-                            </li>
-                            <li class="linklist__Item">
-                                <a href="#" class="link link--primary">Quy Định & Hình Thức Thanh Toán</a>
-                            </li>
-                        </ul>
-                    </div>
 
-                    <div class="footer__block footer__block--text col l-4 m-12 c-12">
-                        <h2 class="footer__title">GIẤY PHÉP KINH DOANH</h2>
-                        <div class="footer__content rte">
-                            <p>
-                                "Tất cả sản phẩm của PARIS FRANCE BEAUTY được độc quyền phân phối chính hãng bởi CÔNG TY TNHH TMDV&nbsp;
-                                PHƯƠNG PHÁT."<br><br>"VPĐD: SAIGON TRADE CENTER - Phòng 609-610, 37 Tôn Đức Thắng, P. Bến Nghé, Q.1, Tp.&nbsp;HCM."
-                                <br><br><strong>Email:</strong> <a href="mailto:parisfrance@phuongphat.com" title="mailto:parisfrance@phuongphat.com">
-                                    parisfrance@phuongphat.com
-                                </a><br><br><strong>Hotline:</strong>&nbsp;(+84) <strong>7838 109 06</strong>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="bct-section">
-                    <a href="http://online.gov.vn/HomePage/CustomWebsiteDisplay.aspx?DocId=51903">
-                        <img alt="Đã Thông Báo Bộ Công Thương" src="~/images/BoCongThuong.png">
-                    </a>
-                </div>
-                <div class="footer-aside d-flex" style="padding-top: 5px;">
-                    <div style="margin-right: -90px;">
-                        <a href="#">
-                            <img class="img--footer" src="~/images/Amex.png" />
-                        </a>
-                    </div>
-                    <div style="margin-right: -90px;">
-                        <a href="#">
-                            <img class="img--footer" src="~/images/JCB.png" />
-                        </a>
-                    </div>
-                    <div style="margin-right: -90px;">
-                        <a href="#">
-                            <img class="img--footer" src="~/images/Mastercard.png" />
-                        </a>
-                    </div>
-                    <div style="margin-right: -90px;">
-                        <a href="#">
-                            <img class="img--footer" src="~/images/visa.png" />
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    @* footer end==================================================================================================================================== *@
+
+	@* footer end==================================================================================================================================== *@
+	<div id="shopify-section-footer" class="shopify-section shopify-section--footer">
+		<div class="footer_Container">
+			<div class="footer_conent">
+				<div class="footer__inner">
+					<div class="footer__block footer__block--links col l-4 m-12 c-12">
+						<h2 class="footer__title">VỀ PARIS FRANCE BEAUTY</h2>
+						<ul class="linklist">
+							<li class="linklist__Item">
+								<a href="#" class="link link--primary">Lịch Sử Thương Hiệu</a>
+							</li>
+							<li class="linklist__Item">
+								<a href="#" class="link link--primary">Ưu Đãi Tặng Đối Tác</a>
+							</li>
+							<li class="linklist__Item">
+								<a href="#" class="link link--primary">Thông Tin Liên Hệ </a>
+							</li>
+							<li class="linklist__Item">
+								<a href="#" class="link link--primary">Danh Sách Cửa Hàng</a>
+							</li>
+							<li class="linklist__Item">
+								<a href="#" class="link link--primary">Nộp Đơn Xin Việc</a>
+							</li>
+							<li class="linklist__Item">
+								<a href="#" class="link link--primary">Hợp Tác Kinh Doanh</a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="footer__block footer__block--links col l-4 m-12 c-12">
+						<h2 class="footer__title">QUY ĐỊNH & CHÍNH SÁCH</h2>
+						<ul class="linklist">
+							<li class="linklist__Item">
+								<a href="#" class="link link--primary">Chính Sách & Quy Định Chung</a>
+							</li>
+							<li class="linklist__Item">
+								<a href="#" class="link link--primary">Chính Sách Bảo Mật</a>
+							</li>
+							<li class="linklist__Item">
+								<a href="#" class="link link--primary">Chính Sách Đổi Trả & Hoàn Tiền</a>
+							</li>
+							<li class="linklist__Item">
+								<a href="#" class="link link--primary">Chính Sách Vận Chuyển</a>
+							</li>
+							<li class="linklist__Item">
+								<a href="#" class="link link--primary">Quy Định & Hình Thức Thanh Toán</a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="footer__block footer__block--text col l-4 m-12 c-12">
+						<h2 class="footer__title">GIẤY PHÉP KINH DOANH</h2>
+						<div class="footer__content rte">
+							<p>
+								"Tất cả sản phẩm của PARIS FRANCE BEAUTY được độc quyền phân phối chính hãng bởi CÔNG TY TNHH TMDV&nbsp;
+								PHƯƠNG PHÁT."<br><br>"VPĐD: SAIGON TRADE CENTER - Phòng 609-610, 37 Tôn Đức Thắng, P. Bến Nghé, Q.1, Tp.&nbsp;HCM."
+								<br><br><strong>Email:</strong> <a href="mailto:parisfrance@phuongphat.com" title="mailto:parisfrance@phuongphat.com">
+									parisfrance@phuongphat.com
+								</a><br><br><strong>Hotline:</strong>&nbsp;(+84) <strong>7838 109 06</strong>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="bct-section">
+					<a href="http://online.gov.vn/HomePage/CustomWebsiteDisplay.aspx?DocId=51903">
+						<img alt="Đã Thông Báo Bộ Công Thương" src="~/images/BoCongThuong.png">
+					</a>
+				</div>
+				<div class="footer-aside d-flex" style="padding-top: 5px;">
+					<div style="margin-right: -90px;">
+						<a href="#">
+							<img class="img--footer" src="~/images/Amex.png" />
+						</a>
+					</div>
+					<div style="margin-right: -90px;">
+						<a href="#">
+							<img class="img--footer" src="~/images/JCB.png" />
+						</a>
+					</div>
+					<div style="margin-right: -90px;">
+						<a href="#">
+							<img class="img--footer" src="~/images/Mastercard.png" />
+						</a>
+					</div>
+					<div style="margin-right: -90px;">
+						<a href="#">
+							<img class="img--footer" src="~/images/visa.png" />
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	@* footer end==================================================================================================================================== *@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/common.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

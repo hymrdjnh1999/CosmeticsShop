@@ -1,4 +1,5 @@
-﻿using Cosmetics.ViewModels.Systems.Clients;
+﻿using Cosmetics.ViewModels.Catalogs.Carts;
+using Cosmetics.ViewModels.Systems.Clients;
 using CosmeticsShop.Api_Intergration;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -18,32 +20,42 @@ using System.Threading.Tasks;
 
 namespace CosmeticsShop.WebApp.Controllers
 {
-    public class UserController : Controller
+    public class UserController : ClientBaseController
     {
         private readonly IConfiguration _config;
         private readonly IClientApi _clientApi;
-        public UserController(IClientApi clientApi, IConfiguration configuration)
+        private readonly ICartApiClient _cartApiClient;
+        public UserController(IClientApi clientApi, IConfiguration configuration, ICartApiClient cartApiClient)
         {
             _clientApi = clientApi;
             _config = configuration;
-
+            _cartApiClient = cartApiClient;
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             HttpContext.Session.Remove("Token");
-            return RedirectToAction("Index", "Login");
+            return RedirectToAction("Index", "Home");
         }
         [HttpGet]
         public IActionResult Login()
         {
+
             var sessions = HttpContext.Session.GetString("Token");
             if (sessions != null)
             {
                 return RedirectToAction("Index", "Home");
             }
+            var cartJs = HttpContext.Session.GetString("Cart");
+            if (cartJs != null)
+            {
+                var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(cartJs);
+                ViewBag.Cart = cart;
+            }
+
+
 
             return View();
         }
@@ -55,12 +67,17 @@ namespace CosmeticsShop.WebApp.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             var apiResult = await _clientApi.Login(request);
             if (!apiResult.IsSuccess)
             {
-                ViewBag.Error = apiResult.ResultObj;
+                ViewBag.Error = "Tài khoản hoặc mật khẩu không chính xác";
                 return View(request);
             }
+
             var userPrincipal = ValidateToken(apiResult.ResultObj);
             var authProperties = new AuthenticationProperties
             {
@@ -69,24 +86,39 @@ namespace CosmeticsShop.WebApp.Controllers
             };
 
             HttpContext.Session.SetString("Token", apiResult.ResultObj);
-
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                 userPrincipal,
                 authProperties);
-            var user = User.Claims.ToList();
+            var cartJs = HttpContext.Session.GetString("Cart");
+            if (cartJs != null)
+            {
+                var clientId = User.Claims.Where(x => x.Type == "Id").FirstOrDefault().Value;
+                var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(cartJs);
+                cart.ClientId = new Guid(clientId);
+                cart = await _cartApiClient.AddToCart(cart);
+                ViewBag.Cart = cart;
+            }
 
-           
+
             return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
         public IActionResult Register()
         {
+
+            var cartJs = HttpContext.Session.GetString("Cart");
+            if (cartJs != null)
+            {
+                var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(cartJs);
+                ViewBag.Cart = cart;
+            }
             var sessions = HttpContext.Session.GetString("Token");
             if (sessions != null)
             {
                 return RedirectToAction("Index", "Home");
             }
+
 
             return View();
         }
@@ -114,6 +146,12 @@ namespace CosmeticsShop.WebApp.Controllers
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                 userPrincipal,
                 authProperties);
+            var cartJs = HttpContext.Session.GetString("Cart");
+            if (cartJs != null)
+            {
+                var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(cartJs);
+                ViewBag.Cart = cart;
+            }
             return RedirectToAction("Index", "Home");
         }
         private ClaimsPrincipal ValidateToken(string jwtToken)
