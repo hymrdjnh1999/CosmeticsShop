@@ -136,7 +136,7 @@ namespace CosmeticsShop.WebApp.Controllers
                     var clientId = User.Claims.ToList().Where(x => x.Type == "Id").FirstOrDefault().Value;
                     cart.ClientId = new Guid(clientId);
                 }
-              
+
                 cart.CartPrice = cart.Products.Sum(x => x.ProductPrice * x.Quantity);
                 cart = await _cartApiClient.AddToCart(cart);
                 cartJS = JsonConvert.SerializeObject(cart);
@@ -158,6 +158,37 @@ namespace CosmeticsShop.WebApp.Controllers
                 HttpContext.Session.SetString("Cart", serializeCart);
             }
             return new JsonResult(cart);
+        }
+        [HttpPut]
+        public async Task<JsonResult> UpdateCart(int productId, bool increment)
+        {
+            var cart = GetCartViewModel();
+            var product = cart.Products.Where(x => x.Id == productId).FirstOrDefault();
+
+            if (product == null)
+            {
+                return new JsonResult(new { status = 400, message = "Không tìm thấy sản phẩm" });
+            }
+            if (increment)
+            {
+                product.Quantity += 1;
+            }
+            else
+            {
+                product.Quantity -= 1;
+            }
+            var isRemove = !increment && product.Quantity == 0;
+            if (isRemove)
+            {
+                cart.Products.Remove(product);
+            }
+            cart.CartPrice = cart.Products.Sum(x => x.ProductPrice * x.Quantity);
+
+            cart = await _cartApiClient.AddToCart(cart);
+            var serializeCart = JsonConvert.SerializeObject(cart);
+            HttpContext.Session.SetString("Cart", serializeCart);
+
+            return new JsonResult(new { status = 201, message = "Ok", hasRemove = isRemove, newQuantity = product.Quantity, newTotalPrice = product.Quantity * product.ProductPrice, newCartPrice = cart.CartPrice });
         }
     }
 }
