@@ -16,8 +16,6 @@
     <link rel="stylesheet" href="~/css/loginFrom.css" />
     <link rel="stylesheet" href="~/css/registerFrom.css" />
     <link rel="stylesheet" href="~/css/cartDetail.css" />
-    <link rel="stylesheet" href="~/css/inforCart.css" />
-    <link rel="stylesheet" href="~/css/billCart.css" />
     <link rel="stylesheet" href="~/css/index.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <script src="https://kit.fontawesome.com/c0378fb81e.js" crossorigin="anonymous"></script>
@@ -25,23 +23,32 @@
     <link rel="shortcut icon" href="//cdn.shopify.com/s/files/1/0003/8718/6741/files/favicon_fc3d6d9d-ad9e-4948-ab41-e7c8af30e908_32x32.png?v=1589251208" type="image/png">
 </head>
 <body>
-    @* Header *@
-    @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">*@
+	@* Header *@
+	@*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">*@
 
-    <div class="pageContainer">
-        <div id="shopify-section-announcement" class="shopify-section">
-            <div id="section-announcement" class="announcementBar__Wrapper">
-                <div class="announcementBar">
-                    <p class="announcement__content justify-content-center text-center">HOLIDAY SALES - MỸ PHẨM GIVENCHY & MAKE UP FOR EVER SIÊU GIẢM GIÁ 50%</p>
-                </div>
-            </div>
-        </div>
-        <div id="shopify-section-header" class="shopify-section shopify-section--header">
-            <div class="header__wrapper d-flex">
-
+	<div class="pageContainer">
+		<div id="shopify-section-announcement" class="shopify-section">
+			<div id="section-announcement" class="announcementBar__Wrapper">
+				<div class="announcementBar">
+					<p class="announcement__content justify-content-center text-center">HOLIDAY SALES - MỸ PHẨM GIVENCHY & MAKE UP FOR EVER SIÊU GIẢM GIÁ 50%</p>
+				</div>
+			</div>
+		</div>
+		<div id="shopify-section-header" class="shopify-section shopify-section--header">
+			<div class="header__wrapper d-flex">
+				@* Search *@
+				@*<div class="select select__transparent" style=" padding-left: -40px;">
+		<ul class="horizontalList horizontalList__spacing">
+		<li class="horizontalList__item">
+		<a href="#" data-action="open-modal" aria-controls="search">
+		Tìm Sản Phẩm
+		</a>
+		</li>
+		</ul>
+		</div>*@
 
                 @* Logo *@
-                <div class="header__logo" style="display: block; margin-left: 45%;">
+                <div class="header__logo" style="justify-content: center; align-items: center;">
                     <a href="/" class="header__logoLink">
                         <img class="header__logoimage header__logoimage--primary" src="//cdn.shopify.com/s/files/1/0003/8718/6741/files/Asset_1_2x_25b16eed-a574-4d6f-ac37-42aa9a91febb_170x.png?v=1589280350"
                              srcset="" width="170" alt="Paris France Beauty">
@@ -49,7 +56,6 @@
                 </div>
                 @* Horizontal List *@
                 <div class="header__mainnav">
-
                     <ul class="horizontalList horizontalList__spacing d-flex items-center">
                         @if (isLogin == null || !isLogin)
                         {
@@ -97,210 +103,37 @@
                 </div>
             </div>
             @* Nav *@
-            <nav class="header__mainnav justify-content-center text-center" aria-label="Main navigation">
-                <ul class="horizontalList">
-                    <li class="horizontalList__item dropDown" aria-haspopup="true">
-                        <a class="dropbtn" href="#">
-                            NƯỚC HOA
-                            <span class="header__LinkSpacer">Nước Hoa</span>
-                        </a>
-                        <div class="megaMenu megaMenu--spacingEvenly dropdown-content" aria-hidden="false">
-                            <div class="megaMenu__Inner">
-                                <div class="megaMenu__Item megaMenu__Item--fit">
-                                    <a class="megaMenu__Title" href="#">Thương Hiệu</a>
-                                    <ul class="linklist">
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Carolina Herrera</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Jean Paul Gaultier</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Paco Rabanne</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Montblanc</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Jimmy Choo</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Chloe </a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#"> Narciso Rodriguez</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#"> Dolce&Gabbana</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Gucci </a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Burberry </a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Coach</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Givenchy</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Mercedes Benz</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Nina Ricci</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Lanvin</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Prada</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Kenzo</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Karl Lagerfeld</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Antonio Banderas</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Shakira</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">United Colors Of Benetton</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Boucheron</a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                                <div class="megaMenu__Item megaMenu__Item--fit">
-                                    <a class="megaMenu__Title" href="#">Sản Phẩm</a>
-                                    <ul class="linklist">
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Mới Nhất</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Được Yêu Thích</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Bộ Quà Tặng</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="megaMenu__Item megaMenu__Item--fit">
-                                    <a class="megaMenu__Title" href="#">Chọn Theo Giới Tính</a>
-                                    <ul class="linklist">
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Nước Hoa nữ</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Nước Hoa Nam</a>
-                                        </li>
-                                    </ul>
-                                </div>
-
+            <div class="header__wrapper--nav header__mainnav nav justify-content-center text-center" aria-label="Main navigation">
+                <ul class="horizontalList--nav">
+                    @*<li class="horizontalList__item--nav nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                NƯỚC HOA
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown">
+                                <a class="dropdown-item" href="#">Thương Hiệu</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
                             </div>
-                        </div>
+                        </li>*@
 
- </li>
-                    <li class="horizontalList__item dropDown" aria-haspopup="true">
-                        <a class="dropbtn" href="#">TRANG ĐIỂM<span class="header__LinkSpacer">TRANG ĐIỂM</span></a>
-                        <div class="megaMenu megaMenu--spacingEvenly dropdown-content" aria-hidden="false">
-                            <div class="megaMenu__Inner">
-                                <div class="megaMenu__Item megaMenu__Item--fit">
-                                    <a class="megaMenu__Title" href="#">Thương Hiệu</a>
-                                    <ul class="linklist">
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Make Up For Ever</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Givenchy</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Bourjois</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Max Factor</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="megaMenu__Item megaMenu__Item--fit">
-                                    <a class="megaMenu__Title" href="#">Sản Phẩm</a>
-                                    <ul class="linklist">
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Mới Nhất</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Được Yêu Thích</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Trang Điểm Môi</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Trang Điểm Mẳ</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Trang Điểm Mặt</a>
-                                        </li>
-                                    </ul>
-                                </div>
 
-                            </div>
-                        </div>
-
-                    </li>
-                    <li class="horizontalList__item dropDown" aria-haspopup="true">
-                        <a class="dropbtn" href="#">CHĂM SÓC DA</a>
-                        <div class="dropdownMenu dropdown-content" aria-hidden="false">
-                            <ul class="linklist" style="padding-left: 20px">
-                                <li class="linklist__Item">
-                                    <a class="link--secondary" href="#">Chăm Sóc Da Mặt</a>
-                                </li>
-                                <li class="linklist__Item">
-                                    <a class="link--secondary" href="#">Chăm Sóc Da Môi</a>
-                                </li>
-                                <li class="linklist__Item">
-                                    <a class="link--secondary" href="#">Chăm Sóc Da Mẳt</a>
-                                </li>
-                            </ul>
-
-                        </div>
-
-                    </li>
-                    <li class="horizontalList__item dropDown" aria-haspopup="true">
-                        <a class="dropbtn" href="#">KHUYẾN MÃI<span class="header__LinkSpacer">KHUYẾN MÃI</span></a>
-                        <div class="dropdownMenu dropdown-content" aria-hidden="false">
-                            <ul class="linklist" style="padding-left: 20px">
-                                <li class="linklist__Item">
-                                    <a class="link--secondary" href="#">Nước Hoa</a>
-                                </li>
-                                <li class="linklist__Item">
-                                    <a class="link--secondary" href="#">Mỹ Phẩm</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="horizontalList__item dropDown" aria-haspopup="true">
-                        <a class="dropbtn" href="#">XU HƯỚNG<span class="header__LinkSpacer">XU HƯỚNG</span></a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-
-    @*</nav>*@
-    @* header end==================================================================================================================================== *@
-    @RenderSection("slider", required: false)
-    <div>
-        <main role="main">
-            @RenderBody()
-        </main>
-    </div>
+					<li class="horizontalList__item--nav">
+						<a href="#" class="heading">	NƯỚC HOA</a>
+					</li>
+					<li class="horizontalList__item--nav">
+						<a href="#" class="heading">TRANG ĐIỂM</a>
+					</li>
+					<li class="horizontalList__item--nav">
+						<a href="#" class="heading">CHĂM SÓC DA</a>
+					</li>
+					@*	<li class="dropdown lh-54 horizontallist__item--nav">
+	 	<a href="#" class="heading">chăm sóc da</a>
+	 	<div class="dropdown-content">
+	 	<a href="#">chăm sóc da mặt</a>
+	 	<a href="#">chăm sóc da mặt</a>
+	 	<a href="#">chăm sóc da mặt</a>
+	 	<a href="#">chăm sóc da mặt</a>
 
 	 	</div>
 	 	</li>*@
