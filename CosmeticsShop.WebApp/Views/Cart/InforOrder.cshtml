@@ -50,9 +50,9 @@
                                 <div id="customer_login" accept-charset="UTF-8" name="login" class="form form--spacingTight" style="display: block">
                                     <input type="hidden" name="form_type" value="customer_login">
                                     <input type="hidden" name="utf8" value="✓">
-
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <div class="form__Item">
-                                        <input class="form__Input" asp-for="ClientName" required="required" placeholder="Họ và Tên" aria-label="name" autofocus="">
+                                        <input class="form__Input" asp-for="ClientName" placeholder="Họ và Tên" aria-label="name" autofocus="">
                                         <label class="form__FloatingLabel">Họ và Tên</label>
                                         <span asp-validation-for="ClientName" class="text-danger"></span>
                                     </div>

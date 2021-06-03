@@ -1,3 +1,4 @@
+using Cosmetics.ViewModels.Catalogs.Orders;
 using Cosmetics.ViewModels.Systems.Clients;
 using CosmeticsShop.Api_Intergration;
 using FluentValidation.AspNetCore;
@@ -61,6 +62,7 @@ namespace CosmeticsShop.WebApp
             services.AddTransient<IClientOrderApi, ClientOrderApi>();
 
 
+            services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ClientCreateOrderValidator>());
             services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ClientLoginValidation>());
             services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ClientRegisterValidation>());
 

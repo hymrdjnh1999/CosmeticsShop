@@ -31,5 +31,12 @@ namespace Cosmetics.WebAPI.Controllers
                 return BadRequest(result);
             return Ok(result);
         }
+        [HttpPost("delete")]
+        public async Task<IActionResult> RemoveProductInCart(DeleteProductInCartRequest request)
+        {
+            var result = await _cartService.RemoveProductInCart(request);
+            return Ok(result);
+        }
+
     }
 }
