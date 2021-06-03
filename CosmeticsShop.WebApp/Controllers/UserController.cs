@@ -32,12 +32,12 @@ namespace CosmeticsShop.WebApp.Controllers
             _cartApiClient = cartApiClient;
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             HttpContext.Session.Remove("Token");
-            return RedirectToAction("Index", "Login");
+            return RedirectToAction("Index", "Home");
         }
         [HttpGet]
         public IActionResult Login()
@@ -46,6 +46,12 @@ namespace CosmeticsShop.WebApp.Controllers
             if (sessions != null)
             {
                 return RedirectToAction("Index", "Home");
+            }
+            var cartJs = HttpContext.Session.GetString("Cart");
+            if (cartJs != null)
+            {
+                var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(cartJs);
+                ViewBag.Cart = cart;
             }
 
             return View();
@@ -64,6 +70,7 @@ namespace CosmeticsShop.WebApp.Controllers
                 ViewBag.Error = apiResult.ResultObj;
                 return View(request);
             }
+
             var userPrincipal = ValidateToken(apiResult.ResultObj);
             var authProperties = new AuthenticationProperties
             {
@@ -72,14 +79,15 @@ namespace CosmeticsShop.WebApp.Controllers
             };
 
             HttpContext.Session.SetString("Token", apiResult.ResultObj);
-
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                 userPrincipal,
                 authProperties);
             var cartJs = HttpContext.Session.GetString("Cart");
             if (cartJs != null)
             {
+                var clientId = User.Claims.Where(x => x.Type == "Id").FirstOrDefault().Value;
                 var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(cartJs);
+                cart.ClientId = new Guid(clientId);
                 cart = await _cartApiClient.AddToCart(cart);
                 ViewBag.Cart = cart;
             }
@@ -91,6 +99,12 @@ namespace CosmeticsShop.WebApp.Controllers
         [HttpGet]
         public IActionResult Register()
         {
+            var cartJs = HttpContext.Session.GetString("Cart");
+            if (cartJs != null)
+            {
+                var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(cartJs);
+                ViewBag.Cart = cart;
+            }
             var sessions = HttpContext.Session.GetString("Token");
             if (sessions != null)
             {

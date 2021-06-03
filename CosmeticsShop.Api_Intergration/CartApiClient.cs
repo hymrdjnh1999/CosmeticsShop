@@ -1,5 +1,6 @@
 ﻿using Cosmetics.Ultilities.Constants;
 using Cosmetics.ViewModels.Catalogs.Carts;
+using Cosmetics.ViewModels.Common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -38,6 +39,13 @@ namespace CosmeticsShop.Api_Intergration
             }
             var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(result);
             return cart;
+        }
+
+        public async Task<ApiResult<ClientCartViewModel>> GetCart(Guid id)
+        {
+            var url = $"/api/carts/{id}";
+            var result = await GetAsync<ApiResult<ClientCartViewModel>>(url);
+            return result;
         }
 
         public Task<ClientCartViewModel> UpdateCart(ClientCartViewModel request)

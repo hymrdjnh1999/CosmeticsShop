@@ -1,4 +1,5 @@
-﻿using Cosmetics.ViewModels.Catalogs.Orders;
+﻿
+using Cosmetics.ViewModels.Catalogs.Orders;
 using Cosmetics.ViewModels.Common;
 using CosmeticsShop.Application.Catalog.Orders;
 using Microsoft.AspNetCore.Authorization;
@@ -67,6 +68,21 @@ namespace Cosmetics.WebAPI.Controllers
             }
             return Ok();
         }
-
+        [HttpPost("client")]
+        public async Task<IActionResult> ClientCreateOrder(ClientCreateOrderViewModel request)
+        {
+            var result = await _orderService.ClientCreateOrder(request);
+            return Ok(result);
+        }
+        [HttpGet("client/{cartId}/order/{orderId}")]
+        public async Task<IActionResult> ClientGetOrder(Guid cartId, int orderId)
+        {
+            var result = await _orderService.ClientGetOrder(cartId, orderId);
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
     }
 }
