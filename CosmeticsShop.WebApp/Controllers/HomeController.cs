@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace CosmeticsShop.WebApp.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : ClientBaseController
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ISlideApiClient _slideApiClient;
@@ -29,6 +29,7 @@ namespace CosmeticsShop.WebApp.Controllers
 
         public async Task<IActionResult> Index()
         {
+            CreateUserViewBag();
             var slides = await _slideApiClient.GetAll();
             var productCategory = await _categoryApiClient.GetHomeProductCategories();
             var homeViewModel = new HomeViewModel()

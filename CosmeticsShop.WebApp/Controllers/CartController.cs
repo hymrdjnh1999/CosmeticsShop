@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace CosmeticsShop.WebApp.Controllers
 {
-    public class CartController : Controller
+    public class CartController : ClientBaseController
     {
         private readonly ICartApiClient _cartApiClient;
         private readonly IClientOrderApi _clientOrderApi;
@@ -33,7 +33,7 @@ namespace CosmeticsShop.WebApp.Controllers
         [HttpGet]
         public IActionResult CartDetail()
         {
-
+            CreateUserViewBag();
             var cartJS = HttpContext.Session.GetString("Cart");
             if (cartJS != null)
             {
@@ -46,10 +46,10 @@ namespace CosmeticsShop.WebApp.Controllers
         public IActionResult InforOrder()
         {
             var isLogin = HttpContext.Session.GetString("Token");
-            ViewBag.isLogin = false;
+            ViewBag.IsLogin = false;
             if (isLogin != null)
             {
-                ViewBag.isLogin = true;
+                ViewBag.IsLogin = true;
             }
             var cartJS = HttpContext.Session.GetString("Cart");
             if (cartJS == null)
@@ -65,6 +65,7 @@ namespace CosmeticsShop.WebApp.Controllers
         [HttpGet("{cartId}/thanks/{orderId}")]
         public async Task<IActionResult> Bill(Guid cartId, int orderId)
         {
+            CreateUserViewBag();
             var cart = GetCartViewModel();
 
             if (cart != null)
