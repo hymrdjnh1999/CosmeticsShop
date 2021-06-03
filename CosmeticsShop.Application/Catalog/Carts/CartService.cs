@@ -107,6 +107,26 @@ namespace CosmeticsShop.Application.Catalog.Carts
 
         }
 
+        public async Task<ApiResult<ClientCartViewModel>> RemoveProductInCart(DeleteProductInCartRequest request)
+        {
+            var requestCart = request.Cart;
+            var product = requestCart.Products.Where(x => x.Id == request.ProductId).FirstOrDefault();
+            var productInCart = await _context.ProductInCarts.Where(x => x.CartId == request.Cart.Id && x.ProductId == request.ProductId).FirstOrDefaultAsync();
+            // handle remove
+            _context.ProductInCarts.Remove(productInCart);
+            requestCart.Products.Remove(product);
+            // handle update cart
+            var cart = await _context.Carts.Where(x => x.Id == requestCart.Id).FirstOrDefaultAsync();
+            cart.Quantity = requestCart.Products.Count;
+            cart.Price = requestCart.Products.Sum(x => x.Quantity * x.ProductPrice);
+            _context.Carts.Attach(cart);
+            await _context.SaveChangesAsync();
+
+            requestCart.CartPrice = cart.Price;
+            return new ApiSuccessResult<ClientCartViewModel>(requestCart);
+
+        }
+
         public Task<ClientCartViewModel> UpdateCart(ClientCartViewModel request)
         {
             throw new NotImplementedException();

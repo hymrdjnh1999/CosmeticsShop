@@ -85,8 +85,8 @@ namespace CosmeticsShop.Api_Intergration
             {
                 return (TResponse)JsonConvert.DeserializeObject(result, typeof(TResponse));
             }
-            var cart = (TResponse)JsonConvert.DeserializeObject(result, typeof(TResponse));
-            return cart;
+            return (TResponse)JsonConvert.DeserializeObject(result, typeof(TResponse));
         }
+
     }
 }
