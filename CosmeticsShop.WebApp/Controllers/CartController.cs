@@ -33,6 +33,7 @@ namespace CosmeticsShop.WebApp.Controllers
         [HttpGet]
         public IActionResult CartDetail()
         {
+
             var cartJS = HttpContext.Session.GetString("Cart");
             if (cartJS != null)
             {
@@ -159,6 +160,30 @@ namespace CosmeticsShop.WebApp.Controllers
             }
             return new JsonResult(cart);
         }
+        [HttpDelete]
+        public async Task<JsonResult> RemoveProduct(int removeId)
+        {
+            var cart = GetCartViewModel();
+            var isExistInCart = cart.Products.Where(x => x.Id == removeId).FirstOrDefault() != null;
+            if (removeId < 1 || !isExistInCart)
+            {
+                return new JsonResult(new { result = false, message = "Sản phẩm không tồn tại" });
+
+            }
+
+            var request = new DeleteProductInCartRequest() { Cart = cart, ProductId = removeId };
+            var response = await _cartApiClient.RemoveProduct(request);
+            if (!response.IsSuccess)
+            {
+                return new JsonResult(new { result = false, message = "Có lỗi trong quá trình xóa" });
+            }
+
+            cart = response.ResultObj;
+            var cartJs = JsonConvert.SerializeObject(cart);
+            HttpContext.Session.SetString("Cart", cartJs);
+            return new JsonResult(new { result = true, message = "Xóa sản phẩm khỏi cart thành công" });
+        }
+
         [HttpPut]
         public async Task<JsonResult> UpdateCart(int productId, bool increment)
         {

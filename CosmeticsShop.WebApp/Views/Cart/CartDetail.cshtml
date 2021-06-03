@@ -13,7 +13,32 @@
             const newPriceFm = newPrice.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })
             element.innerText = newPriceFm;
         }
-
+        const removeProductFromCart = (removeId) => {
+            $.ajax(
+                {
+                    type: "delete",
+                    url: `/cart/RemoveProduct`,
+                    data: { removeId },
+                    async: true,
+                    success: async  function ({ result, message }) {
+                        if (result) {
+                            $('#notificationMsg').removeClass('d-none').addClass('d-block').html(message);
+                            await new Promise(resolve => setTimeout(() => {
+                                $('#notificationMsg').fadeOut('slow');
+                                resolve();
+                            }, 1500))
+                        
+                            location.reload();
+                        }
+                    },
+                    failure: function (response) {
+                        alert('false')
+                    },
+                    error: function (response) {
+                        alert('error')
+                    }
+                });
+        }
         const handleInput = ({ productId, increment }) => {
 
             $.ajax(
@@ -52,7 +77,10 @@
                 <h1 style="font-size: 24px; letter-spacing: 2px;">Giỏ Hàng Của Bạn</h1>
             </div>
         </div>
-
+        <div id="notificationWrap" class="w-25 position-fixed d-flex items-center" style="top:40px; left:50%; transform:translateX(-50%); z-index:100;">
+            <span id="notificationMsg" class="alert alert-success w-100 d-none" role="alert">
+            </span>
+        </div>
         <div class="pageContent">
             @if (cart != null && cart.Products.Count > 0)
             {
@@ -96,7 +124,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <a href="#" class="cartItem__Remove link--underline" data-action="remove-item">Xóa</a>
+                                <a href="#" onclick="removeProductFromCart(@product.Id)" class="cartItem__Remove link--underline" data-action="remove-item">Xóa</a>
                             </div>
                             <div class="cartItem__Actions text-right" style="flex:1">
                                 @{

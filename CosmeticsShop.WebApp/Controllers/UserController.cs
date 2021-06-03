@@ -64,10 +64,14 @@ namespace CosmeticsShop.WebApp.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             var apiResult = await _clientApi.Login(request);
             if (!apiResult.IsSuccess)
             {
-                ViewBag.Error = apiResult.ResultObj;
+                ViewBag.Error = "Tài khoản hoặc mật khẩu không chính xác";
                 return View(request);
             }
 

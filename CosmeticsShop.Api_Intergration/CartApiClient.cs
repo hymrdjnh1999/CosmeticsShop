@@ -48,6 +48,13 @@ namespace CosmeticsShop.Api_Intergration
             return result;
         }
 
+        public async Task<ApiResult<ClientCartViewModel>> RemoveProduct(DeleteProductInCartRequest request)
+        {
+            var url = $"api/carts/delete";
+            var result = await PostAsync<ApiResult<ClientCartViewModel>, DeleteProductInCartRequest>(url, request);
+            return result;
+        }
+
         public Task<ClientCartViewModel> UpdateCart(ClientCartViewModel request)
         {
             throw new NotImplementedException();
