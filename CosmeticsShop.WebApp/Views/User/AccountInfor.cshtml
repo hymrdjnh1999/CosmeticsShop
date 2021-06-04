@@ -2,7 +2,13 @@
 @{
     ViewData["Title"] = "AccountInfor";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var cart = ViewBag.Cart;
+    var products = cart.Products;
+    var imgUrlBase = "https://localhost:5001/user-content/";
+    var order = ViewBag.Order;
 }
+
 
 <div id="pageContainer">
     <main class="main-contentAccount">
@@ -23,10 +29,10 @@
                         @*<h2 class="h4 hide">customer.account.details</h2>*@
                         <div class="form-group">
                             <div class="label">Họ tên</div>
-                            <div class="input">Test</div>
+                            <div class="input">@order.ShipName</div>
                             <div class="form-group">
                                 <div class="label">Email</div>
-                                <div class="input">Test@gmail.com</div>
+                                <div class="input">@order.ShipEmail</div>
                             </div>
                             <div class="form-group">
                                 <label class="label">Mật khẩu cũ</label>
@@ -48,8 +54,8 @@
                             </div>
                             <div class="form-group">
                                 <div class="sectionFooter_From form__Submit">
-                                    <div class="wrapper"  style="width: 176px;">
-                                        <a href="#" id="loginSubmitBtn"  class="justify-content-center text-center align-items-center"><span>CẬP NHẬT</span></a>
+                                    <div class="wrapper" style="width: 176px;">
+                                        <a href="#" id="loginSubmitBtn" class="justify-content-center text-center align-items-center"><span>CẬP NHẬT</span></a>
                                     </div>
                                 </div>
                             </div>
