@@ -271,7 +271,7 @@ main_content {
     padding-top: 4em;
     position: relative;
     background-color: #efefef;
-    height: 928px;
+    margin-top: 4%;
 }
 
 @media (min-width: 1000px) {
@@ -280,6 +280,9 @@ main_content {
         padding-left: 4%;
         background-position: left top;
         float: right;
+        padding-right: 4%;
+        padding-top: 4%;
+        padding-bottom: 4%;
     }
 
         .sidebar::after {
