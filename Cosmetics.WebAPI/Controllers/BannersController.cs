@@ -12,7 +12,7 @@ namespace Cosmetics.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BannersController : Controller
+    public class BannersController : ControllerBase
     {
         private readonly IBannerService _bannerService;
 
@@ -20,8 +20,7 @@ namespace Cosmetics.WebAPI.Controllers
         {
             _bannerService = bannerService;
         }
-
-        [HttpPost("banner/create")]
+        /*[HttpPost("banner/create")]
         [Consumes("multipart/form-data")]
         public async Task<IActionResult> Create([FromForm] BannerCreateRequest request)
         {
@@ -37,7 +36,28 @@ namespace Cosmetics.WebAPI.Controllers
             var banner = await _bannerService.GetById(bannerId);
             banner.Id = bannerId;
 
-            return CreatedAtAction("Create",banner);
+            return CreatedAtAction("Create", banner);
+        }*/
+        [HttpPost]
+        [Consumes("multipart/form-data")]
+        [Authorize]
+        public async Task<IActionResult> Create([FromForm] BannerCreateRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var bannerId = await _bannerService.Create(request);
+            if (bannerId == 0)
+            {
+                return BadRequest();
+            }
+
+            var banner = await _bannerService.GetById(bannerId);
+            banner.Id = bannerId;
+
+            return CreatedAtAction("banners", banner);
         }
         [Authorize]
         [HttpGet("paging")]
@@ -48,41 +68,41 @@ namespace Cosmetics.WebAPI.Controllers
             var banners = await _bannerService.GetAllPaging(request);
             return Ok(banners);
         }
-        /*public async Task<IActionResult> Index([FromQuery] GetBannerRequest request)
+
+        [HttpDelete("{id}")]
+        [Authorize]
+
+        public async Task<IActionResult> Delete(int id)
         {
-            if (!ModelState.IsValid || request.PageSize <= 0)
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var deleted = await _bannerService.Delete(id);
+            if (deleted == null)
             {
-                return Ok(new PageResponse<BannerViewModel>() { Items = new List<BannerViewModel>(), PageIndex = 1, PageSize = 5, TotalRecords = 0 });
+                return BadRequest($"Không tồn tại id: {id}");
             }
 
-            var banners = await _bannerService.GetAll(request);
-            return Ok(banners);
-        }*/
-        /*[HttpGet("paging")]
-        public async Task<IActionResult> Get([FromQuery] GetBannerRequest request)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-            var banners = await _bannerService.GetAll(request);
-            return Ok(banners);
-        }*/
+            return Ok("Deleted");
+        }
 
-
-        [HttpPut("banner/{id}")]
-        [Authorize]
-        public async Task<IActionResult> Update( BannerUpdateRequest request)
+        [HttpPut("{id}")]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Update([FromForm] BannerUpdateRequest request)
         {
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
+
+            //request.Id = bannerId;
             var affectedResult = await _bannerService.Update(request);
-            if (affectedResult == false)
+            if (affectedResult == 0)
             {
                 return BadRequest();
             }
 
             return Ok("Updated");
         }
+
         [HttpGet("{id}")]
         [Authorize]
 

@@ -20,9 +20,11 @@ namespace CosmeticsShop.Api_Intergration
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IConfiguration _configuration;
         private readonly IHttpContextAccessor _httpContextAccessor;
+
+
         public BannerApiClient(IHttpClientFactory httpClientFactory,
-          IConfiguration configuration,
-          IHttpContextAccessor httpContextAccessor) : base(httpClientFactory, httpContextAccessor, configuration)
+            IConfiguration configuration,
+            IHttpContextAccessor httpContextAccessor) : base(httpClientFactory, httpContextAccessor, configuration)
         {
             _httpClientFactory = httpClientFactory;
             _httpContextAccessor = httpContextAccessor;
@@ -31,15 +33,15 @@ namespace CosmeticsShop.Api_Intergration
         public async Task<bool> Create(BannerCreateRequest request)
         {
             var sessions = _httpContextAccessor
-               .HttpContext
-               .Session
-               .GetString(SystemConstants.AppSettings.Token);
+              .HttpContext
+              .Session
+              .GetString(SystemConstants.AppSettings.Token);
 
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_configuration[SystemConstants.AppSettings.BaseAddress]);
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
 
-            var requestContent = new MultipartFormDataContent();
+             var requestContent = new MultipartFormDataContent();
             if (request.ImageFile != null)
             {
                 byte[] data;
@@ -50,33 +52,23 @@ namespace CosmeticsShop.Api_Intergration
                 ByteArrayContent bytes = new ByteArrayContent(data);
                 requestContent.Add(bytes, "ImageFile", request.ImageFile.FileName);
             }
-            
-            var nameJs = new StringContent(request.Name.ToString());
-            requestContent.Add(nameJs, "Name");
-            var descriptionJs = new StringContent((request.Description ?? "").ToString());
-            requestContent.Add(descriptionJs, "Description");
+
+            requestContent.Add(new StringContent(request.Name.ToString()), "name");
+            requestContent.Add(new StringContent((request.Description ?? "").ToString()), "description");
 
 
             var response = await client.PostAsync($"/api/banners", requestContent);
-            var result = await response.Content.ReadAsStringAsync();
-            if (response.IsSuccessStatusCode)
-            {
-                var banner = JsonConvert.DeserializeObject<bool>(result);
-                return banner;
-            }
-
-            return false;
-
+            return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> Delete(int id)
+        public async Task<bool> Delete(int bannerId)
         {
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_configuration["BaseAddress"]);
             var sessions = _httpContextAccessor.HttpContext.Session.GetString("Token");
 
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
-            var response = await client.DeleteAsync($"/api/banners/{id}");
+            var response = await client.DeleteAsync($"/api/banners/{bannerId}");
 
             if (response.IsSuccessStatusCode)
                 return true;
@@ -87,35 +79,6 @@ namespace CosmeticsShop.Api_Intergration
         public async Task<bool> Update(BannerUpdateRequest request)
         {
             var sessions = _httpContextAccessor
-             .HttpContext
-             .Session
-             .GetString(SystemConstants.AppSettings.Token);
-
-            var client = _httpClientFactory.CreateClient();
-            client.BaseAddress = new Uri(_configuration[SystemConstants.AppSettings.BaseAddress]);
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
-
-            var requestContent = new MultipartFormDataContent();
-
-            if (request.ImageFile != null)
-            {
-                byte[] data;
-                using (var br = new BinaryReader(request.ImageFile.OpenReadStream()))
-                {
-                    data = br.ReadBytes((int)request.ImageFile.OpenReadStream().Length);
-                }
-                ByteArrayContent bytes = new ByteArrayContent(data);
-                requestContent.Add(bytes, "ImageFile", request.ImageFile.FileName);
-            }
-            requestContent.Add(new StringContent((request.Name ?? "").ToString()), "name");
-/*            requestContent.Add(new StringContent(request.Id.ToString()), "id");
-*/            requestContent.Add(new StringContent((request.Description ?? "").ToString()), "description");
-
-            var response = await client.PutAsync($"/api/banners/{request.Id}", requestContent);
-
-            return response.IsSuccessStatusCode;
-
-            /*var sessions = _httpContextAccessor
             .HttpContext
             .Session
             .GetString(SystemConstants.AppSettings.Token);
@@ -133,21 +96,14 @@ namespace CosmeticsShop.Api_Intergration
                     data = br.ReadBytes((int)request.ImageFile.OpenReadStream().Length);
                 }
                 ByteArrayContent bytes = new ByteArrayContent(data);
-                requestContent.Add(bytes, "imageFile", request.ImageFile.FileName);
+                requestContent.Add(bytes, "ImageFile", request.ImageFile.FileName);
             }
 
-            var nameJs = new StringContent((request.Name ?? "").ToString());
-            requestContent.Add(nameJs, "name");
-            var desJs = new StringContent((request.Description ?? "").ToString());
-            requestContent.Add(desJs, "description");
-
-
-
-            var response = await client.PutAsync($"/api/banners/{request.Id}", requestContent);
-            if (response.IsSuccessStatusCode)
-                return true;
-
-            return false;*/
+            requestContent.Add(new StringContent(request.Id.ToString()), "id");
+            requestContent.Add(new StringContent(request.Name.ToString()), "name");
+            requestContent.Add(new StringContent((request.Description ?? "").ToString()), "description");
+            var response = await client.PutAsync($"/api/banners/"+ request.Id, requestContent);
+            return response.IsSuccessStatusCode;
         }
     
 
@@ -170,9 +126,9 @@ namespace CosmeticsShop.Api_Intergration
         {
             var requestUrl = $"/api/banners/{id}";
 
-            var banner = await GetAsync<BannerViewModel>(requestUrl);
+            var response = await GetAsync<BannerViewModel>(requestUrl);
 
-            return banner;
+            return response;
         }
     }
 }

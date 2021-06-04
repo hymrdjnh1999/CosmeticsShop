@@ -14,12 +14,14 @@ namespace Cosmetics.AdminApp.Controllers
     {
 
         private readonly IBannerApiClient _bannerApiClient;
-
-        public BannerController(IBannerApiClient bannerApiClient)
+        private readonly IConfiguration _config;
+        public BannerController(IBannerApiClient bannerApiClient,
+            IConfiguration config)
         {
+            _config = config;
             _bannerApiClient = bannerApiClient;
         }
-        public async Task<IActionResult> Index(string keyword = "", int pageSize = 10, int pageIndex = 1)
+        public async Task<IActionResult> Index(string keyword = "", int pageSize = 5, int pageIndex = 1)
         {
             var paginateRequest = new PaginateRequest()
             {
@@ -38,121 +40,87 @@ namespace Cosmetics.AdminApp.Controllers
             return View(data);
         }
 
-        [HttpGet("banner/create")]
-        public IActionResult Create()
+        [HttpGet("Banner/Create")]
+        public  IActionResult Create()
         {
-            if (!ModelState.IsValid )
-            {
-                return RedirectToAction("Error", "Home");
-            }
+           
             return View();
         }
 
-        [HttpPost("banner/create")]
+        [HttpPost("Banner/Create")]
         [Consumes("multipart/form-data")]
-        public async Task<IActionResult> Create(BannerCreateRequest request)
+        public async Task<IActionResult> Create([FromForm] BannerCreateRequest request)
         {
             if (!ModelState.IsValid)
             {
                 return View(request);
             }
 
-            var result = await _bannerApiClient.Create(request);
+            var banner = await _bannerApiClient.Create(request);
 
-            if (!result)
+            if (banner)
             {
-                TempData["result"] = "Tạo ảnh bìa thành công!";
+                TempData["result"] = "Thêm ảnh bìa thành công!";
                 return RedirectToAction("Index");
             }
-            ModelState.AddModelError("", "Tạo ảnh bìa thất bại!");
+            ModelState.AddModelError("", "Thêm ảnh bìa thất bại!");
             return View(request);
         }
 
-        /*[HttpGet("banner/{id}")]
-        public async Task<IActionResult> Update(int id)
-        {
+        
 
+        [HttpGet("banner/{id}")]
+        public  async Task<IActionResult> Update(int id)
+        {
+            if (!ModelState.IsValid || id ==0)
+            {
+                return RedirectToAction("Error", "Home");
+            }
             var banner = await _bannerApiClient.GetById(id);
             if (banner == null)
             {
                 return RedirectToAction("Error", "Home");
             }
-            var model = new BannerUpdateRequest() {
-                Id = id, 
-                Name = banner.Name,
-                Description = banner.Description,
-*//*                ImagePath = banner.ImagePath
-*//*            };
-            return View(model);
-        }*/
+            var model = new BannerUpdateRequest() { Id = banner.Id, Name = banner.Name , Description = banner.Description };
 
-        [HttpGet("banner/{bannerId}")]
-        public async Task<IActionResult> Update(int bannerId)
-        {
-
-            if (!ModelState.IsValid || bannerId == 0 )
-            {
-                return RedirectToAction("Error", "Home");
-            }
-            var banner = await _bannerApiClient.GetById(bannerId);
-            if (banner == null)
-            {
-                return RedirectToAction("Error", "Home");
-            }
-            var model = new BannerUpdateRequest()
-            {
-                Id = bannerId,
-                Description = banner.Description,
-                Name = banner.Name
-            };
-            return View(model);
+            return View(model); ;
         }
-        [HttpPost("banner/{bannerId}")]
-        public async Task<IActionResult> Update(BannerUpdateRequest request)
+
+
+        [HttpPost("banner/{id}")]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Update([FromForm] BannerUpdateRequest request)
         {
+           
             if (!ModelState.IsValid)
             {
+                ModelState.AddModelError("", "Cập nhập thông tin ảnh bìa không thành công!");
                 return View(request);
             }
 
             var result = await _bannerApiClient.Update(request);
-
             if (result)
             {
-                TempData["result"] = "Cập nhật ảnh bìa thành công";
+                TempData["result"] = "Cập nhật thông tin ảnh bìa thành công!";
                 return RedirectToAction("Index");
+
             }
-            ModelState.AddModelError("", "Cập nhật ảnh bìa thất bại!");
+            ModelState.AddModelError("", "Cập nhật thông tin ảnh bìa không thành công!");
             return View(request);
-            
+
         }
-        [HttpDelete]
+        [HttpPost]
         public async Task Delete(int id)
         {
-
-            var category = await _bannerApiClient.GetById(id);
-            if (category == null)
-            {
-
-                RedirectToAction("Error", "Home");
-            }
-            else
+            if (id > 0)
             {
                 var result = await _bannerApiClient.Delete(id);
-
                 if (result)
-                {
-                    TempData["result"] = "Xóa ảnh bìa thành công";
-                    RedirectToAction("Index");
-                }
-                else
-                {
-
-                    TempData["error"] = "Xóa ảnh bìa thất bại";
-                    RedirectToAction("Index");
-                }
-
+                    TempData["result"] = "Xóa thành công!";
+                RedirectToAction("Index");
             }
+
+            RedirectToAction("Error", "Home");
         }
 
     }

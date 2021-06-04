@@ -3,9 +3,11 @@
     height: 20px;
 }
 
-
+.mw-75{
+    max-width:75% !important;
+}
 .bg-login {
-     background-image: url(/css/img/1129115.jpg);
+    background-image: url(/css/img/1129115.jpg);
     /*background-image: linear-gradient(to bottom,white, black);*/
 }
 .br-color-logo {

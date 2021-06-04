@@ -138,7 +138,7 @@ namespace CosmeticsShop.Api_Intergration
             requestContent.Add(descriptionJs, "description");
             var detailsJs = new StringContent((request.Details ?? "").ToString());
             requestContent.Add(detailsJs, "details");
-            var originalCountryJs = new StringContent(request.OriginalCountry.ToString());
+            var originalCountryJs = new StringContent((request.OriginalCountry ?? "").ToString());
             requestContent.Add(originalCountryJs, "originalCountry");
             var originNalPriceJs = new StringContent(request.OriginalPrice.ToString());
             requestContent.Add(originNalPriceJs, "originalPrice");

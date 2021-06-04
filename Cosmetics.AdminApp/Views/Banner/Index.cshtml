@@ -71,27 +71,24 @@
                     <tbody>
                         @foreach (var item in Model.Items)
                         {
-                            <tr class="bg-alternating d-flex">
-                                <td style="flex:0.1">
+                            <tr class="bg-alternating d-flex list-product">
+                                <td style="flex:0.1" class="pro-item">
                                     @Html.DisplayFor(modelItem => item.Id)
                                 </td>
-                                <td style="flex:0.3">
+                                <td style="flex:0.3" class="pro-item">
 
                                     <a href="#" onclick="editBanner(@item.Id)">
                                         @item.Name
                                     </a>
                                 </td>
-                                <td style="0.5">
-                                    <img width="100%" height="80px" src="@Configuration["BaseImageAddress"]@item.ImagePath" alt="@item.Description" />
+                                <td style="flex:0.5" class="pro-item">
+                                    <img class="img-fluid img-thumbnail mw-75"   src="@Configuration["BaseImageAddress"]@item.ImagePath" alt="@item.Description" />
                                 </td>
 
-                                <td style="flex:0.5">
-
-                                    <a href="#">
+                                <td style="flex:0.5" class="pro-item">
                                         @item.Description
-                                    </a>
                                 </td>
-                                <td class="d-flex align-items-center justify-content-end" style="flex: 0.3">
+                                <td class="d-flex align-items-center justify-content-center pro-item" style="flex: 0.3">
                                     <span class="actions-btn">
                                         <span id="editBannerBtn" onclick="editBanner(@item.Id)" class="btn btn-outline-info">Sửa</span>
                                     </span>
@@ -145,15 +142,15 @@
         setTimeout(() => $('#msgAlert').fadeOut('slow'), 1500)
     </script>
     <script>
-        var delete_id = -1;
-        const getValue = (id) => delete_id = id;
+        var bannerId = -1;
+        const getValue = (id) => bannerId = id;
         $('#delete_submit_btn').on('click', () => {
             $.ajax(
                 {
-                    type: "delete",
-                    url: `banner/delete/`,
+                    type: "Post",
+                    url: `Banner/Delete/`,
                     dataType: "text",
-                    data: { id: delete_id },
+                    data: { id: bannerId },
                     async: true,
                     success: function (response) {
                         location.reload();

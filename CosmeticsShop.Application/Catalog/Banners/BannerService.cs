@@ -47,8 +47,9 @@ namespace CosmeticsShop.Application.Catalog.Banners
             };
             _context.Banners.Add(banner);
             await _context.SaveChangesAsync();
+
             return banner.Id;
-            
+
         }
 
         private async Task<string> SaveFile(IFormFile file)
@@ -83,56 +84,57 @@ namespace CosmeticsShop.Application.Catalog.Banners
 
 
 
-        public async Task<BannerViewModel> GetById(int id)
+        public async Task<BannerUpdateRequest> GetById(int id)
         {
-            var banner = await _context.Banners.FirstOrDefaultAsync(x => x.Id == id);
+            var banner = await _context.Banners.FindAsync(id);
             if (banner == null) return null;
-            var bannerViewModel = new BannerViewModel()
+            var bannerViewModel = new BannerUpdateRequest()
             {
                 Id = banner.Id,
                 Description = banner.Description,
-                DateCreated = banner.DateCreated,
-                FileSize = banner.FileSize,
-                ImagePath = banner.ImagePath,
-                IsDefault = banner.IsDefault,
                 Name = banner.Name,
                 Status = banner.Status,
                 SortOrder = banner.SortOrder
             };
             return bannerViewModel;
         }
-        public async Task<bool> Update(BannerUpdateRequest request)
+        public async Task<int> Update(BannerUpdateRequest request)//đổi <int> create => <Update> create
         {
+
             var banner = await _context.Banners.FindAsync(request.Id);
+
             if (banner == null)
-            {
-                return false;
-            }
-            banner.Id = request.Id;
-            banner.Name = request.Name;
-            banner.Description = request.Description;
+                throw new CosmeticsException($"Cannot found banner width id: {request.Id}");
+
             if (request.ImageFile != null)
             {
-                banner.FileSize = request.ImageFile.Length;
-                banner.ImagePath = await SaveFile(request.ImageFile);
+                    banner.FileSize = request.ImageFile.Length;
+                    banner.ImagePath = await SaveFile(request.ImageFile);
             }
-
+            banner.Name = request.Name;
+            banner.Description = request.Description;
             _context.Banners.Update(banner);
+
             await _context.SaveChangesAsync();
-            return true;
+            return 1 /*1 is success*/;
         }
 
-        public async Task<bool?> Delete(int id)
+        public async Task<bool?> Delete(int bannerId)
         {
-            var banner = await _context.Banners.FindAsync(id);
+            var banner = await _context.Banners.FindAsync(bannerId);
             if (banner == null)
             {
-                return false;
+                return null;
             }
+
+            await _storageService.DeleteFileAsync(banner.ImagePath);
+
             _context.Banners.Remove(banner);
 
             await _context.SaveChangesAsync();
+            
             return true;
+
         }
 
         public async Task<PageResponse<BannerViewModel>> GetAllPaging(PaginateRequest request)
