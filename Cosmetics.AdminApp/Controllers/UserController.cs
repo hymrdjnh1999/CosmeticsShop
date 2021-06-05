@@ -89,7 +89,6 @@ namespace Cosmetics.AdminApp.Controllers
             {
                 return View();
             }
-
             var result = await _userApiClient.RegisterUser(request);
             if (result.IsSuccess)
             {

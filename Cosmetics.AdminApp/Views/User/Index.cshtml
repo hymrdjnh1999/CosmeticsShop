@@ -15,9 +15,9 @@
 }
 
 <div class="container-fluid">
-    <h1 class="mt-4">Users</h1>
+    <h1 class="mt-4">Người Dùng</h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Dashboard</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Bảng Điều Khiển</a></li>
         <li class="breadcrumb-item active">Danh Sách Người Dùng</li>
     </ol>
 
@@ -110,11 +110,12 @@
                                     </td>
                                     @if (Model.CurrentRoles.Contains("Manager"))
                                     {
-                                <td class="btn-edit_del">
-                                    <a href="@Url.Action("Details","User",  new { id = Model.Items[count].Id })" class="p-1 btn actions-btn btn-outline-info px-2">Sửa</a>
+                                        <td class="btn-edit_del">
+                                            <a href="@Url.Action("Details","User",  new { id = Model.Items[count].Id })" class="p-1 btn actions-btn btn-outline-info px-2">Sửa</a>
                                     
-                                    <a href="@Url.Action("Delete","User",  new { id = Model.Items[count].Id })" class="p-1 ml-2 btn actions-btn btn-outline-danger px-0">Xóa</a>
-                                </td>
+                                            <a href="@Url.Action("Delete","User",  new { id = Model.Items[count].Id })" class="p-1 ml-2 btn actions-btn btn-outline-danger px-2">Xóa</a>
+                                    
+                                        </td>
                                     }
                                 </tr>
                             }

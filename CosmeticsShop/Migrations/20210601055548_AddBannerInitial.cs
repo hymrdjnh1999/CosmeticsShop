@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CosmeticsShop.Data.Migrations
 {
-    public partial class updateProductInCart : Migration
+    public partial class AddBannerInitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,6 +17,27 @@ namespace CosmeticsShop.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AppConfigs", x => x.Key);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Banners",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsDefault = table.Column<bool>(type: "bit", nullable: false),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    SortOrder = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false, defaultValue: 2),
+                    FileSize = table.Column<long>(type: "bigint", nullable: false),
+                    IsOutstanding = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Banners", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -509,6 +530,11 @@ namespace CosmeticsShop.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Banners",
+                columns: new[] { "Id", "DateCreated", "Description", "FileSize", "ImagePath", "IsDefault", "IsOutstanding", "Name", "SortOrder", "Status" },
+                values: new object[] { 1, new DateTime(2021, 6, 1, 12, 55, 47, 903, DateTimeKind.Local).AddTicks(658), "Test Des", 12345L, "123123.jpg", true, false, "test", 1, 2 });
+
+            migrationBuilder.InsertData(
                 table: "Categoires",
                 columns: new[] { "Id", "CreatedDate", "IsOutstanding", "Name", "ParentId", "SortOrder", "Status" },
                 values: new object[,]
@@ -527,8 +553,8 @@ namespace CosmeticsShop.Data.Migrations
                 columns: new[] { "Id", "Address", "Avatar", "Dob", "Email", "Name", "Password", "PhoneNumber", "Status" },
                 values: new object[,]
                 {
-                    { new Guid("1d37e388-3c9d-490b-a0d1-93f20c4292b5"), "8 Nghách 167 ngõ 521 Trương Định - Hoàng Mai - Hà Nội", "", new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "tiendinhdev99@gmail.com", "Voi Bé Nhỏ", "AQAAAAEAACcQAAAAEKliSfzlYSJrT7EORj3afINfhxCtVKIlhofNAyBd4B2bBVs9bK2CIqYX1Xt5upgl1Q==", "0984869201", 2 },
-                    { new Guid("94c14234-d9b7-4a8b-91c8-68b53378fe6b"), "8 Nghách 167 ngõ 521 Trương Định - Hoàng Mai - Hà Nội", "", new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "test1234@gmail.com", "Do tien dinh", "AQAAAAEAACcQAAAAEF6mzkSB+DbWLUXiTPDbQxQXn1hJd8kx5VAlHchAEkZouzM6XjWawhZMoNMYh4LNVw==", "0984869201", 2 }
+                    { new Guid("1d37e388-3c9d-490b-a0d1-93f20c4292b5"), "8 Nghách 167 ngõ 521 Trương Định - Hoàng Mai - Hà Nội", "", new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "tiendinhdev99@gmail.com", "Voi Bé Nhỏ", "AQAAAAEAACcQAAAAEAli0oaSsm4mq89ABQF7pgLimU3CuqpZgS9HnE1vrM+ZD5IuaKUObIYQdrGy1LJsmw==", "0984869201", 2 },
+                    { new Guid("94c14234-d9b7-4a8b-91c8-68b53378fe6b"), "8 Nghách 167 ngõ 521 Trương Định - Hoàng Mai - Hà Nội", "", new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "test1234@gmail.com", "Do tien dinh", "AQAAAAEAACcQAAAAECJSbkuH1dmXUqPSeo2J3qhItz030e9Wbd0d4MfJv9zQ7qhCSecVmSa7Kibm3A5LaA==", "0984869201", 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -554,8 +580,8 @@ namespace CosmeticsShop.Data.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Description", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { new Guid("bd5b83d2-5c75-4f96-a63f-1eca425bdfe5"), "dbf3c1fa-a55a-49a3-96f2-4d902bc06a47", "Manager role", "Manager", "Manager" },
-                    { new Guid("efebfd93-b27d-4c91-8a71-74fd71944893"), "2a63ee7e-2392-491f-9318-dfc400f4aac3", "Staff role", "Staff", "Staff" }
+                    { new Guid("bd5b83d2-5c75-4f96-a63f-1eca425bdfe5"), "fa857c6c-5258-44b5-af8c-8dd15870bcaa", "Manager role", "Manager", "Manager" },
+                    { new Guid("efebfd93-b27d-4c91-8a71-74fd71944893"), "d8ce905b-f407-4a6f-9c14-c6dd4de9d057", "Staff role", "Staff", "Staff" }
                 });
 
             migrationBuilder.InsertData(
@@ -586,9 +612,9 @@ namespace CosmeticsShop.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Dob", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { new Guid("1c856746-f8aa-4026-b854-f18da9787cf3"), 0, "5a2b9bdb-5a12-4beb-93da-e3bd4ec9a0a5", new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "tiendinhdev99@gmail.com", true, false, null, "Voi Bé Nhỏ", "tiendinhdev99@gmail.com", "manager", "AQAAAAEAACcQAAAAEFxmmEGFz73ZlyM7Jvrdoa2xRtS0wQCqiajgG6A7wuIq9aVVSSV2wIX/RiUfdtFI6A==", null, false, "", false, "voibenho99" },
-                    { new Guid("d8b63b91-c360-4e3d-9b3a-2dce31f00cc4"), 0, "078135d2-b1f0-4451-8fc6-77913c089705", new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "Haianh@gmail.com", true, false, null, "Hải Anh", "Haianh@gmail.com", "haianhmanager", "AQAAAAEAACcQAAAAEIW5lim72bvSTaQnVoUMu8ykid+blL202/BKez8QQS91KB40KGZMwH6XJiatAvPMZg==", null, false, "", false, "haianh" },
-                    { new Guid("33674f31-0bd2-43cd-9090-3f0d4bab1c58"), 0, "30f7bebf-6c5d-44b0-93fe-b8daf123406c", new DateTime(2001, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "Tranphuong18032001@gmail.com", true, false, null, "Thu Phương", "Tranphuong18032001@gmail.com", "tranphuongmanager", "AQAAAAEAACcQAAAAEE0tFsjMAyp7oKlmvrCs4cebfBHI6w4dgroFK4pBWS6M57scki/hO+bNFeBF3OVpIw==", null, false, "", false, "tranphuong" }
+                    { new Guid("1c856746-f8aa-4026-b854-f18da9787cf3"), 0, "7dd56b13-1079-4ca2-acd7-c41708cbe392", new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "tiendinhdev99@gmail.com", true, false, null, "Voi Bé Nhỏ", "tiendinhdev99@gmail.com", "manager", "AQAAAAEAACcQAAAAEGeQB5dBUROUUST6ETEarkmojr/tJv8Xa5YbFLi4elMZg4LOEXsjT6a6CKzFrATMmQ==", null, false, "", false, "voibenho99" },
+                    { new Guid("d8b63b91-c360-4e3d-9b3a-2dce31f00cc4"), 0, "a1b5429a-f56b-4d2b-83fe-e5387eb050c1", new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "Haianh@gmail.com", true, false, null, "Hải Anh", "Haianh@gmail.com", "haianhmanager", "AQAAAAEAACcQAAAAEDnKn1uswayeB4gKX9Mpv4IJFUVCaONJMdCyZoQ6dpLggli4y80NY9Aq8a6umIfbGw==", null, false, "", false, "haianh" },
+                    { new Guid("33674f31-0bd2-43cd-9090-3f0d4bab1c58"), 0, "6131eeeb-e547-41a1-b13c-3946ef3d75aa", new DateTime(2001, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "Tranphuong18032001@gmail.com", true, false, null, "Thu Phương", "Tranphuong18032001@gmail.com", "tranphuongmanager", "AQAAAAEAACcQAAAAEBRkNkJPYt2YCj2SBTLfK72Wp0aHEzHdGvV2LhLZs75E3PSd9vItQc5+Mi50sexxcw==", null, false, "", false, "tranphuong" }
                 });
 
             migrationBuilder.InsertData(
@@ -601,8 +627,8 @@ namespace CosmeticsShop.Data.Migrations
                 columns: new[] { "Id", "Caption", "DateCreated", "FileSize", "ImagePath", "IsDefault", "ProductId", "SortOrder" },
                 values: new object[,]
                 {
-                    { 1, "test", new DateTime(2021, 5, 31, 20, 5, 33, 979, DateTimeKind.Local).AddTicks(7164), 12345L, "123123.jpg", true, 1, 1 },
-                    { 2, "test", new DateTime(2021, 5, 31, 20, 5, 33, 982, DateTimeKind.Local).AddTicks(2802), 12345L, "123123.jpg", true, 2, 2 }
+                    { 1, "test", new DateTime(2021, 6, 1, 12, 55, 47, 901, DateTimeKind.Local).AddTicks(3513), 12345L, "123123.jpg", true, 1, 1 },
+                    { 2, "test", new DateTime(2021, 6, 1, 12, 55, 47, 902, DateTimeKind.Local).AddTicks(8738), 12345L, "123123.jpg", true, 2, 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -687,6 +713,9 @@ namespace CosmeticsShop.Data.Migrations
         {
             migrationBuilder.DropTable(
                 name: "AppConfigs");
+
+            migrationBuilder.DropTable(
+                name: "Banners");
 
             migrationBuilder.DropTable(
                 name: "Contacts");

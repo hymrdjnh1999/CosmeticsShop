@@ -143,7 +143,19 @@ namespace CosmeticsShop.Data.Extentions
                      IsDefault = true,
                      SortOrder = 2
                  }
-                );
+                ); modelBuilder.Entity<Banner>().HasData(
+                new Banner()
+                {
+                    Id = 1,
+                    Name = "test",
+                    DateCreated = DateTime.Now,
+                    Description = "Test Des",
+                    FileSize = 12345,
+                    ImagePath = "123123.jpg",
+                    Status = Status.Active,
+                    IsDefault = true,
+                    SortOrder = 1
+                });
             modelBuilder.Entity<CosmeticsCollection>().HasData(
                 new CosmeticsCollection()
                 {

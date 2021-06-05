@@ -3,6 +3,7 @@ using Cosmetics.ViewModels.Catalogs.Products;
 using Cosmetics.ViewModels.Catalogs.Products.Manage;
 using Cosmetics.ViewModels.Systems.Clients;
 using Cosmetics.ViewModels.Systems.Users;
+using CosmeticsShop.Application.Catalog.Banners;
 using CosmeticsShop.Application.Catalog.Carts;
 using CosmeticsShop.Application.Catalog.Categories;
 using CosmeticsShop.Application.Catalog.Orders;
@@ -62,6 +63,7 @@ namespace Cosmetics.WebAPI
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
             services.AddTransient<IValidator<ProductCreateRequest>, CreateProductValidator>();
+            services.AddTransient<IBannerService, BannerService>();
 
             //Validator
             services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());

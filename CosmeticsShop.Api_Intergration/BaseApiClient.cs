@@ -24,6 +24,11 @@ namespace CosmeticsShop.Api_Intergration
             _httpContextAccessor = httpContextAccessor;
             _httpClientFactory = httpClientFactory;
         }
+
+        public BaseApiClient(IHttpContextAccessor httpContextAccessor, IHttpClientFactory httpClientFactory, IConfiguration configuration)
+        {
+        }
+
         protected HttpClient GetClient()
         {
             var client = _httpClientFactory.CreateClient();

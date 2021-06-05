@@ -82,7 +82,6 @@ namespace Cosmetics.WebAPI.Controllers
         [HttpPut("{id}")]
         [Consumes("multipart/form-data")]
         [Authorize]
-
         public async Task<IActionResult> Update([FromForm] ProductUpdateRequest request)
         {
 

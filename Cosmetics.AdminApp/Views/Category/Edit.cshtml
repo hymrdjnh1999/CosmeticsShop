@@ -14,11 +14,11 @@
 
     <div class="card mb-4">
         <div class="card-header d-flex justify-content-between">
-            <a asp-action="Index" asp-controller="Category" class="btn btn-outline-dark">Quay lại danh sách danh mục</a>
+            <a asp-action="Index" asp-controller="Category" class="btn btn-outline-dark"><i class="fas fa-chevron-left back-list-product mr-2"></i>Quay lại danh sách danh mục</a>
             <div>
                 <label class="m-0 btn btn-outline-dark d-flex align-items-center justify-content-center" for="updateCategoryBtn">
                     <i class="far fa-save mr-2"></i>
-                    Cập nhật
+                    Lưu
                 </label>
             </div>
         </div>
@@ -28,7 +28,7 @@
             <form asp-action="Edit" id="editCategoryForm" method="post" asp-controller="Category">
                 <input asp-for="Id" type="hidden" class="form-control" />
                 <div class="form-group">
-                    <label asp-for="Name" class="control-label"></label>
+                    <label asp-for="Name" class="control-label">Tên Danh Mục</label>
                     <input asp-for="Name" id="categoryName" class="form-control" />
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>

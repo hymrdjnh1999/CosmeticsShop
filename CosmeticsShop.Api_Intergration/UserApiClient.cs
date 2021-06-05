@@ -132,10 +132,15 @@ namespace CosmeticsShop.Api_Intergration
 
             if (response.IsSuccessStatusCode)
             {
-                return JsonConvert.DeserializeObject<ApiSuccessResult<bool>>(result);
+                var user = JsonConvert.DeserializeObject<ApiSuccessResult<bool>>(result);
+                return user;
+            }
+            else
+            {
+                var user = JsonConvert.DeserializeObject<ApiErrorResult<bool>>(result);
+                return user;
             }
 
-            return JsonConvert.DeserializeObject<ApiErrorResult<bool>>(result);
         }
 
         public async Task<ApiResult<bool>> RoleAssign(RoleAssignRequest request)
