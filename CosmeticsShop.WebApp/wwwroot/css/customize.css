@@ -211,6 +211,180 @@ input:focus {
 }
 
 
+/*Search*/
+
+.openBtn {
+    background: #f1f1f1;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+    .openBtn:hover {
+        background: white;
+    }
+
+.overlay {
+    height: 100%;
+    width: 100%;
+    display: none;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: white;
+    padding: 35px 40px 40px 40px;
+    visibility: visible;
+}
+
+.overlay-content {
+    position: relative;
+    top: 10%;
+    width: 100%;
+    text-align: center;
+    /*    margin-top: 30px;*/
+}
+
+.overlay .closebtn {
+    position: absolute;
+    top: -30px;
+    right: 0px;
+    font-size: 60px;
+    cursor: pointer;
+    color: #cfa247;
+}
+
+.closebtn {
+    font-weight: 400;
+}
+
+.overlay input[type=text] {
+    padding: 15px;
+    font-size: 17px;
+    border: none;
+    float: left;
+    width: 80%;
+    background: white;
+}
+
+    .overlay input[type=text]:hover {
+        background: #f1f1f1;
+    }
+
+.overlay button {
+    float: left;
+    width: 20%;
+    padding: 15px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+}
+
+    .overlay button:hover {
+        background: #bbb;
+    }
+
+
+@media screen and (min-width: 641px) {
+    .search__Close {
+        font-size: 19px;
+    }
+
+        .search__Close svg {
+            stroke-width: 1.25px;
+        }
+
+
+    .search__Input {
+        font-size: 21px;
+    }
+
+    .search__Results {
+        margin-top: 75px;
+    }
+
+    .pageLayout__Section:first-child {
+        margin-bottom: 0;
+        width: 100%;
+    }
+
+    .segment__Title {
+        margin-bottom: 34px;
+    }
+}
+
+
+
+.pageLayout__Section:first-child {
+    margin-bottom: 60px;
+}
+
+.search__Close {
+    color: #cfa247;
+    font-size: 18px;
+    line-height: 1;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+.icon {
+    display: inline-block;
+    height: 1em;
+    width: 1em;
+    fill: currentColor;
+    vertical-align: middle;
+    stroke-width: 1px;
+    background: 0 0;
+    pointer-events: none;
+}
+
+
+
+.search__Input {
+    background: 0 0;
+    width: 98%;
+    float: left;
+    border: none;
+    vertical-align: middle;
+}
+
+/*Kết quả search*/
+.search__Results {
+    margin-top: 50px;
+}
+
+.search_searchBar {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.pageLayout {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+
+.segment__Title--flexed {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.segment__Title {
+    margin-bottom: 24px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #d9d9d9;
+    color: #cfa247;
+}
+
+
+
 /* Horizontal Nav */
 
 .header__wrapper--nav {
