@@ -86,12 +86,14 @@ namespace CosmeticsShop.Api_Intergration
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await client.PostAsync(postUrl, httpContent);
             var result = await response.Content.ReadAsStringAsync();
+
             if (!response.IsSuccessStatusCode)
             {
                 return (TResponse)JsonConvert.DeserializeObject(result, typeof(TResponse));
             }
             return (TResponse)JsonConvert.DeserializeObject(result, typeof(TResponse));
         }
+
 
     }
 }

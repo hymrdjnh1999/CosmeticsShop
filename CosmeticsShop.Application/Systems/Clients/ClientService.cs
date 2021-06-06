@@ -26,6 +26,26 @@ namespace CosmeticsShop.Application.Systems.Clients
             _config = configuration;
         }
 
+        public async Task<ApiResult<ClientUpdateViewModel>> GetDetail(Guid clientId)
+        {
+            var client = await _context.Clients.Where(x => x.Id == clientId).FirstOrDefaultAsync();
+            if (client == null)
+            {
+                return new ApiErrorResult<ClientUpdateViewModel>("Không tìm thấy tài khoản");
+            }
+            var model = new ClientUpdateViewModel()
+            {
+                Id = clientId,
+                Address = client.Address,
+                Dob = client.Dob,
+                Email = client.Email,
+                Name = client.Name,
+                PhoneNumber = client.PhoneNumber,
+                Avatar = client.Avatar
+            };
+            return new ApiSuccessResult<ClientUpdateViewModel>(model);
+        }
+
         public async Task<ApiResult<string>> Login(ClientLoginRequest request)
         {
             var client = await _context.Clients.Where(x => x.Email == request.Email).FirstOrDefaultAsync();
@@ -45,7 +65,7 @@ namespace CosmeticsShop.Application.Systems.Clients
                 {
                     new Claim("PhoneNumber",client.PhoneNumber),
                     new Claim("Dob",client.Dob.ToString()),
-                    new Claim("Avatar",client.Avatar),
+                    new Claim("Avatar",client.Avatar ?? ""),
                     new Claim("Email",request.Email),
                     new Claim("Name",client.Name),
                     new Claim("Id",client.Id.ToString())
@@ -111,6 +131,11 @@ namespace CosmeticsShop.Application.Systems.Clients
 
                 return new ApiErrorResult<string>("Liên hệ quản lý");
             }
+        }
+
+        public Task<ApiResult<ClientUpdateViewModel>> Update(ClientUpdateViewModel request)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Cosmetics.ViewModels.Catalogs.Carts;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +23,22 @@ namespace CosmeticsShop.WebApp.Controllers
                 result = GetClaim("Name");
                 ViewBag.Name = result.Value;
             }
+        }
+        protected void CreateCartViewBag()
+        {
+            var cartJs = HttpContext.Session.GetString("Cart");
+            if (cartJs != null)
+            {
+                var cart = JsonConvert.DeserializeObject(cartJs);
+                ViewBag.Cart = cart;
+            }
+        }
+        protected ClientCartViewModel GetCartViewModel()
+        {
+            var cartJS = HttpContext.Session.GetString("Cart");
+            if (cartJS == null) { return null; }
+            var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(cartJS);
+            return cart;
         }
         private Claim GetClaim(string type)
         {

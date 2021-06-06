@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace CosmeticsShop.Api_Intergration
 {
-    public class ClientApi : IClientApi
+    public class ClientApi : BaseApiClient, IClientApi
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IConfiguration _configuration;
@@ -21,12 +21,20 @@ namespace CosmeticsShop.Api_Intergration
 
         public ClientApi(IHttpClientFactory httpClientFactory,
             IConfiguration configuration,
-            IHttpContextAccessor httpContextAccessor)
+            IHttpContextAccessor httpContextAccessor) : base(httpClientFactory, httpContextAccessor, configuration)
         {
             _httpClientFactory = httpClientFactory;
             _configuration = configuration;
             _httpContextAccessor = httpContextAccessor;
         }
+
+        public async Task<ApiResult<ClientUpdateViewModel>> GetDetail(Guid userId)
+        {
+            var url = $"api/clients/{userId}";
+            var result = await GetAsync<ApiResult<ClientUpdateViewModel>>(url);
+            return result;
+        }
+
         public async Task<ApiResult<string>> Login(ClientLoginRequest request)
         {
             var json = JsonConvert.SerializeObject(request);
@@ -62,6 +70,11 @@ namespace CosmeticsShop.Api_Intergration
             var errorObj = await response.Content.ReadAsStringAsync();
 
             return JsonConvert.DeserializeObject<ApiErrorResult<string>>(errorObj);
+        }
+
+        public Task<ApiResult<ClientUpdateViewModel>> Update(ClientUpdateViewModel request)
+        {
+            throw new NotImplementedException();
         }
     }
 }

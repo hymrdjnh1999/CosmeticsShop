@@ -12,5 +12,7 @@ namespace CosmeticsShop.Api_Intergration
     {
         Task<ApiResult<string>> Login(ClientLoginRequest request);
         Task<ApiResult<string>> Register(ClientRegisterRequest request);
+        Task<ApiResult<ClientUpdateViewModel>> GetDetail(Guid userId);
+        Task<ApiResult<ClientUpdateViewModel>> Update(ClientUpdateViewModel request);
     }
 }

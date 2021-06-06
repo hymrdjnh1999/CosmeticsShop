@@ -17,13 +17,7 @@ namespace CosmeticsShop.WebApp.Controllers
     {
         private readonly ICartApiClient _cartApiClient;
         private readonly IClientOrderApi _clientOrderApi;
-        private ClientCartViewModel GetCartViewModel()
-        {
-            var cartJS = HttpContext.Session.GetString("Cart");
-            if (cartJS == null) { return null; }
-            var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(cartJS);
-            return cart;
-        }
+
         public CartController(ICartApiClient cartApiClient, IClientOrderApi clientOrderApi)
         {
             _cartApiClient = cartApiClient;
@@ -45,6 +39,7 @@ namespace CosmeticsShop.WebApp.Controllers
         [HttpGet]
         public IActionResult InforOrder()
         {
+            CreateUserViewBag();
             var isLogin = HttpContext.Session.GetString("Token");
             ViewBag.IsLogin = false;
             if (isLogin != null)

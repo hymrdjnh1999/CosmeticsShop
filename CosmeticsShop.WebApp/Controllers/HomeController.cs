@@ -29,6 +29,10 @@ namespace CosmeticsShop.WebApp.Controllers
 
         public async Task<IActionResult> Index()
         {
+            var clientId = User.Claims.ToList().Where(x => x.Type == "Id").FirstOrDefault();
+            var logout = HttpContext.Session.GetString("Token") == null && clientId != null;
+            if (logout)
+                return RedirectToAction("Logout", "User");
             CreateUserViewBag();
             var slides = await _slideApiClient.GetAll();
             var productCategory = await _categoryApiClient.GetHomeProductCategories();
@@ -36,13 +40,7 @@ namespace CosmeticsShop.WebApp.Controllers
             {
                 Slides = slides,
             };
-            var cartJs = HttpContext.Session.GetString("Cart");
-            if (cartJs != null)
-            {
-                var cart = JsonConvert.DeserializeObject(cartJs);
-                ViewBag.Cart = cart;
-            }
-
+            CreateCartViewBag();
             ViewBag.Categories = productCategory;
             return View(homeViewModel);
         }

@@ -85,6 +85,8 @@ namespace CosmeticsShop.WebApp.Controllers
                 IsPersistent = true
             };
 
+            var test = userPrincipal.Claims.ToList();
+
             HttpContext.Session.SetString("Token", apiResult.ResultObj);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                 userPrincipal,
@@ -92,7 +94,7 @@ namespace CosmeticsShop.WebApp.Controllers
             var cartJs = HttpContext.Session.GetString("Cart");
             if (cartJs != null)
             {
-                var clientId = User.Claims.Where(x => x.Type == "Id").FirstOrDefault().Value;
+                var clientId = test.Where(x => x.Type == "Id").FirstOrDefault().Value;
                 var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(cartJs);
                 cart.ClientId = new Guid(clientId);
                 cart = await _cartApiClient.AddToCart(cart);
@@ -146,13 +148,35 @@ namespace CosmeticsShop.WebApp.Controllers
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                 userPrincipal,
                 authProperties);
-            var cartJs = HttpContext.Session.GetString("Cart");
-            if (cartJs != null)
-            {
-                var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(cartJs);
-                ViewBag.Cart = cart;
-            }
+            CreateCartViewBag();
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Detail()
+        {
+            var claims = User.Claims.ToList();
+            var isLogin = claims.Where(x => x.Type == "Id").FirstOrDefault() != null;
+            if (!isLogin)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+
+            CreateUserViewBag();
+            var clientId = claims.Where(x => x.Type == "Id").FirstOrDefault().Value;
+            var response = await _clientApi.GetDetail(new Guid(clientId));
+            var client = response.ResultObj;
+            string avatar = "";
+            var isDefaultAvatar = String.IsNullOrEmpty(client.Avatar);
+            avatar = isDefaultAvatar ? "/images/default.jpg" : _config["BaseImageAddress"] + client.Avatar;
+            client.Avatar = avatar;
+            return View(client);
+        }
+        [HttpPost]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Detail(ClientUpdateViewModel request)
+        {
+            return View();
         }
         private ClaimsPrincipal ValidateToken(string jwtToken)
         {
@@ -171,6 +195,12 @@ namespace CosmeticsShop.WebApp.Controllers
             ClaimsPrincipal principal = new JwtSecurityTokenHandler().ValidateToken(jwtToken, validationParameters, out validatedToken);
 
             return principal;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> OrderHistory()
+        {
+            return View();
         }
     }
 }

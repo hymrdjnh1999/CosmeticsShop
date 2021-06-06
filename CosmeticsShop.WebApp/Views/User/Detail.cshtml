@@ -1,12 +1,10 @@
-﻿
+﻿@model Cosmetics.ViewModels.Systems.Clients.ClientUpdateViewModel;
 @{
     ViewData["Title"] = "AccountInfor";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     var cart = ViewBag.Cart;
-    var products = cart.Products;
     var imgUrlBase = "https://localhost:5001/user-content/";
-    var order = ViewBag.Order;
 }
 
 
@@ -16,8 +14,7 @@
             <div class="inner">
                 <div class="grid mg-left-110">
                     <div class="grid__item one-whole pd-left110">
-                        <h2>Xin chào,</h2>
-                        <h1>Test</h1>
+                        <h2>Xin chào, @Model.Name</h2>
                     </div>
                     <div class="grid__item one-quarter pd-left110">
                         <ul class="no-bullets">
@@ -28,29 +25,28 @@
                     <div class="grid__item three-quarters pd-left110 br-right">
                         @*<h2 class="h4 hide">customer.account.details</h2>*@
                         <div class="form-group">
-                            <div class="label">Họ tên</div>
-                            <div class="input">@order.ShipName</div>
                             <div class="form-group">
-                                <div class="label">Email</div>
-                                <div class="input">@order.ShipEmail</div>
+                                <label class="label d-block">Họ tên</label>
+                                <input class="input" style="border: none;" type="text" placeholder="Nhập họ tên" value="@Model.Name">
                             </div>
                             <div class="form-group">
-                                <label class="label">Mật khẩu cũ</label>
-                                <div>
-                                    <input class="input" style="border: none;" type="password" required="" name="oldPassword" placeholder="Nhập mật khẩu cũ" value="">
-                                </div>
+                                <label class="label d-block">Email</label>
+                                <input class="input border-0" disabled type="email" asp-for="Email" >
                             </div>
                             <div class="form-group">
-                                <label class="label">Mật khẩu mới</label>
-                                <div>
-                                    <input class="input" style="border: none;" type="password" required="" name="password" placeholder="Mật khẩu phải có ít nhất 1 ký tự đặc biệt, 1 chữ hoa ,1 chữ số và chữ thường!" value="">
-                                </div>
+                                <label class="label d-block">Mật khẩu cũ</label>
+                                <input class="input" style="border: none;" type="password" asp-for="OldPassword" placeholder="Nhập mật khẩu cũ">
+                                <span class="text-danger" asp-validation-for="OldPassword"></span>
                             </div>
                             <div class="form-group">
-                                <label class="label">Nhập lại</label>
-                                <div>
-                                    <input class="input" style="border: none;" type="password" required="" name="passwordConfirm" placeholder="Nhập lại mật khẩu mới" value="">
-                                </div>
+                                <label class="label d-block">Mật khẩu mới</label>
+                                <input class="input" style="border: none;" type="password" asp-for="NewPassword" placeholder="Mật khẩu phải có ít nhất 1 ký tự đặc biệt, 1 chữ hoa ,1 chữ số và chữ thường">
+                                <span class="text-danger" asp-validation-for="NewPassword"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="label d-block">Nhập lại mật khẩu</label>
+                                <input class="input" style="border: none;" type="password" asp-for="RepeatPassword" placeholder="Nhập lại mật khẩu mới">
+                                <span class="text-danger" asp-validation-for="RepeatPassword"></span>
                             </div>
                             <div class="form-group">
                                 <div class="sectionFooter_From form__Submit">

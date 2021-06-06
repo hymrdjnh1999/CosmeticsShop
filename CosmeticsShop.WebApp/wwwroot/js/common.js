@@ -10,3 +10,7 @@ if (prices) {
         makeFormatPrice(item)
     })
 }
+
+const redirectToUserDetail = () => {
+    return location.assign('/user/detail');
+}

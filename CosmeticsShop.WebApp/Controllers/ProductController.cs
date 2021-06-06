@@ -12,12 +12,12 @@ namespace CosmeticsShop.WebApp.Controllers
         {
             return View();
         }
-
+        [HttpGet]
         public IActionResult Detail()
         {
             return View();
         }
 
-      
+
     }
 }
