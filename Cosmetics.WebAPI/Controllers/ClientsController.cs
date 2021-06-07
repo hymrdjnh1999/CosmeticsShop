@@ -53,5 +53,17 @@ namespace Cosmetics.WebAPI.Controllers
             return Ok(result);
         }
 
+        [HttpPut("{clientId}")]
+        [Authorize]
+        public async Task<IActionResult> Update([FromForm]ClientUpdateViewModel request, Guid clientId)
+        {
+
+            var result = await _clientService.Update(request);
+            if (!result.IsSuccess)
+                return BadRequest(result);
+            return Ok(result);
+        }
+
+
     }
 }

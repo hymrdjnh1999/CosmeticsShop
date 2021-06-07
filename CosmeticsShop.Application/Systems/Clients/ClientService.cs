@@ -1,7 +1,9 @@
 ﻿using Cosmetics.ViewModels.Common;
 using Cosmetics.ViewModels.Systems.Clients;
+using CosmeticsShop.Application.Common;
 using CosmeticsShop.Data.Entities;
 using CosmeticsShop.Data.EntityFrameWork;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -9,7 +11,9 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,10 +24,13 @@ namespace CosmeticsShop.Application.Systems.Clients
     {
         private readonly CosmeticsDbContext _context;
         private readonly IConfiguration _config;
-        public ClientService(CosmeticsDbContext context, IConfiguration configuration)
+        private readonly IStorageService _storageService;
+
+        public ClientService(CosmeticsDbContext context, IConfiguration configuration, IStorageService storageService)
         {
             _context = context;
             _config = configuration;
+            _storageService = storageService;
         }
 
         public async Task<ApiResult<ClientUpdateViewModel>> GetDetail(Guid clientId)
@@ -133,9 +140,69 @@ namespace CosmeticsShop.Application.Systems.Clients
             }
         }
 
-        public Task<ApiResult<ClientUpdateViewModel>> Update(ClientUpdateViewModel request)
+        public async Task<ApiResult<ClientUpdateViewModel>> Update(ClientUpdateViewModel request)
         {
-            throw new NotImplementedException();
+            var client = await _context.Clients.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
+            if (client == null)
+            {
+                return new ApiErrorResult<ClientUpdateViewModel>("Không tìm thấy tài khoản");
+            }
+            if (request.NewAvatar != null)
+            {
+                var newAvatarUrl = await SaveFile(request.NewAvatar);
+                client.Avatar = newAvatarUrl;
+            }
+            client.Name = request.Name;
+            client.PhoneNumber = request.PhoneNumber;
+            client.Address = request.Address;
+            client.Dob = request.Dob;
+            var hasher = new PasswordHasher<Client>();
+            var isHaveData = !String.IsNullOrEmpty(request.OldPassword) || !String.IsNullOrEmpty(request.NewPassword) || !String.IsNullOrEmpty(request.RepeatPassword);
+            if (isHaveData)
+            {
+                var isEmpty = String.IsNullOrEmpty(request.OldPassword) || String.IsNullOrEmpty(request.NewPassword) || String.IsNullOrEmpty(request.RepeatPassword);
+                if (isEmpty)
+                {
+                    return new ApiErrorResult<ClientUpdateViewModel>("Phải điền đầy đủ 3 trường để cập nhật mật khẩu");
+                }
+                if (request.NewPassword != request.RepeatPassword)
+                {
+                    return new ApiErrorResult<ClientUpdateViewModel>("2 mật khẩu không trùng nhau");
+                }
+
+                var isCorrectPassword = hasher.VerifyHashedPassword(client, client.Password, request.OldPassword) == PasswordVerificationResult.Success;
+
+                if (!isCorrectPassword)
+                {
+                    return new ApiErrorResult<ClientUpdateViewModel>("Mật khẩu cũ không đúng");
+                }
+                var isSamePassword = hasher.VerifyHashedPassword(client, client.Password, request.NewPassword) == PasswordVerificationResult.Success;
+                if (isSamePassword)
+                {
+                    return new ApiErrorResult<ClientUpdateViewModel>("Mật khẩu mới không được trùng với mật khẩu cũ");
+                }
+                client.Password = hasher.HashPassword(client, request.NewPassword);
+            }
+
+
+            _context.Clients.Attach(client);
+
+            await _context.SaveChangesAsync();
+            request.Avatar = client.Avatar;
+            request.NewPassword = null;
+            request.OldPassword = null;
+            request.RepeatPassword = null;
+            request.NewAvatar = null;
+
+            return new ApiSuccessResult<ClientUpdateViewModel>(request);
+        }
+
+        private async Task<string> SaveFile(IFormFile file)
+        {
+            var originalFileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(originalFileName)}";
+            await _storageService.SaveFileAsync(file.OpenReadStream(), fileName);
+            return fileName;
         }
     }
 }

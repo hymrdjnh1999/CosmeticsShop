@@ -57,7 +57,7 @@ namespace CosmeticsShop.WebApp
             services.AddTransient<ISlideApiClient, SlideApiClient>();
             services.AddTransient<IProductApiClient, ProductApiClient>();
             services.AddTransient<ICategoryApiClient, CategoryApiClient>();
-            services.AddTransient<IClientApi, ClientApi>();
+            services.AddScoped<IClientApi, ClientApi>();
             services.AddTransient<ICartApiClient, CartApiClient>();
             services.AddTransient<IClientOrderApi, ClientOrderApi>();
 
