@@ -1,4 +1,5 @@
 ﻿using Cosmetics.ViewModels.Catalogs.Carts;
+using CosmeticsShop.Api_Intergration;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -12,16 +13,25 @@ namespace CosmeticsShop.WebApp.Controllers
 {
     public class ClientBaseController : Controller
     {
-        protected void CreateUserViewBag()
+
+        private readonly IClientApi _clientApi;
+
+        public ClientBaseController(IClientApi clientApi)
+        {
+            _clientApi = clientApi;
+        }
+        protected async Task CreateUserViewBag()
         {
             var result = GetClaim("Id");
             ViewBag.IsLogin = result != null;
             if (result != null)
             {
-                result = GetClaim("Avatar");
-                ViewBag.Avatar = result != null && !String.IsNullOrEmpty(result.Value) ? $"https://localhost:5001/user-content/{result.Value}" : "/images/default.jpg";
-                result = GetClaim("Name");
-                ViewBag.Name = result.Value;
+
+                var clientId = new Guid(result.Value);
+                var response = await _clientApi.GetDetail(clientId);
+                var client = response.ResultObj;
+                ViewBag.Avatar = !String.IsNullOrEmpty(client.Avatar) ? $"https://localhost:5001/user-content/{client.Avatar}" : "/images/default.jpg";
+                ViewBag.Name = client.Name;
             }
         }
         protected void CreateCartViewBag()

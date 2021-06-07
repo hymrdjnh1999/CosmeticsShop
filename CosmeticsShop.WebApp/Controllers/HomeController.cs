@@ -19,7 +19,11 @@ namespace CosmeticsShop.WebApp.Controllers
         private readonly ISlideApiClient _slideApiClient;
         private readonly IProductApiClient _productApiClient;
         private readonly ICategoryApiClient _categoryApiClient;
-        public HomeController(ILogger<HomeController> logger, ISlideApiClient slideApiClient, IProductApiClient productApiClient, ICategoryApiClient categoryApiClient)
+        public HomeController(
+            ILogger<HomeController> logger,
+            ISlideApiClient slideApiClient,
+            IProductApiClient productApiClient,
+            ICategoryApiClient categoryApiClient, IClientApi clientApi) : base(clientApi)
         {
             _logger = logger;
             _slideApiClient = slideApiClient;
@@ -33,7 +37,7 @@ namespace CosmeticsShop.WebApp.Controllers
             var logout = HttpContext.Session.GetString("Token") == null && clientId != null;
             if (logout)
                 return RedirectToAction("Logout", "User");
-            CreateUserViewBag();
+            await CreateUserViewBag();
             var slides = await _slideApiClient.GetAll();
             var productCategory = await _categoryApiClient.GetHomeProductCategories();
             var homeViewModel = new HomeViewModel()

@@ -1,12 +1,15 @@
-﻿using Cosmetics.ViewModels.Common;
+﻿using Cosmetics.Ultilities.Constants;
+using Cosmetics.ViewModels.Common;
 using Cosmetics.ViewModels.Systems.Clients;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -72,9 +75,41 @@ namespace CosmeticsShop.Api_Intergration
             return JsonConvert.DeserializeObject<ApiErrorResult<string>>(errorObj);
         }
 
-        public Task<ApiResult<ClientUpdateViewModel>> Update(ClientUpdateViewModel request)
+        public async Task<ApiResult<ClientUpdateViewModel>> Update(ClientUpdateViewModel request)
         {
-            throw new NotImplementedException();
+            var sessions = _httpContextAccessor
+                  .HttpContext
+                  .Session
+                  .GetString(SystemConstants.AppSettings.Token);
+
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration[SystemConstants.AppSettings.BaseAddress]);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+            var requestContent = new MultipartFormDataContent();
+            if (request.NewAvatar != null)
+            {
+                byte[] data;
+                using (var br = new BinaryReader(request.NewAvatar.OpenReadStream()))
+                {
+                    data = br.ReadBytes((int)request.NewAvatar.OpenReadStream().Length);
+                }
+                ByteArrayContent bytes = new ByteArrayContent(data);
+                requestContent.Add(bytes, "newAvatar", request.NewAvatar.FileName);
+            }
+
+            requestContent.Add(new StringContent(request.Name, Encoding.UTF8), "name");
+            requestContent.Add(new StringContent(request.Id.ToString()), "id");
+            requestContent.Add(new StringContent(request.Dob.ToString()), "dob");
+            requestContent.Add(new StringContent(request.Address, Encoding.UTF8), "address");
+            requestContent.Add(new StringContent(request.PhoneNumber), "phoneNumber");
+            requestContent.Add(new StringContent(request.NewPassword ?? ""), "newPassword");
+            requestContent.Add(new StringContent(request.RepeatPassword ?? ""), "repeatPassword");
+            requestContent.Add(new StringContent(request.OldPassword ?? ""), "oldPassword");
+
+            var response = await client.PutAsync($"/api/clients/{request.Id}", requestContent);
+            var result = await response.Content.ReadAsStringAsync();
+
+            return JsonConvert.DeserializeObject<ApiResult<ClientUpdateViewModel>>(result);
         }
     }
 }

@@ -59,3 +59,19 @@
 .account-section:hover .user-menu {
     display: block;
 }
+
+.client-avatar:hover~.client-avatar-modal {
+    display: block;
+}
+
+.client-avatar-modal{
+    display:none;
+    height:100%;
+    width:100%;
+    background-color: rgba(0,0,0,0.3);
+    cursor:pointer;
+}
+
+.cursor-pointer{
+    cursor:pointer;
+}

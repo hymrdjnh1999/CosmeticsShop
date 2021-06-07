@@ -14,3 +14,7 @@ if (prices) {
 const redirectToUserDetail = () => {
     return location.assign('/user/detail');
 }
+
+const submitForm = (buttonQuery, formQuery) => {
+    $(buttonQuery).on('click', () => $(formQuery).submit())
+}
