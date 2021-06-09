@@ -1,0 +1,127 @@
+﻿@model Cosmetics.ViewModels.Systems.Clients.ClientUpdateViewModel;
+@{
+    ViewData["Title"] = "AccountInfor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var cart = ViewBag.Cart;
+    var imgUrlBase = "https://localhost:5001/user-content/";
+}
+
+
+<div id="pageContainer">
+    <div id="notificationWrap" class="w-25 position-fixed d-flex items-center" style="top:40px; left:50%; transform:translateX(-50%); z-index:100;">
+        @if (ViewBag.Result != null)
+        {
+            <span id="notificationMsg" class="alert alert-success w-100" role="alert">
+                @ViewBag.Result
+            </span>
+        }
+        @if (ViewBag.Error != null)
+        {
+            <span id="notificationMsg" class="alert alert-danger w-100" role="alert">
+                @ViewBag.Error
+            </span>
+        }
+    </div>
+    <main class="main-contentAccount">
+        <div class="wrapperAccount">
+            <div class="inner">
+                <div class="grid mg-left-110">
+                    <div class="grid__item one-whole pd-left110">
+                        <h2>Xin chào, @Model.Name</h2>
+                    </div>
+                    <div class="grid__item one-quarter pd-left110">
+                        <ul class="no-bullets">
+                            <li><a href="#">Thông tin tài khoản</a></li>
+                            <li><a href="#">Lịch sử đơn hàng</a></li>
+                        </ul>
+                    </div>
+                    <div class="grid__item three-quarters pd-left110 br-right d-flex flex-column">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <form class="d-flex w-100" id="clientUpdateForm" enctype="multipart/form-data" method="post">
+                            <div class="w-75">
+                                <div class="form-group">
+                                    <label class="label d-block">Họ tên</label>
+                                    <input class="input w-100" style="border: none;" type="text" placeholder="Nhập họ tên" asp-for="Name">
+                                </div>
+                                <div class="form-group">
+                                    <label class="label d-block">Email</label>
+                                    <input class="input w-100 border-0 " disabled type="email" asp-for="Email">
+                                </div>
+                                <div class="form-group">
+                                    <label class="label d-block">Số điện thoại</label>
+                                    <input class="input w-100 border-0" type="text" asp-for="PhoneNumber" placeholder="Nhập số điện thoại">
+                                    <span class="text-danger d-block" asp-validation-for="PhoneNumber"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="label d-block">Địa chỉ</label>
+                                    <input class="input w-100 border-0" type="text" asp-for="Address" placeholder="Nhập địa chỉ">
+                                    <span class="text-danger d-block" asp-validation-for="Address"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="label d-block">Ngày sinh</label>
+                                    <input class="input w-100 border-0" type="date" asp-for="Dob">
+                                </div>
+                                <div class="form-group">
+                                    <label class="label d-block">Mật khẩu cũ</label>
+                                    <input class="input w-100" style="border: none;" type="password" asp-for="OldPassword" placeholder="Nhập mật khẩu cũ">
+                                    <span class="text-danger d-block" asp-validation-for="OldPassword"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="label d-block">Mật khẩu mới</label>
+                                    <input class="input w-100" style="border: none;" type="password" asp-for="NewPassword" placeholder="Mật khẩu phải có ít nhất 1 ký tự đặc biệt, 1 chữ hoa ,1 chữ số và chữ thường">
+                                    <span class="text-danger d-block" asp-validation-for="NewPassword"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="label d-block">Nhập lại mật khẩu</label>
+                                    <input class="input w-100" style="border: none;" type="password" asp-for="RepeatPassword" placeholder="Nhập lại mật khẩu mới">
+                                    <span class="text-danger d-block" asp-validation-for="RepeatPassword"></span>
+                                </div>
+                                <div class="form-group">
+                                    <div class="sectionFooter_From form__Submit">
+                                        <div class="wrapper" style="width: 176px;">
+                                            <a href="#" id="clientSubmitUpdateBtn" class="justify-content-center text-center align-items-center"><span>CẬP NHẬT</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-25">
+                                <div class="w-50 position-relative client-img">
+                                    <img id="clientAvatar" class="rounded-circle w-100 h-100 client-img" src="@Model.Avatar" />
+                                    <div class="position-absolute rounded-circle w-100 h-100 client-avatar-modal client-img" style="left:0;top:0;">
+                                        <label id="clientAvatarLabel" for="updateAvatarBtn" class="cursor-pointer rounded-circle text-white d-flex align-items-center justify-content-center h-100">Thay đổi</label>
+                                        <input accept="image/*" asp-for="NewAvatar" id="updateAvatarBtn" style="visibility:hidden" />
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+@section Scripts{
+    <script>
+        setTimeout(() => $('#notificationMsg').fadeOut('slow'), 1500)
+
+    </script>
+    <script>
+        const displayChangeAvatar = () => $('.client-avatar-modal').show();
+        $('#clientAvatar').hover(displayChangeAvatar, displayChangeAvatar);
+        $('#clientAvatarLabel').mouseleave(() => $('.client-avatar-modal').hide());
+    </script>
+    <script>
+        $('#updateAvatarBtn').change((e) => {
+            if (e.target.files && e.target.files[0]) {
+                var ImageDir = new FileReader();
+                ImageDir.onload = (a) => {
+                    $('#clientAvatar').attr('src', a.target.result);
+                }
+                ImageDir.readAsDataURL(e.target.files[0]);
+            }
+        })
+        submitForm('#clientSubmitUpdateBtn', '#clientUpdateForm');
+    </script>
+}

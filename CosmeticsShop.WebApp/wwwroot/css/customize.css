@@ -869,3 +869,8 @@ h2 {
     }
 }
 
+
+.client-img {
+    min-width: 120px;
+    height: 120px;
+}

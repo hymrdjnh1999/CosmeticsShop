@@ -55,7 +55,7 @@
                         @if (isLogin == null || !isLogin)
                         {
                             <li class="horizontalList__item">
-                                @Html.ActionLink("Tài khoản", "Login", "User")
+                               <a href="/user/login" class="d-block">Tài khoản</a>
                             </li>
                         }
                         else
@@ -63,12 +63,13 @@
                             var avatar = ViewBag.Avatar;
                             var userName = ViewBag.Name;
 
-                            <div class="d-flex align-items-center position-relative">
-                                <img class="rounded-circle mr-2 user-avatar" src="@avatar" />
-                                <span class="font-weight-bold user-name">@userName</span>
-                                <ul class="user-menu position-absolute">
+                            <div class="d-flex align-items-center position-relative account-section">
+                                <img onclick="redirectToUserDetail()" class="rounded-circle mr-2 user-avatar" src="@avatar" />
+                                <span onclick="redirectToUserDetail()" class="font-weight-bold user-name">@userName</span>
+                                <ul class="user-menu position-absolute ">
+                                    <span class="position-absolute triangle-top"></span>
                                     <li class="user-menu-items">
-                                        <a href="#" class="user-menu-link">Thông tin cá nhân</a>
+                                        <a href="/user/detail" class="user-menu-link">Thông tin cá nhân</a>
                                     </li>
                                     <li class="user-menu-items">
                                         <a href="#" class="user-menu-link">Đơn hàng của tôi</a>
@@ -81,19 +82,18 @@
                         }
                         <li class="horizontalList__item">
                             @* <a href="#" id="loginSubmitBtn" data-action="open-modal" aria-controls="search">Tìm Sản Phẩm</a>*@
-                            <button style="background-color: white; border: none" type="button" data-toggle="dropdown">
+                            <button class="bg-white border-0 d-block" type="button" data-toggle="dropdown">
                                 Tìm Sản Phẩm
                             </button>
                             <ul class="box-search dropdown-menu">
                                 <li>
                                     <input type="text" id="search" name="search" placeholder="Nhập từ khóa...">
                                     <button id="btnSearch"></button>
-
                                 </li>
                             </ul>
                         </li>
                         <li class="horizontalList__item">
-                            <a href="/cart/cartdetail" class="" data-action="open-drawer" data-drawer-id="sidebar-cart" aria-label="Mở Giỏ Hàng">
+                            <a href="/cart/cartdetail" class="d-block" data-action="open-drawer" data-drawer-id="sidebar-cart" aria-label="Mở Giỏ Hàng">
                                 Giỏ Hàng (@if (ViewBag.Cart != null)
                                 {
                                     <span class="header__cartCount" id="cartQuantity">@ViewBag.Cart.Products.Count</span>

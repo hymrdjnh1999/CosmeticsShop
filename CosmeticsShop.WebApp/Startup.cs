@@ -57,7 +57,7 @@ namespace CosmeticsShop.WebApp
             services.AddTransient<ISlideApiClient, SlideApiClient>();
             services.AddTransient<IProductApiClient, ProductApiClient>();
             services.AddTransient<ICategoryApiClient, CategoryApiClient>();
-            services.AddTransient<IClientApi, ClientApi>();
+            services.AddScoped<IClientApi, ClientApi>();
             services.AddTransient<ICartApiClient, CartApiClient>();
             services.AddTransient<IClientOrderApi, ClientOrderApi>();
 
@@ -65,6 +65,7 @@ namespace CosmeticsShop.WebApp
             services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ClientCreateOrderValidator>());
             services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ClientLoginValidation>());
             services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ClientRegisterValidation>());
+            services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ClientUpdateValidator>());
 
 
         }

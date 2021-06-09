@@ -25,7 +25,7 @@ namespace CosmeticsShop.WebApp.Controllers
         private readonly IConfiguration _config;
         private readonly IClientApi _clientApi;
         private readonly ICartApiClient _cartApiClient;
-        public UserController(IClientApi clientApi, IConfiguration configuration, ICartApiClient cartApiClient)
+        public UserController(IClientApi clientApi, IConfiguration configuration, ICartApiClient cartApiClient) : base(clientApi)
         {
             _clientApi = clientApi;
             _config = configuration;
@@ -54,14 +54,13 @@ namespace CosmeticsShop.WebApp.Controllers
                 var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(cartJs);
                 ViewBag.Cart = cart;
             }
-
-
-
             return View();
         }
         [HttpPost]
         public async Task<IActionResult> Login(ClientLoginRequest request)
         {
+            CreateCartViewBag();
+            await CreateUserViewBag();
             var sessions = HttpContext.Session.GetString("Token");
             if (sessions != null)
             {
@@ -85,6 +84,8 @@ namespace CosmeticsShop.WebApp.Controllers
                 IsPersistent = true
             };
 
+            var test = userPrincipal.Claims.ToList();
+
             HttpContext.Session.SetString("Token", apiResult.ResultObj);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                 userPrincipal,
@@ -92,7 +93,7 @@ namespace CosmeticsShop.WebApp.Controllers
             var cartJs = HttpContext.Session.GetString("Cart");
             if (cartJs != null)
             {
-                var clientId = User.Claims.Where(x => x.Type == "Id").FirstOrDefault().Value;
+                var clientId = test.Where(x => x.Type == "Id").FirstOrDefault().Value;
                 var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(cartJs);
                 cart.ClientId = new Guid(clientId);
                 cart = await _cartApiClient.AddToCart(cart);
@@ -125,6 +126,8 @@ namespace CosmeticsShop.WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(ClientRegisterRequest request)
         {
+            CreateCartViewBag();
+            await CreateUserViewBag();
             if (!ModelState.IsValid)
                 return View(request);
 
@@ -146,13 +149,62 @@ namespace CosmeticsShop.WebApp.Controllers
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                 userPrincipal,
                 authProperties);
-            var cartJs = HttpContext.Session.GetString("Cart");
-            if (cartJs != null)
-            {
-                var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(cartJs);
-                ViewBag.Cart = cart;
-            }
+            CreateCartViewBag();
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Detail()
+        {
+            var claims = User.Claims.ToList();
+            var isLogin = claims.Where(x => x.Type == "Id").FirstOrDefault() != null;
+            if (!isLogin)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+
+            await CreateUserViewBag();
+            var clientId = claims.Where(x => x.Type == "Id").FirstOrDefault().Value;
+            var client = await GetClientViewModel(clientId);
+            return View(client);
+        }
+        public async Task<ClientUpdateViewModel> GetClientViewModel(string clientId)
+        {
+            var response = await _clientApi.GetDetail(new Guid(clientId));
+            var client = response.ResultObj;
+            string avatar = "";
+            var isDefaultAvatar = String.IsNullOrEmpty(client.Avatar);
+            avatar = isDefaultAvatar ? "/images/default.jpg" : _config["BaseImageAddress"] + client.Avatar;
+            client.Avatar = avatar;
+            return client;
+        }
+        [HttpPost]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Detail([FromForm] ClientUpdateViewModel request)
+        {
+            var clientId = User.Claims.ToList().Where(x => x.Type == "Id").FirstOrDefault().Value;
+            var client = await GetClientViewModel(clientId);
+
+            if (!ModelState.IsValid)
+            {
+                CreateCartViewBag();
+                ViewBag.Error = "Cập nhật thông tin không thành công";
+                return View(client);
+            }
+
+            request.Id = new Guid(clientId);
+            var result = await _clientApi.Update(request);
+            CreateCartViewBag();
+            await CreateUserViewBag();
+            if (!result.IsSuccess)
+            {
+                ViewBag.Error = result.Message;
+                ModelState.AddModelError("", result.Message);
+                return View(client);
+            }
+            client = await GetClientViewModel(clientId);
+            ViewBag.Result = "Cập nhật thông tin thành công";
+            return View(client);
         }
         private ClaimsPrincipal ValidateToken(string jwtToken)
         {
@@ -171,6 +223,12 @@ namespace CosmeticsShop.WebApp.Controllers
             ClaimsPrincipal principal = new JwtSecurityTokenHandler().ValidateToken(jwtToken, validationParameters, out validatedToken);
 
             return principal;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> OrderHistory()
+        {
+            return View();
         }
     }
 }

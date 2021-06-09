@@ -12,5 +12,7 @@ namespace CosmeticsShop.Application.Systems.Clients
     {
         Task<ApiResult<string>> Register(ClientRegisterRequest request);
         Task<ApiResult<string>> Login(ClientLoginRequest request);
+        Task<ApiResult<ClientUpdateViewModel>> GetDetail(Guid clientId);
+        Task<ApiResult<ClientUpdateViewModel>> Update(ClientUpdateViewModel request);
     }
 }
