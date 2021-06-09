@@ -22,6 +22,7 @@ namespace CosmeticsShop.Application.Catalog.Categories
             _context = context;
         }
 
+
         public async Task<int> Create(CategoryCreateRequest request)
         {
             var category = new Category()
@@ -59,6 +60,7 @@ namespace CosmeticsShop.Application.Catalog.Categories
             }
 
             category.Name = request.Name;
+            category.IsOutstanding = request.IsOutstanding;
             _context.Categories.Update(category);
             await _context.SaveChangesAsync();
             return true;
@@ -103,6 +105,7 @@ namespace CosmeticsShop.Application.Catalog.Categories
                 {
                     Id = x.Id,
                     Name = x.Name,
+                    IsOutstanding = x.IsOutstanding,
                     Status = x.Status
 
                 })
@@ -122,18 +125,15 @@ namespace CosmeticsShop.Application.Catalog.Categories
         public async Task<CategoryViewModel> GetById(int id)
         {
             var category = await _context.Categories.FindAsync(id);
-            if (category == null)
-            {
-                return null;
-            }
-
-            var productViewModel = new CategoryViewModel()
+            if (category == null) return null;
+            var categoryViewModel = new CategoryViewModel()
             {
                 Id = category.Id,
+                IsOutstanding = category.IsOutstanding,
                 Name = category.Name,
                 SortOrder = category.SortOrder
             };
-            return productViewModel;
+            return categoryViewModel;
 
         }
 
@@ -184,4 +184,8 @@ namespace CosmeticsShop.Application.Catalog.Categories
             return listHomeCategory;
         }
     }
+
+
+    
 }
+
