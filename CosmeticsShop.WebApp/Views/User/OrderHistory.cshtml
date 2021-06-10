@@ -1,4 +1,4 @@
-﻿
+﻿@model List<Cosmetics.ViewModels.Catalogs.Orders.ClientOrderHistoryViewMode>;
 @{
     ViewData["Title"] = "OrderHistory";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,6 +8,9 @@
 <div id="main">
     <div id="pageContainer">
         <main class="main_content" role="main">
+            <div class="d-none rounded fixed-top justify-content-center" id="cancelMsgWrap">
+                <span id="cancelMsg" class="rounded"></span>
+            </div>
             <section id="page-wapper">
                 <div class="wrapperAccount">
                     <div class="inner">
@@ -18,7 +21,7 @@
                             </div>
                             <div class="grid__item one-quarter pd-left110">
                                 <ul class="no-bullets">
-                                    <li><a href="#">Thông tin tài khoản</a></li>
+                                    <li><a href="/user/detail">Thông tin tài khoản</a></li>
                                     <li><a href="#">Lịch sử đơn hàng</a></li>
                                 </ul>
                             </div>
@@ -29,21 +32,41 @@
                                             <tr>
                                                 <th>Mã</th>
                                                 <th>Ngày đặt</th>
-                                                <th>Tình trạng thanh toán</th>
                                                 <th>Tổng tiền</th>
-                                                <th>Tình trạng hoàn thành</th>
+                                                <th>Tình trạng</th>
+                                                <th>Hành động</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td><a href="#" title="">#123931</a></td>
-                                                <td>06/03/2021 07:41:12</td>
-                                                <td>pending</td>
-                                                <td>1,299,000₫</td>
-                                                <td>not fulfilled</td>
-                                            </tr>
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <td><a href="#">@item.Id</a></td>
+                                                    <td>@item.OrderDate</td>
+                                                    <td class="priceFormat">
+                                                        @item.Total
+                                                    </td>
+                                                    <td class="orderStatus">@item.Status</td>
+                                                    <td><span class="btn btn-danger cursor-pointer " onclick="openModal('order-modal','order-cancel-submit',@item.Id)">Hủy đơn</span></td>
+                                                </tr>
+                                            }
                                         </tbody>
                                     </table>
+                                </div>
+                            </div>
+                            <div class="co-modal" id="order-modal">
+                                <div class="co-modal--content ">
+                                    <div class="co-modal--title px-3">
+                                        Bạn có chắc chắn muốn hủy đơn hàng này chứ?
+                                    </div>
+                                    <div>
+                                        <textarea rows="3" class="w-100 mt-4" style="outline:none;" placeholder="Điền lý do bạn muốn hủy đơn hàng này" id="orderCancelReason"></textarea>
+                                        <span class="text-danger" id="cancelOrderReason"></span>
+                                    </div>
+                                    <div class="co-modal--btns">
+                                        <span class="btn btn-outline-dark co-modal--btn co-cancel-btn" onclick="handleOnCancel()">Hủy bỏ</span>
+                                        <span class="btn btn-outline-danger co-modal--btn co-submit-btn" id="order-cancel-submit" onclick="onSubmitCancelOrder(this)">Xác nhận</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -54,3 +77,50 @@
     </div>
 </div>
 
+@section Scripts{
+    <script>
+        const onSubmitCancelOrder = (btnElement) => {
+            const cancelReason = document.querySelector('#orderCancelReason').value;
+            if (!cancelReason.trim()) {
+                document.querySelector('#cancelOrderReason').innerText = "Không được để trống lý do";
+                event.preventDefault();
+                return;
+            }
+            const orderId = btnElement.getAttribute('data');
+            if (orderId) {
+                $.ajax({
+                    method: 'PUT',
+                    url: `/user/cancelOrder`,
+                    dataType: 'text',
+                    data: { orderId: Number(orderId), cancelReason },
+                    async: true,
+                    success: async function (response) {
+
+                        const { isSuccess, message } = JSON.parse(response);
+                        
+                        $('#cancelMsgWrap').removeClass('d-none').addClass('d-flex');
+                        if (isSuccess) {
+                            $('#cancelMsg').html(message).addClass('rounded alert alert-success')
+                        }
+                        else {
+                            $('#cancelMsg').html(message).addClass('rounded alert alert-danger')
+                        }
+                        await new Promise((resolve) => setTimeout(() => {
+                            $('#cancelMsgWrap').fadeOut('slow');
+                            resolve();
+                        }, 1500));
+                        $('#cancelMsg').html('')
+                        $('#cancelMsgWrap').removeClass('d-flex').addClass('d-none');
+                        handleOnCancel();
+                    },
+                    failure: function (response) {
+                        alert('false')
+                    },
+                    error: function (response) {
+                        alert('error')
+                    }
+                })
+            }
+        }
+    </script>
+}

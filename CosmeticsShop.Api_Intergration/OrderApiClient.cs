@@ -46,6 +46,8 @@ namespace CosmeticsShop.Api_Intergration
             return data;
         }
 
+
+
         public async Task<List<OrderProductViewModel>> GetProducts(int id)
         {
             var request = $"/api/orders/{id}/products";

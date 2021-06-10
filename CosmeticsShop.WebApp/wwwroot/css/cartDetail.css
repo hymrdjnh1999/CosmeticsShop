@@ -44,7 +44,6 @@
 
 .cartItem__imageWrapper {
     width: 90px;
-    min-width: 120px;
     text-align: center;
 }
 
@@ -512,9 +511,12 @@ main_content {
     background-color: #efefef;
     border-radius: 4px;
 }
+    .sidebar.order-detail-product-wrap{
+        padding-right: 64px;
+    }
 
-@media (min-width: 1000px) {
-    .sidebar {
+    @media (min-width: 1000px) {
+        .sidebar {
         width: 42%;
         padding-left: 4%;
         background-position: left top;

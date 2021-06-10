@@ -15,5 +15,6 @@ namespace CosmeticsShop.Api_Intergration
         Task<OrderViewModel> GetById(int id);
         Task<bool> UpdateStatus(OrderViewModel request);
         Task<List<OrderProductViewModel>> GetProducts(int id);
+
     }
 }
