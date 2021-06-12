@@ -17,7 +17,9 @@ namespace CosmeticsShop.WebApp.Controllers
         {
             return View();
         }
-
-
+        public IActionResult Category()
+        {
+            return View();
+        }
     }
 }
