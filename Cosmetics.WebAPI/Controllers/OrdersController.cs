@@ -84,5 +84,19 @@ namespace Cosmetics.WebAPI.Controllers
             }
             return Ok(result);
         }
+        [HttpGet("{clientId}/client")]
+        public async Task<IActionResult> ClientGetOrderHistory(Guid clientId)
+        {
+            var orders = await _orderService.ClientGetOrderHistory(clientId);
+            return Ok(orders);
+        }
+
+        [HttpPut("{orderId}/cancel")]
+        public async Task<IActionResult> ClientCancelOrder(int orderId, [FromBody] ClientCancelOrderReasonRequest request)
+        {
+            var result = await _orderService.ClientCancelOrder(orderId, request.Message);
+
+            return Ok(result);
+        }
     }
 }

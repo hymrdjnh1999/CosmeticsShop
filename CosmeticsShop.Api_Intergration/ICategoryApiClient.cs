@@ -19,5 +19,6 @@ namespace CosmeticsShop.Api_Intergration
 /*        Task<bool> ChangeIsOutStanding(CategoryUpdateIOSRequest request);
 */        Task<CategoryViewModel> GetById(int id);
         Task<bool> Delete(int id);
+
     }
 }

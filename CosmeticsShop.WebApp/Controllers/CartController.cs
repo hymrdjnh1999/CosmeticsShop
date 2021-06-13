@@ -17,23 +17,16 @@ namespace CosmeticsShop.WebApp.Controllers
     {
         private readonly ICartApiClient _cartApiClient;
         private readonly IClientOrderApi _clientOrderApi;
-        private ClientCartViewModel GetCartViewModel()
-        {
-            var cartJS = HttpContext.Session.GetString("Cart");
-            if (cartJS == null) { return null; }
-            var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(cartJS);
-            return cart;
-        }
-        public CartController(ICartApiClient cartApiClient, IClientOrderApi clientOrderApi)
+        public CartController(ICartApiClient cartApiClient, IClientOrderApi clientOrderApi, IClientApi clientApi) : base(clientApi)
         {
             _cartApiClient = cartApiClient;
             _clientOrderApi = clientOrderApi;
         }
 
         [HttpGet]
-        public IActionResult CartDetail()
+        public async Task<IActionResult> CartDetail()
         {
-            CreateUserViewBag();
+            await CreateUserViewBag();
             var cartJS = HttpContext.Session.GetString("Cart");
             if (cartJS != null)
             {
@@ -43,8 +36,9 @@ namespace CosmeticsShop.WebApp.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult InforOrder()
+        public async Task<IActionResult> InforOrder()
         {
+            await CreateUserViewBag();
             var isLogin = HttpContext.Session.GetString("Token");
             ViewBag.IsLogin = false;
             if (isLogin != null)
@@ -65,7 +59,7 @@ namespace CosmeticsShop.WebApp.Controllers
         [HttpGet("{cartId}/thanks/{orderId}")]
         public async Task<IActionResult> Bill(Guid cartId, int orderId)
         {
-            CreateUserViewBag();
+            await CreateUserViewBag();
             var cart = GetCartViewModel();
 
             if (cart != null)
@@ -98,8 +92,10 @@ namespace CosmeticsShop.WebApp.Controllers
             request.ClientCart = cart;
             var isLogin = HttpContext.Session.GetString("Token");
             ViewBag.isLogin = false;
-            if (isLogin != null)
+            var clientId = GetClaim("Id").Value;
+            if (isLogin != null && clientId != null)
             {
+                request.ClientID = new Guid(clientId);
                 ViewBag.isLogin = true;
             }
             if (!ModelState.IsValid)

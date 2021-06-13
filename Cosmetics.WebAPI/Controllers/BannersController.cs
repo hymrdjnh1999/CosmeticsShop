@@ -71,7 +71,6 @@ namespace Cosmetics.WebAPI.Controllers
 
         [HttpDelete("{id}")]
         [Authorize]
-
         public async Task<IActionResult> Delete(int id)
         {
             if (!ModelState.IsValid)
