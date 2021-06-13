@@ -1,0 +1,13 @@
+﻿.emptyState {
+    text-align: center;
+    margin: 250px 0;
+}
+
+.emptyState__Action{
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.emptyState_Title{
+    margin-bottom: 16px;
+}
