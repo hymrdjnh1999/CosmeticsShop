@@ -59,7 +59,7 @@ namespace CosmeticsShop.WebApp
             services.AddTransient<ICategoryApiClient, CategoryApiClient>();
             services.AddScoped<IClientApi, ClientApi>();
             services.AddTransient<ICartApiClient, CartApiClient>();
-            services.AddTransient<IClientOrderApi, ClientOrderApi>();
+            services.AddScoped<IClientOrderApi, ClientOrderApi>(); 
 
 
             services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ClientCreateOrderValidator>());

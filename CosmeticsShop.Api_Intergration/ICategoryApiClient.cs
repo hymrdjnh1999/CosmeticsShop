@@ -18,5 +18,6 @@ namespace CosmeticsShop.Api_Intergration
         Task<bool> Edit(CategoryUpdateRequest request);
         Task<CategoryViewModel> GetById(int id);
         Task<bool> Delete(int id);
+
     }
 }
