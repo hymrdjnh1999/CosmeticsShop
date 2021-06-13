@@ -1,4 +1,5 @@
 ﻿@model List<Cosmetics.ViewModels.Catalogs.Orders.ClientOrderHistoryViewMode>;
+@using CosmeticsShop.Data.Enums;
 @{
     ViewData["Title"] = "OrderHistory";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -16,8 +17,7 @@
                     <div class="inner">
                         <div class="grid mg-left-110">
                             <div class="grid__item one-whole pd-left110">
-                                <h2>Xin chào,</h2>
-                                <h1>Test</h1>
+                                <h2>Xin chào, @ViewBag.Name</h2>
                             </div>
                             <div class="grid__item one-quarter pd-left110">
                                 <ul class="no-bullets">
@@ -47,7 +47,12 @@
                                                         @item.Total
                                                     </td>
                                                     <td class="orderStatus">@item.Status</td>
-                                                    <td><span class="btn btn-danger cursor-pointer " onclick="openModal('order-modal','order-cancel-submit',@item.Id)">Hủy đơn</span></td>
+                                                    <td>
+                                                        @if (item.Status < OrderStatus.Shipping && item.Status != OrderStatus.Canceled)
+                                                        {
+                                                            <span class="btn btn-danger cursor-pointer " onclick="openModal('order-modal','order-cancel-submit',@item.Id)">Hủy đơn</span>
+                                                        }
+                                                    </td>
                                                 </tr>
                                             }
                                         </tbody>
