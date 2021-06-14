@@ -14,5 +14,7 @@ namespace CosmeticsShop.Application.Systems.Clients
         Task<ApiResult<string>> Login(ClientLoginRequest request);
         Task<ApiResult<ClientUpdateViewModel>> GetDetail(Guid clientId);
         Task<ApiResult<ClientUpdateViewModel>> Update(ClientUpdateViewModel request);
+        Task<ApiResult<PageResponse<ClientViewModel>>> GetClientPaging(GetClientPagingRequest request);
+
     }
 }
