@@ -2,7 +2,12 @@
     width: 20px;
     height: 20px;
 }
-
+.content{
+    display:none;
+}
+.content.active{
+    display: block;
+}
 .mw-75{
     max-width:75% !important;
 }

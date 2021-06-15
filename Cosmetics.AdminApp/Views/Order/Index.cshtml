@@ -21,6 +21,9 @@
 
     <div class="card mb-12">
         <div class="card-header d-flex justify-content-between">
+            <div class="d-none rounded fixed-top justify-content-center" id="cancelMsgWrap">
+                <span id="cancelMsg" class="rounded"></span>
+            </div>
             <form asp-action="Index" method="get">
                 <div class="form-outline my-2 d-flex">
                     <input name="keyword" value="@ViewBag.Keyword" type="text" id="productSearchBox" placeholder="Tìm kiếm..." class="form-control  border-dark" />
@@ -33,7 +36,11 @@
                     </button>
                 </div>
             </form>
-
+            <div class="order_button">
+                <button id="btn_all" class="btn btn-primary">All</button>
+                <button id="btn_success" class="btn btn-success">Success</button>
+                <button id="btn_cancel" class="btn btn-danger">Canceled</button>
+            </div>
 
 
         </div>
@@ -79,7 +86,7 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="order_all" class="content active">
                         @foreach (var item in Model.Items)
                         {
                             <tr class="d-flex list-product">
@@ -136,71 +143,257 @@
                                     {
                                         <a href="order/@item.Id" class="btn btn-outline-info">Xem chi tiết</a>
                                     }
+                                    @if (item.Status < OrderStatus.Shipping && item.Status != OrderStatus.Canceled)
+                                    {
+                                        <span class="btn btn-danger cursor-pointer " onclick="openModal('order-modal','order-cancel-submit',@item.Id)">Hủy đơn</span>
+                                    }
                                 </td>
                             </tr>
                         }
                     </tbody>
+                    <tbody id="order_success" class="content">
+                        @foreach (var item in Model.Items)
+                        {
+                            @if (item.Status == OrderStatus.Success)
+                            {
+
+                                <tr class="d-flex list-product">
+
+                                    <td class="pro-item" style="flex: 1">
+                                        @Html.DisplayFor(modelItem => item.Id)
+                                    </td>
+                                    <td class="d-flex align-items-center justify-content-center text-center pro-item " style="flex: 1">
+                                        @Html.DisplayFor(modelItem => item.ShipName)
+                                    </td>
+
+                                    <td class="d-flex align-items-center justify-content-center pro-item text-overflow" style="flex: 2">
+                                        @Html.DisplayFor(modelItem => item.ShipAddress)
+                                    </td>
+                                    <td class="d-flex align-items-center justify-content-center pro-item" style="flex: 1">
+                                        @Html.DisplayFor(modelItem => item.ShipPhoneNumber)
+                                    </td>
+                                    <td class="d-flex align-items-center justify-content-center pro-item" style="flex: 1">
+                                        @Html.DisplayFor(modelItem => item.ProductQuantity)
+                                    </td>
+                                    <td class="d-flex align-items-center justify-content-center pro-item" style="flex: 1">
+                                        @Html.DisplayFor(modelItem => item.Price)
+                                    </td>
+                                    <td class="d-flex align-items-center justify-content-center pro-item" style="flex: 1">
+                                        @if (item.Status == OrderStatus.Shipping)
+                                        {
+                                            <span class="text-info">Đang giao hàng</span>}
+                                        else if (item.Status == OrderStatus.Canceled)
+                                        {
+                                            <span class="text-danger">Đã hủy</span>
+                                        }
+                                        else if (item.Status == OrderStatus.InProgress)
+                                        {
+                                            <span class="text-info user-select-none">Đang xử lý</span>
+                                        }
+                                        else if (item.Status == OrderStatus.Confirmed)
+                                        {
+                                            <span>Đã xác nhận</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-success">Hoàn thành</span>
+                                        }
+                                    </td>
+
+                                    <td class="d-flex align-items-center justify-content-center pro-item" style="flex: 1">
+                                        @if (item.Status != OrderStatus.Success)
+                                        {
+                                            <a href="order/@item.Id" class="btn btn-outline-info">
+                                                Cập nhật
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a href="order/@item.Id" class="btn btn-outline-info">Xem chi tiết</a>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                    </tbody>
+                    <tbody id="order_cancel" class="content">
+                        @foreach (var item in Model.Items)
+                        {
+                            @if (item.Status == OrderStatus.Canceled)
+                            {
+
+                                <tr class="d-flex list-product">
+
+                                    <td class="pro-item" style="flex: 1">
+                                        @Html.DisplayFor(modelItem => item.Id)
+                                    </td>
+                                    <td class="d-flex align-items-center justify-content-center text-center pro-item " style="flex: 1">
+                                        @Html.DisplayFor(modelItem => item.ShipName)
+                                    </td>
+
+                                    <td class="d-flex align-items-center justify-content-center pro-item text-overflow" style="flex: 2">
+                                        @Html.DisplayFor(modelItem => item.ShipAddress)
+                                    </td>
+                                    <td class="d-flex align-items-center justify-content-center pro-item" style="flex: 1">
+                                        @Html.DisplayFor(modelItem => item.ShipPhoneNumber)
+                                    </td>
+                                    <td class="d-flex align-items-center justify-content-center pro-item" style="flex: 1">
+                                        @Html.DisplayFor(modelItem => item.ProductQuantity)
+                                    </td>
+                                    <td class="d-flex align-items-center justify-content-center pro-item" style="flex: 1">
+                                        @Html.DisplayFor(modelItem => item.Price)
+                                    </td>
+                                    <td class="d-flex align-items-center justify-content-center pro-item" style="flex: 1">
+                                        @if (item.Status == OrderStatus.Shipping)
+                                        {
+                                            <span class="text-info">Đang giao hàng</span>}
+                                        else if (item.Status == OrderStatus.Canceled)
+                                        {
+                                            <span class="text-danger">Đã hủy</span>
+                                        }
+                                        else if (item.Status == OrderStatus.InProgress)
+                                        {
+                                            <span class="text-info user-select-none">Đang xử lý</span>
+                                        }
+                                        else if (item.Status == OrderStatus.Confirmed)
+                                        {
+                                            <span>Đã xác nhận</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-success">Hoàn thành</span>
+                                        }
+                                    </td>
+
+                                    <td class="d-flex align-items-center justify-content-center pro-item" style="flex: 1">
+                                        @if (item.Status != OrderStatus.Success)
+                                        {
+                                            <a href="order/@item.Id" class="btn btn-outline-info">
+                                                Cập nhật
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a href="order/@item.Id" class="btn btn-outline-info">Xem chi tiết</a>
+                                        }
+
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                    </tbody>
+
                 </table>
+                /*Modal*/
+                <div class="co-modal" id="order-modal">
+                    <div class="co-modal--content ">
+                        <div class="co-modal--title px-3">
+                            Bạn có chắc chắn muốn hủy đơn hàng này chứ?
+                        </div>
+                        <div>
+                            <textarea rows="3" class="w-100 mt-4" style="outline:none;" placeholder="Điền lý do bạn muốn hủy đơn hàng này" id="orderCancelReason"></textarea>
+                            <span class="text-danger" id="cancelOrderReason"></span>
+                        </div>
+                        <div class="co-modal--btns">
+                            <span class="btn btn-outline-dark co-modal--btn co-cancel-btn" onclick="handleOnCancel()">Hủy bỏ</span>
+                            <span class="btn btn-outline-danger co-modal--btn co-submit-btn" id="order-cancel-submit" onclick="onSubmitCancelOrder(this)">Xác nhận</span>
+                        </div>
+                    </div>
+                </div>
             </div>
             @await Component.InvokeAsync("Pager", Model)
 
             <!-- Button trigger modal -->
             <!-- Modal -->
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalCenterTitle">Xóa sản phẩm</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Bạn có chắc chắn muốn xóa sản sản phẩm này?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                            <button type="submit" class="btn btn-danger" data-dismiss="modal" id="delete_submit_btn">Xóa</button>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+        
         </div>
     </div>
 </div>
 @section Scripts{
+    <script>
+        var btn_all = $('#btn_all');
+        var btn_success = $('#btn_success');
+        var btn_cancel = $('#btn_cancel');
+        var content_all = $('#order_all');
+        var content_success = $('#order_success');
+        var content_cancel = $('#order_cancel');
+
+        btn_all.bind('click', function (e) {
+            content_all.addClass('active');
+            content_success.removeClass('active');
+            content_cancel.removeClass('active');
+        });
+       
+        btn_success.bind('click', function (e) {
+            content_all.removeClass('active');
+            content_success.addClass('active');
+            content_cancel.removeClass('active');
+        });
+        
+        btn_cancel.bind('click', function (e) {
+            content_all.removeClass('active');
+            content_success.removeClass('active');
+            content_cancel.addClass('active');
+        });
+        
+    </script>
 
     <script>
         setTimeout(() => $('#msgAlert').fadeOut('slow'), 1500)
     </script>
+
     <script>
-        var delete_id = -1;
-        const getValue = (id) => delete_id = id;
-        $('#delete_submit_btn').on('click', () => {
-
-            $.ajax(
-                {
-                    type: "POST",
-                    url: "Product/Delete",
-                    dataType: "text",
-                    data: { id: delete_id },
+        const onSubmitCancelOrder = (btnElement) => {
+            const cancelReason = document.querySelector('#orderCancelReason').value;
+            if (!cancelReason.trim()) {
+                document.querySelector('#cancelOrderReason').innerText = "Không được để trống lý do";
+                event.preventDefault();
+                return;
+            }
+            const orderId = btnElement.getAttribute('data');
+            if (orderId) {
+                $.ajax({
+                    method: 'PUT',
+                    url: `/user/cancelOrder`,
+                    dataType: 'text',
+                    data: { orderId: Number(orderId), cancelReason },
                     async: true,
-                    success: function (response) {
-                        location.reload();
+                    success: async function (response) {
 
+                        const { isSuccess, message } = JSON.parse(response);
+
+                        $('#cancelMsgWrap').removeClass('d-none').addClass('d-flex');
+                        if (isSuccess) {
+                            $('#cancelMsg').html(message).addClass('rounded alert alert-success')
+                        }
+                        else {
+                            $('#cancelMsg').html(message).addClass('rounded alert alert-danger')
+                        }
+                        await new Promise((resolve) => setTimeout(() => {
+                            $('#cancelMsgWrap').fadeOut('slow');
+                            resolve();
+                        }, 1500));
+                        $('#cancelMsg').html('')
+                        $('#cancelMsgWrap').removeClass('d-flex').addClass('d-none');
+                        handleOnCancel();
                     },
                     failure: function (response) {
                         alert('false')
-
                     },
                     error: function (response) {
                         alert('error')
-
                     }
-                });
-        })
-
+                })
+            }
+        }
     </script>
 
 

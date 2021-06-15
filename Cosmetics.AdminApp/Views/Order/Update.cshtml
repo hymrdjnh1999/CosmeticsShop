@@ -38,21 +38,29 @@
                     <label asp-for="Status" class="control-label"></label>
                     @if (Model.Status != OrderStatus.Success)
                     {
-                <div>
-                    <select asp-for="Status" id="orderStatus" style="padding:6px 12px">
-                        @if (Model.Status == OrderStatus.InProgress)
-                        {
-                            <option selected value="@OrderStatus.InProgress">Đang xử lý</option>
-                            <option value="@OrderStatus.Shipping">Đang giao hàng</option>
-                            <option value="@OrderStatus.Success">Thành công</option>
-                        }
-                        @if (Model.Status == OrderStatus.Shipping)
-                        {
-                            <option selected value="@OrderStatus.Shipping">Đang giao hàng</option>
-                            <option value="@OrderStatus.Success">Thành công</option>
-                        }
-                    </select>
-                </div>
+                        <div>
+                            <select asp-for="Status" id="orderStatus" style="padding:6px 12px">
+                                @if (Model.Status == OrderStatus.InProgress)
+                                {
+                                    <option selected value="@OrderStatus.InProgress">Đang xử lý</option>
+                                    <option value="@OrderStatus.Shipping">Đang giao hàng</option>
+                                    <option value="@OrderStatus.Success">Thành công</option>
+                                    <option value="@OrderStatus.Canceled">Thành công</option>
+                                }
+                                @if (Model.Status == OrderStatus.Shipping)
+                                {
+                                    <option selected value="@OrderStatus.Shipping">Đang giao hàng</option>
+                                    <option value="@OrderStatus.Success">Thành công</option>
+                                    <option value="@OrderStatus.Canceled">Thành công</option>
+                                }
+
+                            </select>
+                            @if (Model.Status == OrderStatus.Canceled)
+                            {
+                                <span class="border border-info rounded d-flex" style="padding:6px 12px">Đã hủy</span>
+
+                            }
+                        </div>
                     }
                     else
                     {
@@ -142,6 +150,8 @@
                     <span asp-validation-for="Id" class="text-danger"></span>
                 </div>
             </form>
+
+            
         </div>
     </div>
 </div>
