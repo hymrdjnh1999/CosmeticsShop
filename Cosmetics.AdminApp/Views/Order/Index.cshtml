@@ -145,7 +145,7 @@
                                     }
                                     @if (item.Status < OrderStatus.Shipping && item.Status != OrderStatus.Canceled)
                                     {
-                                        <span class="btn btn-danger cursor-pointer " onclick="openModal('order-modal','order-cancel-submit',@item.Id)">Hủy đơn</span>
+                                        <button class="btn btn-danger cursor-pointer " onclick="openModal('order-modal','order-cancel-submit',@item.Id)">Hủy đơn</button>
                                     }
                                 </td>
                             </tr>
@@ -343,14 +343,23 @@
             content_success.removeClass('active');
             content_cancel.addClass('active');
         });
-        
-    </script>
+        const openModal = (modalId, submitId, data) => {
+            modal = document.querySelector(`#${modalId}`);
+            if (modal) {
+                modal.style.display = 'flex';
+                const submitBtn = document.querySelector(`#${submitId}`);
+                if (submitBtn && data) {
+                    submitBtn.setAttribute('data', data);
+                }
+            }
+        }
 
-    <script>
-        setTimeout(() => $('#msgAlert').fadeOut('slow'), 1500)
-    </script>
 
-    <script>
+
+        const handleOnCancel = () => {
+            document.querySelector('.co-modal').style.display = 'none';
+            document.querySelector('.co-submit-btn').removeAttribute('data');
+        }
         const onSubmitCancelOrder = (btnElement) => {
             const cancelReason = document.querySelector('#orderCancelReason').value;
             if (!cancelReason.trim()) {
@@ -362,7 +371,7 @@
             if (orderId) {
                 $.ajax({
                     method: 'PUT',
-                    url: `/user/cancelOrder`,
+                    url: `/client/cancelOrder`,
                     dataType: 'text',
                     data: { orderId: Number(orderId), cancelReason },
                     async: true,
@@ -395,6 +404,12 @@
             }
         }
     </script>
+
+    <script>
+        setTimeout(() => $('#msgAlert').fadeOut('slow'), 1500)
+    </script>
+
+    
 
 
 }

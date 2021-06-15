@@ -64,6 +64,7 @@ namespace Cosmetics.AdminApp
             services.AddTransient<IOrderApiClient, OrderApiClient>();
             services.AddTransient<IBannerApiClient, BannerApiClient>();
             services.AddTransient<IClientApi, ClientApi>();
+            services.AddTransient<IClientOrderApi, ClientOrderApi>();
 
             // Fluent Validation
             services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());

@@ -12,13 +12,15 @@ namespace Cosmetics.AdminApp.Controllers
     public class ClientController : BaseController
     {
         private readonly IClientApi _clientApi;
+        private readonly IClientOrderApi _clientOrderApi;
         private readonly IConfiguration _config;
 
-        public ClientController(IClientApi clientApi,
+        public ClientController(IClientApi clientApi,IClientOrderApi clientOrderApi,
             IConfiguration config
          )
         {
             _clientApi = clientApi;
+            _clientOrderApi = clientOrderApi;
             _config = config;
         }
 
@@ -43,6 +45,13 @@ namespace Cosmetics.AdminApp.Controllers
 
             return View(data.ResultObj);
         }
+        [HttpPut]
+        public async Task<JsonResult> cancelOrder(int orderId, string cancelReason)
+        {
 
+            var result = await _clientOrderApi.ClientCancelOrder(orderId, cancelReason);
+
+            return new JsonResult(new { message = result.Message, isSuccess = result.IsSuccess });
+        }
     }
 }
