@@ -37,6 +37,7 @@ namespace CosmeticsShop.Application.Catalog.Orders
         }
         public async Task<PageResponse<OrderViewModel>> GetAll(GetOrderRequest request)
         {
+
             var query = from o in _context.Orders select o;
 
             var category = OrderCategorySearch.Categories.Where(x => x.Value == request.Type).FirstOrDefault();
@@ -50,6 +51,7 @@ namespace CosmeticsShop.Application.Catalog.Orders
             {
                 query = GetQueryOrders(category, query, request.KeyWord);
             }
+
             var pageIndex = request.PageIndex;
             var pageSize = request.PageSize;
             var count = await query.CountAsync();
@@ -164,7 +166,7 @@ namespace CosmeticsShop.Application.Catalog.Orders
             };
             if (request.ClientID != null)
             {
-                newOrder.ClientId = (Guid)request.ClientID;
+                newOrder.ClientId = request.ClientID;
             }
             else
             {
@@ -219,6 +221,46 @@ namespace CosmeticsShop.Application.Catalog.Orders
                 TotalPrice = order.Price
             };
             return new ApiSuccessResult<ClientOrderViewModel>(clientOrder);
+        }
+
+        public async Task<List<ClientOrderHistoryViewMode>> ClientGetOrderHistory(Guid clientId)
+        {
+            List<ClientOrderHistoryViewMode> orders = new List<ClientOrderHistoryViewMode>();
+
+            var clientOrders = await _context.Orders.Where(x => x.ClientId == clientId).OrderByDescending(x => x.Id).ToListAsync();
+            foreach (var item in clientOrders)
+            {
+                var order = new ClientOrderHistoryViewMode()
+                {
+                    Id = item.Id,
+                    ClientId = clientId,
+                    OrderDate = item.OrderDate,
+                    Status = item.Status,
+                    Total = item.Price
+                };
+                orders.Add(order);
+            }
+            return orders;
+        }
+
+        public async Task<ApiResult<bool>> ClientCancelOrder(int orderId, string reason)
+        {
+            var order = await _context.Orders.Where(x => x.Id == orderId).FirstOrDefaultAsync();
+            if (order == null)
+            {
+                return new ApiErrorResult<bool>("Không tìm thấy order");
+            }
+
+            order.CancelReason = reason;
+            order.Status = OrderStatus.Canceled;
+            _context.Orders.Attach(order);
+
+            await _context.SaveChangesAsync();
+
+            return new ApiSuccessResult<bool>()
+            {
+                Message = "Hủy đơn hàng thành công!"
+            };
         }
     }
 }

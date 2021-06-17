@@ -50,7 +50,7 @@ namespace CosmeticsShop.WebApp.Controllers
             var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(cartJS);
             return cart;
         }
-        private Claim GetClaim(string type)
+        protected Claim GetClaim(string type)
         {
             var userClaims = User.Claims.ToList();
 

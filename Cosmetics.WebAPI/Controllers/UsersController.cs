@@ -60,7 +60,7 @@ namespace Cosmetics.WebAPI.Controllers
 
             if (!registerResult.IsSuccess)
             {
-                return BadRequest("Register is not success!");
+                return BadRequest("Update is not success!");
             }
 
             return Ok(registerResult);

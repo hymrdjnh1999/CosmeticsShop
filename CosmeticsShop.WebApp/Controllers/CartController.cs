@@ -92,8 +92,10 @@ namespace CosmeticsShop.WebApp.Controllers
             request.ClientCart = cart;
             var isLogin = HttpContext.Session.GetString("Token");
             ViewBag.isLogin = false;
-            if (isLogin != null)
+            var clientId = GetClaim("Id").Value;
+            if (isLogin != null && clientId != null)
             {
+                request.ClientID = new Guid(clientId);
                 ViewBag.isLogin = true;
             }
             if (!ModelState.IsValid)

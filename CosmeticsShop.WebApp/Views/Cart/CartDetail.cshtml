@@ -98,14 +98,14 @@
                         <div class="cart_Item d-flex mt-2" id="product_@product.Id">
                             <div class="cartItem__imageWrapper " style="flex:1">
                                 <div class="aspectRatio">
-                                    <a class="d-block pr-2" href="#">
-                                        <img class="w-100  rounded" src="@imgUri@product.ProductImage" alt="@product.ProductName" />
+                                    <a class="d-block pr-2" href="/product/@product.Id">
+                                        <img class="w-100 rounded squareShape" src="@imgUri@product.ProductImage" alt="@product.ProductName" />
                                     </a>
                                 </div>
                             </div>
                             <div class="" style="flex:3">
                                 <h2 class="cartItem__Title">
-                                    <a href="#">@product.ProductName</a>
+                                    <a href="/product/@product.Id">@product.ProductName</a>
                                 </h2>
                                 <div class="cartItem__Meta text--subdued">
                                     <div class="cartItem__PriceList "><span class="cartItem__Price priceFormat">@product.ProductPrice</span></div>

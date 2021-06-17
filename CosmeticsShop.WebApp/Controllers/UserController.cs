@@ -25,11 +25,18 @@ namespace CosmeticsShop.WebApp.Controllers
         private readonly IConfiguration _config;
         private readonly IClientApi _clientApi;
         private readonly ICartApiClient _cartApiClient;
-        public UserController(IClientApi clientApi, IConfiguration configuration, ICartApiClient cartApiClient) : base(clientApi)
+        private readonly IClientOrderApi _clientOrderApi;
+
+        public UserController(
+            IClientApi clientApi, IConfiguration configuration
+            , ICartApiClient cartApiClient,
+            IClientOrderApi clientOrderApi
+            ) : base(clientApi)
         {
             _clientApi = clientApi;
             _config = configuration;
             _cartApiClient = cartApiClient;
+            _clientOrderApi = clientOrderApi;
         }
 
         [HttpGet]
@@ -164,6 +171,7 @@ namespace CosmeticsShop.WebApp.Controllers
             }
 
             await CreateUserViewBag();
+            CreateCartViewBag();
             var clientId = claims.Where(x => x.Type == "Id").FirstOrDefault().Value;
             var client = await GetClientViewModel(clientId);
             return View(client);
@@ -228,7 +236,26 @@ namespace CosmeticsShop.WebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> OrderHistory()
         {
-            return View();
+
+            var token = HttpContext.Session.GetString("Token");
+            var clientIdClaim = GetClaim("Id");
+            if (token == null && clientIdClaim == null)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+            await CreateUserViewBag();
+            CreateCartViewBag();
+            var testClientId = new Guid(clientIdClaim.Value);
+            var orders = await _clientOrderApi.GetOrderHistory(testClientId);
+            return View(orders);
+        }
+        [HttpPut]
+        public async Task<JsonResult> cancelOrder(int orderId, string cancelReason)
+        {
+
+            var result = await _clientOrderApi.ClientCancelOrder(orderId, cancelReason);
+
+            return new JsonResult(new { message = result.Message, isSuccess = result.IsSuccess });
         }
     }
 }

@@ -9,9 +9,9 @@ namespace CosmeticsShop.Data.Enums
     public enum OrderStatus
     {
         InProgress = 1,
-        Confirmed,
         Shipping,
         Success,
+        Confirmed,
         Canceled
     }
 }
