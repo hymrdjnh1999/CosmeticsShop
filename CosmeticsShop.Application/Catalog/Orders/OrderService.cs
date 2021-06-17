@@ -37,6 +37,7 @@ namespace CosmeticsShop.Application.Catalog.Orders
         }
         public async Task<PageResponse<OrderViewModel>> GetAll(GetOrderRequest request)
         {
+
             var query = from o in _context.Orders select o;
 
             var category = OrderCategorySearch.Categories.Where(x => x.Value == request.Type).FirstOrDefault();
@@ -50,6 +51,7 @@ namespace CosmeticsShop.Application.Catalog.Orders
             {
                 query = GetQueryOrders(category, query, request.KeyWord);
             }
+
             var pageIndex = request.PageIndex;
             var pageSize = request.PageSize;
             var count = await query.CountAsync();
