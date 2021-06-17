@@ -513,5 +513,25 @@ namespace CosmeticsShop.Application.Catalog.Products
             return true;
 
         }
+
+        public async Task<ApiResult<ClientProductViewModel>> ClientGetProductDetail(int id)
+        {
+            var product = await _context.Products.Where(p => p.Id == id).FirstOrDefaultAsync();
+            if (product == null)
+            {
+                return new ApiErrorResult<ClientProductViewModel>("Sản phẩm không tồn tại");
+            }
+
+            var clientProduct = new ClientProductViewModel()
+            {
+                Id = id,
+                Description = product.Description,
+                Name = product.Name,
+                Price = product.Price,
+                Images = await _context.ProductImages.Where(x => x.ProductId == id).Select(pi => pi.ImagePath).ToListAsync()
+            };
+
+            return new ApiSuccessResult<ClientProductViewModel>(clientProduct);
+        }
     }
 }

@@ -111,10 +111,10 @@
         }
 
 
-        
-.fixed-top{
-    position:fixed;
+
+.fixed-top {
+    position: fixed;
     top: 15vh;
-    left:50%;
-    transform:translateX(-50%);
+    left: 50%;
+    transform: translateX(-50%);
 }
