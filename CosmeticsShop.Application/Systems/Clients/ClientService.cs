@@ -33,6 +33,51 @@ namespace CosmeticsShop.Application.Systems.Clients
             _storageService = storageService;
         }
 
+        public async Task<ApiResult<PageResponse<ClientViewModel>>> GetClientPaging(GetClientPagingRequest request)
+        {
+            var query = from c in _context.Clients select c;
+
+            if (request.Keyword != null)
+            {
+                query = query.Where(x => x.Name.Contains(request.Keyword));
+            }
+           
+            var pageIndex = request.PageIndex;
+            var pageSize = request.PageSize;
+            var count = await query.CountAsync();
+
+            var clients = await query.Select(x => new ClientViewModel()
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Email = x.Email,
+                Address = x.Address,
+                Dob = x.Dob,
+                PhoneNumber = x.PhoneNumber
+            }).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+            foreach (var item in clients)
+            {
+                var orders = from c in clients
+                               join o in _context.Orders on c.Id equals o.ClientId
+                               where c.Id == item.Id
+                               select new { c,o };
+                var QuantityOfOrders = orders.Select(x => x.o).ToList();
+                item.OrderQuanttity = QuantityOfOrders.Count();
+            }
+
+            var pageResponse = new PageResponse<ClientViewModel>()
+            {
+                TotalRecords = count,
+                PageIndex = pageIndex,
+                PageSize = pageSize,
+                Items = clients
+            };
+            var apiResult = new ApiSuccessResult<PageResponse<ClientViewModel>>(pageResponse);
+
+
+            return apiResult;
+        }
+
         public async Task<ApiResult<ClientUpdateViewModel>> GetDetail(Guid clientId)
         {
             var client = await _context.Clients.Where(x => x.Id == clientId).FirstOrDefaultAsync();

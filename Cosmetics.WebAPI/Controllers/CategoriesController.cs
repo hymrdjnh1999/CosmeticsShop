@@ -80,7 +80,7 @@ namespace Cosmetics.WebAPI.Controllers
             }
             return Ok();
         }
-
+        
         [HttpDelete("{id}")]
         [Authorize]
         public async Task<IActionResult> Delete(int id)
@@ -100,6 +100,7 @@ namespace Cosmetics.WebAPI.Controllers
             var productCategories = await _categoryService.GetProductCategories();
             return Ok(productCategories);
         }
+        
 
 
     }

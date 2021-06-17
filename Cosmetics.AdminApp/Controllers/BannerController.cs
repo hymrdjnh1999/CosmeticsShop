@@ -83,7 +83,7 @@ namespace Cosmetics.AdminApp.Controllers
             }
             var model = new BannerUpdateRequest() { Id = banner.Id, Name = banner.Name , Description = banner.Description };
 
-            return View(model); ;
+            return View(model); 
         }
 
 

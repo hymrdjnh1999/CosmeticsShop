@@ -31,6 +31,28 @@ namespace CosmeticsShop.Api_Intergration
             _httpContextAccessor = httpContextAccessor;
         }
 
+        public async Task<ApiResult<PageResponse<ClientViewModel>>> GetClientPaging(GetClientPagingRequest request)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+
+            var bearerToken = _httpContextAccessor.HttpContext.Session.GetString("Token");
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", bearerToken);
+
+            var requestUrl = $"/api/clients/paging?pageIndex=" +
+                $"{request.PageIndex}&pageSize={request.PageSize}&keyword={request.Keyword}";
+            var response = await client.GetAsync(requestUrl);
+
+            var body = await response.Content.ReadAsStringAsync();
+
+            var users = JsonConvert.DeserializeObject<ApiSuccessResult<PageResponse<ClientViewModel>>>(body);
+            users.ResultObj.PageSize = request.PageSize;
+            users.ResultObj.PageIndex = request.PageIndex;
+
+            return users;
+        }
+
         public async Task<ApiResult<ClientUpdateViewModel>> GetDetail(Guid userId)
         {
             var url = $"api/clients/{userId}";

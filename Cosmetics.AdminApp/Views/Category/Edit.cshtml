@@ -27,10 +27,18 @@
 
             <form asp-action="Edit" id="editCategoryForm" method="post" asp-controller="Category">
                 <input asp-for="Id" type="hidden" class="form-control" />
-                <div class="form-group">
+                <div class="row">
+
+                <div class="col-6 form-group">
                     <label asp-for="Name" class="control-label">Tên Danh Mục</label>
                     <input asp-for="Name" id="categoryName" class="form-control" />
                     <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                
+                <div class="col-6 form-group">
+                    <label asp-for="IsOutstanding" class="control-label">Hiển thị trang chủ</label>
+                    <input asp-for="IsOutstanding" id="categoryIsOutstanding" type="checkbox" class="form-control outline-none mt-1" style="width:28px;height:28px" />
+                </div>
                 </div>
                 <div class="form-group">
                     <input type="submit" value="" id="updateCategoryBtn" class="d-none btn btn-primary" />
