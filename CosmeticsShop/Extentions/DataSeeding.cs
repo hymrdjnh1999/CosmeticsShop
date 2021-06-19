@@ -30,7 +30,6 @@ namespace CosmeticsShop.Data.Extentions
                      SortOrder = 1,
                      Status = Status.Active,
                      ParentId = 1,
-
                  },
                  new Category
                  {
@@ -39,8 +38,7 @@ namespace CosmeticsShop.Data.Extentions
                      Name = "Gucci",
                      SortOrder = 2,
                      Status = Status.Active,
-                     ParentId = 1,
-
+                     ParentId = 2,
                  },
 
                  new Category
@@ -50,6 +48,7 @@ namespace CosmeticsShop.Data.Extentions
                      Name = "Sản phẩm mới",
                      SortOrder = 3,
                      Status = Status.Active,
+                     ParentId = 3,
                  },
                  new Category
                  {
@@ -58,6 +57,7 @@ namespace CosmeticsShop.Data.Extentions
                      Name = "Sản phẩm được yêu thích",
                      SortOrder = 4,
                      Status = Status.Active,
+                     ParentId = 4,
                  },
                  new Category
                  {
@@ -66,6 +66,7 @@ namespace CosmeticsShop.Data.Extentions
                      Name = "Sản phẩm khuyến mại",
                      SortOrder = 5,
                      Status = Status.Active,
+                     ParentId = 5,
                  },
                  new Category
                  {
@@ -74,6 +75,7 @@ namespace CosmeticsShop.Data.Extentions
                      Name = "Bộ quà tặng cao cấp",
                      SortOrder = 6,
                      Status = Status.Active,
+                     ParentId = 6,
                  },
                  new Category
                  {
@@ -82,34 +84,34 @@ namespace CosmeticsShop.Data.Extentions
                      Name = "Dolce&Gabbana",
                      SortOrder = 7,
                      Status = Status.Active,
-                     ParentId = 1,
+                     ParentId = 7,
                  },
                  new Category
                  {
                      Id = 8,
-                     IsOutstanding = true,
+                     IsOutstanding = false,
                      Name = "Burberry",
                      SortOrder = 8,
                      Status = Status.Active,
-                     ParentId = 1,
+                     ParentId = 8,
                  },
                  new Category
                  {
                      Id = 9,
-                     IsOutstanding = true,
+                     IsOutstanding = false,
                      Name = "Coach",
                      SortOrder = 9,
                      Status = Status.Active,
-                     ParentId = 1,
+                     ParentId = 9,
                  },
                  new Category
                  {
                      Id = 10,
-                     IsOutstanding = true,
+                     IsOutstanding = false,
                      Name = "Montblanc",
                      SortOrder = 10,
                      Status = Status.Active,
-                     ParentId = 1,
+                     ParentId = 10,
                  }
             );
             modelBuilder.Entity<Product>().HasData(
@@ -2511,7 +2513,7 @@ namespace CosmeticsShop.Data.Extentions
                     DateCreated = DateTime.Now,
                     FileSize = 12345,
                     ImagePath = "55-Gift-Set-Carolina-Herrera-212-VIP-Men-EDT.jpg",
-                    ProductId = 54,
+                    ProductId = 55,
                     IsDefault = true,
                     SortOrder = 55
                 },
@@ -2755,17 +2757,6 @@ namespace CosmeticsShop.Data.Extentions
                     DateCreated = DateTime.Now,
                     FileSize = 12345,
                     ImagePath = "77-Burberry-Combo-My-Burberry-Black-EDP-Mr.Burberry-EDP.jpg",
-                    ProductId = 77,
-                    IsDefault = true,
-                    SortOrder = 77
-                },
-                new ProductImage()
-                {
-                    Id = 77,
-                    Caption = "test",
-                    DateCreated = DateTime.Now,
-                    FileSize = 12345,
-                    ImagePath = "78-79-80-Burberry-Mr.Burberry-Indigo-EDT.jpg",
                     ProductId = 77,
                     IsDefault = true,
                     SortOrder = 77
@@ -3079,8 +3070,104 @@ namespace CosmeticsShop.Data.Extentions
             modelBuilder.Entity<ProductInCategory>().HasData(
                 new ProductInCategory() { ProductId = 1, CategoryId = 1 },
                 new ProductInCategory() { ProductId = 2, CategoryId = 1 },
-                new ProductInCategory() { ProductId = 1, CategoryId = 2 },
-                new ProductInCategory() { ProductId = 2, CategoryId = 3 }
+                new ProductInCategory() { ProductId = 3, CategoryId = 1 },
+                new ProductInCategory() { ProductId = 4, CategoryId = 1 },
+                new ProductInCategory() { ProductId = 5, CategoryId = 1 },
+                new ProductInCategory() { ProductId = 6, CategoryId = 1 },
+                new ProductInCategory() { ProductId = 7, CategoryId = 1 },
+                new ProductInCategory() { ProductId = 8, CategoryId = 1 },
+                new ProductInCategory() { ProductId = 9, CategoryId = 1 },
+                new ProductInCategory() { ProductId = 10, CategoryId = 1 },
+                new ProductInCategory() { ProductId = 11, CategoryId = 2 },
+                new ProductInCategory() { ProductId = 12, CategoryId = 2 },
+                new ProductInCategory() { ProductId = 13, CategoryId = 2 },
+                new ProductInCategory() { ProductId = 14, CategoryId = 2 },
+                new ProductInCategory() { ProductId = 15, CategoryId = 2 },
+                new ProductInCategory() { ProductId = 16, CategoryId = 2 },
+                new ProductInCategory() { ProductId = 17, CategoryId = 2 },
+                new ProductInCategory() { ProductId = 18, CategoryId = 2 },
+                new ProductInCategory() { ProductId = 19, CategoryId = 2 },
+                new ProductInCategory() { ProductId = 20, CategoryId = 2 },
+                new ProductInCategory() { ProductId = 21, CategoryId = 3 },
+                new ProductInCategory() { ProductId = 22, CategoryId = 3 },
+                new ProductInCategory() { ProductId = 23, CategoryId = 3 },
+                new ProductInCategory() { ProductId = 24, CategoryId = 3 },
+                new ProductInCategory() { ProductId = 25, CategoryId = 3 },
+                new ProductInCategory() { ProductId = 26, CategoryId = 3 },
+                new ProductInCategory() { ProductId = 27, CategoryId = 3 },
+                new ProductInCategory() { ProductId = 28, CategoryId = 3 },
+                new ProductInCategory() { ProductId = 29, CategoryId = 3 },
+                new ProductInCategory() { ProductId = 30, CategoryId = 3 },
+                new ProductInCategory() { ProductId = 31, CategoryId = 4 },
+                new ProductInCategory() { ProductId = 32, CategoryId = 4 },
+                new ProductInCategory() { ProductId = 33, CategoryId = 4 },
+                new ProductInCategory() { ProductId = 34, CategoryId = 4 },
+                new ProductInCategory() { ProductId = 35, CategoryId = 4 },
+                new ProductInCategory() { ProductId = 36, CategoryId = 4 },
+                new ProductInCategory() { ProductId = 37, CategoryId = 4 },
+                new ProductInCategory() { ProductId = 38, CategoryId = 4 },
+                new ProductInCategory() { ProductId = 39, CategoryId = 4 },
+                new ProductInCategory() { ProductId = 40, CategoryId = 4 },
+                new ProductInCategory() { ProductId = 41, CategoryId = 5 },
+                new ProductInCategory() { ProductId = 42, CategoryId = 5 },
+                new ProductInCategory() { ProductId = 43, CategoryId = 5 },
+                new ProductInCategory() { ProductId = 44, CategoryId = 5 },
+                new ProductInCategory() { ProductId = 45, CategoryId = 5 },
+                new ProductInCategory() { ProductId = 46, CategoryId = 5 },
+                new ProductInCategory() { ProductId = 47, CategoryId = 5 },
+                new ProductInCategory() { ProductId = 48, CategoryId = 5 },
+                new ProductInCategory() { ProductId = 49, CategoryId = 5 },
+                new ProductInCategory() { ProductId = 50, CategoryId = 5 },
+                new ProductInCategory() { ProductId = 51, CategoryId = 6 },
+                new ProductInCategory() { ProductId = 52, CategoryId = 6 },
+                new ProductInCategory() { ProductId = 53, CategoryId = 6 },
+                new ProductInCategory() { ProductId = 54, CategoryId = 6 },
+                new ProductInCategory() { ProductId = 55, CategoryId = 6 },
+                new ProductInCategory() { ProductId = 56, CategoryId = 6 },
+                new ProductInCategory() { ProductId = 57, CategoryId = 6 },
+                new ProductInCategory() { ProductId = 58, CategoryId = 6 },
+                new ProductInCategory() { ProductId = 59, CategoryId = 6 },
+                new ProductInCategory() { ProductId = 60, CategoryId = 6 },
+                new ProductInCategory() { ProductId = 61, CategoryId = 7 },
+                new ProductInCategory() { ProductId = 62, CategoryId = 7 },
+                new ProductInCategory() { ProductId = 63, CategoryId = 7 },
+                new ProductInCategory() { ProductId = 64, CategoryId = 7 },
+                new ProductInCategory() { ProductId = 65, CategoryId = 7 },
+                new ProductInCategory() { ProductId = 66, CategoryId = 7 },
+                new ProductInCategory() { ProductId = 67, CategoryId = 7 },
+                new ProductInCategory() { ProductId = 68, CategoryId = 7 },
+                new ProductInCategory() { ProductId = 69, CategoryId = 7 },
+                new ProductInCategory() { ProductId = 70, CategoryId = 7 },
+                new ProductInCategory() { ProductId = 71, CategoryId = 8 },
+                new ProductInCategory() { ProductId = 72, CategoryId = 8 },
+                new ProductInCategory() { ProductId = 73, CategoryId = 8 },
+                new ProductInCategory() { ProductId = 74, CategoryId = 8 },
+                new ProductInCategory() { ProductId = 75, CategoryId = 8 },
+                new ProductInCategory() { ProductId = 76, CategoryId = 8 },
+                new ProductInCategory() { ProductId = 77, CategoryId = 8 },
+                new ProductInCategory() { ProductId = 78, CategoryId = 8 },
+                new ProductInCategory() { ProductId = 79, CategoryId = 8 },
+                new ProductInCategory() { ProductId = 80, CategoryId = 8 },
+                new ProductInCategory() { ProductId = 81, CategoryId = 9 },
+                new ProductInCategory() { ProductId = 82, CategoryId = 9 },
+                new ProductInCategory() { ProductId = 83, CategoryId = 9 },
+                new ProductInCategory() { ProductId = 84, CategoryId = 9 },
+                new ProductInCategory() { ProductId = 85, CategoryId = 9 },
+                new ProductInCategory() { ProductId = 86, CategoryId = 9 },
+                new ProductInCategory() { ProductId = 87, CategoryId = 9 },
+                new ProductInCategory() { ProductId = 88, CategoryId = 9 },
+                new ProductInCategory() { ProductId = 89, CategoryId = 9 },
+                new ProductInCategory() { ProductId = 90, CategoryId = 9 },
+                new ProductInCategory() { ProductId = 91, CategoryId = 10 },
+                new ProductInCategory() { ProductId = 92, CategoryId = 10 },
+                new ProductInCategory() { ProductId = 93, CategoryId = 10 },
+                new ProductInCategory() { ProductId = 94, CategoryId = 10 },
+                new ProductInCategory() { ProductId = 95, CategoryId = 10 },
+                new ProductInCategory() { ProductId = 96, CategoryId = 10 },
+                new ProductInCategory() { ProductId = 97, CategoryId = 10 },
+                new ProductInCategory() { ProductId = 98, CategoryId = 10 },
+                new ProductInCategory() { ProductId = 99, CategoryId = 10 },
+                new ProductInCategory() { ProductId = 100, CategoryId = 10 }
             );
 
             const string ADMIN_ID = "1C856746-F8AA-4026-B854-F18DA9787CF3";
@@ -3163,29 +3250,1215 @@ namespace CosmeticsShop.Data.Extentions
                     RoleId = new Guid(ROLE_ID2)
                 });
             modelBuilder.Entity<Order>().HasData(
+                // Client 1
                 new Order()
                 {
                     ClientId = new Guid(TESTID),
                     Id = 1,
-                    ShipEmail = "shiple@gmail.com",
+                    ShipEmail = "tiendinhdev99@gmail.com",
                     ShipName = "Voi be nho",
                     ShipPhoneNumber = "0984869201",
                     Status = OrderStatus.InProgress,
                     ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
                     OrderDate = new DateTime(2021, 04, 21, 10, 19, 20, DateTimeKind.Utc),
-                    Price = 480000
+                    Price = 1200000
                 },
                 new Order()
                 {
                     ClientId = new Guid(TESTID),
                     Id = 2,
-                    ShipEmail = "shiple@gmail.com",
+                    ShipEmail = "tiendinhdev99@gmail.com",
                     ShipName = "Voi be nho",
                     ShipPhoneNumber = "0984869201",
-                    Status = OrderStatus.InProgress,
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
+                    OrderDate = new DateTime(2021, 04, 24, 07, 41, 12, DateTimeKind.Utc),
+                    Price = 1400000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 3,
+                    ShipEmail = "tiendinhdev99@gmail.com",
+                    ShipName = "Voi be nho",
+                    ShipPhoneNumber = "0984869201",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
+                    OrderDate = new DateTime(2021, 03, 19, 12, 14, 21, DateTimeKind.Utc),
+                    Price = 500000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 4,
+                    ShipEmail = "tiendinhdev99@gmail.com",
+                    ShipName = "Voi be nho",
+                    ShipPhoneNumber = "0984869201",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
+                    OrderDate = new DateTime(2021, 05, 19, 10, 19, 20, DateTimeKind.Utc),
+                    Price = 2400000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 5,
+                    ShipEmail = "tiendinhdev99@gmail.com",
+                    ShipName = "Voi be nho",
+                    ShipPhoneNumber = "0984869201",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
+                    OrderDate = new DateTime(2021, 05, 26, 11, 19, 12, DateTimeKind.Utc),
+                    Price = 2200000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 6,
+                    ShipEmail = "tiendinhdev99@gmail.com",
+                    ShipName = "Voi be nho",
+                    ShipPhoneNumber = "0984869201",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
+                    OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
+                    Price = 2200000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 7,
+                    ShipEmail = "tiendinhdev99@gmail.com",
+                    ShipName = "Voi be nho",
+                    ShipPhoneNumber = "0984869201",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
+                    OrderDate = new DateTime(2021, 06, 01, 07, 41, 12, DateTimeKind.Utc),
+                    Price = 1200000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 8,
+                    ShipEmail = "tiendinhdev99@gmail.com",
+                    ShipName = "Voi be nho",
+                    ShipPhoneNumber = "0984869201",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
+                    OrderDate = new DateTime(2021, 04, 19, 12, 51, 32, DateTimeKind.Utc),
+                    Price = 2800000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 9,
+                    ShipEmail = "tiendinhdev99@gmail.com",
+                    ShipName = "Voi be nho",
+                    ShipPhoneNumber = "0984869201",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
+                    OrderDate = new DateTime(2021, 06, 02, 05, 42, 18, DateTimeKind.Utc),
+                    Price = 1700000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 10,
+                    ShipEmail = "tiendinhdev99@gmail.com",
+                    ShipName = "Voi be nho",
+                    ShipPhoneNumber = "0984869201",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
+                    OrderDate = new DateTime(2021, 04, 21, 12, 39, 26, DateTimeKind.Utc),
+                    Price = 1600000
+                },
+                // Client 2
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 11,
+                    ShipEmail = "test1234@gmail.com",
+                    ShipName = "Do Tien Dinh",
+                    ShipPhoneNumber = "0984869201",
+                    Status = OrderStatus.Success,
                     ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
                     OrderDate = new DateTime(2021, 04, 21, 10, 19, 20, DateTimeKind.Utc),
-                    Price = 480000
+                    Price = 2030000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 12,
+                    ShipEmail = "test1234@gmail.com",
+                    ShipName = "Do Tien Dinh",
+                    ShipPhoneNumber = "0984869201",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
+                    OrderDate = new DateTime(2021, 04, 24, 07, 41, 12, DateTimeKind.Utc),
+                    Price = 2150000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 13,
+                    ShipEmail = "test1234@gmail.com",
+                    ShipName = "Do Tien Dinh",
+                    ShipPhoneNumber = "0984869201",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
+                    OrderDate = new DateTime(2021, 03, 19, 12, 14, 21, DateTimeKind.Utc),
+                    Price = 3100000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 14,
+                    ShipEmail = "test1234@gmail.com",
+                    ShipName = "Do Tien Dinh",
+                    ShipPhoneNumber = "0984869201",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
+                    OrderDate = new DateTime(2021, 05, 19, 10, 19, 20, DateTimeKind.Utc),
+                    Price = 2670000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 15,
+                    ShipEmail = "test1234@gmail.com",
+                    ShipName = "Do Tien Dinh",
+                    ShipPhoneNumber = "0984869201",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
+                    OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
+                    Price = 2490000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 16,
+                    ShipEmail = "test1234@gmail.com",
+                    ShipName = "Do Tien Dinh",
+                    ShipPhoneNumber = "0984869201",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
+                    OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
+                    Price = 2150000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 17,
+                    ShipEmail = "test1234@gmail.com",
+                    ShipName = "Do Tien Dinh",
+                    ShipPhoneNumber = "0984869201",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
+                    OrderDate = new DateTime(2021, 06, 01, 07, 41, 12, DateTimeKind.Utc),
+                    Price = 2910000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 18,
+                    ShipEmail = "test1234@gmail.com",
+                    ShipName = "Do Tien Dinh",
+                    ShipPhoneNumber = "0984869201",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
+                    OrderDate = new DateTime(2021, 04, 19, 12, 51, 32, DateTimeKind.Utc),
+                    Price = 7140000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 19,
+                    ShipEmail = "test1234@gmail.com",
+                    ShipName = "Do Tien Dinh",
+                    ShipPhoneNumber = "0984869201",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
+                    OrderDate = new DateTime(2021, 06, 02, 05, 42, 18, DateTimeKind.Utc),
+                    Price = 2420000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 20,
+                    ShipEmail = "test1234@gmail.com",
+                    ShipName = "Do Tien Dinh",
+                    ShipPhoneNumber = "0984869201",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
+                    OrderDate = new DateTime(2021, 04, 21, 12, 39, 26, DateTimeKind.Utc),
+                    Price = 1930000
+                },
+                // Client 3
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 21,
+                    ShipEmail = "tranphuong@gmail.com",
+                    ShipName = "Tran Thu Phuong",
+                    ShipPhoneNumber = "0378709602",
+                    Status = OrderStatus.Success,
+                    ShipAddress = "Nguyễn Trãi - Thường Tín - Hà Nội",
+                    OrderDate = new DateTime(2021, 04, 21, 10, 19, 20, DateTimeKind.Utc),
+                    Price = 3000000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 22,
+                    ShipEmail = "tranphuong@gmail.com",
+                    ShipName = "Tran Thu Phuong",
+                    ShipPhoneNumber = "0378709602",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Nguyễn Trãi - Thường Tín - Hà Nội",
+                    OrderDate = new DateTime(2021, 04, 24, 07, 41, 12, DateTimeKind.Utc),
+                    Price = 2360000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 23,
+                    ShipEmail = "tranphuong@gmail.com",
+                    ShipName = "Tran Thu Phuong",
+                    ShipPhoneNumber = "0378709602",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Nguyễn Trãi - Thường Tín - Hà Nội",
+                    OrderDate = new DateTime(2021, 04, 21, 10, 19, 20, DateTimeKind.Utc),
+                    Price = 2050000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 24,
+                    ShipEmail = "tranphuong@gmail.com",
+                    ShipName = "Tran Thu Phuong",
+                    ShipPhoneNumber = "0378709602",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Nguyễn Trãi - Thường Tín - Hà Nội",
+                    OrderDate = new DateTime(2021, 05, 19, 10, 19, 20, DateTimeKind.Utc),
+                    Price = 2150000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 25,
+                    ShipEmail = "tranphuong@gmail.com",
+                    ShipName = "Tran Thu Phuong",
+                    ShipPhoneNumber = "0378709602",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Nguyễn Trãi - Thường Tín - Hà Nội",
+                    OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
+                    Price = 1920000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 26,
+                    ShipEmail = "tranphuong@gmail.com",
+                    ShipName = "Tran Thu Phuong",
+                    ShipPhoneNumber = "0378709602",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Nguyễn Trãi - Thường Tín - Hà Nội",
+                    OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
+                    Price = 1920000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 27,
+                    ShipEmail = "tranphuong@gmail.com",
+                    ShipName = "Tran Thu Phuong",
+                    ShipPhoneNumber = "0378709602",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Nguyễn Trãi - Thường Tín - Hà Nội",
+                    OrderDate = new DateTime(2021, 06, 01, 07, 41, 12, DateTimeKind.Utc),
+                    Price = 2150000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 28,
+                    ShipEmail = "tranphuong@gmail.com",
+                    ShipName = "Tran Thu Phuong",
+                    ShipPhoneNumber = "0378709602",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Nguyễn Trãi - Thường Tín - Hà Nội",
+                    OrderDate = new DateTime(2021, 04, 19, 12, 51, 32, DateTimeKind.Utc),
+                    Price = 1800000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 29,
+                    ShipEmail = "tranphuong@gmail.com",
+                    ShipName = "Tran Thu Phuong",
+                    ShipPhoneNumber = "0378709602",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Nguyễn Trãi - Thường Tín - Hà Nội",
+                    OrderDate = new DateTime(2021, 06, 02, 05, 42, 18, DateTimeKind.Utc),
+                    Price = 2120000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 30,
+                    ShipEmail = "tranphuong@gmail.com",
+                    ShipName = "Tran Thu Phuong",
+                    ShipPhoneNumber = "0378709602",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Nguyễn Trãi - Thường Tín - Hà Nội",
+                    OrderDate = new DateTime(2021, 04, 21, 12, 39, 26, DateTimeKind.Utc),
+                    Price = 2190000
+                },
+                // Client 4
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 31,
+                    ShipEmail = "haianh@gmail.com",
+                    ShipName = "Le Hai Anh",
+                    ShipPhoneNumber = "0358963245",
+                    Status = OrderStatus.Success,
+                    ShipAddress = "Chương Mỹ - Hà Nội",
+                    OrderDate = new DateTime(2021, 04, 21, 10, 19, 20, DateTimeKind.Utc),
+                    Price = 2150000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 32,
+                    ShipEmail = "haianh@gmail.com",
+                    ShipName = "Le Hai Anh",
+                    ShipPhoneNumber = "0358963245",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Chương Mỹ - Hà Nội",
+                    OrderDate = new DateTime(2021, 04, 24, 07, 41, 12, DateTimeKind.Utc),
+                    Price = 1820000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 33,
+                    ShipEmail = "haianh@gmail.com",
+                    ShipName = "Le Hai Anh",
+                    ShipPhoneNumber = "0358963245",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Chương Mỹ - Hà Nội",
+                    OrderDate = new DateTime(2021, 03, 19, 12, 14, 21, DateTimeKind.Utc),
+                    Price = 2040000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 34,
+                    ShipEmail = "haianh@gmail.com",
+                    ShipName = "Le Hai Anh",
+                    ShipPhoneNumber = "0358963245",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Chương Mỹ - Hà Nội",
+                    OrderDate = new DateTime(2021, 05, 19, 10, 19, 20, DateTimeKind.Utc),
+                    Price = 2140000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 35,
+                    ShipEmail = "haianh@gmail.com",
+                    ShipName = "Le Hai Anh",
+                    ShipPhoneNumber = "0358963245",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Chương Mỹ - Hà Nội",
+                    OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
+                    Price = 1920000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 36,
+                    ShipEmail = "haianh@gmail.com",
+                    ShipName = "Le Hai Anh",
+                    ShipPhoneNumber = "0358963245",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Chương Mỹ - Hà Nội",
+                    OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
+                    Price = 1920000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 37,
+                    ShipEmail = "haianh@gmail.com",
+                    ShipName = "Le Hai Anh",
+                    ShipPhoneNumber = "0358963245",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Chương Mỹ - Hà Nội",
+                    OrderDate = new DateTime(2021, 04, 21, 10, 19, 20, DateTimeKind.Utc),
+                    Price = 1920000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 38,
+                    ShipEmail = "haianh@gmail.com",
+                    ShipName = "Le Hai Anh",
+                    ShipPhoneNumber = "0358963245",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Chương Mỹ - Hà Nội",
+                    OrderDate = new DateTime(2021, 04, 19, 12, 51, 32, DateTimeKind.Utc),
+                    Price = 2650000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 39,
+                    ShipEmail = "haianh@gmail.com",
+                    ShipName = "Le Hai Anh",
+                    ShipPhoneNumber = "0358963245",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Chương Mỹ - Hà Nội",
+                    OrderDate = new DateTime(2021, 06, 02, 05, 42, 18, DateTimeKind.Utc),
+                    Price = 2050000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 40,
+                    ShipEmail = "haianh@gmail.com",
+                    ShipName = "Le Hai Anh",
+                    ShipPhoneNumber = "0358963245",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Chương Mỹ - Hà Nội",
+                    OrderDate = new DateTime(2021, 04, 21, 10, 19, 20, DateTimeKind.Utc),
+                    Price = 1980000
+                },
+                // Client 5
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 41,
+                    ShipEmail = "vananh@gmail.com",
+                    ShipName = "Tran Van Anh",
+                    ShipPhoneNumber = "0323456743",
+                    Status = OrderStatus.Success,
+                    ShipAddress = "Đan Phượng - Hà Nội",
+                    OrderDate = new DateTime(2021, 04, 21, 12, 39, 26, DateTimeKind.Utc),
+                    Price = 990000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 42,
+                    ShipEmail = "vananh@gmail.com",
+                    ShipName = "Tran Van Anh",
+                    ShipPhoneNumber = "0323456743",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Đan Phượng - Hà Nội",
+                    OrderDate = new DateTime(2021, 04, 24, 07, 41, 12, DateTimeKind.Utc),
+                    Price = 1470000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 43,
+                    ShipEmail = "vananh@gmail.com",
+                    ShipName = "Tran Van Anh",
+                    ShipPhoneNumber = "0323456743",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Đan Phượng - Hà Nội",
+                    OrderDate = new DateTime(2021, 03, 19, 12, 14, 21, DateTimeKind.Utc),
+                    Price = 1260000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 44,
+                    ShipEmail = "vananh@gmail.com",
+                    ShipName = "Tran Van Anh",
+                    ShipPhoneNumber = "0323456743",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Đan Phượng - Hà Nội",
+                    OrderDate = new DateTime(2021, 05, 19, 10, 19, 20, DateTimeKind.Utc),
+                    Price = 1785000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 45,
+                    ShipEmail = "vananh@gmail.com",
+                    ShipName = "Tran Van Anh",
+                    ShipPhoneNumber = "0323456743",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Đan Phượng - Hà Nội",
+                    OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
+                    Price = 990000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 46,
+                    ShipEmail = "vananh@gmail.com",
+                    ShipName = "Tran Van Anh",
+                    ShipPhoneNumber = "0323456743",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Đan Phượng - Hà Nội",
+                    OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
+                    Price = 2520000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 47,
+                    ShipEmail = "vananh@gmail.com",
+                    ShipName = "Tran Van Anh",
+                    ShipPhoneNumber = "0323456743",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Đan Phượng - Hà Nội",
+                    OrderDate = new DateTime(2021, 06, 01, 07, 41, 12, DateTimeKind.Utc),
+                    Price = 2520000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 48,
+                    ShipEmail = "vananh@gmail.com",
+                    ShipName = "Tran Van Anh",
+                    ShipPhoneNumber = "0323456743",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Đan Phượng - Hà Nội",
+                    OrderDate = new DateTime(2021, 04, 21, 10, 19, 20, DateTimeKind.Utc),
+                    Price = 1890000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 49,
+                    ShipEmail = "vananh@gmail.com",
+                    ShipName = "Tran Van Anh",
+                    ShipPhoneNumber = "0323456743",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Đan Phượng - Hà Nội",
+                    OrderDate = new DateTime(2021, 06, 02, 05, 42, 18, DateTimeKind.Utc),
+                    Price = 1645000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 50,
+                    ShipEmail = "vananh@gmail.com",
+                    ShipName = "Tran Van Anh",
+                    ShipPhoneNumber = "0323456743",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Đan Phượng - Hà Nội",
+                    OrderDate = new DateTime(2021, 04, 21, 12, 39, 26, DateTimeKind.Utc),
+                    Price = 1387500
+                },
+                // Client 6
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 51,
+                    ShipEmail = "hoangchung@gmail.com",
+                    ShipName = "Hoàng Chung",
+                    ShipPhoneNumber = "0963258741",
+                    Status = OrderStatus.Success,
+                    ShipAddress = "Hoằng Hóa - Thanh Hóa",
+                    OrderDate = new DateTime(2021, 04, 21, 10, 19, 20, DateTimeKind.Utc),
+                    Price = 1387500
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 52,
+                    ShipEmail = "hoangchung@gmail.com",
+                    ShipName = "Hoàng Chung",
+                    ShipPhoneNumber = "0963258741",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Hoằng Hóa - Thanh Hóa",
+                    OrderDate = new DateTime(2021, 04, 24, 07, 41, 12, DateTimeKind.Utc),
+                    Price = 2380000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 53,
+                    ShipEmail = "hoangchung@gmail.com",
+                    ShipName = "Hoàng Chung",
+                    ShipPhoneNumber = "0963258741",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Hoằng Hóa - Thanh Hóa",
+                    OrderDate = new DateTime(2021, 03, 19, 12, 14, 21, DateTimeKind.Utc),
+                    Price = 2850000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 54,
+                    ShipEmail = "hoangchung@gmail.com",
+                    ShipName = "Hoàng Chung",
+                    ShipPhoneNumber = "0963258741",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Hoằng Hóa - Thanh Hóa",
+                    OrderDate = new DateTime(2021, 05, 19, 10, 19, 20, DateTimeKind.Utc),
+                    Price = 2350000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 55,
+                    ShipEmail = "hoangchung@gmail.com",
+                    ShipName = "Hoàng Chung",
+                    ShipPhoneNumber = "0963258741",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Hoằng Hóa - Thanh Hóa",
+                    OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
+                    Price = 2450000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 56,
+                    ShipEmail = "hoangchung@gmail.com",
+                    ShipName = "Hoàng Chung",
+                    ShipPhoneNumber = "0963258741",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Hoằng Hóa - Thanh Hóa",
+                    OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
+                    Price = 2950000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 57,
+                    ShipEmail = "hoangchung@gmail.com",
+                    ShipName = "Hoàng Chung",
+                    ShipPhoneNumber = "0963258741",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Hoằng Hóa - Thanh Hóa",
+                    OrderDate = new DateTime(2021, 06, 01, 07, 41, 12, DateTimeKind.Utc),
+                    Price = 2800000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 58,
+                    ShipEmail = "hoangchung@gmail.com",
+                    ShipName = "Hoàng Chung",
+                    ShipPhoneNumber = "0963258741",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Hoằng Hóa - Thanh Hóa",
+                    OrderDate = new DateTime(2021, 04, 19, 12, 51, 32, DateTimeKind.Utc),
+                    Price = 2200000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 59,
+                    ShipEmail = "hoangchung@gmail.com",
+                    ShipName = "Hoàng Chung",
+                    ShipPhoneNumber = "0963258741",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Hoằng Hóa - Thanh Hóa",
+                    OrderDate = new DateTime(2021, 06, 02, 05, 42, 18, DateTimeKind.Utc),
+                    Price = 2200000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 60,
+                    ShipEmail = "hoangchung@gmail.com",
+                    ShipName = "Hoàng Chung",
+                    ShipPhoneNumber = "0963258741",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Hoằng Hóa - Thanh Hóa",
+                    OrderDate = new DateTime(2021, 04, 21, 12, 39, 26, DateTimeKind.Utc),
+                    Price = 2450000
+                },
+                // Client 7
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 61,
+                    ShipEmail = "minhanh@gmail.com",
+                    ShipName = "Minh Anh",
+                    ShipPhoneNumber = "0978563732",
+                    Status = OrderStatus.Success,
+                    ShipAddress = "Thọ Xuân - Thanh Hóa",
+                    OrderDate = new DateTime(2021, 04, 21, 10, 19, 20, DateTimeKind.Utc),
+                    Price = 2720000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 62,
+                    ShipEmail = "minhanh@gmail.com",
+                    ShipName = "Minh Anh",
+                    ShipPhoneNumber = "0978563732",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Thọ Xuân - Thanh Hóa",
+                    OrderDate = new DateTime(2021, 04, 24, 07, 41, 12, DateTimeKind.Utc),
+                    Price = 2220000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 63,
+                    ShipEmail = "minhanh@gmail.com",
+                    ShipName = "Minh Anh",
+                    ShipPhoneNumber = "0978563732",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Thọ Xuân - Thanh Hóa",
+                    OrderDate = new DateTime(2021, 03, 19, 12, 14, 21, DateTimeKind.Utc),
+                    Price = 2120000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 64,
+                    ShipEmail = "minhanh@gmail.com",
+                    ShipName = "Minh Anh",
+                    ShipPhoneNumber = "0978563732",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Thọ Xuân - Thanh Hóa",
+                    OrderDate = new DateTime(2021, 05, 19, 10, 19, 20, DateTimeKind.Utc),
+                    Price = 1970000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 65,
+                    ShipEmail = "minhanh@gmail.com",
+                    ShipName = "Minh Anh",
+                    ShipPhoneNumber = "0978563732",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Thọ Xuân - Thanh Hóa",
+                    OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
+                    Price = 1910000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 66,
+                    ShipEmail = "minhanh@gmail.com",
+                    ShipName = "Minh Anh",
+                    ShipPhoneNumber = "0978563732",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Thọ Xuân - Thanh Hóa",
+                    OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
+                    Price = 2040000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 67,
+                    ShipEmail = "minhanh@gmail.com",
+                    ShipName = "Minh Anh",
+                    ShipPhoneNumber = "0978563732",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Thọ Xuân - Thanh Hóa",
+                    OrderDate = new DateTime(2021, 06, 01, 07, 41, 12, DateTimeKind.Utc),
+                    Price = 2590000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 68,
+                    ShipEmail = "minhanh@gmail.com",
+                    ShipName = "Minh Anh",
+                    ShipPhoneNumber = "0978563732",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Thọ Xuân - Thanh Hóa",
+                    OrderDate = new DateTime(2021, 04, 19, 12, 51, 32, DateTimeKind.Utc),
+                    Price = 2120000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 69,
+                    ShipEmail = "minhanh@gmail.com",
+                    ShipName = "Minh Anh",
+                    ShipPhoneNumber = "0978563732",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Thọ Xuân - Thanh Hóa",
+                    OrderDate = new DateTime(2021, 06, 02, 05, 42, 18, DateTimeKind.Utc),
+                    Price = 6720000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 70,
+                    ShipEmail = "minhanh@gmail.com",
+                    ShipName = "Minh Anh",
+                    ShipPhoneNumber = "0978563732",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Thọ Xuân - Thanh Hóa",
+                    OrderDate = new DateTime(2021, 04, 21, 12, 39, 26, DateTimeKind.Utc),
+                    Price = 5060000
+                },
+                // Client 8
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 71,
+                    ShipEmail = "Congphuong@gmail.com",
+                    ShipName = "Công Phượng",
+                    ShipPhoneNumber = "0987456321",
+                    Status = OrderStatus.Success,
+                    ShipAddress = "Phúc Hòa - Tân Yên - Bắc Giang",
+                    OrderDate = new DateTime(2021, 04, 21, 10, 19, 20, DateTimeKind.Utc),
+                    Price = 2030000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 72,
+                    ShipEmail = "Congphuong@gmail.com",
+                    ShipName = "Công Phượng",
+                    ShipPhoneNumber = "0987456321",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Phúc Hòa - Tân Yên - Bắc Giang",
+                    OrderDate = new DateTime(2021, 04, 24, 07, 41, 12, DateTimeKind.Utc),
+                    Price = 1980000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 73,
+                    ShipEmail = "Congphuong@gmail.com",
+                    ShipName = "Công Phượng",
+                    ShipPhoneNumber = "0987456321",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Phúc Hòa - Tân Yên - Bắc Giang",
+                    OrderDate = new DateTime(2021, 03, 19, 12, 14, 21, DateTimeKind.Utc),
+                    Price = 4160000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 74,
+                    ShipEmail = "Congphuong@gmail.com",
+                    ShipName = "Công Phượng",
+                    ShipPhoneNumber = "0987456321",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Phúc Hòa - Tân Yên - Bắc Giang",
+                    OrderDate = new DateTime(2021, 05, 19, 10, 19, 20, DateTimeKind.Utc),
+                    Price = 2190000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 75,
+                    ShipEmail = "Congphuong@gmail.com",
+                    ShipName = "Công Phượng",
+                    ShipPhoneNumber = "0987456321",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Phúc Hòa - Tân Yên - Bắc Giang",
+                    OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
+                    Price = 2030000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 76,
+                    ShipEmail = "Congphuong@gmail.com",
+                    ShipName = "Công Phượng",
+                    ShipPhoneNumber = "0987456321",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Phúc Hòa - Tân Yên - Bắc Giang",
+                    OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
+                    Price = 2860000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 77,
+                    ShipEmail = "Congphuong@gmail.com",
+                    ShipName = "Công Phượng",
+                    ShipPhoneNumber = "0987456321",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Phúc Hòa - Tân Yên - Bắc Giang",
+                    OrderDate = new DateTime(2021, 06, 01, 07, 41, 12, DateTimeKind.Utc),
+                    Price = 7750000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 78,
+                    ShipEmail = "Congphuong@gmail.com",
+                    ShipName = "Công Phượng",
+                    ShipPhoneNumber = "0987456321",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Phúc Hòa - Tân Yên - Bắc Giang",
+                    OrderDate = new DateTime(2021, 04, 19, 12, 51, 32, DateTimeKind.Utc),
+                    Price = 2780000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 79,
+                    ShipEmail = "Congphuong@gmail.com",
+                    ShipName = "Công Phượng",
+                    ShipPhoneNumber = "0987456321",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Phúc Hòa - Tân Yên - Bắc Giang",
+                    OrderDate = new DateTime(2021, 04, 21, 10, 19, 20, DateTimeKind.Utc),
+                    Price = 2780000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 80,
+                    ShipEmail = "Congphuong@gmail.com",
+                    ShipName = "Công Phượng",
+                    ShipPhoneNumber = "0987456321",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Phúc Hòa - Tân Yên - Bắc Giang",
+                    OrderDate = new DateTime(2021, 04, 21, 12, 39, 26, DateTimeKind.Utc),
+                    Price = 2780000
+                },
+                // Client 9
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 81,
+                    ShipEmail = "xuantruong@gmail.com",
+                    ShipName = "Xuân Trường",
+                    ShipPhoneNumber = "0987546666",
+                    Status = OrderStatus.Success,
+                    ShipAddress = "Phường Cầu Dền - Quận Hai Bà Trưng - Hà Nội",
+                    OrderDate = new DateTime(2021, 04, 21, 10, 19, 20, DateTimeKind.Utc),
+                    Price = 1550000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 82,
+                    ShipEmail = "xuantruong@gmail.com",
+                    ShipName = "Xuân Trường",
+                    ShipPhoneNumber = "0987546666",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Phường Cầu Dền - Quận Hai Bà Trưng - Hà Nội",
+                    OrderDate = new DateTime(2021, 04, 24, 07, 41, 12, DateTimeKind.Utc),
+                    Price = 1300000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 83,
+                    ShipEmail = "xuantruong@gmail.com",
+                    ShipName = "Xuân Trường",
+                    ShipPhoneNumber = "0987546666",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Phường Cầu Dền - Quận Hai Bà Trưng - Hà Nội",
+                    OrderDate = new DateTime(2021, 03, 19, 12, 14, 21, DateTimeKind.Utc),
+                    Price = 1100000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 84,
+                    ShipEmail = "xuantruong@gmail.com",
+                    ShipName = "Xuân Trường",
+                    ShipPhoneNumber = "0987546666",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Phường Cầu Dền - Quận Hai Bà Trưng - Hà Nội",
+                    OrderDate = new DateTime(2021, 05, 19, 10, 19, 20, DateTimeKind.Utc),
+                    Price = 2550000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 85,
+                    ShipEmail = "xuantruong@gmail.com",
+                    ShipName = "Xuân Trường",
+                    ShipPhoneNumber = "0987546666",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Phường Cầu Dền - Quận Hai Bà Trưng - Hà Nội",
+                    OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
+                    Price = 2100000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 86,
+                    ShipEmail = "xuantruong@gmail.com",
+                    ShipName = "Xuân Trường",
+                    ShipPhoneNumber = "0987546666",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Phường Cầu Dền - Quận Hai Bà Trưng - Hà Nội",
+                    OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
+                    Price = 1800000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 87,
+                    ShipEmail = "xuantruong@gmail.com",
+                    ShipName = "Xuân Trường",
+                    ShipPhoneNumber = "0987546666",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Phường Cầu Dền - Quận Hai Bà Trưng - Hà Nội",
+                    OrderDate = new DateTime(2021, 06, 01, 07, 41, 12, DateTimeKind.Utc),
+                    Price = 1100000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 88,
+                    ShipEmail = "xuantruong@gmail.com",
+                    ShipName = "Xuân Trường",
+                    ShipPhoneNumber = "0987546666",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Phường Cầu Dền - Quận Hai Bà Trưng - Hà Nội",
+                    OrderDate = new DateTime(2021, 04, 19, 12, 51, 32, DateTimeKind.Utc),
+                    Price = 800000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 89,
+                    ShipEmail = "xuantruong@gmail.com",
+                    ShipName = "Xuân Trường",
+                    ShipPhoneNumber = "0987546666",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Phường Cầu Dền - Quận Hai Bà Trưng - Hà Nội",
+                    OrderDate = new DateTime(2021, 06, 02, 05, 42, 18, DateTimeKind.Utc),
+                    Price = 2800000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 90,
+                    ShipEmail = "xuantruong@gmail.com",
+                    ShipName = "Xuân Trường",
+                    ShipPhoneNumber = "0987546666",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Phường Cầu Dền - Quận Hai Bà Trưng - Hà Nội",
+                    OrderDate = new DateTime(2021, 04, 21, 12, 39, 26, DateTimeKind.Utc),
+                    Price = 2100000
+                },
+                // Client 10
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 91,
+                    ShipEmail = "dinhtrong@gmail.com",
+                    ShipName = "Đình Trọng",
+                    ShipPhoneNumber = "0985638888",
+                    Status = OrderStatus.Success,
+                    ShipAddress = "Phường Phúc Lợi - Quận Long Biên - Hà Nội",
+                    OrderDate = new DateTime(2021, 04, 21, 10, 19, 20, DateTimeKind.Utc),
+                    Price = 1250000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 92,
+                    ShipEmail = "dinhtrong@gmail.com",
+                    ShipName = "Đình Trọng",
+                    ShipPhoneNumber = "0985638888",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Phường Phúc Lợi - Quận Long Biên - Hà Nội",
+                    OrderDate = new DateTime(2021, 04, 24, 07, 41, 12, DateTimeKind.Utc),
+                    Price = 1380000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 93,
+                    ShipEmail = "dinhtrong@gmail.com",
+                    ShipName = "Đình Trọng",
+                    ShipPhoneNumber = "0985638888",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Phường Phúc Lợi - Quận Long Biên - Hà Nội",
+                    OrderDate = new DateTime(2021, 03, 19, 12, 14, 21, DateTimeKind.Utc),
+                    Price = 1700000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 94,
+                    ShipEmail = "dinhtrong@gmail.com",
+                    ShipName = "Đình Trọng",
+                    ShipPhoneNumber = "0985638888",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Phường Phúc Lợi - Quận Long Biên - Hà Nội",
+                    OrderDate = new DateTime(2021, 05, 19, 10, 19, 20, DateTimeKind.Utc),
+                    Price = 1200000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 95,
+                    ShipEmail = "dinhtrong@gmail.com",
+                    ShipName = "Đình Trọng",
+                    ShipPhoneNumber = "0985638888",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Phường Phúc Lợi - Quận Long Biên - Hà Nội",
+                    OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
+                    Price = 950000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 96,
+                    ShipEmail = "dinhtrong@gmail.com",
+                    ShipName = "Đình Trọng",
+                    ShipPhoneNumber = "0985638888",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Phường Phúc Lợi - Quận Long Biên - Hà Nội",
+                    OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
+                    Price = 2200000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 97,
+                    ShipEmail = "dinhtrong@gmail.com",
+                    ShipName = "Đình Trọng",
+                    ShipPhoneNumber = "0985638888",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Phường Phúc Lợi - Quận Long Biên - Hà Nội",
+                    OrderDate = new DateTime(2021, 06, 01, 07, 41, 12, DateTimeKind.Utc),
+                    Price = 1180000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 98,
+                    ShipEmail = "dinhtrong@gmail.com",
+                    ShipName = "Đình Trọng",
+                    ShipPhoneNumber = "0985638888",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Phường Phúc Lợi - Quận Long Biên - Hà Nội",
+                    OrderDate = new DateTime(2021, 06, 02, 05, 42, 18, DateTimeKind.Utc),
+                    Price = 1380000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 99,
+                    ShipEmail = "dinhtrong@gmail.com",
+                    ShipName = "Đình Trọng",
+                    ShipPhoneNumber = "0985638888",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Phường Phúc Lợi - Quận Long Biên - Hà Nội",
+                    OrderDate = new DateTime(2021, 04, 21, 10, 19, 20, DateTimeKind.Utc),
+                    Price = 1350000
+                },
+                new Order()
+                {
+                    ClientId = new Guid(TESTID),
+                    Id = 100,
+                    ShipEmail = "dinhtrong@gmail.com",
+                    ShipName = "Đình Trọng",
+                    ShipPhoneNumber = "0985638888",
+                    Status = OrderStatus.Canceled,
+                    ShipAddress = "Phường Phúc Lợi - Quận Long Biên - Hà Nội",
+                    OrderDate = new DateTime(2021, 04, 21, 12, 39, 26, DateTimeKind.Utc),
+                    Price = 1360000
                 }
 
                 );
@@ -3195,15 +4468,44 @@ namespace CosmeticsShop.Data.Extentions
                     OrderId = 1,
                     ProductId = 1,
                     Quantity = 1,
-                    Price = 120000
+                    Price = 1200000
                 },
                 new OrderDetail()
                 {
-                    OrderId = 1,
+                    OrderId = 2,
                     ProductId = 2,
-                    Quantity = 3,
-                    Price = 360000
+                    Quantity = 1,
+                    Price = 1400000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 3,
+                    ProductId = 3,
+                    Quantity = 1,
+                    Price = 500000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 4,
+                    ProductId = 4,
+                    Quantity = 1,
+                    Price = 2400000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 5,
+                    ProductId = 5,
+                    Quantity = 1,
+                    Price = 2200000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 6,
+                    ProductId = 6,
+                    Quantity = 1,
+                    Price = 2200000
                 }
+
                 );
 
             modelBuilder.Entity<Slider>().HasData(
@@ -3327,10 +4629,10 @@ namespace CosmeticsShop.Data.Extentions
                     Address = "Đan Phượng - Hà Nội",
                     Avatar = "",
                     Dob = new DateTime(2001, 7, 11),
-                    Name = "Tran Van A",
+                    Name = "Tran Van Anh",
                     PhoneNumber = "0323456743",
                     Status = Status.Active,
-                    Email = "@gmail.com",
+                    Email = "vananh@gmail.com",
                     Password = hasherClient.HashPassword(null, "Adolphin@123")
                 },
                 new Client()
