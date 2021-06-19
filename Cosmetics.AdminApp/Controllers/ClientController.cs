@@ -13,14 +13,17 @@ namespace Cosmetics.AdminApp.Controllers
     {
         private readonly IClientApi _clientApi;
         private readonly IClientOrderApi _clientOrderApi;
+        private readonly IOrderApiClient _orderApiClient;
         private readonly IConfiguration _config;
 
         public ClientController(IClientApi clientApi,IClientOrderApi clientOrderApi,
+            IOrderApiClient orderApiClient,
             IConfiguration config
          )
         {
             _clientApi = clientApi;
             _clientOrderApi = clientOrderApi;
+            _orderApiClient = orderApiClient;
             _config = config;
         }
 
@@ -53,5 +56,6 @@ namespace Cosmetics.AdminApp.Controllers
 
             return new JsonResult(new { message = result.Message, isSuccess = result.IsSuccess });
         }
+       
     }
 }

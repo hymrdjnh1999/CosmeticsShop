@@ -51,7 +51,9 @@ namespace Cosmetics.WebAPI.Controllers
             if (!result.IsSuccess)
                 return BadRequest(result);
             return Ok(result);
+        
         }
+
 
         [HttpPut("{clientId}")]
         [Authorize]

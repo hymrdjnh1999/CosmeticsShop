@@ -60,6 +60,8 @@ namespace CosmeticsShop.Api_Intergration
             return result;
         }
 
+      
+
         public async Task<ApiResult<string>> Login(ClientLoginRequest request)
         {
             var json = JsonConvert.SerializeObject(request);

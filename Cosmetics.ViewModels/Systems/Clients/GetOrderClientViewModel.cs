@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Cosmetics.ViewModels.Systems.Clients
 {
-    public class ClientViewModel
+    public class GetOrderClientViewModel
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
@@ -20,7 +20,7 @@ namespace Cosmetics.ViewModels.Systems.Clients
         public string PhoneNumber { get; set; }
         public int OrderQuanttity { get; set; }
         public List<OrderViewModel> Orders { get; set; }
-       
+        public OrderViewModel order { get; set; }
 
     }
 }

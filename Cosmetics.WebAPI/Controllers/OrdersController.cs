@@ -22,7 +22,7 @@ namespace Cosmetics.WebAPI.Controllers
         }
         [HttpGet("paging")]
         [Authorize]
-        public async Task<IActionResult> Index([FromQuery] GetOrderRequest request)
+        public async Task<IActionResult> Index([FromQuery] GetOrderRequest request )
         {
             if (!ModelState.IsValid || request.PageSize <= 0)
             {

@@ -1,4 +1,5 @@
-﻿using Cosmetics.ViewModels.Common;
+﻿using Cosmetics.ViewModels.Catalogs.Orders;
+using Cosmetics.ViewModels.Common;
 using Cosmetics.ViewModels.Systems.Clients;
 using CosmeticsShop.Application.Common;
 using CosmeticsShop.Data.Entities;
@@ -97,6 +98,8 @@ namespace CosmeticsShop.Application.Systems.Clients
             };
             return new ApiSuccessResult<ClientUpdateViewModel>(model);
         }
+
+      
 
         public async Task<ApiResult<string>> Login(ClientLoginRequest request)
         {

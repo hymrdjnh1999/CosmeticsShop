@@ -28,10 +28,16 @@ namespace Cosmetics.AdminApp.Controllers
             }
             var categories = OrderCategorySearch.Categories;
             var category = categories.Where(x => x.Value == request.Type).FirstOrDefault();
-            if (category != null)
+            foreach (var c in categories)
             {
-                category.Selected = true;
+                if (c.Value != request.Type)
+                {
+                    c.Selected = false;
+                    continue;
+                }
+                c.Selected = true;
             }
+
             ViewBag.Categories = categories;
             return View(orders);
         }

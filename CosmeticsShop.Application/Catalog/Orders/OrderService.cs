@@ -46,10 +46,17 @@ namespace CosmeticsShop.Application.Catalog.Orders
                 x.Id.ToString() == request.KeyWord ||
                 x.ShipPhoneNumber.Contains(request.KeyWord) || x.ShipName.Contains(request.KeyWord));
             }
+            
             if (category != null && request.KeyWord != null)
             {
                 query = GetQueryOrders(category, query, request.KeyWord);
+            } 
+
+            if (!String.IsNullOrEmpty(request.DateCreate) )
+            {
+            query = query.Where(x => x.OrderDate.ToString().Contains(request.DateCreate));
             }
+            /*query = query.Where(x => x.OrderDate.ToString() == request.DateCreate.ToString());*/
             var pageIndex = request.PageIndex;
             var pageSize = request.PageSize;
             var count = await query.CountAsync();
