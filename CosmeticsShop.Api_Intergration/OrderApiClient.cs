@@ -33,7 +33,7 @@ namespace CosmeticsShop.Api_Intergration
         public async Task<PageResponse<OrderViewModel>> GetAll(GetOrderRequest request)
         {
             var requestUrl = $"/api/orders/paging?pageIndex=" +
-               $"{request.PageIndex}&pageSize={request.PageSize}&keyword={request.KeyWord}&type={request.Type}&DateCreate={request.DateCreate}";
+               $"{request.PageIndex}&pageSize={request.PageSize}&keyword={request.KeyWord}&type={request.Type}&DateStart={request.DateStart}&DateEnd={request.DateEnd}";
             var data = await GetAsync<PageResponse<OrderViewModel>>(requestUrl);
 
             return data;

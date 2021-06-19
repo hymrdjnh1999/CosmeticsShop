@@ -52,9 +52,9 @@ namespace CosmeticsShop.Application.Catalog.Orders
                 query = GetQueryOrders(category, query, request.KeyWord);
             } 
 
-            if (!String.IsNullOrEmpty(request.DateCreate) )
+            if (!String.IsNullOrEmpty(request.DateStart) && !String.IsNullOrEmpty(request.DateEnd))
             {
-            query = query.Where(x => x.OrderDate.ToString().Contains(request.DateCreate));
+            query = query.Where(x => x.OrderDate >= Convert.ToDateTime(request.DateStart) && x.OrderDate <= Convert.ToDateTime(request.DateEnd));
             }
             /*query = query.Where(x => x.OrderDate.ToString() == request.DateCreate.ToString());*/
             var pageIndex = request.PageIndex;

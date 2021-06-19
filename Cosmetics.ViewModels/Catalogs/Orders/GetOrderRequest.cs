@@ -11,6 +11,7 @@ namespace Cosmetics.ViewModels.Catalogs.Orders
     {
         public string KeyWord { get; set; }
         public string Type { get; set; }
-        public string DateCreate { get; set; }
+        public string DateStart { get; set; }
+        public string DateEnd { get; set; }
     }
 }
