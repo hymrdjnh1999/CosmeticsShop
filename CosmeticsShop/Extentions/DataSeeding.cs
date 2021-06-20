@@ -38,7 +38,7 @@ namespace CosmeticsShop.Data.Extentions
                      Name = "Gucci",
                      SortOrder = 2,
                      Status = Status.Active,
-                     ParentId = 2,
+                     ParentId = 1,
                  },
 
                  new Category
@@ -47,8 +47,7 @@ namespace CosmeticsShop.Data.Extentions
                      IsOutstanding = true,
                      Name = "Sản phẩm mới",
                      SortOrder = 3,
-                     Status = Status.Active,
-                     ParentId = 3,
+                     Status = Status.Active
                  },
                  new Category
                  {
@@ -56,8 +55,7 @@ namespace CosmeticsShop.Data.Extentions
                      IsOutstanding = true,
                      Name = "Sản phẩm được yêu thích",
                      SortOrder = 4,
-                     Status = Status.Active,
-                     ParentId = 4,
+                     Status = Status.Active
                  },
                  new Category
                  {
@@ -65,8 +63,7 @@ namespace CosmeticsShop.Data.Extentions
                      IsOutstanding = true,
                      Name = "Sản phẩm khuyến mại",
                      SortOrder = 5,
-                     Status = Status.Active,
-                     ParentId = 5,
+                     Status = Status.Active
                  },
                  new Category
                  {
@@ -74,8 +71,7 @@ namespace CosmeticsShop.Data.Extentions
                      IsOutstanding = true,
                      Name = "Bộ quà tặng cao cấp",
                      SortOrder = 6,
-                     Status = Status.Active,
-                     ParentId = 6,
+                     Status = Status.Active
                  },
                  new Category
                  {
@@ -84,7 +80,7 @@ namespace CosmeticsShop.Data.Extentions
                      Name = "Dolce&Gabbana",
                      SortOrder = 7,
                      Status = Status.Active,
-                     ParentId = 7,
+                     ParentId = 1,
                  },
                  new Category
                  {
@@ -93,7 +89,7 @@ namespace CosmeticsShop.Data.Extentions
                      Name = "Burberry",
                      SortOrder = 8,
                      Status = Status.Active,
-                     ParentId = 8,
+                     ParentId = 1,
                  },
                  new Category
                  {
@@ -102,7 +98,7 @@ namespace CosmeticsShop.Data.Extentions
                      Name = "Coach",
                      SortOrder = 9,
                      Status = Status.Active,
-                     ParentId = 9,
+                     ParentId = 1,
                  },
                  new Category
                  {
@@ -111,7 +107,7 @@ namespace CosmeticsShop.Data.Extentions
                      Name = "Montblanc",
                      SortOrder = 10,
                      Status = Status.Active,
-                     ParentId = 10,
+                     ParentId = 1,
                  }
             );
             modelBuilder.Entity<Product>().HasData(
@@ -3177,6 +3173,15 @@ namespace CosmeticsShop.Data.Extentions
             const string ROLE_ID = "BD5B83D2-5C75-4F96-A63F-1ECA425BDFE5";
             const string ROLE_ID2 = "EFEBFD93-B27D-4C91-8A71-74FD71944893";
 
+            const string clientID = "1D37E388-3C9D-490B-A0D1-93F20C4292B5";
+            const string TEST1_ID = "599fab7f-0c58-412c-8de5-93cc9424c0fe";
+            const string TEST2_ID = "c12d5773-d956-4b10-a30e-ac80f459d411";
+            const string TEST3_ID = "48347449-050f-4630-946a-cf41446d89c8";
+            const string TEST4_ID = "0199e987-8be3-4b1a-876d-a638d24cc910";
+            const string TEST5_ID = "ec888d8f-2c97-4d10-b9a5-e7dfab9a82b7";
+            const string TEST6_ID = "01940aef-917e-4f1f-8c06-38459dbcaa0c";
+            const string TEST7_ID = "79a378f7-34c1-4403-88bb-791d585df9aa";
+            const string TEST8_ID = "e2123170-2dbc-4e43-9477-d0be0f352d21";
             modelBuilder.Entity<Role>().HasData(
                 new Role()
                 {
@@ -3253,7 +3258,7 @@ namespace CosmeticsShop.Data.Extentions
                 // Client 1
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(clientID),
                     Id = 1,
                     ShipEmail = "tiendinhdev99@gmail.com",
                     ShipName = "Voi be nho",
@@ -3265,7 +3270,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(clientID),
                     Id = 2,
                     ShipEmail = "tiendinhdev99@gmail.com",
                     ShipName = "Voi be nho",
@@ -3277,7 +3282,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(clientID),
                     Id = 3,
                     ShipEmail = "tiendinhdev99@gmail.com",
                     ShipName = "Voi be nho",
@@ -3289,7 +3294,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(clientID),
                     Id = 4,
                     ShipEmail = "tiendinhdev99@gmail.com",
                     ShipName = "Voi be nho",
@@ -3301,7 +3306,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(clientID),
                     Id = 5,
                     ShipEmail = "tiendinhdev99@gmail.com",
                     ShipName = "Voi be nho",
@@ -3313,7 +3318,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(clientID),
                     Id = 6,
                     ShipEmail = "tiendinhdev99@gmail.com",
                     ShipName = "Voi be nho",
@@ -3325,7 +3330,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(clientID),
                     Id = 7,
                     ShipEmail = "tiendinhdev99@gmail.com",
                     ShipName = "Voi be nho",
@@ -3337,7 +3342,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(clientID),
                     Id = 8,
                     ShipEmail = "tiendinhdev99@gmail.com",
                     ShipName = "Voi be nho",
@@ -3349,7 +3354,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(clientID),
                     Id = 9,
                     ShipEmail = "tiendinhdev99@gmail.com",
                     ShipName = "Voi be nho",
@@ -3361,7 +3366,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(clientID),
                     Id = 10,
                     ShipEmail = "tiendinhdev99@gmail.com",
                     ShipName = "Voi be nho",
@@ -3495,7 +3500,7 @@ namespace CosmeticsShop.Data.Extentions
                 // Client 3
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST1_ID),
                     Id = 21,
                     ShipEmail = "tranphuong@gmail.com",
                     ShipName = "Tran Thu Phuong",
@@ -3507,7 +3512,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST1_ID),
                     Id = 22,
                     ShipEmail = "tranphuong@gmail.com",
                     ShipName = "Tran Thu Phuong",
@@ -3519,7 +3524,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST1_ID),
                     Id = 23,
                     ShipEmail = "tranphuong@gmail.com",
                     ShipName = "Tran Thu Phuong",
@@ -3531,7 +3536,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST1_ID),
                     Id = 24,
                     ShipEmail = "tranphuong@gmail.com",
                     ShipName = "Tran Thu Phuong",
@@ -3543,7 +3548,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST1_ID),
                     Id = 25,
                     ShipEmail = "tranphuong@gmail.com",
                     ShipName = "Tran Thu Phuong",
@@ -3555,7 +3560,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST1_ID),
                     Id = 26,
                     ShipEmail = "tranphuong@gmail.com",
                     ShipName = "Tran Thu Phuong",
@@ -3567,7 +3572,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST1_ID),
                     Id = 27,
                     ShipEmail = "tranphuong@gmail.com",
                     ShipName = "Tran Thu Phuong",
@@ -3579,7 +3584,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST1_ID),
                     Id = 28,
                     ShipEmail = "tranphuong@gmail.com",
                     ShipName = "Tran Thu Phuong",
@@ -3591,7 +3596,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST1_ID),
                     Id = 29,
                     ShipEmail = "tranphuong@gmail.com",
                     ShipName = "Tran Thu Phuong",
@@ -3603,7 +3608,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST1_ID),
                     Id = 30,
                     ShipEmail = "tranphuong@gmail.com",
                     ShipName = "Tran Thu Phuong",
@@ -3616,7 +3621,7 @@ namespace CosmeticsShop.Data.Extentions
                 // Client 4
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST2_ID),
                     Id = 31,
                     ShipEmail = "haianh@gmail.com",
                     ShipName = "Le Hai Anh",
@@ -3628,7 +3633,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST2_ID),
                     Id = 32,
                     ShipEmail = "haianh@gmail.com",
                     ShipName = "Le Hai Anh",
@@ -3640,7 +3645,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST2_ID),
                     Id = 33,
                     ShipEmail = "haianh@gmail.com",
                     ShipName = "Le Hai Anh",
@@ -3652,7 +3657,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST2_ID),
                     Id = 34,
                     ShipEmail = "haianh@gmail.com",
                     ShipName = "Le Hai Anh",
@@ -3664,7 +3669,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST2_ID),
                     Id = 35,
                     ShipEmail = "haianh@gmail.com",
                     ShipName = "Le Hai Anh",
@@ -3676,7 +3681,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST2_ID),
                     Id = 36,
                     ShipEmail = "haianh@gmail.com",
                     ShipName = "Le Hai Anh",
@@ -3688,7 +3693,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST2_ID),
                     Id = 37,
                     ShipEmail = "haianh@gmail.com",
                     ShipName = "Le Hai Anh",
@@ -3700,7 +3705,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST2_ID),
                     Id = 38,
                     ShipEmail = "haianh@gmail.com",
                     ShipName = "Le Hai Anh",
@@ -3712,7 +3717,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST2_ID),
                     Id = 39,
                     ShipEmail = "haianh@gmail.com",
                     ShipName = "Le Hai Anh",
@@ -3724,7 +3729,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST2_ID),
                     Id = 40,
                     ShipEmail = "haianh@gmail.com",
                     ShipName = "Le Hai Anh",
@@ -3737,7 +3742,7 @@ namespace CosmeticsShop.Data.Extentions
                 // Client 5
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST3_ID),
                     Id = 41,
                     ShipEmail = "vananh@gmail.com",
                     ShipName = "Tran Van Anh",
@@ -3749,7 +3754,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST3_ID),
                     Id = 42,
                     ShipEmail = "vananh@gmail.com",
                     ShipName = "Tran Van Anh",
@@ -3761,7 +3766,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST3_ID),
                     Id = 43,
                     ShipEmail = "vananh@gmail.com",
                     ShipName = "Tran Van Anh",
@@ -3773,7 +3778,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST3_ID),
                     Id = 44,
                     ShipEmail = "vananh@gmail.com",
                     ShipName = "Tran Van Anh",
@@ -3785,7 +3790,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST3_ID),
                     Id = 45,
                     ShipEmail = "vananh@gmail.com",
                     ShipName = "Tran Van Anh",
@@ -3797,7 +3802,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST3_ID),
                     Id = 46,
                     ShipEmail = "vananh@gmail.com",
                     ShipName = "Tran Van Anh",
@@ -3809,7 +3814,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST3_ID),
                     Id = 47,
                     ShipEmail = "vananh@gmail.com",
                     ShipName = "Tran Van Anh",
@@ -3821,7 +3826,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST3_ID),
                     Id = 48,
                     ShipEmail = "vananh@gmail.com",
                     ShipName = "Tran Van Anh",
@@ -3833,7 +3838,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST3_ID),
                     Id = 49,
                     ShipEmail = "vananh@gmail.com",
                     ShipName = "Tran Van Anh",
@@ -3845,7 +3850,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST3_ID),
                     Id = 50,
                     ShipEmail = "vananh@gmail.com",
                     ShipName = "Tran Van Anh",
@@ -3858,7 +3863,7 @@ namespace CosmeticsShop.Data.Extentions
                 // Client 6
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST4_ID),
                     Id = 51,
                     ShipEmail = "hoangchung@gmail.com",
                     ShipName = "Hoàng Chung",
@@ -3870,7 +3875,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST4_ID),
                     Id = 52,
                     ShipEmail = "hoangchung@gmail.com",
                     ShipName = "Hoàng Chung",
@@ -3882,7 +3887,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST4_ID),
                     Id = 53,
                     ShipEmail = "hoangchung@gmail.com",
                     ShipName = "Hoàng Chung",
@@ -3894,7 +3899,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST4_ID),
                     Id = 54,
                     ShipEmail = "hoangchung@gmail.com",
                     ShipName = "Hoàng Chung",
@@ -3906,7 +3911,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST4_ID),
                     Id = 55,
                     ShipEmail = "hoangchung@gmail.com",
                     ShipName = "Hoàng Chung",
@@ -3918,7 +3923,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST4_ID),
                     Id = 56,
                     ShipEmail = "hoangchung@gmail.com",
                     ShipName = "Hoàng Chung",
@@ -3930,7 +3935,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST4_ID),
                     Id = 57,
                     ShipEmail = "hoangchung@gmail.com",
                     ShipName = "Hoàng Chung",
@@ -3942,7 +3947,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST4_ID),
                     Id = 58,
                     ShipEmail = "hoangchung@gmail.com",
                     ShipName = "Hoàng Chung",
@@ -3954,7 +3959,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST4_ID),
                     Id = 59,
                     ShipEmail = "hoangchung@gmail.com",
                     ShipName = "Hoàng Chung",
@@ -3966,7 +3971,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST4_ID),
                     Id = 60,
                     ShipEmail = "hoangchung@gmail.com",
                     ShipName = "Hoàng Chung",
@@ -3979,7 +3984,7 @@ namespace CosmeticsShop.Data.Extentions
                 // Client 7
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST5_ID),
                     Id = 61,
                     ShipEmail = "minhanh@gmail.com",
                     ShipName = "Minh Anh",
@@ -3991,7 +3996,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST5_ID),
                     Id = 62,
                     ShipEmail = "minhanh@gmail.com",
                     ShipName = "Minh Anh",
@@ -4003,7 +4008,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST5_ID),
                     Id = 63,
                     ShipEmail = "minhanh@gmail.com",
                     ShipName = "Minh Anh",
@@ -4015,7 +4020,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST5_ID),
                     Id = 64,
                     ShipEmail = "minhanh@gmail.com",
                     ShipName = "Minh Anh",
@@ -4027,7 +4032,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST5_ID),
                     Id = 65,
                     ShipEmail = "minhanh@gmail.com",
                     ShipName = "Minh Anh",
@@ -4039,7 +4044,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST5_ID),
                     Id = 66,
                     ShipEmail = "minhanh@gmail.com",
                     ShipName = "Minh Anh",
@@ -4051,7 +4056,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST5_ID),
                     Id = 67,
                     ShipEmail = "minhanh@gmail.com",
                     ShipName = "Minh Anh",
@@ -4063,7 +4068,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST5_ID),
                     Id = 68,
                     ShipEmail = "minhanh@gmail.com",
                     ShipName = "Minh Anh",
@@ -4075,7 +4080,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST5_ID),
                     Id = 69,
                     ShipEmail = "minhanh@gmail.com",
                     ShipName = "Minh Anh",
@@ -4087,7 +4092,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST5_ID),
                     Id = 70,
                     ShipEmail = "minhanh@gmail.com",
                     ShipName = "Minh Anh",
@@ -4100,7 +4105,7 @@ namespace CosmeticsShop.Data.Extentions
                 // Client 8
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST6_ID),
                     Id = 71,
                     ShipEmail = "Congphuong@gmail.com",
                     ShipName = "Công Phượng",
@@ -4112,7 +4117,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST6_ID),
                     Id = 72,
                     ShipEmail = "Congphuong@gmail.com",
                     ShipName = "Công Phượng",
@@ -4124,7 +4129,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST6_ID),
                     Id = 73,
                     ShipEmail = "Congphuong@gmail.com",
                     ShipName = "Công Phượng",
@@ -4136,7 +4141,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST6_ID),
                     Id = 74,
                     ShipEmail = "Congphuong@gmail.com",
                     ShipName = "Công Phượng",
@@ -4148,7 +4153,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST6_ID),
                     Id = 75,
                     ShipEmail = "Congphuong@gmail.com",
                     ShipName = "Công Phượng",
@@ -4160,7 +4165,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST6_ID),
                     Id = 76,
                     ShipEmail = "Congphuong@gmail.com",
                     ShipName = "Công Phượng",
@@ -4172,7 +4177,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST6_ID),
                     Id = 77,
                     ShipEmail = "Congphuong@gmail.com",
                     ShipName = "Công Phượng",
@@ -4184,7 +4189,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST6_ID),
                     Id = 78,
                     ShipEmail = "Congphuong@gmail.com",
                     ShipName = "Công Phượng",
@@ -4196,7 +4201,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST6_ID),
                     Id = 79,
                     ShipEmail = "Congphuong@gmail.com",
                     ShipName = "Công Phượng",
@@ -4208,7 +4213,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST6_ID),
                     Id = 80,
                     ShipEmail = "Congphuong@gmail.com",
                     ShipName = "Công Phượng",
@@ -4221,7 +4226,7 @@ namespace CosmeticsShop.Data.Extentions
                 // Client 9
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST7_ID),
                     Id = 81,
                     ShipEmail = "xuantruong@gmail.com",
                     ShipName = "Xuân Trường",
@@ -4233,7 +4238,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST7_ID),
                     Id = 82,
                     ShipEmail = "xuantruong@gmail.com",
                     ShipName = "Xuân Trường",
@@ -4245,7 +4250,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST7_ID),
                     Id = 83,
                     ShipEmail = "xuantruong@gmail.com",
                     ShipName = "Xuân Trường",
@@ -4257,7 +4262,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST7_ID),
                     Id = 84,
                     ShipEmail = "xuantruong@gmail.com",
                     ShipName = "Xuân Trường",
@@ -4269,7 +4274,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST7_ID),
                     Id = 85,
                     ShipEmail = "xuantruong@gmail.com",
                     ShipName = "Xuân Trường",
@@ -4281,7 +4286,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST7_ID),
                     Id = 86,
                     ShipEmail = "xuantruong@gmail.com",
                     ShipName = "Xuân Trường",
@@ -4293,7 +4298,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST7_ID),
                     Id = 87,
                     ShipEmail = "xuantruong@gmail.com",
                     ShipName = "Xuân Trường",
@@ -4305,7 +4310,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST7_ID),
                     Id = 88,
                     ShipEmail = "xuantruong@gmail.com",
                     ShipName = "Xuân Trường",
@@ -4317,7 +4322,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST7_ID),
                     Id = 89,
                     ShipEmail = "xuantruong@gmail.com",
                     ShipName = "Xuân Trường",
@@ -4329,7 +4334,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST7_ID),
                     Id = 90,
                     ShipEmail = "xuantruong@gmail.com",
                     ShipName = "Xuân Trường",
@@ -4342,7 +4347,7 @@ namespace CosmeticsShop.Data.Extentions
                 // Client 10
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST8_ID),
                     Id = 91,
                     ShipEmail = "dinhtrong@gmail.com",
                     ShipName = "Đình Trọng",
@@ -4354,7 +4359,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST8_ID),
                     Id = 92,
                     ShipEmail = "dinhtrong@gmail.com",
                     ShipName = "Đình Trọng",
@@ -4366,7 +4371,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST8_ID),
                     Id = 93,
                     ShipEmail = "dinhtrong@gmail.com",
                     ShipName = "Đình Trọng",
@@ -4378,7 +4383,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST8_ID),
                     Id = 94,
                     ShipEmail = "dinhtrong@gmail.com",
                     ShipName = "Đình Trọng",
@@ -4390,7 +4395,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST8_ID),
                     Id = 95,
                     ShipEmail = "dinhtrong@gmail.com",
                     ShipName = "Đình Trọng",
@@ -4402,7 +4407,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST8_ID),
                     Id = 96,
                     ShipEmail = "dinhtrong@gmail.com",
                     ShipName = "Đình Trọng",
@@ -4414,7 +4419,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST8_ID),
                     Id = 97,
                     ShipEmail = "dinhtrong@gmail.com",
                     ShipName = "Đình Trọng",
@@ -4426,7 +4431,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST8_ID),
                     Id = 98,
                     ShipEmail = "dinhtrong@gmail.com",
                     ShipName = "Đình Trọng",
@@ -4438,7 +4443,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST8_ID),
                     Id = 99,
                     ShipEmail = "dinhtrong@gmail.com",
                     ShipName = "Đình Trọng",
@@ -4450,7 +4455,7 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new Order()
                 {
-                    ClientId = new Guid(TESTID),
+                    ClientId = new Guid(TEST8_ID),
                     Id = 100,
                     ShipEmail = "dinhtrong@gmail.com",
                     ShipName = "Đình Trọng",
@@ -4504,8 +4509,679 @@ namespace CosmeticsShop.Data.Extentions
                     ProductId = 6,
                     Quantity = 1,
                     Price = 2200000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 7,
+                    ProductId = 7,
+                    Quantity = 1,
+                    Price = 1200000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 8,
+                    ProductId = 8,
+                    Quantity = 1,
+                    Price = 2800000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 9,
+                    ProductId = 9,
+                    Quantity = 1,
+                    Price = 1700000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 10,
+                    ProductId = 10,
+                    Quantity = 1,
+                    Price = 1600000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 11,
+                    ProductId = 11,
+                    Quantity = 1,
+                    Price = 2030000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 12,
+                    ProductId = 12,
+                    Quantity = 1,
+                    Price = 2150000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 10,
+                    ProductId = 10,
+                    Quantity = 1,
+                    Price = 1600000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 13,
+                    ProductId = 13,
+                    Quantity = 1,
+                    Price = 3100000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 14,
+                    ProductId = 14,
+                    Quantity = 1,
+                    Price = 2670000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 15,
+                    ProductId = 15,
+                    Quantity = 1,
+                    Price = 2490000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 16,
+                    ProductId = 16,
+                    Quantity = 1,
+                    Price = 2150000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 17,
+                    ProductId = 17,
+                    Quantity = 1,
+                    Price = 2910000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 18,
+                    ProductId = 18,
+                    Quantity = 1,
+                    Price = 7140000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 19,
+                    ProductId = 19,
+                    Quantity = 1,
+                    Price = 2420000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 20,
+                    ProductId = 20,
+                    Quantity = 1,
+                    Price = 1930000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 21,
+                    ProductId = 21,
+                    Quantity = 1,
+                    Price = 3000000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 22,
+                    ProductId = 22,
+                    Quantity = 1,
+                    Price = 2360000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 23,
+                    ProductId = 23,
+                    Quantity = 2,
+                    Price = 4100000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 24,
+                    ProductId = 24,
+                    Quantity = 3,
+                    Price = 6450000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 25,
+                    ProductId = 25,
+                    Quantity = 1,
+                    Price = 1920000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 26,
+                    ProductId = 26,
+                    Quantity = 1,
+                    Price = 1920000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 27,
+                    ProductId = 27,
+                    Quantity = 1,
+                    Price = 2150000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 28,
+                    ProductId = 28,
+                    Quantity = 2,
+                    Price = 3600000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 29,
+                    ProductId = 29,
+                    Quantity = 1,
+                    Price = 2120000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 30,
+                    ProductId = 30,
+                    Quantity = 1,
+                    Price = 2190000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 31,
+                    ProductId = 31,
+                    Quantity = 1,
+                    Price = 2150000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 32,
+                    ProductId = 32,
+                    Quantity = 1,
+                    Price = 1820000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 33,
+                    ProductId = 33,
+                    Quantity = 1,
+                    Price = 2040000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 34,
+                    ProductId = 34,
+                    Quantity = 1,
+                    Price = 2140000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 35,
+                    ProductId = 35,
+                    Quantity = 1,
+                    Price = 1920000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 36,
+                    ProductId = 36,
+                    Quantity = 1,
+                    Price = 1920000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 37,
+                    ProductId = 37,
+                    Quantity = 1,
+                    Price = 1920000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 38,
+                    ProductId = 38,
+                    Quantity = 1,
+                    Price = 2650000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 39,
+                    ProductId = 39,
+                    Quantity = 1,
+                    Price = 2050000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 40,
+                    ProductId = 40,
+                    Quantity = 1,
+                    Price = 1980000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 41,
+                    ProductId = 41,
+                    Quantity = 1,
+                    Price = 990000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 42,
+                    ProductId = 42,
+                    Quantity = 1,
+                    Price = 1470000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 43,
+                    ProductId = 43,
+                    Quantity = 1,
+                    Price = 1260000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 44,
+                    ProductId = 44,
+                    Quantity = 1,
+                    Price = 1785000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 45,
+                    ProductId = 45,
+                    Quantity = 1,
+                    Price = 990000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 46,
+                    ProductId = 46,
+                    Quantity = 1,
+                    Price = 2520000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 47,
+                    ProductId = 47,
+                    Quantity = 1,
+                    Price = 2520000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 48,
+                    ProductId = 48,
+                    Quantity = 1,
+                    Price = 1890000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 49,
+                    ProductId = 49,
+                    Quantity = 1,
+                    Price = 1645000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 50,
+                    ProductId = 50,
+                    Quantity = 1,
+                    Price = 1387500
+                },
+                new OrderDetail()
+                {
+                    OrderId = 51,
+                    ProductId = 51,
+                    Quantity = 1,
+                    Price = 1387500
+                },
+                new OrderDetail()
+                {
+                    OrderId = 52,
+                    ProductId = 52,
+                    Quantity = 1,
+                    Price = 2380000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 52,
+                    ProductId = 52,
+                    Quantity = 1,
+                    Price = 2380000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 53,
+                    ProductId = 53,
+                    Quantity = 1,
+                    Price = 2850000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 54,
+                    ProductId = 54,
+                    Quantity = 1,
+                    Price = 2350000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 55,
+                    ProductId = 55,
+                    Quantity = 1,
+                    Price = 2450000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 56,
+                    ProductId = 56,
+                    Quantity = 1,
+                    Price = 2950000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 57,
+                    ProductId = 57,
+                    Quantity = 1,
+                    Price = 2800000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 58,
+                    ProductId = 58,
+                    Quantity = 1,
+                    Price = 2200000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 59,
+                    ProductId = 59,
+                    Quantity = 1,
+                    Price = 2200000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 60,
+                    ProductId = 60,
+                    Quantity = 1,
+                    Price = 2450000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 61,
+                    ProductId = 61,
+                    Quantity = 1,
+                    Price = 2720000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 62,
+                    ProductId = 62,
+                    Quantity = 1,
+                    Price = 2220000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 63,
+                    ProductId = 63,
+                    Quantity = 1,
+                    Price = 2120000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 64,
+                    ProductId = 64,
+                    Quantity = 1,
+                    Price = 1970000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 65,
+                    ProductId = 65,
+                    Quantity = 1,
+                    Price = 1910000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 66,
+                    ProductId = 66,
+                    Quantity = 1,
+                    Price = 2040000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 67,
+                    ProductId = 67,
+                    Quantity = 1,
+                    Price = 2590000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 68,
+                    ProductId = 68,
+                    Quantity = 1,
+                    Price = 2120000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 69,
+                    ProductId = 69,
+                    Quantity = 1,
+                    Price = 6720000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 70,
+                    ProductId = 70,
+                    Quantity = 1,
+                    Price = 5060000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 71,
+                    ProductId = 71,
+                    Quantity = 1,
+                    Price = 2030000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 72,
+                    ProductId = 72,
+                    Quantity = 1,
+                    Price = 1980000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 73,
+                    ProductId = 73,
+                    Quantity = 1,
+                    Price = 4160000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 74,
+                    ProductId = 74,
+                    Quantity = 1,
+                    Price = 2190000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 75,
+                    ProductId = 75,
+                    Quantity = 1,
+                    Price = 2030000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 76,
+                    ProductId = 76,
+                    Quantity = 1,
+                    Price = 2860000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 77,
+                    ProductId = 77,
+                    Quantity = 1,
+                    Price = 7750000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 78,
+                    ProductId = 78,
+                    Quantity = 1,
+                    Price = 2780000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 79,
+                    ProductId = 79,
+                    Quantity = 1,
+                    Price = 2780000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 80,
+                    ProductId = 80,
+                    Quantity = 1,
+                    Price = 2780000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 81,
+                    ProductId = 81,
+                    Quantity = 1,
+                    Price = 1550000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 82,
+                    ProductId = 82,
+                    Quantity = 1,
+                    Price = 1300000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 83,
+                    ProductId = 83,
+                    Quantity = 1,
+                    Price = 1100000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 84,
+                    ProductId = 84,
+                    Quantity = 1,
+                    Price = 2550000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 85,
+                    ProductId = 85,
+                    Quantity = 1,
+                    Price = 2550000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 86,
+                    ProductId = 86,
+                    Quantity = 1,
+                    Price = 1800000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 87,
+                    ProductId = 87,
+                    Quantity = 1,
+                    Price = 1100000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 88,
+                    ProductId = 88,
+                    Quantity = 1,
+                    Price = 800000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 89,
+                    ProductId = 89,
+                    Quantity = 1,
+                    Price = 2800000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 90,
+                    ProductId = 90,
+                    Quantity = 1,
+                    Price = 2100000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 91,
+                    ProductId = 91,
+                    Quantity = 1,
+                    Price = 1250000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 92,
+                    ProductId = 92,
+                    Quantity = 1,
+                    Price = 1380000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 93,
+                    ProductId = 93,
+                    Quantity = 1,
+                    Price = 1700000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 94,
+                    ProductId = 94,
+                    Quantity = 1,
+                    Price = 1200000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 95,
+                    ProductId = 95,
+                    Quantity = 1,
+                    Price = 950000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 96,
+                    ProductId = 96,
+                    Quantity = 1,
+                    Price = 2200000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 97,
+                    ProductId = 97,
+                    Quantity = 1,
+                    Price = 1180000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 98,
+                    ProductId = 98,
+                    Quantity = 1,
+                    Price = 1380000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 99,
+                    ProductId = 99,
+                    Quantity = 1,
+                    Price = 1350000
+                },
+                new OrderDetail()
+                {
+                    OrderId = 100,
+                    ProductId = 100,
+                    Quantity = 1,
+                    Price = 1360000
                 }
-
                 );
 
             modelBuilder.Entity<Slider>().HasData(
@@ -4564,15 +5240,7 @@ namespace CosmeticsShop.Data.Extentions
                     Image = "https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg"
                 }
            );
-            string clientID = "1D37E388-3C9D-490B-A0D1-93F20C4292B5";
-            const string TEST1_ID = "599fab7f-0c58-412c-8de5-93cc9424c0fe";
-            const string TEST2_ID = "c12d5773-d956-4b10-a30e-ac80f459d411";
-            const string TEST3_ID = "48347449-050f-4630-946a-cf41446d89c8";
-            const string TEST4_ID = "0199e987-8be3-4b1a-876d-a638d24cc910";
-            const string TEST5_ID = "ec888d8f-2c97-4d10-b9a5-e7dfab9a82b7";
-            const string TEST6_ID = "01940aef-917e-4f1f-8c06-38459dbcaa0c";
-            const string TEST7_ID = "79a378f7-34c1-4403-88bb-791d585df9aa";
-            const string TEST8_ID = "e2123170-2dbc-4e43-9477-d0be0f352d21";
+
             var hasherClient = new PasswordHasher<Client>();
             modelBuilder.Entity<Client>().HasData(
                 new Client()
