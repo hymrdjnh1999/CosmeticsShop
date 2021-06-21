@@ -13,17 +13,14 @@ namespace Cosmetics.AdminApp.Controllers
     {
         private readonly IClientApi _clientApi;
         private readonly IClientOrderApi _clientOrderApi;
-        private readonly IOrderApiClient _orderApiClient;
         private readonly IConfiguration _config;
 
         public ClientController(IClientApi clientApi,IClientOrderApi clientOrderApi,
-            IOrderApiClient orderApiClient,
             IConfiguration config
          )
         {
             _clientApi = clientApi;
             _clientOrderApi = clientOrderApi;
-            _orderApiClient = orderApiClient;
             _config = config;
         }
 
@@ -47,6 +44,16 @@ namespace Cosmetics.AdminApp.Controllers
             data.ResultObj.TotalRecords -= 1;
 
             return View(data.ResultObj);
+        }
+
+
+        [HttpGet("client/{clientid}")]
+        public async Task<IActionResult> Details(Guid id)
+        {
+            var client = await _clientApi.GetByClientId(id);
+            var order = await _clientApi.GetOrderByClientId(id);
+            client.Orders = order;
+            return View(client);
         }
         [HttpPut]
         public async Task<JsonResult> cancelOrder(int orderId, string cancelReason)

@@ -53,7 +53,27 @@ namespace Cosmetics.WebAPI.Controllers
             return Ok(result);
         
         }
+        [HttpGet("{clientId}")]
+        [Authorize]
 
+        public async Task<IActionResult> GetClientById(Guid id)
+        {
+            
+
+            var client = await _clientService.GetClientById(id);
+            if (client == null)
+            {
+                return BadRequest(id);
+            }
+            return Ok(client);
+        }
+        [HttpGet("client/{clientId}")]
+/*        [HttpGet("{clientId}/client")]
+*/        public async Task<IActionResult> GetOrderByClientId(Guid clientId)
+        {
+            var orders = await _clientService.GetOrderByClient(clientId);
+            return Ok(orders);
+        }
 
         [HttpPut("{clientId}")]
         [Authorize]

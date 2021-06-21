@@ -102,7 +102,10 @@
                                         @Html.DisplayFor(modelItem => Model.Items[count].OrderQuanttity)
                                     </td>
                                     <td class="btn-edit_del">
-                                        <a href="@Url.Action("Details","Client",  new { id = Model.Items[count].Id })" class="p-1 btn actions-btn btn-outline-info px-2">Chi Tiết</a>
+@*                                        <a href="@Url.Action("Details","Client",  new { id = Model.Items[count].Id })" class="p-1 btn actions-btn btn-outline-info px-2">Chi Tiết</a>
+*@                                        <a href="client/@Model.Items[count].Id" class="p-1 btn actions-btn btn-outline-info px-2">
+                                        Chi Tiết
+                                        </a>
                                     </td>
                                     
                                 </tr>

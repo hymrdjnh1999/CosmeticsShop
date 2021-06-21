@@ -22,7 +22,7 @@ namespace Cosmetics.WebAPI.Controllers
         }
         [HttpGet("paging")]
         [Authorize]
-        public async Task<IActionResult> Index([FromQuery] GetOrderRequest request )
+        public async Task<IActionResult> Index([FromQuery] GetOrderRequest request)
         {
             if (!ModelState.IsValid || request.PageSize <= 0)
             {
@@ -98,5 +98,12 @@ namespace Cosmetics.WebAPI.Controllers
 
             return Ok(result);
         }
+
+       /* [HttpGet("client/{clientId}")]
+        public async Task<IActionResult> ClientGetOrderHistory(Guid clientId)
+        {
+            var orders = await _orderService.ClientGetOrderHistory(clientId);
+            return Ok(orders);
+        }*/
     }
 }

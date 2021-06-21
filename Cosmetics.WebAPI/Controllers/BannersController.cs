@@ -20,24 +20,7 @@ namespace Cosmetics.WebAPI.Controllers
         {
             _bannerService = bannerService;
         }
-        /*[HttpPost("banner/create")]
-        [Consumes("multipart/form-data")]
-        public async Task<IActionResult> Create([FromForm] BannerCreateRequest request)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            var bannerId = await _bannerService.Create(request);
-            if (bannerId < 0)
-            {
-                return BadRequest();
-            }
-
-            var banner = await _bannerService.GetById(bannerId);
-            banner.Id = bannerId;
-
-            return CreatedAtAction("Create", banner);
-        }*/
+        
         [HttpPost]
         [Consumes("multipart/form-data")]
         [Authorize]

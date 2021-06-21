@@ -20,7 +20,7 @@ namespace Cosmetics.ViewModels.Systems.Clients
         public string PhoneNumber { get; set; }
         public int OrderQuanttity { get; set; }
         public List<OrderViewModel> Orders { get; set; }
-       
+
 
     }
 }

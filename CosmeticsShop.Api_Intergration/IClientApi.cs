@@ -1,4 +1,5 @@
-﻿using Cosmetics.ViewModels.Common;
+﻿using Cosmetics.ViewModels.Catalogs.Orders;
+using Cosmetics.ViewModels.Common;
 using Cosmetics.ViewModels.Systems.Clients;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,10 @@ namespace CosmeticsShop.Api_Intergration
         Task<ApiResult<ClientUpdateViewModel>> GetDetail(Guid userId);
         Task<ApiResult<ClientUpdateViewModel>> Update(ClientUpdateViewModel request);
         Task<ApiResult<PageResponse<ClientViewModel>>> GetClientPaging(GetClientPagingRequest request);
+
+        Task<ClientViewModel> GetByClientId(Guid id);
+        Task<List<OrderViewModel>> GetOrderByClientId(Guid id);
+
 
     }
 }

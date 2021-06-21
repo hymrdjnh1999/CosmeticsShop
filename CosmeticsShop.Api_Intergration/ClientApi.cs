@@ -1,4 +1,5 @@
 ﻿using Cosmetics.Ultilities.Constants;
+using Cosmetics.ViewModels.Catalogs.Orders;
 using Cosmetics.ViewModels.Common;
 using Cosmetics.ViewModels.Systems.Clients;
 using Microsoft.AspNetCore.Http;
@@ -31,6 +32,19 @@ namespace CosmeticsShop.Api_Intergration
             _httpContextAccessor = httpContextAccessor;
         }
 
+        public async Task<ClientViewModel> GetByClientId(Guid id)
+        {
+            var request = $"/api/clients/{id}";
+            var data = await GetAsync<ClientViewModel>(request);
+            return data;
+        }
+        public async Task<List<OrderViewModel>> GetOrderByClientId(Guid id)
+        {
+            var request = $"/api/clients/{id}/orders";
+            var data = await GetAsync<List<OrderViewModel>>(request);
+            return data;
+        }
+
         public async Task<ApiResult<PageResponse<ClientViewModel>>> GetClientPaging(GetClientPagingRequest request)
         {
             var client = _httpClientFactory.CreateClient();
@@ -60,7 +74,7 @@ namespace CosmeticsShop.Api_Intergration
             return result;
         }
 
-      
+        
 
         public async Task<ApiResult<string>> Login(ClientLoginRequest request)
         {

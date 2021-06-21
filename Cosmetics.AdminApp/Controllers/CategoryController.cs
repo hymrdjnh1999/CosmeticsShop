@@ -63,7 +63,6 @@ namespace Cosmetics.AdminApp.Controllers
             return View(request);
         }
 
-
         [HttpGet("category/{id}")]
         public async Task<IActionResult> Edit(int id)
         {
@@ -95,6 +94,7 @@ namespace Cosmetics.AdminApp.Controllers
             ModelState.AddModelError("", "Cập nhật danh mục thất bại!");
             return View(request);
         }
+
         [HttpDelete]
         public async Task Delete(int id)
         {
