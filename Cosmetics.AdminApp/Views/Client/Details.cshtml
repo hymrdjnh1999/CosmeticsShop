@@ -92,9 +92,6 @@
                             <th class="tb-col" style="flex: 1" scope="col">
                                 Số điện thoại
                             </th>
-                            @*<th class="tb-col" style="flex: 0.8" scope="col">
-                            SL sản phẩm
-                        </th>*@
                             <th class="tb-col" style="flex: 1" scope="col">
                                 Giá trị
                             </th>
@@ -124,9 +121,6 @@
                                 <td class="d-flex align-items-center justify-content-center pro-item" style="flex: 1">
                                     @Html.DisplayFor(modelItem => item.ShipPhoneNumber)
                                 </td>
-                                @*<td class="d-flex align-items-center justify-content-center pro-item" style="flex: 0.8">
-                                @Html.DisplayFor(modelItem => item.ProductQuantity)
-                            </td>*@
                                 <td class="d-flex align-items-center justify-content-center pro-item" style="flex: 1">
                                     @Html.DisplayFor(modelItem => item.Price)
                                 </td>
@@ -161,7 +155,6 @@
                                     }
                                     else
                                     {
-                                        @*<a href="order/@item.Id" class="btn btn-outline-info">Xem chi tiết</a>*@
                                         <a href="@Url.Action("Update","Order",  new { id = item.Id })" class="p-1 btn actions-btn btn-outline-info px-2">
                                             Chi Tiết
                                         </a>
