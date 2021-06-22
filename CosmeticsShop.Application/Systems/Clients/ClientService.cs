@@ -56,11 +56,10 @@ namespace CosmeticsShop.Application.Systems.Clients
             var query = from c in _context.Clients
                         where c.Id == id
                         join o in _context.Orders on c.Id equals o.ClientId
-                        join od in _context.OrderDetails on o.Id equals od.OrderId
-                        join p in _context.Products on od.ProductId equals p.Id
-                        select new { c , o , p};
+                        select new { c , o};
             
-            var orders = await query.Select(x => new OrderViewModel()
+
+            var orders = await query.Select( x => new OrderViewModel()
             {
                 Id = x.o.Id,
                 OrderDate = x.o.OrderDate,
@@ -69,7 +68,7 @@ namespace CosmeticsShop.Application.Systems.Clients
                 ShipAddress = x.o.ShipAddress,
                 ShipName = x.o.ShipName,
                 ShipPhoneNumber = x.o.ShipPhoneNumber,
-                Status = x.o.Status
+                Status = x.o.Status,
             }).ToListAsync();
 
             return orders;

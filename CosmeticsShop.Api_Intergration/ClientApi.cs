@@ -34,13 +34,13 @@ namespace CosmeticsShop.Api_Intergration
 
         public async Task<ClientViewModel> GetByClientId(Guid id)
         {
-            var request = $"/api/clients/{id}";
+            var request = $"/api/clients/{id}/details";
             var data = await GetAsync<ClientViewModel>(request);
             return data;
         }
         public async Task<List<OrderViewModel>> GetOrderByClientId(Guid id)
         {
-            var request = $"/api/clients/{id}/orders";
+            var request = $"/api/clients/{id}/details/orders";
             var data = await GetAsync<List<OrderViewModel>>(request);
             return data;
         }

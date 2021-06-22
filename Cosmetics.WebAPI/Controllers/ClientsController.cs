@@ -53,13 +53,9 @@ namespace Cosmetics.WebAPI.Controllers
             return Ok(result);
         
         }
-        [HttpGet("{clientId}")]
-        [Authorize]
-
+        [HttpGet("{id}/details")]
         public async Task<IActionResult> GetClientById(Guid id)
         {
-            
-
             var client = await _clientService.GetClientById(id);
             if (client == null)
             {
@@ -67,11 +63,10 @@ namespace Cosmetics.WebAPI.Controllers
             }
             return Ok(client);
         }
-        [HttpGet("client/{clientId}")]
-/*        [HttpGet("{clientId}/client")]
-*/        public async Task<IActionResult> GetOrderByClientId(Guid clientId)
+        [HttpGet("{id}/details/orders")]
+        public async Task<IActionResult> GetOrderByClientId(Guid id)
         {
-            var orders = await _clientService.GetOrderByClient(clientId);
+            var orders = await _clientService.GetOrderByClient(id);
             return Ok(orders);
         }
 

@@ -47,14 +47,16 @@ namespace Cosmetics.AdminApp.Controllers
         }
 
 
-        [HttpGet("client/{clientid}")]
-        public async Task<IActionResult> Details(Guid id)
+        [HttpGet("client/{id}/details")]
+        public async Task<IActionResult> Details(string id)
         {
-            var client = await _clientApi.GetByClientId(id);
-            var order = await _clientApi.GetOrderByClientId(id);
+            var client = await _clientApi.GetByClientId(new Guid(id));
+            var order = await _clientApi.GetOrderByClientId(new Guid(id));
             client.Orders = order;
             return View(client);
+           
         }
+        
         [HttpPut]
         public async Task<JsonResult> cancelOrder(int orderId, string cancelReason)
         {
