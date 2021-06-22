@@ -14,11 +14,6 @@ namespace CosmeticsShop.Data.Extentions
     {
         public static void Seed(this ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<AppConfig>().HasData(
-                new AppConfig { Key = "HomeTitle", Value = "This is home page of Cosmetics Shop" },
-                new AppConfig { Key = "HomeKeyWord", Value = "This is keyword of Cosmetics Shop" },
-                new AppConfig { Key = "HomeDescription", Value = "This is description of Cosmetics Shop" }
-            );
 
             modelBuilder.Entity<Category>().HasData(
                 new Category
@@ -156,42 +151,7 @@ namespace CosmeticsShop.Data.Extentions
                     IsDefault = true,
                     SortOrder = 1
                 });
-            modelBuilder.Entity<CosmeticsCollection>().HasData(
-                new CosmeticsCollection()
-                {
-                    Id = 1,
-                    Name = "MAN [EAU DE TOILETTE]"
-                },
-                new CosmeticsCollection()
-                {
-                    Id = 2,
-                    Name = "ƯU ĐÃI NƯỚC HOA TRONG THÁNG 7 2020"
-                }
-
-                );
-
-            modelBuilder.Entity<ProductInCosmeticsCollection>().HasData(
-                new ProductInCosmeticsCollection()
-                {
-                    ProductId = 1,
-                    CosmeticsCollectionId = 1
-                },
-                new ProductInCosmeticsCollection()
-                {
-                    ProductId = 2,
-                    CosmeticsCollectionId = 1
-                },
-                new ProductInCosmeticsCollection()
-                {
-                    ProductId = 1,
-                    CosmeticsCollectionId = 2
-                },
-                new ProductInCosmeticsCollection()
-                {
-                    ProductId = 2,
-                    CosmeticsCollectionId = 2
-                });
-
+            
             modelBuilder.Entity<ProductInCategory>().HasData(
                 new ProductInCategory() { ProductId = 1, CategoryId = 1 },
                 new ProductInCategory() { ProductId = 2, CategoryId = 1 },
