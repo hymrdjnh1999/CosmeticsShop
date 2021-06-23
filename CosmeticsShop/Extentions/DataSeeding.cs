@@ -4514,13 +4514,6 @@ namespace CosmeticsShop.Data.Extentions
                 },
                 new OrderDetail()
                 {
-                    OrderId = 10,
-                    ProductId = 10,
-                    Quantity = 1,
-                    Price = 1600000
-                },
-                new OrderDetail()
-                {
                     OrderId = 13,
                     ProductId = 13,
                     Quantity = 1,
@@ -4791,13 +4784,6 @@ namespace CosmeticsShop.Data.Extentions
                     ProductId = 51,
                     Quantity = 1,
                     Price = 1387500
-                },
-                new OrderDetail()
-                {
-                    OrderId = 52,
-                    ProductId = 52,
-                    Quantity = 1,
-                    Price = 2380000
                 },
                 new OrderDetail()
                 {
