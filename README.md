@@ -7,7 +7,8 @@
 - ASP .NET 5
 - Entity Framework
 ## Database Using
--  Microsoft SQL Management Studio 18
+- SQL SERVER 2019
+- Microsoft SQL Management Studio 18
 ## Install Packages at CosmeticsShop.Data
 - Microsoft.EntityFrameworkCore.SqlServer
 - Microsoft.EntityFrameworkCore.Tools
@@ -17,6 +18,5 @@
 - Microsoft.Extensions.Configuration.Json
 - Swashbuckle.AspNetCore
 ## How to configure and run
-- Set Cosmetics.WebAPI as start project
-- Click build button
+ 
 ## How to contribute

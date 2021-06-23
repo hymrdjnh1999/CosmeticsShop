@@ -256,5 +256,14 @@ namespace Cosmetics.WebAPI.Controllers
             return Ok(result);
         }
 
+        [HttpGet("{id}/client")]
+        public async Task<IActionResult> GetClientProductDetail(int id)
+        {
+            var result = await _productServices.ClientGetProductDetail(id);
+
+            return Ok(result);
+
+        }
+
     }
 }

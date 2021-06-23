@@ -73,7 +73,7 @@ namespace Cosmetics.AdminApp.Controllers
             {
                 return RedirectToAction("Error", "Home");
             }
-            var model = new CategoryUpdateRequest() { Id = id, Name = category.Name };
+            var model = new CategoryUpdateRequest() { Id = id, Name = category.Name , IsOutstanding = category.IsOutstanding };
             return View(model);
         }
 
@@ -124,5 +124,7 @@ namespace Cosmetics.AdminApp.Controllers
             }
         }
 
+
+      
     }
 }

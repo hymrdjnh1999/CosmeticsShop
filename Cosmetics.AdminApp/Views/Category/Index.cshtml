@@ -28,7 +28,7 @@
             </form>
 
             <div>
-                <a asp-action="Create" asp-controller="Category"  class="btn btn-outline-dark ">
+                <a asp-action="Create" asp-controller="Category" class="btn btn-outline-dark ">
                     <i class="fas fa-plus mr-2"></i>
                     Tạo Danh Mục Mới
                 </a>
@@ -54,41 +54,48 @@
                             <th scope="col" style="flex:0.1">
                                 Id
                             </th>
-                            <th  scope="col" style="flex:1">
+                            <th scope="col" style="flex:1">
                                 Tên
                             </th>
-                            @*<th scope="col">
-                                Trạng Thái
-                            </th>*@
-                            <th style="flex: 0.2" scope="col">
+                            <th scope="col" style="flex:0.3">
+                                Trang chủ
+                            </th>
+                            <th style="flex: 0.4" scope="col">
                                 Tác Vụ
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        @for (int count = 0; count < Model.Items.Count; count++)
+                        @foreach (var item in Model.Items)
                         {
                             <tr class="bg-alternating d-flex">
                                 <td style="flex:0.1">
-                                    @Html.DisplayFor(modelItem => Model.Items[count].Id)
+                                    @Html.DisplayFor(modelItem => item.Id)
                                 </td>
                                 <td style="flex:1">
-                                   
-                                        <a href="#" onclick="editCategory(@Model.Items[count].Id)">
-                                            @Model.Items[count].Name
-                                        </a>
-                                </td>
-                                @*<td class="table-body-td  @(Model.Items[count].Status == Status.Active ? "text-success" : "text-danger text-center")  ">
-                                    @Html.DisplayFor(modelItem => Model.Items[count].Status)
-                                </td>*@
 
-                                <td class="d-flex align-items-center justify-content-end" style="flex: 0.2">
+                                    <a href="#" onclick="editCategory(@item.Id)">
+                                        @item.Name
+                                    </a>
+                                </td>
+                                <td style="flex:0.3">
+
+                                    @if (item.IsOutstanding)
+                                    {
+                                        <input type="checkbox" disabled class="btn-checkbox" checked="@item.IsOutstanding" onclick="getCategoryId(@item.Id)" style="width:20px;height:20px" data-target="#changeIOSCategoryModal" data-toggle="modal" />
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" disabled class="btn-checkbox" checked="@item.IsOutstanding" onclick="getCategoryId(@item.Id)" style="width:20px;height:20px" data-target="#changeIOSCategoryModal" data-toggle="modal" />
+                                    }
+                                </td>
+                                <td class="d-flex align-items-center justify-content-center" style="flex: 0.4">
                                     <span class="actions-btn">
-                                        <span id="editCategoryBtn" onclick="editCategory(@Model.Items[count].Id)" class="btn btn-outline-info">Sửa</span>
+                                        <span id="editCategoryBtn" onclick="editCategory(@item.Id)" class="btn btn-outline-info">Sửa</span>
                                     </span>
-                               
+
                                     <span class="actions-btn ml-2">
-                                        <button onclick="getValue(@Model.Items[count].Id)" data-target="#deleteCategoryModal" data-toggle="modal" class="btn btn-outline-danger">
+                                        <button onclick="getValue(@item.Id)" data-target="#deleteCategoryModal" data-toggle="modal" class="btn btn-outline-danger">
                                             Xóa
                                         </button>
                                     </span>
@@ -100,6 +107,26 @@
             </div>
 
             @await Component.InvokeAsync("Pager", Model)
+        <div class="modal fade" id="changeIOSCategoryModal" tabindex="-1" role="dialog" aria-labelledby="changeIOSCategoryTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteCategoryTitle">Thay đổi hiện trạng danh mục </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Bạn có chắc chắn muốn thay đổi hiện trạng danh mục này?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-success" data-dismiss="modal" id="change_submit_btn">Sửa</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
 
             <!-- Button trigger modal -->
             <!-- Modal -->
@@ -157,6 +184,33 @@
                     }
                 });
         })
+
     </script>
 
+<script>
+        var change_id = -1;
+    const getCategoryId = (id) => change_id = id;
+    $('#change_submit_btn').on('click', () => {
+            $.ajax(
+                {
+                    type: "POST",
+                    url: `category/${change_id}`,
+                    dataType: "text",
+                    data: { id: change_id },
+                    async: true,
+                    success: function (response) {
+                        location.reload();
+                    },
+                    failure: function (response) {
+                        alert('false')
+                    },
+                    error: function (response) {
+                        alert('error')
+                    }
+                });
+        })
+
+    </script>
+   
+    
 }

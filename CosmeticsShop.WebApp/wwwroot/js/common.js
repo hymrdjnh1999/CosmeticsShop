@@ -78,3 +78,33 @@ if (squareShapes) {
         item.style.height = `${itemHeight}px`;
     })
 }
+
+
+const redirectToProductDetail = (id) => {
+    location.assign(`/product/${id}`);
+}
+
+function handleAddToCart(product) {
+    const productCart = JSON.stringify(product);
+    event.preventDefault();
+    
+    $.ajax({
+        type: 'POST',
+        data: productCart,
+        dataType: 'json',
+        contentType: 'application/json;',
+        url: '/Cart/AddToCart',
+        success: async (response) => {
+            $('#notificationMsg').removeClass("d-none").addClass('d-block').html("Thêm sản phẩm vào giỏ thành công!")
+            $('#cartQuantity').html(response?.products?.length ?? 0)
+            await new Promise(resolve => setTimeout(() => {
+                $('#notificationMsg').fadeOut('slow');
+                resolve();
+            }, 1500))
+            $('#notificationMsg').addClass('d-none').removeClass('d-block')
+        },
+        error: (response) => {
+            console.log(response,'voibenho')
+        }
+    })
+}

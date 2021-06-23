@@ -29,6 +29,8 @@ namespace CosmeticsShop.Api_Intergration
             _httpContextAccessor = httpContextAccessor;
         }
 
+      
+
         public async Task<int> Create(CategoryCreateRequest request)
         {
             var sessions = _httpContextAccessor

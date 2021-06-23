@@ -64,6 +64,13 @@ namespace Cosmetics.WebAPI.Controllers
             return Ok(result);
         }
 
-
+        [HttpGet("paging")]
+        public async Task<IActionResult> Get([FromQuery] GetClientPagingRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var clients = await _clientService.GetClientPaging(request);
+            return Ok(clients);
+        }
     }
 }

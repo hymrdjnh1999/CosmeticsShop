@@ -34,7 +34,7 @@
 @* Next content code here *@
 @* container *@
 @{
-    var categories = ViewBag.Categories;
+	var categories = ViewBag.Categories;
 
 }
 @section Scripts{
@@ -64,8 +64,6 @@
             })
         }
 
-    </script>
-}
 <div id="main">
 
     <div class="content-section" id="content-area">
@@ -86,7 +84,7 @@
                                 {
                                     <div class="col-lg-3 col-md-4 col-sm-6  position-relative">
 
-                                        <div class="product__item text-decoration-none" style="cursor:pointer;">
+                                        <a href="/product/@product.Id" class="product__item text-decoration-none" style="cursor:pointer;">
 
                                             <div class="gird--product productItem__wapper  img-product">
                                                 <div class="product-in-category-img product__item-img" style="background-image:url('https://localhost:5001/user-content/@product.Images[0].ImagePath')">
@@ -106,7 +104,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </a>
 
                                     </div>
                                 }
