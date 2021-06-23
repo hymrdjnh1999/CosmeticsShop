@@ -147,23 +147,32 @@
                                 </td>
 
                                 <td class="d-flex align-items-center justify-content-center pro-item" style="flex: 1">
-                                    @if (item.Status != OrderStatus.Success)
+                                    @if (item.Status != OrderStatus.Shipping)
                                     {
-                                        <a href="@Url.Action("Update","Order",  new { id = item.Id })" class="p-1 btn actions-btn btn-outline-info px-2">
-                                            Cập nhật
-                                        </a>
+                                        @if (item.Status != OrderStatus.Success && item.Status != OrderStatus.Canceled)
+                                        {
+                                            <a href="@Url.Action("Update", "Order", new { id = item.Id })" class="btn actions-btn btn-outline-info p-0">
+                                                Cập nhật
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.Action("Update", "Order", new { id = item.Id })" class="p-1 btn actions-btn btn-outline-info px-2">
+                                                Chi Tiết
+                                            </a>
+                                        }
+                                        @if (item.Status < OrderStatus.Shipping && item.Status != OrderStatus.Canceled)
+                                        {
+                                            <button class="btn btn-danger cursor-pointer p-0 ml-2" onclick="openModal('order-modal','order-cancel-submit',@item.Id)">Hủy đơn</button>
+                                        }
                                     }
                                     else
                                     {
-                                        <a href="@Url.Action("Update","Order",  new { id = item.Id })" class="p-1 btn actions-btn btn-outline-info px-2">
-                                            Chi Tiết
-                                        </a>
+                                            <a href="@Url.Action("Update", "Order", new { id = item.Id })" class="btn btn-outline-info ">
+                                                Cập nhật
+                                            </a>
                                     }
-                                    @if (item.Status < OrderStatus.Shipping && item.Status != OrderStatus.Canceled)
-                                    {
-                                        <button class="btn btn-danger cursor-pointer " onclick="openModal('order-modal','order-cancel-submit',@item.Id)">Hủy đơn</button>
-                                    }
-                                </td>
+                                    </td>
                             </tr>
                         }
                     </tbody>

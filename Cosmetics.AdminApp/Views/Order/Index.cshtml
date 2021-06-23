@@ -150,19 +150,28 @@
                                 </td>
 
                                 <td class="d-flex align-items-center justify-content-center pro-item" style="flex: 1.8">
-                                    @if (item.Status != OrderStatus.Success)
+                                    @if( item.Status != OrderStatus.Shipping)
                                     {
-                                        <a href="order/@item.Id" class="btn btn-outline-info">
+                                        @if (item.Status != OrderStatus.Success && item.Status != OrderStatus.Canceled )
+                                        {
+                                            <a href="order/@item.Id" class="btn btn-outline-info p-0">
+                                                Cập nhật
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a href="order/@item.Id" class="btn btn-outline-info">Xem chi tiết</a>
+                                        }
+                                        @if (item.Status < OrderStatus.Shipping && item.Status != OrderStatus.Canceled)
+                                        {
+                                            <button class="btn btn-danger cursor-pointer p-0 ml-4" onclick="openModal('order-modal','order-cancel-submit',@item.Id)">Hủy đơn</button>
+                                        }
+                                    }
+                                    else 
+                                    {
+                                        <a href="order/@item.Id" class="btn btn-outline-info ">
                                             Cập nhật
                                         </a>
-                                    }
-                                    else
-                                    {
-                                        <a href="order/@item.Id" class="btn btn-outline-info">Xem chi tiết</a>
-                                    }
-                                    @if (item.Status < OrderStatus.Shipping && item.Status != OrderStatus.Canceled)
-                                    {
-                                        <button class="btn btn-danger cursor-pointer " onclick="openModal('order-modal','order-cancel-submit',@item.Id)">Hủy đơn</button>
                                     }
                                 </td>
                             </tr>
@@ -381,6 +390,7 @@
                         $('#cancelMsg').html('')
                         $('#cancelMsgWrap').removeClass('d-flex').addClass('d-none');
                         handleOnCancel();
+                        location.reload();
                     },
                     failure: function (response) {
                         alert('false')

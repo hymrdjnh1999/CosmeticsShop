@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CosmeticsShop.Data.Migrations
 {
-    public partial class AddDelInitial : Migration
+    public partial class AddTableInitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -533,7 +533,7 @@ namespace CosmeticsShop.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Banners",
                 columns: new[] { "Id", "DateCreated", "Description", "FileSize", "ImagePath", "IsDefault", "IsOutstanding", "Name", "SortOrder", "Status" },
-                values: new object[] { 1, new DateTime(2021, 6, 17, 20, 5, 39, 533, DateTimeKind.Local).AddTicks(9735), "Test Des", 12345L, "123123.jpg", true, false, "test", 1, 2 });
+                values: new object[] { 1, new DateTime(2021, 6, 23, 14, 59, 22, 453, DateTimeKind.Local).AddTicks(4379), "Test Des", 12345L, "123123.jpg", true, false, "test", 1, 2 });
 
             migrationBuilder.InsertData(
                 table: "Categoires",
@@ -554,8 +554,8 @@ namespace CosmeticsShop.Data.Migrations
                 columns: new[] { "Id", "Address", "Avatar", "Dob", "Email", "Name", "Password", "PhoneNumber", "Status" },
                 values: new object[,]
                 {
-                    { new Guid("1d37e388-3c9d-490b-a0d1-93f20c4292b5"), "8 Nghách 167 ngõ 521 Trương Định - Hoàng Mai - Hà Nội", "", new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "tiendinhdev99@gmail.com", "Voi Bé Nhỏ", "AQAAAAEAACcQAAAAEBdHOXEfVk1SKwQ4qJTsk8F6A9qkTtx7FTi/MK7d0K5Tr89rF/Cf97bnW1tmlHzD5g==", "0984869201", 2 },
-                    { new Guid("94c14234-d9b7-4a8b-91c8-68b53378fe6b"), "8 Nghách 167 ngõ 521 Trương Định - Hoàng Mai - Hà Nội", "", new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "test1234@gmail.com", "Do tien dinh", "AQAAAAEAACcQAAAAEEfftPQ0Lap7fxriJpWbpKiui2M3Any7wvOJXsvwcxmf+K5EbMxg4gbQWvQvqD/doQ==", "0984869201", 2 }
+                    { new Guid("1d37e388-3c9d-490b-a0d1-93f20c4292b5"), "8 Nghách 167 ngõ 521 Trương Định - Hoàng Mai - Hà Nội", "", new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "tiendinhdev99@gmail.com", "Voi Bé Nhỏ", "AQAAAAEAACcQAAAAEEKYexvbZQQcHZKVyjT6HGXweNVQcnGhWa6TJwz4Wu6nE+JHy42DxlQxtuiCShyqpw==", "0984869201", 2 },
+                    { new Guid("94c14234-d9b7-4a8b-91c8-68b53378fe6b"), "8 Nghách 167 ngõ 521 Trương Định - Hoàng Mai - Hà Nội", "", new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "test1234@gmail.com", "Do tien dinh", "AQAAAAEAACcQAAAAEEhU2UwNZqJTZtU4d+gKCTeIHm4nKeU1b64gEcXj1dJv4CdXdY00xxxo0Urb+u5yHQ==", "0984869201", 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -581,8 +581,8 @@ namespace CosmeticsShop.Data.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Description", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { new Guid("bd5b83d2-5c75-4f96-a63f-1eca425bdfe5"), "89444eb2-f1f5-4c43-8a49-11d94c5d977c", "Manager role", "Manager", "Manager" },
-                    { new Guid("efebfd93-b27d-4c91-8a71-74fd71944893"), "9c76b03e-0c30-4836-8773-3502f0264d81", "Staff role", "Staff", "Staff" }
+                    { new Guid("bd5b83d2-5c75-4f96-a63f-1eca425bdfe5"), "b9c14781-71cc-4fe9-bb35-e29a01cbe1d1", "Manager role", "Manager", "Manager" },
+                    { new Guid("efebfd93-b27d-4c91-8a71-74fd71944893"), "fe1e629a-db99-4b9e-9fa6-fc7b929607ea", "Staff role", "Staff", "Staff" }
                 });
 
             migrationBuilder.InsertData(
@@ -613,9 +613,9 @@ namespace CosmeticsShop.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Dob", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { new Guid("1c856746-f8aa-4026-b854-f18da9787cf3"), 0, "ba5e95e0-3e42-4521-9c6f-dee6940ff7c0", new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "tiendinhdev99@gmail.com", true, false, null, "Voi Bé Nhỏ", "tiendinhdev99@gmail.com", "manager", "AQAAAAEAACcQAAAAEEHVbiyZgMoKk7SPllqyVcf/7sqF7Iy54luZCaHX2Plw7HoIAdianfyWjDDIrSGwNw==", null, false, "", false, "voibenho99" },
-                    { new Guid("d8b63b91-c360-4e3d-9b3a-2dce31f00cc4"), 0, "6756c74f-0f13-4704-b4bb-951664b23d71", new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "Haianh@gmail.com", true, false, null, "Hải Anh", "Haianh@gmail.com", "haianhmanager", "AQAAAAEAACcQAAAAEKR08bzLbjxj+GeXLuB+vBJnY5QpESiJ3FXREZa4pdVbYY/iGOtsDXN18KnzH8r0YQ==", null, false, "", false, "haianh" },
-                    { new Guid("33674f31-0bd2-43cd-9090-3f0d4bab1c58"), 0, "d5885b45-b36f-4bc2-b86f-159235a3ccc8", new DateTime(2001, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "Tranphuong18032001@gmail.com", true, false, null, "Thu Phương", "Tranphuong18032001@gmail.com", "tranphuongmanager", "AQAAAAEAACcQAAAAELydmZVZ+E5zirxEO8+Jpk9jtaFVTNhK0sJhMHebP8Nnryq81kllZpVbpV9aXMwAUg==", null, false, "", false, "tranphuong" }
+                    { new Guid("1c856746-f8aa-4026-b854-f18da9787cf3"), 0, "4e83f810-e742-42a2-a8b6-934ffc155810", new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "tiendinhdev99@gmail.com", true, false, null, "Voi Bé Nhỏ", "tiendinhdev99@gmail.com", "manager", "AQAAAAEAACcQAAAAEBiuBSoqyMg+Q9BwR9VWkEQS5xNypaoNZCe/WQLfgUe3yWb5k72eC0NY3Z6kL2jTKQ==", null, false, "", false, "voibenho99" },
+                    { new Guid("d8b63b91-c360-4e3d-9b3a-2dce31f00cc4"), 0, "a1212995-5f2f-433c-9d76-689342c382cb", new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "Haianh@gmail.com", true, false, null, "Hải Anh", "Haianh@gmail.com", "haianhmanager", "AQAAAAEAACcQAAAAEOtoZhz0DKPCQYczu/K5sPD/bYFAlWhTkIdraFy9PAZdwBuk8N4SHuyIqFTpxOtuJg==", null, false, "", false, "haianh" },
+                    { new Guid("33674f31-0bd2-43cd-9090-3f0d4bab1c58"), 0, "d4ca0724-12bb-4da3-b7dc-32b75b633d96", new DateTime(2001, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "Tranphuong18032001@gmail.com", true, false, null, "Thu Phương", "Tranphuong18032001@gmail.com", "tranphuongmanager", "AQAAAAEAACcQAAAAEMbnB1EF634SrTVVMvPIC0e0ld78lZdr2DlT7HrHC7K+P6KwTfNhqA53Ppq/r8UGMA==", null, false, "", false, "tranphuong" }
                 });
 
             migrationBuilder.InsertData(
@@ -628,8 +628,8 @@ namespace CosmeticsShop.Data.Migrations
                 columns: new[] { "Id", "Caption", "DateCreated", "FileSize", "ImagePath", "IsDefault", "ProductId", "SortOrder" },
                 values: new object[,]
                 {
-                    { 1, "test", new DateTime(2021, 6, 17, 20, 5, 39, 531, DateTimeKind.Local).AddTicks(7855), 12345L, "123123.jpg", true, 1, 1 },
-                    { 2, "test", new DateTime(2021, 6, 17, 20, 5, 39, 533, DateTimeKind.Local).AddTicks(8022), 12345L, "123123.jpg", true, 2, 2 }
+                    { 1, "test", new DateTime(2021, 6, 23, 14, 59, 22, 451, DateTimeKind.Local).AddTicks(8986), 12345L, "123123.jpg", true, 1, 1 },
+                    { 2, "test", new DateTime(2021, 6, 23, 14, 59, 22, 453, DateTimeKind.Local).AddTicks(2920), 12345L, "123123.jpg", true, 2, 2 }
                 });
 
             migrationBuilder.InsertData(

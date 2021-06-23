@@ -7,7 +7,7 @@
 }
 
 <div class="container-fluid">
-    <h1 class="mt-4">Đơn hàng chi tiết</h1>
+    <h1 class="mt-4">Đơn hàng</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Order">Danh sách đơn hàng</a></li>
         <li class="breadcrumb-item active">Chi tiết đơn hàng</li>
@@ -55,7 +55,16 @@
                                         <option selected value="@OrderStatus.Shipping">Đang giao hàng</option>
                                         <option value="@OrderStatus.Success">Thành công</option>
                                         <option value="@OrderStatus.Canceled">Hủy đơn</option>
+                                        <option value="@OrderStatus.InProgress">Đang chờ xử lý</option>
                                     }
+                                    @if (Model.Status == OrderStatus.Canceled)
+                                    {
+                                        <option selected value="@OrderStatus.Shipping">Đang giao hàng</option>
+                                        <option value="@OrderStatus.Success">Thành công</option>
+                                        <option value="@OrderStatus.Canceled">Hủy đơn</option>
+                                        <option value="@OrderStatus.InProgress">Đang chờ xử lý</option>
+                                    }
+                                   
 
                                 </select>
                                 
