@@ -3223,7 +3223,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "tiendinhdev99@gmail.com",
                     ShipName = "Voi be nho",
                     ShipPhoneNumber = "0984869201",
-                    Status = OrderStatus.InProgress,
+                    Status = OrderStatus.Success,
                     ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
                     OrderDate = new DateTime(2021, 04, 21, 10, 19, 20, DateTimeKind.Utc),
                     Price = 1200000
@@ -3247,7 +3247,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "tiendinhdev99@gmail.com",
                     ShipName = "Voi be nho",
                     ShipPhoneNumber = "0984869201",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
                     OrderDate = new DateTime(2021, 03, 19, 12, 14, 21, DateTimeKind.Utc),
                     Price = 500000
@@ -3259,7 +3259,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "tiendinhdev99@gmail.com",
                     ShipName = "Voi be nho",
                     ShipPhoneNumber = "0984869201",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
                     OrderDate = new DateTime(2021, 05, 19, 10, 19, 20, DateTimeKind.Utc),
                     Price = 2400000
@@ -3271,7 +3271,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "tiendinhdev99@gmail.com",
                     ShipName = "Voi be nho",
                     ShipPhoneNumber = "0984869201",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
                     OrderDate = new DateTime(2021, 05, 26, 11, 19, 12, DateTimeKind.Utc),
                     Price = 2200000
@@ -3283,7 +3283,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "tiendinhdev99@gmail.com",
                     ShipName = "Voi be nho",
                     ShipPhoneNumber = "0984869201",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
                     OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
                     Price = 2200000
@@ -3295,7 +3295,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "tiendinhdev99@gmail.com",
                     ShipName = "Voi be nho",
                     ShipPhoneNumber = "0984869201",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
                     OrderDate = new DateTime(2021, 06, 01, 07, 41, 12, DateTimeKind.Utc),
                     Price = 1200000
@@ -3307,7 +3307,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "tiendinhdev99@gmail.com",
                     ShipName = "Voi be nho",
                     ShipPhoneNumber = "0984869201",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
                     OrderDate = new DateTime(2021, 04, 19, 12, 51, 32, DateTimeKind.Utc),
                     Price = 2800000
@@ -3319,7 +3319,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "tiendinhdev99@gmail.com",
                     ShipName = "Voi be nho",
                     ShipPhoneNumber = "0984869201",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
                     OrderDate = new DateTime(2021, 06, 02, 05, 42, 18, DateTimeKind.Utc),
                     Price = 1700000
@@ -3331,7 +3331,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "tiendinhdev99@gmail.com",
                     ShipName = "Voi be nho",
                     ShipPhoneNumber = "0984869201",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
                     OrderDate = new DateTime(2021, 04, 21, 12, 39, 26, DateTimeKind.Utc),
                     Price = 1600000
@@ -3368,7 +3368,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "test1234@gmail.com",
                     ShipName = "Do Tien Dinh",
                     ShipPhoneNumber = "0984869201",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
                     OrderDate = new DateTime(2021, 03, 19, 12, 14, 21, DateTimeKind.Utc),
                     Price = 3100000
@@ -3380,7 +3380,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "test1234@gmail.com",
                     ShipName = "Do Tien Dinh",
                     ShipPhoneNumber = "0984869201",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
                     OrderDate = new DateTime(2021, 05, 19, 10, 19, 20, DateTimeKind.Utc),
                     Price = 2670000
@@ -3392,7 +3392,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "test1234@gmail.com",
                     ShipName = "Do Tien Dinh",
                     ShipPhoneNumber = "0984869201",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
                     OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
                     Price = 2490000
@@ -3404,7 +3404,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "test1234@gmail.com",
                     ShipName = "Do Tien Dinh",
                     ShipPhoneNumber = "0984869201",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
                     OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
                     Price = 2150000
@@ -3416,7 +3416,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "test1234@gmail.com",
                     ShipName = "Do Tien Dinh",
                     ShipPhoneNumber = "0984869201",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
                     OrderDate = new DateTime(2021, 06, 01, 07, 41, 12, DateTimeKind.Utc),
                     Price = 2910000
@@ -3428,7 +3428,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "test1234@gmail.com",
                     ShipName = "Do Tien Dinh",
                     ShipPhoneNumber = "0984869201",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
                     OrderDate = new DateTime(2021, 04, 19, 12, 51, 32, DateTimeKind.Utc),
                     Price = 7140000
@@ -3440,7 +3440,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "test1234@gmail.com",
                     ShipName = "Do Tien Dinh",
                     ShipPhoneNumber = "0984869201",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
                     OrderDate = new DateTime(2021, 06, 02, 05, 42, 18, DateTimeKind.Utc),
                     Price = 2420000
@@ -3452,7 +3452,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "test1234@gmail.com",
                     ShipName = "Do Tien Dinh",
                     ShipPhoneNumber = "0984869201",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "8 167/521 Truong Dinh - Hoang Mai - Hai Ba Trung - Ha Noi",
                     OrderDate = new DateTime(2021, 04, 21, 12, 39, 26, DateTimeKind.Utc),
                     Price = 1930000
@@ -3465,7 +3465,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "tranphuong@gmail.com",
                     ShipName = "Tran Thu Phuong",
                     ShipPhoneNumber = "0378709602",
-                    Status = OrderStatus.Success,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Nguyễn Trãi - Thường Tín - Hà Nội",
                     OrderDate = new DateTime(2021, 04, 21, 10, 19, 20, DateTimeKind.Utc),
                     Price = 3000000
@@ -3477,7 +3477,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "tranphuong@gmail.com",
                     ShipName = "Tran Thu Phuong",
                     ShipPhoneNumber = "0378709602",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Nguyễn Trãi - Thường Tín - Hà Nội",
                     OrderDate = new DateTime(2021, 04, 24, 07, 41, 12, DateTimeKind.Utc),
                     Price = 2360000
@@ -3489,7 +3489,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "tranphuong@gmail.com",
                     ShipName = "Tran Thu Phuong",
                     ShipPhoneNumber = "0378709602",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Nguyễn Trãi - Thường Tín - Hà Nội",
                     OrderDate = new DateTime(2021, 04, 21, 10, 19, 20, DateTimeKind.Utc),
                     Price = 2050000
@@ -3501,7 +3501,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "tranphuong@gmail.com",
                     ShipName = "Tran Thu Phuong",
                     ShipPhoneNumber = "0378709602",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Nguyễn Trãi - Thường Tín - Hà Nội",
                     OrderDate = new DateTime(2021, 05, 19, 10, 19, 20, DateTimeKind.Utc),
                     Price = 2150000
@@ -3513,7 +3513,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "tranphuong@gmail.com",
                     ShipName = "Tran Thu Phuong",
                     ShipPhoneNumber = "0378709602",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Nguyễn Trãi - Thường Tín - Hà Nội",
                     OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
                     Price = 1920000
@@ -3525,7 +3525,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "tranphuong@gmail.com",
                     ShipName = "Tran Thu Phuong",
                     ShipPhoneNumber = "0378709602",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Nguyễn Trãi - Thường Tín - Hà Nội",
                     OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
                     Price = 1920000
@@ -3537,7 +3537,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "tranphuong@gmail.com",
                     ShipName = "Tran Thu Phuong",
                     ShipPhoneNumber = "0378709602",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Nguyễn Trãi - Thường Tín - Hà Nội",
                     OrderDate = new DateTime(2021, 06, 01, 07, 41, 12, DateTimeKind.Utc),
                     Price = 2150000
@@ -3549,7 +3549,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "tranphuong@gmail.com",
                     ShipName = "Tran Thu Phuong",
                     ShipPhoneNumber = "0378709602",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Nguyễn Trãi - Thường Tín - Hà Nội",
                     OrderDate = new DateTime(2021, 04, 19, 12, 51, 32, DateTimeKind.Utc),
                     Price = 1800000
@@ -3561,7 +3561,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "tranphuong@gmail.com",
                     ShipName = "Tran Thu Phuong",
                     ShipPhoneNumber = "0378709602",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Nguyễn Trãi - Thường Tín - Hà Nội",
                     OrderDate = new DateTime(2021, 06, 02, 05, 42, 18, DateTimeKind.Utc),
                     Price = 2120000
@@ -3573,7 +3573,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "tranphuong@gmail.com",
                     ShipName = "Tran Thu Phuong",
                     ShipPhoneNumber = "0378709602",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Nguyễn Trãi - Thường Tín - Hà Nội",
                     OrderDate = new DateTime(2021, 04, 21, 12, 39, 26, DateTimeKind.Utc),
                     Price = 2190000
@@ -3598,7 +3598,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "haianh@gmail.com",
                     ShipName = "Le Hai Anh",
                     ShipPhoneNumber = "0358963245",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Chương Mỹ - Hà Nội",
                     OrderDate = new DateTime(2021, 04, 24, 07, 41, 12, DateTimeKind.Utc),
                     Price = 1820000
@@ -3610,7 +3610,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "haianh@gmail.com",
                     ShipName = "Le Hai Anh",
                     ShipPhoneNumber = "0358963245",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Chương Mỹ - Hà Nội",
                     OrderDate = new DateTime(2021, 03, 19, 12, 14, 21, DateTimeKind.Utc),
                     Price = 2040000
@@ -3622,7 +3622,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "haianh@gmail.com",
                     ShipName = "Le Hai Anh",
                     ShipPhoneNumber = "0358963245",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Chương Mỹ - Hà Nội",
                     OrderDate = new DateTime(2021, 05, 19, 10, 19, 20, DateTimeKind.Utc),
                     Price = 2140000
@@ -3634,7 +3634,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "haianh@gmail.com",
                     ShipName = "Le Hai Anh",
                     ShipPhoneNumber = "0358963245",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Chương Mỹ - Hà Nội",
                     OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
                     Price = 1920000
@@ -3646,7 +3646,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "haianh@gmail.com",
                     ShipName = "Le Hai Anh",
                     ShipPhoneNumber = "0358963245",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Chương Mỹ - Hà Nội",
                     OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
                     Price = 1920000
@@ -3658,7 +3658,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "haianh@gmail.com",
                     ShipName = "Le Hai Anh",
                     ShipPhoneNumber = "0358963245",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Chương Mỹ - Hà Nội",
                     OrderDate = new DateTime(2021, 04, 21, 10, 19, 20, DateTimeKind.Utc),
                     Price = 1920000
@@ -3670,7 +3670,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "haianh@gmail.com",
                     ShipName = "Le Hai Anh",
                     ShipPhoneNumber = "0358963245",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Chương Mỹ - Hà Nội",
                     OrderDate = new DateTime(2021, 04, 19, 12, 51, 32, DateTimeKind.Utc),
                     Price = 2650000
@@ -3682,7 +3682,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "haianh@gmail.com",
                     ShipName = "Le Hai Anh",
                     ShipPhoneNumber = "0358963245",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Chương Mỹ - Hà Nội",
                     OrderDate = new DateTime(2021, 06, 02, 05, 42, 18, DateTimeKind.Utc),
                     Price = 2050000
@@ -3694,7 +3694,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "haianh@gmail.com",
                     ShipName = "Le Hai Anh",
                     ShipPhoneNumber = "0358963245",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Chương Mỹ - Hà Nội",
                     OrderDate = new DateTime(2021, 04, 21, 10, 19, 20, DateTimeKind.Utc),
                     Price = 1980000
@@ -3731,7 +3731,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "vananh@gmail.com",
                     ShipName = "Tran Van Anh",
                     ShipPhoneNumber = "0323456743",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Đan Phượng - Hà Nội",
                     OrderDate = new DateTime(2021, 03, 19, 12, 14, 21, DateTimeKind.Utc),
                     Price = 1260000
@@ -3743,7 +3743,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "vananh@gmail.com",
                     ShipName = "Tran Van Anh",
                     ShipPhoneNumber = "0323456743",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Đan Phượng - Hà Nội",
                     OrderDate = new DateTime(2021, 05, 19, 10, 19, 20, DateTimeKind.Utc),
                     Price = 1785000
@@ -3755,7 +3755,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "vananh@gmail.com",
                     ShipName = "Tran Van Anh",
                     ShipPhoneNumber = "0323456743",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Đan Phượng - Hà Nội",
                     OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
                     Price = 990000
@@ -3767,7 +3767,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "vananh@gmail.com",
                     ShipName = "Tran Van Anh",
                     ShipPhoneNumber = "0323456743",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Đan Phượng - Hà Nội",
                     OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
                     Price = 2520000
@@ -3779,7 +3779,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "vananh@gmail.com",
                     ShipName = "Tran Van Anh",
                     ShipPhoneNumber = "0323456743",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Đan Phượng - Hà Nội",
                     OrderDate = new DateTime(2021, 06, 01, 07, 41, 12, DateTimeKind.Utc),
                     Price = 2520000
@@ -3791,7 +3791,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "vananh@gmail.com",
                     ShipName = "Tran Van Anh",
                     ShipPhoneNumber = "0323456743",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Đan Phượng - Hà Nội",
                     OrderDate = new DateTime(2021, 04, 21, 10, 19, 20, DateTimeKind.Utc),
                     Price = 1890000
@@ -3803,7 +3803,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "vananh@gmail.com",
                     ShipName = "Tran Van Anh",
                     ShipPhoneNumber = "0323456743",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Đan Phượng - Hà Nội",
                     OrderDate = new DateTime(2021, 06, 02, 05, 42, 18, DateTimeKind.Utc),
                     Price = 1645000
@@ -3815,7 +3815,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "vananh@gmail.com",
                     ShipName = "Tran Van Anh",
                     ShipPhoneNumber = "0323456743",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Đan Phượng - Hà Nội",
                     OrderDate = new DateTime(2021, 04, 21, 12, 39, 26, DateTimeKind.Utc),
                     Price = 1387500
@@ -3852,7 +3852,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "hoangchung@gmail.com",
                     ShipName = "Hoàng Chung",
                     ShipPhoneNumber = "0963258741",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Hoằng Hóa - Thanh Hóa",
                     OrderDate = new DateTime(2021, 03, 19, 12, 14, 21, DateTimeKind.Utc),
                     Price = 2850000
@@ -3864,7 +3864,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "hoangchung@gmail.com",
                     ShipName = "Hoàng Chung",
                     ShipPhoneNumber = "0963258741",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Hoằng Hóa - Thanh Hóa",
                     OrderDate = new DateTime(2021, 05, 19, 10, 19, 20, DateTimeKind.Utc),
                     Price = 2350000
@@ -3876,7 +3876,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "hoangchung@gmail.com",
                     ShipName = "Hoàng Chung",
                     ShipPhoneNumber = "0963258741",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Hoằng Hóa - Thanh Hóa",
                     OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
                     Price = 2450000
@@ -3888,7 +3888,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "hoangchung@gmail.com",
                     ShipName = "Hoàng Chung",
                     ShipPhoneNumber = "0963258741",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Hoằng Hóa - Thanh Hóa",
                     OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
                     Price = 2950000
@@ -3900,7 +3900,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "hoangchung@gmail.com",
                     ShipName = "Hoàng Chung",
                     ShipPhoneNumber = "0963258741",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Hoằng Hóa - Thanh Hóa",
                     OrderDate = new DateTime(2021, 06, 01, 07, 41, 12, DateTimeKind.Utc),
                     Price = 2800000
@@ -3912,7 +3912,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "hoangchung@gmail.com",
                     ShipName = "Hoàng Chung",
                     ShipPhoneNumber = "0963258741",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Hoằng Hóa - Thanh Hóa",
                     OrderDate = new DateTime(2021, 04, 19, 12, 51, 32, DateTimeKind.Utc),
                     Price = 2200000
@@ -3924,7 +3924,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "hoangchung@gmail.com",
                     ShipName = "Hoàng Chung",
                     ShipPhoneNumber = "0963258741",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Hoằng Hóa - Thanh Hóa",
                     OrderDate = new DateTime(2021, 06, 02, 05, 42, 18, DateTimeKind.Utc),
                     Price = 2200000
@@ -3936,7 +3936,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "hoangchung@gmail.com",
                     ShipName = "Hoàng Chung",
                     ShipPhoneNumber = "0963258741",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Hoằng Hóa - Thanh Hóa",
                     OrderDate = new DateTime(2021, 04, 21, 12, 39, 26, DateTimeKind.Utc),
                     Price = 2450000
@@ -3973,7 +3973,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "minhanh@gmail.com",
                     ShipName = "Minh Anh",
                     ShipPhoneNumber = "0978563732",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Thọ Xuân - Thanh Hóa",
                     OrderDate = new DateTime(2021, 03, 19, 12, 14, 21, DateTimeKind.Utc),
                     Price = 2120000
@@ -3985,7 +3985,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "minhanh@gmail.com",
                     ShipName = "Minh Anh",
                     ShipPhoneNumber = "0978563732",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Thọ Xuân - Thanh Hóa",
                     OrderDate = new DateTime(2021, 05, 19, 10, 19, 20, DateTimeKind.Utc),
                     Price = 1970000
@@ -3997,7 +3997,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "minhanh@gmail.com",
                     ShipName = "Minh Anh",
                     ShipPhoneNumber = "0978563732",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Thọ Xuân - Thanh Hóa",
                     OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
                     Price = 1910000
@@ -4009,7 +4009,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "minhanh@gmail.com",
                     ShipName = "Minh Anh",
                     ShipPhoneNumber = "0978563732",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Thọ Xuân - Thanh Hóa",
                     OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
                     Price = 2040000
@@ -4021,7 +4021,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "minhanh@gmail.com",
                     ShipName = "Minh Anh",
                     ShipPhoneNumber = "0978563732",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Thọ Xuân - Thanh Hóa",
                     OrderDate = new DateTime(2021, 06, 01, 07, 41, 12, DateTimeKind.Utc),
                     Price = 2590000
@@ -4033,7 +4033,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "minhanh@gmail.com",
                     ShipName = "Minh Anh",
                     ShipPhoneNumber = "0978563732",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Thọ Xuân - Thanh Hóa",
                     OrderDate = new DateTime(2021, 04, 19, 12, 51, 32, DateTimeKind.Utc),
                     Price = 2120000
@@ -4045,7 +4045,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "minhanh@gmail.com",
                     ShipName = "Minh Anh",
                     ShipPhoneNumber = "0978563732",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Thọ Xuân - Thanh Hóa",
                     OrderDate = new DateTime(2021, 06, 02, 05, 42, 18, DateTimeKind.Utc),
                     Price = 6720000
@@ -4057,7 +4057,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "minhanh@gmail.com",
                     ShipName = "Minh Anh",
                     ShipPhoneNumber = "0978563732",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Thọ Xuân - Thanh Hóa",
                     OrderDate = new DateTime(2021, 04, 21, 12, 39, 26, DateTimeKind.Utc),
                     Price = 5060000
@@ -4094,7 +4094,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "Congphuong@gmail.com",
                     ShipName = "Công Phượng",
                     ShipPhoneNumber = "0987456321",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Phúc Hòa - Tân Yên - Bắc Giang",
                     OrderDate = new DateTime(2021, 03, 19, 12, 14, 21, DateTimeKind.Utc),
                     Price = 4160000
@@ -4106,7 +4106,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "Congphuong@gmail.com",
                     ShipName = "Công Phượng",
                     ShipPhoneNumber = "0987456321",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Phúc Hòa - Tân Yên - Bắc Giang",
                     OrderDate = new DateTime(2021, 05, 19, 10, 19, 20, DateTimeKind.Utc),
                     Price = 2190000
@@ -4118,7 +4118,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "Congphuong@gmail.com",
                     ShipName = "Công Phượng",
                     ShipPhoneNumber = "0987456321",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Phúc Hòa - Tân Yên - Bắc Giang",
                     OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
                     Price = 2030000
@@ -4130,7 +4130,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "Congphuong@gmail.com",
                     ShipName = "Công Phượng",
                     ShipPhoneNumber = "0987456321",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Phúc Hòa - Tân Yên - Bắc Giang",
                     OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
                     Price = 2860000
@@ -4142,7 +4142,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "Congphuong@gmail.com",
                     ShipName = "Công Phượng",
                     ShipPhoneNumber = "0987456321",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Phúc Hòa - Tân Yên - Bắc Giang",
                     OrderDate = new DateTime(2021, 06, 01, 07, 41, 12, DateTimeKind.Utc),
                     Price = 7750000
@@ -4154,7 +4154,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "Congphuong@gmail.com",
                     ShipName = "Công Phượng",
                     ShipPhoneNumber = "0987456321",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Phúc Hòa - Tân Yên - Bắc Giang",
                     OrderDate = new DateTime(2021, 04, 19, 12, 51, 32, DateTimeKind.Utc),
                     Price = 2780000
@@ -4166,7 +4166,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "Congphuong@gmail.com",
                     ShipName = "Công Phượng",
                     ShipPhoneNumber = "0987456321",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Phúc Hòa - Tân Yên - Bắc Giang",
                     OrderDate = new DateTime(2021, 04, 21, 10, 19, 20, DateTimeKind.Utc),
                     Price = 2780000
@@ -4178,7 +4178,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "Congphuong@gmail.com",
                     ShipName = "Công Phượng",
                     ShipPhoneNumber = "0987456321",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Phúc Hòa - Tân Yên - Bắc Giang",
                     OrderDate = new DateTime(2021, 04, 21, 12, 39, 26, DateTimeKind.Utc),
                     Price = 2780000
@@ -4215,7 +4215,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "xuantruong@gmail.com",
                     ShipName = "Xuân Trường",
                     ShipPhoneNumber = "0987546666",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Phường Cầu Dền - Quận Hai Bà Trưng - Hà Nội",
                     OrderDate = new DateTime(2021, 03, 19, 12, 14, 21, DateTimeKind.Utc),
                     Price = 1100000
@@ -4227,7 +4227,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "xuantruong@gmail.com",
                     ShipName = "Xuân Trường",
                     ShipPhoneNumber = "0987546666",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Phường Cầu Dền - Quận Hai Bà Trưng - Hà Nội",
                     OrderDate = new DateTime(2021, 05, 19, 10, 19, 20, DateTimeKind.Utc),
                     Price = 2550000
@@ -4239,7 +4239,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "xuantruong@gmail.com",
                     ShipName = "Xuân Trường",
                     ShipPhoneNumber = "0987546666",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Phường Cầu Dền - Quận Hai Bà Trưng - Hà Nội",
                     OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
                     Price = 2100000
@@ -4251,7 +4251,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "xuantruong@gmail.com",
                     ShipName = "Xuân Trường",
                     ShipPhoneNumber = "0987546666",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Phường Cầu Dền - Quận Hai Bà Trưng - Hà Nội",
                     OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
                     Price = 1800000
@@ -4263,7 +4263,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "xuantruong@gmail.com",
                     ShipName = "Xuân Trường",
                     ShipPhoneNumber = "0987546666",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Phường Cầu Dền - Quận Hai Bà Trưng - Hà Nội",
                     OrderDate = new DateTime(2021, 06, 01, 07, 41, 12, DateTimeKind.Utc),
                     Price = 1100000
@@ -4275,7 +4275,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "xuantruong@gmail.com",
                     ShipName = "Xuân Trường",
                     ShipPhoneNumber = "0987546666",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Phường Cầu Dền - Quận Hai Bà Trưng - Hà Nội",
                     OrderDate = new DateTime(2021, 04, 19, 12, 51, 32, DateTimeKind.Utc),
                     Price = 800000
@@ -4287,7 +4287,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "xuantruong@gmail.com",
                     ShipName = "Xuân Trường",
                     ShipPhoneNumber = "0987546666",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Phường Cầu Dền - Quận Hai Bà Trưng - Hà Nội",
                     OrderDate = new DateTime(2021, 06, 02, 05, 42, 18, DateTimeKind.Utc),
                     Price = 2800000
@@ -4299,7 +4299,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "xuantruong@gmail.com",
                     ShipName = "Xuân Trường",
                     ShipPhoneNumber = "0987546666",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Phường Cầu Dền - Quận Hai Bà Trưng - Hà Nội",
                     OrderDate = new DateTime(2021, 04, 21, 12, 39, 26, DateTimeKind.Utc),
                     Price = 2100000
@@ -4336,7 +4336,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "dinhtrong@gmail.com",
                     ShipName = "Đình Trọng",
                     ShipPhoneNumber = "0985638888",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Phường Phúc Lợi - Quận Long Biên - Hà Nội",
                     OrderDate = new DateTime(2021, 03, 19, 12, 14, 21, DateTimeKind.Utc),
                     Price = 1700000
@@ -4348,7 +4348,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "dinhtrong@gmail.com",
                     ShipName = "Đình Trọng",
                     ShipPhoneNumber = "0985638888",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Phường Phúc Lợi - Quận Long Biên - Hà Nội",
                     OrderDate = new DateTime(2021, 05, 19, 10, 19, 20, DateTimeKind.Utc),
                     Price = 1200000
@@ -4360,7 +4360,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "dinhtrong@gmail.com",
                     ShipName = "Đình Trọng",
                     ShipPhoneNumber = "0985638888",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Phường Phúc Lợi - Quận Long Biên - Hà Nội",
                     OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
                     Price = 950000
@@ -4372,7 +4372,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "dinhtrong@gmail.com",
                     ShipName = "Đình Trọng",
                     ShipPhoneNumber = "0985638888",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Phường Phúc Lợi - Quận Long Biên - Hà Nội",
                     OrderDate = new DateTime(2021, 04, 21, 09, 12, 20, DateTimeKind.Utc),
                     Price = 2200000
@@ -4384,7 +4384,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "dinhtrong@gmail.com",
                     ShipName = "Đình Trọng",
                     ShipPhoneNumber = "0985638888",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Phường Phúc Lợi - Quận Long Biên - Hà Nội",
                     OrderDate = new DateTime(2021, 06, 01, 07, 41, 12, DateTimeKind.Utc),
                     Price = 1180000
@@ -4396,7 +4396,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "dinhtrong@gmail.com",
                     ShipName = "Đình Trọng",
                     ShipPhoneNumber = "0985638888",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Phường Phúc Lợi - Quận Long Biên - Hà Nội",
                     OrderDate = new DateTime(2021, 06, 02, 05, 42, 18, DateTimeKind.Utc),
                     Price = 1380000
@@ -4408,7 +4408,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "dinhtrong@gmail.com",
                     ShipName = "Đình Trọng",
                     ShipPhoneNumber = "0985638888",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Phường Phúc Lợi - Quận Long Biên - Hà Nội",
                     OrderDate = new DateTime(2021, 04, 21, 10, 19, 20, DateTimeKind.Utc),
                     Price = 1350000
@@ -4420,7 +4420,7 @@ namespace CosmeticsShop.Data.Extentions
                     ShipEmail = "dinhtrong@gmail.com",
                     ShipName = "Đình Trọng",
                     ShipPhoneNumber = "0985638888",
-                    Status = OrderStatus.Canceled,
+                    Status = OrderStatus.InProgress,
                     ShipAddress = "Phường Phúc Lợi - Quận Long Biên - Hà Nội",
                     OrderDate = new DateTime(2021, 04, 21, 12, 39, 26, DateTimeKind.Utc),
                     Price = 1360000
