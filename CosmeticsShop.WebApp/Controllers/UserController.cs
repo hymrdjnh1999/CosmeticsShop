@@ -171,6 +171,7 @@ namespace CosmeticsShop.WebApp.Controllers
             }
 
             await CreateUserViewBag();
+            CreateCartViewBag();
             var clientId = claims.Where(x => x.Type == "Id").FirstOrDefault().Value;
             var client = await GetClientViewModel(clientId);
             return View(client);
