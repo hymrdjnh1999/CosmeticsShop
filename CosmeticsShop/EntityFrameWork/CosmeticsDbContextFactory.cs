@@ -16,6 +16,7 @@ namespace CosmeticsShop.Data.EntityFrameWork
                .AddJsonFile("appsettings.json")
                .Build();
 
+            
             var connectionString = configuration.GetConnectionString("CosmeticsDb");
             optionsBuilder.UseSqlServer(connectionString);
             return new CosmeticsDbContext(optionsBuilder.Options);

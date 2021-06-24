@@ -5,11 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="appsettings.Production.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Views\Shared\_Layout.cshtml~RF5965b05.TMP" />
     <None Remove="Views\User\Details.cshtml~RF6912a4b.TMP" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="appsettings.Production.json" />
     <None Include="wwwroot\js\scripts.js" />
   </ItemGroup>
 
