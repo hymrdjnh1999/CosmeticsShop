@@ -3022,7 +3022,7 @@ namespace CosmeticsShop.Data.Extentions
                     IsDefault = true,
                     SortOrder = 1
                 });
-
+            
             modelBuilder.Entity<ProductInCategory>().HasData(
                 new ProductInCategory() { ProductId = 1, CategoryId = 1 },
                 new ProductInCategory() { ProductId = 2, CategoryId = 1 },
