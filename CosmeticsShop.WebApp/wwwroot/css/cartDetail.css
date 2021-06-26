@@ -505,24 +505,14 @@ main_content {
 }
 
 /*Tóm Tắt sp*/
-.sidebar {
-    padding-top: 4em;
-    position: relative;
-    background-color: #efefef;
-    border-radius: 4px;
+
+.sidebar.order-detail-product-wrap {
+    padding-right: 64px;
+    padding-top: 2em;
+    padding-bottom: 2em;
 }
-    .sidebar.order-detail-product-wrap{
-        padding-right: 64px;
-    }
 
-    @media (min-width: 1000px) {
-        .sidebar {
-        width: 42%;
-        padding-left: 4%;
-        background-position: left top;
-        float: right;
-    }
-
+@media (min-width: 1000px) {
         .sidebar::after {
             left: 0;
             background-position: left top;

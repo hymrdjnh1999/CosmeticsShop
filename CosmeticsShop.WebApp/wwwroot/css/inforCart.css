@@ -268,10 +268,9 @@ main_content {
 
 /*Tóm Tắt sp*/
 .sidebar {
-    padding-top: 4em;
+    margin-top: 4em;
     position: relative;
     background-color: #efefef;
-    height: 928px;
 }
 
 @media (min-width: 1000px) {
