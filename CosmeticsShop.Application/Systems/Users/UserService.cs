@@ -172,13 +172,14 @@ namespace CosmeticsShop.Application.Systems.Users
 
 
             if (user != null)
-                return new ApiErrorResult<bool>("User name is exists!");
+                return new ApiErrorResult<bool>("Tài khoản đã tồn tại!");
 
             user = await _userManager.FindByEmailAsync(request.Email);
 
             if (user != null)
-                return new ApiErrorResult<bool>("Email is exists!");
+                return new ApiErrorResult<bool>("Email đã tồn tại!");
 
+            var hasher = new PasswordHasher<User>();
             user = new User()
             {
                 Dob = request.Dob,
@@ -188,15 +189,29 @@ namespace CosmeticsShop.Application.Systems.Users
                 PhoneNumber = request.PhoneNumber,
             };
 
-            var registerResult = await _userManager.CreateAsync(user, request.Password);
-
-            await _userManager.AddToRolesAsync(user, new string[] { "Customer" });
-            if (!registerResult.Succeeded)
+            try
             {
-                return new ApiErrorResult<bool>("Register is not success!");
+                _context.Users.Add(user);
+                await _context.SaveChangesAsync();
+                user.PasswordHash = hasher.HashPassword(user, request.Password);
+                _context.Users.Attach(user);
+                await _context.SaveChangesAsync();
+                var role = await _context.Roles.Where(x => x.Name == "Staff").FirstOrDefaultAsync();
+                var userRole = new IdentityUserRole<Guid>()
+                {
+                    RoleId = role.Id,
+                    UserId = user.Id
+                };
+                _context.UserRoles.Add(userRole);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+
+                return new ApiErrorResult<bool>("Có lỗi trong quá trình tạo tài khoàn");
             }
             return new ApiSuccessResult<bool>();
-
         }
 
         public async Task<ApiResult<bool>> RoleAssign(RoleAssignRequest request)
