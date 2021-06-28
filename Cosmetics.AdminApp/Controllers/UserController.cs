@@ -92,7 +92,7 @@ namespace Cosmetics.AdminApp.Controllers
             var result = await _userApiClient.RegisterUser(request);
             if (result.IsSuccess)
             {
-                TempData["result"] = "Create user successfully!";
+                TempData["result"] = "Tạo tài khoản người dùng thành công!";
                 return RedirectToAction("Index");
             }
 
@@ -149,7 +149,7 @@ namespace Cosmetics.AdminApp.Controllers
             var assignRoleResult = await _userApiClient.RoleAssign(roleAssignRequest);
             if (result.IsSuccess && assignRoleResult.IsSuccess)
             {
-                TempData["result"] = "Update user successfully!";
+                TempData["result"] = "Cập nhật thông tin người dùng thành công!";
                 return RedirectToAction("Index");
             }
 
@@ -178,7 +178,7 @@ namespace Cosmetics.AdminApp.Controllers
 
             if (result.IsSuccess)
             {
-                TempData["result"] = "Delete user successfully!";
+                TempData["result"] = "Xóa tài khoản thành công!";
                 return RedirectToAction("Index");
             }
 
