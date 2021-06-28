@@ -92,7 +92,7 @@ namespace CosmeticsShop.Application.Catalog.Orders
                 Status = x.Status,
                 UserId = x.ClientId,
                 ShipPhoneNumber = x.ShipPhoneNumber,
-            }).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+            }).OrderByDescending(x => x.Id).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
 
 
             foreach (var item in orders)
