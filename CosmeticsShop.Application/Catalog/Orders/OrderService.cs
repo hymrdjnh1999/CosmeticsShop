@@ -113,7 +113,7 @@ namespace CosmeticsShop.Application.Catalog.Orders
                 ShipAddress = order.ShipAddress,
                 ShipEmail = order.ShipEmail,
                 Status = order.Status,
-                UserNameOrder = user.Name,
+                UserNameOrder = user?.Name ?? order.ShipName,
                 ShipPhoneNumber = order.ShipPhoneNumber,
                 ProductQuantity = await productQuery.CountAsync()
             };

@@ -133,7 +133,7 @@
                                 </td>
 
                                 <td class="d-flex align-items-center justify-content-center pro-item" style="flex: 1">
-                                    @if (item.Status != OrderStatus.Success)
+                                    @if (item.Status != OrderStatus.Canceled && item.Status != OrderStatus.Success)
                                     {
                                         <a href="order/@item.Id" class="btn btn-outline-info">
                                             Cập nhật
@@ -151,146 +151,7 @@
                             </tr>
                         }
                     </tbody>
-                    <tbody id="order_success" class="content">
-                        @foreach (var item in Model.Items)
-                        {
-                            @if (item.Status == OrderStatus.Success)
-                            {
-
-                                <tr class="d-flex list-product">
-
-                                    <td class="pro-item" style="flex: 1">
-                                        @Html.DisplayFor(modelItem => item.Id)
-                                    </td>
-                                    <td class="d-flex align-items-center justify-content-center text-center pro-item " style="flex: 1">
-                                        @Html.DisplayFor(modelItem => item.ShipName)
-                                    </td>
-
-                                    <td class="d-flex align-items-center justify-content-center pro-item text-overflow" style="flex: 2">
-                                        @Html.DisplayFor(modelItem => item.ShipAddress)
-                                    </td>
-                                    <td class="d-flex align-items-center justify-content-center pro-item" style="flex: 1">
-                                        @Html.DisplayFor(modelItem => item.ShipPhoneNumber)
-                                    </td>
-                                    <td class="d-flex align-items-center justify-content-center pro-item" style="flex: 1">
-                                        @Html.DisplayFor(modelItem => item.ProductQuantity)
-                                    </td>
-                                    <td class="d-flex align-items-center justify-content-center pro-item" style="flex: 1">
-                                        @Html.DisplayFor(modelItem => item.Price)
-                                    </td>
-                                    <td class="d-flex align-items-center justify-content-center pro-item" style="flex: 1">
-                                        @if (item.Status == OrderStatus.Shipping)
-                                        {
-                                            <span class="text-info">Đang giao hàng</span>}
-                                        else if (item.Status == OrderStatus.Canceled)
-                                        {
-                                            <span class="text-danger">Đã hủy</span>
-                                        }
-                                        else if (item.Status == OrderStatus.InProgress)
-                                        {
-                                            <span class="text-info user-select-none">Đang xử lý</span>
-                                        }
-                                        else if (item.Status == OrderStatus.Confirmed)
-                                        {
-                                            <span>Đã xác nhận</span>
-                                        }
-                                        else
-                                        {
-                                            <span class="text-success">Hoàn thành</span>
-                                        }
-                                    </td>
-
-                                    <td class="d-flex align-items-center justify-content-center pro-item" style="flex: 1">
-                                        @if (item.Status != OrderStatus.Success)
-                                        {
-                                            <a href="order/@item.Id" class="btn btn-outline-info">
-                                                Cập nhật
-                                            </a>
-                                        }
-                                        else
-                                        {
-                                            <a href="order/@item.Id" class="btn btn-outline-info">Xem chi tiết</a>
-                                        }
-                                    </td>
-                                </tr>
-                            }
-                            else
-                            {
-
-                            }
-                        }
-                    </tbody>
-                    <tbody id="order_cancel" class="content">
-                        @foreach (var item in Model.Items)
-                        {
-                            @if (item.Status == OrderStatus.Canceled)
-                            {
-
-                                <tr class="d-flex list-product">
-
-                                    <td class="pro-item" style="flex: 1">
-                                        @Html.DisplayFor(modelItem => item.Id)
-                                    </td>
-                                    <td class="d-flex align-items-center justify-content-center text-center pro-item " style="flex: 1">
-                                        @Html.DisplayFor(modelItem => item.ShipName)
-                                    </td>
-
-                                    <td class="d-flex align-items-center justify-content-center pro-item text-overflow" style="flex: 2">
-                                        @Html.DisplayFor(modelItem => item.ShipAddress)
-                                    </td>
-                                    <td class="d-flex align-items-center justify-content-center pro-item" style="flex: 1">
-                                        @Html.DisplayFor(modelItem => item.ShipPhoneNumber)
-                                    </td>
-                                    <td class="d-flex align-items-center justify-content-center pro-item" style="flex: 1">
-                                        @Html.DisplayFor(modelItem => item.ProductQuantity)
-                                    </td>
-                                    <td class="d-flex align-items-center justify-content-center pro-item" style="flex: 1">
-                                        @Html.DisplayFor(modelItem => item.Price)
-                                    </td>
-                                    <td class="d-flex align-items-center justify-content-center pro-item" style="flex: 1">
-                                        @if (item.Status == OrderStatus.Shipping)
-                                        {
-                                            <span class="text-info">Đang giao hàng</span>}
-                                        else if (item.Status == OrderStatus.Canceled)
-                                        {
-                                            <span class="text-danger">Đã hủy</span>
-                                        }
-                                        else if (item.Status == OrderStatus.InProgress)
-                                        {
-                                            <span class="text-info user-select-none">Đang xử lý</span>
-                                        }
-                                        else if (item.Status == OrderStatus.Confirmed)
-                                        {
-                                            <span>Đã xác nhận</span>
-                                        }
-                                        else
-                                        {
-                                            <span class="text-success">Hoàn thành</span>
-                                        }
-                                    </td>
-
-                                    <td class="d-flex align-items-center justify-content-center pro-item" style="flex: 1">
-                                        @if (item.Status != OrderStatus.Success)
-                                        {
-                                            <a href="order/@item.Id" class="btn btn-outline-info">
-                                                Cập nhật
-                                            </a>
-                                        }
-                                        else
-                                        {
-                                            <a href="order/@item.Id" class="btn btn-outline-info">Xem chi tiết</a>
-                                        }
-
-                                    </td>
-                                </tr>
-                            }
-                            else
-                            {
-
-                            }
-                        }
-                    </tbody>
-
+                   
                 </table>
                 <div class="co-modal" id="order-modal">
                     <div class="co-modal--content ">
