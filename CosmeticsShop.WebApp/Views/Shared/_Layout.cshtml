@@ -42,9 +42,9 @@
 
 
                 @* Logo *@
-                <div class="header__logo" style="display: block; margin-left: 45%;">
+                <div class="header__logo" style="display: block; margin-left: 46%;">
                     <a href="/" class="header__logoLink">
-                        <img class="header__logoimage header__logoimage--primary" src="//cdn.shopify.com/s/files/1/0003/8718/6741/files/Asset_1_2x_25b16eed-a574-4d6f-ac37-42aa9a91febb_170x.png?v=1589280350"
+                        <img class="header__logoimage header__logoimage--primary" src="/images/logo.png"
                              srcset="" width="170" alt="Paris France Beauty">
                     </a>
                 </div>
@@ -94,7 +94,8 @@
                         </li>
                         <li class="horizontalList__item">
                             <a href="/cart/cartdetail" class="d-block" data-action="open-drawer" data-drawer-id="sidebar-cart" aria-label="Mở Giỏ Hàng">
-                                Giỏ Hàng (@if (ViewBag.Cart != null)
+                                <i class="fas fa-shopping-cart"></i>
+                                Giỏ hàng(@if (ViewBag.Cart != null)
                                 {
                                     <span class="header__cartCount" id="cartQuantity">@ViewBag.Cart.Products.Count</span>
                                 }
