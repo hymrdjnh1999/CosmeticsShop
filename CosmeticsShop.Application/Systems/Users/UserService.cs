@@ -243,6 +243,7 @@ namespace CosmeticsShop.Application.Systems.Users
             return new ApiSuccessResult<bool>();
         }
 
+
         public async Task<ApiResult<bool>> Update(Guid id, UserViewModel request)
         {
             var user = await _userManager.FindByIdAsync(id.ToString());

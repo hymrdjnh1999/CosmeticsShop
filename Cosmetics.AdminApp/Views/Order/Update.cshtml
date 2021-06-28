@@ -3,10 +3,11 @@
 @{
     ViewData["Title"] = "Update";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var quantity = 0;
 }
 
 <div class="container-fluid">
-    <h1 class="mt-4">Đơn hàng chi tiết</h1>
+    <h1 class="mt-4">Đơn hàng</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Order">Danh sách đơn hàng</a></li>
         <li class="breadcrumb-item active">Chi tiết đơn hàng</li>
@@ -47,17 +48,17 @@
                                         <option selected value="@OrderStatus.InProgress">Đang xử lý</option>
                                         <option value="@OrderStatus.Shipping">Đang giao hàng</option>
                                         <option value="@OrderStatus.Success">Thành công</option>
-                                        <option value="@OrderStatus.Canceled">Thành công</option>
+                                        <option value="@OrderStatus.Canceled">Hủy đơn</option>
                                     }
                                     @if (Model.Status == OrderStatus.Shipping)
                                     {
                                         <option selected value="@OrderStatus.Shipping">Đang giao hàng</option>
                                         <option value="@OrderStatus.Success">Thành công</option>
-                                        <option value="@OrderStatus.Canceled">Thành công</option>
+                                        <option value="@OrderStatus.Canceled">Hủy đơn</option>
+                                        <option value="@OrderStatus.InProgress">Đang chờ xử lý</option>
                                     }
-
                                 </select>
-                                
+
                             </div>
                         }
                         else
@@ -91,6 +92,7 @@
 
                             @foreach (var item in Model.OrderProducts)
                             {
+
                                 <tr>
                                     <td>
                                         @item.Name
@@ -102,14 +104,15 @@
                                         @item.Price VND
                                     </td>
                                 </tr>
+                                quantity = quantity + @item.Quantity;
                             }
                         </tbody>
 
                     </table>
                 </div>
                 <div class="form-group col-6">
-                    <label asp-for="ProductQuantity" class="control-label"></label>
-                    <span class="border border-info rounded d-flex" style="padding:6px 12px">@Model.ProductQuantity</span>
+                    <label asp-for="ProductQuantity" class="control-label">Tổng số sản phẩm</label>
+                    <span class="border border-info rounded d-flex" style="padding:6px 12px">@quantity</span>
                     <span asp-validation-for="ProductQuantity" class="text-danger"></span>
                 </div>
                 <div class="form-group col-6">
@@ -154,7 +157,7 @@
                 </div>
             </form>
 
-            
+
         </div>
     </div>
 </div>
@@ -163,7 +166,7 @@
 
 @section Scripts{
     <script>
-        ()=> {
+        () => {
             const optionElements = document.querySelectorAll('#orderStatus option');
             optionElements.forEach(item => item.setAttribute('style', 'padding: 6px 12px;display:block;'));
         }

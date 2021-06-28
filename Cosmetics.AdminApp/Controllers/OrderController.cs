@@ -19,19 +19,25 @@ namespace Cosmetics.AdminApp.Controllers
         {
             _orderApiClient = orderApiClient;
         }
-        public async Task<IActionResult> Index([FromQuery] GetOrderRequest request)
+        public async Task<IActionResult> Index([FromQuery] GetOrderRequest request, string status)
         {
-            var orders = await _orderApiClient.GetAll(request);
+            var orders = await _orderApiClient.GetAll(request, status);
             if (TempData["result"] != null)
             {
                 ViewBag.SuccessMsg = TempData["result"];
             }
             var categories = OrderCategorySearch.Categories;
             var category = categories.Where(x => x.Value == request.Type).FirstOrDefault();
-            if (category != null)
+            foreach (var c in categories)
             {
-                category.Selected = true;
+                if (c.Value != request.Type)
+                {
+                    c.Selected = false;
+                    continue;
+                }
+                c.Selected = true;
             }
+
             ViewBag.Categories = categories;
             return View(orders);
         }

@@ -59,7 +59,7 @@ namespace Cosmetics.AdminApp.Controllers
             }
             data.ResultObj.CurrentLoggedId = new Guid(currentLoginId);
             data.ResultObj.CurrentRoles = roles;
-            data.ResultObj.TotalRecords -= 1; 
+            data.ResultObj.TotalRecords -= 1;
 
             HttpContext.Session.SetString("isManager", roles.Contains("Manager").ToString());
             return View(data.ResultObj);
@@ -123,7 +123,7 @@ namespace Cosmetics.AdminApp.Controllers
 
                 var roles = await GetRoleAssignRequest(user);
                 user.RoleAssignRequest = roles.Roles;
-                ViewBag.CustomIsManager = user.RoleAssignRequest.Find(x => x.Name == "Manager").Selected ;
+                ViewBag.CustomIsManager = user.RoleAssignRequest.Find(x => x.Name == "Manager").Selected;
                 return View(user);
             }
 

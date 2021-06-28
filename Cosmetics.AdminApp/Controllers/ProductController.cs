@@ -193,7 +193,7 @@ namespace Cosmetics.AdminApp.Controllers
             return View(request);
         }
 
-        
+
         private async Task<CategoryAssignRequest> GetCategoryAssignRequest(int id)
         {
             var productViewModel = await _productApiClient.GetById(id);
