@@ -30,10 +30,10 @@ namespace CosmeticsShop.Api_Intergration
             _httpContextAccessor = httpContextAccessor;
             _configuration = configuration;
         }
-        public async Task<PageResponse<OrderViewModel>> GetAll(GetOrderRequest request)
+        public async Task<PageResponse<OrderViewModel>> GetAll(GetOrderRequest request , string status)
         {
             var requestUrl = $"/api/orders/paging?pageIndex=" +
-               $"{request.PageIndex}&pageSize={request.PageSize}&keyword={request.KeyWord}&type={request.Type}";
+               $"{request.PageIndex}&pageSize={request.PageSize}&keyword={request.KeyWord}&type={request.Type}&Status={status}&DateStart={request.DateStart}&DateEnd={request.DateEnd}";
             var data = await GetAsync<PageResponse<OrderViewModel>>(requestUrl);
 
             return data;
@@ -45,7 +45,6 @@ namespace CosmeticsShop.Api_Intergration
             var data = await GetAsync<OrderViewModel>(request);
             return data;
         }
-
 
 
         public async Task<List<OrderProductViewModel>> GetProducts(int id)

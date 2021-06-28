@@ -109,8 +109,6 @@ namespace Cosmetics.AdminApp.Controllers
 
             RedirectToAction("Error", "Home");
         }
-
-
         [HttpGet]
         public async Task<IActionResult> Update(int id)
         {
@@ -120,7 +118,6 @@ namespace Cosmetics.AdminApp.Controllers
             product.SelectedId = categoryAssignRequest.SelectedCategories;
             return View(product);
         }
-
 
         [HttpPut("product/{productId}/images/{imageId}/thumbnail")]
         public async Task<IActionResult> ChangeThumbnail(int imageId, int productId)

@@ -3,7 +3,7 @@
 @using Cosmetics.ViewModels.Systems.Clients;
 
 @{
-    ViewData["Title"] = "Client List";
+    ViewData["Title"] = "Danh Sách Khách Hàng";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
@@ -15,10 +15,10 @@
 }
 
 <div class="container-fluid">
-    <h1 class="mt-4">Người Dùng</h1>
+    <h1 class="mt-4">Khách Hàng</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Bảng Điều Khiển</a></li>
-        <li class="breadcrumb-item active">Danh Sách Người Dùng</li>
+        <li class="breadcrumb-item active">Danh Sách Khách Hàng</li>
     </ol>
 
     <div class="card mb-12">
@@ -48,6 +48,7 @@
                 @await Component.InvokeAsync("ChangePageSize", Model)
             </div>
             <div class="table-responsive">
+
                 <table class="table table-bordered text-center">
                     <thead class="thead-dark text-white">
                         <tr>
@@ -78,8 +79,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @for (var count = 0; count < Model.Items.Count; count++)
-                             {
+                        @for (var count = 0; count < Model.Items.Count; count++){
 
                                 <tr class="bg-alternating ">
                                     <td>@(count + 1)</td>
@@ -102,9 +102,11 @@
                                         @Html.DisplayFor(modelItem => Model.Items[count].OrderQuanttity)
                                     </td>
                                     <td class="btn-edit_del">
-                                        <a href="@Url.Action("Details","Client",  new { id = Model.Items[count].Id })" class="p-1 btn actions-btn btn-outline-info px-2">Sửa</a>
+                                        <a href="@Url.Action("Details","Client",  new { id = Model.Items[count].Id })" class="p-1 btn actions-btn btn-outline-info px-2">
+                                            Chi Tiết
+                                            </a>
                                     </td>
-                                    }
+                                    
                                 </tr>
                             }
                         

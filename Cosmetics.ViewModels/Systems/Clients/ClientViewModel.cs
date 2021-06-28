@@ -21,5 +21,6 @@ namespace Cosmetics.ViewModels.Systems.Clients
         public int OrderQuanttity { get; set; }
         public List<OrderViewModel> Orders { get; set; }
 
+
     }
 }
