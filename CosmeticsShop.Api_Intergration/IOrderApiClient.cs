@@ -11,7 +11,7 @@ namespace CosmeticsShop.Api_Intergration
 {
     public interface IOrderApiClient
     {
-        Task<PageResponse<OrderViewModel>> GetAll(GetOrderRequest request);
+        Task<PageResponse<OrderViewModel>> GetAll(GetOrderRequest request ,string status);
         Task<OrderViewModel> GetById(int id);
         Task<bool> UpdateStatus(OrderViewModel request);
         Task<List<OrderProductViewModel>> GetProducts(int id);

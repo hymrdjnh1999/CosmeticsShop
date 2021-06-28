@@ -22,14 +22,14 @@ namespace Cosmetics.WebAPI.Controllers
         }
         [HttpGet("paging")]
         [Authorize]
-        public async Task<IActionResult> Index([FromQuery] GetOrderRequest request)
+        public async Task<IActionResult> Index([FromQuery] GetOrderRequest request , string status)
         {
             if (!ModelState.IsValid || request.PageSize <= 0)
             {
                 return Ok(new PageResponse<OrderViewModel>() { Items = new List<OrderViewModel>(), PageIndex = 1, PageSize = 5, TotalRecords = 0 });
             }
 
-            var orders = await _orderService.GetAll(request);
+            var orders = await _orderService.GetAll(request ,status);
             return Ok(orders);
         }
         [HttpGet("{id}")]

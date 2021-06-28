@@ -56,9 +56,9 @@ namespace CosmeticsShop.Application.Systems.Clients
             var query = from c in _context.Clients
                         where c.Id == id
                         join o in _context.Orders on c.Id equals o.ClientId
-                        select new { c , o};
+                        select new { o};
             
-
+            query = query.OrderByDescending(x =>x.o.OrderDate);
             var orders = await query.Select( x => new OrderViewModel()
             {
                 Id = x.o.Id,

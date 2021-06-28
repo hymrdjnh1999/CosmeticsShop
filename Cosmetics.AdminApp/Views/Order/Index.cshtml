@@ -25,39 +25,46 @@
                 <span id="cancelMsg" class="rounded"></span>
             </div>
             <form asp-action="Index" method="get">
-                <div class="form-outline my-2 d-flex">
+                <div class="form-outline my-2 d-block">
                     <div class="column">
                         <div class="form-group d-flex">
-                            <input name="keyword" value="@ViewBag.Keyword" type="text" id="productSearchBox" placeholder="Tìm kiếm..." class="form-control  border-dark" />
-                            <select onchange="this.form.submit()" name="type" asp-items="@ViewBag.Categories" class="form-control mx-2 border-dark rounded">
+                            <input name="keyword" value="@ViewBag.Keyword" type="text" id="productSearchBox" placeholder="Tìm kiếm..." class="w-auto form-control  border-dark" />
+                            <select onchange="this.form.submit()" name="type" asp-items="@ViewBag.Categories" class="w-auto form-control mx-2 border-dark rounded">
                                 <option>---------Chọn---------</option>
                             </select>
-
+                            <div class="column">
+                                <button type="submit" class="btn btn-outline-dark ml-2 ">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
                         </div>
+                        
 
-                        <div class="form-group d-flex">
-                            <div class="d-block">
+                        <div class="form-group d-flex align-items-end mb-0">
+                            <div class="d-block flex-column">
                                 <label for="DateStart" class="d-block">From :</label>
                                 <input type="date" id="DateStart" name="DateStart" class="form-control" />
                                 <label for="DateEnd" class="d-block w-100">To :</label>
                                 <input type="date" id="DateEnd" name="DateEnd" class="form-control w-100" />
                             </div>
+
                         </div>
                     </div>
-                    <div class="column">
-
-                        <button type="submit" class="btn btn-outline-dark ml-2 ">
-                            <i class="fas fa-search"></i>
-                        </button>
+                    
+                    <div class="form-group d-flex flex-column mb-0 mt-3">
+                        <span class="m-1">Lọc theo trạng thái hóa đơn:</span>
+                        <div class="order_button d-flex ">
+                            <button asp-action="Index" class="btn btn-outline-secondary mr-2" style="min-width:140px">Tất cả</button>
+                            <button name="status" value="InProgess" class="btn btn-outline-secondary mr-1 ml-1" style="min-width:140px">Đang xử lý</button>
+                            <button name="status" value="Shipping" class="btn btn-outline-secondary mr-1 ml-1" style="min-width:140px">Đang giao hàng</button>
+                            <button name="status" value="Success" class="btn btn-outline-secondary mr-1 ml-1" style="min-width:140px">Hoàn thành</button>
+                            <button name="status" value="Canceled" class="btn btn-outline-secondary ml-2" style="min-width:140px">Đã hủy</button>
+                        </div>
                     </div>
                     <input asp-for="PageSize" value="@Model.PageSize" type="hidden" class="form-control" />
                 </div>
             </form>
-            <div class="order_button">
-                <button id="btn_all" class="btn btn-primary">All</button>
-                <button id="btn_success" class="btn btn-success">Success</button>
-                <button id="btn_cancel" class="btn btn-danger">Canceled</button>
-            </div>
+           
 
 
         </div>

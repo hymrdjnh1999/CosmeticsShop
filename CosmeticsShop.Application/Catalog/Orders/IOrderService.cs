@@ -11,7 +11,7 @@ namespace CosmeticsShop.Application.Catalog.Orders
 {
     public interface IOrderService
     {
-        Task<PageResponse<OrderViewModel>> GetAll(GetOrderRequest request);
+        Task<PageResponse<OrderViewModel>> GetAll(GetOrderRequest request,string status);
         Task<OrderViewModel> GetById(int id);
         Task<bool> UpdateStatus(OrderViewModel request);
         Task<List<OrderProductViewModel>> GetOrderProducts(int orderId);

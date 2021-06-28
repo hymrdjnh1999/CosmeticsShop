@@ -19,9 +19,9 @@ namespace Cosmetics.AdminApp.Controllers
         {
             _orderApiClient = orderApiClient;
         }
-        public async Task<IActionResult> Index([FromQuery] GetOrderRequest request)
+        public async Task<IActionResult> Index([FromQuery] GetOrderRequest request , string status)
         {
-            var orders = await _orderApiClient.GetAll(request);
+            var orders = await _orderApiClient.GetAll(request , status);
             if (TempData["result"] != null)
             {
                 ViewBag.SuccessMsg = TempData["result"];

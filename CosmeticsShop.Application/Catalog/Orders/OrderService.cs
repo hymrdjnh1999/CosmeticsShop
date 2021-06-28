@@ -35,10 +35,10 @@ namespace CosmeticsShop.Application.Catalog.Orders
                     return query;
             }
         }
-        public async Task<PageResponse<OrderViewModel>> GetAll(GetOrderRequest request)
+        public async Task<PageResponse<OrderViewModel>> GetAll(GetOrderRequest request ,string status)
         {
 
-            var query = from o in _context.Orders select o;
+            var query = from o in _context.Orders select o ;
 
             var category = OrderCategorySearch.Categories.Where(x => x.Value == request.Type).FirstOrDefault();
             if (!String.IsNullOrEmpty(request.KeyWord) && category == null)
@@ -56,6 +56,25 @@ namespace CosmeticsShop.Application.Catalog.Orders
             if (!String.IsNullOrEmpty(request.DateStart) && !String.IsNullOrEmpty(request.DateEnd))
             {
                 query = query.Where(x => x.OrderDate >= Convert.ToDateTime(request.DateStart) && x.OrderDate <= Convert.ToDateTime(request.DateEnd));
+            }
+            query = query.OrderByDescending(x => x.OrderDate);
+
+            switch (status)
+            {
+                case "Success":
+                    query = query.Where(x => x.Status == OrderStatus.Success);
+                    break;
+                case "Canceled":
+                    query = query.Where(x => x.Status == OrderStatus.Canceled);
+                    break;
+                case "InProgess":
+                    query = query.Where(x => x.Status == OrderStatus.InProgress);
+                    break;
+                case "Shipping":
+                    query = query.Where(x => x.Status == OrderStatus.Shipping);
+                    break;
+                default:
+                    break;
             }
             /*query = query.Where(x => x.OrderDate.ToString() == request.DateCreate.ToString());*/
             var pageIndex = request.PageIndex;
