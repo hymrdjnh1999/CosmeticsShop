@@ -130,7 +130,7 @@ namespace CosmeticsShop.Data.Extentions
                 new Product
                 {
                     ForGender = ForGender.Female,
-                    Name = "Mercedes-Benz Women EDP (New 2020)",
+                    Name = "Mercedes-Benz Women EDP",
                     Description = "" +
                 " Một hương thơm quyến rũ, sang trọng, hơn cả mong đợi được tạo ra để làm nổi bật và thể hiện cá tính của người" +
                 "phụ nữ. Một câu chuyện tuyệt vời về sự nữ tính và tự cường, bao bọc cô ấy trong một hào quang thơm ngát.",
@@ -148,7 +148,7 @@ namespace CosmeticsShop.Data.Extentions
                 new Product
                 {
                     ForGender = ForGender.Male,
-                    Name = "[NEW] Mercedes-Benz On The Go",
+                    Name = "Mercedes-Benz On The Go",
                     Description = "" +
                 "Một phiên bản mini 20ml của Mercedes với thiết kế nhỏ gọn để có thể mang theo bên mình. Gồm các dòng sản phẩm:",
                     Details = " ✔️Mùi hương đặc trưng:" +
@@ -282,7 +282,7 @@ namespace CosmeticsShop.Data.Extentions
                 new Product
                 {
                     ForGender = ForGender.Male,
-                    Name = "[NEW] Mercedes-Benz Man Intense EDT",
+                    Name = "Mercedes-Benz Man Intense EDT",
                     Description = "" +
               "Có một số loại nước hoa sẽ chẳng bao giờ khiến bạn phải băn khoăn." +
                 "Vì sao ư? Bởi vì chúng phản ánh tính cách mạnh mẽ và đem đến ánh hào quang độc đáo " +
@@ -378,7 +378,7 @@ namespace CosmeticsShop.Data.Extentions
                 new Product
                 {
                     ForGender = ForGender.Female,
-                    Name = "[New] Gucci Bloom Ambrosia Di Fiori EDP",
+                    Name = "Gucci Bloom Ambrosia Di Fiori EDP",
                     Description = "",
                     Details = " ✔️Mùi hương đặc trưng:" +
                     "- Hương đầu: Nụ Hoa Nhài, Cây Leo Rangoon" +
@@ -394,7 +394,7 @@ namespace CosmeticsShop.Data.Extentions
                 new Product
                 {
                     ForGender = ForGender.Female,
-                    Name = "[New] Gucci Bloom Profumo Di Fiori EDP",
+                    Name = "Gucci Bloom Profumo Di Fiori EDP",
                     Description = "",
                     Details = " ✔️Mùi hương đặc trưng:" +
                     "- Hương đầu: Hoa Nhài Sambac" +
@@ -458,7 +458,7 @@ namespace CosmeticsShop.Data.Extentions
                 new Product
                 {
                     ForGender = ForGender.Male,
-                    Name = "[New] Carolina Herrera Very Good Girl EDP",
+                    Name = "Carolina Herrera Very Good Girl EDP",
                     Description = "Vui vẻ, tuyệt vời và không sợ hãi, Very Good Girl là một màn trình diễn mới của mùi hương Good Girl biểu tượng." +
                     "Vẫn mang tầm nhìn của Carolina Herrera về sự đa dạng trong tính cách của người phụ nữ hiện đại," +
                     "hương thơm mới của hoa hồng quyến rũ cùng thiết kế nóng bỏng sẽ khiến bạn không thể cưỡng lại",
@@ -476,7 +476,7 @@ namespace CosmeticsShop.Data.Extentions
                 new Product
                 {
                     ForGender = ForGender.Male,
-                    Name = "[New] Carolina Herrera Bad Boy Le Parfum EDP",
+                    Name = "Carolina Herrera Bad Boy Le Parfum EDP",
                     Description = "BAD BOY Le Parfum định nghĩa lại mùi hương mang tính biểu tượng của BAD BOY" +
                     "với một công thức mới táo bạo hơn bao giờ hết. Không hối lỗi, chân thực và bí ẩn," +
                     "mùi hương bất cần này thể hiện sự đa dạng trong tính cách của người đàn ông hiện đại." +
@@ -495,7 +495,7 @@ namespace CosmeticsShop.Data.Extentions
                 new Product
                 {
                     ForGender = ForGender.Male,
-                    Name = "[NEW] Carolina Herrera 212 Heroes EDT",
+                    Name = "Carolina Herrera 212 Heroes EDT",
                     Description = "Lấy cảm hứng từ đô thị phồn hoa New York với nguồn năng lượng tươi trẻ, đầy nhiệt huyết không bao giờ ngừng chuyển động," +
                     "212 của nhà Carolina Herrera đại diện cho sự giao thoa hoàn hảo của nét đẹp của những giá trị xưa cũ cùng những điều mới lạ tân thời.",
                     Details = " ✔️Mùi hương đặc trưng:" +
@@ -512,7 +512,7 @@ namespace CosmeticsShop.Data.Extentions
                 new Product
                 {
                     ForGender = ForGender.Male,
-                    Name = "[NEW] Jimmy Choo I Want Choo EDP",
+                    Name = "Jimmy Choo I Want Choo EDP",
                     Description = "I WANT CHOO mang đậm làn hương hoa cỏ phương Đông (Oriental Floral), một chút ngọt ngào xen lẫn một chút gợi cảm," +
                     "rất sôi nổi nhưng cũng rất lắng đọng. I WANT CHOO mở đầu bằng những nốt hương Cam Đào tươi vui rực rỡ," +
                     "sau đó nốt hương trung tâm – Red Spider Lilies (Hoa Loa Kèn Nhện Đỏ) và Hoa Nhài Sambac trỗi dậy nồng nàn gợi cảm và kết lại bằng hương Vani ngọt ngào lắng đọng.",
@@ -567,7 +567,7 @@ namespace CosmeticsShop.Data.Extentions
                 new Product
                 {
                     ForGender = ForGender.Female,
-                    Name = "[New] Gucci Bloom Ambrosia Di Fiori EDP",
+                    Name = "Gucci Bloom Ambrosia Di Fiori EDP",
                     Description = "",
                     Details = " ✔️Mùi hương đặc trưng:" +
                     "- Hương đầu: Nụ Hoa Nhài, Cây Leo Rangoon" +
@@ -583,7 +583,7 @@ namespace CosmeticsShop.Data.Extentions
                 new Product
                 {
                     ForGender = ForGender.Female,
-                    Name = "[NEW] Jean Paul Gaultier La Belle Le Parfum EDP",
+                    Name = "Jean Paul Gaultier La Belle Le Parfum EDP",
                     Description = "Thiết kế màu xanh như hồ nước lấp loáng xanh mát, là nơi làm dịu mọi cơn khát và sự nóng bức. " +
                     "Khoác lên mình một chiếc áo kiêu xa lấp lánh bởi các tia nắng mặt trời chiếu rọi," +
                     "hồ nước như một dải lụa mềm mại, điểm xuyến cho vẻ đẹp đầy cám dỗ của khu vườn địa đàng.",
@@ -621,7 +621,7 @@ namespace CosmeticsShop.Data.Extentions
                 new Product
                 {
                     ForGender = ForGender.Male,
-                    Name = "[New] Gucci Bloom Profumo Di Fiori EDP",
+                    Name = "Gucci Bloom Profumo Di Fiori EDP",
                     Description = "",
                     Details = " ✔️Mùi hương đặc trưng:" +
                     "- Hương đầu: Hoa Nhài Sambac" +
@@ -639,7 +639,7 @@ namespace CosmeticsShop.Data.Extentions
                 new Product
                 {
                     ForGender = ForGender.Female,
-                    Name = "[NEW] Jimmy Choo I Want Choo EDP",
+                    Name = "Jimmy Choo I Want Choo EDP",
                     Description = "I WANT CHOO mang đậm làn hương hoa cỏ phương Đông (Oriental Floral)," +
                      "một chút ngọt ngào xen lẫn một chút gợi cảm, rất sôi nổi nhưng cũng rất lắng đọng." +
                      "I WANT CHOO mở đầu bằng những nốt hương Cam Đào tươi vui rực rỡ," +
@@ -766,7 +766,7 @@ namespace CosmeticsShop.Data.Extentions
                 new Product
                 {
                     ForGender = ForGender.Male,
-                    Name = "[NEW] Paco Rabanne 1 Million Parfum EDP For Men 2020",
+                    Name = "Paco Rabanne 1 Million Parfum EDP For Men 2020",
                     Description = "1 Million Parfum vừa ra mắt trong tháng 8/2020 một lần nữa khẳng định và nâng tầm sự quyền lực " +
                      "và giàu có của gã đàn ông triệu đô nhà Paco Rabanne ." +
                      "Hương thơm độc đáo mạnh mẽ dành cho những người đàn ông không ngại chứng tỏ bản thân," +
@@ -803,7 +803,7 @@ namespace CosmeticsShop.Data.Extentions
                 new Product
                 {
                     ForGender = ForGender.Male,
-                    Name = "[NEW] Jean Paul Gautier Le Male Le Parfum EDP",
+                    Name = "Jean Paul Gautier Le Male Le Parfum EDP",
                     Description = "Le Male Parfums hứa hẹn sẽ đưa bạn vào một cuộc phiêu khứu giác đầy sự đối lập từ làm mất phương hướng đến bùng nổ và làm thỏa mãn các giác quan." +
                      "Hương bạch đấu khấu mạnh mẽ ở tầng hương đầu, tầng hương giữa là sự kết hợp của hoa oải hương thanh mát " +
                      "và hương hoa diên vĩ. Phiên bản EDP khiến bạn đắm chìm trong nốt hương vani nồng nàn, mãnh liệt và gây nghiện. ",
@@ -1002,7 +1002,7 @@ namespace CosmeticsShop.Data.Extentions
                 new Product
                 {
                     ForGender = ForGender.Female,
-                    Name = "[NEW] Gift Set Jean Paul Gaultier La Belle Le Parfum EDP",
+                    Name = "Gift Set Jean Paul Gaultier La Belle Le Parfum EDP",
                     Description = "Sự hòa quyện ngọt ngào của Lê, thơm ngậy của Vanilla cùng những nốt hương mê" +
                     "hoặc của Đậu Tonka đã tạo nên một La Belle Le Parfum đẹp tuyệt, say đắm lòng người",
                     Details = " ✔️Mùi hương đặc trưng:" +
@@ -1524,7 +1524,7 @@ namespace CosmeticsShop.Data.Extentions
                 new Product
                 {
                     ForGender = ForGender.Male,
-                    Name = "[NEW] Coach Men Blue EDT",
+                    Name = "Coach Men Blue EDT",
                     Description = "COACH MEN BLUE EDT là dòng nước hoa dành cho nam mới nhất từ Coach được lấy cảm hứng từ những chuyến road trip xuyên bang trứ danh ở Mỹ." +
                     "Một mùi hương của sự tự do và niềm phấn khởi khi lướt đi trên những đại lộ dài hun hút nối liền các vùng đất mới." +
                     "Dưới vòm trời xanh thẳm, bạn tận hưởng những làn gió mát vờn quanh, háo hức khám phá những điều bất ngờ của chuyến hành trình phía trước.",
@@ -1542,7 +1542,7 @@ namespace CosmeticsShop.Data.Extentions
                 new Product
                 {
                     ForGender = ForGender.Male,
-                    Name = "[NEW] Coach Dreams EDP 2020",
+                    Name = "Coach Dreams EDP 2020",
                     Description = "Được chế tác từ bàn tay tài hoa của Antoine Maisondieu - COACH DREAMS với họ hương Floral Woody phảng phất" +
                     "cảm vị của những giấc mơ mùa hè, những cung đường dài bất tận cùng nhiều trạm dừng ngẫu hứng với nắng gió" +
                     "khẽ chạm vào da, tan chảy như thanh kẹo gòn làm đê mê khứu giác:" +
@@ -1653,7 +1653,7 @@ namespace CosmeticsShop.Data.Extentions
                 new Product
                 {
                     ForGender = ForGender.Female,
-                    Name = "[NEW] Coach Dreams EDP Body Lotion 150ml",
+                    Name = "Coach Dreams EDP Body Lotion 150ml",
                     Description = "Được chế tác từ bàn tay tài hoa của Antoine Maisondieu - COACH DREAMS với họ hương Floral Woody phảng phất" +
                     "cảm vị của những giấc mơ mùa hè, những cung đường dài bất tận cùng nhiều trạm dừng ngẫu hứng với nắng gió" +
                     "khẽ chạm vào da, tan chảy như thanh kẹo gòn làm đê mê khứu giác: Mở đầu là sự thanh mát của Cam Đắng và Lê mọng" +
@@ -1732,7 +1732,7 @@ namespace CosmeticsShop.Data.Extentions
                 new Product
                 {
                     ForGender = ForGender.Male,
-                    Name = "[NEW] Montblanc Signature EDP",
+                    Name = "Montblanc Signature EDP",
                     Description = "Người phụ nữ SIGNATURE truyền cảm hứng cho mọi người, dùng sức mạnh của ngôn ngữ để thay đổi thế giới." +
                     "Người phụ nữ đầy nhiệt huyết và tự tin, cô ấy tạo nên những thay đổi tích cực thông qua ngòi bút." +
                     "Gợi nhắc đến những giá trị cốt lõi mang tính biểu tượng của Montblanc: " +
@@ -1751,7 +1751,7 @@ namespace CosmeticsShop.Data.Extentions
                 new Product
                 {
                     ForGender = ForGender.Male,
-                    Name = "[NEW] Montblanc Legend EDP",
+                    Name = "Montblanc Legend EDP",
                     Description = "Ở phiên bản  LEGEND EDP, những cảm xúc và mùi hương nguyên bản của LEGEND- những điều đã chinh phục" +
                     "hàng triệu người đàn ông trên thế giới vẫn được giữ nguyên nhưng nay đã trở nên mạnh mẽ hơn, nam tính hơn.",
                     OriginalPrice = 1700000,
@@ -1923,7 +1923,7 @@ namespace CosmeticsShop.Data.Extentions
                 new ProductImage()
                 {
                     Id = 3,
-                    Caption = "[NEW] Mercedes-Benz On The Go",
+                    Caption = "Mercedes-Benz On The Go",
                     DateCreated = DateTime.Now,
                     FileSize = 12345,
                     ImagePath = "3-[NEW]-Mercedes-Benz-On-The-Go.jpg",
@@ -2000,7 +2000,7 @@ namespace CosmeticsShop.Data.Extentions
                 new ProductImage()
                 {
                     Id = 10,
-                    Caption = "[NEW] Mercedes-Benz Man Intense EDT",
+                    Caption = "Mercedes-Benz Man Intense EDT",
                     DateCreated = DateTime.Now,
                     FileSize = 12345,
                     ImagePath = "10-[NEW]-Mercedes-Benz-Man-Intense-EDT.jpg",
@@ -2067,7 +2067,7 @@ namespace CosmeticsShop.Data.Extentions
                 new ProductImage()
                 {
                     Id = 16,
-                    Caption = "[New] Gucci Bloom Ambrosia Di Fiori EDP",
+                    Caption = "Gucci Bloom Ambrosia Di Fiori EDP",
                     DateCreated = DateTime.Now,
                     FileSize = 12345,
                     ImagePath = "16-[New]-Gucci-Bloom-Ambrosia-Di-Fiori-EDP.jpg",
@@ -2078,7 +2078,7 @@ namespace CosmeticsShop.Data.Extentions
                 new ProductImage()
                 {
                     Id = 17,
-                    Caption = "[New] Gucci Bloom Profumo Di Fiori EDP",
+                    Caption = "Gucci Bloom Profumo Di Fiori EDP",
                     DateCreated = DateTime.Now,
                     FileSize = 12345,
                     ImagePath = "17-Gucci-Bloom-Profumo-Di-Fiori-EDP.jpg",
@@ -2145,7 +2145,7 @@ namespace CosmeticsShop.Data.Extentions
                 new ProductImage()
                 {
                     Id = 23,
-                    Caption = "[NEW] Carolina Herrera 212 Heroes EDT",
+                    Caption = "Carolina Herrera 212 Heroes EDT",
                     DateCreated = DateTime.Now,
                     FileSize = 12345,
                     ImagePath = "23-[NEW]-Jimmy-Choo-I-Want-Choo-EDP.jpg",
@@ -2230,7 +2230,7 @@ namespace CosmeticsShop.Data.Extentions
                     IsDefault = true,
                     SortOrder = 30
                 },
-                //Sản Phẩm Mới
+                //Sản Phẩm được Yêu Thích
                 new ProductImage()
                 {
                     Id = 31,
@@ -2341,7 +2341,7 @@ namespace CosmeticsShop.Data.Extentions
                     IsDefault = true,
                     SortOrder = 40
                 },
-                //Sản phẩm được yêu thích
+                //Sản phẩm khuyến mại
                 new ProductImage()
                 {
                     Id = 41,
@@ -2452,7 +2452,7 @@ namespace CosmeticsShop.Data.Extentions
                     IsDefault = true,
                     SortOrder = 50
                 },
-                // Sản phẩm khuyến mại
+                // Bộ quà tặng cao cấp
                 new ProductImage()
                 {
                     Id = 51,
@@ -2563,7 +2563,7 @@ namespace CosmeticsShop.Data.Extentions
                     IsDefault = true,
                     SortOrder = 60
                 },
-                //Bộ quà tặng cao cấp
+                // Dolce&Gabbana
                 new ProductImage()
                 {
                     Id = 61,
