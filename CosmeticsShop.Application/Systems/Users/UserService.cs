@@ -221,21 +221,30 @@ namespace CosmeticsShop.Application.Systems.Users
             {
                 return new ApiErrorResult<bool>("User is not exists");
             }
-            var userRoles = await _userManager.GetRolesAsync(user);
+            var userRolesIds = await _context.UserRoles.Where(x => x.UserId == request.Id).Select(x=>x.RoleId).ToListAsync();
+            var roles = await _context.Roles.Where(x => userRolesIds.Contains(x.Id)).ToListAsync();
 
             if (request.Roles != null)
             {
                 foreach (var role in request.Roles)
                 {
-                    if (role.Selected && !userRoles.Contains(role.Name))
+                    if (role.Selected && !userRolesIds.Contains(role.Id))
                     {
-                        await _userManager.AddToRoleAsync(user, role.Name);
+                        _context.UserRoles.Add(new IdentityUserRole<Guid>
+                        {
+                            RoleId = role.Id,
+                            UserId = user.Id
+                        });
 
                     }
-                    else if (!role.Selected || userRoles.Contains(role.Name))
+                    else if (!role.Selected || userRolesIds.Contains(role.Id))
                     {
-                        await _userManager.RemoveFromRoleAsync(user, role.Name);
+                        var userRole = await _context.UserRoles.Where(x => x.RoleId == role.Id && x.UserId == user.Id).FirstOrDefaultAsync();
+                        if(userRole != null)
+                        _context.UserRoles.Remove(userRole);
                     }
+                    await _context.SaveChangesAsync();
+
 
                 }
             }
@@ -250,12 +259,17 @@ namespace CosmeticsShop.Application.Systems.Users
             user.Name = request.Name;
             user.PhoneNumber = request.PhoneNumber;
 
-            var result = await _userManager.UpdateAsync(user);
-            if (!result.Succeeded)
+            try
             {
-                return new ApiErrorResult<bool>("Update is not success!");
-
+                _context.Users.Attach(user);
+                await _context.SaveChangesAsync();
             }
+            catch (Exception)
+            {
+
+                return new ApiErrorResult<bool>("Update is not success!");
+            }
+           
             return new ApiSuccessResult<bool>();
 
         }

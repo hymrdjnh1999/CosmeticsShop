@@ -38,7 +38,7 @@ namespace Cosmetics.ViewModels.Systems.Clients
                 }
                 var phoneRegex = @"(84|0[3|5|7|8|9])+([0-9]{8})\b";
                 var reg = new Regex(phoneRegex);
-                if (!reg.IsMatch(request.PhoneNumber))
+                if (!reg.IsMatch(request?.PhoneNumber ?? ""))
                 {
                     context.AddFailure("Số điện thoại không đúng định dạng");
                 }

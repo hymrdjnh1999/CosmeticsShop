@@ -86,12 +86,12 @@ namespace Cosmetics.AdminApp.Controllers
                 var categoryAssignResult = await _productApiClient.CategoryAssign(categoryRequest);
                 if (categoryAssignResult.IsSuccess)
                 {
-                    TempData["result"] = "Create product successfully!";
+                    TempData["result"] = "Tạo sản phẩm thành công!";
                     return RedirectToAction("Index");
                 }
 
             }
-            ModelState.AddModelError("", "Create product failed!");
+            ModelState.AddModelError("", "Tạo sản phẩm thất bại!");
             request.CategoriesAssignRequest = categories;
             return View(request);
         }
@@ -189,7 +189,7 @@ namespace Cosmetics.AdminApp.Controllers
 
             }
             request.CategoriesAssignRequest = categoryAssignRequest.Categories;
-            ModelState.AddModelError("", "Update product failed!");
+            ModelState.AddModelError("", "Cập nhật thông tin sản phẩm thất bại!");
             return View(request);
         }
 

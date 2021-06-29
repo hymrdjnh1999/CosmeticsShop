@@ -67,7 +67,7 @@ namespace CosmeticsShop.Application.Catalog.Orders
                 Status = x.Status,
                 UserId = x.ClientId,
                 ShipPhoneNumber = x.ShipPhoneNumber,
-            }).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+            }).OrderByDescending(x => x.Id).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
 
 
             foreach (var item in orders)
@@ -113,7 +113,7 @@ namespace CosmeticsShop.Application.Catalog.Orders
                 ShipAddress = order.ShipAddress,
                 ShipEmail = order.ShipEmail,
                 Status = order.Status,
-                UserNameOrder = user.Name,
+                UserNameOrder = user?.Name ?? order.ShipName,
                 ShipPhoneNumber = order.ShipPhoneNumber,
                 ProductQuantity = await productQuery.CountAsync()
             };
