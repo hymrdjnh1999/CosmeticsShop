@@ -1,6 +1,7 @@
 ﻿using Cosmetics.ViewModels.Catalogs.Categories;
 using Cosmetics.ViewModels.Common;
 using CosmeticsShop.Api_Intergration;
+using CosmeticsShop.Data.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace Cosmetics.AdminApp.Controllers
             _config = configuration;
             _categoryApiClient = categoryApiClient;
         }
-        public async Task<IActionResult> Index(string keyword = "", int pageSize = 10, int pageIndex = 1)
+        public async Task<IActionResult> Index(string keyword = "", string status="", int pageSize = 10, int pageIndex = 1 )
         {
             var paginateRequest = new PaginateRequest()
             {
@@ -26,7 +27,7 @@ namespace Cosmetics.AdminApp.Controllers
                 PageSize = pageSize
             };
 
-            var categories = await _categoryApiClient.GetAllPaging(paginateRequest);
+            var categories = await _categoryApiClient.GetAllPaging(paginateRequest , status);
             ViewBag.Keyword = paginateRequest.Keyword;
 
             if (TempData["result"] != null)
@@ -108,17 +109,34 @@ namespace Cosmetics.AdminApp.Controllers
             else
             {
                 var result = await _categoryApiClient.Delete(id);
-
-                if (result)
+                if (category.Status == Status.Active)
                 {
-                    TempData["result"] = "Xóa danh mục thành công";
-                    RedirectToAction("Index");
+
+                    if (result)
+                    {
+                        TempData["result"] = "Xóa danh mục thành công";
+                        RedirectToAction("Index");
+                    }
+                    else
+                    {
+
+                        TempData["error"] = "Xóa danh mục thất bại";
+                        RedirectToAction("Index");
+                    }
                 }
                 else
                 {
+                    if (result)
+                    {
+                        TempData["result"] = "Kích hoạt danh mục thành công";
+                        RedirectToAction("Index");
+                    }
+                    else
+                    {
 
-                    TempData["error"] = "Xóa danh mục thất bại";
-                    RedirectToAction("Index");
+                        TempData["error"] = "kích hoạt danh mục thất bại";
+                        RedirectToAction("Index");
+                    }
                 }
 
             }

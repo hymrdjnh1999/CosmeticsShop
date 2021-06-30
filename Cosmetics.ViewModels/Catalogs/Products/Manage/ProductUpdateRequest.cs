@@ -38,6 +38,7 @@ namespace Cosmetics.ViewModels.Catalogs.Products.Manage
         public string[] SelectedId { get; set; }
         public string ImagePath { get; set; }
         public IFormFile ThumbnailImage { get; set; }
+        public Status status { get; set; }
 
     }
 }

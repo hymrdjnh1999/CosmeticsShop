@@ -94,6 +94,7 @@ namespace CosmeticsShop.Application.Catalog.Products
                 Details = request.Details ?? "",
                 ViewCount = 0,
                 DateCreated = DateTime.Now,
+                status = Status.Active
             };
 
 
@@ -141,17 +142,25 @@ namespace CosmeticsShop.Application.Catalog.Products
                 return null;
             }
 
-            var images = await _context.ProductImages.Where(x => x.IsDefault == true && x.ProductId == productId).ToListAsync();
+            /*var images = await _context.ProductImages.Where(x => x.IsDefault == true && x.ProductId == productId).ToListAsync();
 
             foreach (var item in images)
             {
                 await _storageService.DeleteFileAsync(item.ImagePath);
+            }*/
+            if (product.status == Status.Active)
+            {
+                product.status = Status.InActive;
             }
-            _context.Products.Remove(product);
+            else
+            {
+                product.status = Status.Active;
+            }
+            _context.Products.Update(product);
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<PageResponse<ProductViewModel>> GetAll(GetProductRequest request)
+        public async Task<PageResponse<ProductViewModel>> GetAll(GetProductRequest request , string status)
         {
             int PageIndex = request.PageIndex;
             int PageSize = request.PageSize;
@@ -168,6 +177,18 @@ namespace CosmeticsShop.Application.Catalog.Products
                     result = result.Where(x => x.p.Name.Contains(request.Keyword));
 
                 }
+                switch (status)
+                {
+                    case "InActive":
+                        result = result.Where(x => x.p.status == Status.InActive);
+                        break;
+                    case "Active":
+                        result = result.Where(x => x.p.status == Status.Active);
+                        break;
+                    default:
+                        /*result = result.Where(x => x.p.status == Status.Active);*/
+                        break;
+                }
                 totalRecords = await result.CountAsync();
                 var products = await result.Skip((PageIndex - 1) * PageSize).Take(PageSize).Select(x => new ProductViewModel()
                 {
@@ -181,6 +202,7 @@ namespace CosmeticsShop.Application.Catalog.Products
                     Details = x.p.Details,
                     OriginalCountry = x.p.OriginalCountry,
                     Stock = x.p.Stock,
+                    status = x.p.status,
                     ViewCount = x.p.ViewCount,
                     ImagePath = x.pi.ImagePath
                 }).ToListAsync();
@@ -205,7 +227,18 @@ namespace CosmeticsShop.Application.Catalog.Products
                         select new { p, pic, c, pi };
 
             query = query.Where(p => p.pic.CategoryId == request.CategoryId);
-
+            switch (status)
+            {
+                case "InActive":
+                    query = query.Where(x => x.p.status == Status.InActive);
+                    break;
+                case "Active":
+                    query = query.Where(x => x.p.status == Status.Active);
+                    break;
+                default:
+                    /*query = query.Where(x => x.p.status == Status.Active);*/
+                    break;
+            }
             if (request.Keyword != null)
             {
                 query = query.Where(x => x.p.Name.Contains(request.Keyword));
@@ -228,7 +261,8 @@ namespace CosmeticsShop.Application.Catalog.Products
                     OriginalCountry = x.p.OriginalCountry,
                     Stock = x.p.Stock,
                     ViewCount = x.p.ViewCount,
-                    ImagePath = x.pi.ImagePath
+                    ImagePath = x.pi.ImagePath,
+                    status = x.p.status
                 })
                 .ToListAsync();
 
@@ -273,8 +307,8 @@ namespace CosmeticsShop.Application.Catalog.Products
                 Stock = product.Stock,
                 ViewCount = product.ViewCount,
                 Categories = categoryIds,
-                CategoryList = categories
-
+                CategoryList = categories,
+                status = product.status
             };
             return productViewModel;
         }

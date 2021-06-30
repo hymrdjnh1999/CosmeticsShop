@@ -44,7 +44,15 @@ namespace CosmeticsShop.Application.Catalog.Categories
             {
                 return false;
             }
-            _context.Categories.Remove(category);
+            if(category.Status == Status.Active)
+            {
+            category.Status = Status.InActive;
+            }
+            else
+            {
+                category.Status = Status.Active;
+            }
+            _context.Categories.Update(category);
 
             await _context.SaveChangesAsync();
             return true;
@@ -69,6 +77,7 @@ namespace CosmeticsShop.Application.Catalog.Categories
         public async Task<List<CategoryViewModel>> GetAll()
         {
             var query = from c in _context.Categories select c;
+            query = query.Where(x => x.Status == Status.Active);
             var categories = await query.Select(x => new CategoryViewModel()
             {
                 Id = x.Id,
@@ -82,7 +91,7 @@ namespace CosmeticsShop.Application.Catalog.Categories
             return categories;
         }
 
-        public async Task<PageResponse<CategoryViewModel>> GetAllPaging(PaginateRequest request)
+        public async Task<PageResponse<CategoryViewModel>> GetAllPaging(PaginateRequest request , string status)
         {
             int PageIndex = request.PageIndex;
             int PageSize = request.PageSize;
@@ -96,7 +105,18 @@ namespace CosmeticsShop.Application.Catalog.Categories
                 query = query.Where(x => x.Name.Contains(request.Keyword));
 
             }
-
+            switch (status)
+            {
+                case "InActive":
+                    query = query.Where(x => x.Status == Status.InActive);
+                    break;
+                case "Active":
+                    query = query.Where(x => x.Status == Status.Active);
+                    break;
+                default:
+                    query = query.Where(x => x.Status == Status.Active);
+                    break;
+            }
             totalRecords = await query.CountAsync();
 
             var data = await query.Skip((PageIndex - 1) * PageSize)
@@ -148,6 +168,7 @@ namespace CosmeticsShop.Application.Catalog.Categories
                 var query = from pc in pic
                             join p in _context.Products on pc.ProductId equals p.Id
                             select p;
+                query = query.Where(x => x.status == Status.Active);
                 var productsInCategory = query
                     .Select(p => new HomeProductViewModel()
                     {

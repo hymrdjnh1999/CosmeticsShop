@@ -193,10 +193,10 @@ namespace CosmeticsShop.Api_Intergration
 
 
 
-        public async Task<PageResponse<ProductViewModel>> GetPaging(GetProductRequest request)
+        public async Task<PageResponse<ProductViewModel>> GetPaging(GetProductRequest request, string status )
         {
             var requestUrl = $"/api/products/paging?pageIndex=" +
-               $"{request.PageIndex}&pageSize={request.PageSize}&keyword={request.Keyword}&categoryId={request.CategoryId}";
+               $"{request.PageIndex}&pageSize={request.PageSize}&keyword={request.Keyword}&categoryId={request.CategoryId}&Status={status}";
 
             var data = await GetAsync<PageResponse<ProductViewModel>>(requestUrl);
 

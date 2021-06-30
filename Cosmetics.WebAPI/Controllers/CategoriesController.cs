@@ -27,9 +27,9 @@ namespace Cosmetics.WebAPI.Controllers
         }
 
         [HttpGet("paging")]
-        public async Task<IActionResult> GetAllPaging([FromQuery] PaginateRequest request)
+        public async Task<IActionResult> GetAllPaging([FromQuery] PaginateRequest request , string status)
         {
-            var categories = await _categoryService.GetAllPaging(request);
+            var categories = await _categoryService.GetAllPaging(request , status);
             return Ok(categories);
         }
 

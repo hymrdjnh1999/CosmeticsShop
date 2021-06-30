@@ -25,6 +25,13 @@
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
+                <div class="form-group d-flex flex-column mb-0 mt-3">
+                    <span class="m-1">Lọc theo trạng thái danh mục :</span>
+                    <div class="order_button d-flex ">
+                        <button name="status" value="Active" class="btn btn-outline-secondary mr-2" style="min-width:140px">Đang hoạt động</button>
+                        <button name="status" value="InActive" class="btn btn-outline-secondary mr-1 ml-1" style="min-width:140px">Dừng hoạt động</button>
+                    </div>
+                </div>
             </form>
 
             <div>
@@ -73,10 +80,18 @@
                                     @Html.DisplayFor(modelItem => item.Id)
                                 </td>
                                 <td style="flex:1">
-
-                                    <a href="#" onclick="editCategory(@item.Id)">
-                                        @item.Name
-                                    </a>
+                                    @if (item.Status != Status.InActive)
+                                    {
+                                        <a href="#" onclick="editCategory(@item.Id)">
+                                            @item.Name
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <span class="disabled">
+                                            @item.Name
+                                        </span>
+                                    }
                                 </td>
                                 <td style="flex:0.3">
 
@@ -90,15 +105,27 @@
                                     }
                                 </td>
                                 <td class="d-flex align-items-center justify-content-center" style="flex: 0.4">
-                                    <span class="actions-btn">
-                                        <span id="editCategoryBtn" onclick="editCategory(@item.Id)" class="btn btn-outline-info">Sửa</span>
-                                    </span>
+                                    @if (item.Status != Status.InActive)
+                                    {
+                                        <span class="actions-btn">
+                                            <span id="editCategoryBtn" onclick="editCategory(@item.Id)" class="btn btn-outline-info">Sửa</span>
+                                        </span>
 
-                                    <span class="actions-btn ml-2">
-                                        <button onclick="getValue(@item.Id)" data-target="#deleteCategoryModal" data-toggle="modal" class="btn btn-outline-danger">
-                                            Xóa
-                                        </button>
-                                    </span>
+                                        <span class="actions-btn ml-2">
+                                            <button onclick="getValue(@item.Id)" data-target="#deleteCategoryModal" data-toggle="modal" class="btn btn-outline-danger">
+                                                Xóa
+                                            </button>
+                                        </span>
+
+                                    }
+                                    else
+                                    {
+                                        <span class="actions-btn ml-2">
+                                            <button onclick="getValue(@item.Id)" data-target="#activeCategoryModal" data-toggle="modal" class="btn btn-outline-danger">
+                                                Kích hoạt
+                                            </button>
+                                        </span>
+                                    }
                                 </td>
                             </tr>
                         }
@@ -107,26 +134,26 @@
             </div>
 
             @await Component.InvokeAsync("Pager", Model)
-        <div class="modal fade" id="changeIOSCategoryModal" tabindex="-1" role="dialog" aria-labelledby="changeIOSCategoryTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="deleteCategoryTitle">Thay đổi hiện trạng danh mục </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Bạn có chắc chắn muốn thay đổi hiện trạng danh mục này?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                        <button type="submit" class="btn btn-success" data-dismiss="modal" id="change_submit_btn">Sửa</button>
+            <div class="modal fade" id="changeIOSCategoryModal" tabindex="-1" role="dialog" aria-labelledby="changeIOSCategoryTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteCategoryTitle">Thay đổi hiện trạng danh mục </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Bạn có chắc chắn muốn thay đổi hiện trạng danh mục này?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                            <button type="submit" class="btn btn-success" data-dismiss="modal" id="change_submit_btn">Sửa</button>
 
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
             <!-- Button trigger modal -->
             <!-- Modal -->
@@ -140,7 +167,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            Bạn có chắc chắn muốn xóa sản danh mục này?
+                            Bạn có chắc chắn muốn xóa danh mục này?
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
@@ -150,6 +177,28 @@
                     </div>
                 </div>
             </div>
+            @*Modal*@
+            <div class="modal fade" id="activeCategoryModal" tabindex="-1" role="dialog" aria-labelledby="activeCategoryTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="activeCategoryTitle">Kích hoạt danh mục</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Bạn có chắc chắn muốn kích hoạt danh mục này?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                            <button type="submit" class="btn btn-danger" data-dismiss="modal" id="active_submit_btn">Kích hoạt</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*End*@
 
         </div>
     </div>
@@ -166,6 +215,25 @@
         var delete_id = -1;
         const getValue = (id) => delete_id = id;
         $('#delete_submit_btn').on('click', () => {
+            $.ajax(
+                {
+                    type: "delete",
+                    url: `category/delete/`,
+                    dataType: "text",
+                    data: { id: delete_id },
+                    async: true,
+                    success: function (response) {
+                        location.reload();
+                    },
+                    failure: function (response) {
+                        alert('false')
+                    },
+                    error: function (response) {
+                        alert('error')
+                    }
+                });
+        });
+        $('#active_submit_btn').on('click', () => {
             $.ajax(
                 {
                     type: "delete",

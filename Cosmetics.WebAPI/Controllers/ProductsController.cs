@@ -25,11 +25,11 @@ namespace Cosmetics.WebAPI.Controllers
         }
 
         [HttpGet("paging")]
-        public async Task<IActionResult> Get([FromQuery] GetProductRequest request)
+        public async Task<IActionResult> Get([FromQuery] GetProductRequest request , string status)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var products = await _productServices.GetAll(request);
+            var products = await _productServices.GetAll(request , status);
             return Ok(products);
         }
 

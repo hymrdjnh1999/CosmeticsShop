@@ -35,7 +35,7 @@ namespace CosmeticsShop.Application.Catalog.Orders
                     return query;
             }
         }
-        public async Task<PageResponse<OrderViewModel>> GetAll(GetOrderRequest request)
+        public async Task<PageResponse<OrderViewModel>> GetAll(GetOrderRequest request, string status)
         {
 
             var query = from o in _context.Orders select o;
@@ -47,10 +47,36 @@ namespace CosmeticsShop.Application.Catalog.Orders
                 x.Id.ToString() == request.KeyWord ||
                 x.ShipPhoneNumber.Contains(request.KeyWord) || x.ShipName.Contains(request.KeyWord));
             }
+
             if (category != null && request.KeyWord != null)
             {
                 query = GetQueryOrders(category, query, request.KeyWord);
             }
+
+            if (!String.IsNullOrEmpty(request.DateStart) && !String.IsNullOrEmpty(request.DateEnd))
+            {
+                query = query.Where(x => x.OrderDate >= Convert.ToDateTime(request.DateStart) && x.OrderDate <= Convert.ToDateTime(request.DateEnd));
+            }
+            
+
+            switch (status)
+            {
+                case "Success":
+                    query = query.Where(x => x.Status == OrderStatus.Success);
+                    break;
+                case "Canceled":
+                    query = query.Where(x => x.Status == OrderStatus.Canceled);
+                    break;
+                case "InProgess":
+                    query = query.Where(x => x.Status == OrderStatus.InProgress);
+                    break;
+                case "Shipping":
+                    query = query.Where(x => x.Status == OrderStatus.Shipping);
+                    break;
+                default:
+                    break;
+            }
+            query = query.OrderByDescending(x => x.Id);
 
             var pageIndex = request.PageIndex;
             var pageSize = request.PageSize;
@@ -67,7 +93,7 @@ namespace CosmeticsShop.Application.Catalog.Orders
                 Status = x.Status,
                 UserId = x.ClientId,
                 ShipPhoneNumber = x.ShipPhoneNumber,
-            }).OrderByDescending(x => x.Id).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+            }).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
 
 
             foreach (var item in orders)

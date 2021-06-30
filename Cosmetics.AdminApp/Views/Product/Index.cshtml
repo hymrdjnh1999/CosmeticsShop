@@ -1,7 +1,7 @@
 ﻿@using Cosmetics.ViewModels.Common;
 @model PageResponse<Cosmetics.ViewModels.Catalogs.Products.ProductViewModel>
 @using System.Security.Claims;
-
+@using CosmeticsShop.Data.Enums;
 
 @{
     ViewData["Title"] = "Index";
@@ -38,6 +38,14 @@
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
+                <div class="form-group d-flex flex-column mb-0 mt-3">
+                    <span class="m-1">Lọc theo trạng thái sản phẩm :</span>
+                    <div class="order_button d-flex ">
+                        <button asp-action="Index" class="btn btn-outline-secondary mr-2" style="min-width:140px">Tất cả</button>
+                        <button name="status" value="Active" class="btn btn-outline-secondary mr-1 ml-1" style="min-width:140px">Đang hoạt động</button>
+                        <button name="status" value="InActive" class="btn btn-outline-secondary mr-1 ml-1" style="min-width:140px">Dừng hoạt động</button>
+                    </div>
+                </div>
             </form>
 
             <div class="my-2">
@@ -66,7 +74,7 @@
                         <tr class="d-flex list-product-dark text-white">
 
                             <th class="tb-col" style="flex: 1" scope="col">Ảnh</th>
-                            <th class="tb-col" style="flex: 1.8" scope="col">
+                            <th class="tb-col" style="flex: 1.7" scope="col">
                                 Tên
                             </th>
                             <th class="tb-col" style="flex: 0.7" scope="col">
@@ -81,7 +89,7 @@
                             <th class="tb-col" style="flex: 0.7" scope="col">
                                 Xuất Xứ
                             </th>
-                            <th class="tb-col" style="flex: 1.2" scope="col">
+                            <th class="tb-col" style="flex: 1.3" scope="col">
                                 Tác Vụ
                             </th>
                         </tr>
@@ -96,7 +104,7 @@
                                     <img width="100%" height="80px"
                                          src="@Configuration["BaseImageAddress"]@item.ImagePath" alt="@item.Name" />
                                 </td>
-                                <td class="d-flex align-items-center justify-content-center text-center pro-item " style="flex: 1.8">
+                                <td class="d-flex align-items-center justify-content-center text-center pro-item " style="flex: 1.7">
                                     @Html.ActionLink(item.Name, "Update", new { id = item.Id })
                                 </td>
                                 <td class="d-flex align-items-center justify-content-center pro-item text-overflow" style="flex: 0.7">
@@ -111,19 +119,39 @@
                                 <td class="d-flex align-items-center justify-content-center pro-item" style="flex: 0.7">
                                     @Html.DisplayFor(modelItem => item.OriginalCountry)
                                 </td>
-                                <td class="d-flex align-items-center justify-content-around pro-item" style="flex: 1.2">
-                                    @*@Html.ActionLink("Edit", "Update", new { id = item.Id })*@
-                                    <a class="d-block btn btn-outline-info px-2" href="@Url.Action("Update","Product")/@item.Id">
-                                        Sửa
-                                    </a>
-                                    <a class="d-block btn btn-outline-primary px-2" href="Product/@item.Id/images">
-                                        Ảnh
-                                    </a>
-                                    @if (isManager)
+                                <td class="d-flex align-items-center justify-content-around pro-item" style="flex: 1.3">
+                                    @if (item.status != Status.InActive)
                                     {
-                                        <button onclick="getValue(@item.Id)" data-target="#exampleModalCenter" data-toggle="modal" class="d-block btn btn-outline-danger px-2">
-                                        Xóa
-                                        </button>
+                                        @*@Html.ActionLink("Edit", "Update", new { id = item.Id })*@
+                                        <a class="d-block btn btn-outline-info px-2" href="@Url.Action("Update","Product")/@item.Id">
+                                            Sửa
+                                        </a>
+                                        <a class="d-block btn btn-outline-primary px-2" href="Product/@item.Id/images">
+                                            Ảnh
+                                        </a>
+                                        @if (isManager)
+                                        {
+                                            <button onclick="getValue(@item.Id)" data-target="#exampleModalCenter" data-toggle="modal" class="d-block btn btn-outline-danger px-2">
+                                                Xóa
+                                            </button>
+                                        }
+
+
+                                    }
+                                    else
+                                    {
+                                        <a class="d-block btn btn-outline-info px-2 py-3 mr-1" href="@Url.Action("Update","Product")/@item.Id">
+                                            Sửa
+                                        </a>
+                                        <a class="d-block btn btn-outline-primary px-2 py-3 mr-1" href="Product/@item.Id/images">
+                                            Ảnh
+                                        </a>
+                                        @if (isManager)
+                                        {
+                                            <button onclick="getValue(@item.Id)" data-target="#activeModalCenter" data-toggle="modal" class="d-block btn btn-outline-danger px-2 py-1">
+                                                Kích hoạt
+                                            </button>
+                                        }
                                     }
                                 </td>
                             </tr>
@@ -155,6 +183,27 @@
                     </div>
                 </div>
             </div>
+            @*Modal Kích hoạt*@
+            <div class="modal fade" id="activeModalCenter" tabindex="-1" role="dialog" aria-labelledby="activeModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="activeModalCenterTitle">kích hoạt sản phẩm</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Bạn có chắc chắn muốn kích hoạt sản sản phẩm này?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                            <button type="submit" class="btn btn-danger" data-dismiss="modal" id="active_submit_btn">Kích hoạt</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -166,6 +215,29 @@
         var delete_id = -1;
         const getValue = (id) => delete_id = id;
         $('#delete_submit_btn').on('click', () => {
+
+            $.ajax(
+                {
+                    type: "POST",
+                    url: "Product/Delete",
+                    dataType: "text",
+                    data: { id: delete_id },
+                    async: true,
+                    success: function (response) {
+                        location.reload();
+
+                    },
+                    failure: function (response) {
+                        alert('false')
+
+                    },
+                    error: function (response) {
+                        alert('error')
+
+                    }
+                });
+        });
+        $('#active_submit_btn').on('click', () => {
             
             $.ajax(
                 {

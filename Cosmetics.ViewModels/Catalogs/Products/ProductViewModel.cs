@@ -26,7 +26,7 @@ namespace Cosmetics.ViewModels.Catalogs.Products
         public DateTime DateCreated { get; set; }
         public int Stock { get; set; }
         [DisplayName("View count")]
-
+        public Status status { get; set; }
         public int ViewCount { get; set; }
         [DisplayName("Original country")]
         public string OriginalCountry { get; set; }
