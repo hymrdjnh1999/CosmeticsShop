@@ -1,4 +1,5 @@
-﻿using Cosmetics.ViewModels.Common;
+﻿using Cosmetics.ViewModels.Catalogs.Orders;
+using Cosmetics.ViewModels.Common;
 using Cosmetics.ViewModels.Systems.Clients;
 using CosmeticsShop.Application.Common;
 using CosmeticsShop.Data.Entities;
@@ -33,6 +34,45 @@ namespace CosmeticsShop.Application.Systems.Clients
             _storageService = storageService;
         }
 
+        public async Task<ClientViewModel> GetClientById(Guid id)
+        {
+
+            var client = await _context.Clients.Where(x => x.Id == id).FirstOrDefaultAsync();
+
+            var clientViewModel = new ClientViewModel()
+            {
+                Id = id,
+                Name = client.Name,
+                Email = client.Email,
+                Address = client.Address,
+                Dob = client.Dob,
+                PhoneNumber = client.PhoneNumber
+            };
+            return clientViewModel;
+        }
+
+        public async Task<List<OrderViewModel>> GetOrderByClient(Guid id)
+        {
+            var query = from c in _context.Clients
+                        where c.Id == id
+                        join o in _context.Orders on c.Id equals o.ClientId
+                        select new { o };
+
+            query = query.OrderByDescending(x => x.o.Id);
+            var orders = await query.Select(x => new OrderViewModel()
+            {
+                Id = x.o.Id,
+                OrderDate = x.o.OrderDate,
+                Price = x.o.Price,
+                ShipEmail = x.o.ShipEmail,
+                ShipAddress = x.o.ShipAddress,
+                ShipName = x.o.ShipName,
+                ShipPhoneNumber = x.o.ShipPhoneNumber,
+                Status = x.o.Status,
+            }).ToListAsync();
+
+            return orders;
+        }
         public async Task<ApiResult<PageResponse<ClientViewModel>>> GetClientPaging(GetClientPagingRequest request)
         {
             var query = from c in _context.Clients select c;
@@ -41,7 +81,7 @@ namespace CosmeticsShop.Application.Systems.Clients
             {
                 query = query.Where(x => x.Name.Contains(request.Keyword));
             }
-           
+
             var pageIndex = request.PageIndex;
             var pageSize = request.PageSize;
             var count = await query.CountAsync();
@@ -58,9 +98,9 @@ namespace CosmeticsShop.Application.Systems.Clients
             foreach (var item in clients)
             {
                 var orders = from c in clients
-                               join o in _context.Orders on c.Id equals o.ClientId
-                               where c.Id == item.Id
-                               select new { c,o };
+                             join o in _context.Orders on c.Id equals o.ClientId
+                             where c.Id == item.Id
+                             select new { c, o };
                 var QuantityOfOrders = orders.Select(x => x.o).ToList();
                 item.OrderQuanttity = QuantityOfOrders.Count();
             }
@@ -97,6 +137,8 @@ namespace CosmeticsShop.Application.Systems.Clients
             };
             return new ApiSuccessResult<ClientUpdateViewModel>(model);
         }
+
+
 
         public async Task<ApiResult<string>> Login(ClientLoginRequest request)
         {
