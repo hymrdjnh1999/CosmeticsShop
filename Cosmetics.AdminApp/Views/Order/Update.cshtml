@@ -8,13 +8,13 @@
 <div class="container-fluid">
     <h1 class="mt-4">Đơn hàng chi tiết</h1>
     @if (Model.Status != OrderStatus.Success)
-        { 
+    {
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Order">Danh sách đơn hàng</a></li>
             <li class="breadcrumb-item active">Chi tiết đơn hàng</li>
         </ol>
-            }
-            else { }
+    }
+    else { }
     <div class="card mb-4">
         <div class="card-header d-flex justify-content-between">
             <a asp-action="Index" asp-controller="Order" id="backbtn" class="btn btn-outline-dark d-none"><i class="fas fa-chevron-left back-list-product mr-2"></i>Về danh sách hóa đơn</a>
@@ -47,8 +47,8 @@
                                     <span class="">SĐT : 0988886296</span>
                                 </div>
                             </div>
-                    </div>
                         </div>
+                    </div>
                     <div class="row">
                         <div class="col-12 text-center text-capitalize mb-5 mt-3 font-weight-bold display-4">
                             Hóa đơn bán hàng
@@ -102,13 +102,13 @@
                                                             <option selected value="@OrderStatus.InProgress">Đang xử lý</option>
                                                             <option value="@OrderStatus.Shipping">Đang giao hàng</option>
                                                             <option value="@OrderStatus.Success">Thành công</option>
-                                                            <option onclick="openModal('order-modal','order-cancel-submit',@Model.Id)" value="@OrderStatus.Canceled">Hủy đơn</option>
+                                                            <option class="modal" onchange="openModal('order-modal','order-cancel-submit',@Model.Id)" value="@OrderStatus.Canceled">Hủy đơn</option>
                                                         }
                                                         @if (Model.Status == OrderStatus.Shipping)
                                                         {
                                                             <option selected value="@OrderStatus.Shipping">Đang giao hàng</option>
                                                             <option value="@OrderStatus.Success">Thành công</option>
-                                                            <option onclick="openModal('order-modal','order-cancel-submit',@Model.Id)" value="@OrderStatus.Canceled">Hủy đơn</option>
+                                                            <option class="modal" onchange="openModal('order-modal','order-cancel-submit',@Model.Id)" value="@OrderStatus.Canceled">Hủy đơn</option>
                                                         }
 
                                                     </select>
@@ -167,7 +167,7 @@
                                             <td>
                                                 @item.Quantity
                                             </td>
-                                            <td>
+                                            <td class="priceFormat">
                                                 @item.Price VNĐ
                                             </td>
                                         </tr>
@@ -177,9 +177,9 @@
                         </div>
 
                     </div>
-                    <div class="form-group col-12 d-flex justify-content-around" >
+                    <div class="form-group col-12 d-flex justify-content-around">
                         <h4 asp-for="Price" class="control-label col-9 font-weight-bold">Tổng Giá Trị : </h4>
-                        <h4 class="col-3 text-center font-weight-bold">@Model.Price VNĐ</h4>
+                        <h4 class="col-3 text-center font-weight-bold priceFormat">@Model.Price VNĐ</h4>
                     </div>
                 </div>
                 <hr />
@@ -213,13 +213,30 @@
 
 @section Scripts{
     <script>
-        ()=> {
+        () => {
             const optionElements = document.querySelectorAll('#orderStatus option');
             optionElements.forEach(item => item.setAttribute('style', 'padding: 6px 12px;display:block;'));
         }
     </script>
+
+    
     <script>
 
+        const makeFormatPrice = (element) => {
+            const price = parseInt(element.textContent);
+            const newPrice = price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })
+            element.textContent = newPrice
+        }
+
+        const prices = document.querySelectorAll('.priceFormat')
+        if (prices) {
+            prices.forEach(item => {
+                makeFormatPrice(item)
+            })
+        }
+        $('.orderStatus').change(function () {
+            //đoạn mã sẽ được thực thi khi sự kiện change() xảy ra
+        })
         const openModal = (modalId, submitId, data) => {
             modal = document.querySelector(`#${modalId}`);
             if (modal) {
