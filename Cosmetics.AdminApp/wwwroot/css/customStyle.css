@@ -311,3 +311,7 @@ li.search-choice a.search-choice-close {
     background-color: #fff;
     padding: 11px;
 }
+div.card-header.d-flex.justify-content-between:hover a#backbtn{
+    display:block !important;
+    transition:0.8s;
+}

@@ -7,15 +7,18 @@
 
 <div class="container-fluid">
     <h1 class="mt-4">Đơn hàng chi tiết</h1>
-    <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Order">Danh sách đơn hàng</a></li>
-        <li class="breadcrumb-item active">Chi tiết đơn hàng</li>
-    </ol>
-
+    @if (Model.Status != OrderStatus.Success)
+        { 
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Order">Danh sách đơn hàng</a></li>
+            <li class="breadcrumb-item active">Chi tiết đơn hàng</li>
+        </ol>
+            }
+            else { }
     <div class="card mb-4">
         <div class="card-header d-flex justify-content-between">
-            <a asp-action="Index" asp-controller="Order" class="btn btn-outline-dark"><i class="fas fa-chevron-left back-list-product mr-2"></i>Về danh sách hóa đơn</a>
-            @if (Model.Status != OrderStatus.Success)
+            <a asp-action="Index" asp-controller="Order" id="backbtn" class="btn btn-outline-dark d-none"><i class="fas fa-chevron-left back-list-product mr-2"></i>Về danh sách hóa đơn</a>
+            @if (Model.Status != OrderStatus.Success && Model.Status != OrderStatus.Canceled)
             {
                 <div>
                     <label class="m-0 btn btn-outline-dark d-flex align-items-center justify-content-center" for="orderUpdateStatus">
@@ -25,136 +28,183 @@
                 </div>
             }
         </div>
+
         <div class="card-body">
-            <form asp-action="Update" class="row col-12">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class=" container">
 
-                <div class="form-group col-6">
-                    <label asp-for="OrderDate" class="control-label"></label>
-                    <span class="border border-info rounded d-flex" style="padding:6px 12px">@Model.OrderDate</span>
-                    <span asp-validation-for="OrderDate" class="text-danger"></span>
-                </div>
-                <div class="form-group col-6">
-                    <label asp-for="Status" class="control-label"></label>
-                    @if (Model.Status != OrderStatus.Canceled)
-                    {
-                        @if (Model.Status != OrderStatus.Success)
-                        {
-                            <div>
-                                <select asp-for="Status" id="orderStatus" style="padding:6px 12px">
-                                    @if (Model.Status == OrderStatus.InProgress)
-                                    {
-                                        <option selected value="@OrderStatus.InProgress">Đang xử lý</option>
-                                        <option value="@OrderStatus.Shipping">Đang giao hàng</option>
-                                        <option value="@OrderStatus.Success">Thành công</option>
-                                        <option value="@OrderStatus.Canceled">Thành công</option>
-                                    }
-                                    @if (Model.Status == OrderStatus.Shipping)
-                                    {
-                                        <option selected value="@OrderStatus.Shipping">Đang giao hàng</option>
-                                        <option value="@OrderStatus.Success">Thành công</option>
-                                        <option value="@OrderStatus.Canceled">Thành công</option>
-                                    }
+                <div class="header">
+                    <div class="row ">
+                        <div class="col-6 d-flex justify-content-center">
+                            <img src="/css/img/logoproject.png" alt="cosmetics">
+                        </div>
+                        <div class="col-6 d-flex justify-content-center align-items-center">
+                            <div class="">
+                                <div class="form-group">
+                                    <span class="">Địa Chỉ : Hà Nội</span>
+                                </div>
 
-                                </select>
-                                
+                                <div class="form-group">
+                                    <span class="">SĐT : 0988886296</span>
+                                </div>
                             </div>
-                        }
-                        else
-                        {
-                            <span class="border border-info rounded d-flex" style="padding:6px 12px">Đã hoàn thành</span>
-                        }
-                    }
-                    else
-                    {
-                        <span class="border border-info rounded d-flex" style="padding:6px 12px">Đã hủy</span>
-                    }
-                    <span asp-validation-for="Status" class="text-danger"></span>
-                </div>
-                <div class="form-group col-6">
-                    <label class="control-label">Sản phẩm</label>
-                    <table class="table-bordered">
-                        <thead>
-                            <tr>
-                                <td style="width:65%">
-                                    Tên
-                                </td>
-                                <td style="width:15%">
-                                    Số lượng
-                                </td>
-                                <td class="width:20%">
-                                    Đơn giá
-                                </td>
-                            </tr>
-                        </thead>
-                        <tbody>
+                    </div>
+                        </div>
+                    <div class="row">
+                        <div class="col-12 text-center text-capitalize mb-5 mt-3 font-weight-bold display-4">
+                            Hóa đơn bán hàng
+                        </div>
+                    </div>
+                    <div class="row col-12 d-flex justify-content-between">
+                        <div class="col-6 d-flex justify-content-center">
+                            <div class="">
+                                <div class="form-group">
+                                    <span class="">Ngày Tạo : @Model.OrderDate</span>
+                                    <span asp-validation-for="OrderDate" class="text-danger"></span>
+                                </div>
 
-                            @foreach (var item in Model.OrderProducts)
-                            {
-                                <tr>
-                                    <td>
-                                        @item.Name
-                                    </td>
-                                    <td>
-                                        @item.Quantity
-                                    </td>
-                                    <td>
-                                        @item.Price VND
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
+                                <div class="form-group">
+                                    <span class="">Người Đặt : @Model.UserNameOrder</span>
+                                    <span asp-validation-for="UserNameOrder" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <span class="">Người Nhận : @Model.ShipName</span>
+                                    <span asp-validation-for="ShipName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <span class="">Địa Chỉ : @Model.ShipAddress</span>
+                                    <span asp-validation-for="ShipAddress" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 d-flex justify-content-center">
+                            <div class="">
+                                <div class="form-group ">
+                                    <span class="">Hóa Đơn Số : @Model.Id</span>
+                                    <span asp-validation-for="Id" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <span class="">Người Nhận : @Model.ShipName</span>
+                                    <span asp-validation-for="ShipName" class="text-danger"></span>
+                                </div>
+                                <form asp-action="Update">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                    </table>
-                </div>
-                <div class="form-group col-6">
-                    <label asp-for="ProductQuantity" class="control-label"></label>
-                    <span class="border border-info rounded d-flex" style="padding:6px 12px">@Model.ProductQuantity</span>
-                    <span asp-validation-for="ProductQuantity" class="text-danger"></span>
-                </div>
-                <div class="form-group col-6">
-                    <label asp-for="Price" class="control-label"></label>
-                    <span class="border border-info rounded d-flex" style="padding:6px 12px">@Model.Price</span>
-                    <span asp-validation-for="Price" class="text-danger"></span>
-                </div>
-                <div class="form-group col-6">
-                    <label asp-for="UserNameOrder" class="control-label"></label>
-                    <span class="border border-info rounded d-flex" style="padding:6px 12px">@Model.UserNameOrder</span>
-                    <span asp-validation-for="UserId" class="text-danger"></span>
-                </div>
-                <div class="form-group col-6">
-                    <label asp-for="ShipName" class="control-label"></label>
-                    <span class="border border-info rounded d-flex" style="padding:6px 12px">@Model.ShipName</span>
-                    <span asp-validation-for="ShipName" class="text-danger"></span>
-                </div>
+                                    <div class="form-group ">
+                                        <label asp-for="Status" class="control-label"> Trạng Thái : </label>
+                                        @if (Model.Status != OrderStatus.Canceled)
+                                        {
+                                            @if (Model.Status != OrderStatus.Success)
+                                            {
+                                                <div>
+                                                    <select asp-for="Status" id="orderStatus" style="padding:6px 12px">
+                                                        @if (Model.Status == OrderStatus.InProgress)
+                                                        {
+                                                            <option selected value="@OrderStatus.InProgress">Đang xử lý</option>
+                                                            <option value="@OrderStatus.Shipping">Đang giao hàng</option>
+                                                            <option value="@OrderStatus.Success">Thành công</option>
+                                                            <option onclick="openModal('order-modal','order-cancel-submit',@Model.Id)" value="@OrderStatus.Canceled">Hủy đơn</option>
+                                                        }
+                                                        @if (Model.Status == OrderStatus.Shipping)
+                                                        {
+                                                            <option selected value="@OrderStatus.Shipping">Đang giao hàng</option>
+                                                            <option value="@OrderStatus.Success">Thành công</option>
+                                                            <option onclick="openModal('order-modal','order-cancel-submit',@Model.Id)" value="@OrderStatus.Canceled">Hủy đơn</option>
+                                                        }
 
-                <div class="form-group col-6">
-                    <label asp-for="ShipEmail" class="control-label"></label>
-                    <span class="border border-info rounded d-flex" style="padding:6px 12px">@Model.ShipEmail</span>
-                    <span asp-validation-for="ShipEmail" class="text-danger"></span>
-                </div>
-                <div class="form-group col-6">
-                    <label asp-for="ShipPhoneNumber" class="control-label"></label>
-                    <span class="border border-info rounded d-flex" style="padding:6px 12px">@Model.ShipPhoneNumber</span>
-                    <span asp-validation-for="ShipPhoneNumber" class="text-danger"></span>
-                </div>
+                                                    </select>
 
-                <div class="form-group col-6">
-                    <label asp-for="ShipAddress" class="control-label"></label>
-                    <span class="border border-info rounded d-flex w-100" style="padding:6px 12px ">@Model.ShipAddress</span>
-                    <span asp-validation-for="ShipAddress" class="text-danger"></span>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <span class="">Đã hoàn thành</span>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <span class="">Đã hủy</span>
+                                        }
+                                        <span asp-validation-for="Status" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input id="orderUpdateStatus" type="submit" value="Save" class="d-none btn btn-primary" />
+                                    </div>
+                                    <div class="form-group col-6 d-none">
+                                        <label asp-for="Id" class="control-label"></label>
+                                        <input disabled asp-for="Id" class="form-control" />
+                                        <span asp-validation-for="Id" class="text-danger"></span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <input id="orderUpdateStatus" type="submit" value="Save" class="d-none btn btn-primary" />
-                </div>
-                <div class="form-group col-6 d-none">
-                    <label asp-for="Id" class="control-label"></label>
-                    <input disabled asp-for="Id" class="form-control" />
-                    <span asp-validation-for="Id" class="text-danger"></span>
-                </div>
-            </form>
+                <div class="row d-flex justify-content-center col-12">
+                    <div class="form-group col-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center">
+                                <thead class="thead-dark text-white">
+                                    <tr>
+                                        <th>
+                                            Tên Mặt Hàng
+                                        </th>
 
-            
+                                        <th>
+                                            Số Lượng
+                                        </th>
+                                        <th>
+                                            Đơn Giá
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.OrderProducts)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @item.Name
+                                            </td>
+                                            <td>
+                                                @item.Quantity
+                                            </td>
+                                            <td>
+                                                @item.Price VNĐ
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div class="form-group col-12 d-flex justify-content-around" >
+                        <h4 asp-for="Price" class="control-label col-9 font-weight-bold">Tổng Giá Trị : </h4>
+                        <h4 class="col-3 text-center font-weight-bold">@Model.Price VNĐ</h4>
+                    </div>
+                </div>
+                <hr />
+                <div class="row col-12">
+                    <h3 class="col-12 text-capitalize text-center font-weight-bold">
+                        Cảm Ơn Quý Khách Và Hẹn Gặp Lại !
+                    </h3>
+                </div>
+            </div>
+            @*Modal*@
+            <div class="co-modal" id="order-modal">
+                <div class="co-modal--content ">
+                    <div class="co-modal--title px-3">
+                        Bạn có chắc chắn muốn hủy đơn hàng này chứ?
+                    </div>
+                    <div>
+                        <textarea rows="3" class="w-100 mt-4" style="outline:none;" placeholder="Điền lý do bạn muốn hủy đơn hàng này" id="orderCancelReason"></textarea>
+                        <span class="text-danger" id="cancelOrderReason"></span>
+                    </div>
+                    <div class="co-modal--btns">
+                        <span class="btn btn-outline-dark co-modal--btn co-cancel-btn" onclick="handleOnCancel()">Hủy bỏ</span>
+                        <span class="btn btn-outline-danger co-modal--btn co-submit-btn" id="order-cancel-submit" onclick="onSubmitCancelOrder(this)">Xác nhận</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -167,5 +217,65 @@
             const optionElements = document.querySelectorAll('#orderStatus option');
             optionElements.forEach(item => item.setAttribute('style', 'padding: 6px 12px;display:block;'));
         }
+    </script>
+    <script>
+
+        const openModal = (modalId, submitId, data) => {
+            modal = document.querySelector(`#${modalId}`);
+            if (modal) {
+                modal.style.display = 'flex';
+                const submitBtn = document.querySelector(`#${submitId}`);
+                if (submitBtn && data) {
+                    submitBtn.setAttribute('data', data);
+                }
+            }
+        }
+        const handleOnCancel = () => {
+            document.querySelector('.co-modal').style.display = 'none';
+            document.querySelector('.co-submit-btn').removeAttribute('data');
+        }
+        const onSubmitCancelOrder = (btnElement) => {
+            const cancelReason = document.querySelector('#orderCancelReason').value;
+            if (!cancelReason.trim()) {
+                document.querySelector('#cancelOrderReason').innerText = "Không được để trống lý do";
+                event.preventDefault();
+                return;
+            }
+            const orderId = btnElement.getAttribute('data');
+            if (orderId) {
+                $.ajax({
+                    method: 'PUT',
+                    url: `/client/cancelOrder`,
+                    dataType: 'text',
+                    data: { orderId: Number(orderId), cancelReason },
+                    async: true,
+                    success: async function (response) {
+                        const { isSuccess, message } = JSON.parse(response);
+                        $('#cancelMsgWrap').removeClass('d-none').addClass('d-flex');
+                        if (isSuccess) {
+                            $('#cancelMsg').html(message).addClass('rounded alert alert-success')
+                        }
+                        else {
+                            $('#cancelMsg').html(message).addClass('rounded alert alert-danger')
+                        }
+                        await new Promise((resolve) => setTimeout(() => {
+                            $('#cancelMsgWrap').fadeOut('slow');
+                            resolve();
+                        }, 1500));
+                        $('#cancelMsg').html('')
+                        $('#cancelMsgWrap').removeClass('d-flex').addClass('d-none');
+                        handleOnCancel();
+                        location.reload();
+                    },
+                    failure: function (response) {
+                        alert('false')
+                    },
+                    error: function (response) {
+                        alert('error')
+                    }
+                })
+            }
+        }
+
     </script>
 }
