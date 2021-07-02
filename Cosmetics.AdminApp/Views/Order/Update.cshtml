@@ -55,7 +55,7 @@
                         </div>
                     </div>
                     <div class="row col-12 d-flex justify-content-between">
-                        <div class="col-6 d-flex justify-content-center">
+                        <div class="col-8 d-flex justify-content-start">
                             <div class="">
                                 <div class="form-group">
                                     <span class="">Ngày Tạo : @Model.OrderDate</span>
@@ -76,7 +76,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-6 d-flex justify-content-center">
+                        <div class="col-4 d-flex justify-content-start">
                             <div class="">
                                 <div class="form-group ">
                                     <span class="">Hóa Đơn Số : @Model.Id</span>
@@ -90,7 +90,7 @@
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                                     <div class="form-group ">
-                                        <label asp-for="Status" class="control-label"> Trạng Thái : </label>
+                                        <span asp-for="Status" class="control-label"> Trạng Thái : </span>
                                         @if (Model.Status != OrderStatus.Canceled)
                                         {
                                             @if (Model.Status != OrderStatus.Success)
@@ -126,19 +126,26 @@
                                         }
                                         <span asp-validation-for="Status" class="text-danger"></span>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group d-none mb-0">
                                         <input id="orderUpdateStatus" type="submit" value="Save" class="d-none btn btn-primary" />
                                     </div>
-                                    <div class="form-group col-6 d-none">
+                                    <div class="form-group col-6 d-none mb-0">
                                         <label asp-for="Id" class="control-label"></label>
-                                        <input disabled asp-for="Id" class="form-control" />
+                                        <input disabled asp-for="Id" class="form-control mb-0" />
                                         <span asp-validation-for="Id" class="text-danger"></span>
                                     </div>
                                 </form>
+                                @if (Model.Status == OrderStatus.Canceled)
+                                {
+                                    <div class="form-group ">
+                                        <span class="text-break ">Lý do hủy đơn : @Model.CancelReason</span>
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
                 </div>
+                
                 <div class="row d-flex justify-content-center col-12">
                     <div class="form-group col-12">
                         <div class="table-responsive">

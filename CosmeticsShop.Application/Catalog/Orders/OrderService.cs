@@ -93,6 +93,7 @@ namespace CosmeticsShop.Application.Catalog.Orders
                 Status = x.Status,
                 UserId = x.ClientId,
                 ShipPhoneNumber = x.ShipPhoneNumber,
+                CancelReason = x.CancelReason,
             }).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
 
 
@@ -193,7 +194,8 @@ namespace CosmeticsShop.Application.Catalog.Orders
                 Status = order.Status,
                 UserNameOrder = user?.Name ?? order.ShipName,
                 ShipPhoneNumber = order.ShipPhoneNumber,
-                ProductQuantity = await productQuery.CountAsync()
+                ProductQuantity = await productQuery.CountAsync(),
+                CancelReason = order.CancelReason
             };
             return orderViewModel;
         }

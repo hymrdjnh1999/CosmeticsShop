@@ -31,10 +31,13 @@ namespace Cosmetics.WebAPI.Controllers
             var orders = await _orderService.GetAll(request, status);
             return Ok(orders);
         }
-        [HttpGet("{clientId}/paging")]
+        [HttpGet("client/{clientId}/paging")]
         public async Task<IActionResult> ClientGetOrderHistory([FromQuery] GetOrderRequest request, string status, Guid clientId)
         {
-            
+            if (!ModelState.IsValid || request.PageSize <= 0)
+            {
+                return Ok(new PageResponse<ClientOrderHistoryViewMode>() { Items = new List<ClientOrderHistoryViewMode>(), PageIndex = 1, PageSize = 5, TotalRecords = 0 });
+            }
             var orders = await _orderService.ClientGetOrderHistory(clientId, request, status);
             return Ok(orders);
         }

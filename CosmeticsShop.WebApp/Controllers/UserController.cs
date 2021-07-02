@@ -235,7 +235,7 @@ namespace CosmeticsShop.WebApp.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> OrderHistory(GetOrderRequest request, string status)
+        public async Task<IActionResult> OrderHistory( [FromQuery] GetOrderRequest request, string status)
         {
 
             var token = HttpContext.Session.GetString("Token");
@@ -247,7 +247,7 @@ namespace CosmeticsShop.WebApp.Controllers
             await CreateUserViewBag();
             CreateCartViewBag();
             var testClientId = new Guid(clientIdClaim.Value);
-            var orders = await _clientOrderApi.GetOrderHistory(testClientId , request , status);
+            var orders = await _clientOrderApi.GetOrderHistory(testClientId, request , status);
             return View(orders);
         }
         [HttpPut]

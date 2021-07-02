@@ -30,6 +30,8 @@ namespace Cosmetics.ViewModels.Catalogs.Orders
         public string ShipEmail { set; get; }
         [DisplayName("Số điện thoại")]
         public string ShipPhoneNumber { set; get; }
+        public string CancelReason { set; get; }
+
         [DisplayName("Trạng thái")]
         public OrderStatus Status { set; get; }
     }

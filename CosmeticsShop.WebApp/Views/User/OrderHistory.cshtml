@@ -50,7 +50,7 @@
                                         <div class="form-group d-flex flex-column mb-0 mt-3">
                                             <span class="m-1">Lọc theo trạng thái hóa đơn:</span>
                                             <div class="order_button d-flex ">
-                                                <button asp-action="Index" class="btn btn-outline-secondary mr-2" style="min-width:140px">Tất cả</button>
+                                                <button asp-action="OrderHistory" class="btn btn-outline-secondary mr-2" style="min-width:140px">Tất cả</button>
                                                 <button name="status" value="InProgess" class="btn btn-outline-secondary mr-1 ml-1" style="min-width:140px">Đang xử lý</button>
                                                 <button name="status" value="Shipping" class="btn btn-outline-secondary mr-1 ml-1" style="min-width:140px">Đang giao hàng</button>
                                                 <button name="status" value="Success" class="btn btn-outline-secondary mr-1 ml-1" style="min-width:140px">Hoàn thành</button>
@@ -63,7 +63,7 @@
 
                                 <div class="card-body">
                                     <div class="d-flex w-25 align-items-center mb-3">
-                                        @*@await Component.InvokeAsync("ChangePageSize", Model)*@
+                                        @await Component.InvokeAsync("ChangePageSize", Model)
                                     </div>
                                     <div class="table-wrap table-order-customer">
                                         <table class="full">
@@ -112,8 +112,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    @*@await Component.InvokeAsync("Pager", Model)*@
                                 </div>
+                                    @await Component.InvokeAsync("Pager", Model)
                             </div>
 
                         </div>

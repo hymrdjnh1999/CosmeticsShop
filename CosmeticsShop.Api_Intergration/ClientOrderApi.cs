@@ -62,8 +62,8 @@ namespace CosmeticsShop.Api_Intergration
 
         public async Task<PageResponse<ClientOrderHistoryViewMode>> GetOrderHistory(Guid clientId ,GetOrderRequest request,string status)
         {
-            var requestUrl = $"/api/orders/{clientId}/paging?pageIndex=" +
-               $"{request.PageIndex}&pageSize={request.PageSize}&Status={status}&DateStart={request.DateStart}&DateEnd={request.DateEnd}";
+            var requestUrl = $"/api/orders/client/{clientId}/paging?pageIndex=" +
+               $"{request.PageIndex}&pageSize={request.PageSize}&DateStart={request.DateStart}&DateEnd={request.DateEnd}&Status={status}";
             var data = await GetAsync<PageResponse<ClientOrderHistoryViewMode>>(requestUrl);
             return data;
         }
