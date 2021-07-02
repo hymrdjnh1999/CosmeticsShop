@@ -31,6 +31,13 @@ namespace Cosmetics.WebAPI.Controllers
             var orders = await _orderService.GetAll(request, status);
             return Ok(orders);
         }
+        [HttpGet("{clientId}/paging")]
+        public async Task<IActionResult> ClientGetOrderHistory([FromQuery] GetOrderRequest request, string status, Guid clientId)
+        {
+            
+            var orders = await _orderService.ClientGetOrderHistory(clientId, request, status);
+            return Ok(orders);
+        }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -83,12 +90,7 @@ namespace Cosmetics.WebAPI.Controllers
             }
             return Ok(result);
         }
-        [HttpGet("{clientId}/client")]
-        public async Task<IActionResult> ClientGetOrderHistory(Guid clientId)
-        {
-            var orders = await _orderService.ClientGetOrderHistory(clientId);
-            return Ok(orders);
-        }
+        
 
         [HttpPut("{orderId}/cancel")]
         public async Task<IActionResult> ClientCancelOrder(int orderId, [FromBody] ClientCancelOrderReasonRequest request)

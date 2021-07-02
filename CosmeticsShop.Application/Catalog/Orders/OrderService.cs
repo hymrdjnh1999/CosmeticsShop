@@ -118,7 +118,59 @@ namespace CosmeticsShop.Application.Catalog.Orders
 
             return pageResponse;
         }
+        public async Task<PageResponse<ClientOrderHistoryViewMode>> ClientGetOrderHistory(Guid clientId , GetOrderRequest request,string status)
+        {
+            
+            var query = from o in _context.Orders select o;
+            query =  query.Where(x => x.ClientId == clientId);
+            if (!String.IsNullOrEmpty(request.DateStart) && !String.IsNullOrEmpty(request.DateEnd))
+            {
+                query = query.Where(x => x.OrderDate >= Convert.ToDateTime(request.DateStart) && x.OrderDate <= Convert.ToDateTime(request.DateEnd));
+            }
 
+            switch (status)
+            {
+                case "Success":
+                    query = query.Where(x => x.Status == OrderStatus.Success);
+                    break;
+                case "Canceled":
+                    query = query.Where(x => x.Status == OrderStatus.Canceled);
+                    break;
+                case "InProgess":
+                    query = query.Where(x => x.Status == OrderStatus.InProgress);
+                    break;
+                case "Shipping":
+                    query = query.Where(x => x.Status == OrderStatus.Shipping);
+                    break;
+                default:
+                    break;
+            }
+            query = query.OrderByDescending(x => x.Id);
+
+            var pageIndex = request.PageIndex;
+            var pageSize = request.PageSize;
+            var count = await query.CountAsync();
+
+            var orders = await query.Select(x => new ClientOrderHistoryViewMode()
+            {
+                Id = x.Id,
+                ClientId = clientId,
+                OrderDate = x.OrderDate,
+                Total = x.Price,
+                Status = x.Status
+            }).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+
+            var pageResponse = new PageResponse<ClientOrderHistoryViewMode>()
+            {
+                TotalRecords = count,
+                PageIndex = pageIndex,
+                PageSize = pageSize,
+                Items = orders
+            };
+
+
+            return pageResponse;
+        }
         public async Task<OrderViewModel> GetById(int id)
         {
             var query = from o in _context.Orders where o.Id == id select o;
@@ -249,7 +301,7 @@ namespace CosmeticsShop.Application.Catalog.Orders
             return new ApiSuccessResult<ClientOrderViewModel>(clientOrder);
         }
 
-        public async Task<List<ClientOrderHistoryViewMode>> ClientGetOrderHistory(Guid clientId)
+        /*public async Task<PageResponse<ClientOrderHistoryViewMode>> ClientGetOrderHistory(Guid clientId)
         {
             List<ClientOrderHistoryViewMode> orders = new List<ClientOrderHistoryViewMode>();
 
@@ -267,7 +319,7 @@ namespace CosmeticsShop.Application.Catalog.Orders
                 orders.Add(order);
             }
             return orders;
-        }
+        }*/
 
         public async Task<ApiResult<bool>> ClientCancelOrder(int orderId, string reason)
         {

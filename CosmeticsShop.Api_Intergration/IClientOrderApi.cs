@@ -12,7 +12,7 @@ namespace CosmeticsShop.Api_Intergration
     {
         Task<int> ClientCreateOrder(ClientCreateOrderViewModel request);
         Task<ApiResult<ClientOrderViewModel>> GetOrder(Guid cartId, int orderId);
-        Task<List<ClientOrderHistoryViewMode>> GetOrderHistory(Guid clientId);
+        Task<PageResponse<ClientOrderHistoryViewMode>> GetOrderHistory(Guid clientId ,GetOrderRequest request , string status);
 
         Task<ApiResult<bool>> ClientCancelOrder(int orderId, string cancelReason);
     }

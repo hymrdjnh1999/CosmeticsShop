@@ -17,7 +17,7 @@ namespace CosmeticsShop.Application.Catalog.Orders
         Task<List<OrderProductViewModel>> GetOrderProducts(int orderId);
         Task<int> ClientCreateOrder(ClientCreateOrderViewModel request);
         Task<ApiResult<ClientOrderViewModel>> ClientGetOrder(Guid cartId, int orderId);
-        Task<List<ClientOrderHistoryViewMode>> ClientGetOrderHistory(Guid clientId);
+        Task<PageResponse<ClientOrderHistoryViewMode>> ClientGetOrderHistory(Guid clientId,GetOrderRequest request , string status);
         Task<ApiResult<bool>> ClientCancelOrder(int orderId, string reason);
     }
 }
