@@ -688,12 +688,16 @@ h2 {
 
 
 /* icon add cart*/
-
+.img-product .product__add-to-cart-btn {
+    opacity: 0;
+    position: relative;
+}
 .product__item-img {
     padding-top: 100%;
     background-size: contain;
     background-repeat: no-repeat;
     position: relative;
+    opacity: 1;
     background-position: 50%;
 }
 
@@ -768,9 +772,7 @@ h2 {
     }
 }
 
-/*.img-product {
-    position: relative;
-}*/
+
 /*.img-product {
     position: relative;
 }
