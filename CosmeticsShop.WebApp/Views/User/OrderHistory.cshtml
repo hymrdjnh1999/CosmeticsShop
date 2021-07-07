@@ -80,7 +80,7 @@
                                                 @foreach (var item in Model.Items)
                                                 {
                                                     <tr>
-                                                        <td><a href="#">@item.Id</a></td>
+                                                        <td><a href="/user/orderdetails" data-action="open-drawer" data-drawer-id="sidebar-cart" aria-label="Mở Order details">@item.Id</a></td>
                                                         <td>@item.OrderDate</td>
                                                         <td class="priceFormat">
                                                             @item.Total

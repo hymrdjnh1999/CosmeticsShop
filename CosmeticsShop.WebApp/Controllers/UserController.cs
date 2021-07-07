@@ -258,5 +258,10 @@ namespace CosmeticsShop.WebApp.Controllers
 
             return new JsonResult(new { message = result.Message, isSuccess = result.IsSuccess });
         }
+
+        public IActionResult Orderdetails()
+        {
+            return View();
+        }
     }
 }

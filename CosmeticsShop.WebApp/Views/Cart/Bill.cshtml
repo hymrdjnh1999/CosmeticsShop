@@ -22,13 +22,13 @@
                             <img src="https://img.icons8.com/fluent-systems-regular/60/000000/instagram-check-mark.png" />
                             <div class="os-header__heading">
                                 <h2 class="os-header__title"> Đặt hàng thành công</h2>
-                                <span class="os-order-number text-center">
+                                <span class="os-order-number">
                                     <span class="font-weight-bold">Mã đơn hàng</span> <span>@order.Id</span>
                                 </span>
                                 @if (cart.ClientId != null)
                                 {
-                                    <h2 class="os-header__title" id="main-header" tabindex="-1">
-                                        Cám ơn @ViewBag.Name!
+                                    <h2 class="os-header__title heading-3" style="font-size: 18px; font-weight: 400;" id="main-header" tabindex="-1">
+                                        Cám ơn <span style="font-weight: 600;">@ViewBag.Name!</span>
                                     </h2>
                                 }
                             </div>
@@ -44,7 +44,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <div class="content-box__row content-box__row--no-border">
+                                    <div class="content-box__row--no-border">
                                         <h2 class="heading-2 os-step__title">Thông tin đặt hàng</h2>
                                         <div class="d-flex">
                                             <span class="font-weight-bold">Người nhận:</span>
@@ -69,11 +69,11 @@
                                     </div>
 
                                     <div class="text-container mt-3">
-                                        <h2 class="heading-3">Hình thức thanh toán</h2>
+                                        <h2 class="heading-2">Hình thức thanh toán</h2>
                                         <ul class="payment-method-list" style="list-style-type: none; padding-left: 0px;">
                                             <li class="payment-method-list__item">
                                                 <span class="payment-method-list__item__info">Thanh toán khi được giao sản phẩm đến tận tay (Cash On Delivery)</span>
-                                                <span class="payment-method-list__item__amount emphasis"> - ₫3,000,000</span>
+                                                <span class="payment-method-list__item__amount emphasis">@cart.CartPrice</span>
                                             </li>
                                         </ul>
                                     </div>
