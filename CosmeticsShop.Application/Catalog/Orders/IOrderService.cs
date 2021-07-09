@@ -13,6 +13,7 @@ namespace CosmeticsShop.Application.Catalog.Orders
     {
         Task<PageResponse<OrderViewModel>> GetAll(GetOrderRequest request , string status);
         Task<OrderViewModel> GetById(int id);
+        Task<OrderViewModel> GetclientOrderDetails(Guid clientId,int id);
         Task<bool> UpdateStatus(OrderViewModel request);
         Task<List<OrderProductViewModel>> GetOrderProducts(int orderId);
         Task<int> ClientCreateOrder(ClientCreateOrderViewModel request);

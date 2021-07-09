@@ -114,13 +114,13 @@ namespace Cosmetics.AdminApp.Controllers
 
                     if (result)
                     {
-                        TempData["result"] = "Xóa danh mục thành công";
+                        TempData["result"] = "Ẩn danh mục thành công";
                         RedirectToAction("Index");
                     }
                     else
                     {
 
-                        TempData["error"] = "Xóa danh mục thất bại";
+                        TempData["error"] = "Ẩn danh mục thất bại";
                         RedirectToAction("Index");
                     }
                 }

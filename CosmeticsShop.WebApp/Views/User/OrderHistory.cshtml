@@ -39,13 +39,14 @@
                                                     <label for="DateEnd" class="d-block w-100">To :</label>
                                                     <input type="date" id="DateEnd" name="DateEnd" class="form-control w-100" />
                                                 </div>
+                                                <div class="">
 
+                                                    <button type="submit" class="btn btn-outline-dark ml-2 ">
+                                                        <i class="fas fa-search"></i>
+                                                    </button>
+                                                </div>
                                             </div>
-                                            <div class="column">
-                                                <button type="submit" class="btn btn-outline-dark ml-2 ">
-                                                    <i class="fas fa-search"></i>
-                                                </button>
-                                            </div>
+                                            
                                         </div>
                                         <div class="form-group d-flex flex-column mb-0 mt-3">
                                             <span class="m-1">Lọc theo trạng thái hóa đơn:</span>
@@ -80,7 +81,7 @@
                                                 @foreach (var item in Model.Items)
                                                 {
                                                     <tr>
-                                                        <td><a href="#">@item.Id</a></td>
+                                                        <td><a href="@Url.Action("OrderDetails", "User", new { id = item.Id })" class="text-primary">@item.Id</a></td>
                                                         <td>@item.OrderDate</td>
                                                         <td class="priceFormat">
                                                             @item.Total

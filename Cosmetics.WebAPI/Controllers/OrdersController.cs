@@ -56,6 +56,7 @@ namespace Cosmetics.WebAPI.Controllers
             }
             return Ok(order);
         }
+        
         [HttpGet("{id}/products")]
         public async Task<IActionResult> GetOrderProducts(int id)
         {
@@ -67,6 +68,20 @@ namespace Cosmetics.WebAPI.Controllers
             return Ok(products);
         }
 
+        [HttpGet("{clientId}/order/{orderId}")]
+        public async Task<IActionResult> GetClientOrderDetails(  int orderId, Guid clientId)
+        {
+            if (orderId == 0)
+            {
+                return BadRequest(orderId);
+            }
+            var order = await _orderService.GetclientOrderDetails(clientId, orderId);
+            if (order == null)
+            {
+                return BadRequest("Không tìm thấy đơn hàng!");
+            }
+            return Ok(order);
+        }
         [HttpPut("status")]
         public async Task<IActionResult> UpdateStatus(OrderViewModel request)
         {

@@ -60,6 +60,14 @@ namespace CosmeticsShop.Api_Intergration
             return result;
         }
 
+        public async Task<OrderViewModel> GetClientOrderDetails(Guid clientId, int orderId)
+        {
+            string url = $"/api/orders/{clientId}/order/{orderId}";
+            var result = await GetAsync<OrderViewModel>(url);
+            return result;
+
+        }
+
         public async Task<PageResponse<ClientOrderHistoryViewMode>> GetOrderHistory(Guid clientId ,GetOrderRequest request,string status)
         {
             var requestUrl = $"/api/orders/client/{clientId}/paging?pageIndex=" +

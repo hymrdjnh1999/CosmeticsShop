@@ -26,18 +26,21 @@ namespace CosmeticsShop.WebApp.Controllers
         private readonly IConfiguration _config;
         private readonly IClientApi _clientApi;
         private readonly ICartApiClient _cartApiClient;
-        private readonly IClientOrderApi _clientOrderApi;
+        private readonly IClientOrderApi _clientOrderApi; 
+        private readonly IOrderApiClient _orderApiClient;
 
         public UserController(
             IClientApi clientApi, IConfiguration configuration
             , ICartApiClient cartApiClient,
-            IClientOrderApi clientOrderApi
+            IClientOrderApi clientOrderApi,
+            IOrderApiClient orderApiClient
             ) : base(clientApi)
         {
             _clientApi = clientApi;
             _config = configuration;
             _cartApiClient = cartApiClient;
             _clientOrderApi = clientOrderApi;
+            _orderApiClient = orderApiClient;
         }
 
         [HttpGet]
@@ -249,6 +252,24 @@ namespace CosmeticsShop.WebApp.Controllers
             var testClientId = new Guid(clientIdClaim.Value);
             var orders = await _clientOrderApi.GetOrderHistory(testClientId, request , status);
             return View(orders);
+        }
+        
+        [HttpGet]
+        public async Task<IActionResult> OrderDetails(int id)
+        {
+            var token = HttpContext.Session.GetString("Token");
+            var clientIdClaim = GetClaim("Id");
+            if (token == null && clientIdClaim == null)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+            await CreateUserViewBag();
+            CreateCartViewBag();
+            var testClientId = new Guid(clientIdClaim.Value);
+            var order = await _clientOrderApi.GetClientOrderDetails(testClientId,id);
+            var products = await _orderApiClient.GetProducts(id);
+            order.OrderProducts = products;
+            return View(order);
         }
         [HttpPut]
         public async Task<JsonResult> cancelOrder(int orderId, string cancelReason)

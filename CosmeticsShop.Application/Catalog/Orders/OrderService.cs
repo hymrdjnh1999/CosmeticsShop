@@ -172,6 +172,36 @@ namespace CosmeticsShop.Application.Catalog.Orders
 
             return pageResponse;
         }
+        public async Task<OrderViewModel> GetclientOrderDetails(Guid clientId, int id)
+        {
+            var query = from o in _context.Orders 
+                        join c in _context.Clients on o.ClientId equals clientId
+                        where o.Id == id
+                        select o;
+            var order = await query.FirstOrDefaultAsync();
+            if (order == null) return null;
+            var productQuery = from od in _context.OrderDetails
+                               where od.OrderId == id
+                               join p in _context.Products on od.ProductId equals p.Id
+                               select p;
+            var user = await _context.Clients.Where(x => x.Id == clientId).FirstOrDefaultAsync();
+
+            var orderViewModel = new OrderViewModel()
+            {
+                Id = id,
+                OrderDate = order.OrderDate,
+                Price = order.Price,
+                ShipName = order.ShipName,
+                ShipAddress = order.ShipAddress,
+                ShipEmail = order.ShipEmail,
+                Status = order.Status,
+                UserNameOrder = user?.Name ?? order.ShipName,
+                ShipPhoneNumber = order.ShipPhoneNumber,
+                ProductQuantity = await productQuery.CountAsync(),
+                CancelReason = order.CancelReason
+            };
+            return orderViewModel;
+        }
         public async Task<OrderViewModel> GetById(int id)
         {
             var query = from o in _context.Orders where o.Id == id select o;
@@ -204,11 +234,14 @@ namespace CosmeticsShop.Application.Catalog.Orders
             var query = from od in _context.OrderDetails
                         where od.OrderId == orderid
                         join p in _context.Products on od.ProductId equals p.Id
-                        select new { p, od };
+                        join pi in _context.ProductImages on p.Id equals pi.ProductId
+                        where pi.IsDefault
+                        select new { p, od ,pi};
 
             var products = await query.Select(x => new OrderProductViewModel()
             {
                 Id = x.od.ProductId,
+                ImagePath = x.pi.ImagePath,
                 Name = x.p.Name,
                 Price = x.od.Price,
                 Quantity = x.od.Quantity
@@ -342,5 +375,7 @@ namespace CosmeticsShop.Application.Catalog.Orders
                 Message = "Hủy đơn hàng thành công!"
             };
         }
+
+        
     }
 }

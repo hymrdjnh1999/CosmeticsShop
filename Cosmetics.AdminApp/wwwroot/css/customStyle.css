@@ -42,6 +42,11 @@
 .content.active{
     display: block;
 }
+.active_.active {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
 .mw-75{
     max-width:75% !important;
 }
@@ -311,7 +316,7 @@ li.search-choice a.search-choice-close {
     background-color: #fff;
     padding: 11px;
 }
-div.card-header.d-flex.justify-content-between:hover a#backbtn{
+/*div.card-header.d-flex.justify-content-between:hover a#backbtn{
     display:block !important;
     transition:0.8s;
-}
+}*/
