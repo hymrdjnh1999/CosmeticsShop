@@ -103,13 +103,13 @@
                                                             <option selected value="@OrderStatus.InProgress">Đang xử lý</option>
                                                             <option value="@OrderStatus.Shipping">Đang giao hàng</option>
                                                             <option value="@OrderStatus.Success">Thành công</option>
-                                                            <option class="modal" onchange="openModal('order-modal','order-cancel-submit',@Model.Id)" value="@OrderStatus.Canceled">Hủy đơn</option>
+                                                            <option value="@OrderStatus.Canceled">Hủy đơn</option>
                                                         }
                                                         @if (Model.Status == OrderStatus.Shipping)
                                                         {
                                                             <option selected value="@OrderStatus.Shipping">Đang giao hàng</option>
                                                             <option value="@OrderStatus.Success">Thành công</option>
-                                                            <option class="modal" onchange="openModal('order-modal','order-cancel-submit',@Model.Id)" value="@OrderStatus.Canceled">Hủy đơn</option>
+                                                            <option value="@OrderStatus.Canceled">Hủy đơn</option>
                                                         }
 
                                                     </select>
