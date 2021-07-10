@@ -2,21 +2,23 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
+
 @using Cosmetics.ViewModels.Catalogs.Carts
 @section slider{
     @* Slide section *@
     <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
         <ol class="carousel-indicators">
-            @for (int count = 0; count < Model.Slides.Count; count++)
+            @for (int count = 0; count < Model.Banners.Count; count++)
             {
                 <li data-target="#carouselExampleFade" data-slide-to="@count" class="@(count == 0 ? "active" : "")"></li>
             }
         </ol>
         <div class="carousel-inner">
-            @for (int count = 0; count < Model.Slides.Count; count++)
+            @for (int count = 0; count < Model.Banners.Count; count++)
             {
                 <div class="carousel-item @(count == 0 ? "active" : "")" data-interval="2000">
-                    <img src="@Model.Slides[count].Image" class="d-block w-100" alt="@Model.Slides[count].Name">
+                    <img src="@Configuration["BaseImageAddress"]@Model.Banners[count].ImagePath" class="d-block w-100" alt="@Model.Banners[count].Name">
                 </div>
             }
 

@@ -8,14 +8,14 @@
 
 <div class="container-fluid">
     <h1 class="mt-4">Đơn hàng chi tiết</h1>
-   @* @if (Model.Status != OrderStatus.Success)
-    {*@
-        <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Order">Danh sách đơn hàng</a></li>
-            <li class="breadcrumb-item active">Chi tiết đơn hàng</li>
-        </ol>
+    @* @if (Model.Status != OrderStatus.Success)
+        {*@
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Order">Danh sách đơn hàng</a></li>
+        <li class="breadcrumb-item active">Chi tiết đơn hàng</li>
+    </ol>
     @*}
-    else { }*@
+        else { }*@
     <div class="card mb-4">
         <div class="card-header d-flex justify-content-between">
             <a asp-action="Index" asp-controller="Order" id="" class="btn btn-outline-dark"><i class="fas fa-chevron-left back-list-product mr-2"></i>Về danh sách hóa đơn</a>
@@ -232,13 +232,11 @@
 
 
     <script>
-
         const makeFormatPrice = (element) => {
             const price = parseInt(element.textContent);
             const newPrice = price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })
             element.textContent = newPrice
         }
-
         const prices = document.querySelectorAll('.priceFormat')
         if (prices) {
             prices.forEach(item => {
@@ -304,6 +302,5 @@
                 })
             }
         }
-
     </script>
 }

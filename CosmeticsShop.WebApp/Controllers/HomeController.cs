@@ -19,16 +19,18 @@ namespace CosmeticsShop.WebApp.Controllers
         private readonly ISlideApiClient _slideApiClient;
         private readonly IProductApiClient _productApiClient;
         private readonly ICategoryApiClient _categoryApiClient;
+        private readonly IBannerApiClient _bannerApiClient;
         public HomeController(
             ILogger<HomeController> logger,
             ISlideApiClient slideApiClient,
             IProductApiClient productApiClient,
-            ICategoryApiClient categoryApiClient, IClientApi clientApi) : base(clientApi)
+            ICategoryApiClient categoryApiClient, IBannerApiClient bannerApiClient, IClientApi clientApi) : base(clientApi)
         {
             _logger = logger;
             _slideApiClient = slideApiClient;
             _productApiClient = productApiClient;
             _categoryApiClient = categoryApiClient;
+            _bannerApiClient = bannerApiClient;
         }
 
         public async Task<IActionResult> Index()
@@ -38,11 +40,12 @@ namespace CosmeticsShop.WebApp.Controllers
             if (logout)
                 return RedirectToAction("Logout", "User");
             await CreateUserViewBag();
-            var slides = await _slideApiClient.GetAll();
+            /*            var slides = await _slideApiClient.GetAll();*/
+            var banners = await _bannerApiClient.GetAll();
             var productCategory = await _categoryApiClient.GetHomeProductCategories();
             var homeViewModel = new HomeViewModel()
             {
-                Slides = slides,
+                Banners = banners,
             };
             CreateCartViewBag();
             ViewBag.Categories = productCategory;

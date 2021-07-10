@@ -59,6 +59,15 @@ namespace Cosmetics.WebAPI.Controllers
 
             return CreatedAtAction("banners", banner);
         }
+        [AllowAnonymous]
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var banners = await _bannerService.GetAll();
+
+            return Ok(banners);
+
+        }
         [Authorize]
         [HttpGet("paging")]
         public async Task<IActionResult> Index([FromQuery] PaginateRequest request)
