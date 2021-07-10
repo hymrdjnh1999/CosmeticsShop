@@ -70,6 +70,7 @@ namespace CosmeticsShop.WebApp
             services.AddScoped<IClientOrderApi, ClientOrderApi>();
             services.AddScoped<IClientApiProduct, ClientApiProduct>();
             services.AddScoped<IOrderApiClient, OrderApiClient>();
+            services.AddScoped<IBannerApiClient, BannerApiClient>();
 
 
             services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ClientCreateOrderValidator>());
