@@ -60,11 +60,20 @@ namespace CosmeticsShop.Api_Intergration
             return result;
         }
 
-        public async Task<List<ClientOrderHistoryViewMode>> GetOrderHistory(Guid clientId)
+        public async Task<OrderViewModel> GetClientOrderDetails(Guid clientId, int orderId)
         {
-            string url = $"/api/orders/{clientId}/client";
-            var orders = await GetAsync<List<ClientOrderHistoryViewMode>>(url);
-            return orders;
+            string url = $"/api/orders/{clientId}/order/{orderId}";
+            var result = await GetAsync<OrderViewModel>(url);
+            return result;
+
+        }
+
+        public async Task<PageResponse<ClientOrderHistoryViewMode>> GetOrderHistory(Guid clientId ,GetOrderRequest request,string status)
+        {
+            var requestUrl = $"/api/orders/client/{clientId}/paging?pageIndex=" +
+               $"{request.PageIndex}&pageSize={request.PageSize}&DateStart={request.DateStart}&DateEnd={request.DateEnd}&Status={status}";
+            var data = await GetAsync<PageResponse<ClientOrderHistoryViewMode>>(requestUrl);
+            return data;
         }
     }
 }

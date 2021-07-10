@@ -33,6 +33,7 @@ namespace Cosmetics.ViewModels.Catalogs.Products.Manage
         public List<SelectItemDynamic<int>> CategoriesAssignRequest { get; set; }
      = new List<SelectItemDynamic<int>>();
         public string[] SelectedId { get; set; }
+        public Status status { get; set; }
 
     }
 }

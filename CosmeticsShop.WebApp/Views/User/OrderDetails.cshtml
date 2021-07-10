@@ -1,0 +1,191 @@
+﻿@using Cosmetics.ViewModels.Common;
+@model Cosmetics.ViewModels.Catalogs.Orders.OrderViewModel
+
+@using CosmeticsShop.Data.Enums
+@{
+    ViewData["Title"] = "OrderDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
+
+    <div class="" style="background-color:#f4f4f4;margin-bottom:-16px">
+<div class="container ">
+        @{
+            var status = Model.Status.ToString();
+            if (status == (OrderStatus.InProgress).ToString())
+            {
+                status = "Đang xử lý";
+            }
+            if (status == (OrderStatus.Canceled).ToString())
+            {
+                status = "Đã hủy";
+            }
+            if (status == (OrderStatus.Shipping).ToString())
+            {
+                status = "Đang giao hàng";
+            }
+            if (status == (OrderStatus.Success).ToString())
+            {
+                status = "Hoàn thành";
+            }
+        }
+        <div class="pt-5 d-flex align-items-center font-weight-normal ">
+            <h2>Chi tiết đơn hàng #@Model.Id </h2>
+            <h2 class="ml-1 mr-1">-</h2>
+            <h2 class="font-weight-bolder"> @status</h2>
+        </div>
+        <div class="d-flex align-items-end flex-column">
+            Ngày đặt hàng : @Model.OrderDate
+        </div>
+        <div class="row col-12 d-flex flex-column mb-3 mt-5">
+            <div class="mb-2">Địa Chỉ Người Nhận</div>
+            <div class="col-3 justify-content-start d-flex flex-column bg-white rounded ">
+                <span class="font-weight-bolder">@Model.UserNameOrder</span>
+                <span class="">Địa Chỉ : @Model.ShipAddress</span>
+                <span class="">Điện thoại : @Model.ShipPhoneNumber</span>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center col-12 bg-white m-0 p-0">
+            <div class="form-group col-12 m-0 p-0">
+                <div class="table-responsive">
+                    <table class="table  text-center">
+                        <thead class="thead-white text-dark">
+                            <tr class="d-flex">
+                                <th class="text-center" style="flex:7">
+                                    Tên Mặt Hàng
+                                </th>
+
+                                <th class="text-center" style="flex:2">
+                                    Số Lượng
+                                </th>
+                                <th class="text-center" style="flex:2">
+                                    Đơn Giá
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class=" border-bottom">
+                            @foreach (var item in Model.OrderProducts)
+                            {
+                               
+                            <tr class="d-flex">
+                                
+                                <td class=" d-flex align-items-center justify-content-center " style="flex:7">
+                                    <img class="img-fluid " style="width:15%;height:75%" src="@Configuration["BaseImageAddress"]@item.ImagePath" alt="" />
+                                <a href="/product/@item.Id" class="product__item text-decoration-none pl-2 " style="cursor:pointer;font-size:24px">@item.Name</a>
+                                </td>
+                                    <td class="d-flex align-items-center justify-content-center" style="flex:2">
+                                        @item.Quantity
+                                    </td>
+                                    <td class="d-flex align-items-center justify-content-center priceFormat" style="flex:2">
+                                        @item.Price
+                                    </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="form-group col-12 d-flex justify-content-between mt-3">
+                <h4 asp-for="Price" class="control-label col-3  text-center font-weight-bold">Tổng Giá Trị : </h4>
+                <div class="col-3 d-none"></div>
+                <h4 class="col-3 text-center font-weight-bold priceFormat">@Model.Price</h4>
+            </div>
+        </div>
+        <hr />
+        <div class="row col-12">
+            <a asp-action="OrderHistory" class="col-12 text-capitalize text-left text-decoration-none mb-5">
+                << Quay về đơn hàng của bạn
+            </a>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    <script>
+        () => {
+            const optionElements = document.querySelectorAll('#orderStatus option');
+            optionElements.forEach(item => item.setAttribute('style', 'padding: 6px 12px;display:block;'));
+        }
+    </script>
+
+
+    <script>
+
+        const makeFormatPrice = (element) => {
+            const price = parseInt(element.textContent);
+            const newPrice = price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })
+            element.textContent = newPrice
+        }
+
+        const prices = document.querySelectorAll('.priceFormat')
+        if (prices) {
+            prices.forEach(item => {
+                makeFormatPrice(item)
+            })
+        }
+        $('.orderStatus').change(function () {
+            //đoạn mã sẽ được thực thi khi sự kiện change() xảy ra
+        })
+        const openModal = (modalId, submitId, data) => {
+            modal = document.querySelector(`#${modalId}`);
+            if (modal) {
+                modal.style.display = 'flex';
+                const submitBtn = document.querySelector(`#${submitId}`);
+                if (submitBtn && data) {
+                    submitBtn.setAttribute('data', data);
+                }
+            }
+        }
+        const handleOnCancel = () => {
+            document.querySelector('.co-modal').style.display = 'none';
+            document.querySelector('.co-submit-btn').removeAttribute('data');
+        }
+        const onSubmitCancelOrder = (btnElement) => {
+            const cancelReason = document.querySelector('#orderCancelReason').value;
+            if (!cancelReason.trim()) {
+                document.querySelector('#cancelOrderReason').innerText = "Không được để trống lý do";
+                event.preventDefault();
+                return;
+            }
+            const orderId = btnElement.getAttribute('data');
+            if (orderId) {
+                $.ajax({
+                    method: 'PUT',
+                    url: `/client/cancelOrder`,
+                    dataType: 'text',
+                    data: { orderId: Number(orderId), cancelReason },
+                    async: true,
+                    success: async function (response) {
+                        const { isSuccess, message } = JSON.parse(response);
+                        $('#cancelMsgWrap').removeClass('d-none').addClass('d-flex');
+                        if (isSuccess) {
+                            $('#cancelMsg').html(message).addClass('rounded alert alert-success')
+                        }
+                        else {
+                            $('#cancelMsg').html(message).addClass('rounded alert alert-danger')
+                        }
+                        await new Promise((resolve) => setTimeout(() => {
+                            $('#cancelMsgWrap').fadeOut('slow');
+                            resolve();
+                        }, 1500));
+                        $('#cancelMsg').html('')
+                        $('#cancelMsgWrap').removeClass('d-flex').addClass('d-none');
+                        handleOnCancel();
+                        location.reload();
+                    },
+                    failure: function (response) {
+                        alert('false')
+                    },
+                    error: function (response) {
+                        alert('error')
+                    }
+                })
+            }
+        }
+
+    </script>
+}

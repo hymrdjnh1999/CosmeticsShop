@@ -105,11 +105,11 @@ namespace CosmeticsShop.Api_Intergration
             return categories;
         }
 
-        public async Task<PageResponse<CategoryViewModel>> GetAllPaging(PaginateRequest request)
+        public async Task<PageResponse<CategoryViewModel>> GetAllPaging(PaginateRequest request ,string status)
         {
 
             var requestUrl = $"/api/categories/paging?pageIndex=" +
-              $"{request.PageIndex}&pageSize={request.PageSize}&keyword={request.Keyword}";
+              $"{request.PageIndex}&pageSize={request.PageSize}&keyword={request.Keyword}&Status={status}";
             var categories = await GetAsync<PageResponse<CategoryViewModel>>(requestUrl);
             return categories;
         }

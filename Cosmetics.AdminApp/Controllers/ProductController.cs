@@ -2,6 +2,7 @@
 using Cosmetics.ViewModels.Catalogs.Products.Manage;
 using Cosmetics.ViewModels.Common;
 using CosmeticsShop.Api_Intergration;
+using CosmeticsShop.Data.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
@@ -26,10 +27,10 @@ namespace Cosmetics.AdminApp.Controllers
         }
 
 
-        public async Task<IActionResult> Index(GetProductRequest request)
+        public async Task<IActionResult> Index(GetProductRequest request, string status)
         {
 
-            var data = await _productApiClient.GetPaging(request);
+            var data = await _productApiClient.GetPaging(request, status);
             ViewBag.Keyword = request.Keyword;
             var categories = await _categoryApiClient.GetAll();
             if (categories != null)
@@ -102,11 +103,35 @@ namespace Cosmetics.AdminApp.Controllers
             if (id > 0)
             {
                 var result = await _productApiClient.Delete(id);
-                if (result)
-                    TempData["result"] = "Xóa thành công!";
-                RedirectToAction("Index");
-            }
+                var product = await _productApiClient.GetById(id);
 
+                if (product.status != Status.Active)
+                {
+                    if (result)
+                    {
+                        TempData["result"] = "Xóa thành công";
+                        RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        TempData["error"] = "Xóa thất bại";
+                        RedirectToAction("Index");
+                    }
+                }
+                else
+                {
+                    if (result)
+                    {
+                        TempData["result"] = "Kích hoạt thành công";
+                        RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        TempData["error"] = "kích hoạt thất bại";
+                        RedirectToAction("Index");
+                    }
+                }
+            }
             RedirectToAction("Error", "Home");
         }
 

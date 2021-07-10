@@ -40,7 +40,7 @@
                     <div class=" col-6">
                         <div class="form-group">
                             <label asp-for="Price" class="control-label">Giá Bán</label>
-                            <input asp-for="Price" class="form-control" />
+                            <input asp-for="Price" class="form-control priceFormat" />
                             <span asp-validation-for="Price" class="text-danger"></span>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                         <div class=" d-flex justify-content-between form-group">
                             <div style="flex:3">
                                 <label asp-for="OriginalPrice" class="control-label">Giá Gốc</label>
-                                <input asp-for="OriginalPrice" class="form-control" />
+                                <input asp-for="OriginalPrice" class="form-control priceFormat" />
                                 <span asp-validation-for="OriginalPrice" class="text-danger"></span>
                             </div>
                             <div class="form-group ml-2 py-1" style="flex:1">
@@ -179,6 +179,18 @@
     <script type="text/javascript" src="~/js/chosen.jquery.min.js"></script>
 
     <script>
+        const makeFormatPrice = (element) => {
+            const price = parseInt(element.textContent);
+            const newPrice = price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })
+            element.textContent = newPrice
+        }
+
+        const prices = document.querySelectorAll('.priceFormat')
+        if (prices) {
+            prices.forEach(item => {
+                makeFormatPrice(item)
+            })
+        }
         $('#updateProductBtnForm').on('Click').submit();
 
         const handleOnChange = () => {

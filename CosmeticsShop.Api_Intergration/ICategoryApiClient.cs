@@ -12,7 +12,7 @@ namespace CosmeticsShop.Api_Intergration
         Task<List<CategoryViewModel>> GetAll();
         Task<List<HomeCategoryViewModel>> GetHomeProductCategories();
 
-        Task<PageResponse<CategoryViewModel>> GetAllPaging(PaginateRequest request);
+        Task<PageResponse<CategoryViewModel>> GetAllPaging(PaginateRequest request , string status);
 
         Task<int> Create(CategoryCreateRequest request);
         Task<bool> Edit(CategoryUpdateRequest request);

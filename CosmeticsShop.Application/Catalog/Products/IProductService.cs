@@ -28,7 +28,7 @@ namespace CosmeticsShop.Application.Catalog.Products
         Task<List<ProductImageViewModel>> GetListImage(int productId);
         Task<ProductImageViewModel> GetImageById(int id);
 
-        Task<PageResponse<ProductViewModel>> GetAll(GetProductRequest request);
+        Task<PageResponse<ProductViewModel>> GetAll(GetProductRequest request , string status);
         Task<ApiResult<bool>> CategoryAssign(CategoryAssignRequest request);
         Task<List<ProductViewModel>> GetFeaturedProducts();
         Task<PageResponse<ProductImageViewModel>> GetImages(int productId, QueryParamRequest request);

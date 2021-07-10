@@ -1,5 +1,4 @@
-﻿
-using Cosmetics.ViewModels.Catalogs.Orders;
+﻿using Cosmetics.ViewModels.Catalogs.Orders;
 using Cosmetics.ViewModels.Common;
 using CosmeticsShop.Application.Catalog.Orders;
 using Microsoft.AspNetCore.Authorization;
@@ -22,14 +21,24 @@ namespace Cosmetics.WebAPI.Controllers
         }
         [HttpGet("paging")]
         [Authorize]
-        public async Task<IActionResult> Index([FromQuery] GetOrderRequest request)
+        public async Task<IActionResult> Index([FromQuery] GetOrderRequest request, string status)
         {
             if (!ModelState.IsValid || request.PageSize <= 0)
             {
                 return Ok(new PageResponse<OrderViewModel>() { Items = new List<OrderViewModel>(), PageIndex = 1, PageSize = 5, TotalRecords = 0 });
             }
 
-            var orders = await _orderService.GetAll(request);
+            var orders = await _orderService.GetAll(request, status);
+            return Ok(orders);
+        }
+        [HttpGet("client/{clientId}/paging")]
+        public async Task<IActionResult> ClientGetOrderHistory([FromQuery] GetOrderRequest request, string status, Guid clientId)
+        {
+            if (!ModelState.IsValid || request.PageSize <= 0)
+            {
+                return Ok(new PageResponse<ClientOrderHistoryViewMode>() { Items = new List<ClientOrderHistoryViewMode>(), PageIndex = 1, PageSize = 5, TotalRecords = 0 });
+            }
+            var orders = await _orderService.ClientGetOrderHistory(clientId, request, status);
             return Ok(orders);
         }
         [HttpGet("{id}")]
@@ -47,6 +56,7 @@ namespace Cosmetics.WebAPI.Controllers
             }
             return Ok(order);
         }
+        
         [HttpGet("{id}/products")]
         public async Task<IActionResult> GetOrderProducts(int id)
         {
@@ -58,6 +68,20 @@ namespace Cosmetics.WebAPI.Controllers
             return Ok(products);
         }
 
+        [HttpGet("{clientId}/order/{orderId}")]
+        public async Task<IActionResult> GetClientOrderDetails(  int orderId, Guid clientId)
+        {
+            if (orderId == 0)
+            {
+                return BadRequest(orderId);
+            }
+            var order = await _orderService.GetclientOrderDetails(clientId, orderId);
+            if (order == null)
+            {
+                return BadRequest("Không tìm thấy đơn hàng!");
+            }
+            return Ok(order);
+        }
         [HttpPut("status")]
         public async Task<IActionResult> UpdateStatus(OrderViewModel request)
         {
@@ -84,12 +108,7 @@ namespace Cosmetics.WebAPI.Controllers
             }
             return Ok(result);
         }
-        [HttpGet("{clientId}/client")]
-        public async Task<IActionResult> ClientGetOrderHistory(Guid clientId)
-        {
-            var orders = await _orderService.ClientGetOrderHistory(clientId);
-            return Ok(orders);
-        }
+        
 
         [HttpPut("{orderId}/cancel")]
         public async Task<IActionResult> ClientCancelOrder(int orderId, [FromBody] ClientCancelOrderReasonRequest request)
@@ -98,5 +117,7 @@ namespace Cosmetics.WebAPI.Controllers
 
             return Ok(result);
         }
+
+        
     }
 }

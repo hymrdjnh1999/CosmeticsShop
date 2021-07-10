@@ -1,5 +1,4 @@
-﻿using CosmeticsShop.Data.Entities;
-using CosmeticsShop.Data.Enums;
+﻿using CosmeticsShop.Data.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Cosmetics.ViewModels.Catalogs.Orders
 {
-    public class OrderViewModel
+    public class ClientOrderDetailsViewModel
     {
         public int Id { set; get; }
         [DisplayName("Ngày tạo")]

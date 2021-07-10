@@ -126,6 +126,7 @@ namespace CosmeticsShop.Data.Extentions
                     Price = 1200000,
                     Id = 1,
                     OriginalCountry = "GERMANY",
+                    status= Status.Active
                 },
                 new Product
                 {
@@ -144,6 +145,7 @@ namespace CosmeticsShop.Data.Extentions
                     Price = 1400000,
                     Id = 2,
                     OriginalCountry = "GERMANY",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -161,6 +163,7 @@ namespace CosmeticsShop.Data.Extentions
                     Price = 500000,
                     Id = 3,
                     OriginalCountry = "GERMANY",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -179,6 +182,7 @@ namespace CosmeticsShop.Data.Extentions
                     Price = 2400000,
                     Id = 4,
                     OriginalCountry = "GERMANY",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -198,6 +202,7 @@ namespace CosmeticsShop.Data.Extentions
                     Price = 2200000,
                     Id = 5,
                     OriginalCountry = "GERMANY",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -218,6 +223,7 @@ namespace CosmeticsShop.Data.Extentions
                     Price = 2200000,
                     Id = 6,
                     OriginalCountry = "GERMANY",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -237,6 +243,7 @@ namespace CosmeticsShop.Data.Extentions
                     Price = 1200000,
                     Id = 7,
                     OriginalCountry = "GERMANY",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -256,6 +263,7 @@ namespace CosmeticsShop.Data.Extentions
                     Price = 2800000,
                     Id = 8,
                     OriginalCountry = "GERMANY",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -278,6 +286,7 @@ namespace CosmeticsShop.Data.Extentions
                     Price = 1700000,
                     Id = 9,
                     OriginalCountry = "GERMANY",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -298,6 +307,7 @@ namespace CosmeticsShop.Data.Extentions
                     Price = 1600000,
                     Id = 10,
                     OriginalCountry = "GERMANY",
+                    status = Status.InActive
                 },
 
                 // Gucci
@@ -312,7 +322,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2030000,
                     Id = 11,
-                    OriginalCountry = "Ý"
+                    OriginalCountry = "Ý",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -325,7 +336,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2150000,
                     Id = 12,
-                    OriginalCountry = "Ý"
+                    OriginalCountry = "Ý",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -342,7 +354,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 3100000,
                     Id = 13,
-                    OriginalCountry = "Ý"
+                    OriginalCountry = "Ý",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -355,7 +368,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2670000,
                     Id = 14,
-                    OriginalCountry = "Ý"
+                    OriginalCountry = "Ý",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -373,7 +387,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2490000,
                     Id = 15,
-                    OriginalCountry = "Ý"
+                    OriginalCountry = "Ý",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -389,7 +404,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2150000,
                     Id = 16,
-                    OriginalCountry = "Ý"
+                    OriginalCountry = "Ý",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -405,7 +421,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2910000,
                     Id = 17,
-                    OriginalCountry = "Ý"
+                    OriginalCountry = "Ý",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -418,7 +435,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 7140000,
                     Id = 18,
-                    OriginalCountry = "Ý"
+                    OriginalCountry = "Ý",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -435,7 +453,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2420000,
                     Id = 19,
-                    OriginalCountry = "Ý"
+                    OriginalCountry = "Ý",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -451,7 +470,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 1930000,
                     Id = 20,
-                    OriginalCountry = "Ý"
+                    OriginalCountry = "Ý",
+                    status = Status.InActive
                 },
 
                 //Sản phẩm mới
@@ -471,7 +491,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 3000000,
                     Id = 21,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -490,7 +511,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2360000,
                     Id = 22,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -507,7 +529,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2050000,
                     Id = 23,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -525,7 +548,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2150000,
                     Id = 24,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -544,7 +568,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 1920000,
                     Id = 25,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -562,7 +587,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 1920000,
                     Id = 26,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -578,7 +604,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2150000,
                     Id = 27,
-                    OriginalCountry = "Ý"
+                    OriginalCountry = "Ý",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -596,7 +623,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 1800000,
                     Id = 28,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -616,7 +644,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2120000,
                     Id = 29,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -632,7 +661,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2190000,
                     Id = 30,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.InActive
                 },
 
                 //Sản phẩm được yêu thích
@@ -654,7 +684,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2150000,
                     Id = 31,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -672,7 +703,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 1820000,
                     Id = 32,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -689,7 +721,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2040000,
                     Id = 33,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -707,7 +740,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2140000,
                     Id = 34,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -725,7 +759,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 1920000,
                     Id = 35,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -743,7 +778,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 1920000,
                     Id = 36,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -761,7 +797,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 1920000,
                     Id = 37,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -779,7 +816,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2650000,
                     Id = 38,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -798,7 +836,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2050000,
                     Id = 39,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -812,7 +851,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 1980000,
                     Id = 40,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.InActive
                 },
 
                 // Sản phẩm khuyến mại
@@ -832,7 +872,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 990000,
                     Id = 41,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -851,7 +892,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 1470000,
                     Id = 42,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -868,7 +910,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 1260000,
                     Id = 43,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -887,7 +930,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 1785000,
                     Id = 44,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -904,7 +948,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 990000,
                     Id = 45,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -923,7 +968,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2520000,
                     Id = 46,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -941,7 +987,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2520000,
                     Id = 47,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -958,7 +1005,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 1890000,
                     Id = 48,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -975,7 +1023,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 1645000,
                     Id = 49,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -995,7 +1044,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 1387500,
                     Id = 50,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.InActive
                 },
 
                 // Bộ quà tặng cao cấp
@@ -1014,7 +1064,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 1387500,
                     Id = 51,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1032,7 +1083,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2380000,
                     Id = 52,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1051,7 +1103,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2850000,
                     Id = 53,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1064,7 +1117,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2350000,
                     Id = 54,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1082,7 +1136,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2450000,
                     Id = 55,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1095,7 +1150,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2950000,
                     Id = 56,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1115,7 +1171,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2800000,
                     Id = 57,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1136,7 +1193,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2200000,
                     Id = 58,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1153,7 +1211,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2200000,
                     Id = 59,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1170,7 +1229,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2450000,
                     Id = 60,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.InActive
                 },
 
                 // Dolce&Gabbana
@@ -1190,7 +1250,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2720000,
                     Id = 61,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1208,7 +1269,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2220000,
                     Id = 62,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1226,7 +1288,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2120000,
                     Id = 63,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1245,7 +1308,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 1970000,
                     Id = 64,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1263,7 +1327,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 1910000,
                     Id = 65,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1281,7 +1346,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2040000,
                     Id = 66,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1298,7 +1364,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2590000,
                     Id = 67,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1315,7 +1382,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2120000,
                     Id = 68,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1333,7 +1401,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 6720000,
                     Id = 69,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1349,7 +1418,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 5060000,
                     Id = 70,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.InActive
                 },
 
                 // Burberry
@@ -1368,7 +1438,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2030000,
                     Id = 71,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1384,7 +1455,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 1980000,
                     Id = 72,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1400,7 +1472,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 4160000,
                     Id = 73,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1416,7 +1489,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2190000,
                     Id = 74,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1432,7 +1506,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2030000,
                     Id = 75,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1449,7 +1524,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2860000,
                     Id = 76,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1466,7 +1542,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 7750000,
                     Id = 77,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1483,7 +1560,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2780000,
                     Id = 78,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1500,7 +1578,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2780000,
                     Id = 79,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1517,7 +1596,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2780000,
                     Id = 80,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.InActive
                 },
 
                 // Coach
@@ -1537,7 +1617,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 1550000,
                     Id = 81,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1557,7 +1638,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 1300000,
                     Id = 82,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1576,7 +1658,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 1100000,
                     Id = 83,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1595,7 +1678,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2550000,
                     Id = 84,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1614,7 +1698,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2100000,
                     Id = 85,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1631,7 +1716,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 1800000,
                     Id = 86,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1648,7 +1734,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 1100000,
                     Id = 87,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1667,7 +1754,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 800000,
                     Id = 88,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1685,7 +1773,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2800000,
                     Id = 89,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1705,7 +1794,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2100000,
                     Id = 90,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.InActive
                 },
 
                 // Montblanc
@@ -1727,7 +1817,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 1250000,
                     Id = 91,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1746,7 +1837,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 1380000,
                     Id = 92,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1759,7 +1851,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 1700000,
                     Id = 93,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1778,7 +1871,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 1200000,
                     Id = 94,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1792,7 +1886,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 950000,
                     Id = 95,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1811,7 +1906,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 2200000,
                     Id = 96,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1830,7 +1926,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 1180000,
                     Id = 97,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1849,7 +1946,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 1380000,
                     Id = 98,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1872,7 +1970,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 1350000,
                     Id = 99,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.Active
                 },
                 new Product
                 {
@@ -1893,7 +1992,8 @@ namespace CosmeticsShop.Data.Extentions
                     ViewCount = 0,
                     Price = 1360000,
                     Id = 100,
-                    OriginalCountry = "Pháp"
+                    OriginalCountry = "Pháp",
+                    status = Status.InActive
                 }
             );
             modelBuilder.Entity<ProductImage>().HasData(

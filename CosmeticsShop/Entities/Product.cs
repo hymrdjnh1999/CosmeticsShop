@@ -26,6 +26,7 @@ namespace CosmeticsShop.Data.Entities
         public List<ProductInCart> ProductInCarts { get; set; }
         public List<ProductImage> ProductImages { get; set; }
         public List<ProductInProductPrivateProperty> ProductInProductPrivateProperties { get; set; }
+        public Status status { get; set; }
 
     }
 }
