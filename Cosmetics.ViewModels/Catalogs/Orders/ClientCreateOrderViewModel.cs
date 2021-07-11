@@ -1,4 +1,5 @@
 ﻿using Cosmetics.ViewModels.Catalogs.Carts;
+using Cosmetics.ViewModels.Systems.Clients;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,5 +20,6 @@ namespace Cosmetics.ViewModels.Catalogs.Orders
         public bool SaveShipInfo { get; set; }
         public decimal TotalPrice { get; set; }
         public ClientCartViewModel ClientCart { get; set; }
+        public ClientUpdateViewModel Client { get; set; }
     }
 }

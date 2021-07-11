@@ -192,6 +192,9 @@ namespace CosmeticsShop.Application.Systems.Clients
             {
                 Email = request.Email,
                 Name = request.FullName,
+                Address = request.Address,
+                Dob = request.Dateofbirth,
+                PhoneNumber = request.PhoneNumber,
                 Password = hashser.HashPassword(null, request.Password),
             };
             _context.Clients.Add(newClient);

@@ -42,6 +42,21 @@
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                     <div class="form__Item">
+                        <input asp-for="Address" type="text" class="form__Input" required="required" placeholder="Địa chỉ" aria-label="Address" autofocus="">
+                        <label class="form__FloatingLabel">Địa chỉ</label>
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                    <div class="form__Item">
+                        <input asp-for="Dateofbirth" type="date" class="form__Input" required="required" placeholder="Ngày sinh" aria-label="Dateofbirth" autofocus="">
+                        <label class="form__FloatingLabel">Ngày sinh</label>
+                        <span asp-validation-for="Dateofbirth" class="text-danger"></span>
+                    </div>
+                    <div class="form__Item">
+                        <input asp-for="PhoneNumber"  class="form__Input" required="required" placeholder="Số điện thoại" aria-label="PhoneNumber" autofocus="">
+                        <label class="form__FloatingLabel">Số điện thoại</label>
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form__Item">
                         <input asp-for="Password" type="password" class="form__Input" required="required" placeholder="Mật khẩu" aria-label="Mật khẩu">
                         <label class="form__FloatingLabel">Mật khẩu</label>
                         <span asp-validation-for="Password" class="text-danger"></span>

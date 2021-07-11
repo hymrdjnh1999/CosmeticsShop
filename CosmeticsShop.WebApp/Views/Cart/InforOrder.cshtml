@@ -61,7 +61,7 @@
                                         <label class="form__FloatingLabel">Ghi chú của bạn (không bắt buộc điền)</label>
                                     </div>
                                     <div class="form__Item">
-                                        <input class="form__Input" asp-for="ShipAddress" placeholder="Địa chỉ" aria-label="address">
+                                        <input class="form__Input" asp-for="@Model.Client.Address" placeholder="Địa chỉ" aria-label="address">
                                         <label class="form__FloatingLabel">Địa chỉ</label>
                                         <span asp-validation-for="ShipAddress" class="text-danger"></span>
                                     </div>

@@ -84,10 +84,12 @@ const redirectToProductDetail = (id) => {
     location.assign(`/product/${id}`);
 }
 
+
 function handleAddToCart(product) {
+
     const productCart = JSON.stringify(product);
     event.preventDefault();
-    
+
     $.ajax({
         type: 'POST',
         data: productCart,
@@ -104,7 +106,7 @@ function handleAddToCart(product) {
             $('#notificationMsg').addClass('d-none').removeClass('d-block')
         },
         error: (response) => {
-            console.log(response,'voibenho')
+            console.log(response, 'voibenho')
         }
     })
 }
