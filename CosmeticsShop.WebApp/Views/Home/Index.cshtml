@@ -64,8 +64,7 @@
 
                                             <div class="gird--product productItem__wapper img-product">
                                                 <div class="product-in-category-img product__item-img" style="background-image:url('https://localhost:5001/user-content/@product.Images[0].ImagePath')">
-                                                    <div class="product__add-to-cart-btn"
-                                                         onclick='handleAddToCart({ Id: @product.Id, ProductName: `@product.Name`, ProductPrice: @product.Price, Quantity: 1,ProductImage:`@product.Images[0].ImagePath` })' style="cursor:pointer;">
+                                                    <div class="product__add-to-cart-btn" onclick='handleAddToCart({ Id: @product.Id, ProductName: `@product.Name`, ProductPrice: @product.Price, Quantity: 1, ProductImage: `@product.Images[0].ImagePath` })' style="cursor:pointer;">
                                                         <i id="addToCartBtn" class="fas fa-cart-plus product__add-to-cart-icon"></i>
                                                     </div>
 
@@ -129,3 +128,5 @@
         </div>
     </div>
 </div>
+
+

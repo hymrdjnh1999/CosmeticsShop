@@ -20,5 +20,6 @@ namespace Cosmetics.ViewModels.Catalogs.Orders
         public bool SaveShipInfo { get; set; }
         public decimal TotalPrice { get; set; }
         public ClientCartViewModel ClientCart { get; set; }
+        public ClientUpdateViewModel Client { get; set; }
     }
 }
