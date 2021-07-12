@@ -82,14 +82,79 @@ namespace CosmeticsShop.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(2572),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(8259),
                             Description = "Test Des",
                             FileSize = 12345L,
-                            ImagePath = "123123.jpg",
+                            ImagePath = "banner1.jpg",
                             IsDefault = true,
                             IsOutstanding = false,
                             Name = "test",
                             SortOrder = 1,
+                            Status = 2
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(9691),
+                            Description = "Test Des",
+                            FileSize = 12345L,
+                            ImagePath = "banner2.jpg",
+                            IsDefault = true,
+                            IsOutstanding = false,
+                            Name = "test",
+                            SortOrder = 2,
+                            Status = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(9697),
+                            Description = "Test Des",
+                            FileSize = 12345L,
+                            ImagePath = "banner3.jpg",
+                            IsDefault = true,
+                            IsOutstanding = false,
+                            Name = "test",
+                            SortOrder = 3,
+                            Status = 2
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(9699),
+                            Description = "Test Des",
+                            FileSize = 12345L,
+                            ImagePath = "banner4.jpg",
+                            IsDefault = true,
+                            IsOutstanding = false,
+                            Name = "test",
+                            SortOrder = 4,
+                            Status = 2
+                        },
+                        new
+                        {
+                            Id = 5,
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(9700),
+                            Description = "Test Des",
+                            FileSize = 12345L,
+                            ImagePath = "banner5.jpg",
+                            IsDefault = true,
+                            IsOutstanding = false,
+                            Name = "test",
+                            SortOrder = 5,
+                            Status = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(9702),
+                            Description = "Test Des",
+                            FileSize = 12345L,
+                            ImagePath = "banner6.jpg",
+                            IsDefault = true,
+                            IsOutstanding = false,
+                            Name = "test",
+                            SortOrder = 6,
                             Status = 2
                         });
                 });
@@ -297,7 +362,7 @@ namespace CosmeticsShop.Data.Migrations
                             Dob = new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "tiendinhdev99@gmail.com",
                             Name = "Voi Bé Nhỏ",
-                            Password = "AQAAAAEAACcQAAAAEPVZhFDU2R+8AOQT+bu+2cpHAXfYskLpIAjOcI0srk2RCPFfWziWnxRdE+L3Z1EV7A==",
+                            Password = "AQAAAAEAACcQAAAAEICWzUFpzYR9Dkj53KrNq/yM4/5lqUSzyzOR+2i5KmsLC4G2+olnThfWGAEHis0eRw==",
                             PhoneNumber = "0984869201",
                             Status = 2
                         },
@@ -309,7 +374,7 @@ namespace CosmeticsShop.Data.Migrations
                             Dob = new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "test1234@gmail.com",
                             Name = "Do tien dinh",
-                            Password = "AQAAAAEAACcQAAAAEIUfMvSmm43HfaSAaSOfMU5DPk33k/XzjSMtCMoeBblWl7uNgf4CZNMkpk91lWia+w==",
+                            Password = "AQAAAAEAACcQAAAAEMXrI6aYidx1Q5DPAfN3mH8BPpXQKFTY0XQ9iyG2YXuasXbOx1hATvD+5mbVEchffQ==",
                             PhoneNumber = "0984869201",
                             Status = 2
                         },
@@ -321,7 +386,7 @@ namespace CosmeticsShop.Data.Migrations
                             Dob = new DateTime(2001, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "tranphuong@gmail.com",
                             Name = "Tran Thu Phuong",
-                            Password = "AQAAAAEAACcQAAAAEA+Lj+xTIwnlrxAZ3wArFmh9YYA8KFNzaH1G21kkcj8+xIxR3V0Q72y/kBGRb7qlLQ==",
+                            Password = "AQAAAAEAACcQAAAAEEvjJDPgOFeyWKYHzFuYvbvmMEmlmrlwHps5zfR8zWLeqSn6lyYH3g5h6GavpSXn6g==",
                             PhoneNumber = "0378709602",
                             Status = 2
                         },
@@ -333,7 +398,7 @@ namespace CosmeticsShop.Data.Migrations
                             Dob = new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "haianh@gmail.com",
                             Name = "Le Hai Anh",
-                            Password = "AQAAAAEAACcQAAAAELidNY9lIoMHpObk0gotREL76hxluqsFP4TV6heFYL4iPg2JVKPVTEiZ1T/eI1/zZg==",
+                            Password = "AQAAAAEAACcQAAAAECMlIEMm92JVlMMrq+IlYQz2ANQoU2Bl+drvq9Fp5F4jLpz/bypVGQGY3ia0E894Fw==",
                             PhoneNumber = "0358963245",
                             Status = 2
                         },
@@ -345,7 +410,7 @@ namespace CosmeticsShop.Data.Migrations
                             Dob = new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "vananh@gmail.com",
                             Name = "Tran Van Anh",
-                            Password = "AQAAAAEAACcQAAAAEKLNE0Yv6ZbhRNXe7ldfIYfbmk/l7o9pMGba0rSXJlAf5iy5qewLCJrZ+8ygV5PBWA==",
+                            Password = "AQAAAAEAACcQAAAAENJ6yZ1oHb2IckgIuMGdshUF3DTurhQlCOVf5B0w8oX3gNgYfrYL590WRbk5v6i/mQ==",
                             PhoneNumber = "0323456743",
                             Status = 2
                         },
@@ -357,7 +422,7 @@ namespace CosmeticsShop.Data.Migrations
                             Dob = new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "hoangchung@gmail.com",
                             Name = "Hoàng Chung",
-                            Password = "AQAAAAEAACcQAAAAEOaoebK0NItbF+nAkDpNRMYlAPh1XSZEhiZx3i735Xfzr4/U7E+IZtWElhaChtYlEg==",
+                            Password = "AQAAAAEAACcQAAAAEBJm/UAJHqaCR/UHScpjWxD8NOgfB9H0P3VklzZ+9T6TQHCM0CI/tSgV+4jYyVvGbw==",
                             PhoneNumber = "0963258741",
                             Status = 2
                         },
@@ -369,7 +434,7 @@ namespace CosmeticsShop.Data.Migrations
                             Dob = new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "minhanh@gmail.com",
                             Name = "Minh Anh",
-                            Password = "AQAAAAEAACcQAAAAEEwDBWgDnpWQnGo3PtB3JXeDqLCXBNPSl3mAL3VSxF1hVHiGj1BGwUr7ejxORfyjVw==",
+                            Password = "AQAAAAEAACcQAAAAEPM2Yqe4w/BaIc6vyqM8lqu0x/cHmlGfyOkwi9VCWfhH5VoYop/z7gc4Y1sOuN4shw==",
                             PhoneNumber = "0978563732",
                             Status = 2
                         },
@@ -381,7 +446,7 @@ namespace CosmeticsShop.Data.Migrations
                             Dob = new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "congphuong@gmail.com",
                             Name = "Công Phượng",
-                            Password = "AQAAAAEAACcQAAAAEM7SeRVxDvT8hG82hBHSNvP4TaEEzPH6thcha0W3BU2BHrTeiZ1TXlpNEh9l71p3Hg==",
+                            Password = "AQAAAAEAACcQAAAAEAutfBuQsag68+al93mWvsykBNwAR1fOCkFSbUym6fVQ4PuNw9KnilCtnR8TBy/Shg==",
                             PhoneNumber = "0987456321",
                             Status = 2
                         },
@@ -393,7 +458,7 @@ namespace CosmeticsShop.Data.Migrations
                             Dob = new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "xuantruong@gmail.com",
                             Name = "Xuân Trường",
-                            Password = "AQAAAAEAACcQAAAAEF6NPy2+y8muCrse+7R3AEJCaU6aznJQkWBZf23c8YVA6ECeEkR0ss6/yhjLY/zkww==",
+                            Password = "AQAAAAEAACcQAAAAEM3Y5W4PoiD03gh80mNxyiJTTxLq93jQ5Tjhd66dmzmwEIoWT4X9QbXmwpd+cZZxFQ==",
                             PhoneNumber = "0987546666",
                             Status = 2
                         },
@@ -405,7 +470,7 @@ namespace CosmeticsShop.Data.Migrations
                             Dob = new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "dinhtrong@gmail.com",
                             Name = "Đình Trọng",
-                            Password = "AQAAAAEAACcQAAAAELRzAtif0fpIxgg4exa/7Z9vFNsCCQulrVK316bsfox4I8BAHMUZ3HcbC4EWSsou5w==",
+                            Password = "AQAAAAEAACcQAAAAEJ8ChVKeCYcwLy/U8UQwM/zP+9RCQWWuD875+RtYg7FtEyFPpAQFRTQuwtF9smkG6A==",
                             PhoneNumber = "0985638888",
                             Status = 2
                         });
@@ -4017,7 +4082,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 1,
                             Caption = "Mercedes Benz Man EDT",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 707, DateTimeKind.Local).AddTicks(3464),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 967, DateTimeKind.Local).AddTicks(7062),
                             FileSize = 12345L,
                             ImagePath = "1-Mercedes-Benz-Man-EDT.jpg",
                             IsDefault = true,
@@ -4028,7 +4093,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 2,
                             Caption = "Mercedes Benz Women EDP (New 2020)",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(152),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7144),
                             FileSize = 12345L,
                             ImagePath = "2-Mercedes-Benz-Women-EDP-(New 2020).jpg",
                             IsDefault = true,
@@ -4039,7 +4104,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 3,
                             Caption = "[NEW] Mercedes-Benz On The Go",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(184),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7158),
                             FileSize = 12345L,
                             ImagePath = "3-[NEW]-Mercedes-Benz-On-The-Go.jpg",
                             IsDefault = true,
@@ -4050,7 +4115,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 4,
                             Caption = "Gift Set Mercedes-Benz Woman EDP",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(189),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7160),
                             FileSize = 12345L,
                             ImagePath = "4-Gift-Set Mercedes-Benz-Woman-EDP.jpg",
                             IsDefault = true,
@@ -4061,7 +4126,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 5,
                             Caption = "Gift Set Mercedes-Benz Man Intense EDT",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(193),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7162),
                             FileSize = 12345L,
                             ImagePath = "5-Gift-Set-Mercedes-Benz-Man-Intense-EDT.jpg",
                             IsDefault = true,
@@ -4072,7 +4137,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 6,
                             Caption = "Gift Set Mercedes-Benz The Move EDT",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(198),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7163),
                             FileSize = 12345L,
                             ImagePath = "6-Gift-Set-Mercedes-Benz-The-Move-EDT.jpg",
                             IsDefault = true,
@@ -4083,7 +4148,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 7,
                             Caption = "Mercedes-Benz Women EDT",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(202),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7165),
                             FileSize = 12345L,
                             ImagePath = "7-Mercedes-Benz-Women-EDT.jpg",
                             IsDefault = true,
@@ -4094,7 +4159,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 8,
                             Caption = "Mercedes-Benz Le Parfum For Men EDP",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(207),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7167),
                             FileSize = 12345L,
                             ImagePath = "8-Mercedes-Benz-Le-Parfum-For-Men-EDP.jpg",
                             IsDefault = true,
@@ -4105,7 +4170,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 9,
                             Caption = "Mercedes-Benz Select Night EDP",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(211),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7168),
                             FileSize = 12345L,
                             ImagePath = "9-Mercedes-Benz-Select-Night-EDP.jpg",
                             IsDefault = true,
@@ -4116,7 +4181,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 10,
                             Caption = "[NEW] Mercedes-Benz Man Intense EDT",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(214),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7170),
                             FileSize = 12345L,
                             ImagePath = "10-[NEW]-Mercedes-Benz-Man-Intense-EDT.jpg",
                             IsDefault = true,
@@ -4127,7 +4192,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 11,
                             Caption = "Gucci Bloom EDP",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(218),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7171),
                             FileSize = 12345L,
                             ImagePath = "11-Gucci-Bloom-EDP.jpg",
                             IsDefault = true,
@@ -4138,7 +4203,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 12,
                             Caption = "Gucci Bloom Nettare EDP",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(222),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7173),
                             FileSize = 12345L,
                             ImagePath = "12-Gucci-Bloom-Nettare-EDP.jpg",
                             IsDefault = true,
@@ -4149,7 +4214,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 13,
                             Caption = "Gucci Guilty Pour Homme EDP",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(226),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7174),
                             FileSize = 12345L,
                             ImagePath = "13-Gucci-Guilty-Pour-Homme-EDP.jpg",
                             IsDefault = true,
@@ -4160,7 +4225,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 14,
                             Caption = "Gucci Flora By Gucci EDP",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(231),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7175),
                             FileSize = 12345L,
                             ImagePath = "14-Gucci-Flora-By-Gucci-EDP.jpg",
                             IsDefault = true,
@@ -4171,7 +4236,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 15,
                             Caption = "Gucci Bloom Acqua Di Fiori EDT",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(235),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7177),
                             FileSize = 12345L,
                             ImagePath = "15-Gucci-Bloom-Acqua-Di-Fiori-EDT.jpg",
                             IsDefault = true,
@@ -4182,7 +4247,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 16,
                             Caption = "[New] Gucci Bloom Ambrosia Di Fiori EDP",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(239),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7178),
                             FileSize = 12345L,
                             ImagePath = "16-[New]-Gucci-Bloom-Ambrosia-Di-Fiori-EDP.jpg",
                             IsDefault = true,
@@ -4193,7 +4258,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 17,
                             Caption = "[New] Gucci Bloom Profumo Di Fiori EDP",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(243),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7179),
                             FileSize = 12345L,
                             ImagePath = "17-Gucci-Bloom-Profumo-Di-Fiori-EDP.jpg",
                             IsDefault = true,
@@ -4204,7 +4269,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 18,
                             Caption = "Gucci Combo Flora By Gucci EDP + Guilty Pour Homme EDP",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(247),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7181),
                             FileSize = 12345L,
                             ImagePath = "18-Gucci-Combo-Flora-By-Gucci-EDP-Guilty-Pour-Homme-EDP.jpg",
                             IsDefault = true,
@@ -4215,7 +4280,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 19,
                             Caption = "Gucci Flora Gorgeous Gardenia EDT Limited Edition 2020",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(251),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7184),
                             FileSize = 12345L,
                             ImagePath = "19-Gucci-Flora-Gorgeous-Gardenia-EDT-Limited-Edition-2020.jpg",
                             IsDefault = true,
@@ -4226,7 +4291,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 20,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(255),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7186),
                             FileSize = 12345L,
                             ImagePath = "20-Gucci-Flora-Gorgeous-Gardenia-EDT-Limited-Edition-2020.jpg",
                             IsDefault = true,
@@ -4237,7 +4302,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 21,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(259),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7187),
                             FileSize = 12345L,
                             ImagePath = "21-[New]-Carolina-Herrera-Very-Good-Girl-EDP.jpg",
                             IsDefault = true,
@@ -4248,7 +4313,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 22,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(263),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7196),
                             FileSize = 12345L,
                             ImagePath = "22-[New]-Carolina-Herrera-Bad-Boy-Le-Parfum-EDP.jpg",
                             IsDefault = true,
@@ -4259,7 +4324,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 23,
                             Caption = "[NEW] Carolina Herrera 212 Heroes EDT",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(268),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7198),
                             FileSize = 12345L,
                             ImagePath = "23-[NEW]-Jimmy-Choo-I-Want-Choo-EDP.jpg",
                             IsDefault = true,
@@ -4270,7 +4335,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 24,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(273),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7199),
                             FileSize = 12345L,
                             ImagePath = "24-Chloe-Nomade-EDP.jpg",
                             IsDefault = true,
@@ -4281,7 +4346,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 25,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(277),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7201),
                             FileSize = 12345L,
                             ImagePath = "25-Good-Girl-EDP.jpg",
                             IsDefault = true,
@@ -4292,7 +4357,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 26,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(281),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7202),
                             FileSize = 12345L,
                             ImagePath = "26-Chloe-Love-Story-EDP.jpg",
                             IsDefault = true,
@@ -4303,7 +4368,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 27,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(285),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7203),
                             FileSize = 12345L,
                             ImagePath = "27-[New]-Gucci-Bloom-Ambrosia-Di-Fiori-EDP.jpg",
                             IsDefault = true,
@@ -4314,7 +4379,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 28,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(289),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7205),
                             FileSize = 12345L,
                             ImagePath = "28-[NEW]-Jean-Paul-Gaultier-La-Belle-Le-Parfum-EDP.jpg",
                             IsDefault = true,
@@ -4325,7 +4390,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 29,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(293),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7207),
                             FileSize = 12345L,
                             ImagePath = "29-Dolce&Gabbana-K-By-Dolce&Gabbana-EDP-(For Men).jpg",
                             IsDefault = true,
@@ -4336,7 +4401,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 30,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(297),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7208),
                             FileSize = 12345L,
                             ImagePath = "30-[New]-Gucci-Bloom-Profumo-Di-Fiori-EDP.jpg",
                             IsDefault = true,
@@ -4347,7 +4412,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 31,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(301),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7210),
                             FileSize = 12345L,
                             ImagePath = "31-[NEW]-Jimmy-Choo-I-Want-Choo-EDP.jpg",
                             IsDefault = true,
@@ -4358,7 +4423,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 32,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(305),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7211),
                             FileSize = 12345L,
                             ImagePath = "32-Jimmy-Choo-Urban-Hero-EDP-For-Men.jpg",
                             IsDefault = true,
@@ -4369,7 +4434,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 33,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(309),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7213),
                             FileSize = 12345L,
                             ImagePath = "33-Dolce&Gabbana-Light-Blue-Love-Is-Love-EDT-(For Women).jpg",
                             IsDefault = true,
@@ -4380,7 +4445,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 34,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(313),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7215),
                             FileSize = 12345L,
                             ImagePath = "34-Chloe-Nomade-Absolu-de-Parfum-EDP.jpg",
                             IsDefault = true,
@@ -4391,7 +4456,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 35,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(317),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7217),
                             FileSize = 12345L,
                             ImagePath = "35-Chloe-Nomade-EDP.jpg",
                             IsDefault = true,
@@ -4402,7 +4467,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 36,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(321),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7218),
                             FileSize = 12345L,
                             ImagePath = "36-Chloe-Signature-EDP.jpg",
                             IsDefault = true,
@@ -4413,7 +4478,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 37,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(325),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7219),
                             FileSize = 12345L,
                             ImagePath = "37-Chloe-Love-Story-EDP.jpg",
                             IsDefault = true,
@@ -4424,7 +4489,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 38,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(329),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7221),
                             FileSize = 12345L,
                             ImagePath = "38-[NEW]-Paco-Rabanne-1-Million-Parfum-EDP-For-Men-2020.jpg",
                             IsDefault = true,
@@ -4435,7 +4500,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 39,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(333),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7223),
                             FileSize = 12345L,
                             ImagePath = "39-Carolina-Herrera-Bad-Boy-EDT.jpg",
                             IsDefault = true,
@@ -4446,7 +4511,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 40,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(337),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7224),
                             FileSize = 12345L,
                             ImagePath = "40-[NEW]-Jean-Paul-Gautier-Le-Male-Le-Parfum-EDP.jpg",
                             IsDefault = true,
@@ -4457,7 +4522,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 41,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(341),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7226),
                             FileSize = 12345L,
                             ImagePath = "41-Coach-Flora- EDP.jpg",
                             IsDefault = true,
@@ -4468,7 +4533,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 42,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(345),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7227),
                             FileSize = 12345L,
                             ImagePath = "42-Coach-Men-EDT.jpg",
                             IsDefault = true,
@@ -4479,7 +4544,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 43,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(349),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7228),
                             FileSize = 12345L,
                             ImagePath = "43-Coach-Men-Platinum-EDP.jpg",
                             IsDefault = true,
@@ -4490,7 +4555,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 44,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(353),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7230),
                             FileSize = 12345L,
                             ImagePath = "44-Coach-Men-Platinum-EDP.jpg",
                             IsDefault = true,
@@ -4501,7 +4566,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 45,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(357),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7231),
                             FileSize = 12345L,
                             ImagePath = "45-Coach-New-York-Floral-Blush-EDP.jpg",
                             IsDefault = true,
@@ -4512,7 +4577,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 46,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(361),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7232),
                             FileSize = 12345L,
                             ImagePath = "46-Gift-Set-Coach-Dreams.jpg",
                             IsDefault = true,
@@ -4523,7 +4588,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 47,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(365),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7234),
                             FileSize = 12345L,
                             ImagePath = "47-Holiday-Gift-Set-Coach-Dreams-EDP.jpg",
                             IsDefault = true,
@@ -4534,7 +4599,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 48,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(369),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7235),
                             FileSize = 12345L,
                             ImagePath = "48-Gift-Set-Coach-Men-Blue-EDT.jpg",
                             IsDefault = true,
@@ -4545,7 +4610,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 49,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(373),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7236),
                             FileSize = 12345L,
                             ImagePath = "49-Gift-Set-Coach-Men-Platinum-EDP.jpg",
                             IsDefault = true,
@@ -4556,7 +4621,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 50,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(377),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7238),
                             FileSize = 12345L,
                             ImagePath = "50-Paco-Rabanne-1-Million-Lucky-EDT-(For Men).jpg",
                             IsDefault = true,
@@ -4567,7 +4632,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 51,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(381),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7239),
                             FileSize = 12345L,
                             ImagePath = "51-[NEW]-Gift-Set-Jean-Paul-Gaultier-La-Belle-Le-Parfum-EDP.jpg",
                             IsDefault = true,
@@ -4578,7 +4643,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 52,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(385),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7241),
                             FileSize = 12345L,
                             ImagePath = "52-Gift-Set-Jimmy-Choo-Urban-Hero-EDP.jpg",
                             IsDefault = true,
@@ -4589,7 +4654,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 53,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(389),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7242),
                             FileSize = 12345L,
                             ImagePath = "53-Gift-Set-Carolina-Herrera-Bad-Boy-EDT.jpg",
                             IsDefault = true,
@@ -4600,7 +4665,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 54,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(392),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7244),
                             FileSize = 12345L,
                             ImagePath = "54-Gift-Set-Montblanc-Legend-EDP.jpg",
                             IsDefault = true,
@@ -4611,7 +4676,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 55,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(398),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7246),
                             FileSize = 12345L,
                             ImagePath = "55-Gift-Set-Carolina-Herrera-212-VIP-Men-EDT.jpg",
                             IsDefault = true,
@@ -4622,7 +4687,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 56,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(402),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7247),
                             FileSize = 12345L,
                             ImagePath = "56-Gift-Set-Coach-Dreams-EDP.jpg",
                             IsDefault = true,
@@ -4633,7 +4698,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 57,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(407),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7248),
                             FileSize = 12345L,
                             ImagePath = "57-Gift-Set-Coach-Dreams-EDP.jpg",
                             IsDefault = true,
@@ -4644,7 +4709,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 58,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(411),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7250),
                             FileSize = 12345L,
                             ImagePath = "58-Gift-Set-Mercedes-Benz-Man-Intense-EDT.jpg",
                             IsDefault = true,
@@ -4655,7 +4720,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 59,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(415),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7252),
                             FileSize = 12345L,
                             ImagePath = "59-Gift-Set-Lanvin-A-Girl-In-Capri-EDT.jpg",
                             IsDefault = true,
@@ -4666,7 +4731,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 60,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(419),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7253),
                             FileSize = 12345L,
                             ImagePath = "60-Gift-Set-Paco-Rabanne-1-Million-EDT.jpg",
                             IsDefault = true,
@@ -4677,7 +4742,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 61,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(423),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7254),
                             FileSize = 12345L,
                             ImagePath = "61-Dolce&Gabbana-The-Only-One-EDP-Intense.jpg",
                             IsDefault = true,
@@ -4688,7 +4753,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 62,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(427),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7256),
                             FileSize = 12345L,
                             ImagePath = "62-Dolce&Gabbana-The-One-For-Men-Intense-EDP.jpg",
                             IsDefault = true,
@@ -4699,7 +4764,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 63,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(431),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7257),
                             FileSize = 12345L,
                             ImagePath = "63-Dolce&Gabbana-K-By-Dolce&Gabbana-EDP.jpg",
                             IsDefault = true,
@@ -4710,7 +4775,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 64,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(435),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7261),
                             FileSize = 12345L,
                             ImagePath = "64-Dolce&Gabbana-K-By-Dolce&Gabbana-EDP.jpg",
                             IsDefault = true,
@@ -4721,7 +4786,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 65,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(439),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7262),
                             FileSize = 12345L,
                             ImagePath = "65-Dolce&Gabbana-Light-Blue-Pour-Homme-Love-is-Love-EDT.jpg",
                             IsDefault = true,
@@ -4732,7 +4797,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 66,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(442),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7263),
                             FileSize = 12345L,
                             ImagePath = "66-Dolce&Gabbana-Light-Blue-Love-Is-Love-EDT.jpg",
                             IsDefault = true,
@@ -4743,7 +4808,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 67,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(444),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7264),
                             FileSize = 12345L,
                             ImagePath = "67-Dolce&Gabbana-The-Only-One-2-EDP.jpg",
                             IsDefault = true,
@@ -4754,7 +4819,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 68,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(447),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7266),
                             FileSize = 12345L,
                             ImagePath = "68-Dolce&Gabbana-The-One-For-Men-EDP.jpg",
                             IsDefault = true,
@@ -4765,7 +4830,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 69,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(449),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7267),
                             FileSize = 12345L,
                             ImagePath = "69-Dolce&Gabbana-Combo-The-Only-One-EDP-Intense-The-One-For-Men-Intense-EDP.jpg",
                             IsDefault = true,
@@ -4776,7 +4841,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 70,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(451),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7269),
                             FileSize = 12345L,
                             ImagePath = "70-Dolce&Gabbana-Combo-Light-Blue-Intense-EDP-Light-Blue-Pour-Homme-Intense-EDP.jpg",
                             IsDefault = true,
@@ -4787,7 +4852,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 71,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(455),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7271),
                             FileSize = 12345L,
                             ImagePath = "71-Burberry-Her-EDP.jpg",
                             IsDefault = true,
@@ -4798,7 +4863,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 72,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(458),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7272),
                             FileSize = 12345L,
                             ImagePath = "72.Burberry-Mr.Burberry-Element-EDT.jpg",
                             IsDefault = true,
@@ -4809,7 +4874,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 73,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(462),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7273),
                             FileSize = 12345L,
                             ImagePath = "73-Burberry-My-Burberry-Black-EDP.jpg",
                             IsDefault = true,
@@ -4820,7 +4885,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 74,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(466),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7275),
                             FileSize = 12345L,
                             ImagePath = "74-Burberry-Mr. Burberry-EDP.jpg",
                             IsDefault = true,
@@ -4831,7 +4896,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 75,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(471),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7277),
                             FileSize = 12345L,
                             ImagePath = "75-Burberry-Her-London-Dream-EDP.jpg",
                             IsDefault = true,
@@ -4842,7 +4907,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 76,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(475),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7278),
                             FileSize = 12345L,
                             ImagePath = "76-Burberry-My-Burberry-Blush-EDP.jpg",
                             IsDefault = true,
@@ -4853,7 +4918,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 77,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(477),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7279),
                             FileSize = 12345L,
                             ImagePath = "77-Burberry-Combo-My-Burberry-Black-EDP-Mr.Burberry-EDP.jpg",
                             IsDefault = true,
@@ -4864,7 +4929,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 78,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(479),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7281),
                             FileSize = 12345L,
                             ImagePath = "78-79-80-Burberry-Mr.Burberry-Indigo-EDT.jpg",
                             IsDefault = true,
@@ -4875,7 +4940,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 79,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(481),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7282),
                             FileSize = 12345L,
                             ImagePath = "78-79-80-Burberry-Mr.Burberry-Indigo-EDT.jpg",
                             IsDefault = true,
@@ -4886,7 +4951,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 80,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(483),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7283),
                             FileSize = 12345L,
                             ImagePath = "78-79-80-Burberry-Mr.Burberry-Indigo-EDT.jpg",
                             IsDefault = true,
@@ -4897,7 +4962,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 81,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(485),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7285),
                             FileSize = 12345L,
                             ImagePath = "81-Coach-Man-Blue.jpg",
                             IsDefault = true,
@@ -4908,7 +4973,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 82,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(489),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7286),
                             FileSize = 12345L,
                             ImagePath = "82-Coach-Dreams-EDP.jpg",
                             IsDefault = true,
@@ -4919,7 +4984,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 83,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(493),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7288),
                             FileSize = 12345L,
                             ImagePath = "83-Coach-Floral-Edp.jpg",
                             IsDefault = true,
@@ -4930,7 +4995,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 84,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(497),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7291),
                             FileSize = 12345L,
                             ImagePath = "84-Coach-new-york-edp.jpg",
                             IsDefault = true,
@@ -4941,7 +5006,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 85,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(501),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7292),
                             FileSize = 12345L,
                             ImagePath = "85-COACH-Men-EDT.jpg",
                             IsDefault = true,
@@ -4952,7 +5017,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 86,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(507),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7293),
                             FileSize = 12345L,
                             ImagePath = "86-Coach-Men-Platinum-Edp.jpg",
                             IsDefault = true,
@@ -4963,7 +5028,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 87,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(509),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7296),
                             FileSize = 12345L,
                             ImagePath = "87-Coach-Floral-Blush-EDP.jpg",
                             IsDefault = true,
@@ -4974,7 +5039,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 88,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(511),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7297),
                             FileSize = 12345L,
                             ImagePath = "88-Coach-Dreams-EDP-Body-Lotion.jpg",
                             IsDefault = true,
@@ -4985,7 +5050,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 89,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(513),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7298),
                             FileSize = 12345L,
                             ImagePath = "89-coach-dream.jpg",
                             IsDefault = true,
@@ -4996,7 +5061,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 90,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(515),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7300),
                             FileSize = 12345L,
                             ImagePath = "90-Coach-Men-blue.jpg",
                             IsDefault = true,
@@ -5007,7 +5072,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 91,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(517),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7301),
                             FileSize = 12345L,
                             ImagePath = "91-Montblanc-Explorer-EDP.jpg",
                             IsDefault = true,
@@ -5018,7 +5083,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 92,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(519),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7302),
                             FileSize = 12345L,
                             ImagePath = "92-Montblanc-Signature-EDP.jpg",
                             IsDefault = true,
@@ -5029,7 +5094,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 93,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(521),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7304),
                             FileSize = 12345L,
                             ImagePath = "93-Montblanc-Legend-EDP.jpg",
                             IsDefault = true,
@@ -5040,7 +5105,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 94,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(525),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7305),
                             FileSize = 12345L,
                             ImagePath = "94-Montblanc-Legend-Night-EDP.jpg",
                             IsDefault = true,
@@ -5051,7 +5116,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 95,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(551),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7306),
                             FileSize = 12345L,
                             ImagePath = "95-Montblanc-Bộ-Nước-Hoa-Mini.jpg",
                             IsDefault = true,
@@ -5062,7 +5127,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 96,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(554),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7308),
                             FileSize = 12345L,
                             ImagePath = "96-Montblanc-Legend-For-Men-EDT.jpg",
                             IsDefault = true,
@@ -5073,7 +5138,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 97,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(558),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7309),
                             FileSize = 12345L,
                             ImagePath = "97-Montblanc-Legend-Spirit-EDT.jpg",
                             IsDefault = true,
@@ -5084,7 +5149,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 98,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(562),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7311),
                             FileSize = 12345L,
                             ImagePath = "98-Montblanc-Lady-Emblem-Elixir-EDP.jpg",
                             IsDefault = true,
@@ -5095,7 +5160,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 99,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(566),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7312),
                             FileSize = 12345L,
                             ImagePath = "99-montblanc-emblem-edp.jpg",
                             IsDefault = true,
@@ -5106,7 +5171,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = 100,
                             Caption = "test",
-                            DateCreated = new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(570),
+                            DateCreated = new DateTime(2021, 7, 11, 21, 47, 40, 968, DateTimeKind.Local).AddTicks(7313),
                             FileSize = 12345L,
                             ImagePath = "100-Montblanc-Emblem-EDT.jpg",
                             IsDefault = true,
@@ -5773,7 +5838,7 @@ namespace CosmeticsShop.Data.Migrations
                         new
                         {
                             Id = new Guid("bd5b83d2-5c75-4f96-a63f-1eca425bdfe5"),
-                            ConcurrencyStamp = "201020c9-61a5-4878-a5b7-af3bb718c21c",
+                            ConcurrencyStamp = "c80c1f72-651a-4bd7-bc02-c8356a9cb852",
                             Description = "Manager role",
                             Name = "Manager",
                             NormalizedName = "Manager"
@@ -5781,7 +5846,7 @@ namespace CosmeticsShop.Data.Migrations
                         new
                         {
                             Id = new Guid("efebfd93-b27d-4c91-8a71-74fd71944893"),
-                            ConcurrencyStamp = "251a847e-edb7-4bba-8473-962bdd099547",
+                            ConcurrencyStamp = "220a6c5b-2c4f-4ac1-a87b-714b5af7e8df",
                             Description = "Staff role",
                             Name = "Staff",
                             NormalizedName = "Staff"
@@ -5984,7 +6049,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = new Guid("1c856746-f8aa-4026-b854-f18da9787cf3"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "dc5c1050-e4a9-4ad3-85d0-20dbd1205e69",
+                            ConcurrencyStamp = "e852bf1e-fd0f-4b57-979c-0cf32f739556",
                             Dob = new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "tiendinhdev99@gmail.com",
                             EmailConfirmed = true,
@@ -5992,7 +6057,7 @@ namespace CosmeticsShop.Data.Migrations
                             Name = "Voi Bé Nhỏ",
                             NormalizedEmail = "tiendinhdev99@gmail.com",
                             NormalizedUserName = "manager",
-                            PasswordHash = "AQAAAAEAACcQAAAAENNnvEfRXS50z1aOJ5DVemswLiDxWzlAI8UEV72gctDZvc8kasUg9FbjJmnPJfpOFw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEP8+kCxAZkxjY3OKA/Ff+E8mfuB7mh5AFWNDz7Sg4Vdtxo8vPgiGYjWgfoD+8GtmFA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -6002,7 +6067,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = new Guid("d8b63b91-c360-4e3d-9b3a-2dce31f00cc4"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c06640c4-e0c1-4e6f-b588-b0a6dfe2fcc6",
+                            ConcurrencyStamp = "5229cbac-a177-4e08-95f5-7e229f491816",
                             Dob = new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Haianh@gmail.com",
                             EmailConfirmed = true,
@@ -6010,7 +6075,7 @@ namespace CosmeticsShop.Data.Migrations
                             Name = "Hải Anh",
                             NormalizedEmail = "Haianh@gmail.com",
                             NormalizedUserName = "haianhmanager",
-                            PasswordHash = "AQAAAAEAACcQAAAAEO/CUEY3dP5JSHXrjYnCoM3SPZNmhlFa4PJeiW/uRIG1Rd/gMwiVU2FFSXKB5zQw7w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELCvbDnVFtizYmnAoe8CHRUp//5+uWAm7uo6GVSW0dVRr6uwBolFIyK4Th0axAZ0kA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -6020,7 +6085,7 @@ namespace CosmeticsShop.Data.Migrations
                         {
                             Id = new Guid("33674f31-0bd2-43cd-9090-3f0d4bab1c58"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e3471139-1927-4916-9472-c416640c59ad",
+                            ConcurrencyStamp = "cd7c5a7b-7a77-4139-aa3b-ad50ebd2140c",
                             Dob = new DateTime(2001, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Tranphuong18032001@gmail.com",
                             EmailConfirmed = true,
@@ -6028,7 +6093,7 @@ namespace CosmeticsShop.Data.Migrations
                             Name = "Thu Phương",
                             NormalizedEmail = "Tranphuong18032001@gmail.com",
                             NormalizedUserName = "tranphuongmanager",
-                            PasswordHash = "AQAAAAEAACcQAAAAEB81l8RD6vG8r7260OdlMEWmTamMsxOuMV8qKR/Wjlp68auDQ3A1VTlQ1xfhrKN0Mg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEBUaHrc8echflL1apfp/tSB0EXUNUHoePnG3DCtsGIW0ijmcbwtCDmFfOCeJB6fZw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,

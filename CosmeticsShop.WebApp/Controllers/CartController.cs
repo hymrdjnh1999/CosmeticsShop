@@ -192,7 +192,7 @@ namespace CosmeticsShop.WebApp.Controllers
             HttpContext.Session.SetString("Cart", cartJs);
             return new JsonResult(new { result = true, message = "Xóa sản phẩm khỏi cart thành công" });
         }
-
+        
         [HttpPut]
         public async Task<JsonResult> UpdateCart(int productId, bool increment)
         {
@@ -223,6 +223,14 @@ namespace CosmeticsShop.WebApp.Controllers
             HttpContext.Session.SetString("Cart", serializeCart);
 
             return new JsonResult(new { status = 201, message = "Ok", hasRemove = isRemove, newQuantity = product.Quantity, newTotalPrice = product.Quantity * product.ProductPrice, newCartPrice = cart.CartPrice });
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetCart()
+        {
+            var cart = GetCartViewModel();
+            
+
+            return View(cart);
         }
     }
 }
