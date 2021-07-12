@@ -3113,15 +3113,75 @@ namespace CosmeticsShop.Data.Extentions
                 new Banner()
                 {
                     Id = 1,
-                    Name = "test",
+                    Name = "Banner 1",
                     DateCreated = DateTime.Now,
-                    Description = "Test Des",
-                    FileSize = 12345,
-                    ImagePath = "123123.jpg",
+                    Description = "banner 1",
+                    FileSize = 164996,
+                    ImagePath = "5d421570-ca5b-454c-9ed3-bf2b2c7aec77.jpg",
                     Status = Status.Active,
                     IsDefault = true,
                     SortOrder = 1
-                });
+                },
+                new Banner()
+                {
+                    Id = 2,
+                    Name = "Banner 2",
+                    DateCreated = DateTime.Now,
+                    Description = "Banner 2",
+                    FileSize = 133967,
+                    ImagePath = "5c838080-0103-4c34-8492-9b9631a64572.jpg",
+                    Status = Status.Active,
+                    IsDefault = true,
+                    SortOrder = 2
+                },
+                new Banner()
+                {
+                    Id = 3,
+                    Name = "Banner 3",
+                    DateCreated = DateTime.Now,
+                    Description = "Banner 3",
+                    FileSize = 210337,
+                    ImagePath = "567098a0-18a5-4331-93b6-3da4223972a6.jpg",
+                    Status = Status.Active,
+                    IsDefault = true,
+                    SortOrder = 3
+                },
+                new Banner()
+                {
+                    Id = 4,
+                    Name = "Banner 4",
+                    DateCreated = DateTime.Now,
+                    Description = "Banner 4",
+                    FileSize = 143916,
+                    ImagePath = "1e73c506-0a7f-4deb-a9f5-d7bdcc24b0a0.jpg",
+                    Status = Status.Active,
+                    IsDefault = true,
+                    SortOrder = 4
+                },
+                new Banner()
+                {
+                    Id = 5,
+                    Name = "Banner 5",
+                    DateCreated = DateTime.Now,
+                    Description = "Banner 5",
+                    FileSize = 52337,
+                    ImagePath = "05d318d6-b57d-4e48-b520-139116b65a50.jpg",
+                    Status = Status.Active,
+                    IsDefault = true,
+                    SortOrder = 5
+                },
+                new Banner()
+                {
+                    Id = 6,
+                    Name = "Banner 6",
+                    DateCreated = DateTime.Now,
+                    Description = "Banner 6",
+                    FileSize = 1407923,
+                    ImagePath = "3d3b95fa-a003-46f1-b637-ee1b82b44b06.jpg",
+                    Status = Status.Active,
+                    IsDefault = true,
+                    SortOrder = 6
+                }) ;
 
             modelBuilder.Entity<ProductInCategory>().HasData(
                 new ProductInCategory() { ProductId = 1, CategoryId = 1 },
