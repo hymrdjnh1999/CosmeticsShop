@@ -190,10 +190,10 @@ namespace CosmeticsShop.Application.Systems.Clients
             var hashser = new PasswordHasher<Client>();
             var newClient = new Client()
             {
-                Email = request.Email,
                 Name = request.FullName,
+                Email = request.Email,
                 Address = request.Address,
-                Dob = request.Dateofbirth,
+                Dob = request.Dob,
                 PhoneNumber = request.PhoneNumber,
                 Password = hashser.HashPassword(null, request.Password),
             };

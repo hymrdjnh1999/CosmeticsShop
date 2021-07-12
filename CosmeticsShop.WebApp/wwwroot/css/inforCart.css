@@ -147,7 +147,7 @@ main_content {
     color: #1c1b1b;
     padding-left: 1.4em;
     text-decoration: none;
-    padding-top: 14px;
+/*    padding-top: 14px;*/
 }
 
 .step_footer {
@@ -267,13 +267,6 @@ main_content {
 
 
 /*Tóm Tắt sp*/
-.sidebar {
-    padding-top: 4em;
-    position: relative;
-    background-color: #efefef;
-    height: 928px;
-}
-
 @media (min-width: 1000px) {
     .sidebar {
         width: 42%;

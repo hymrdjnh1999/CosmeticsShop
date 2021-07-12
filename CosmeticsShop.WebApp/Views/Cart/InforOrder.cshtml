@@ -5,6 +5,7 @@
 
     var cart = ViewBag.Cart;
     var products = cart.Products;
+    var user = ViewBag.User;
     var imgUrlBase = "https://localhost:5001/user-content/";
 }
 
@@ -52,16 +53,16 @@
                                     <input type="hidden" name="utf8" value="✓">
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <div class="form__Item">
-                                        <input class="form__Input" asp-for="ClientName" placeholder="Họ và Tên" aria-label="name" autofocus="">
+                                        <input class="form__Input" asp-for="ClientName" placeholder="Họ và Tên" value="@user.Name" aria-label="name" autofocus="">
                                         <label class="form__FloatingLabel">Họ và Tên</label>
-                                        <span asp-validation-for="ClientName" class="text-danger"></span>
+                                        <span asp-validation-for="ClientName"  class="text-danger"></span>
                                     </div>
                                     <div class="form__Item">
                                         <input class="form__Input" asp-for="ClientNote" placeholder="Ghi chú của bạn (không bắt buộc điền)" aria-label="Ghi chú">
                                         <label class="form__FloatingLabel">Ghi chú của bạn (không bắt buộc điền)</label>
                                     </div>
                                     <div class="form__Item">
-                                        <input class="form__Input" asp-for="@Model.Client.Address" placeholder="Địa chỉ" aria-label="address">
+                                        <input class="form__Input" asp-for="ShipAddress" value="@user.Address" placeholder="Địa chỉ" aria-label="address">
                                         <label class="form__FloatingLabel">Địa chỉ</label>
                                         <span asp-validation-for="ShipAddress" class="text-danger"></span>
                                     </div>
@@ -69,12 +70,12 @@
                                         <input class="form__Input" asp-for="TotalPrice" type="hidden" value="@cart.CartPrice">
                                     </div>
                                     <div class="form__Item">
-                                        <input class="form__Input" type="email" asp-for="Email" placeholder="Email" aria-label="email">
+                                        <input class="form__Input" type="email" asp-for="Email" value="@user.Email" placeholder="Email" aria-label="email">
                                         <label class="form__FloatingLabel">Email</label>
                                         <span asp-validation-for="Email" class="text-danger"></span>
                                     </div>
                                     <div class="form__Item">
-                                        <input class="form__Input" asp-for="ShipPhone" placeholder="Số điện thoại" aria-label="address">
+                                        <input class="form__Input" asp-for="ShipPhone" value="@user.PhoneNumber" placeholder="Số điện thoại" aria-label="address">
                                         <label class="form__FloatingLabel">Số điện thoại</label>
                                         <span asp-validation-for="ShipPhone" class="text-danger"></span>
                                     </div>
@@ -91,16 +92,12 @@
                                 </div>
                             </div>
                             <div class="step_footer" data-step-footer>
-
                                 <div class="sectionFooter__cart">
                                     <div class="wrapper">
-                                        <button name="button" type="submit" href="#" class="justify-content-center text-center"><span>HOÀN TẤT ĐƠN HÀNG</span></button>
+                                        <button name="button" type="submit" href="#" class="text-uppercase"><span>hoàn tất đơn hàng</span></button>
                                     </div>
                                 </div>
-
-                                <span class="step__footer__previous-link d-flex align-items-center ml-4">
-                                    <a href="/cart/cartdetail" class="step__footer__previous-link-content">Quay trở lại giỏ hàng</a>
-                                </span>
+                                <a href="/cart/cartDetail" class="d-flex align-items-center justify-content-center ml-2 " style="text-decoration:none; color: #000;">Quay trở lại giỏ hàng</a>
                             </div>
                         </div>
                     </form>

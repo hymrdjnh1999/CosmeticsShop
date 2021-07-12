@@ -32,6 +32,7 @@ namespace CosmeticsShop.WebApp.Controllers
                 var client = response.ResultObj;
                 ViewBag.Avatar = !String.IsNullOrEmpty(client.Avatar) ? $"https://localhost:5001/user-content/{client.Avatar}" : "/images/default.jpg";
                 ViewBag.Name = client.Name;
+                
             }
         }
         protected void CreateCartViewBag()

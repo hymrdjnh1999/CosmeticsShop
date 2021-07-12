@@ -61,12 +61,11 @@ namespace CosmeticsShop.WebApp.Controllers
             {
                 return RedirectToAction("Error", "Home");
             }
-            await CreateUserViewBag();
             CreateCartViewBag();
             var ClientId = new Guid(clientIdClaim.Value);
             var client = await _clientApi.GetDetail(ClientId);
-            return View(client);
-            /*return View();*/
+            ViewBag.User = client.ResultObj;
+            return View();
         }
 
         [HttpGet("{cartId}/thanks/{orderId}")]

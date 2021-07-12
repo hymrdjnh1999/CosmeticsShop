@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CosmeticsShop.Data.Migrations
 {
-    public partial class AddStatusProductInitial : Migration
+    public partial class initialdbClientLayout : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -524,7 +524,7 @@ namespace CosmeticsShop.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Banners",
                 columns: new[] { "Id", "DateCreated", "Description", "FileSize", "ImagePath", "IsDefault", "IsOutstanding", "Name", "SortOrder", "Status" },
-                values: new object[] { 1, new DateTime(2021, 6, 30, 9, 22, 12, 263, DateTimeKind.Local).AddTicks(7616), "Test Des", 12345L, "123123.jpg", true, false, "test", 1, 2 });
+                values: new object[] { 1, new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(2572), "Test Des", 12345L, "123123.jpg", true, false, "test", 1, 2 });
 
             migrationBuilder.InsertData(
                 table: "Categoires",
@@ -548,16 +548,16 @@ namespace CosmeticsShop.Data.Migrations
                 columns: new[] { "Id", "Address", "Avatar", "Dob", "Email", "Name", "Password", "PhoneNumber", "Status" },
                 values: new object[,]
                 {
-                    { new Guid("e2123170-2dbc-4e43-9477-d0be0f352d21"), "Phường Phúc Lợi - Quận Long Biên - Hà Nội", "", new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "dinhtrong@gmail.com", "Đình Trọng", "AQAAAAEAACcQAAAAEKFFbhpMXN0bYsdTa5CpTNPelUnP5oJAL6l8c0IV45/Ei6NaGM1xXoLMZlbu1JNy5w==", "0985638888", 2 },
-                    { new Guid("79a378f7-34c1-4403-88bb-791d585df9aa"), "Phường Cầu Dền - Quận Hai Bà Trưng - Hà Nội", "", new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "xuantruong@gmail.com", "Xuân Trường", "AQAAAAEAACcQAAAAENKD+uiUkKG3WM0gha0wnG1xnoHMqJetwdAX3SAmjxNUC35C+ktS+WhRSLdjVwRTrA==", "0987546666", 2 },
-                    { new Guid("01940aef-917e-4f1f-8c06-38459dbcaa0c"), "Phúc Hòa - Tân Yên - Bắc Giang", "", new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "congphuong@gmail.com", "Công Phượng", "AQAAAAEAACcQAAAAEFzXWwiwQx9zVw25XtcCu8PZTtyPph2eqekrzQ/cIcEZgYEEoyfX+gvxpR4RQVrRiA==", "0987456321", 2 },
-                    { new Guid("ec888d8f-2c97-4d10-b9a5-e7dfab9a82b7"), "Thọ Xuân - Thanh Hóa", "", new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "minhanh@gmail.com", "Minh Anh", "AQAAAAEAACcQAAAAEN5kQQvXOr1zF9KZxptpRJuOyJWKxMgteBJHoriW3ocIEmT0msEk2xRISXE01LfsWQ==", "0978563732", 2 },
-                    { new Guid("0199e987-8be3-4b1a-876d-a638d24cc910"), "Hoằng Hóa - Thanh Hóa", "", new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "hoangchung@gmail.com", "Hoàng Chung", "AQAAAAEAACcQAAAAEFqzSqnm5XtgdTHBXpIOSnf4k5N6Dt+D7HXekxZXmIEFFo+4Ftmy/EnUBUZEBxS0iA==", "0963258741", 2 },
-                    { new Guid("48347449-050f-4630-946a-cf41446d89c8"), "Đan Phượng - Hà Nội", "", new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "vananh@gmail.com", "Tran Van Anh", "AQAAAAEAACcQAAAAEAyrHDtRXgJxll9uT0bFgxl86wa3MwW7NOvFJb7+C0geCTBVK/jh4KLhUehkPNtKMQ==", "0323456743", 2 },
-                    { new Guid("c12d5773-d956-4b10-a30e-ac80f459d411"), "Chương Mỹ - Hà Nội", "", new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "haianh@gmail.com", "Le Hai Anh", "AQAAAAEAACcQAAAAEEFpGuUmqhNQoYN8APlI6Bak8dGt2Hj+clBOv0xIulI8Sd32CyPdrXJaP4j8dOIC0A==", "0358963245", 2 },
-                    { new Guid("599fab7f-0c58-412c-8de5-93cc9424c0fe"), "Nguyễn Trãi - Thường Tín - Hà Nội", "", new DateTime(2001, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "tranphuong@gmail.com", "Tran Thu Phuong", "AQAAAAEAACcQAAAAEDYQviNUQm2x2B7jD1OGqJgBYxdYtiG+SD+8HNa+oTgkNCwpTihU8jD/ZmFI/64O1g==", "0378709602", 2 },
-                    { new Guid("94c14234-d9b7-4a8b-91c8-68b53378fe6b"), "8 Nghách 167 ngõ 521 Trương Định - Hoàng Mai - Hà Nội", "", new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "test1234@gmail.com", "Do tien dinh", "AQAAAAEAACcQAAAAECtHO10oHnRGRELXc/QRSjw5K4B7RFyZxUq2DDx9M+XgYuE36+9V1IDzjXvJmV6/4g==", "0984869201", 2 },
-                    { new Guid("1d37e388-3c9d-490b-a0d1-93f20c4292b5"), "8 Nghách 167 ngõ 521 Trương Định - Hoàng Mai - Hà Nội", "", new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "tiendinhdev99@gmail.com", "Voi Bé Nhỏ", "AQAAAAEAACcQAAAAEDOCV/Th5WR8D+oo4c4exP/Z8VIH9p6TFCeiC1oH23bwQoWNzyRcoDa/uynAN5Aw3A==", "0984869201", 2 }
+                    { new Guid("e2123170-2dbc-4e43-9477-d0be0f352d21"), "Phường Phúc Lợi - Quận Long Biên - Hà Nội", "", new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "dinhtrong@gmail.com", "Đình Trọng", "AQAAAAEAACcQAAAAELRzAtif0fpIxgg4exa/7Z9vFNsCCQulrVK316bsfox4I8BAHMUZ3HcbC4EWSsou5w==", "0985638888", 2 },
+                    { new Guid("79a378f7-34c1-4403-88bb-791d585df9aa"), "Phường Cầu Dền - Quận Hai Bà Trưng - Hà Nội", "", new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "xuantruong@gmail.com", "Xuân Trường", "AQAAAAEAACcQAAAAEF6NPy2+y8muCrse+7R3AEJCaU6aznJQkWBZf23c8YVA6ECeEkR0ss6/yhjLY/zkww==", "0987546666", 2 },
+                    { new Guid("01940aef-917e-4f1f-8c06-38459dbcaa0c"), "Phúc Hòa - Tân Yên - Bắc Giang", "", new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "congphuong@gmail.com", "Công Phượng", "AQAAAAEAACcQAAAAEM7SeRVxDvT8hG82hBHSNvP4TaEEzPH6thcha0W3BU2BHrTeiZ1TXlpNEh9l71p3Hg==", "0987456321", 2 },
+                    { new Guid("ec888d8f-2c97-4d10-b9a5-e7dfab9a82b7"), "Thọ Xuân - Thanh Hóa", "", new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "minhanh@gmail.com", "Minh Anh", "AQAAAAEAACcQAAAAEEwDBWgDnpWQnGo3PtB3JXeDqLCXBNPSl3mAL3VSxF1hVHiGj1BGwUr7ejxORfyjVw==", "0978563732", 2 },
+                    { new Guid("0199e987-8be3-4b1a-876d-a638d24cc910"), "Hoằng Hóa - Thanh Hóa", "", new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "hoangchung@gmail.com", "Hoàng Chung", "AQAAAAEAACcQAAAAEOaoebK0NItbF+nAkDpNRMYlAPh1XSZEhiZx3i735Xfzr4/U7E+IZtWElhaChtYlEg==", "0963258741", 2 },
+                    { new Guid("48347449-050f-4630-946a-cf41446d89c8"), "Đan Phượng - Hà Nội", "", new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "vananh@gmail.com", "Tran Van Anh", "AQAAAAEAACcQAAAAEKLNE0Yv6ZbhRNXe7ldfIYfbmk/l7o9pMGba0rSXJlAf5iy5qewLCJrZ+8ygV5PBWA==", "0323456743", 2 },
+                    { new Guid("c12d5773-d956-4b10-a30e-ac80f459d411"), "Chương Mỹ - Hà Nội", "", new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "haianh@gmail.com", "Le Hai Anh", "AQAAAAEAACcQAAAAELidNY9lIoMHpObk0gotREL76hxluqsFP4TV6heFYL4iPg2JVKPVTEiZ1T/eI1/zZg==", "0358963245", 2 },
+                    { new Guid("599fab7f-0c58-412c-8de5-93cc9424c0fe"), "Nguyễn Trãi - Thường Tín - Hà Nội", "", new DateTime(2001, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "tranphuong@gmail.com", "Tran Thu Phuong", "AQAAAAEAACcQAAAAEA+Lj+xTIwnlrxAZ3wArFmh9YYA8KFNzaH1G21kkcj8+xIxR3V0Q72y/kBGRb7qlLQ==", "0378709602", 2 },
+                    { new Guid("94c14234-d9b7-4a8b-91c8-68b53378fe6b"), "8 Nghách 167 ngõ 521 Trương Định - Hoàng Mai - Hà Nội", "", new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "test1234@gmail.com", "Do tien dinh", "AQAAAAEAACcQAAAAEIUfMvSmm43HfaSAaSOfMU5DPk33k/XzjSMtCMoeBblWl7uNgf4CZNMkpk91lWia+w==", "0984869201", 2 },
+                    { new Guid("1d37e388-3c9d-490b-a0d1-93f20c4292b5"), "8 Nghách 167 ngõ 521 Trương Định - Hoàng Mai - Hà Nội", "", new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "tiendinhdev99@gmail.com", "Voi Bé Nhỏ", "AQAAAAEAACcQAAAAEPVZhFDU2R+8AOQT+bu+2cpHAXfYskLpIAjOcI0srk2RCPFfWziWnxRdE+L3Z1EV7A==", "0984869201", 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -686,8 +686,8 @@ namespace CosmeticsShop.Data.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Description", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { new Guid("efebfd93-b27d-4c91-8a71-74fd71944893"), "00c5317a-acba-45c0-bc12-5bec11a8d006", "Staff role", "Staff", "Staff" },
-                    { new Guid("bd5b83d2-5c75-4f96-a63f-1eca425bdfe5"), "a4cdcf18-521d-4777-a262-ee54aa327750", "Manager role", "Manager", "Manager" }
+                    { new Guid("efebfd93-b27d-4c91-8a71-74fd71944893"), "251a847e-edb7-4bba-8473-962bdd099547", "Staff role", "Staff", "Staff" },
+                    { new Guid("bd5b83d2-5c75-4f96-a63f-1eca425bdfe5"), "201020c9-61a5-4878-a5b7-af3bb718c21c", "Manager role", "Manager", "Manager" }
                 });
 
             migrationBuilder.InsertData(
@@ -725,9 +725,9 @@ namespace CosmeticsShop.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Dob", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { new Guid("1c856746-f8aa-4026-b854-f18da9787cf3"), 0, "3d4b050e-7cad-40d1-b506-ce33158ee8c6", new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "tiendinhdev99@gmail.com", true, false, null, "Voi Bé Nhỏ", "tiendinhdev99@gmail.com", "manager", "AQAAAAEAACcQAAAAEEwF5BTv1gC0PLFrotW826y2s1lBu2HQZZjeaBR4/3x/VUa+jMGYSc9fs18M5fD4/Q==", null, false, "", false, "voibenho99" },
-                    { new Guid("d8b63b91-c360-4e3d-9b3a-2dce31f00cc4"), 0, "9225605d-3175-4e6d-9289-66c2d521a1e8", new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "Haianh@gmail.com", true, false, null, "Hải Anh", "Haianh@gmail.com", "haianhmanager", "AQAAAAEAACcQAAAAELsCa8lYz4wA0FFGH5b0zZ5j92RXKTS583lrZu+RWSvf6yQWQhj78qBWt1Q0JYnU2w==", null, false, "", false, "haianh" },
-                    { new Guid("33674f31-0bd2-43cd-9090-3f0d4bab1c58"), 0, "2ff58b7a-3017-43d8-a9bd-23c6a2d46d53", new DateTime(2001, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "Tranphuong18032001@gmail.com", true, false, null, "Thu Phương", "Tranphuong18032001@gmail.com", "tranphuongmanager", "AQAAAAEAACcQAAAAEG1/v+LQbG3o9b8PYliLXb6fMz4KxsStweJw9tn2ZMi/VZvf5MobBVJM6K57pTiotQ==", null, false, "", false, "tranphuong" }
+                    { new Guid("1c856746-f8aa-4026-b854-f18da9787cf3"), 0, "dc5c1050-e4a9-4ad3-85d0-20dbd1205e69", new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "tiendinhdev99@gmail.com", true, false, null, "Voi Bé Nhỏ", "tiendinhdev99@gmail.com", "manager", "AQAAAAEAACcQAAAAENNnvEfRXS50z1aOJ5DVemswLiDxWzlAI8UEV72gctDZvc8kasUg9FbjJmnPJfpOFw==", null, false, "", false, "voibenho99" },
+                    { new Guid("d8b63b91-c360-4e3d-9b3a-2dce31f00cc4"), 0, "c06640c4-e0c1-4e6f-b588-b0a6dfe2fcc6", new DateTime(2001, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "Haianh@gmail.com", true, false, null, "Hải Anh", "Haianh@gmail.com", "haianhmanager", "AQAAAAEAACcQAAAAEO/CUEY3dP5JSHXrjYnCoM3SPZNmhlFa4PJeiW/uRIG1Rd/gMwiVU2FFSXKB5zQw7w==", null, false, "", false, "haianh" },
+                    { new Guid("33674f31-0bd2-43cd-9090-3f0d4bab1c58"), 0, "e3471139-1927-4916-9472-c416640c59ad", new DateTime(2001, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "Tranphuong18032001@gmail.com", true, false, null, "Thu Phương", "Tranphuong18032001@gmail.com", "tranphuongmanager", "AQAAAAEAACcQAAAAEB81l8RD6vG8r7260OdlMEWmTamMsxOuMV8qKR/Wjlp68auDQ3A1VTlQ1xfhrKN0Mg==", null, false, "", false, "tranphuong" }
                 });
 
             migrationBuilder.InsertData(
@@ -856,32 +856,32 @@ namespace CosmeticsShop.Data.Migrations
                 columns: new[] { "Id", "Caption", "DateCreated", "FileSize", "ImagePath", "IsDefault", "ProductId", "SortOrder" },
                 values: new object[,]
                 {
-                    { 41, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8398), 12345L, "41-Coach-Flora- EDP.jpg", true, 41, 41 },
-                    { 80, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9239), 12345L, "78-79-80-Burberry-Mr.Burberry-Indigo-EDT.jpg", true, 80, 80 },
-                    { 42, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8405), 12345L, "42-Coach-Men-EDT.jpg", true, 42, 42 },
-                    { 43, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8413), 12345L, "43-Coach-Men-Platinum-EDP.jpg", true, 43, 43 },
-                    { 79, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9232), 12345L, "78-79-80-Burberry-Mr.Burberry-Indigo-EDT.jpg", true, 79, 79 },
-                    { 78, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9225), 12345L, "78-79-80-Burberry-Mr.Burberry-Indigo-EDT.jpg", true, 78, 78 },
-                    { 47, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8444), 12345L, "47-Holiday-Gift-Set-Coach-Dreams-EDP.jpg", true, 47, 47 },
-                    { 45, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8428), 12345L, "45-Coach-New-York-Floral-Blush-EDP.jpg", true, 45, 45 },
-                    { 46, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8437), 12345L, "46-Gift-Set-Coach-Dreams.jpg", true, 46, 46 },
-                    { 40, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8390), 12345L, "40-[NEW]-Jean-Paul-Gautier-Le-Male-Le-Parfum-EDP.jpg", true, 40, 40 },
-                    { 44, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8421), 12345L, "44-Coach-Men-Platinum-EDP.jpg", true, 44, 44 },
-                    { 81, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9247), 12345L, "81-Coach-Man-Blue.jpg", true, 81, 81 },
-                    { 32, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8325), 12345L, "32-Jimmy-Choo-Urban-Hero-EDP-For-Men.jpg", true, 32, 32 },
-                    { 38, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8375), 12345L, "38-[NEW]-Paco-Rabanne-1-Million-Parfum-EDP-For-Men-2020.jpg", true, 38, 38 },
-                    { 82, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9254), 12345L, "82-Coach-Dreams-EDP.jpg", true, 82, 82 },
-                    { 37, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8367), 12345L, "37-Chloe-Love-Story-EDP.jpg", true, 37, 37 },
-                    { 36, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8359), 12345L, "36-Chloe-Signature-EDP.jpg", true, 36, 36 },
-                    { 83, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9262), 12345L, "83-Coach-Floral-Edp.jpg", true, 83, 83 },
-                    { 35, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8350), 12345L, "35-Chloe-Nomade-EDP.jpg", true, 35, 35 },
-                    { 34, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8342), 12345L, "34-Chloe-Nomade-Absolu-de-Parfum-EDP.jpg", true, 34, 34 },
-                    { 84, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9269), 12345L, "84-Coach-new-york-edp.jpg", true, 84, 84 },
-                    { 33, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8333), 12345L, "33-Dolce&Gabbana-Light-Blue-Love-Is-Love-EDT-(For Women).jpg", true, 33, 33 },
-                    { 85, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9276), 12345L, "85-COACH-Men-EDT.jpg", true, 85, 85 },
-                    { 77, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9217), 12345L, "77-Burberry-Combo-My-Burberry-Black-EDP-Mr.Burberry-EDP.jpg", true, 77, 77 },
-                    { 31, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8316), 12345L, "31-[NEW]-Jimmy-Choo-I-Want-Choo-EDP.jpg", true, 31, 31 },
-                    { 39, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8382), 12345L, "39-Carolina-Herrera-Bad-Boy-EDT.jpg", true, 39, 39 }
+                    { 41, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(341), 12345L, "41-Coach-Flora- EDP.jpg", true, 41, 41 },
+                    { 80, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(483), 12345L, "78-79-80-Burberry-Mr.Burberry-Indigo-EDT.jpg", true, 80, 80 },
+                    { 42, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(345), 12345L, "42-Coach-Men-EDT.jpg", true, 42, 42 },
+                    { 43, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(349), 12345L, "43-Coach-Men-Platinum-EDP.jpg", true, 43, 43 },
+                    { 79, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(481), 12345L, "78-79-80-Burberry-Mr.Burberry-Indigo-EDT.jpg", true, 79, 79 },
+                    { 78, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(479), 12345L, "78-79-80-Burberry-Mr.Burberry-Indigo-EDT.jpg", true, 78, 78 },
+                    { 47, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(365), 12345L, "47-Holiday-Gift-Set-Coach-Dreams-EDP.jpg", true, 47, 47 },
+                    { 45, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(357), 12345L, "45-Coach-New-York-Floral-Blush-EDP.jpg", true, 45, 45 },
+                    { 46, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(361), 12345L, "46-Gift-Set-Coach-Dreams.jpg", true, 46, 46 },
+                    { 40, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(337), 12345L, "40-[NEW]-Jean-Paul-Gautier-Le-Male-Le-Parfum-EDP.jpg", true, 40, 40 },
+                    { 44, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(353), 12345L, "44-Coach-Men-Platinum-EDP.jpg", true, 44, 44 },
+                    { 81, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(485), 12345L, "81-Coach-Man-Blue.jpg", true, 81, 81 },
+                    { 32, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(305), 12345L, "32-Jimmy-Choo-Urban-Hero-EDP-For-Men.jpg", true, 32, 32 },
+                    { 38, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(329), 12345L, "38-[NEW]-Paco-Rabanne-1-Million-Parfum-EDP-For-Men-2020.jpg", true, 38, 38 },
+                    { 82, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(489), 12345L, "82-Coach-Dreams-EDP.jpg", true, 82, 82 },
+                    { 37, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(325), 12345L, "37-Chloe-Love-Story-EDP.jpg", true, 37, 37 },
+                    { 36, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(321), 12345L, "36-Chloe-Signature-EDP.jpg", true, 36, 36 },
+                    { 83, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(493), 12345L, "83-Coach-Floral-Edp.jpg", true, 83, 83 },
+                    { 35, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(317), 12345L, "35-Chloe-Nomade-EDP.jpg", true, 35, 35 },
+                    { 34, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(313), 12345L, "34-Chloe-Nomade-Absolu-de-Parfum-EDP.jpg", true, 34, 34 },
+                    { 84, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(497), 12345L, "84-Coach-new-york-edp.jpg", true, 84, 84 },
+                    { 33, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(309), 12345L, "33-Dolce&Gabbana-Light-Blue-Love-Is-Love-EDT-(For Women).jpg", true, 33, 33 },
+                    { 85, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(501), 12345L, "85-COACH-Men-EDT.jpg", true, 85, 85 },
+                    { 77, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(477), 12345L, "77-Burberry-Combo-My-Burberry-Black-EDP-Mr.Burberry-EDP.jpg", true, 77, 77 },
+                    { 31, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(301), 12345L, "31-[NEW]-Jimmy-Choo-I-Want-Choo-EDP.jpg", true, 31, 31 },
+                    { 39, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(333), 12345L, "39-Carolina-Herrera-Bad-Boy-EDT.jpg", true, 39, 39 }
                 });
 
             migrationBuilder.InsertData(
@@ -889,48 +889,48 @@ namespace CosmeticsShop.Data.Migrations
                 columns: new[] { "Id", "Caption", "DateCreated", "FileSize", "ImagePath", "IsDefault", "ProductId", "SortOrder" },
                 values: new object[,]
                 {
-                    { 48, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8451), 12345L, "48-Gift-Set-Coach-Men-Blue-EDT.jpg", true, 48, 48 },
-                    { 64, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8942), 12345L, "64-Dolce&Gabbana-K-By-Dolce&Gabbana-EDP.jpg", true, 64, 64 },
-                    { 76, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9209), 12345L, "76-Burberry-My-Burberry-Blush-EDP.jpg", true, 76, 76 },
-                    { 30, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8308), 12345L, "30-[New]-Gucci-Bloom-Profumo-Di-Fiori-EDP.jpg", true, 30, 30 },
-                    { 66, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9049), 12345L, "66-Dolce&Gabbana-Light-Blue-Love-Is-Love-EDT.jpg", true, 66, 66 },
-                    { 68, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9064), 12345L, "68-Dolce&Gabbana-The-One-For-Men-EDP.jpg", true, 68, 68 },
-                    { 65, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9038), 12345L, "65-Dolce&Gabbana-Light-Blue-Pour-Homme-Love-is-Love-EDT.jpg", true, 65, 65 },
-                    { 69, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9072), 12345L, "69-Dolce&Gabbana-Combo-The-Only-One-EDP-Intense-The-One-For-Men-Intense-EDP.jpg", true, 69, 69 },
-                    { 63, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8644), 12345L, "63-Dolce&Gabbana-K-By-Dolce&Gabbana-EDP.jpg", true, 63, 63 },
-                    { 62, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8637), 12345L, "62-Dolce&Gabbana-The-One-For-Men-Intense-EDP.jpg", true, 62, 62 },
-                    { 70, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9079), 12345L, "70-Dolce&Gabbana-Combo-Light-Blue-Intense-EDP-Light-Blue-Pour-Homme-Intense-EDP.jpg", true, 70, 70 },
-                    { 61, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8630), 12345L, "61-Dolce&Gabbana-The-Only-One-EDP-Intense.jpg", true, 61, 61 },
-                    { 60, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8623), 12345L, "60-Gift-Set-Paco-Rabanne-1-Million-EDT.jpg", true, 60, 60 },
-                    { 71, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9086), 12345L, "71-Burberry-Her-EDP.jpg", true, 71, 71 },
-                    { 59, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8616), 12345L, "59-Gift-Set-Lanvin-A-Girl-In-Capri-EDT.jpg", true, 59, 59 },
-                    { 58, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8608), 12345L, "58-Gift-Set-Mercedes-Benz-Man-Intense-EDT.jpg", true, 58, 58 },
-                    { 72, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9163), 12345L, "72.Burberry-Mr.Burberry-Element-EDT.jpg", true, 72, 72 },
-                    { 57, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8601), 12345L, "57-Gift-Set-Coach-Dreams-EDP.jpg", true, 57, 57 },
-                    { 56, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8593), 12345L, "56-Gift-Set-Coach-Dreams-EDP.jpg", true, 56, 56 },
-                    { 73, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9187), 12345L, "73-Burberry-My-Burberry-Black-EDP.jpg", true, 73, 73 },
-                    { 55, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8586), 12345L, "55-Gift-Set-Carolina-Herrera-212-VIP-Men-EDT.jpg", true, 55, 55 },
-                    { 54, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8579), 12345L, "54-Gift-Set-Montblanc-Legend-EDP.jpg", true, 54, 54 },
-                    { 74, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9194), 12345L, "74-Burberry-Mr. Burberry-EDP.jpg", true, 74, 74 },
-                    { 53, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8572), 12345L, "53-Gift-Set-Carolina-Herrera-Bad-Boy-EDT.jpg", true, 53, 53 },
-                    { 52, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8564), 12345L, "52-Gift-Set-Jimmy-Choo-Urban-Hero-EDP.jpg", true, 52, 52 },
-                    { 75, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9201), 12345L, "75-Burberry-Her-London-Dream-EDP.jpg", true, 75, 75 },
-                    { 51, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8557), 12345L, "51-[NEW]-Gift-Set-Jean-Paul-Gaultier-La-Belle-Le-Parfum-EDP.jpg", true, 51, 51 },
-                    { 50, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8550), 12345L, "50-Paco-Rabanne-1-Million-Lucky-EDT-(For Men).jpg", true, 50, 50 },
-                    { 49, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8531), 12345L, "49-Gift-Set-Coach-Men-Platinum-EDP.jpg", true, 49, 49 },
-                    { 86, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9283), 12345L, "86-Coach-Men-Platinum-Edp.jpg", true, 86, 86 },
-                    { 9, "Mercedes-Benz Select Night EDP", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8149), 12345L, "9-Mercedes-Benz-Select-Night-EDP.jpg", true, 9, 9 },
-                    { 93, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9339), 12345L, "93-Montblanc-Legend-EDP.jpg", true, 93, 93 },
-                    { 17, "[New] Gucci Bloom Profumo Di Fiori EDP", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8208), 12345L, "17-Gucci-Bloom-Profumo-Di-Fiori-EDP.jpg", true, 17, 17 },
-                    { 92, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9331), 12345L, "92-Montblanc-Signature-EDP.jpg", true, 92, 92 },
-                    { 16, "[New] Gucci Bloom Ambrosia Di Fiori EDP", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8201), 12345L, "16-[New]-Gucci-Bloom-Ambrosia-Di-Fiori-EDP.jpg", true, 16, 16 },
-                    { 15, "Gucci Bloom Acqua Di Fiori EDT", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8194), 12345L, "15-Gucci-Bloom-Acqua-Di-Fiori-EDT.jpg", true, 15, 15 },
-                    { 29, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8301), 12345L, "29-Dolce&Gabbana-K-By-Dolce&Gabbana-EDP-(For Men).jpg", true, 29, 29 },
-                    { 14, "Gucci Flora By Gucci EDP", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8186), 12345L, "14-Gucci-Flora-By-Gucci-EDP.jpg", true, 14, 14 },
-                    { 13, "Gucci Guilty Pour Homme EDP", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8179), 12345L, "13-Gucci-Guilty-Pour-Homme-EDP.jpg", true, 13, 13 },
-                    { 94, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9347), 12345L, "94-Montblanc-Legend-Night-EDP.jpg", true, 94, 94 },
-                    { 12, "Gucci Bloom Nettare EDP", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8172), 12345L, "12-Gucci-Bloom-Nettare-EDP.jpg", true, 12, 12 },
-                    { 11, "Gucci Bloom EDP", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8164), 12345L, "11-Gucci-Bloom-EDP.jpg", true, 11, 11 }
+                    { 48, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(369), 12345L, "48-Gift-Set-Coach-Men-Blue-EDT.jpg", true, 48, 48 },
+                    { 64, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(435), 12345L, "64-Dolce&Gabbana-K-By-Dolce&Gabbana-EDP.jpg", true, 64, 64 },
+                    { 76, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(475), 12345L, "76-Burberry-My-Burberry-Blush-EDP.jpg", true, 76, 76 },
+                    { 30, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(297), 12345L, "30-[New]-Gucci-Bloom-Profumo-Di-Fiori-EDP.jpg", true, 30, 30 },
+                    { 66, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(442), 12345L, "66-Dolce&Gabbana-Light-Blue-Love-Is-Love-EDT.jpg", true, 66, 66 },
+                    { 68, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(447), 12345L, "68-Dolce&Gabbana-The-One-For-Men-EDP.jpg", true, 68, 68 },
+                    { 65, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(439), 12345L, "65-Dolce&Gabbana-Light-Blue-Pour-Homme-Love-is-Love-EDT.jpg", true, 65, 65 },
+                    { 69, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(449), 12345L, "69-Dolce&Gabbana-Combo-The-Only-One-EDP-Intense-The-One-For-Men-Intense-EDP.jpg", true, 69, 69 },
+                    { 63, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(431), 12345L, "63-Dolce&Gabbana-K-By-Dolce&Gabbana-EDP.jpg", true, 63, 63 },
+                    { 62, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(427), 12345L, "62-Dolce&Gabbana-The-One-For-Men-Intense-EDP.jpg", true, 62, 62 },
+                    { 70, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(451), 12345L, "70-Dolce&Gabbana-Combo-Light-Blue-Intense-EDP-Light-Blue-Pour-Homme-Intense-EDP.jpg", true, 70, 70 },
+                    { 61, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(423), 12345L, "61-Dolce&Gabbana-The-Only-One-EDP-Intense.jpg", true, 61, 61 },
+                    { 60, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(419), 12345L, "60-Gift-Set-Paco-Rabanne-1-Million-EDT.jpg", true, 60, 60 },
+                    { 71, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(455), 12345L, "71-Burberry-Her-EDP.jpg", true, 71, 71 },
+                    { 59, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(415), 12345L, "59-Gift-Set-Lanvin-A-Girl-In-Capri-EDT.jpg", true, 59, 59 },
+                    { 58, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(411), 12345L, "58-Gift-Set-Mercedes-Benz-Man-Intense-EDT.jpg", true, 58, 58 },
+                    { 72, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(458), 12345L, "72.Burberry-Mr.Burberry-Element-EDT.jpg", true, 72, 72 },
+                    { 57, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(407), 12345L, "57-Gift-Set-Coach-Dreams-EDP.jpg", true, 57, 57 },
+                    { 56, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(402), 12345L, "56-Gift-Set-Coach-Dreams-EDP.jpg", true, 56, 56 },
+                    { 73, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(462), 12345L, "73-Burberry-My-Burberry-Black-EDP.jpg", true, 73, 73 },
+                    { 55, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(398), 12345L, "55-Gift-Set-Carolina-Herrera-212-VIP-Men-EDT.jpg", true, 55, 55 },
+                    { 54, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(392), 12345L, "54-Gift-Set-Montblanc-Legend-EDP.jpg", true, 54, 54 },
+                    { 74, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(466), 12345L, "74-Burberry-Mr. Burberry-EDP.jpg", true, 74, 74 },
+                    { 53, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(389), 12345L, "53-Gift-Set-Carolina-Herrera-Bad-Boy-EDT.jpg", true, 53, 53 },
+                    { 52, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(385), 12345L, "52-Gift-Set-Jimmy-Choo-Urban-Hero-EDP.jpg", true, 52, 52 },
+                    { 75, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(471), 12345L, "75-Burberry-Her-London-Dream-EDP.jpg", true, 75, 75 },
+                    { 51, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(381), 12345L, "51-[NEW]-Gift-Set-Jean-Paul-Gaultier-La-Belle-Le-Parfum-EDP.jpg", true, 51, 51 },
+                    { 50, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(377), 12345L, "50-Paco-Rabanne-1-Million-Lucky-EDT-(For Men).jpg", true, 50, 50 },
+                    { 49, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(373), 12345L, "49-Gift-Set-Coach-Men-Platinum-EDP.jpg", true, 49, 49 },
+                    { 86, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(507), 12345L, "86-Coach-Men-Platinum-Edp.jpg", true, 86, 86 },
+                    { 9, "Mercedes-Benz Select Night EDP", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(211), 12345L, "9-Mercedes-Benz-Select-Night-EDP.jpg", true, 9, 9 },
+                    { 93, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(521), 12345L, "93-Montblanc-Legend-EDP.jpg", true, 93, 93 },
+                    { 17, "[New] Gucci Bloom Profumo Di Fiori EDP", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(243), 12345L, "17-Gucci-Bloom-Profumo-Di-Fiori-EDP.jpg", true, 17, 17 },
+                    { 92, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(519), 12345L, "92-Montblanc-Signature-EDP.jpg", true, 92, 92 },
+                    { 16, "[New] Gucci Bloom Ambrosia Di Fiori EDP", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(239), 12345L, "16-[New]-Gucci-Bloom-Ambrosia-Di-Fiori-EDP.jpg", true, 16, 16 },
+                    { 15, "Gucci Bloom Acqua Di Fiori EDT", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(235), 12345L, "15-Gucci-Bloom-Acqua-Di-Fiori-EDT.jpg", true, 15, 15 },
+                    { 29, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(293), 12345L, "29-Dolce&Gabbana-K-By-Dolce&Gabbana-EDP-(For Men).jpg", true, 29, 29 },
+                    { 14, "Gucci Flora By Gucci EDP", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(231), 12345L, "14-Gucci-Flora-By-Gucci-EDP.jpg", true, 14, 14 },
+                    { 13, "Gucci Guilty Pour Homme EDP", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(226), 12345L, "13-Gucci-Guilty-Pour-Homme-EDP.jpg", true, 13, 13 },
+                    { 94, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(525), 12345L, "94-Montblanc-Legend-Night-EDP.jpg", true, 94, 94 },
+                    { 12, "Gucci Bloom Nettare EDP", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(222), 12345L, "12-Gucci-Bloom-Nettare-EDP.jpg", true, 12, 12 },
+                    { 11, "Gucci Bloom EDP", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(218), 12345L, "11-Gucci-Bloom-EDP.jpg", true, 11, 11 }
                 });
 
             migrationBuilder.InsertData(
@@ -938,38 +938,38 @@ namespace CosmeticsShop.Data.Migrations
                 columns: new[] { "Id", "Caption", "DateCreated", "FileSize", "ImagePath", "IsDefault", "ProductId", "SortOrder" },
                 values: new object[,]
                 {
-                    { 95, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9355), 12345L, "95-Montblanc-Bộ-Nước-Hoa-Mini.jpg", true, 95, 95 },
-                    { 18, "Gucci Combo Flora By Gucci EDP + Guilty Pour Homme EDP", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8216), 12345L, "18-Gucci-Combo-Flora-By-Gucci-EDP-Guilty-Pour-Homme-EDP.jpg", true, 18, 18 },
-                    { 10, "[NEW] Mercedes-Benz Man Intense EDT", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8157), 12345L, "10-[NEW]-Mercedes-Benz-Man-Intense-EDT.jpg", true, 10, 10 },
-                    { 8, "Mercedes-Benz Le Parfum For Men EDP", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8140), 12345L, "8-Mercedes-Benz-Le-Parfum-For-Men-EDP.jpg", true, 8, 8 },
-                    { 7, "Mercedes-Benz Women EDT", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8131), 12345L, "7-Mercedes-Benz-Women-EDT.jpg", true, 7, 7 },
-                    { 97, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9439), 12345L, "97-Montblanc-Legend-Spirit-EDT.jpg", true, 97, 97 },
-                    { 6, "Gift Set Mercedes-Benz The Move EDT", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8122), 12345L, "6-Gift-Set-Mercedes-Benz-The-Move-EDT.jpg", true, 6, 6 },
-                    { 5, "Gift Set Mercedes-Benz Man Intense EDT", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8115), 12345L, "5-Gift-Set-Mercedes-Benz-Man-Intense-EDT.jpg", true, 5, 5 },
-                    { 98, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9463), 12345L, "98-Montblanc-Lady-Emblem-Elixir-EDP.jpg", true, 98, 98 },
-                    { 4, "Gift Set Mercedes-Benz Woman EDP", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8108), 12345L, "4-Gift-Set Mercedes-Benz-Woman-EDP.jpg", true, 4, 4 },
-                    { 3, "[NEW] Mercedes-Benz On The Go", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8087), 12345L, "3-[NEW]-Mercedes-Benz-On-The-Go.jpg", true, 3, 3 },
-                    { 99, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9470), 12345L, "99-montblanc-emblem-edp.jpg", true, 99, 99 },
-                    { 2, "Mercedes Benz Women EDP (New 2020)", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(7893), 12345L, "2-Mercedes-Benz-Women-EDP-(New 2020).jpg", true, 2, 2 },
-                    { 1, "Mercedes Benz Man EDT", new DateTime(2021, 6, 30, 9, 22, 12, 258, DateTimeKind.Local).AddTicks(4513), 12345L, "1-Mercedes-Benz-Man-EDT.jpg", true, 1, 1 },
-                    { 96, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9362), 12345L, "96-Montblanc-Legend-For-Men-EDT.jpg", true, 96, 96 },
-                    { 91, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9323), 12345L, "91-Montblanc-Explorer-EDP.jpg", true, 91, 91 },
-                    { 67, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9057), 12345L, "67-Dolce&Gabbana-The-Only-One-2-EDP.jpg", true, 67, 67 },
-                    { 19, "Gucci Flora Gorgeous Gardenia EDT Limited Edition 2020", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8224), 12345L, "19-Gucci-Flora-Gorgeous-Gardenia-EDT-Limited-Edition-2020.jpg", true, 19, 19 },
-                    { 25, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8271), 12345L, "25-Good-Girl-EDP.jpg", true, 25, 25 },
-                    { 100, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9478), 12345L, "100-Montblanc-Emblem-EDT.jpg", true, 100, 100 },
-                    { 23, "[NEW] Carolina Herrera 212 Heroes EDT", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8255), 12345L, "23-[NEW]-Jimmy-Choo-I-Want-Choo-EDP.jpg", true, 23, 23 },
-                    { 89, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9306), 12345L, "89-coach-dream.jpg", true, 89, 89 },
-                    { 22, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8248), 12345L, "22-[New]-Carolina-Herrera-Bad-Boy-Le-Parfum-EDP.jpg", true, 22, 22 },
-                    { 26, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8278), 12345L, "26-Chloe-Love-Story-EDP.jpg", true, 26, 26 },
-                    { 24, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8263), 12345L, "24-Chloe-Nomade-EDP.jpg", true, 24, 24 },
-                    { 21, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8240), 12345L, "21-[New]-Carolina-Herrera-Very-Good-Girl-EDP.jpg", true, 21, 21 },
-                    { 88, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9298), 12345L, "88-Coach-Dreams-EDP-Body-Lotion.jpg", true, 88, 88 },
-                    { 27, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8286), 12345L, "27-[New]-Gucci-Bloom-Ambrosia-Di-Fiori-EDP.jpg", true, 27, 27 },
-                    { 87, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9291), 12345L, "87-Coach-Floral-Blush-EDP.jpg", true, 87, 87 },
-                    { 20, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8233), 12345L, "20-Gucci-Flora-Gorgeous-Gardenia-EDT-Limited-Edition-2020.jpg", true, 20, 20 },
-                    { 28, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(8293), 12345L, "28-[NEW]-Jean-Paul-Gaultier-La-Belle-Le-Parfum-EDP.jpg", true, 28, 28 },
-                    { 90, "test", new DateTime(2021, 6, 30, 9, 22, 12, 262, DateTimeKind.Local).AddTicks(9315), 12345L, "90-Coach-Men-blue.jpg", true, 90, 90 }
+                    { 95, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(551), 12345L, "95-Montblanc-Bộ-Nước-Hoa-Mini.jpg", true, 95, 95 },
+                    { 18, "Gucci Combo Flora By Gucci EDP + Guilty Pour Homme EDP", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(247), 12345L, "18-Gucci-Combo-Flora-By-Gucci-EDP-Guilty-Pour-Homme-EDP.jpg", true, 18, 18 },
+                    { 10, "[NEW] Mercedes-Benz Man Intense EDT", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(214), 12345L, "10-[NEW]-Mercedes-Benz-Man-Intense-EDT.jpg", true, 10, 10 },
+                    { 8, "Mercedes-Benz Le Parfum For Men EDP", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(207), 12345L, "8-Mercedes-Benz-Le-Parfum-For-Men-EDP.jpg", true, 8, 8 },
+                    { 7, "Mercedes-Benz Women EDT", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(202), 12345L, "7-Mercedes-Benz-Women-EDT.jpg", true, 7, 7 },
+                    { 97, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(558), 12345L, "97-Montblanc-Legend-Spirit-EDT.jpg", true, 97, 97 },
+                    { 6, "Gift Set Mercedes-Benz The Move EDT", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(198), 12345L, "6-Gift-Set-Mercedes-Benz-The-Move-EDT.jpg", true, 6, 6 },
+                    { 5, "Gift Set Mercedes-Benz Man Intense EDT", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(193), 12345L, "5-Gift-Set-Mercedes-Benz-Man-Intense-EDT.jpg", true, 5, 5 },
+                    { 98, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(562), 12345L, "98-Montblanc-Lady-Emblem-Elixir-EDP.jpg", true, 98, 98 },
+                    { 4, "Gift Set Mercedes-Benz Woman EDP", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(189), 12345L, "4-Gift-Set Mercedes-Benz-Woman-EDP.jpg", true, 4, 4 },
+                    { 3, "[NEW] Mercedes-Benz On The Go", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(184), 12345L, "3-[NEW]-Mercedes-Benz-On-The-Go.jpg", true, 3, 3 },
+                    { 99, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(566), 12345L, "99-montblanc-emblem-edp.jpg", true, 99, 99 },
+                    { 2, "Mercedes Benz Women EDP (New 2020)", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(152), 12345L, "2-Mercedes-Benz-Women-EDP-(New 2020).jpg", true, 2, 2 },
+                    { 1, "Mercedes Benz Man EDT", new DateTime(2021, 7, 11, 13, 28, 34, 707, DateTimeKind.Local).AddTicks(3464), 12345L, "1-Mercedes-Benz-Man-EDT.jpg", true, 1, 1 },
+                    { 96, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(554), 12345L, "96-Montblanc-Legend-For-Men-EDT.jpg", true, 96, 96 },
+                    { 91, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(517), 12345L, "91-Montblanc-Explorer-EDP.jpg", true, 91, 91 },
+                    { 67, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(444), 12345L, "67-Dolce&Gabbana-The-Only-One-2-EDP.jpg", true, 67, 67 },
+                    { 19, "Gucci Flora Gorgeous Gardenia EDT Limited Edition 2020", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(251), 12345L, "19-Gucci-Flora-Gorgeous-Gardenia-EDT-Limited-Edition-2020.jpg", true, 19, 19 },
+                    { 25, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(277), 12345L, "25-Good-Girl-EDP.jpg", true, 25, 25 },
+                    { 100, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(570), 12345L, "100-Montblanc-Emblem-EDT.jpg", true, 100, 100 },
+                    { 23, "[NEW] Carolina Herrera 212 Heroes EDT", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(268), 12345L, "23-[NEW]-Jimmy-Choo-I-Want-Choo-EDP.jpg", true, 23, 23 },
+                    { 89, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(513), 12345L, "89-coach-dream.jpg", true, 89, 89 },
+                    { 22, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(263), 12345L, "22-[New]-Carolina-Herrera-Bad-Boy-Le-Parfum-EDP.jpg", true, 22, 22 },
+                    { 26, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(281), 12345L, "26-Chloe-Love-Story-EDP.jpg", true, 26, 26 },
+                    { 24, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(273), 12345L, "24-Chloe-Nomade-EDP.jpg", true, 24, 24 },
+                    { 21, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(259), 12345L, "21-[New]-Carolina-Herrera-Very-Good-Girl-EDP.jpg", true, 21, 21 },
+                    { 88, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(511), 12345L, "88-Coach-Dreams-EDP-Body-Lotion.jpg", true, 88, 88 },
+                    { 27, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(285), 12345L, "27-[New]-Gucci-Bloom-Ambrosia-Di-Fiori-EDP.jpg", true, 27, 27 },
+                    { 87, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(509), 12345L, "87-Coach-Floral-Blush-EDP.jpg", true, 87, 87 },
+                    { 20, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(255), 12345L, "20-Gucci-Flora-Gorgeous-Gardenia-EDT-Limited-Edition-2020.jpg", true, 20, 20 },
+                    { 28, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(289), 12345L, "28-[NEW]-Jean-Paul-Gaultier-La-Belle-Le-Parfum-EDP.jpg", true, 28, 28 },
+                    { 90, "test", new DateTime(2021, 7, 11, 13, 28, 34, 709, DateTimeKind.Local).AddTicks(515), 12345L, "90-Coach-Men-blue.jpg", true, 90, 90 }
                 });
 
             migrationBuilder.InsertData(

@@ -42,17 +42,17 @@
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                     <div class="form__Item">
-                        <input asp-for="Address" type="text" class="form__Input" required="required" placeholder="Địa chỉ" aria-label="Address" autofocus="">
-                        <label class="form__FloatingLabel">Địa chỉ</label>
+                        <input asp-for="Address" type="email" class="form__Input" required="required" placeholder="Address" aria-label="Address" autofocus="">
+                        <label class="form__FloatingLabel">Địa chỉ </label>
                         <span asp-validation-for="Address" class="text-danger"></span>
                     </div>
                     <div class="form__Item">
-                        <input asp-for="Dateofbirth" type="date" class="form__Input" required="required" placeholder="Ngày sinh" aria-label="Dateofbirth" autofocus="">
+                        <input asp-for="Dob" type="Date" class="form__Input" required="required" placeholder="Date of birth" aria-label="Dob" autofocus="">
                         <label class="form__FloatingLabel">Ngày sinh</label>
-                        <span asp-validation-for="Dateofbirth" class="text-danger"></span>
+                        <span asp-validation-for="Dob" class="text-danger"></span>
                     </div>
                     <div class="form__Item">
-                        <input asp-for="PhoneNumber"  class="form__Input" required="required" placeholder="Số điện thoại" aria-label="PhoneNumber" autofocus="">
+                        <input asp-for="PhoneNumber" type="text" class="form__Input" required="required" placeholder="PhoneNumber" aria-label="PhoneNumber" autofocus="">
                         <label class="form__FloatingLabel">Số điện thoại</label>
                         <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                     </div>
