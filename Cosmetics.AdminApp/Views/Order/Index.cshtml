@@ -162,7 +162,7 @@
                                     {
                                         @if (item.Status != OrderStatus.Success && item.Status != OrderStatus.Canceled)
                                         {
-                                            <a href="order/@item.Id" class="btn btn-outline-info p-0">
+                                            <a href="order/@item.Id" class="btn btn-outline-info p-2">
                                                 Cập nhật
                                             </a>
                                         }
@@ -172,7 +172,7 @@
                                         }
                                         @if (item.Status < OrderStatus.Shipping && item.Status != OrderStatus.Canceled)
                                         {
-                                            <button class="btn btn-danger cursor-pointer p-0 ml-4" onclick="openModal('order-modal','order-cancel-submit',@item.Id)">Hủy đơn</button>
+                                            <button class="btn btn-danger cursor-pointer p-2 ml-4" onclick="openModal('order-modal','order-cancel-submit',@item.Id)">Hủy đơn</button>
                                         }
                                     }
                                     else
