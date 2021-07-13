@@ -3181,9 +3181,7 @@ namespace CosmeticsShop.Data.Extentions
                     Status = Status.Active,
                     IsDefault = true,
                     SortOrder = 6
-                }
-
-                );
+                });
 
             modelBuilder.Entity<ProductInCategory>().HasData(
                 new ProductInCategory() { ProductId = 1, CategoryId = 1 },

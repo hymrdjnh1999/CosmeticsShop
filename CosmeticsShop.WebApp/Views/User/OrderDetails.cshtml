@@ -72,7 +72,7 @@
                                 
                                 <td class=" d-flex align-items-center justify-content-center " style="flex:7">
                                     <img class="img-fluid " style="width:15%;height:75%" src="@Configuration["BaseImageAddress"]@item.ImagePath" alt="" />
-                                <a href="/product/@item.Id" class="product__item text-decoration-none pl-2 " style="cursor:pointer;font-size:24px">@item.Name</a>
+                                <a href="/product/@item.Id" class="product__item text-decoration-none pl-2 " style="cursor: pointer; font-size: 24px; color: black">@item.Name</a>
                                 </td>
                                     <td class="d-flex align-items-center justify-content-center" style="flex:2">
                                         @item.Quantity
@@ -95,7 +95,7 @@
         </div>
         <hr />
         <div class="row col-12">
-            <a asp-action="OrderHistory" class="col-12 text-capitalize text-left text-decoration-none mb-5">
+            <a asp-action="OrderHistory" class="col-12 text-capitalize text-left text-decoration-none mb-5" style="color: black">
                 << Quay về đơn hàng của bạn
             </a>
         </div>

@@ -62,8 +62,8 @@
                                     </div>
                                 </form>
 
-                                <div class="card-body">
-                                    <div class="d-flex w-25 align-items-center mb-3">
+                                <div class="card-body" style="padding: 0px !important">
+                                    <div class="d-flex w-25 align-items-center mb-3" style="padding-top: 1rem !important">
                                         @await Component.InvokeAsync("ChangePageSize", Model)
                                     </div>
                                     <div class="table-wrap table-order-customer">
@@ -81,7 +81,7 @@
                                                 @foreach (var item in Model.Items)
                                                 {
                                                     <tr>
-                                                        <td><a href="@Url.Action("OrderDetails", "User", new { id = item.Id })" class="text-primary">@item.Id</a></td>
+                                                        <td><a href="@Url.Action("OrderDetails", "User", new { id = item.Id })" class="text-primary" style="color: black !important; font-weight: 700;">@item.Id</a></td>
                                                         <td>@item.OrderDate</td>
                                                         <td class="priceFormat">
                                                             @item.Total
