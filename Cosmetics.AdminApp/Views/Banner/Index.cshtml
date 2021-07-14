@@ -50,21 +50,21 @@
             <div class="table-responsive">
                 <table class="table table-bordered border-dark text-center">
                     <thead class="thead-dark text-white">
-                        <tr class="bg-alternating d-flex">
+                        <tr class="bg-alternating banner d-flex">
                             <th scope="col" style="flex:0.1">
                                 Id
                             </th>
-                            <th scope="col" style="flex:0.3">
+                            <th scope="col" style="flex:0.4">
                                 Tên
                             </th>
                             <th scope="col" style="flex:0.5">
                                 Ảnh Bìa
                             </th>
-                            <th scope="col" style="flex:0.5">
+                            <th scope="col" style="flex:0.4">
                                 Mô Tả
                             </th>
-                            <th scope="col" style="flex:0.2">
-                                IsOutStanding
+                            <th scope="col" style="flex:0.3">
+                                Hiển thị
                             </th>
                             <th style="flex: 0.3" scope="col">
                                 Tác Vụ
@@ -78,7 +78,7 @@
                                 <td style="flex:0.1" class="pro-item">
                                     @Html.DisplayFor(modelItem => item.Id)
                                 </td>
-                                <td style="flex:0.3" class="pro-item">
+                                <td style="flex:0.4" class="pro-item">
 
                                     <a href="#" onclick="editBanner(@item.Id)">
                                         @item.Name
@@ -88,11 +88,18 @@
                                     <img class="img-fluid img-thumbnail mw-75"   src="@Configuration["BaseImageAddress"]@item.ImagePath" alt="@item.Description" />
                                 </td>
 
-                                <td style="flex:0.5" class="pro-item">
+                                <td style="flex:0.4" class="pro-item">
                                         @item.Description
                                 </td>
-                                <td style="flex:0.2" class="pro-item">
-                                        @item.Status
+                                <td style="flex:0.3" class="pro-item">
+                                    @if (item.IsOutstanding)
+                                    {
+                                        <input type="checkbox" disabled class="btn-checkbox" checked="@item.IsOutstanding" style="width:20px;height:20px"  />
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" disabled class="btn-checkbox" checked="@item.IsOutstanding" style="width:20px;height:20px"  />
+                                    }
                                 </td>
                                 <td class="d-flex align-items-center justify-content-center pro-item" style="flex: 0.3">
                                     <span class="actions-btn">
@@ -169,6 +176,7 @@
                     }
                 });
         })
+        
     </script>
 
 }

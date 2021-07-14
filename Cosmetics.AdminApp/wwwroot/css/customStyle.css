@@ -230,6 +230,9 @@ li.search-choice a.search-choice-close {
     background-color: #e6e6e6;
     opacity: 1;
 }
+.bg-alternating.banner th{
+    padding:10px;
+}
 /* End List User */
 .list-product-dark > [class^=tb-col] {
     padding: 10px;
