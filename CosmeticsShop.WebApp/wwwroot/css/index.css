@@ -118,3 +118,56 @@
     left: 50%;
     transform: translateX(-50%);
 }
+
+
+/*Order details*/
+
+
+.addressUser {
+    margin: 10px 0px 20px;
+}
+
+    .addressUser > div:first-child {
+        margin: 0;
+        width: 33.3333%;
+    }
+
+    .addressUser > div {
+        width: 33.3333%;
+        margin: 0px 5px;
+    }
+.addressNav {
+    display: flex;
+    flex-direction: column;
+    color: #000000;
+}
+
+    .addressNav .title {
+        font-size: 17px;
+        margin: 0px 0px 15px;
+        color: #000000;
+    }
+
+    .addressNav .content {
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(255, 255, 255);
+        padding: 10px;
+        border-radius: 4px;
+        height: 100%;
+        border: 1px solid #ced4da;
+        margin-bottom: 20px;
+    }
+
+    .addressNav .name {
+        text-transform: uppercase;
+    }
+
+.addressUser .name {
+    color: #000000;
+    font-weight: bold;
+}
+
+.addressUser p {
+    margin: 5px 0px 0px;
+}
