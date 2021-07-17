@@ -1,4 +1,5 @@
 ﻿using Cosmetics.ViewModels.Catalogs.Categories;
+using Cosmetics.ViewModels.Catalogs.Products;
 using Cosmetics.ViewModels.Common;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace CosmeticsShop.Api_Intergration
         Task<List<CategoryViewModel>> GetAll();
         Task<List<HomeCategoryViewModel>> GetHomeProductCategories();
 
+        Task<PageResponse<ProductViewModel>> GetProductInCategory(PaginateRequest request , int categoryId);
         Task<PageResponse<CategoryViewModel>> GetAllPaging(PaginateRequest request , string status);
 
         Task<int> Create(CategoryCreateRequest request);

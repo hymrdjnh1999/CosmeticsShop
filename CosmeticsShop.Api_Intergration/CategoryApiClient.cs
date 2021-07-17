@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Cosmetics.Ultilities.Constants;
 using Cosmetics.ViewModels.Catalogs.Categories;
+using Cosmetics.ViewModels.Catalogs.Products;
 using Cosmetics.ViewModels.Common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -113,7 +114,13 @@ namespace CosmeticsShop.Api_Intergration
             var categories = await GetAsync<PageResponse<CategoryViewModel>>(requestUrl);
             return categories;
         }
-
+        public async Task<PageResponse<ProductViewModel>> GetProductInCategory(PaginateRequest request, int categoryId)
+        {
+            var requestUrl = $"/api/categories/productincategory?pageIndex=" +
+            $"{request.PageIndex}&pageSize={request.PageSize}&keyword={request.Keyword}&categoryId={categoryId}";
+            var categories = await GetAsync<PageResponse<ProductViewModel>>(requestUrl);
+            return categories;
+        }
         public async Task<CategoryViewModel> GetById(int id)
         {
             var requestUrl = $"/api/categories/{id}";
@@ -127,5 +134,7 @@ namespace CosmeticsShop.Api_Intergration
             var productCategories = await GetAsync<List<HomeCategoryViewModel>>(requestUrl);
             return productCategories;
         }
+
+        
     }
 }

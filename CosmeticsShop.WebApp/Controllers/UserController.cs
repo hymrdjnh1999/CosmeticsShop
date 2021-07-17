@@ -28,11 +28,13 @@ namespace CosmeticsShop.WebApp.Controllers
         private readonly ICartApiClient _cartApiClient;
         private readonly IClientOrderApi _clientOrderApi; 
         private readonly IOrderApiClient _orderApiClient;
+        private readonly ICategoryApiClient _categoryApiClient;
 
         public UserController(
             IClientApi clientApi, IConfiguration configuration
             , ICartApiClient cartApiClient,
             IClientOrderApi clientOrderApi,
+            ICategoryApiClient categoryApiClient,
             IOrderApiClient orderApiClient
             ) : base(clientApi)
         {
@@ -41,6 +43,7 @@ namespace CosmeticsShop.WebApp.Controllers
             _cartApiClient = cartApiClient;
             _clientOrderApi = clientOrderApi;
             _orderApiClient = orderApiClient;
+            _categoryApiClient = categoryApiClient;
         }
 
         [HttpGet]
@@ -51,7 +54,7 @@ namespace CosmeticsShop.WebApp.Controllers
             return RedirectToAction("Index", "Home");
         }
         [HttpGet]
-        public IActionResult Login()
+        public async Task<IActionResult> LoginAsync()
         {
 
             var sessions = HttpContext.Session.GetString("Token");
@@ -65,6 +68,8 @@ namespace CosmeticsShop.WebApp.Controllers
                 var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(cartJs);
                 ViewBag.Cart = cart;
             }
+            var productCategory = await _categoryApiClient.GetHomeProductCategories();
+            ViewBag.Categories = productCategory;
             return View();
         }
         [HttpPost]
@@ -116,7 +121,7 @@ namespace CosmeticsShop.WebApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult Register()
+        public async Task<IActionResult> Register()
         {
 
             var cartJs = HttpContext.Session.GetString("Cart");
@@ -130,7 +135,8 @@ namespace CosmeticsShop.WebApp.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-
+            var productCategory = await _categoryApiClient.GetHomeProductCategories();
+            ViewBag.Categories = productCategory;
 
             return View();
         }
@@ -178,6 +184,8 @@ namespace CosmeticsShop.WebApp.Controllers
             CreateCartViewBag();
             var clientId = claims.Where(x => x.Type == "Id").FirstOrDefault().Value;
             var client = await GetClientViewModel(clientId);
+            var productCategory = await _categoryApiClient.GetHomeProductCategories();
+            ViewBag.Categories = productCategory;
             return View(client);
         }
         public async Task<ClientUpdateViewModel> GetClientViewModel(string clientId)
@@ -188,6 +196,7 @@ namespace CosmeticsShop.WebApp.Controllers
             var isDefaultAvatar = String.IsNullOrEmpty(client.Avatar);
             avatar = isDefaultAvatar ? "/images/default.jpg" : _config["BaseImageAddress"] + client.Avatar;
             client.Avatar = avatar;
+            
             return client;
         }
         [HttpPost]
@@ -251,6 +260,8 @@ namespace CosmeticsShop.WebApp.Controllers
             CreateCartViewBag();
             var testClientId = new Guid(clientIdClaim.Value);
             var orders = await _clientOrderApi.GetOrderHistory(testClientId, request , status);
+            var productCategory = await _categoryApiClient.GetHomeProductCategories();
+            ViewBag.Categories = productCategory;
             return View(orders);
         }
         
@@ -269,6 +280,8 @@ namespace CosmeticsShop.WebApp.Controllers
             var order = await _clientOrderApi.GetClientOrderDetails(testClientId,id);
             var products = await _orderApiClient.GetProducts(id);
             order.OrderProducts = products;
+            var productCategory = await _categoryApiClient.GetHomeProductCategories();
+            ViewBag.Categories = productCategory;
             return View(order);
         }
         [HttpPut]

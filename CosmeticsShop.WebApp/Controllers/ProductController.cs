@@ -10,10 +10,12 @@ namespace CosmeticsShop.WebApp.Controllers
     public class ProductController : ClientBaseController
     {
         private readonly IClientApiProduct _clientApiProduct;
+        private readonly ICategoryApiClient _categoryApiClient;
         private readonly IClientApi _clientApi;
-        public ProductController(IClientApiProduct clientApiProduct, IClientApi clientApi) : base(clientApi)
+        public ProductController(IClientApiProduct clientApiProduct,ICategoryApiClient categoryApiClient, IClientApi clientApi) : base(clientApi)
         {
             _clientApiProduct = clientApiProduct;
+            _categoryApiClient = categoryApiClient;
             _clientApi = clientApi;
         }
 
@@ -31,10 +33,10 @@ namespace CosmeticsShop.WebApp.Controllers
             {
                 return RedirectToAction("Error", "Home");
             }
-
             await CreateUserViewBag();
             CreateCartViewBag();
-            
+            var productCategory = await _categoryApiClient.GetHomeProductCategories();
+            ViewBag.Categories = productCategory;
             return View(response.ResultObj);
         }
 

@@ -11,5 +11,6 @@ namespace Cosmetics.ViewModels.Catalogs.Categories
     {
         public List<HomeProductViewModel> Products { get; set; }
         public string CategoryName { get; set; }
+        public int CategoryId { get; set; }
     }
 }

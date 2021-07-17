@@ -18,10 +18,13 @@ namespace CosmeticsShop.WebApp.Controllers
         private readonly ICartApiClient _cartApiClient;
         private readonly IClientOrderApi _clientOrderApi;
         private readonly IClientApi _clientApi;
-        public CartController(ICartApiClient cartApiClient, IClientOrderApi clientOrderApi, IClientApi clientApi) : base(clientApi)
+        private readonly ICategoryApiClient _categoryApiClient;
+
+        public CartController(ICartApiClient cartApiClient, IClientOrderApi clientOrderApi,ICategoryApiClient categoryApiClient, IClientApi clientApi) : base(clientApi)
         {
             _cartApiClient = cartApiClient;
             _clientOrderApi = clientOrderApi;
+            _categoryApiClient = categoryApiClient;
             _clientApi = clientApi;
         }
 
@@ -35,6 +38,8 @@ namespace CosmeticsShop.WebApp.Controllers
                 var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(cartJS);
                 ViewBag.Cart = cart;
             }
+            var productCategory = await _categoryApiClient.GetHomeProductCategories();
+            ViewBag.Categories = productCategory;
             return View();
         }
         [HttpGet]
@@ -65,6 +70,8 @@ namespace CosmeticsShop.WebApp.Controllers
             var ClientId = new Guid(clientIdClaim.Value);
             var client = await _clientApi.GetDetail(ClientId);
             ViewBag.User = client.ResultObj;
+            var productCategory = await _categoryApiClient.GetHomeProductCategories();
+            ViewBag.Categories = productCategory;
             return View();
         }
 
@@ -93,6 +100,8 @@ namespace CosmeticsShop.WebApp.Controllers
             var clientCart = await _cartApiClient.GetCart(cartId);
             ViewBag.Order = order.ResultObj;
             ViewBag.Cart = clientCart.ResultObj;
+            var productCategory = await _categoryApiClient.GetHomeProductCategories();
+            ViewBag.Categories = productCategory;
             return View();
         }
         

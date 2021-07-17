@@ -31,6 +31,7 @@ namespace Cosmetics.ViewModels.Catalogs.Products
         [DisplayName("Original country")]
         public string OriginalCountry { get; set; }
         public IList<string> Categories { get; set; }
+        public string CategoryName { get; set; }
         public List<SelectItemDynamic<int>> CategoriesAssignRequest { get; set; }
         = new List<SelectItemDynamic<int>>();
         public string ImagePath { get; set; }
