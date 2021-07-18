@@ -81,7 +81,7 @@ namespace Cosmetics.AdminApp.Controllers
             {
                 return RedirectToAction("Error", "Home");
             }
-            var model = new BannerUpdateRequest() { Id = banner.Id, Name = banner.Name , Description = banner.Description };
+            var model = new BannerUpdateRequest() { Id = banner.Id, Name = banner.Name , Description = banner.Description, IsOutstanding = banner.IsOutstanding ,ImagePath = banner.ImagePath};
 
             return View(model); 
         }

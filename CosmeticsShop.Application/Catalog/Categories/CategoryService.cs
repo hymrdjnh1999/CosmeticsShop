@@ -198,12 +198,74 @@ namespace CosmeticsShop.Application.Catalog.Categories
                 listHomeCategory.Add(new HomeCategoryViewModel()
                 {
                     CategoryName = category.Name,
+                    CategoryId = category.Id,
                     Products = productsInCategory
                 });
             }
 
             return listHomeCategory;
         }
+
+        
+        public async Task<PageResponse<ProductViewModel>> GetProductInCategory(PaginateRequest request, int categoryId)
+        {
+            int PageIndex = request.PageIndex;
+            int PageSize = request.PageSize;
+            var totalRecords = 0;
+
+
+            var Category = await _context.Categories.Where(x => x.Id == categoryId).FirstOrDefaultAsync();
+
+            var pic = _context.ProductInCategories.Where(x => x.CategoryId == categoryId);
+            var query = from pc in pic
+                        join p in _context.Products on pc.ProductId equals p.Id
+                        join pi in _context.ProductImages on p.Id equals pi.ProductId
+                        where pi.IsDefault
+                        select new { p ,pi };
+            
+            query = query.Where(x => x.p.status == Status.Active);
+            totalRecords = await query.CountAsync();
+
+            
+           /* if (request.Keyword != null)
+            {
+                query = query.Where(x => x.p.Name.Contains(request.Keyword));
+
+            }*/
+            totalRecords = await query.Select(x => x.p).CountAsync();
+
+            var data = await query.Skip((PageIndex - 1) * PageSize)
+                .Take(PageSize)
+                .Select(x => new ProductViewModel()
+                {
+                    Id = x.p.Id,
+                    Name = x.p.Name,
+                    Price = x.p.Price,
+                    ForGender = x.p.ForGender,
+                    OriginalPrice = x.p.OriginalPrice,
+                    DateCreated = x.p.DateCreated,
+                    Description = x.p.Description,
+                    Details = x.p.Details,
+                    OriginalCountry = x.p.OriginalCountry,
+                    Stock = x.p.Stock,
+                    ViewCount = x.p.ViewCount,
+                    ImagePath = x.pi.ImagePath,
+                    status = x.p.status
+                })
+                .ToListAsync();
+
+            var response = new PageResponse<ProductViewModel>()
+            {
+                Items = data,
+                TotalRecords = totalRecords,
+                PageIndex = PageIndex,
+                PageSize = PageSize
+            };
+
+            return response;
+
+        }
+        
     }
 
 

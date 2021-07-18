@@ -32,7 +32,9 @@
 
         <div class="card-body">
             <div class=" container">
-
+                <div class="d-none rounded fixed-top justify-content-center" id="cancelMsgWrap">
+                    <span id="cancelMsg" class="rounded"></span>
+                </div>
                 <div class="header">
                     <div class="row ">
                         <div class="col-6 d-flex justify-content-center">
@@ -103,13 +105,15 @@
                                                             <option selected value="@OrderStatus.InProgress">Đang xử lý</option>
                                                             <option value="@OrderStatus.Shipping">Đang giao hàng</option>
                                                             <option value="@OrderStatus.Success">Thành công</option>
-                                                            <option value="@OrderStatus.Canceled">Hủy đơn</option>
+                                                            <option value="@OrderStatus.Canceled" onchange="openModal('order-modal','order-cancel-submit',@Model.Id)">Hủy đơn</option>
+
+
                                                         }
                                                         @if (Model.Status == OrderStatus.Shipping)
                                                         {
                                                             <option selected value="@OrderStatus.Shipping">Đang giao hàng</option>
                                                             <option value="@OrderStatus.Success">Thành công</option>
-                                                            <option value="@OrderStatus.Canceled">Hủy đơn</option>
+                                                            <option value="@OrderStatus.Canceled" onchange="openModal('order-modal','order-cancel-submit',@Model.Id)">Hủy đơn</option>
                                                         }
 
                                                     </select>
@@ -154,7 +158,7 @@
                                 <thead class="thead-white text-dark">
                                     <tr class="d-flex">
                                         <th class="text-center" style="flex:7">
-                                            Tên Mặt Hàng
+                                            Mặt Hàng
                                         </th>
 
                                         <th class="text-center" style="flex:2">
@@ -172,8 +176,8 @@
                                         <tr class="d-flex">
 
                                             <td class=" d-flex align-items-center justify-content-center " style="flex:7">
-                                                <img class="img-fluid " style="width:15%;height:75%" src="@Configuration["BaseImageAddress"]@item.ImagePath" alt="" />
-                                                <a href="/product/@item.Id" class="product__item text-decoration-none pl-2 " style="cursor:pointer;font-size:20px">@item.Name</a>
+                                                <img class="img-thumbnail rounded ml-auto d-block " style="width:15%;height:75%" src="@Configuration["BaseImageAddress"]@item.ImagePath" alt="" />
+                                                <a href="/product/Update/@item.Id" class="product__item mx-auto text-decoration-none pl-2 " style="cursor:pointer;font-size:20px">@item.Name</a>
                                             </td>
                                             <td class="d-flex align-items-center justify-content-center" style="flex:2">
                                                 @item.Quantity
@@ -201,7 +205,7 @@
                 </div>
             </div>
             @*Modal*@
-            <div class="co-modal" id="order-modal">
+            @*<div class="co-modal" id="myModal">
                 <div class="co-modal--content ">
                     <div class="co-modal--title px-3">
                         Bạn có chắc chắn muốn hủy đơn hàng này chứ?
@@ -215,7 +219,26 @@
                         <span class="btn btn-outline-danger co-modal--btn co-submit-btn" id="order-cancel-submit" onclick="onSubmitCancelOrder(this)">Xác nhận</span>
                     </div>
                 </div>
-            </div>
+            </div>*@
+            @**@
+            <div class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Bạn có chắc chắn muốn hủy đơn hàng này chứ?</h4>
+                        </div>
+                        <div class="modal-body">
+                            <textarea rows="3" class="w-100 mt-4" style="outline:none;" placeholder="Điền lý do bạn muốn hủy đơn hàng này" id="orderCancelReason"></textarea>
+                            <span class="text-danger" id="cancelOrderReason"></span>
+                        </div>
+                        <div class="modal-footer">
+                            <span class="btn btn-outline-dark co-modal--btn co-cancel-btn"  data-dismiss="modal" aria-label="Close" >Hủy bỏ</span>
+                            <span class="btn btn-outline-danger co-modal--btn co-submit-btn" id="order-cancel-submit" onclick="onSubmitCancelOrder(@Model.Id)">Xác nhận</span>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
         </div>
     </div>
 </div>
@@ -229,7 +252,7 @@
             optionElements.forEach(item => item.setAttribute('style', 'padding: 6px 12px;display:block;'));
         }
     </script>
-
+    
 
     <script>
         const makeFormatPrice = (element) => {
@@ -243,8 +266,12 @@
                 makeFormatPrice(item)
             })
         }
-        $('.orderStatus').change(function () {
+        $('#orderStatus').change(function () {
             //đoạn mã sẽ được thực thi khi sự kiện change() xảy ra
+            var title = $(this).val();
+            if (title == "Canceled") { //Compare it and if true
+                $('.modal').modal('show');
+            }
         })
         const openModal = (modalId, submitId, data) => {
             modal = document.querySelector(`#${modalId}`);
@@ -257,23 +284,23 @@
             }
         }
         const handleOnCancel = () => {
-            document.querySelector('.co-modal').style.display = 'none';
+            document.querySelector('.modal.fade').style.display = 'none';
             document.querySelector('.co-submit-btn').removeAttribute('data');
         }
-        const onSubmitCancelOrder = (btnElement) => {
+        const onSubmitCancelOrder = (cancelId) => {
             const cancelReason = document.querySelector('#orderCancelReason').value;
             if (!cancelReason.trim()) {
                 document.querySelector('#cancelOrderReason').innerText = "Không được để trống lý do";
                 event.preventDefault();
                 return;
             }
-            const orderId = btnElement.getAttribute('data');
+            const orderId = cancelId;
             if (orderId) {
                 $.ajax({
                     method: 'PUT',
                     url: `/client/cancelOrder`,
                     dataType: 'text',
-                    data: { orderId: Number(orderId), cancelReason },
+                    data: {orderId, cancelReason },
                     async: true,
                     success: async function (response) {
                         const { isSuccess, message } = JSON.parse(response);

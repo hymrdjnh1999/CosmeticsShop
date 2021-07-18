@@ -1,4 +1,5 @@
 ﻿using Cosmetics.ViewModels.Catalogs.Categories;
+using Cosmetics.ViewModels.Catalogs.Products;
 using Cosmetics.ViewModels.Common;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,9 @@ namespace CosmeticsShop.Application.Catalog.Categories
         Task<CategoryViewModel> GetById(int id);
         Task<bool> Delete(int id);
         Task<int> Create(CategoryCreateRequest request);
-/*        Task<bool> ChangeIsOutStanding(CategoryUpdateIOSRequest request);
-*/        Task<bool> Edit(CategoryUpdateRequest request);
+        Task<bool> Edit(CategoryUpdateRequest request);
         Task<List<HomeCategoryViewModel>> GetProductCategories();
+        Task<PageResponse<ProductViewModel>> GetProductInCategory(PaginateRequest request , int categoryId);
 
     }
 }

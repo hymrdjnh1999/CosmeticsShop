@@ -102,6 +102,7 @@ namespace CosmeticsShop.Api_Intergration
             requestContent.Add(new StringContent(request.Id.ToString()), "id");
             requestContent.Add(new StringContent(request.Name.ToString()), "name");
             requestContent.Add(new StringContent((request.Description ?? "").ToString()), "description");
+            requestContent.Add(new StringContent((request.IsOutstanding).ToString()), "isoutstanding");
             var response = await client.PutAsync($"/api/banners/"+ request.Id, requestContent);
             return response.IsSuccessStatusCode;
         }
