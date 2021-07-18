@@ -40,7 +40,6 @@ namespace Cosmetics.WebAPI.Controllers
             return Ok(categories);
         }
         [HttpGet("{id}")]
-        [Authorize]
 
         public async Task<IActionResult> GetById(int id)
         {

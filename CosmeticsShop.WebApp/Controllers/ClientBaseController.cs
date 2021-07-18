@@ -44,6 +44,7 @@ namespace CosmeticsShop.WebApp.Controllers
                 ViewBag.Cart = cart;
             }
         }
+        
         protected ClientCartViewModel GetCartViewModel()
         {
             var cartJS = HttpContext.Session.GetString("Cart");
