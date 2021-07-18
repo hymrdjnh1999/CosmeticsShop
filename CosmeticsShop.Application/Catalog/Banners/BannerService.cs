@@ -65,6 +65,7 @@ namespace CosmeticsShop.Application.Catalog.Banners
         public async Task<List<BannerViewModel>> GetAll()
         {
             var query = from b in _context.Banners select b;
+            query = query.Where(x => x.IsOutstanding == true);
             var banners = await query.Select(x => new BannerViewModel()
             {
                 Id = x.Id,
@@ -92,9 +93,11 @@ namespace CosmeticsShop.Application.Catalog.Banners
             {
                 Id = banner.Id,
                 Description = banner.Description,
+                ImagePath = banner.ImagePath,
                 Name = banner.Name,
                 Status = banner.Status,
-                SortOrder = banner.SortOrder
+                SortOrder = banner.SortOrder,
+                IsOutstanding = banner.IsOutstanding
             };
             return bannerViewModel;
         }
@@ -113,6 +116,7 @@ namespace CosmeticsShop.Application.Catalog.Banners
             }
             banner.Name = request.Name;
             banner.Description = request.Description;
+            banner.IsOutstanding = request.IsOutstanding;
             _context.Banners.Update(banner);
 
             await _context.SaveChangesAsync();
@@ -161,6 +165,7 @@ namespace CosmeticsShop.Application.Catalog.Banners
                     ImagePath = x.ImagePath,
                     IsDefault = x.IsDefault,
                     SortOrder = x.SortOrder,
+                    IsOutstanding = x.IsOutstanding,
                     Status = x.Status
                 }).Skip((PageIndex - 1) * PageSize)
                 .Take(PageSize).ToListAsync();

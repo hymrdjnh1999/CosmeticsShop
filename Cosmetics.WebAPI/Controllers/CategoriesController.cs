@@ -33,7 +33,12 @@ namespace Cosmetics.WebAPI.Controllers
             return Ok(categories);
         }
 
-
+        [HttpGet("productincategory")]
+        public async Task<IActionResult> GetProductInCategory([FromQuery] PaginateRequest request, int categoryId)
+        {
+            var categories = await _categoryService.GetProductInCategory(request, categoryId);
+            return Ok(categories);
+        }
         [HttpGet("{id}")]
         [Authorize]
 

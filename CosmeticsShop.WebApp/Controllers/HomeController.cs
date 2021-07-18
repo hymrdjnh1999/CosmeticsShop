@@ -1,4 +1,6 @@
-﻿using CosmeticsShop.Api_Intergration;
+﻿using Cosmetics.ViewModels.Catalogs.Categories;
+using Cosmetics.ViewModels.Common;
+using CosmeticsShop.Api_Intergration;
 using CosmeticsShop.Application.Ultilities;
 using CosmeticsShop.WebApp.Models;
 using Microsoft.AspNetCore.Http;
@@ -42,16 +44,37 @@ namespace CosmeticsShop.WebApp.Controllers
             await CreateUserViewBag();
             /*            var slides = await _slideApiClient.GetAll();*/
             var banners = await _bannerApiClient.GetAll();
-            var productCategory = await _categoryApiClient.GetHomeProductCategories();
             var homeViewModel = new HomeViewModel()
             {
                 Banners = banners,
             };
             CreateCartViewBag();
+            var productCategory = await _categoryApiClient.GetHomeProductCategories();
             ViewBag.Categories = productCategory;
             return View(homeViewModel);
         }
+        [HttpGet("ProductInCategory/{categoryId}")]
+        public async Task<IActionResult> ProductInCategory([FromQuery] PaginateRequest request, int categoryId )
+        {
+           
 
+            var products = await _categoryApiClient.GetProductInCategory(request, categoryId);
+
+            if (TempData["result"] != null)
+            {
+                ViewBag.SuccessMsg = TempData["result"];
+            }
+            var category = await _categoryApiClient.GetById(categoryId);
+            if (category == null)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+            var model = new CategoryViewModel() { Id = categoryId, Name = category.Name, IsOutstanding = category.IsOutstanding };
+            ViewBag.Category = model;
+            var productCategory = await _categoryApiClient.GetHomeProductCategories();
+            ViewBag.Categories = productCategory;
+            return View(products);
+        }
         public IActionResult Privacy()
         {
             return View();
