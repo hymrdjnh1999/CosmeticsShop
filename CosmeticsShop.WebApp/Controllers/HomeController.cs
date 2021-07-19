@@ -61,7 +61,6 @@ namespace CosmeticsShop.WebApp.Controllers
         [HttpGet("ProductInCategory/{categoryId}")]
         public async Task<IActionResult> ProductInCategory([FromQuery] PaginateRequest request, int categoryId )
         {
-
             var clientId = User.Claims.ToList().Where(x => x.Type == "Id").FirstOrDefault();
             var logout = HttpContext.Session.GetString("Token") == null && clientId != null;
             if (logout)
