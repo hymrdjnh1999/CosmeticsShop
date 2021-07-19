@@ -38,18 +38,26 @@
         <div class="d-flex align-items-end flex-column">
             Ngày đặt hàng : @Model.OrderDate
         </div>
-        <div class="row col-12 d-flex flex-column mb-3 mt-5">
-            <div class="mb-2">Địa Chỉ Người Nhận</div>
-            <div class="col-3 justify-content-start d-flex flex-column bg-white rounded ">
-                <span class="font-weight-bolder">@Model.UserNameOrder</span>
-                <span class="">Địa Chỉ : @Model.ShipAddress</span>
-                <span class="">Điện thoại : @Model.ShipPhoneNumber</span>
+        <div class="addressUser d-flex">
+            <div class="addressNav">
+                <div class="title">
+                    Địa chỉ người nhận
+                </div>
+                <div class="content">
+                    <p class="name">@Model.UserNameOrder</p>
+                    <p class="address"><span>Địa chỉ: </span>@Model.ShipAddress</p>
+                    <p class="phone"><span>Điện thoại: </span> @Model.ShipPhoneNumber</p>
+                </div>
             </div>
             @if (Model.Status == OrderStatus.Canceled)
             {
-                <div class="mb-2">Lý Do Hủy Đơn</div>
-                <div class="col-3 justify-content-start d-flex flex-column bg-white rounded ">
-                    <span class="">Lý do : @Model.CancelReason</span>
+                <div class="addressNav">
+                    <div class="title">
+                        Lý do hủy đơn
+                    </div>
+                    <div class="content">
+                        <p class="">@Model.CancelReason</p>
+                    </div>
                 </div>
             }
         </div>
