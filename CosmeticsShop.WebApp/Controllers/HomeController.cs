@@ -51,7 +51,10 @@ namespace CosmeticsShop.WebApp.Controllers
             ViewBag.Categories = productCategory;
             return View(homeViewModel);
         }
-
+        public IActionResult Search()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();
@@ -62,5 +65,7 @@ namespace CosmeticsShop.WebApp.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        
+
     }
 }

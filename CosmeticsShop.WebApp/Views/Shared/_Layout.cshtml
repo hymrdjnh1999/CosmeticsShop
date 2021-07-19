@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="~/css/billCart.css" />
     <link rel="stylesheet" href="~/css/index.css" />
     <link rel="stylesheet" href="~/css/inforAccount.css" />
+    <link rel="stylesheet" href="~/css/search.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <script src="https://kit.fontawesome.com/c0378fb81e.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&display=swap" rel="stylesheet">
@@ -81,14 +82,13 @@
                             </div>
                         }
                         <li class="horizontalList__item">
-                            @* <a href="#" id="loginSubmitBtn" data-action="open-modal" aria-controls="search">Tìm Sản Phẩm</a>*@
-                            <button class="bg-white border-0 d-block" type="button" data-toggle="dropdown">
+                            <a href="#" class="bg-white border-0 d-block" style="cursor: pointer;" data-toggle="dropdown" data-action="open-modal" aria-controls="search">
                                 Tìm Sản Phẩm
-                            </button>
-                            <ul class="box-search dropdown-menu">
+                            </a>
+                            <ul class="dropdown-menu" style="border-radius: 20px; border: none !important">
                                 <li>
-                                    <input type="text" id="search" name="search" placeholder="Nhập từ khóa...">
-                                    <button id="btnSearch"></button>
+                                    <input type="text" id="search" name="search"  style="font-size: 15px; font-weight: 600;" placeholder="Nhập từ khóa...">
+                                    <a href="home/search" id="btnSearch"></a>
                                 </li>
                             </ul>
                         </li>
