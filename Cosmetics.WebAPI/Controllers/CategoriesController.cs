@@ -40,17 +40,16 @@ namespace Cosmetics.WebAPI.Controllers
             return Ok(categories);
         }
         [HttpGet("{id}")]
-
         public async Task<IActionResult> GetById(int id)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
+
             var category = await _categoryService.GetById(id);
             if (category == null)
             {
                 return BadRequest($"Cannot find category with id: {id}");
             }
-
             return Ok(category);
         }
 

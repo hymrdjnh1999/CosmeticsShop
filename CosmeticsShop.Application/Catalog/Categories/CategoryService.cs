@@ -154,7 +154,6 @@ namespace CosmeticsShop.Application.Catalog.Categories
                 SortOrder = category.SortOrder
             };
             return categoryViewModel;
-
         }
 
         public async Task<List<HomeCategoryViewModel>> GetProductCategories()
@@ -213,7 +212,6 @@ namespace CosmeticsShop.Application.Catalog.Categories
             int PageSize = request.PageSize;
             var totalRecords = 0;
 
-
             var Category = await _context.Categories.Where(x => x.Id == categoryId).FirstOrDefaultAsync();
 
             var pic = _context.ProductInCategories.Where(x => x.CategoryId == categoryId);
@@ -225,8 +223,6 @@ namespace CosmeticsShop.Application.Catalog.Categories
             
             query = query.Where(x => x.p.status == Status.Active);
             totalRecords = await query.CountAsync();
-
-            
            /* if (request.Keyword != null)
             {
                 query = query.Where(x => x.p.Name.Contains(request.Keyword));
@@ -251,8 +247,7 @@ namespace CosmeticsShop.Application.Catalog.Categories
                     ViewCount = x.p.ViewCount,
                     ImagePath = x.pi.ImagePath,
                     status = x.p.status
-                })
-                .ToListAsync();
+                }).ToListAsync();
 
             var response = new PageResponse<ProductViewModel>()
             {
@@ -263,12 +258,7 @@ namespace CosmeticsShop.Application.Catalog.Categories
             };
 
             return response;
-
         }
-        
     }
-
-
-    
 }
 

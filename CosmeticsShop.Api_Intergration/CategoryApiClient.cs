@@ -118,8 +118,8 @@ namespace CosmeticsShop.Api_Intergration
         {
             var requestUrl = $"/api/categories/productincategory?pageIndex=" +
             $"{request.PageIndex}&pageSize={request.PageSize}&keyword={request.Keyword}&categoryId={categoryId}";
-            var categories = await GetAsync<PageResponse<ProductViewModel>>(requestUrl);
-            return categories;
+            var products = await GetAsync<PageResponse<ProductViewModel>>(requestUrl);
+            return products;
         }
         public async Task<CategoryViewModel> GetById(int id)
         {

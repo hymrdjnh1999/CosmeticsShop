@@ -18,8 +18,7 @@ namespace CosmeticsShop.Api_Intergration
 
         Task<int> Create(CategoryCreateRequest request);
         Task<bool> Edit(CategoryUpdateRequest request);
-/*        Task<bool> ChangeIsOutStanding(CategoryUpdateIOSRequest request);
-*/        Task<CategoryViewModel> GetById(int id);
+        Task<CategoryViewModel> GetById(int id);
         Task<bool> Delete(int id);
 
     }

@@ -66,9 +66,11 @@ namespace CosmeticsShop.WebApp.Controllers
             if (logout)
                 return RedirectToAction("Logout", "User");
             await CreateUserViewBag();
+
             var products = await _categoryApiClient.GetProductInCategory(request, categoryId);
 
             var cat = await _categoryApiClient.GetById(categoryId);
+
             if (cat == null)
             {
                 return RedirectToAction("Error", "Home");
