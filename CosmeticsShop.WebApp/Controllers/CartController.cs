@@ -47,10 +47,12 @@ namespace CosmeticsShop.WebApp.Controllers
         {
             await CreateUserViewBag();
             var isLogin = HttpContext.Session.GetString("Token");
+            Claim clientIdClaim = null;
             ViewBag.IsLogin = false;
             if (isLogin != null)
             {
                 ViewBag.IsLogin = true;
+                clientIdClaim = GetClaim("Id");
             }
             var cartJS = HttpContext.Session.GetString("Cart");
             if (cartJS == null)
@@ -60,16 +62,13 @@ namespace CosmeticsShop.WebApp.Controllers
 
             var cart = JsonConvert.DeserializeObject<ClientCartViewModel>(cartJS);
             ViewBag.Cart = cart;
-            var token = HttpContext.Session.GetString("Token");
-            var clientIdClaim = GetClaim("Id");
-            if (token == null && clientIdClaim == null)
-            {
-                return RedirectToAction("Error", "Home");
-            }
             CreateCartViewBag();
-            var ClientId = new Guid(clientIdClaim.Value);
-            var client = await _clientApi.GetDetail(ClientId);
-            ViewBag.User = client.ResultObj;
+            if (isLogin != null)
+            {
+                var ClientId = new Guid(clientIdClaim.Value);
+                var client = await _clientApi.GetDetail(ClientId);
+                ViewBag.User = client.ResultObj;
+            }
             var productCategory = await _categoryApiClient.GetHomeProductCategories();
             ViewBag.Categories = productCategory;
             return View();
@@ -110,11 +109,14 @@ namespace CosmeticsShop.WebApp.Controllers
         {
 
             var cart = GetCartViewModel();
+            var productCategory = await _categoryApiClient.GetHomeProductCategories();
+            ViewBag.Categories = productCategory;
             ViewBag.Cart = cart;
             request.ClientCart = cart;
             var isLogin = HttpContext.Session.GetString("Token");
             ViewBag.isLogin = false;
             var clientId = GetClaim("Id")?.Value ?? null;
+            
             if (isLogin != null && clientId != null)
             {
                 request.ClientID = new Guid(clientId);

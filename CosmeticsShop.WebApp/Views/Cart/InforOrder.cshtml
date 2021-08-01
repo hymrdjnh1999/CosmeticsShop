@@ -7,6 +7,7 @@
     var products = cart.Products;
     var user = ViewBag.User;
     var imgUrlBase = "https://localhost:5001/user-content/";
+    var isLogin = !ViewBag.IsLogin;
 }
 
 <div class="content" data-content>
@@ -53,16 +54,30 @@
                                     <input type="hidden" name="utf8" value="✓">
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <div class="form__Item">
-                                        <input class="form__Input" asp-for="ClientName" placeholder="Họ và Tên" value="@user.Name" aria-label="name" autofocus="">
+                                        @if (isLogin != null && user != null && !String.IsNullOrEmpty(user.Name))
+                                        {
+                                            <input class="form__Input" asp-for="ClientName" placeholder="Họ và Tên" value="@user.Name" aria-label="name" autofocus="">
+                                        }
+                                        else
+                                        {
+                                            <input class="form__Input" asp-for="ClientName" placeholder="Họ và Tên" value="" aria-label="name" autofocus="">
+                                        }
                                         <label class="form__FloatingLabel">Họ và Tên</label>
-                                        <span asp-validation-for="ClientName"  class="text-danger"></span>
+                                        <span asp-validation-for="ClientName" class="text-danger"></span>
                                     </div>
                                     <div class="form__Item">
                                         <input class="form__Input" asp-for="ClientNote" placeholder="Ghi chú của bạn (không bắt buộc điền)" aria-label="Ghi chú">
                                         <label class="form__FloatingLabel">Ghi chú của bạn (không bắt buộc điền)</label>
                                     </div>
                                     <div class="form__Item">
-                                        <input class="form__Input" asp-for="ShipAddress" value="@user.Address" placeholder="Địa chỉ" aria-label="address">
+                                        @if (isLogin != null && user != null && !String.IsNullOrEmpty(user.Address))
+                                        {
+                                            <input class="form__Input" asp-for="ShipAddress" value="@user.Address" placeholder="Địa chỉ" aria-label="address">
+                                        }
+                                        else
+                                        {
+                                            <input class="form__Input" asp-for="ShipAddress" value="" placeholder="Địa chỉ" aria-label="address">
+                                        }
                                         <label class="form__FloatingLabel">Địa chỉ</label>
                                         <span asp-validation-for="ShipAddress" class="text-danger"></span>
                                     </div>
@@ -70,24 +85,28 @@
                                         <input class="form__Input" asp-for="TotalPrice" type="hidden" value="@cart.CartPrice">
                                     </div>
                                     <div class="form__Item">
-                                        <input class="form__Input" type="email" asp-for="Email" value="@user.Email" placeholder="Email" aria-label="email">
+                                        @if (isLogin != null && user != null && !String.IsNullOrEmpty(user.Email))
+                                        {
+                                            <input class="form__Input" type="email" asp-for="Email" value="@user.Email" placeholder="Email" aria-label="email">
+                                        }
+                                        else
+                                        {
+                                            <input class="form__Input" type="email" asp-for="Email" value="" placeholder="Email" aria-label="email">
+                                        }
                                         <label class="form__FloatingLabel">Email</label>
                                         <span asp-validation-for="Email" class="text-danger"></span>
                                     </div>
                                     <div class="form__Item">
-                                        <input class="form__Input" asp-for="ShipPhone" value="@user.PhoneNumber" placeholder="Số điện thoại" aria-label="address">
+                                        @if (isLogin != null && user != null && !String.IsNullOrEmpty(user.PhoneNumber))
+                                        {
+                                            <input class="form__Input" asp-for="ShipPhone" value="@user.PhoneNumber" placeholder="Số điện thoại" aria-label="address">
+                                        }
+                                        else
+                                        {
+                                            <input class="form__Input" asp-for="ShipPhone" value="" placeholder="Số điện thoại" aria-label="address">
+                                        }
                                         <label class="form__FloatingLabel">Số điện thoại</label>
                                         <span asp-validation-for="ShipPhone" class="text-danger"></span>
-                                    </div>
-                                    <div class="field field--show-floating-label">
-                                        <div class="checkbox-wrapper">
-                                            <div class="checkbox_input">
-                                                <input class="input-checkbox" id="checkout_remember_me" type="checkbox" asp-for="SaveShipInfo">
-                                                <label class="checkbox__label" for="checkout_remember_me">
-                                                    Lưu lại thông tin của tôi trên hệ thống để sử dụng lại lần sau
-                                                </label>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
