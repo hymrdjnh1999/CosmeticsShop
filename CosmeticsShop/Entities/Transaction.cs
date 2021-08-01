@@ -18,6 +18,8 @@ namespace CosmeticsShop.Data.Entities
         public string Message { set; get; }
         public TransactionStatus Status { set; get; }
         public string Provider { set; get; }
+        public Guid ClientId { get; set; }
+        public Client Client { get; set; }
 
     }
 }

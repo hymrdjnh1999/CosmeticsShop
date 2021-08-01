@@ -1,0 +1,175 @@
+﻿@using Cosmetics.ViewModels.Common;
+@model PageResponse<Cosmetics.ViewModels.Catalogs.Orders.ClientOrderHistoryViewMode>
+
+@using CosmeticsShop.Data.Enums
+@{
+    ViewData["Title"] = "OrderHistory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div id="main">
+    <div id="pageContainer">
+        <main class="main_content" role="main">
+            <div class="d-none rounded fixed-top justify-content-center" id="cancelMsgWrap">
+                <span id="cancelMsg" class="rounded"></span>
+            </div>
+            <section id="page-wapper">
+                <div class="wrapperAccount">
+                    <div class="inner">
+                        <div class="grid mg-left-110">
+                            <div class="grid__item one-whole pd-left110">
+                                <h2>Xin chào, @ViewBag.Name</h2>
+                            </div>
+                            <div class="grid__item one-quarter pd-left110">
+                                <ul class="no-bullets">
+                                    <li><a href="/user/detail">Thông tin tài khoản</a></li>
+                                    <li><a href="#">Lịch sử đơn hàng</a></li>
+                                </ul>
+                            </div>
+                            <div class="grid__item three-quarters pd-left110 br-right">
+                                <form asp-action="OrderHistory" method="get">
+                                    <div class="form-outline my-2 d-block">
+                                        <div class="column">
+
+                                            <div class="form-group d-flex align-items-end mb-0">
+                                                <div class="d-block flex-column">
+                                                    <label for="DateStart" class="d-block">From :</label>
+                                                    <input type="date" id="DateStart" name="DateStart" class="form-control" />
+                                                    <label for="DateEnd" class="d-block w-100">To :</label>
+                                                    <input type="date" id="DateEnd" name="DateEnd" class="form-control w-100" />
+                                                </div>
+                                                <div class="">
+
+                                                    <button type="submit" class="btn btn-outline-dark ml-2 ">
+                                                        <i class="fas fa-search"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="form-group d-flex flex-column mb-0 mt-3">
+                                            <span class="m-1">Lọc theo trạng thái hóa đơn:</span>
+                                            <div class="order_button d-flex ">
+                                                <button asp-action="OrderHistory" class="btn btn-outline-secondary mr-2" style="min-width:140px">Tất cả</button>
+                                                <button name="status" value="InProgess" class="btn btn-outline-secondary mr-1 ml-1" style="min-width:140px">Đang xử lý</button>
+                                                <button name="status" value="Shipping" class="btn btn-outline-secondary mr-1 ml-1" style="min-width:140px">Đang giao hàng</button>
+                                                <button name="status" value="Success" class="btn btn-outline-secondary mr-1 ml-1" style="min-width:140px">Hoàn thành</button>
+                                                <button name="status" value="Canceled" class="btn btn-outline-secondary ml-2" style="min-width:140px">Đã hủy</button>
+                                            </div>
+                                        </div>
+                                        <input asp-for="PageSize" value="@Model.PageSize" type="hidden" class="form-control" />
+                                    </div>
+                                </form>
+
+                                <div class="card-body" style="padding: 0px; margin-top: 20px; ">
+                                    <div class="d-flex w-25 align-items-center mb-3">
+                                        @await Component.InvokeAsync("ChangePageSize", Model)
+                                    </div>
+                                    <div class="table-wrap table-order-customer">
+                                        <table class="full">
+                                            <thead>
+                                                <tr>
+                                                    <th>Mã</th>
+                                                    <th>Ngày đặt</th>
+                                                    <th>Tổng tiền</th>
+                                                    <th>Tình trạng</th>
+                                                    <th>Hành động</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="order-history-wrap">
+                                                @foreach (var item in Model.Items)
+                                                {
+                                                    <tr>
+                                                        <td><a href="@Url.Action("OrderDetails", "User", new { id = item.Id })" class="text-primary">@item.Id</a></td>
+                                                        <td>@item.OrderDate</td>
+                                                        <td class="priceFormat">
+                                                            @item.Total
+                                                        </td>
+                                                        <td class="orderStatus">@item.Status</td>
+                                                        <td>
+                                                            @if (item.Status < OrderStatus.Shipping && item.Status != OrderStatus.Canceled)
+                                                            {
+                                                                <span class="btn btn-danger cursor-pointer " onclick="openModal('order-modal','order-cancel-submit',@item.Id)">Hủy đơn</span>
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                        <div class="co-modal" id="order-modal">
+                                            <div class="co-modal--content ">
+                                                <div class="co-modal--title px-3">
+                                                    Bạn có chắc chắn muốn hủy đơn hàng này chứ?
+                                                </div>
+                                                <div>
+                                                    <textarea rows="3" class="w-100 mt-4" style="outline:none;" placeholder="Điền lý do bạn muốn hủy đơn hàng này" id="orderCancelReason"></textarea>
+                                                    <span class="text-danger" id="cancelOrderReason"></span>
+                                                </div>
+                                                <div class="co-modal--btns">
+                                                    <span class="btn btn-outline-dark co-modal--btn co-cancel-btn" onclick="handleOnCancel()">Hủy bỏ</span>
+                                                    <span class="btn btn-outline-danger co-modal--btn co-submit-btn" id="order-cancel-submit" onclick="onSubmitCancelOrder(this)">Xác nhận</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                    @await Component.InvokeAsync("Pager", Model)
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        const onSubmitCancelOrder = (btnElement) => {
+            const cancelReason = document.querySelector('#orderCancelReason').value;
+            if (!cancelReason.trim()) {
+                document.querySelector('#cancelOrderReason').innerText = "Không được để trống lý do";
+                event.preventDefault();
+                return;
+            }
+            const orderId = btnElement.getAttribute('data');
+            if (orderId) {
+                $.ajax({
+                    method: 'PUT',
+                    url: `/user/cancelOrder`,
+                    dataType: 'text',
+                    data: { orderId: Number(orderId), cancelReason },
+                    async: true,
+                    success: async function (response) {
+
+                        const { isSuccess, message } = JSON.parse(response);
+
+                        $('#cancelMsgWrap').removeClass('d-none').addClass('d-flex');
+                        if (isSuccess) {
+                            $('#cancelMsg').html(message).addClass('rounded alert alert-success')
+                        }
+                        else {
+                            $('#cancelMsg').html(message).addClass('rounded alert alert-danger')
+                        }
+                        await new Promise((resolve) => setTimeout(() => {
+                            $('#cancelMsgWrap').fadeOut('slow');
+                            resolve();
+                        }, 1500));
+                        $('#cancelMsg').html('')
+                        $('#cancelMsgWrap').removeClass('d-flex').addClass('d-none');
+                        handleOnCancel();
+                        location.reload();
+                    },
+                    failure: function (response) {
+                        alert('false')
+                    },
+                    error: function (response) {
+                        alert('error')
+                    }
+                })
+            }
+        }
+    </script>
+}

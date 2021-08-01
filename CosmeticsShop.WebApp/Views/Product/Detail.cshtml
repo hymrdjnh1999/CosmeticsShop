@@ -1,0 +1,85 @@
+﻿@model Cosmetics.ViewModels.Catalogs.Products.ClientProductViewModel;
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var baseUrl = "https://localhost:5001/user-content/";
+}
+
+
+@section Scripts{
+    <script>
+        const element = document.querySelector('#displayImg')
+        document.querySelector('#productImageList').style.height = `${element.clientHeight}px`;
+        element.onload = () => {
+            document.querySelector('#productImageList').style.height = `${element.clientHeight}px`;
+        }
+    </script>
+    <script>
+        const changeImage = (e) => {
+            $('.product-detail-img-active').removeClass('product-detail-img-active');
+            e.classList.add('product-detail-img-active')
+            const src = e.src;
+            document.getElementById('displayImg').src = src;
+        }
+    </script>
+}
+<div id="main">
+    <div class="container">
+        <div class="product product__wrapper d-flex">
+            @* Msg *@
+            <div id="notificationWrap" class="w-25 position-fixed d-flex items-center" style="top:40px; left:50%; transform:translateX(-50%); z-index:100;">
+                <span id="notificationMsg" class="alert alert-success w-100 d-none" role="alert">
+                </span>
+            </div>
+            @*Ảnh sản phẩm  *@
+
+            @* Thông Tin sản Phẩm Chi Tiết *@
+            <div class="product_infoWrapper d-flex mt-4">
+                <div class="w-50 d-flex flex-column px-2">
+                    <div class="position-relative">
+                        <div class="position-absolute w-25 product-imgs-small" id="productImageList">
+                            @for (int i = 0; i < Model.Images.Count; i++)
+                            {
+                                if (i == 0)
+                                {
+                                    <img class="w-100 d-block  product-detail-img product-detail-img-active" onclick="changeImage(this)" src="@baseUrl@Model.Images[i]" />
+                                }
+                                else
+                                {
+                                    <img class="w-100 d-block  product-detail-img py-2" onclick="changeImage(this)" src="@baseUrl@Model.Images[i]" />
+
+                                }
+
+                            }
+
+                        </div>
+
+                        <img class="w-100 d-block" id="displayImg" src="@baseUrl@Model.Images[0]" />
+                    </div>
+
+                </div>
+                @* Option sp *@
+                <div class="product_info w-50 px-2 d-flex flex-column">
+                    <div class="product_meta">
+                        <h1 class="productMeta__Title justify-content-start">@Model.Name</h1>
+                        <div class="my-3">
+                            <span class="productMeta__Price price text--subdued priceFormat">@Model.Price</span>
+                        </div>
+                    </div>
+                    @* From product *@
+                    <div class="sectionFooter">
+                        <div class="wrapper">
+                            <a href="#" onclick="handleAddToCart({ Id: @Model.Id, ProductName: `@Model.Name`, ProductPrice: @Model.Price, Quantity: 1, ProductImage: '@Model.Images[0]' })" class=" w-100 d-block"><span>MUA NGAY <span class="priceFormat">@Model.Price</span></span></a>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <h3 class="text-center font-weight-bold">Thông tin sản phẩm</h3>
+                        @Html.Raw(@Model.Description)
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

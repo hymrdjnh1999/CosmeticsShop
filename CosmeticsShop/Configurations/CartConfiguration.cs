@@ -14,8 +14,7 @@ namespace CosmeticsShop.Data.Configurations
         public void Configure(EntityTypeBuilder<Cart> builder)
         {
             builder.ToTable("Carts").HasKey(c => c.Id);
-
-            builder.HasOne(c => c.Product).WithMany(p => p.Carts).HasForeignKey(c => c.ProductId);
+            builder.Property(x => x.ClientId).IsRequired(false);
         }
     }
 }

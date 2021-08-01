@@ -15,6 +15,10 @@ namespace CosmeticsShop.Data.Configurations
         {
             builder.ToTable("Transactions").HasKey(t => t.Id);
 
+            builder.Property(x => x.Id).UseIdentityColumn();
+
+            builder.HasOne(t => t.Client).WithMany(c => c.Transactions).HasForeignKey(t => t.ClientId);
+
         }
     }
 }
