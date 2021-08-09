@@ -43,6 +43,15 @@ namespace Cosmetics.WebAPI.Controllers
             return Ok(products);
         }
 
+
+        [HttpGet("search")]
+        public async Task<IActionResult> SearchProductClient([FromQuery] GetProductRequest request)
+        {
+            var categories = await _productServices.SearchProductClient(request);
+            return Ok(categories);
+        }
+
+
         [HttpGet("{id}")]
         [Authorize]
 

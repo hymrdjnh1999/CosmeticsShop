@@ -1,8 +1,10 @@
 ﻿using Cosmetics.ViewModels.Catalogs.Categories;
+using Cosmetics.ViewModels.Catalogs.Products;
 using Cosmetics.ViewModels.Common;
 using CosmeticsShop.Application.Catalog.Categories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Cosmetics.WebAPI.Controllers
@@ -39,6 +41,7 @@ namespace Cosmetics.WebAPI.Controllers
             var categories = await _categoryService.GetProductInCategory(request, categoryId);
             return Ok(categories);
         }
+        
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {

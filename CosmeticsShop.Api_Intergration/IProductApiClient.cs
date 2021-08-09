@@ -23,5 +23,6 @@ namespace CosmeticsShop.Api_Intergration
         Task<bool> UpdateProductImage(ProductImageUpdateRequest request);
         Task<ProductImageViewModel> GetImageById(int productId, int imageId);
         Task<ApiResult<bool>> DeleteImage(int productId, int imageId);
+        Task<PageResponse<ProductViewModel>> SearchProduct(GetProductRequest request);
     }
 }

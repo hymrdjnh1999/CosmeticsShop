@@ -19,6 +19,5 @@ namespace CosmeticsShop.Application.Catalog.Categories
         Task<int> Create(CategoryCreateRequest request);
         Task<bool> Edit(CategoryUpdateRequest request);
         Task<List<HomeCategoryViewModel>> GetProductCategories();
-
     }
 }

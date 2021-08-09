@@ -277,6 +277,134 @@ namespace CosmeticsShop.Application.Catalog.Products
             return response;
         }
 
+        public async Task<PageResponse<ProductViewModel>> SearchProductClient(GetProductRequest request)
+        {
+            int PageIndex = request.PageIndex;
+            int PageSize = 8;
+            var totalRecords = 0;
+
+            if (request.CategoryId == null)
+            {
+                var result = from p in _context.Products
+                             join pi in _context.ProductImages on p.Id equals pi.ProductId
+                             where pi.IsDefault
+                             select new { p, pi };
+
+                result = result.Where(x => x.p.status == Status.Active);
+                totalRecords = await result.CountAsync();
+                if (!string.IsNullOrEmpty(request.Keyword))
+                {
+                    result = result.Where(x => x.p.Name.Contains(request.Keyword));
+                }
+                if ((request.PriceStart).HasValue && (request.PriceEnd).HasValue)
+                {
+                    result = result.Where(x => x.p.Price >= request.PriceStart && x.p.Price <= request.PriceEnd);
+                }
+                if(request.SortPrice == "2")
+                {
+                result = result.OrderByDescending(x => x.p.Price);
+                }
+                else if(request.SortPrice == "1")
+                {
+                    result = result.OrderBy(x => x.p.Price);
+                }
+                else {
+                }
+                totalRecords = await result.Select(x => x.p).CountAsync();
+
+                var products = await result.Skip((PageIndex - 1) * PageSize).Take(PageSize).Select(x => new ProductViewModel()
+                {
+                    Id = x.p.Id,
+                    Name = x.p.Name,
+                    Price = x.p.Price,
+                    ForGender = x.p.ForGender,
+                    OriginalPrice = x.p.OriginalPrice,
+                    DateCreated = x.p.DateCreated,
+                    Description = x.p.Description,
+                    Details = x.p.Details,
+                    OriginalCountry = x.p.OriginalCountry,
+                    Stock = x.p.Stock,
+                    ViewCount = x.p.ViewCount,
+                    ImagePath = x.pi.ImagePath,
+                    status = x.p.status
+                }).ToListAsync();
+                var responseData = new PageResponse<ProductViewModel>()
+                {
+                    Items = products,
+                    TotalRecords = totalRecords,
+                    PageIndex = PageIndex,
+                    PageSize = PageSize
+                };
+
+                return responseData;
+
+            }
+            else
+            {
+            var Category = await _context.Categories.Where(x => x.Id == request.CategoryId).FirstOrDefaultAsync();
+            
+            var pic = _context.ProductInCategories.Where(x => x.CategoryId == request.CategoryId);
+            var query = from pc in pic
+                        join p in _context.Products on pc.ProductId equals p.Id
+                        join pi in _context.ProductImages on p.Id equals pi.ProductId
+                        where pi.IsDefault
+                        select new { p, pi };
+            
+            query = query.Where(x => x.p.status == Status.Active);
+            totalRecords = await query.CountAsync();
+            if (request.Keyword != null)
+            {
+                query = query.Where(x => x.p.Name.Contains(request.Keyword));
+
+            }
+            if((request.PriceStart).HasValue && (request.PriceEnd).HasValue)
+            {
+                query = query.Where(x => x.p.Price >= request.PriceStart && x.p.Price <= request.PriceEnd);
+            }
+            if (request.SortPrice == "2")
+            {
+                    query = query.OrderByDescending(x => x.p.Price);
+            }
+            else if (request.SortPrice == "1")
+            {
+                    query = query.OrderBy(x => x.p.Price);
+            }
+            else
+            {
+            }
+                totalRecords = await query.Select(x => x.p).CountAsync();
+
+                var data = await query.Skip((PageIndex - 1) * PageSize)
+                .Take(PageSize)
+                .Select(x => new ProductViewModel()
+                {
+                    Id = x.p.Id,
+                    Name = x.p.Name,
+                    Price = x.p.Price,
+                    ForGender = x.p.ForGender,
+                    OriginalPrice = x.p.OriginalPrice,
+                    DateCreated = x.p.DateCreated,
+                    Description = x.p.Description,
+                    Details = x.p.Details,
+                    OriginalCountry = x.p.OriginalCountry,
+                    Stock = x.p.Stock,
+                    ViewCount = x.p.ViewCount,
+                    ImagePath = x.pi.ImagePath,
+                    status = x.p.status
+                }).ToListAsync();
+
+            var response = new PageResponse<ProductViewModel>()
+            {
+                Items = data,
+                TotalRecords = totalRecords,
+                PageIndex = PageIndex,
+                PageSize = PageSize
+            };
+
+            return response;
+            }
+        }
+
         public async Task<ProductUpdateRequest> GetById(int id)
         {
 
@@ -567,5 +695,7 @@ namespace CosmeticsShop.Application.Catalog.Products
 
             return new ApiSuccessResult<ClientProductViewModel>(clientProduct);
         }
+
+        
     }
 }

@@ -527,7 +527,7 @@ h2 {
         text-align: center;
     }
 
-
+    
 .wrapper a span {
     position: relative;
     z-index: 2;
@@ -554,7 +554,44 @@ h2 {
         width: 100%;
     }
 
+.sectionFooter label, .linksection label {
+        text-decoration: none;
+        color: white;
+        border: 1px solid #1c1b1b;
+        background: #1c1b1b;
+        padding: 14px 28px;
+        font-size: 15px;
+        letter-spacing: 3px;
+        font-weight: 600;
+        transition: all 2s;
+        position: relative;
+        text-align: center;
+    }
+.wrapper label span {
+    position: relative;
+    z-index: 2;
+}
 
+.wrapper label:after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: white;
+    transition: all 2s;
+}
+
+.wrapper label:hover {
+    color: #1c1b1b;
+    background: white;
+}
+
+    .wrapper label:hover:after {
+        color: black;
+        width: 100%;
+    }
 
 /*.sectionFooter a:hover, .linksection a:hover {
     color: black;

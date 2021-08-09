@@ -41,8 +41,6 @@ namespace Cosmetics.AdminApp.Controllers
             {
                 ViewBag.SuccessMsg = TempData["result"];
             }
-            data.ResultObj.TotalRecords -= 1;
-
             return View(data.ResultObj);
         }
 

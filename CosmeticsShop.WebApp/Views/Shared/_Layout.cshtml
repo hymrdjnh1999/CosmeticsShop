@@ -88,8 +88,11 @@
                             </a>
                             <ul class="dropdown-menu" style="border-radius: 20px; border: none !important">
                                 <li>
-                                    <input type="text" id="search" name="search"  style="font-size: 15px; font-weight: 600;" placeholder="Nhập từ khóa...">
-                                    <a href="home/search" id="btnSearch"></a>
+                                    <form asp-action="Search"  method="get">
+                                        <input type="text" id="search" name="Keyword" style="font-size: 15px; font-weight: 600;" placeholder="Nhập từ khóa...">
+                                        <button type="submit" id="btnSearch"></button>
+                                        @*<a href="@Url.Action("Search", "Home")" id="btnSearch"></a>*@
+                                    </form>
                                 </li>
                             </ul>
                         </li>
@@ -125,7 +128,7 @@
                                         @foreach (var item in categories)
                                         {
                                             <li class="linklist__Item">
-                                                <a class="link--secondary" href="ProductInCategory/@item.CategoryId">@item.CategoryName</a>
+                                                <a class="link--secondary" href="/Search/@item.CategoryId">@item.CategoryName</a>
                                             </li>
                                         }
                                     </ul>
@@ -136,7 +139,7 @@
                                         @foreach (var item in categories)
                                         {
                                             <li class="linklist__Item">
-                                                <a class="link--secondary" href="ProductInCategory/@item.CategoryId">@item.CategoryName</a>
+                                                <a class="link--secondary" href="/Search/@item.CategoryId">@item.CategoryName</a>
                                             </li>
                                         }
                                     </ul>
@@ -148,7 +151,7 @@
                                         @foreach (var item in categories)
                                         {
                                             <li class="linklist__Item">
-                                                <a class="link--secondary" href="ProductInCategory/@item.CategoryId">@item.CategoryName</a>
+                                                <a class="link--secondary" href="/Search/@item.CategoryId">@item.CategoryName</a>
                                             </li>
                                         }
                                     </ul>

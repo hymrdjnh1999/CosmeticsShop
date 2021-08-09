@@ -129,6 +129,8 @@ namespace CosmeticsShop.WebApp.Controllers
             {
                 return View();
             }
+            var productCategory = await _categoryApiClient.GetHomeProductCategories();
+            ViewBag.Categories = productCategory;
             return RedirectToAction("bill", new { orderId = result, cartId = cart.Id });
         }
         [HttpPost]
@@ -177,6 +179,8 @@ namespace CosmeticsShop.WebApp.Controllers
                 var serializeCart = JsonConvert.SerializeObject(cart);
                 HttpContext.Session.SetString("Cart", serializeCart);
             }
+            var productCategory = await _categoryApiClient.GetHomeProductCategories();
+            ViewBag.Categories = productCategory;
             return new JsonResult(cart);
         }
         [HttpDelete]
@@ -196,7 +200,8 @@ namespace CosmeticsShop.WebApp.Controllers
             {
                 return new JsonResult(new { result = false, message = "Có lỗi trong quá trình xóa" });
             }
-
+            var productCategory = await _categoryApiClient.GetHomeProductCategories();
+            ViewBag.Categories = productCategory;
             cart = response.ResultObj;
             var cartJs = JsonConvert.SerializeObject(cart);
             HttpContext.Session.SetString("Cart", cartJs);
@@ -231,7 +236,8 @@ namespace CosmeticsShop.WebApp.Controllers
             cart = await _cartApiClient.AddToCart(cart);
             var serializeCart = JsonConvert.SerializeObject(cart);
             HttpContext.Session.SetString("Cart", serializeCart);
-
+            var productCategory = await _categoryApiClient.GetHomeProductCategories();
+            ViewBag.Categories = productCategory;
             return new JsonResult(new { status = 201, message = "Ok", hasRemove = isRemove, newQuantity = product.Quantity, newTotalPrice = product.Quantity * product.ProductPrice, newCartPrice = cart.CartPrice });
         }
     }
