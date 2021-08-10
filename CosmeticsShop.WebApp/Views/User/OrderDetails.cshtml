@@ -67,6 +67,8 @@
                     <table class="table  text-center">
                         <thead class="thead-white text-dark">
                             <tr class="d-flex">
+                                 <th class="text-center" style="flex:3">
+                                </th>
                                 <th class="text-center" style="flex:7">
                                     Tên Mặt Hàng
                                 </th>
@@ -82,20 +84,20 @@
                         <tbody class=" border-bottom">
                             @foreach (var item in Model.OrderProducts)
                             {
-                               
-                            <tr class="d-flex">
-                                
-                                <td class=" d-flex align-items-center justify-content-center " style="flex:7">
-                                    <img class="img-thumbnail rounded mx-auto d-block " style="width:15%;height:75%" src="@Configuration["BaseImageAddress"]@item.ImagePath" alt="" />
-                                <a href="/product/@item.Id" class="product__item text-decoration-none pl-2 " style="cursor:pointer;font-size:18px">@item.Name</a>
-                                </td>
+                                <tr class="d-flex">
+                                    <td class=" d-flex align-items-center justify-content-center pl-4" style="flex:3">
+                                        <img class="img-thumbnail rounded mx-auto d-block h-75 w-100" src="@Configuration["BaseImageAddress"]@item.ImagePath" alt="" />
+                                    </td>
+                                    <td class=" d-flex align-items-center justify-content-center " style="flex:7">
+                                        <a href="/product/@item.Id" class="product__item text-decoration-none pl-2 " style="cursor:pointer;font-size:18px">@item.Name</a>
+                                    </td>
                                     <td class="d-flex align-items-center justify-content-center" style="flex:2">
                                         @item.Quantity
                                     </td>
                                     <td class="d-flex align-items-center justify-content-center priceFormat" style="flex:2">
                                         @item.Price
                                     </td>
-                            </tr>
+                                </tr>
                             }
                         </tbody>
                     </table>

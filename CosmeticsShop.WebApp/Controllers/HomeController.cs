@@ -55,44 +55,6 @@ namespace CosmeticsShop.WebApp.Controllers
             return View(homeViewModel);
         }
        
-        /*[HttpGet("ProductInCategory/{categoryId}")]
-        public async Task<IActionResult> ProductInCategory([FromQuery] PaginateRequest request, int categoryId )
-        {
-            var clientId = User.Claims.ToList().Where(x => x.Type == "Id").FirstOrDefault();
-            var logout = HttpContext.Session.GetString("Token") == null && clientId != null;
-            if (logout)
-                return RedirectToAction("Logout", "User");
-            await CreateUserViewBag();
-
-            var products = await _categoryApiClient.GetProductInCategory(request, categoryId);
-
-            var cat = await _categoryApiClient.GetById(categoryId);
-
-            if (cat == null)
-            {
-                return RedirectToAction("Error", "Home");
-            }
-            ViewBag.Category = cat;
-            var productCategory = await _categoryApiClient.GetHomeProductCategories();
-            ViewBag.Categories = productCategory;
-            return View(products);
-        }*/
-        /*[HttpGet("Search/{categoryId}")]
-        public async Task<IActionResult> Search([FromForm] PaginateRequest request , string categoryId)
-        {
-            var clientId = User.Claims.ToList().Where(x => x.Type == "Id").FirstOrDefault();
-            var logout = HttpContext.Session.GetString("Token") == null && clientId != null;
-            if (logout)
-                return RedirectToAction("Logout", "User");
-            await CreateUserViewBag();
-
-            var products = await _categoryApiClient.Search(request, categoryId);
-
-            
-            var productCategory = await _categoryApiClient.GetHomeProductCategories();
-            ViewBag.Categories = productCategory;
-            return View(products);
-        }*/
         [HttpGet("Search/{categoryId}"),HttpGet("Search")]
         public async Task<IActionResult> Search( GetProductRequest request)
         {

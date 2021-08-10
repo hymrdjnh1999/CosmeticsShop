@@ -88,7 +88,7 @@
                             </a>
                             <ul class="dropdown-menu" style="border-radius: 20px; border: none !important">
                                 <li>
-                                    <form asp-action="Search"  method="get">
+                                    <form asp-action="Search" asp-controller="Home" method="get">
                                         <input type="text" id="search" name="Keyword" style="font-size: 15px; font-weight: 600;" placeholder="Nhập từ khóa...">
                                         <button type="submit" id="btnSearch"></button>
                                         @*<a href="@Url.Action("Search", "Home")" id="btnSearch"></a>*@
