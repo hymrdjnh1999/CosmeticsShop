@@ -28,7 +28,7 @@
                                 @if (cart.ClientId != null)
                                 {
                                     <h2 class="os-header__title heading-3" id="main-header" tabindex="-1">
-                                        Cám ơn <span style="font-weight: 700">@ViewBag.Name!</span>
+                                        Cảm ơn <span style="font-weight: 700">@ViewBag.Name!</span>
                                     </h2>
                                 }
                             </div>
@@ -73,7 +73,7 @@
                                         <ul class="payment-method-list" style="list-style-type: none; padding-left: 0px;">
                                             <li class="payment-method-list__item">
                                                 <span class="payment-method-list__item__info">Thanh toán khi được giao sản phẩm đến tận tay (Cash On Delivery)</span>
-                                                <span class="payment-method-list__item__amount emphasis">@cart.CartPrice</span>
+                                                <span class="payment-method-list__item__amount emphasis priceFormat">@cart.CartPrice</span>
                                             </li>
                                         </ul>
                                     </div>

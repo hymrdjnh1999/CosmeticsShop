@@ -64,6 +64,11 @@ namespace CosmeticsShop.Application.Catalog.Carts
                         };
                         _context.ProductInCarts.Add(newPic);
                     }
+                    else
+                    {
+                        pic.Quantity = product.Quantity;
+                        _context.ProductInCarts.Attach(pic);
+                    }
                 }
                 _context.Carts.Attach(cart);
             }
