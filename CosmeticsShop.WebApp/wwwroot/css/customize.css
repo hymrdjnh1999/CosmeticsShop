@@ -187,11 +187,28 @@ input:focus {
 
 
 .horizontalList li button {
-    font-size: 13px;
+    font-size: 14px;
     color: #161616;
     font-weight: 600;
+    font-family: 'Space Grotesk';
+    background-color:none !important;
+    border:none;
+    outline:none
 }
-
+    .horizontalList li button:hover {
+        color: #1c1b1b;
+        text-decoration: none;
+        background-color: none;
+        border: none;
+        outline: none
+    }
+    .horizontalList li button:focus {
+        color: #1c1b1b;
+        text-decoration: none;
+        background-color: none;
+        border: none;
+        outline: none
+    }
 .horizontalList li a:hover {
     color: #1c1b1b;
 
@@ -289,6 +306,9 @@ input:focus {
 }
 
     .linklist__Item a:hover {
+        color: #cfa247;
+    }
+    .linklist__Item button:hover {
         color: #cfa247;
     }
 

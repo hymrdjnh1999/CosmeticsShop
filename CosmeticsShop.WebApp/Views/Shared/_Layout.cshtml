@@ -124,37 +124,43 @@
                             <div class="megaMenu__Inner">
                                 <div class="megaMenu__Item megaMenu__Item--fit">
                                     <a class="megaMenu__Title" href="#">Thương Hiệu</a>
-                                    <ul class="linklist">
-                                        @foreach (var item in categories)
-                                        {
-                                            <li class="linklist__Item">
-                                                <a class="link--secondary" href="/Search/@item.CategoryId">@item.CategoryName</a>
-                                            </li>
-                                        }
-                                    </ul>
+                                    <form asp-action="Search" method="get">
+                                        <ul class="linklist">
+                                            @foreach (var item in categories)
+                                            {
+                                                <li class="linklist__Item">
+                                                    <button class="link--secondary bg-white" name="CategoryId" value="@item.CategoryId">@item.CategoryName</button>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </form>
                                 </div>
                                 <div class="megaMenu__Item megaMenu__Item--fit">
-                                    <a class="megaMenu__Title" href="#">Sản phẩm</a>
-                                    <ul class="linklist">
-                                        @foreach (var item in categories)
-                                        {
-                                            <li class="linklist__Item">
-                                                <a class="link--secondary" href="/Search/@item.CategoryId">@item.CategoryName</a>
-                                            </li>
-                                        }
-                                    </ul>
+                                    <a class="megaMenu__Title" href="#">Sản Phẩm</a>
+                                    <form asp-action="Search" method="get">
+                                        <ul class="linklist">
+                                            @foreach (var item in categories)
+                                            {
+                                                <li class="linklist__Item">
+                                                    <button class="link--secondary bg-white" name="CategoryId" value="@item.CategoryId">@item.CategoryName</button>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </form>
 
                                 </div>
                                 <div class="megaMenu__Item megaMenu__Item--fit">
-                                    <a class="megaMenu__Title" href="#">Chọn Theo Giới Tính</a>
-                                    <ul class="linklist">
-                                        @foreach (var item in categories)
-                                        {
-                                            <li class="linklist__Item">
-                                                <a class="link--secondary" href="/Search/@item.CategoryId">@item.CategoryName</a>
-                                            </li>
-                                        }
-                                    </ul>
+                                    <a class="megaMenu__Title" href="#">Danh Mục</a>
+                                    <form asp-action="Search" method="get">
+                                        <ul class="linklist">
+                                            @foreach (var item in categories)
+                                            {
+                                                <li class="linklist__Item">
+                                                    <button  class="link--secondary bg-white" name="CategoryId" value="@item.CategoryId">@item.CategoryName</button>
+                                                </li>
+                                            }
+                                        </ul>
+                                        </form>
                                 </div>
 
                             </div>

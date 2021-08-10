@@ -310,6 +310,21 @@ namespace CosmeticsShop.Application.Catalog.Products
                 }
                 else {
                 }
+                if(request.Gender == 1)
+                {
+                    result = result.Where(x => x.p.ForGender == ForGender.Male);
+                }
+                else if (request.Gender == 2)
+                {
+                    result = result.Where(x => x.p.ForGender == ForGender.Female);
+                }
+                else if (request.Gender == 3)
+                {
+                    result = result.Where(x => x.p.ForGender == ForGender.Both);
+                }
+                else
+                {
+                }
                 totalRecords = await result.Select(x => x.p).CountAsync();
 
                 var products = await result.Skip((PageIndex - 1) * PageSize).Take(PageSize).Select(x => new ProductViewModel()
@@ -368,6 +383,22 @@ namespace CosmeticsShop.Application.Catalog.Products
             else if (request.SortPrice == "1")
             {
                     query = query.OrderBy(x => x.p.Price);
+            }
+            else
+            {
+            }
+
+            if (request.Gender == 1)
+            {
+                    query = query.Where(x => x.p.ForGender == ForGender.Male);
+            }
+            else if (request.Gender == 2)
+            {
+                    query = query.Where(x => x.p.ForGender == ForGender.Female);
+            }
+            else if (request.Gender == 3)
+            {
+                    query = query.Where(x => x.p.ForGender == ForGender.Both);
             }
             else
             {

@@ -1,15 +1,23 @@
 ﻿@{
-    ViewData["Title"] = "Search";
+    var category = ViewBag.Categories;
+    var request = ViewBag.request;
+    var name = "";
+    var gender = "";
+}
+
+@{
+    ViewData["Title"] = request.Keyword;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using Cosmetics.ViewModels.Common;
 @model PageResponse<Cosmetics.ViewModels.Catalogs.Products.ProductViewModel>
-@{
-    var category = ViewBag.Categories;
-    var request = ViewBag.request;
-    var SortPrice = ViewBag.SortPrice;
-}
 
+@section Scripts{
+    <script>
+
+
+    </script>
+}
 <div class="container" style="margin-top: 1.25rem; display: flex">
     <div class="filter-panel">
         <div class="search-filter-status">
@@ -20,6 +28,8 @@
             <div class="filter-group_header">Theo Danh Mục</div>
             <div class="folding-items filter-group__body folding-items--folded">
                 <form asp-action="Search" method="get">
+
+                    <input type="text" name="Keyword" value="@request.Keyword" hidden placeholder="nhập từ khóa" />
                     @foreach (var item in category)
                     {
                         <div class="filter checkbox-filter border-bottom">
@@ -29,24 +39,24 @@
                                         @* <a href="/Search/@item.CategoryId" class="text-category">@item.CategoryName</a>*@
                                         <button name="CategoryId" value="@item.CategoryId" class="text-category-btn">@item.CategoryName</button>
                                     </div>
-
                                 </label>
                             </div>
                         </div>
                     }
-                    <div class="form-group">
-                        <input type="text" name="Keyword" value="@request.Keyword" hidden placeholder="nhập từ khóa" />
-                        <input type="text" name="CategoryId" value="@request.CategoryId" hidden />
-                        <input type="text" name="SortPrice" value="@SortPrice" hidden />
-                    </div>
                     <div class="filter-group price-range-filter price-range-filter--vn">
                         <div class="filter-group_header price-range-filter_header">Khoảng giá</div>
                         <div class="filter-group_body price-range-filter_edit">
                             <div class="price-range-filter_inputs">
+
                                 <input type="text" id="PriceStart" name="PriceStart" maxlength="13" class="price-range-filter_input" placeholder="₫ TỪ" value="@request.PriceStart">
                                 <div class="price-range-filter_range-line"></div>
                                 <input type="text" id="PriceEnd" name="PriceEnd" maxlength="13" class="price-range-filter_input" placeholder="₫ ĐẾN" value="@request.PriceEnd">
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="SortPrice" value="@request.SortPrice" hidden />
+                            <input type="text" name="Gender" hidden value="@request.Gender" />
+
                         </div>
                         <div class="sectionFooter_From p-0">
                             <div class="">
@@ -55,9 +65,9 @@
                         </div>
                     </div>
                 </form>
-                <div class="sectionFooter_From p-0">
+                <div class="sectionFooter_From py-2">
                     <div class="">
-                        <a href="/Search" class="text-category">Reset</a>
+                        <a href="/Search" class="rounded">Clear All</a>
                     </div>
                 </div>
 
@@ -68,25 +78,27 @@
     <div role="main" class="box_right">
         <div class="search-item-result">
 
-            <div class="Search-keyword-form d-flex flex-column">
+            <div class="Search-keyword-form d-flex flex-column mt-4">
                 <div class="row col-12 justify-content-center">
                     <div class=" d-flex flex-nowrap border rounded col-6 position-relative mb-4">
                         <div class="">
-                            <form asp-action="Search" method="get">
+                            <form asp-action="Search" method="get" id="form_input_keyword">
                                 <div class="search-input">
-                                    <input type="text" name="Keyword" class="border-0  pr-5" placeholder="nhập từ khóa" />
-                                    <input type="text" name="CategoryId" value="@request.CategoryId" hidden />
-                                    <input type="text" name="SortPrice" value="@SortPrice" hidden />
-                                    <input type="text" name="PriceStart" hidden value="@request.PriceStart" />
-                                    <input type="text" name="PriceEnd" hidden value="@request.PriceEnd" />
+                                    <input type="text" name="Keyword" class="border-0  pr-5" placeholder="nhập từ khóa" value="@request.Keyword" />
+                                    <input type="text" name="CategoryId" value="@request.CategoryId" hidden class="d-none" />
+                                    <input type="text" name="PriceStart" hidden value="@request.PriceStart" class="d-none" />
+                                    <input type="text" name="PriceEnd" hidden value="@request.PriceEnd" class="d-none" />
+                                    <input type="text" name="SortPrice" value="@request.SortPrice" hidden class="d-none" />
+                                    <input type="text" name="Gender" hidden value="@request.Gender" />
+
                                 </div>
-                                <button type="submit" class="btn position-absolute btn-submit-search btn-search-color" style="height: 34px; padding: 0 15px; min-width: 60px; max-width: 190px; "><i class="search-btn-icon fa fa-search" aria-hidden="true"></i></button>
+                                <button type="submit" id="form_input_keyword_Search" class="btn position-absolute btn-submit-search btn-search-color" style="height: 34px; padding: 0 15px; min-width: 60px; max-width: 190px; "><i class="search-btn-icon fa fa-search" aria-hidden="true"></i></button>
                             </form>
 
                         </div>
                     </div>
                 </div>
-                <h1 class="search-result-header">
+                <div class="search-result-header">
                     <svg viewBox="0 0 18 24" class="svg-icon icon-hint-bulb">
                         <g transform="translate(-355 -149)">
                             <g transform="translate(355 149)">
@@ -102,58 +114,121 @@
                             </g>
                         </g>
                     </svg>
-                    @if (request.Keyword != null)
-                    {
-                        <span class="search-result-header_text ">
-                            Kết quả tìm kiếm cho từ khoá '
-                            <span class="search-result-header_text-highlight" style="color: rgb(238, 77, 45); font-weight: 400;">@request.Keyword</span>'
-                        </span>
-                    }
-                </h1>
+
+                    <div class="d-flex">
+
+                        @foreach (var item in category)
+                        {
+                            if (item.CategoryId == request.CategoryId)
+                            {
+                                name = item.CategoryName;
+                            }
+                        }
+                        @if (request.Keyword != null || request.CategoryId != null || request.Gender != null)
+                        {
+                            <div>Kết quả tìm kiếm cho :</div>
+                            <div class="ml-2">
+
+                            @if (request.Keyword != null)
+                            {
+                                <div class="search-result-header_text p-0 mb-1" style="line-height: 18px;"> từ khoá '<span class="search-result-header_text-highlight" style="color: rgb(238, 77, 45); font-weight: 400;">@request.Keyword</span>'</div>
+                            }
+                            @if (request.CategoryId != null)
+                            {
+                                <div class="search-result-header_text p-0 mb-1" style="line-height: 18px;">danh mục '<span class="search-result-header_text-highlight" style="color: rgb(238, 77, 45); font-weight: 400;">@name</span>'</div>
+                            }
+                            @if (request.Gender == 1)
+                            {
+                                gender = "Nam";
+                            }
+                            else if (request.Gender == 2)
+                            {
+                                gender = "Nữ";
+                            }
+                            else if (request.Gender == 3)
+                            {
+                                gender = "Cả hai";
+                            }
+                            @if (request.Gender != null)
+                            {
+                                <div class="search-result-header_text p-0 mb-1" style="line-height: 18px; ">giới tính '<span class="search-result-header_text-highlight" style="color: rgb(238, 77, 45); font-weight: 400;">@gender</span>'</div>
+                            }
+                            </div>
+                        }
+
+
+
+                    </div>
+                </div>
 
 
             </div>
             <div class="sort-bar">
                 <span class="sort-bar_label">Sắp xếp theo</span>
                 <div class="sort-by-options">
-                    <div class="sort-by-options_option sort-by-options_option--selected" style="background-color: #da2131">Liên quan</div>
-                    <div class="sort-by-options_option">Mới nhất</div>
-                    <div class="sort-by-options_option">Bán chạy</div>
-                    <div>
-                        <div class="select-with-status">
-                            <div class="select-with-status_holder select-with-status_box-shadow">
-                                <form action="Search" method="Get">
-                                    <select onchange="this.form.submit()" name="SortPrice" style="border: none; width: 100%;">
-                                        <option>Giá</option>
-                                        <option name="SortPrice" value="1">Giá: Thấp đến Cao</option>
-                                        <option name="SortPrice" value="2">Giá: Cao đến Thấp</option>
-                                        <option type="text" name="Keyword" class="border-0  pr-5" hidden value="@request.Keyword" />
-                                        <option type="text" name="CategoryId" value="@request.CategoryId" hidden />
-                                        <option type="text" name="SortPrice" value="@request.SortPrice" hidden />
-                                        <option type="text" name="PriceStart" hidden value="@request.PriceStart" />
-                                        <option type="text" name="PriceEnd" hidden value="@request.PriceEnd" />
-                                    </select>
-                                </form>
+                    @*<div class="sort-by-options_option">Mới nhất</div>*@
+                    <div class="d-flex">
+                        <form action="Search" method="Get" class="d-flex align-items-center">
+                            <input type="text" name="Keyword" class="border-0  pr-5" hidden value="@request.Keyword" />
+                            <input type="text" name="CategoryId" value="@request.CategoryId" hidden />
+                            <input type="text" name="PriceStart" hidden value="@request.PriceStart" />
+                            <input type="text" name="PriceEnd" hidden value="@request.PriceEnd" />
+                            <div class="d-flex align-items-center">
+                                <button type="submit" name="SortPrice" value="1" class="sort-by-options_option">Giá: Thấp đến Cao</button>
+                                <button type="submit" name="SortPrice" value="2" class="sort-by-options_option">Giá: Cao đến Thấp</button>
                             </div>
+                            <input type="text" name="Gender" hidden value="@request.Gender" />
+                        </form>
+
+                    </div>
+                    <div class="d-flex">
+                        <form action="Search" method="Get" class="d-flex align-items-center">
+                            <input type="text" name="Keyword" class="border-0  pr-5" hidden value="@request.Keyword" />
+                            <input type="text" name="CategoryId" value="@request.CategoryId" hidden />
+                            <input type="text" name="PriceStart" hidden value="@request.PriceStart" />
+                            <input type="text" name="PriceEnd" hidden value="@request.PriceEnd" />
+                            <input type="text" name="SortPrice" hidden value="@request.SortPrice" />
+                            <span class="sort-bar_label ml-5">Giới tính </span>
+                            <div class="d-flex ">
+                                <button type="submit" name="Gender" value="1" class="sort-by-options_option">Nam</button>
+                                <button type="submit" name="Gender" value="2" class="sort-by-options_option">Nữ</button>
+                                <button type="submit" name="Gender" value="3" class="sort-by-options_option">Cả Hai</button>
+                            </div>
+                        </form>
+                    </div>
+                    @*<div>
+                            <div class="select-with-status">
+                                <div class="select-with-status_holder select-with-status_box-shadow">
+                                    <form action="Search" method="Get">
+                                            <button name="SortPrice" value="1">Giá: Thấp đến Cao</button>
+                                            <input name="SortPrice" value="2">Giá: Cao đến Thấp</input>
+                                            <input type="text" name="Keyword" class="border-0  pr-5" hidden value="@request.Keyword" />
+                                            <input type="text" name="CategoryId" value="@request.CategoryId" hidden />
+                                            <input type="text" name="SortPrice" value="@request.SortPrice" hidden />
+                                            <input type="text" name="PriceStart" hidden value="@request.PriceStart" />
+                                            <input type="text" name="PriceEnd" hidden value="@request.PriceEnd" />
+                                        </select>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>*@
+                </div>
+                @*<div class="mini-page-controller">
+                        <div class="mini-page-controller_state">
+                            <span class="mini-page-controller_current">1</span>/
+                            <span class="mini-page-controller_total">100</span>
                         </div>
-                    </div>
-                </div>
-                <div class="mini-page-controller">
-                    <div class="mini-page-controller_state">
-                        <span class="mini-page-controller_current">1</span>/
-                        <span class="mini-page-controller_total">100</span>
-                    </div>
-                    <button class="button-outline mini-page-controller_prev-btn button-outline--disabled" disabled="">
-                        <svg viewBox="0 0 7 11" class="svg-icon icon-arrow-left-small">
-                            <path d="M4.694078 9.8185598L.2870824 5.4331785c-.1957415-.1947815-.1965198-.511363-.0017382-.7071046a.50867033.50867033 0 0 1 .000868-.0008702L4.7381375.2732784 4.73885.273991c.1411545-.127878.3284279-.205779.5338961-.205779.4393237 0 .7954659.3561422.7954659.7954659 0 .2054682-.077901.3927416-.205779.5338961l.0006632.0006632-.0226101.0226101a.80174653.80174653 0 0 1-.0105706.0105706L2.4680138 4.7933195c-.1562097.1562097-.1562097.4094757 0 .5656855a.45579485.45579485 0 0 0 .0006962.0006944l3.3930018 3.3763607-.0009482.0009529c.128869.1413647.2074484.3293723.2074484.5357331 0 .4393237-.3561422.7954659-.7954659.7954659-.2049545 0-.391805-.077512-.5328365-.2048207l-.0003877.0003896-.0097205-.0096728a.80042023.80042023 0 0 1-.0357234-.0355483z" fill-rule="nonzero"></path>
-                        </svg>
-                    </button>
-                    <button class="button-outline mini-page-controller_next-btn">
-                        <svg viewBox="0 0 7 11" class="svg-icon icon-arrow-right-small">
-                            <path d="M2.305922 9.81856l4.4069956-4.385381c.1957415-.194782.1965198-.511364.0017382-.707105a.26384055.26384055 0 0 0-.000868-.00087L2.2618625.273278 2.26115.273991C2.1199955.146113 1.9327221.068212 1.7272539.068212c-.4393237 0-.7954659.356142-.7954659.795466 0 .205468.077901.392741.205779.533896l-.0006632.000663.0226101.02261c.0034906.003557.0070143.00708.0105706.010571L4.5319862 4.79332c.1562097.156209.1562097.409475 0 .565685-.0002318.000232-.0004639.000463-.0006962.000694L1.1382882 8.73606l.0009482.000953c-.128869.141365-.2074484.329372-.2074484.535733 0 .439324.3561422.795466.7954659.795466.2049545 0 .391805-.077512.5328365-.204821l.0003877.00039.0097205-.009673c.012278-.011471.0241922-.023327.0357234-.035548z" fill-rule="nonzero"></path>
-                        </svg>
-                    </button>
-                </div>
+                        <button class="button-outline mini-page-controller_prev-btn button-outline--disabled" disabled="">
+                            <svg viewBox="0 0 7 11" class="svg-icon icon-arrow-left-small">
+                                <path d="M4.694078 9.8185598L.2870824 5.4331785c-.1957415-.1947815-.1965198-.511363-.0017382-.7071046a.50867033.50867033 0 0 1 .000868-.0008702L4.7381375.2732784 4.73885.273991c.1411545-.127878.3284279-.205779.5338961-.205779.4393237 0 .7954659.3561422.7954659.7954659 0 .2054682-.077901.3927416-.205779.5338961l.0006632.0006632-.0226101.0226101a.80174653.80174653 0 0 1-.0105706.0105706L2.4680138 4.7933195c-.1562097.1562097-.1562097.4094757 0 .5656855a.45579485.45579485 0 0 0 .0006962.0006944l3.3930018 3.3763607-.0009482.0009529c.128869.1413647.2074484.3293723.2074484.5357331 0 .4393237-.3561422.7954659-.7954659.7954659-.2049545 0-.391805-.077512-.5328365-.2048207l-.0003877.0003896-.0097205-.0096728a.80042023.80042023 0 0 1-.0357234-.0355483z" fill-rule="nonzero"></path>
+                            </svg>
+                        </button>
+                        <button class="button-outline mini-page-controller_next-btn">
+                            <svg viewBox="0 0 7 11" class="svg-icon icon-arrow-right-small">
+                                <path d="M2.305922 9.81856l4.4069956-4.385381c.1957415-.194782.1965198-.511364.0017382-.707105a.26384055.26384055 0 0 0-.000868-.00087L2.2618625.273278 2.26115.273991C2.1199955.146113 1.9327221.068212 1.7272539.068212c-.4393237 0-.7954659.356142-.7954659.795466 0 .205468.077901.392741.205779.533896l-.0006632.000663.0226101.02261c.0034906.003557.0070143.00708.0105706.010571L4.5319862 4.79332c.1562097.156209.1562097.409475 0 .565685-.0002318.000232-.0004639.000463-.0006962.000694L1.1382882 8.73606l.0009482.000953c-.128869.141365-.2074484.329372-.2074484.535733 0 .439324.3561422.795466.7954659.795466.2049545 0 .391805-.077512.5328365-.204821l.0003877.00039.0097205-.009673c.012278-.011471.0241922-.023327.0357234-.035548z" fill-rule="nonzero"></path>
+                            </svg>
+                        </button>
+                    </div>*@
             </div>
             <div class="row search-item-result_items">
                 <div class="grid categories-area " style="min-width:900px">

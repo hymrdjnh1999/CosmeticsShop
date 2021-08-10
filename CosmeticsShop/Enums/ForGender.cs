@@ -9,7 +9,7 @@ namespace CosmeticsShop.Data.Enums
     public enum ForGender
     {
         Male = 1,
-        Female,
-        Both
+        Female=2,
+        Both=3
     }
 }

@@ -192,7 +192,7 @@ namespace CosmeticsShop.Api_Intergration
         public async Task<PageResponse<ProductViewModel>> SearchProduct(GetProductRequest request)
         {
             var requestUrl = $"/api/products/Search?pageIndex=" +
-               $"{request.PageIndex}&pageSize={request.PageSize}&keyword={request.Keyword}&categoryId={request.CategoryId}&PriceStart={request.PriceStart}&PriceEnd={request.PriceEnd}&SortPrice={request.SortPrice}";
+               $"{request.PageIndex}&pageSize={request.PageSize}&keyword={request.Keyword}&categoryId={request.CategoryId}&PriceStart={request.PriceStart}&PriceEnd={request.PriceEnd}&SortPrice={request.SortPrice}&Gender={request.Gender}";
 
             var data = await GetAsync<PageResponse<ProductViewModel>>(requestUrl);
 
