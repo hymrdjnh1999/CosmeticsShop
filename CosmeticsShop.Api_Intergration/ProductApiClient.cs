@@ -189,6 +189,15 @@ namespace CosmeticsShop.Api_Intergration
             return image;
         }
 
+        public async Task<PageResponse<ProductViewModel>> SearchProduct(GetProductRequest request)
+        {
+            var requestUrl = $"/api/products/Search?pageIndex=" +
+               $"{request.PageIndex}&pageSize={request.PageSize}&keyword={request.Keyword}&categoryId={request.CategoryId}&PriceStart={request.PriceStart}&PriceEnd={request.PriceEnd}&SortPrice={request.SortPrice}";
+
+            var data = await GetAsync<PageResponse<ProductViewModel>>(requestUrl);
+
+            return data;
+        }
 
 
 

@@ -196,7 +196,8 @@ namespace CosmeticsShop.WebApp.Controllers
             var isDefaultAvatar = String.IsNullOrEmpty(client.Avatar);
             avatar = isDefaultAvatar ? "/images/default.jpg" : _config["BaseImageAddress"] + client.Avatar;
             client.Avatar = avatar;
-            
+            var productCategory = await _categoryApiClient.GetHomeProductCategories();
+            ViewBag.Categories = productCategory;
             return client;
         }
         [HttpPost]
@@ -223,6 +224,8 @@ namespace CosmeticsShop.WebApp.Controllers
                 ModelState.AddModelError("", result.Message);
                 return View(client);
             }
+            var productCategory = await _categoryApiClient.GetHomeProductCategories();
+            ViewBag.Categories = productCategory;
             client = await GetClientViewModel(clientId);
             ViewBag.Result = "Cập nhật thông tin thành công";
             return View(client);

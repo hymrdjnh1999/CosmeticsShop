@@ -1,4 +1,5 @@
 ﻿using Cosmetics.ViewModels.Catalogs.Categories;
+using Cosmetics.ViewModels.Catalogs.Products;
 using Cosmetics.ViewModels.Common;
 using CosmeticsShop.Api_Intergration;
 using CosmeticsShop.Application.Ultilities;
@@ -34,7 +35,7 @@ namespace CosmeticsShop.WebApp.Controllers
             _categoryApiClient = categoryApiClient;
             _bannerApiClient = bannerApiClient;
         }
-
+        
         public async Task<IActionResult> Index()
         {
             var clientId = User.Claims.ToList().Where(x => x.Type == "Id").FirstOrDefault();
@@ -53,24 +54,57 @@ namespace CosmeticsShop.WebApp.Controllers
             ViewBag.Categories = productCategory;
             return View(homeViewModel);
         }
-        [HttpGet("ProductInCategory/{categoryId}")]
+       
+        /*[HttpGet("ProductInCategory/{categoryId}")]
         public async Task<IActionResult> ProductInCategory([FromQuery] PaginateRequest request, int categoryId )
         {
-           
+            var clientId = User.Claims.ToList().Where(x => x.Type == "Id").FirstOrDefault();
+            var logout = HttpContext.Session.GetString("Token") == null && clientId != null;
+            if (logout)
+                return RedirectToAction("Logout", "User");
+            await CreateUserViewBag();
 
             var products = await _categoryApiClient.GetProductInCategory(request, categoryId);
 
-            if (TempData["result"] != null)
-            {
-                ViewBag.SuccessMsg = TempData["result"];
-            }
-            var category = await _categoryApiClient.GetById(categoryId);
-            if (category == null)
+            var cat = await _categoryApiClient.GetById(categoryId);
+
+            if (cat == null)
             {
                 return RedirectToAction("Error", "Home");
             }
-            var model = new CategoryViewModel() { Id = categoryId, Name = category.Name, IsOutstanding = category.IsOutstanding };
-            ViewBag.Category = model;
+            ViewBag.Category = cat;
+            var productCategory = await _categoryApiClient.GetHomeProductCategories();
+            ViewBag.Categories = productCategory;
+            return View(products);
+        }*/
+        /*[HttpGet("Search/{categoryId}")]
+        public async Task<IActionResult> Search([FromForm] PaginateRequest request , string categoryId)
+        {
+            var clientId = User.Claims.ToList().Where(x => x.Type == "Id").FirstOrDefault();
+            var logout = HttpContext.Session.GetString("Token") == null && clientId != null;
+            if (logout)
+                return RedirectToAction("Logout", "User");
+            await CreateUserViewBag();
+
+            var products = await _categoryApiClient.Search(request, categoryId);
+
+            
+            var productCategory = await _categoryApiClient.GetHomeProductCategories();
+            ViewBag.Categories = productCategory;
+            return View(products);
+        }*/
+        [HttpGet("Search/{categoryId}"),HttpGet("Search")]
+        public async Task<IActionResult> Search( GetProductRequest request)
+        {
+            var clientId = User.Claims.ToList().Where(x => x.Type == "Id").FirstOrDefault();
+            var logout = HttpContext.Session.GetString("Token") == null && clientId != null;
+            if (logout)
+                return RedirectToAction("Logout", "User");
+            await CreateUserViewBag();
+
+            var products = await _productApiClient.SearchProduct(request);
+
+            ViewBag.request = request;
             var productCategory = await _categoryApiClient.GetHomeProductCategories();
             ViewBag.Categories = productCategory;
             return View(products);
@@ -85,5 +119,7 @@ namespace CosmeticsShop.WebApp.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        
+
     }
 }

@@ -33,8 +33,9 @@ namespace CosmeticsShop.Application.Catalog.Products
         Task<List<ProductViewModel>> GetFeaturedProducts();
         Task<PageResponse<ProductImageViewModel>> GetImages(int productId, QueryParamRequest request);
         Task<bool> ChangeThumbnail(int productId, int imageId);
-
         Task<ApiResult<ClientProductViewModel>> ClientGetProductDetail(int id);
+
+        Task<PageResponse<ProductViewModel>> SearchProductClient(GetProductRequest request);
 
 
     }

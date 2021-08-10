@@ -4,7 +4,6 @@
     var categories = ViewBag.Categories;
 
 }
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,6 +21,7 @@
     <link rel="stylesheet" href="~/css/billCart.css" />
     <link rel="stylesheet" href="~/css/index.css" />
     <link rel="stylesheet" href="~/css/inforAccount.css" />
+    <link rel="stylesheet" href="~/css/search.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <script src="https://kit.fontawesome.com/c0378fb81e.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&display=swap" rel="stylesheet">
@@ -83,14 +83,16 @@
                             </div>
                         }
                         <li class="horizontalList__item">
-                            @* <a href="#" id="loginSubmitBtn" data-action="open-modal" aria-controls="search">Tìm Sản Phẩm</a>*@
-                            <button class="bg-white border-0 d-block" type="button" data-toggle="dropdown">
+                            <a href="#" class="bg-white border-0 d-block" style="cursor: pointer;" data-toggle="dropdown" data-action="open-modal" aria-controls="search">
                                 Tìm Sản Phẩm
-                            </button>
-                            <ul class="box-search dropdown-menu">
+                            </a>
+                            <ul class="dropdown-menu" style="border-radius: 20px; border: none !important">
                                 <li>
-                                    <input type="text" id="search" name="search" placeholder="Nhập từ khóa...">
-                                    <button id="btnSearch"></button>
+                                    <form asp-action="Search"  method="get">
+                                        <input type="text" id="search" name="Keyword" style="font-size: 15px; font-weight: 600;" placeholder="Nhập từ khóa...">
+                                        <button type="submit" id="btnSearch"></button>
+                                        @*<a href="@Url.Action("Search", "Home")" id="btnSearch"></a>*@
+                                    </form>
                                 </li>
                             </ul>
                         </li>
@@ -114,110 +116,23 @@
             <nav class="header__mainnav justify-content-center text-center" aria-label="Main navigation">
                 <ul class="horizontalList">
                     <li class="horizontalList__item dropDown" aria-haspopup="true">
-                        <a class="dropbtn" href="#">
-                            NƯỚC HOA
-                            <span class="header__LinkSpacer">Nước Hoa</span>
-                        </a>
                         <div class="megaMenu megaMenu--spacingEvenly dropdown-content" aria-hidden="false">
                             <div class="megaMenu__Inner">
                                 <div class="megaMenu__Item megaMenu__Item--fit">
-                                    <a class="megaMenu__Title" href="#">Sản Phẩm</a>
+                                    <a class="megaMenu__Title" href="#">Sản phẩm</a>
                                     <ul class="linklist">
-                                        @if (categories != null)
-                                        {
-
                                         @foreach (var item in categories)
                                         {
                                             <li class="linklist__Item">
-                                                <a class="link--secondary" href="@item.CategoryId">@item.CategoryName</a>
+                                                <a class="link--secondary" href="/Search/@item.CategoryId">@item.CategoryName</a>
                                             </li>
                                         }
-                                        }
                                     </ul>
+
                                 </div>
                             </div>
                         </div>
 
-                    </li>
-                    <li class="horizontalList__item dropDown" aria-haspopup="true">
-                        <a class="dropbtn" href="#">TRANG ĐIỂM<span class="header__LinkSpacer">TRANG ĐIỂM</span></a>
-                        <div class="megaMenu megaMenu--spacingEvenly dropdown-content" aria-hidden="false">
-                            <div class="megaMenu__Inner">
-                                <div class="megaMenu__Item megaMenu__Item--fit">
-                                    <a class="megaMenu__Title" href="#">Thương Hiệu</a>
-                                    <ul class="linklist">
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Make Up For Ever</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Givenchy</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Bourjois</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Max Factor</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="megaMenu__Item megaMenu__Item--fit">
-                                    <a class="megaMenu__Title" href="#">Sản Phẩm</a>
-                                    <ul class="linklist">
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Mới Nhất</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Được Yêu Thích</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Trang Điểm Môi</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Trang Điểm Mẳ</a>
-                                        </li>
-                                        <li class="linklist__Item">
-                                            <a class="link--secondary" href="#">Trang Điểm Mặt</a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </li>
-                    <li class="horizontalList__item dropDown" aria-haspopup="true">
-                        <a class="dropbtn" href="#">CHĂM SÓC DA</a>
-                        <div class="dropdownMenu dropdown-content" aria-hidden="false">
-                            <ul class="linklist" style="padding-left: 20px">
-                                <li class="linklist__Item">
-                                    <a class="link--secondary" href="#">Chăm Sóc Da Mặt</a>
-                                </li>
-                                <li class="linklist__Item">
-                                    <a class="link--secondary" href="#">Chăm Sóc Da Môi</a>
-                                </li>
-                                <li class="linklist__Item">
-                                    <a class="link--secondary" href="#">Chăm Sóc Da Mẳt</a>
-                                </li>
-                            </ul>
-
-                        </div>
-
-                    </li>
-                    <li class="horizontalList__item dropDown" aria-haspopup="true">
-                        <a class="dropbtn" href="#">KHUYẾN MÃI<span class="header__LinkSpacer">KHUYẾN MÃI</span></a>
-                        <div class="dropdownMenu dropdown-content" aria-hidden="false">
-                            <ul class="linklist" style="padding-left: 20px">
-                                <li class="linklist__Item">
-                                    <a class="link--secondary" href="#">Nước Hoa</a>
-                                </li>
-                                <li class="linklist__Item">
-                                    <a class="link--secondary" href="#">Mỹ Phẩm</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="horizontalList__item dropDown" aria-haspopup="true">
-                        <a class="dropbtn" href="#">XU HƯỚNG<span class="header__LinkSpacer">XU HƯỚNG</span></a>
                     </li>
                 </ul>
             </nav>

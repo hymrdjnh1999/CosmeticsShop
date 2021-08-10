@@ -1,9 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Product in Category";
+    Layout = "~/Views/Shared/_Layout.cshtml";   
 }
-@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
-
-
 @using Cosmetics.ViewModels.Common;
 @model PageResponse<Cosmetics.ViewModels.Catalogs.Products.ProductViewModel>
 @{
@@ -11,6 +9,7 @@
 
 }
 
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
 <div id="main">
 
     <div class="content-section" id="content-area">
@@ -20,40 +19,40 @@
         </div>
         <input asp-for="PageSize" value="@Model.PageSize" type="hidden" class="form-control" />
 
-            <h2 class="justify-content-center text-center text_title py-3 display-5 mt-4 font-weight-bold">@category.Name</h2>
-                <div class="shopify-section--bordered">
-                    <div class="d-flex w-25 align-items-center mb-3 pl-5 mt-3">
-                        @await Component.InvokeAsync("ChangePageSize", Model)
-                    </div>
-                        <div class="grid categories-area">
-                            <div class="row">
-                                
-                               @foreach (var item in Model.Items)
-                                {
-                                    <div class="col-lg-3 col-md-4 col-sm-6 position-relative w-100 d-block">
-                                        <a href="/product/@item.Id" class="product__item-img text-decoration-none" style="cursor:pointer;">
-                                            <div class="gird--product productItem__wapper img-product">
-                                                <div class="product-in-category-img product__item-img" style="background-image:url('https://localhost:5001/user-content/@item.ImagePath')">
-                                                    <div class="product__add-to-cart-btn" onclick='handleAddToCart({ Id: @item.Id, ProductName: `@item.Name`, ProductPrice: @item.Price, Quantity: 1, ProductImage: `@item.ImagePath` })' style="cursor:pointer;">
-                                                        <i id="addToCartBtn" class="fas fa-cart-plus product__add-to-cart-icon"></i>
-                                                    </div>
-                                                </div>
-                                                @* code infor here *@
-                                                <div class="productItem__info justify-content-center text-center">
-                                                    <h2 class="productItem__title">
-                                                        <span class="text-decoration-none product-name" style="cursor:pointer;">@item.Name</span>
-                                                    </h2>
-                                                    <div class="productItem__price">
-                                                        <span class="price text--subdued priceFormat">@item.Price</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
+        <h2 class="justify-content-center text-center text_title py-3 display-5 mt-4 font-weight-bold">@category.Name</h2>
+        <div class="shopify-section--bordered">
+            <div class="d-flex w-25 align-items-center mb-3 pl-5 mt-3">
+                @await Component.InvokeAsync("ChangePageSize", Model)
+            </div>
+            <div class="grid categories-area">
+                <div class="row">
+
+                    @foreach (var item in Model.Items)
+                    {
+                        <div class="col-lg-3 col-md-4 col-sm-6 position-relative w-100 d-block">
+                            <a href="/product/@item.Id" class="product__item-img text-decoration-none" style="cursor:pointer;">
+                                <div class="gird--product productItem__wapper img-product">
+                                    <div class="product-in-category-img product__item-img" style="background-image:url('https://localhost:5001/user-content/@item.ImagePath')">
+                                        <div class="product__add-to-cart-btn" onclick='handleAddToCart({ Id: @item.Id, ProductName: `@item.Name`, ProductPrice: @item.Price, Quantity: 1, ProductImage: `@item.ImagePath` })' style="cursor:pointer;">
+                                            <i id="addToCartBtn" class="fas fa-cart-plus product__add-to-cart-icon"></i>
+                                        </div>
                                     </div>
-                                 }
-                            </div>
+                                    @* code infor here *@
+                                    <div class="productItem__info justify-content-center text-center">
+                                        <h2 class="productItem__title">
+                                            <span class="text-decoration-none product-name" style="cursor:pointer;">@item.Name</span>
+                                        </h2>
+                                        <div class="productItem__price">
+                                            <span class="price text--subdued priceFormat">@item.Price</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
+                    }
                 </div>
+            </div>
+        </div>
         @await Component.InvokeAsync("Pager", Model)
 
     </div>

@@ -13,12 +13,11 @@ namespace CosmeticsShop.Application.Catalog.Categories
     {
         Task<List<CategoryViewModel>> GetAll();
         Task<PageResponse<CategoryViewModel>> GetAllPaging(PaginateRequest request , string status);
+        Task<PageResponse<ProductViewModel>> GetProductInCategory(PaginateRequest request , int categoryId);
         Task<CategoryViewModel> GetById(int id);
         Task<bool> Delete(int id);
         Task<int> Create(CategoryCreateRequest request);
         Task<bool> Edit(CategoryUpdateRequest request);
         Task<List<HomeCategoryViewModel>> GetProductCategories();
-        Task<PageResponse<ProductViewModel>> GetProductInCategory(PaginateRequest request , int categoryId);
-
     }
 }

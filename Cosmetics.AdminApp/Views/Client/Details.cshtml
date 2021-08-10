@@ -1,15 +1,9 @@
 ﻿@model Cosmetics.ViewModels.Systems.Clients.ClientViewModel
-
 @using CosmeticsShop.Data.Enums
-
 @{
     ViewData["Title"] = "Chi tiết khách hàng";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
-
 }
-
-
 <div class="container-fluid">
     <h1 class="mt-4">Khách Hàng</h1>
     <ol class="breadcrumb mb-4">
@@ -22,10 +16,6 @@
             <div class="d-none rounded fixed-top justify-content-center" id="cancelMsgWrap">
                 <span id="cancelMsg" class="rounded"></span>
             </div>
-
-
-
-
         </div>
         <div class="card-body">
             @if (ViewBag.SuccessMsg != null)
@@ -47,30 +37,30 @@
                 <h2>Thông tin chi tiết</h2>
                 <form class="row col-12">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
+                    
                     <div class="form-group col-6">
                         <label asp-for="Name" class="control-label">Tên </label>
                         <span class=" d-flex form-control" disabled style="padding:6px 12px" placeholder="Name">@Model.Name</span>
                     </div>
+
                     <div class="form-group col-6">
                         <label asp-for="Email" class="control-label">Địa chỉ Email</label>
                         <span class=" d-flex form-control" disabled style="padding:6px 12px" placeholder="Name">@Model.Email</span>
-
                     </div>
+                    
                     <div class="form-group col-6">
                         <label asp-for="Address" class="control-label">Địa chỉ</label>
                         <span class=" d-flex form-control" disabled style="padding:6px 12px" placeholder="Name">@Model.Address</span>
-
                     </div>
+                    
                     <div class="form-group col-6">
                         <label asp-for="Dob" class="control-label">Ngày sinh</label>
                         <span class=" d-flex form-control" disabled style="padding:6px 12px" placeholder="Name">@Model.Dob</span>
-
                     </div>
+                    
                     <div class="form-group col-6">
                         <label asp-for="PhoneNumber" class="control-label">Số điện thoại</label>
                         <span class=" d-flex form-control" disabled style="padding:6px 12px" placeholder="Name">@Model.PhoneNumber</span>
-
                     </div>
                 </form>
             </div>
@@ -85,9 +75,9 @@
                     <button name="status" value="Canceled" class="btn btn-outline-secondary ml-2" style="min-width:140px">Đã hủy</button>
                 </div>
             </div>
-        </form>*@
+            </form>*@
             <div class="table-responsive">
-            <h2 class="form-group ml-4" >Đơn mua </h2>
+                <h2 class="form-group ml-4">Đơn mua </h2>
                 <table class="table table-bordered border-dark">
                     <thead class="m-0 ">
                         <tr class="d-flex list-product-dark text-white">
@@ -188,6 +178,8 @@
                         }
                     </tbody>
                 </table>
+                <!-- Button trigger modal -->
+                <!-- Modal -->
                 <div class="co-modal" id="order-modal">
                     <div class="co-modal--content ">
                         <div class="co-modal--title px-3">
@@ -204,10 +196,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Button trigger modal -->
-            <!-- Modal -->
-
         </div>
     </div>
 </div>
@@ -270,12 +258,7 @@
             }
         }
     </script>
-
     <script>
         setTimeout(() => $('#msgAlert').fadeOut('slow'), 1500)
     </script>
-
-
-
-
 }
