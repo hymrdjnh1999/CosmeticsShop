@@ -195,7 +195,6 @@ namespace CosmeticsShop.Api_Intergration
                $"{request.PageIndex}&pageSize={request.PageSize}&keyword={request.Keyword}&categoryId={request.CategoryId}&PriceStart={request.PriceStart}&PriceEnd={request.PriceEnd}&SortPrice={request.SortPrice}&Gender={request.Gender}";
 
             var data = await GetAsync<PageResponse<ProductViewModel>>(requestUrl);
-
             return data;
         }
 

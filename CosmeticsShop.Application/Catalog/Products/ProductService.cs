@@ -325,6 +325,7 @@ namespace CosmeticsShop.Application.Catalog.Products
                 else
                 {
                 }
+
                 totalRecords = await result.Select(x => x.p).CountAsync();
 
                 var products = await result.Skip((PageIndex - 1) * PageSize).Take(PageSize).Select(x => new ProductViewModel()

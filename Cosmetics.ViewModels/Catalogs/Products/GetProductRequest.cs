@@ -15,5 +15,6 @@ namespace Cosmetics.ViewModels.Catalogs.Products
         public decimal? PriceEnd { get; set; }
         public string SortPrice { get; set; }
         public int? Gender { get; set; }
+
     }
 }
