@@ -131,11 +131,11 @@
 
                             @if (request.Keyword != null)
                             {
-                                <div class="search-result-header_text p-0 mb-1" style="line-height: 18px;"> từ khoá '<span class="search-result-header_text-highlight" style="color: rgb(238, 77, 45); font-weight: 400;">@request.Keyword</span>'</div>
+                                <div class="search-result-header_text p-0 mb-1" > từ khoá '<span class="search-result-header_text-highlight" style="color: rgb(238, 77, 45); font-weight: 400;">@request.Keyword</span>'</div>
                             }
                             @if (request.CategoryId != null)
                             {
-                                <div class="search-result-header_text p-0 mb-1" style="line-height: 18px;">danh mục '<span class="search-result-header_text-highlight" style="color: rgb(238, 77, 45); font-weight: 400;">@name</span>'</div>
+                                <div class="search-result-header_text p-0 mb-1" >danh mục '<span class="search-result-header_text-highlight" style="color: rgb(238, 77, 45); font-weight: 400;">@name</span>'</div>
                             }
                             @if (request.Gender == 1)
                             {
@@ -151,7 +151,7 @@
                             }
                             @if (request.Gender != null)
                             {
-                                <div class="search-result-header_text p-0 mb-1" style="line-height: 18px; ">giới tính '<span class="search-result-header_text-highlight" style="color: rgb(238, 77, 45); font-weight: 400;">@gender</span>'</div>
+                                <div class="search-result-header_text p-0 mb-1" >giới tính '<span class="search-result-header_text-highlight" style="color: rgb(238, 77, 45); font-weight: 400;">@gender</span>'</div>
                             }
                             </div>
                         }
