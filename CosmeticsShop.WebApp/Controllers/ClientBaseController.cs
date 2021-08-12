@@ -2,6 +2,7 @@
 using CosmeticsShop.Api_Intergration;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace CosmeticsShop.WebApp.Controllers
                 var clientId = new Guid(result.Value);
                 var response = await _clientApi.GetDetail(clientId);
                 var client = response.ResultObj;
-                ViewBag.Avatar = !String.IsNullOrEmpty(client.Avatar) ? $"https://localhost:5001/user-content/{client.Avatar}" : "/images/default.jpg";
+                ViewBag.Avatar = !String.IsNullOrEmpty(client.Avatar) ? $"http://35.240.243.125:8000/user-content/{client.Avatar}" : "/images/default.jpg";
                 ViewBag.Name = client.Name;
                 
             }

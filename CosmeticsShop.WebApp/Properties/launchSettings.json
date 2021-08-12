@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:5003/",
+      "applicationUrl": "http://localhost:3000/",
       "sslPort": 5003
     }
   },
@@ -24,14 +24,14 @@
         "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation"
       },
       "dotnetRunMessages": "true",
-      "applicationUrl": "https://localhost:5003"
+      "applicationUrl": "http://localhost:3000"
     },
     "WSL 2": {
       "commandName": "WSL2",
       "launchBrowser": true,
-      "launchUrl": "https://localhost:5003",
+      "launchUrl": "http://localhost:3000",
       "environmentVariables": {
-        "ASPNETCORE_URLS": "https://localhost:5003",
+        "ASPNETCORE_URLS": "http://localhost:3000",
         "ASPNETCORE_ENVIRONMENT": "Development",
         "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation"
       },

@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     var cart = ViewBag.Cart;
-    var imgUrlBase = "https://localhost:5001/user-content/";
+    var imgUrlBase = "http://35.240.243.125:8000/user-content/";
 }
 
 
@@ -117,6 +117,7 @@
             if (e.target.files && e.target.files[0]) {
                 var ImageDir = new FileReader();
                 ImageDir.onload = (a) => {
+                    console.log(a, ' a.target.result');
                     $('#clientAvatar').attr('src', a.target.result);
                 }
                 ImageDir.readAsDataURL(e.target.files[0]);

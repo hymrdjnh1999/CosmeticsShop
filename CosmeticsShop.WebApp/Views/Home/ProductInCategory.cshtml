@@ -32,7 +32,7 @@
                         <div class="col-lg-3 col-md-4 col-sm-6 position-relative w-100 d-block">
                             <a href="/product/@item.Id" class="product__item-img text-decoration-none" style="cursor:pointer;">
                                 <div class="gird--product productItem__wapper img-product">
-                                    <div class="product-in-category-img product__item-img" style="background-image:url('https://localhost:5001/user-content/@item.ImagePath')">
+                                    <div class="product-in-category-img product__item-img" style="background-image: url('http://35.240.243.125:8000/user-content/@item.ImagePath')">
                                         <div class="product__add-to-cart-btn" onclick='handleAddToCart({ Id: @item.Id, ProductName: `@item.Name`, ProductPrice: @item.Price, Quantity: 1, ProductImage: `@item.ImagePath` })' style="cursor:pointer;">
                                             <i id="addToCartBtn" class="fas fa-cart-plus product__add-to-cart-icon"></i>
                                         </div>
