@@ -177,7 +177,21 @@
         });
     </script>
     <script type="text/javascript" src="~/js/chosen.jquery.min.js"></script>
+    <script>
 
+        const makeFormatPrice = (element) => {
+            const price = parseInt(element.value);
+            const newPrice = price.toFixed(0);
+            element.value = newPrice
+        }
+
+        const prices = document.querySelectorAll('.priceFormat')
+        if (prices) {
+            prices.forEach(item => {
+                makeFormatPrice(item)
+            })
+        }
+    </script>
     <script>
         const makeFormatPrice = (element) => {
             const price = parseInt(element.textContent);
@@ -221,5 +235,5 @@
             }
         })
     </script>
-    
+
 }
